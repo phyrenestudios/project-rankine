@@ -3,43 +3,30 @@ package com.cannolicatfish.rankine.entities;
 import com.cannolicatfish.rankine.init.RankineDamageSources;
 import com.cannolicatfish.rankine.init.RankineEntityTypes;
 import com.cannolicatfish.rankine.init.RankineItems;
-import net.minecraft.world.entity.monster.Endermite;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.projectile.AbstractHurtingProjectile;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.Util;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.Util;
-import net.minecraft.world.phys.Vec3;
-import net.minecraft.world.level.Explosion;
-import net.minecraft.world.level.Level;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
-
-import java.util.List;
-
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.monster.Endermite;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.AbstractHurtingProjectile;
 import net.minecraft.world.entity.projectile.ItemSupplier;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
-import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
-import net.neoforged.neoforge.network.NetworkHooks;
-import net.neoforged.neoforge.network.PlayMessages;
+import net.minecraft.world.phys.EntityHitResult;
+import net.minecraft.world.phys.Vec3;
 
-@OnlyIn(
-        value = Dist.CLIENT,
-        _interface = ItemSupplier.class
-)
+import java.util.List;
 
 public class EnderballEntity extends AbstractHurtingProjectile implements ItemSupplier {
     private static final EntityDataAccessor<ItemStack> STACK = SynchedEntityData.defineId(EnderballEntity.class, EntityDataSerializers.ITEM_STACK);
@@ -48,26 +35,19 @@ public class EnderballEntity extends AbstractHurtingProjectile implements ItemSu
         super(p_i50147_1_, p_i50147_2_);
     }
 
-
     public EnderballEntity(Level worldIn, LivingEntity shooter, double accelX, double accelY, double accelZ) {
-        super(RankineEntityTypes.ENDERBALL.get(), shooter, accelX, accelY, accelZ, worldIn);
+        // 1.21.1: AbstractHurtingProjectile takes the acceleration as a Vec3
+        super(RankineEntityTypes.ENDERBALL.get(), shooter, new Vec3(accelX, accelY, accelZ), worldIn);
     }
 
     public EnderballEntity(Level worldIn, double x, double y, double z, double accelX, double accelY, double accelZ) {
-        super(RankineEntityTypes.ENDERBALL.get(), x, y, z, accelX, accelY, accelZ, worldIn);
+        super(RankineEntityTypes.ENDERBALL.get(), x, y, z, new Vec3(accelX, accelY, accelZ), worldIn);
     }
 
-    @OnlyIn(Dist.CLIENT)
-    public EnderballEntity(PlayMessages.SpawnEntity spawnEntity, Level world, EntityType<EnderballEntity> e) {
-        super(e, world);
-    }
-
-    public Packet<?> getAddEntityPacket() {
-        return NetworkHooks.getEntitySpawningPacket(this);
-    }
+    // 1.21.1: getAddEntityPacket/NetworkHooks override removed — vanilla handles spawn packets.
 
     public void setStack(ItemStack stack) {
-        if (stack.getItem() != RankineItems.CANNONBALL.get() || stack.hasTag()) {
+        if (stack.getItem() != RankineItems.CANNONBALL.get() || !stack.isComponentsPatchEmpty()) {
             this.getEntityData().set(STACK, Util.make(stack.copy(), (p_213897_0_) -> {
                 p_213897_0_.setCount(1);
             }));
@@ -84,40 +64,42 @@ public class EnderballEntity extends AbstractHurtingProjectile implements ItemSu
         return this.getEntityData().get(STACK);
     }
 
-    @OnlyIn(Dist.CLIENT)
+    @Override
     public ItemStack getItem() {
         ItemStack itemstack = this.getStack();
         return itemstack.isEmpty() ? new ItemStack(RankineItems.ENDERBALL.get()) : itemstack;
     }
 
-    protected void defineSynchedData() {
-        this.getEntityData().define(STACK, ItemStack.EMPTY);
+    @Override
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(STACK, ItemStack.EMPTY);
     }
 
+    @Override
     public void addAdditionalSaveData(CompoundTag compound) {
         super.addAdditionalSaveData(compound);
         ItemStack itemstack = this.getStack();
         if (!itemstack.isEmpty()) {
-            compound.put("Item", itemstack.save(new CompoundTag()));
+            compound.put("Item", itemstack.save(this.registryAccess()));
         }
 
     }
 
-    /**
-     * (abstract) Protected helper method to read subclass entity data from NBT.
-     */
+    @Override
     public void readAdditionalSaveData(CompoundTag compound) {
         super.readAdditionalSaveData(compound);
-        ItemStack itemstack = ItemStack.of(compound.getCompound("Item"));
+        ItemStack itemstack = ItemStack.parseOptional(this.registryAccess(), compound.getCompound("Item"));
         this.setStack(itemstack);
     }
 
+    @Override
     protected void onHitEntity(EntityHitResult result) {
         super.onHitEntity(result);
-        if (!this.level.isClientSide) {
+        if (!this.level().isClientSide) {
             Entity entity = result.getEntity();
             Entity entity1 = this.getOwner();
-            boolean flag = entity.hurt(RankineDamageSources.CANNONBALL, 10.0F);
+            boolean flag = entity.hurt(RankineDamageSources.source(this.level(), RankineDamageSources.CANNONBALL), 10.0F);
             if (flag && entity1 instanceof LivingEntity) {
                 this.doEnchantDamageEffects((LivingEntity)entity1, entity);
             }
@@ -128,33 +110,33 @@ public class EnderballEntity extends AbstractHurtingProjectile implements ItemSu
         }
     }
 
-    protected void onHitBlock(BlockHitResult result) {
+    @Override
+    protected void onHitBlock(net.minecraft.world.phys.BlockHitResult result) {
         super.onHitBlock(result);
-        if (!this.level.isClientSide) {
-            Explosion.BlockInteraction explosion$mode = net.neoforged.neoforge.event.ForgeEventFactory.getMobGriefingEvent(this.level, this.getOwner()) ? Explosion.BlockInteraction.DESTROY : Explosion.BlockInteraction.NONE;
-            this.level.explode(this, this.getX(), this.getY(), this.getZ(), 1.0F, false, explosion$mode);
+        if (!this.level().isClientSide) {
+            // 1.18.2: mob griefing ? DESTROY : NONE — ExplosionInteraction.MOB applies the same gamerule check
+            Level.ExplosionInteraction explosionInteraction = net.neoforged.neoforge.event.EventHooks.canEntityGrief(this.level(), this.getOwner()) ? Level.ExplosionInteraction.MOB : Level.ExplosionInteraction.NONE;
+            this.level().explode(this, this.getX(), this.getY(), this.getZ(), 1.0F, false, explosionInteraction);
 
         }
     }
 
-    /**
-     * Called when this EntityFireball hits a block or entity.
-     */
+    @Override
     protected void onHit(HitResult result) {
         super.onHit(result);
-        if (!this.level.isClientSide) {
-            List<LivingEntity> list = level.getEntitiesOfClass(LivingEntity.class, new AABB(this.blockPosition()).inflate(5, 5, 5), (e) -> (e instanceof Mob || e instanceof Player) && !(e instanceof Endermite));
+        if (!this.level().isClientSide) {
+            List<LivingEntity> list = level().getEntitiesOfClass(LivingEntity.class, new AABB(this.blockPosition()).inflate(5, 5, 5), (e) -> (e instanceof Mob || e instanceof Player) && !(e instanceof Endermite));
             for (int i = 0; i < 3; i++) {
-                Endermite endermiteEntity = new Endermite(EntityType.ENDERMITE,this.level);
+                Endermite endermiteEntity = new Endermite(EntityType.ENDERMITE,this.level());
                 endermiteEntity.setPos(this.getX(),this.getY(),this.getZ());
                 if (list.size() > 1) {
-                    endermiteEntity.setTarget(list.get(level.getRandom().nextInt(list.size())));
+                    endermiteEntity.setTarget(list.get(level().getRandom().nextInt(list.size())));
                 } else if (list.size() == 1) {
                     endermiteEntity.setTarget(list.get(0));
                 }
                 if (list.size() >= 1) {
                     endermiteEntity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED,80,2));
-                    this.level.addFreshEntity(endermiteEntity);
+                    this.level().addFreshEntity(endermiteEntity);
                 }
 
             }
@@ -163,16 +145,12 @@ public class EnderballEntity extends AbstractHurtingProjectile implements ItemSu
 
     }
 
-    /**
-     * Returns true if other Entities should be prevented from moving through this Entity.
-     */
+    @Override
     public boolean isPickable() {
         return true;
     }
 
-    /**
-     * Called when the entity is attacked.
-     */
+    @Override
     public boolean hurt(DamageSource source, float amount) {
         return false;
     }

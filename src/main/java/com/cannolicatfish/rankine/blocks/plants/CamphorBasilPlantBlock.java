@@ -10,7 +10,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraft.world.level.BlockGetter;
-import net.neoforged.neoforge.common.Tags;
 
 public class CamphorBasilPlantBlock extends RankineCropsBlock {
     private static final VoxelShape[] SHAPES = new VoxelShape[]{
@@ -27,11 +26,13 @@ public class CamphorBasilPlantBlock extends RankineCropsBlock {
         super(properties);
     }
 
+    @Override
     protected ItemLike getBaseSeedId() {
         return RankineItems.CAMPHOR_BASIL_SEEDS.get();
     }
 
-    public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
+    @Override
+    protected VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
         return SHAPES[state.getValue(this.getAgeProperty())];
     }
 

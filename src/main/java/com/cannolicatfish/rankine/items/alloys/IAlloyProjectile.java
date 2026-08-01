@@ -1,16 +1,13 @@
 package com.cannolicatfish.rankine.items.alloys;
 
-import com.cannolicatfish.rankine.init.Config;
+import com.cannolicatfish.rankine.init.RankineDataComponents.AlloyStats;
 import com.cannolicatfish.rankine.recipe.AlloyModifierRecipe;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
-import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import com.cannolicatfish.rankine.util.alloys.AlloyModifier;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -19,7 +16,6 @@ import org.jetbrains.annotations.Nullable;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -28,9 +24,10 @@ public interface IAlloyProjectile extends IAlloySpecialItem {
 
     @Override
     default void initStats(ItemStack stack, Map<ElementRecipe, Integer> elementMap, @Nullable AlloyingRecipe alloyRecipe, @Nullable AlloyModifierRecipe alloyModifier) {
-        CompoundTag listnbt = new CompoundTag();
-        listnbt.putFloat("projectileDamage",createValueForProjectileDamage(elementMap,alloyRecipe,getModifierForStat(alloyModifier, AlloyModifier.ModifierType.ATTACK_DAMAGE)));
-        stack.getOrCreateTag().put("StoredAlloyStats", listnbt);
+        // was NBT "StoredAlloyStats" {projectileDamage}
+        AlloyStats stats = new AlloyStats(0, 0f, 0, 0, 0f, 0f, 0f, 0f, 0f, 0, 0, 0f,
+                createValueForProjectileDamage(elementMap,alloyRecipe,getModifierForStat(alloyModifier, AlloyModifier.ModifierType.ATTACK_DAMAGE)));
+        applyAlloyStats(stack, stats);
     }
 
     @Override
@@ -63,11 +60,8 @@ public interface IAlloyProjectile extends IAlloySpecialItem {
 
     default float getAlloyArrowDamage(ItemStack stack)
     {
-        if (stack.getTag() != null) {
-            return stack.getTag().getCompound("StoredAlloyStats").getFloat("projectileDamage");
-        } else {
-            return 1;
-        }
+        AlloyStats stats = getAlloyStats(stack);
+        return stats != null ? stats.projectileDamage() : 1;
     }
 
     default float createValueForProjectileDamage(Map<ElementRecipe,Integer> elementMap, AlloyingRecipe alloy, @javax.annotation.Nullable AlloyModifier modifier)
@@ -108,15 +102,4 @@ public interface IAlloyProjectile extends IAlloySpecialItem {
 
         return 2f + 0.5f*hl + 0.5f*dmg;
     }
-
-/*
-
-    default float createValueForProjectileVelocity()
-    {
-        int hl = calcMiningLevel(elements,percents);
-        float as = calcAttackSpeed(elements,percents);
-        float ms = calcMiningSpeed(elements,percents);
-
-        return 2f + 0.5f*hl + 0.5f*dmg;
-    }*/
 }

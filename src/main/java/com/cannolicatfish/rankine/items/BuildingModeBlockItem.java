@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.items;
 
 import com.cannolicatfish.rankine.blocks.buildingmodes.BuildingModeBlock;
+import com.cannolicatfish.rankine.init.RankineDataComponents;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
@@ -19,10 +20,8 @@ public class BuildingModeBlockItem extends BlockItem {
     }
 
     public int getBuildingMode(ItemStack stack) {
-        if (stack.hasTag()) {
-            return stack.getTag().getShort("building_mode");
-        }
-        return 1;
+        // Old NBT behavior: absent tag -> 1 (was stack.getTag().getShort("building_mode")).
+        return stack.getOrDefault(RankineDataComponents.BUILDING_MODE.get(), 1);
     }
 
     @Override
@@ -32,7 +31,7 @@ public class BuildingModeBlockItem extends BlockItem {
             ItemStack heldItem = playerIn.getItemInHand(handIn);
             int mode = getBuildingMode(heldItem);
             int maxModes = ((BuildingModeBlock) ((BlockItem) playerIn.getMainHandItem().getItem()).getBlock()).getMaxStyles();
-            heldItem.getOrCreateTag().putShort("building_mode", (short) (mode + 1) % maxModes == 0 ? (short) maxModes : (short) ((mode + 1) % maxModes));
+            heldItem.set(RankineDataComponents.BUILDING_MODE.get(), (mode + 1) % maxModes == 0 ? maxModes : (mode + 1) % maxModes);
             playerIn.displayClientMessage(Component.translatable("item.rankine.building_tool.message", (mode + 1) % maxModes == 0 ? maxModes : ((mode + 1) % maxModes)).withStyle(ChatFormatting.WHITE), true);
         }
         return super.use(levelIn, playerIn, handIn);

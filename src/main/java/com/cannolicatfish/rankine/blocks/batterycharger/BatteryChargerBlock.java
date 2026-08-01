@@ -1,10 +1,10 @@
 package com.cannolicatfish.rankine.blocks.batterycharger;
 
 import com.cannolicatfish.rankine.init.RankineBlockEntityTypes;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Containers;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Player;
@@ -20,20 +20,26 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.phys.BlockHitResult;
-import net.neoforged.neoforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
 
 public class BatteryChargerBlock extends BaseEntityBlock {
+    public static final MapCodec<BatteryChargerBlock> CODEC = simpleCodec(BatteryChargerBlock::new);
+
+    @Override
+    protected MapCodec<BatteryChargerBlock> codec() {
+        return CODEC;
+    }
+
     public BatteryChargerBlock(Properties properties) {
         super(properties);
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
+    protected InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult result) {
         if (!world.isClientSide) {
             BlockEntity tileEntity = world.getBlockEntity(pos);
             if (tileEntity instanceof MenuProvider) {
-                NetworkHooks.openGui((ServerPlayer) player, (MenuProvider) tileEntity, tileEntity.getBlockPos());
+                ((ServerPlayer) player).openMenu((MenuProvider) tileEntity, tileEntity.getBlockPos());
             } else {
                 throw new IllegalStateException("Our named container provider is missing!");
             }
@@ -53,7 +59,8 @@ public class BatteryChargerBlock extends BaseEntityBlock {
         builder.add(BlockStateProperties.FACING);
     }
 
-    public void onRemove(BlockState state, Level worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
+    @Override
+    protected void onRemove(BlockState state, Level worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
         if (!state.is(newState.getBlock())) {
             BlockEntity tileentity = worldIn.getBlockEntity(pos);
             if (tileentity instanceof BatteryChargerTile) {
@@ -64,7 +71,8 @@ public class BatteryChargerBlock extends BaseEntityBlock {
         }
     }
 
-    public RenderShape getRenderShape(BlockState p_49232_) {
+    @Override
+    protected RenderShape getRenderShape(BlockState p_49232_) {
         return RenderShape.MODEL;
     }
 

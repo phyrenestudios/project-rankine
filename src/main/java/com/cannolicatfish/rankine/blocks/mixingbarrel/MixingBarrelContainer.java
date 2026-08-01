@@ -1,10 +1,11 @@
 package com.cannolicatfish.rankine.blocks.mixingbarrel;
 
 import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.RankineContainers;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.init.packets.FluidStackPacket;
-import com.cannolicatfish.rankine.init.packets.RankinePacketHandler;
 import com.cannolicatfish.rankine.recipe.MixingRecipe;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.Container;
@@ -13,6 +14,7 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.inventory.ContainerLevelAccess;
@@ -27,8 +29,6 @@ import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.SlotItemHandler;
 import net.neoforged.neoforge.items.wrapper.InvWrapper;
 
-import static com.cannolicatfish.rankine.init.RankineBlocks.MIXING_BARREL_CONTAINER;
-
 public class MixingBarrelContainer extends AbstractContainerMenu {
     private final Container furnaceInventory;
     private BlockEntity tileEntity;
@@ -37,6 +37,10 @@ public class MixingBarrelContainer extends AbstractContainerMenu {
     private Level world;
     private final ContainerData data;
 
+    public MixingBarrelContainer(int windowId, Inventory inv, FriendlyByteBuf extraData) {
+        this(windowId, inv.player.level(), extraData.readBlockPos(), inv, inv.player);
+    }
+
     public MixingBarrelContainer(int windowId, Level world, BlockPos pos, Inventory playerInventory, Player player) {
         this(windowId,world,pos,playerInventory,player,new SimpleContainer(5),new SimpleContainerData(4));
 
@@ -44,7 +48,7 @@ public class MixingBarrelContainer extends AbstractContainerMenu {
 
     }
     public MixingBarrelContainer(int windowId, Level world, BlockPos pos, Inventory playerInventory, Player player, Container furnaceInventoryIn, ContainerData furnaceData) {
-        super(MIXING_BARREL_CONTAINER, windowId);
+        super(RankineContainers.MIXING_BARREL_CONTAINER.get(), windowId);
         tileEntity = world.getBlockEntity(pos);
         checkContainerSize(furnaceInventoryIn, 5);
         checkContainerDataCount(furnaceData, 4);
@@ -52,7 +56,7 @@ public class MixingBarrelContainer extends AbstractContainerMenu {
         this.data = furnaceData;
         this.furnaceInventory = furnaceInventoryIn;
         this.playerInventory = new InvWrapper(playerInventory);
-        this.world = playerEntity.level;
+        this.world = playerEntity.level();
 
         this.addSlot(new Slot(furnaceInventory, 0, 40, 16));
         this.addSlot(new Slot(furnaceInventory, 1, 66,16));
@@ -95,7 +99,9 @@ public class MixingBarrelContainer extends AbstractContainerMenu {
     public void broadcastChanges() {
         super.broadcastChanges();
         MixingBarrelTile mixingBarrelTile = (MixingBarrelTile) tileEntity;
-        RankinePacketHandler.INSTANCE.send(PacketDistributor.ALL.noArg(),new FluidStackPacket(mixingBarrelTile.getInputTank().getFluid(),tileEntity.getBlockPos(),true));
+        // PORT-TODO(networking): FluidStackPacket must be ported to a CustomPacketPayload record and registered via
+        // RegisterPayloadHandlersEvent; this call assumes the ported payload keeps the (FluidStack, BlockPos, boolean) constructor.
+        PacketDistributor.sendToAllPlayers(new FluidStackPacket(mixingBarrelTile.getInputTank().getFluid(),tileEntity.getBlockPos(),true));
     }
 
     @Override
@@ -143,8 +149,8 @@ public class MixingBarrelContainer extends AbstractContainerMenu {
     }
 
     protected boolean hasRecipe(ItemStack stack) {
-        for (MixingRecipe recipe : this.world.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.MIXING)) {
-            for (Ingredient i : recipe.getIngredients()) {
+        for (RecipeHolder<MixingRecipe> recipe : this.world.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.MIXING.get())) {
+            for (Ingredient i : recipe.value().getIngredients()) {
                 if (i.test(stack)) {
                     return true;
                 }
@@ -204,4 +210,3 @@ public class MixingBarrelContainer extends AbstractContainerMenu {
 
 
 }
-

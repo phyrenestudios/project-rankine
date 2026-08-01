@@ -1,8 +1,8 @@
 package com.cannolicatfish.rankine.blocks.mixingbarrel;
 
-import com.cannolicatfish.rankine.blocks.mixingbarrel.MixingBarrelTile;
-import com.cannolicatfish.rankine.init.RankineBlockEntityTypes;
 import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.RankineBlockEntityTypes;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RenderShape;
@@ -12,9 +12,10 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Containers;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.MenuProvider;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -29,18 +30,23 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.Level;
-import net.neoforged.neoforge.common.util.LazyOptional;
 import net.neoforged.neoforge.fluids.FluidActionResult;
 import net.neoforged.neoforge.fluids.FluidUtil;
 import net.neoforged.neoforge.fluids.capability.IFluidHandlerItem;
-import net.neoforged.neoforge.network.NetworkHooks;
 import net.neoforged.neoforge.items.wrapper.InvWrapper;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Optional;
+
 public class MixingBarrelBlock extends BaseEntityBlock {
+    public static final MapCodec<MixingBarrelBlock> CODEC = simpleCodec(MixingBarrelBlock::new);
     //public static final DirectionProperty FACING = BlockStateProperties.FACING;
     public static IntegerProperty ANGLE = IntegerProperty.create("angle",0,3);
 
+    @Override
+    protected MapCodec<MixingBarrelBlock> codec() {
+        return CODEC;
+    }
 
     public MixingBarrelBlock(Properties properties) {
         super(properties);
@@ -52,7 +58,7 @@ public class MixingBarrelBlock extends BaseEntityBlock {
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
+    protected VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
         //return VoxelShapes.combineAndSimplify(makeCuboidShape(0,0,0,16,2,16),makeCuboidShape(2,2,2,14,16,14), IBooleanFunction.OR);
         return Shapes.block();
     }
@@ -64,35 +70,42 @@ public class MixingBarrelBlock extends BaseEntityBlock {
     }
 
     @Override
-    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
+    protected BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
         return super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
+    protected ItemInteractionResult useItemOn(ItemStack heldStack, BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
         if (!worldIn.isClientSide) {
-            LazyOptional<IFluidHandlerItem> item = FluidUtil.getFluidHandler(player.getItemInHand(handIn));
+            Optional<IFluidHandlerItem> item = FluidUtil.getFluidHandler(player.getItemInHand(handIn));
             MixingBarrelTile mixingBarrelTile = (MixingBarrelTile) worldIn.getBlockEntity(pos);
             if (item.isPresent() && mixingBarrelTile != null) {
                 FluidActionResult emptyContainerAndStow = FluidUtil.tryEmptyContainerAndStow(player.getItemInHand(handIn), mixingBarrelTile.inputTank, new InvWrapper(player.getInventory()), mixingBarrelTile.inputTank.getCapacity(), player, true);
                 if (emptyContainerAndStow.isSuccess()) {
                     player.setItemInHand(handIn, emptyContainerAndStow.getResult());
                     worldIn.blockEntityChanged(pos);
-                    return InteractionResult.CONSUME;
+                    return ItemInteractionResult.CONSUME;
                 }
 
                 FluidActionResult fillContainerAndStowInput = FluidUtil.tryFillContainerAndStow(player.getItemInHand(handIn), mixingBarrelTile.inputTank, new InvWrapper(player.getInventory()), mixingBarrelTile.inputTank.getFluidAmount(), player, true);
                 if (fillContainerAndStowInput.isSuccess()) {
                     player.setItemInHand(handIn, fillContainerAndStowInput.getResult());
                     worldIn.blockEntityChanged(pos);
-                    return InteractionResult.CONSUME;
+                    return ItemInteractionResult.CONSUME;
                 }
             }
+        }
+        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+    }
+
+    @Override
+    protected InteractionResult useWithoutItem(BlockState state, Level worldIn, BlockPos pos, Player player, BlockHitResult hit) {
+        if (!worldIn.isClientSide) {
             BlockEntity tileEntity = worldIn.getBlockEntity(pos);
             if (tileEntity instanceof MenuProvider) {
                     if (player.isCrouching()) {
-                        CompoundTag nbt = tileEntity.getTileData();
-                        /*int mixTime = nbt.getInt("MixTime");
+                        /*CompoundTag nbt = tileEntity.getPersistentData();
+                        int mixTime = nbt.getInt("MixTime");
                         int mixTimeTotal = nbt.getInt("MixTimeTotal");
                         System.out.println(mixTime + "/" + mixTimeTotal);
                         nbt.putInt("MixTime",Math.min(mixTime+8,mixTimeTotal));
@@ -104,7 +117,7 @@ public class MixingBarrelBlock extends BaseEntityBlock {
                             worldIn.setBlock(pos, RankineBlocks.MIXING_BARREL.get().defaultBlockState().setValue(MixingBarrelBlock.ANGLE,angle+1),3);
                         }
                     } else {
-                        NetworkHooks.openGui((ServerPlayer) player, (MenuProvider) tileEntity, tileEntity.getBlockPos());
+                        ((ServerPlayer) player).openMenu((MenuProvider) tileEntity, tileEntity.getBlockPos());
                     }
                 } else {
                     throw new IllegalStateException("Our named container provider is missing!");
@@ -115,7 +128,8 @@ public class MixingBarrelBlock extends BaseEntityBlock {
         }
     }
 
-    public void onRemove(BlockState state, Level worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
+    @Override
+    protected void onRemove(BlockState state, Level worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
         if (!state.is(newState.getBlock())) {
             BlockEntity tileentity = worldIn.getBlockEntity(pos);
             if (tileentity instanceof MixingBarrelTile) {
@@ -126,7 +140,8 @@ public class MixingBarrelBlock extends BaseEntityBlock {
         }
     }
 
-    public RenderShape getRenderShape(BlockState p_49232_) {
+    @Override
+    protected RenderShape getRenderShape(BlockState p_49232_) {
         return RenderShape.MODEL;
     }
 

@@ -1,13 +1,17 @@
 package com.cannolicatfish.rankine.blocks.tap;
 
+import com.cannolicatfish.rankine.init.RankineBlockEntityTypes;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.recipe.TreetappingRecipe;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -20,14 +24,12 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Stack;
 
-import static com.cannolicatfish.rankine.init.RankineBlocks.TREE_TAP_TILE;
-
 public class TreeTapTile extends BlockEntity {
     FluidTank outputTank = new FluidTank(1000);
     private int proccessTime;
 
     public TreeTapTile(BlockPos posIn, BlockState stateIn) {
-        super(TREE_TAP_TILE, posIn, stateIn);
+        super(RankineBlockEntityTypes.TREE_TAP.get(), posIn, stateIn);
     }
 
     public static void tick(Level level, BlockPos pos, BlockState bs, TreeTapTile tile) {
@@ -41,7 +43,7 @@ public class TreeTapTile extends BlockEntity {
             }
             tile.proccessTime += 1;
             Block log = level.getBlockState(logPos).getBlock();
-            TreetappingRecipe irecipe = tile.level.getRecipeManager().getRecipeFor(RankineRecipeTypes.TREETAPPING, new SimpleContainer(new ItemStack(log)), level).orElse(null);
+            TreetappingRecipe irecipe = tile.level.getRecipeManager().getRecipeFor(RankineRecipeTypes.TREETAPPING.get(), new SingleRecipeInput(new ItemStack(log)), level).map(RecipeHolder::value).orElse(null);
             if (irecipe != null && tile.proccessTime > irecipe.getTapTime()) {
                 tile.outputTank.fill(irecipe.getResult(), IFluidHandler.FluidAction.EXECUTE);
                 tile.proccessTime = 0;
@@ -80,7 +82,7 @@ public class TreeTapTile extends BlockEntity {
 
                 }
                 if (cauldron != null) {
-                    level.setBlockAndUpdate(cauldron, getCauldron(level, cauldron, tile.outputTank.getFluid().getFluid().getRegistryName().getPath()));
+                    level.setBlockAndUpdate(cauldron, getCauldron(level, cauldron, BuiltInRegistries.FLUID.getKey(tile.outputTank.getFluid().getFluid()).getPath()));
                     tile.outputTank.drain(1000, IFluidHandler.FluidAction.EXECUTE);
                 }
             }
@@ -108,16 +110,16 @@ public class TreeTapTile extends BlockEntity {
     }
 
     @Override
-    public void load(CompoundTag nbt) {
-        super.load(nbt);
-        this.outputTank = this.outputTank.readFromNBT(nbt.getCompound("OutputTank"));
+    protected void loadAdditional(CompoundTag nbt, HolderLookup.Provider provider) {
+        super.loadAdditional(nbt, provider);
+        this.outputTank = this.outputTank.readFromNBT(provider, nbt.getCompound("OutputTank"));
         this.proccessTime = nbt.getInt("ProcessTime");
     }
 
     @Override
-    public void saveAdditional(CompoundTag compound) {
-        super.saveAdditional(compound);
-        compound.put("OutputTank",this.outputTank.writeToNBT(new CompoundTag()));
+    protected void saveAdditional(CompoundTag compound, HolderLookup.Provider provider) {
+        super.saveAdditional(compound, provider);
+        compound.put("OutputTank",this.outputTank.writeToNBT(provider, new CompoundTag()));
         compound.putInt("ProcessTime", this.proccessTime);
     }
 

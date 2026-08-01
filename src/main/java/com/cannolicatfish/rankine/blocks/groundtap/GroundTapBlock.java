@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.blocks.groundtap;
 
 import com.cannolicatfish.rankine.init.RankineBlockEntityTypes;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -27,9 +28,15 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import javax.annotation.Nullable;
 
 public class GroundTapBlock extends BaseEntityBlock implements SimpleWaterloggedBlock {
+    public static final MapCodec<GroundTapBlock> CODEC = simpleCodec(GroundTapBlock::new);
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final DirectionProperty FACING = BlockStateProperties.FACING;
     public static final VoxelShape[] SHAPES = new VoxelShape[] {Block.box(5.0D, 14.0D, 5.0D, 11.0D, 16.0D, 11.0D), Block.box(5.0D, 0.0D, 5.0D, 11.0D, 2.0D, 11.0D), Block.box(5.0D, 5.0D, 14.0D, 11.0D, 11.0D, 16.0D), Block.box(5.0D, 5.0D, 0.0D, 11.0D, 11.0D, 2.0D), Block.box(14.0D, 5.0D, 5.0D, 16.0D, 11.0D, 11.0D), Block.box(0.0D, 5.0D, 5.0D, 2.0D, 11.0D, 11.0D)};
+
+    @Override
+    protected MapCodec<GroundTapBlock> codec() {
+        return CODEC;
+    }
 
     public GroundTapBlock(Properties properties) {
         super(properties);
@@ -40,7 +47,8 @@ public class GroundTapBlock extends BaseEntityBlock implements SimpleWaterlogged
         builder.add(WATERLOGGED, FACING);
     }
 
-    public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
+    @Override
+    protected VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
         return SHAPES[state.getValue(FACING).get3DDataValue()];
     }
 
@@ -51,18 +59,21 @@ public class GroundTapBlock extends BaseEntityBlock implements SimpleWaterlogged
         return this.defaultBlockState().setValue(WATERLOGGED, flag).setValue(FACING, context.getClickedFace());
     }
 
-    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
+    @Override
+    protected BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
         if (stateIn.getValue(WATERLOGGED)) {
             worldIn.getFluidTicks().willTickThisTick(currentPos, Fluids.WATER);
         }
         return super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
     }
 
-    public FluidState getFluidState(BlockState state) {
+    @Override
+    protected FluidState getFluidState(BlockState state) {
         return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }
 
-    public RenderShape getRenderShape(BlockState p_49232_) {
+    @Override
+    protected RenderShape getRenderShape(BlockState p_49232_) {
         return RenderShape.MODEL;
     }
 

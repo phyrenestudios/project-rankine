@@ -1,15 +1,45 @@
 package com.cannolicatfish.rankine.init;
 
+import com.cannolicatfish.rankine.ProjectRankine;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.item.Item;
 import net.minecraft.resources.ResourceLocation;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * RegistryEvent.MissingMappings / MissingMappingsEvent is GONE in NeoForge 1.21.1.
+ * The replacement is registry aliases ({@code IRegistryExtension#addAlias}): any lookup of the old
+ * name (including world save data) resolves to the new name when the old one is absent.
+ */
+@EventBusSubscriber(modid = ProjectRankine.MODID, bus = EventBusSubscriber.Bus.MOD)
 public class RankineRemappings {
+
+    @SubscribeEvent
+    public static void onCommonSetup(FMLCommonSetupEvent event) {
+        event.enqueueWork(RankineRemappings::registerAliases);
+    }
+
+    public static void registerAliases() {
+        for (Map.Entry<ResourceLocation, Item> entry : getItemRemappings().entrySet()) {
+            BuiltInRegistries.ITEM.addAlias(entry.getKey(), BuiltInRegistries.ITEM.getKey(entry.getValue()));
+        }
+        for (Map.Entry<ResourceLocation, Block> entry : getBlockRemappings().entrySet()) {
+            BuiltInRegistries.BLOCK.addAlias(entry.getKey(), BuiltInRegistries.BLOCK.getKey(entry.getValue()));
+            // The 1.18.2 handler also remapped missing ITEM entries through the block map (block items).
+            Item blockItem = entry.getValue().asItem();
+            if (blockItem != Items.AIR) {
+                BuiltInRegistries.ITEM.addAlias(entry.getKey(), BuiltInRegistries.ITEM.getKey(blockItem));
+            }
+        }
+    }
 
     public static Map<ResourceLocation, Item> itemRemappings = new HashMap<>();
 

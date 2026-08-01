@@ -5,12 +5,11 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.state.BlockState;
-
-import java.util.Random;
 
 public class RankineCropsBlock extends CropBlock {
 
@@ -36,24 +35,24 @@ public class RankineCropsBlock extends CropBlock {
     }
 
     @Override
-    public void randomTick(BlockState p_52292_, ServerLevel p_52293_, BlockPos p_52294_, Random p_52295_) {
+    protected void randomTick(BlockState p_52292_, ServerLevel p_52293_, BlockPos p_52294_, RandomSource p_52295_) {
         if (!p_52293_.isAreaLoaded(p_52294_, 1)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light
         if (p_52293_.getRawBrightness(p_52294_, 0) >= 9) {
             int i = this.getAge(p_52292_);
             if (i < this.getMaxAge()) {
-                float f = getGrowthSpeed(this, p_52293_, p_52294_);
+                float f = getGrowthSpeed(p_52292_, p_52293_, p_52294_);
                 float s = this.calcTotalCropScore(p_52293_,p_52294_);
                 if (s >= 1) {
                     for (int a = 0; a < s; a++) {
-                        if (net.neoforged.neoforge.common.ForgeHooks.onCropsGrowPre(p_52293_, p_52294_, p_52292_, p_52295_.nextInt((int)(25.0F / f) + 1) == 0)) {
+                        if (net.neoforged.neoforge.common.CommonHooks.canCropGrow(p_52293_, p_52294_, p_52292_, p_52295_.nextInt((int)(25.0F / f) + 1) == 0)) {
                             p_52293_.setBlock(p_52294_, this.getStateForAge(i + 1), 2);
-                            net.neoforged.neoforge.common.ForgeHooks.onCropsGrowPost(p_52293_, p_52294_, p_52292_);
+                            net.neoforged.neoforge.common.CommonHooks.fireCropGrowPost(p_52293_, p_52294_, p_52292_);
                         }
                     }
                 } else if ((1 - s) >= p_52295_.nextFloat()) {
-                    if (net.neoforged.neoforge.common.ForgeHooks.onCropsGrowPre(p_52293_, p_52294_, p_52292_, p_52295_.nextInt((int)(25.0F / f) + 1) == 0)) {
+                    if (net.neoforged.neoforge.common.CommonHooks.canCropGrow(p_52293_, p_52294_, p_52292_, p_52295_.nextInt((int)(25.0F / f) + 1) == 0)) {
                         p_52293_.setBlock(p_52294_, this.getStateForAge(i + 1), 2);
-                        net.neoforged.neoforge.common.ForgeHooks.onCropsGrowPost(p_52293_, p_52294_, p_52292_);
+                        net.neoforged.neoforge.common.CommonHooks.fireCropGrowPost(p_52293_, p_52294_, p_52292_);
                     }
                 }
 
@@ -63,7 +62,7 @@ public class RankineCropsBlock extends CropBlock {
     }
 
     @Override
-    public boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
+    protected boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
         if (state.getValue(AGE) == 7) {
             return worldIn.getBlockState(pos.below()).is(BlockTags.DIRT) || super.canSurvive(state, worldIn, pos);
         }
@@ -87,7 +86,7 @@ public class RankineCropsBlock extends CropBlock {
 
     // Temperature for crops is scored by an int[3] array; [Dry, Moderate, Wet]
     public float calcMoistureScore(LevelReader worldIn, BlockPos pos) {
-        float humidity = worldIn.getBiome(pos).value().getDownfall();
+        float humidity = worldIn.getBiome(pos).value().getModifiedClimateSettings().downfall();
         if (humidity < 0.25f) {
             return this.moistureScore[0];
         } else if (humidity < 0.75f) {

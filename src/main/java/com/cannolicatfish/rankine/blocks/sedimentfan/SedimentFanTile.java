@@ -1,36 +1,33 @@
 package com.cannolicatfish.rankine.blocks.sedimentfan;
 
 import com.cannolicatfish.rankine.init.Config;
+import com.cannolicatfish.rankine.init.RankineBlockEntityTypes;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.init.RankineSoundEvents;
 import com.cannolicatfish.rankine.recipe.RockGeneratorRecipe;
 import com.cannolicatfish.rankine.util.RockGeneratorUtils;
-import com.mojang.datafixers.DataFixUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.FluidTags;
-import net.minecraft.world.SimpleContainer;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
-import java.util.Random;
-import java.util.stream.Stream;
-
-import static com.cannolicatfish.rankine.init.RankineBlocks.SEDIMENT_FAN_TILE;
-
 public class SedimentFanTile extends BlockEntity {
 
     public SedimentFanTile(BlockPos posIn, BlockState stateIn) {
-        super(SEDIMENT_FAN_TILE, posIn, stateIn);
+        super(RankineBlockEntityTypes.SEDIMENT_FAN.get(), posIn, stateIn);
     }
 
     public static void tick(Level level, BlockPos pos, BlockState bs, SedimentFanTile tile) {
@@ -39,12 +36,11 @@ public class SedimentFanTile extends BlockEntity {
             if (dir.getAxis().isVertical()) continue;
             BlockState adjState = level.getBlockState(pos.relative(dir));
             if (!level.getFluidState(pos.relative(dir,2)).is(FluidTags.WATER) || !level.getFluidState(pos.relative(dir,3)).is(FluidTags.WATER)) continue;
-            RockGeneratorRecipe recipe = level.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.ROCK_GENERATOR).stream().flatMap((r) -> {
-                if (r.getGenType().equals(RockGeneratorUtils.RockGenType.SEDIMENTARY)) {
-                    return DataFixUtils.orElseGet(RankineRecipeTypes.ROCK_GENERATOR.tryMatch(r, level, new SimpleContainer(adjState.getBlock().asItem().getDefaultInstance())).map(Stream::of),Stream::empty);
-                }
-                return null;
-            }).findFirst().orElse(null);
+            RockGeneratorRecipe recipe = level.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.ROCK_GENERATOR.get()).stream()
+                    .map(RecipeHolder::value)
+                    .filter((r) -> r.getGenType().equals(RockGeneratorUtils.RockGenType.SEDIMENTARY)
+                            && r.matches(new SingleRecipeInput(adjState.getBlock().asItem().getDefaultInstance()), level))
+                    .findFirst().orElse(null);
             if (recipe != null) {
                 ItemStack output = recipe.getResultItem();
                 if (!output.isEmpty() && output.getItem() instanceof BlockItem) {
@@ -62,7 +58,7 @@ public class SedimentFanTile extends BlockEntity {
 
     @OnlyIn(Dist.CLIENT)
     public static void spawnParticles(Level worldIn, BlockPos pos) {
-        Random random = worldIn.getRandom();
+        RandomSource random = worldIn.getRandom();
         double d0 = (double)pos.getX() + random.nextDouble();
         double d1 = (double)pos.getY() - 0.05D;
         double d2 = (double)pos.getZ() + random.nextDouble();

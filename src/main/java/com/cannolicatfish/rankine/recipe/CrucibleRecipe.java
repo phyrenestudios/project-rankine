@@ -6,22 +6,26 @@ import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
 import com.cannolicatfish.rankine.recipe.helper.AlloyIngredientHelper;
 import com.cannolicatfish.rankine.recipe.helper.AlloyRecipeHelper;
+import com.cannolicatfish.rankine.recipe.helper.RankineMapCodec;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
-import net.minecraft.world.Container;
-import net.minecraft.world.item.Item;
+import com.mojang.serialization.MapCodec;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.NonNullList;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.GsonHelper;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeInput;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.util.GsonHelper;
-import net.minecraft.core.NonNullList;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.core.Registry;
 import net.minecraft.world.level.Level;
 
 import java.util.ArrayList;
@@ -29,7 +33,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class CrucibleRecipe implements Recipe<Container> {
+public class CrucibleRecipe implements Recipe<RecipeInput> {
 
     private final NonNullList<Ingredient> recipeItems;
     private final int cookTime;
@@ -43,11 +47,9 @@ public class CrucibleRecipe implements Recipe<Container> {
     private final ItemStack recipeOutput;
     private final ItemStack secondaryOutput;
     private final int color;
-    private final ResourceLocation id;
 
-    public CrucibleRecipe(ResourceLocation idIn, int cookTimeIn, int totalIn, int colorIn, NonNullList<Ingredient> recipeItemsIn, NonNullList<Integer> ingredientGroupsIn, NonNullList<Boolean> requiredIn, NonNullList<Integer> countModIn,
+    public CrucibleRecipe(int cookTimeIn, int totalIn, int colorIn, NonNullList<Ingredient> recipeItemsIn, NonNullList<Integer> ingredientGroupsIn, NonNullList<Boolean> requiredIn, NonNullList<Integer> countModIn,
                           NonNullList<Integer> cookModIn, NonNullList<List<String>> shiftsIn, ItemStack outputIn, String alloyCompIn, ItemStack secondaryOutputIn) {
-        this.id = idIn;
         this.ingredientGroups = ingredientGroupsIn;
         this.cookTime = cookTimeIn;
         this.total = totalIn;
@@ -62,6 +64,7 @@ public class CrucibleRecipe implements Recipe<Container> {
         this.secondaryOutput = secondaryOutputIn;
     }
 
+    @Override
     public String getGroup() {
         return "";
     }
@@ -104,7 +107,10 @@ public class CrucibleRecipe implements Recipe<Container> {
     }
 
 
-    public ItemStack generateResult(Container inv) {
+    /**
+     * Slot layout matches the 1.18.2 crucible container: slots 0-3 are the four inputs.
+     */
+    public ItemStack generateResult(RecipeInput inv) {
         ItemStack output = this.getPrimaryOutput().copy();
         List<Integer> groupsUsed = new ArrayList<>();
         List<List<String>> alloyCommands = new ArrayList<>();
@@ -183,16 +189,21 @@ public class CrucibleRecipe implements Recipe<Container> {
 
 
     @Override
-    public boolean matches(Container inv, Level worldIn) {
+    public boolean matches(RecipeInput inv, Level worldIn) {
         return !generateResult(inv).isEmpty();
     }
 
     @Override
-    public ItemStack assemble(Container inv) {
+    public ItemStack assemble(RecipeInput inv, HolderLookup.Provider provider) {
         return ItemStack.EMPTY;
     }
 
     @Override
+    public ItemStack getResultItem(HolderLookup.Provider provider) {
+        return getResultItem();
+    }
+
+    /** Convenience overload matching the pre-1.21 API. */
     public ItemStack getResultItem() {
         if (alloyComp.isEmpty()) {
             return this.recipeOutput.copy();
@@ -217,7 +228,7 @@ public class CrucibleRecipe implements Recipe<Container> {
         return cookTime;
     }
 
-    public int getRecipeCookTime(Container inv) {
+    public int getRecipeCookTime(RecipeInput inv) {
         int cook = this.getCookTime();
         for (int s = 0; s < 4; s++) {
             ItemStack stack = inv.getItem(s);
@@ -285,37 +296,48 @@ public class CrucibleRecipe implements Recipe<Container> {
     }
 
     @Override
-    public ResourceLocation getId() {
-        return this.id;
-    }
-
-    @Override
     public RecipeSerializer<?> getSerializer() {
         return RankineRecipeSerializers.CRUCIBLE_RECIPE_SERIALIZER.get();
     }
 
     public static ItemStack deserializeItem(JsonObject object) {
         String s = GsonHelper.getAsString(object, "item");
-        Item item = Registry.ITEM.getOptional(ResourceLocation.parse(s)).orElseThrow(() -> {
+        BuiltInRegistries.ITEM.getOptional(ResourceLocation.parse(s)).orElseThrow(() -> {
             return new JsonSyntaxException("Unknown item '" + s + "'");
         });
 
         if (object.has("data")) {
             throw new JsonParseException("Disallowed data tag found");
         } else {
-            int i = GsonHelper.getAsInt(object, "count", 1);
             return AlloyIngredientHelper.getItemStack(object, true, false);
         }
     }
 
     @Override
     public RecipeType<?> getType() {
-        return RankineRecipeTypes.CRUCIBLE;
+        return RankineRecipeTypes.CRUCIBLE.get();
     }
 
-    public static class Serializer extends net.neoforged.neoforge.registries.ForgeRegistryEntry<RecipeSerializer<?>>  implements RecipeSerializer<CrucibleRecipe> {
-        private static final ResourceLocation NAME = ResourceLocation.fromNamespaceAndPath("rankine", "crucible");
-        public CrucibleRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
+    public static class Serializer implements RecipeSerializer<CrucibleRecipe> {
+
+        public static final MapCodec<CrucibleRecipe> CODEC = RankineMapCodec.of(
+                Serializer::fromJson, Serializer::toJson,
+                RankineMapCodec.withNumbered(RankineMapCodec.fixedKeys("cookTime","total","color","result","alloyData","secondary","required"), "input", 64));
+
+        public static final StreamCodec<RegistryFriendlyByteBuf, CrucibleRecipe> STREAM_CODEC =
+                StreamCodec.of(Serializer::toNetwork, Serializer::fromNetwork);
+
+        @Override
+        public MapCodec<CrucibleRecipe> codec() {
+            return CODEC;
+        }
+
+        @Override
+        public StreamCodec<RegistryFriendlyByteBuf, CrucibleRecipe> streamCodec() {
+            return STREAM_CODEC;
+        }
+
+        public static CrucibleRecipe fromJson(JsonObject json) {
             int c = json.get("cookTime").getAsInt();
             int t = json.get("total").getAsInt();
             int col = json.has("color") ? json.get("color").getAsInt() : 16777215;
@@ -359,10 +381,43 @@ public class CrucibleRecipe implements Recipe<Container> {
                     }
                 }
             }
-            return new CrucibleRecipe(recipeId,c,t,col,ingredients, groups, requiredbool, countMods, cookMods, shiftMods, itemstack, alloy, secondary);
+            return new CrucibleRecipe(c,t,col,ingredients, groups, requiredbool, countMods, cookMods, shiftMods, itemstack, alloy, secondary);
         }
 
-        public CrucibleRecipe fromNetwork(ResourceLocation recipeId, FriendlyByteBuf buffer) {
+        public static void toJson(CrucibleRecipe recipe, JsonObject json) {
+            json.addProperty("cookTime", recipe.getCookTime());
+            json.addProperty("total", recipe.getTotal());
+            json.addProperty("color", recipe.getColor());
+            json.add("result", AlloyIngredientHelper.itemStackToJson(recipe.recipeOutput));
+            if (!recipe.getAlloyComp().isEmpty()) {
+                json.addProperty("alloyData", recipe.getAlloyComp());
+            }
+            json.add("secondary", AlloyIngredientHelper.itemStackToJson(recipe.secondaryOutput));
+            JsonArray req = new JsonArray();
+            for (Boolean b : recipe.getRequired()) {
+                req.add(b);
+            }
+            json.add("required", req);
+            for (int i = 0; i < recipe.getTotal(); i++) {
+                Ingredient ing = recipe.getIngredients().get(i);
+                if (ing.isEmpty()) {
+                    continue;
+                }
+                JsonElement encoded = AlloyIngredientHelper.ingredientToJson(ing);
+                JsonObject object = encoded.isJsonObject() ? encoded.getAsJsonObject() : new JsonObject();
+                object.addProperty("group", recipe.getIngredientGroups().get(i));
+                object.addProperty("countMod", recipe.getCountMod().get(i));
+                object.addProperty("cookMod", recipe.getCookMod().get(i));
+                if (!recipe.getShiftMod().get(i).isEmpty()) {
+                    JsonArray smod = new JsonArray();
+                    recipe.getShiftMod().get(i).forEach(smod::add);
+                    object.add("shiftMod", smod);
+                }
+                json.add("input" + (i+1), object);
+            }
+        }
+
+        public static CrucibleRecipe fromNetwork(RegistryFriendlyByteBuf buffer) {
             int c = buffer.readInt();
             int t = buffer.readInt();
             int col = buffer.readInt();
@@ -379,7 +434,7 @@ public class CrucibleRecipe implements Recipe<Container> {
             }
 
             for (int i = 0; i < t; i++) {
-                ingredients.set(i,Ingredient.fromNetwork(buffer));
+                ingredients.set(i,Ingredient.CONTENTS_STREAM_CODEC.decode(buffer));
                 groups.set(i,buffer.readInt());
                 countMods.set(i,buffer.readInt());
                 cookMods.set(i,buffer.readInt());
@@ -397,14 +452,14 @@ public class CrucibleRecipe implements Recipe<Container> {
 
             }
 
-            ItemStack stack = buffer.readItem();
+            ItemStack stack = ItemStack.OPTIONAL_STREAM_CODEC.decode(buffer);
             String all = buffer.readUtf();
-            ItemStack secondary = buffer.readItem();
+            ItemStack secondary = ItemStack.OPTIONAL_STREAM_CODEC.decode(buffer);
 
-            return new CrucibleRecipe(recipeId,c,t,col,ingredients,groups,req,countMods,cookMods,shiftMods, stack, all, secondary);
+            return new CrucibleRecipe(c,t,col,ingredients,groups,req,countMods,cookMods,shiftMods, stack, all, secondary);
         }
 
-        public void toNetwork(FriendlyByteBuf buffer, CrucibleRecipe recipe) {
+        public static void toNetwork(RegistryFriendlyByteBuf buffer, CrucibleRecipe recipe) {
             buffer.writeInt(recipe.getCookTime());
             buffer.writeInt(recipe.getTotal());
             buffer.writeInt(recipe.getColor());
@@ -417,7 +472,7 @@ public class CrucibleRecipe implements Recipe<Container> {
             }
 
             for (int i = 0; i < recipe.getTotal(); i++) {
-                recipe.getIngredients().get(i).toNetwork(buffer);
+                Ingredient.CONTENTS_STREAM_CODEC.encode(buffer, recipe.getIngredients().get(i));
                 buffer.writeInt(recipe.getIngredientGroups().get(i));
                 buffer.writeInt(recipe.getCountMod().get(i));
                 buffer.writeInt(recipe.getCookMod().get(i));
@@ -433,9 +488,9 @@ public class CrucibleRecipe implements Recipe<Container> {
 
             }
 
-            buffer.writeItem(recipe.getPrimaryOutput());
+            ItemStack.OPTIONAL_STREAM_CODEC.encode(buffer, recipe.getPrimaryOutput());
             buffer.writeUtf(recipe.getAlloyComp());
-            buffer.writeItem(recipe.getSecondaryOutput());
+            ItemStack.OPTIONAL_STREAM_CODEC.encode(buffer, recipe.getSecondaryOutput());
 
         }
     }

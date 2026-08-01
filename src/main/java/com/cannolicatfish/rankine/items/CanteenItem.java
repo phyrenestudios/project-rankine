@@ -1,10 +1,7 @@
 package com.cannolicatfish.rankine.items;
 
-import net.minecraft.tags.FluidTags;
-import net.neoforged.neoforge.common.ForgeMod;
-import net.neoforged.neoforge.fluids.FluidAttributes;
 import net.neoforged.neoforge.fluids.FluidStack;
-import net.neoforged.neoforge.fluids.FluidUtil;
+import net.neoforged.neoforge.fluids.FluidType;
 import net.neoforged.neoforge.fluids.capability.IFluidHandlerItem;
 import org.jetbrains.annotations.NotNull;
 
@@ -78,7 +75,7 @@ public class CanteenItem extends Item implements IFluidHandlerItem {
             setFluid();
         }
 
-        return FluidAttributes.BUCKET_VOLUME;
+        return FluidType.BUCKET_VOLUME;
     }
 
     @NotNull

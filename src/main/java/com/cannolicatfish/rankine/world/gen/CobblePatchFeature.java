@@ -3,6 +3,7 @@ package com.cannolicatfish.rankine.world.gen;
 import com.cannolicatfish.rankine.init.VanillaIntegration;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.mojang.serialization.Codec;
+import net.minecraft.util.RandomSource;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.WorldGenLevel;
@@ -12,11 +13,10 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.RandomPatchConfiguration;
-import net.neoforged.neoforge.registries.ForgeRegistries;
+import net.minecraft.core.registries.BuiltInRegistries;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class CobblePatchFeature extends Feature<RandomPatchConfiguration> {
     public CobblePatchFeature(Codec<RandomPatchConfiguration> p_i49915_1_) {
@@ -27,17 +27,19 @@ public class CobblePatchFeature extends Feature<RandomPatchConfiguration> {
     public boolean place(FeaturePlaceContext<RandomPatchConfiguration> p_160210_) {
 
         RandomPatchConfiguration randompatchconfiguration = p_160210_.config();
-        Random random = p_160210_.random();
+        RandomSource random = p_160210_.random();
         BlockPos blockpos = p_160210_.origin();
         WorldGenLevel worldgenlevel = p_160210_.level();
 
+        WorldgenUtils.ensureBiomesResolved(worldgenlevel.registryAccess());
+        ResourceLocation biomeName = WorldgenUtils.biomeLocation(worldgenlevel.getBiome(blockpos));
         List<String> rockList = new ArrayList<String>();
-        if (WorldgenUtils.GEN_BIOMES.contains(worldgenlevel.getBiome(blockpos).value().getRegistryName())) {
-            rockList = WorldgenUtils.LAYER_LISTS.get(WorldgenUtils.GEN_BIOMES.indexOf(worldgenlevel.getBiome(blockpos).value().getRegistryName()));
+        if (WorldgenUtils.GEN_BIOMES.contains(biomeName)) {
+            rockList = WorldgenUtils.LAYER_LISTS.get(WorldgenUtils.GEN_BIOMES.indexOf(biomeName));
         }
 
         if (rockList.size() < 1) return false;
-        Block stoneBlock = ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse(rockList.get(random.nextInt(rockList.size()))));
+        Block stoneBlock = BuiltInRegistries.BLOCK.get(ResourceLocation.tryParse(rockList.get(random.nextInt(rockList.size()))));
         if (!VanillaIntegration.RankineStonesMap.containsKey(stoneBlock)) {
             return false;
         }

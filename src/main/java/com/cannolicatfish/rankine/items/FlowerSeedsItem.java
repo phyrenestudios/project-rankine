@@ -1,17 +1,16 @@
 package com.cannolicatfish.rankine.items;
 
 import com.cannolicatfish.rankine.init.RankineTags;
+import net.minecraft.core.Holder;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.Tag;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Component;
 import net.minecraft.ChatFormatting;
 import net.minecraft.world.level.Level;
@@ -19,7 +18,6 @@ import net.minecraft.world.level.block.Blocks;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
-import javax.annotation.Nullable;
 import java.util.List;
 
 import net.minecraft.world.item.Item.Properties;
@@ -27,7 +25,6 @@ import net.minecraft.world.item.Item.Properties;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
-import net.neoforged.neoforge.registries.ForgeRegistries;
 
 public class FlowerSeedsItem extends Item {
     public FlowerSeedsItem(Properties properties) {
@@ -40,7 +37,7 @@ public class FlowerSeedsItem extends Item {
         BlockPos pos = context.getClickedPos();
         TagKey<Block> tag =  RankineTags.Blocks.FLOWER_SEEDS;
         if (worldIn.getBlockState(pos).is(BlockTags.DIRT) && worldIn.getBlockState(pos.above()).isAir()) {
-            Block flower = ForgeRegistries.BLOCKS.tags().getTag(tag).getRandomElement(worldIn.getRandom()).orElse(Blocks.POPPY);
+            Block flower = BuiltInRegistries.BLOCK.getRandomElementOf(tag, worldIn.getRandom()).map(Holder::value).orElse(Blocks.POPPY);
             if (!worldIn.isClientSide) {
                 worldIn.setBlockAndUpdate(pos.above(), flower.defaultBlockState());
                 worldIn.playSound(context.getPlayer(), pos, SoundEvents.GRASS_PLACE, SoundSource.BLOCKS, 0.7F, worldIn.getRandom().nextFloat() * 0.4F + 0.5F);
@@ -55,7 +52,7 @@ public class FlowerSeedsItem extends Item {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
+    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag flagIn) {
         tooltip.add(Component.literal("Plants a random flower").withStyle(ChatFormatting.GRAY));
     }
 

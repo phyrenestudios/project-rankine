@@ -3,7 +3,8 @@ package com.cannolicatfish.rankine.world.gen;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineTags;
 import com.mojang.serialization.Codec;
-import net.minecraft.core.Holder;
+import net.minecraft.util.RandomSource;
+import net.minecraft.tags.BiomeTags;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.core.BlockPos;
@@ -15,7 +16,6 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
-import java.util.Random;
 
 public class FumaroleFeature extends Feature<NoneFeatureConfiguration> {
     public FumaroleFeature(Codec<NoneFeatureConfiguration> p_i49915_1_) {
@@ -26,14 +26,14 @@ public class FumaroleFeature extends Feature<NoneFeatureConfiguration> {
     public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> p_159749_) {
         WorldGenLevel reader = p_159749_.level();
         BlockPos pos = p_159749_.origin();
-        Random rand = reader.getRandom();
+        RandomSource rand = p_159749_.random();
 
         ChunkAccess chunk = reader.getChunk(pos);
         int randX = chunk.getPos().getMinBlockX() + rand.nextInt(16) + 8;
         int randZ = chunk.getPos().getMinBlockZ() + rand.nextInt(16) + 8;
         int yHeight;
 
-        if (Biome.getBiomeCategory(Holder.direct(reader.getBiome(new BlockPos(randX,0,randZ)).value())) == Biome.BiomeCategory.NETHER) {
+        if (reader.getBiome(new BlockPos(randX,0,randZ)).is(BiomeTags.IS_NETHER)) {
             yHeight = 10;
             for (int y = 120; y>=yHeight; --y) {
                 BlockPos check = new BlockPos(randX, y, randZ);

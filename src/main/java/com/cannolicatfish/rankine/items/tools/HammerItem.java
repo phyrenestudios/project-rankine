@@ -9,6 +9,8 @@ import com.cannolicatfish.rankine.recipe.CrushingRecipe;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Holder;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
@@ -24,8 +26,8 @@ import net.minecraft.world.item.DiggerItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.GameRules;
@@ -33,7 +35,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
-import net.neoforged.neoforge.common.TierSortingRegistry;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,12 +42,19 @@ import java.util.List;
 public class HammerItem extends DiggerItem {
 
     public HammerItem(float attackDamageIn, float attackSpeedIn, Tier tier, Properties builder) {
-        super(attackDamageIn, attackSpeedIn, tier, RankineTags.Blocks.HARDENED_GLASS, builder);
+        super(tier, RankineTags.Blocks.HARDENED_GLASS, builder.attributes(DiggerItem.createAttributes(tier, attackDamageIn, attackSpeedIn)));
+    }
+
+    protected static int getEnchantmentLevel(ItemStack stack, ResourceKey<Enchantment> key) {
+        for (var entry : stack.getTagEnchantments().entrySet()) {
+            if (entry.getKey().is(key)) return entry.getIntValue();
+        }
+        return 0;
     }
 
     @Override
     public boolean isCorrectToolForDrops(ItemStack stack, BlockState state) {
-        return TierSortingRegistry.isCorrectTierForDrops(this.getTier(),state);
+        return !state.is(this.getTier().getIncorrectBlocksForDrops());
     }
 
     @Override
@@ -57,20 +65,19 @@ public class HammerItem extends DiggerItem {
             creativeFlag = ((Player) entityLiving).isCreative();
         }
         if (!worldIn.isClientSide && worldIn.getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS) && !worldIn.restoringBlockSnapshots && !worldIn.isEmptyBlock(pos) && this.isCorrectToolForDrops(stack,state)) {
-            for (CrushingRecipe recipe : worldIn.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.CRUSHING)) {
+            for (RecipeHolder<CrushingRecipe> recipeHolder : worldIn.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.CRUSHING.get())) {
+                CrushingRecipe recipe = recipeHolder.value();
                 for (ItemStack s : recipe.getIngredientAsStackList().clone()) {
                     if (s.getItem() == worldIn.getBlockState(pos).getBlock().asItem()) {
                         if (state.getDestroySpeed(worldIn, pos) != 0.0F) {
-                            stack.hurtAndBreak(1, entityLiving, (p_220038_0_) -> {
-                                p_220038_0_.broadcastBreakEvent(EquipmentSlot.MAINHAND);
-                            });
+                            stack.hurtAndBreak(1, entityLiving, EquipmentSlot.MAINHAND);
                         }
                         double d0 = (double)(worldIn.random.nextFloat() * 0.5F) + 0.25D;
                         double d1 = (double)(worldIn.random.nextFloat() * 0.5F) + 0.25D;
                         double d2 = (double)(worldIn.random.nextFloat() * 0.5F) + 0.25D;
 
                         if (!creativeFlag) {
-                            List<ItemStack> results = recipe.getResults(getTier(), worldIn.getRandom(), PeriodicTableUtils.getInstance().getCrushingAmountFromTier(getTier()) + 1 + EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_FORTUNE,stack));
+                            List<ItemStack> results = recipe.getResults(getTier(), worldIn.getRandom(), PeriodicTableUtils.getInstance().getCrushingAmountFromTier(getTier()) + 1 + getEnchantmentLevel(stack, Enchantments.FORTUNE));
                             for (ItemStack t : results) {
                                 ItemEntity itementity = new ItemEntity(worldIn, (double) pos.getX() + d0, (double) pos.getY() + d1, (double) pos.getZ() + d2, t.copy());
                                 itementity.setDefaultPickUpDelay();
@@ -93,7 +100,7 @@ public class HammerItem extends DiggerItem {
     @Override
     public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         if (target.getCommandSenderWorld().isRainingAt(target.blockPosition()) && RankineEnchantmentHelper.getLightningAspectEnchantment(stack) > 0) {
-            LightningBolt ent = new LightningBolt(EntityType.LIGHTNING_BOLT,attacker.level);
+            LightningBolt ent = new LightningBolt(EntityType.LIGHTNING_BOLT,attacker.level());
             ent.setPos(target.getX(),target.getY(),target.getZ());
             target.getCommandSenderWorld().addFreshEntity(ent);
         }
@@ -111,10 +118,12 @@ public class HammerItem extends DiggerItem {
             }
 
         }
-        stack.hurtAndBreak(1, attacker, (p_220045_0_) -> {
-            p_220045_0_.broadcastBreakEvent(EquipmentSlot.MAINHAND);
-        });
         return true;
+    }
+
+    @Override
+    public void postHurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+        stack.hurtAndBreak(1, attacker, EquipmentSlot.MAINHAND);
     }
 
     public void getExcavationResult(BlockPos posIn, Level levelIn, Player player, ItemStack stack) {
@@ -141,11 +150,11 @@ public class HammerItem extends DiggerItem {
     }
 
     @Override
-    public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
-        if (enchantment == Enchantments.BLOCK_EFFICIENCY || enchantment == Enchantments.SILK_TOUCH) {
+    public boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment) {
+        if (enchantment.is(Enchantments.EFFICIENCY) || enchantment.is(Enchantments.SILK_TOUCH)) {
             return false;
         }
-        return super.canApplyAtEnchantingTable(stack,enchantment);
+        return super.supportsEnchantment(stack,enchantment);
     }
 
 
@@ -158,12 +167,12 @@ public class HammerItem extends DiggerItem {
             if (anvil.getBlock() == Blocks.CHIPPED_ANVIL && (context.getItemInHand().getMaxDamage() - context.getItemInHand().getDamageValue()) >= 100) {
                 worldIn.setBlock(pos,Blocks.ANVIL.defaultBlockState().setValue(HorizontalDirectionalBlock.FACING,anvil.getValue(HorizontalDirectionalBlock.FACING)),2);
                 worldIn.playSound(context.getPlayer(),pos, SoundEvents.IRON_GOLEM_REPAIR,SoundSource.BLOCKS,1.0f,worldIn.getRandom().nextFloat() * 0.4F + 0.8F);
-                context.getItemInHand().hurtAndBreak(100, context.getPlayer(), (entity) -> entity.broadcastBreakEvent(EquipmentSlot.MAINHAND));
+                context.getItemInHand().hurtAndBreak(100, context.getPlayer(), EquipmentSlot.MAINHAND);
                 return InteractionResult.SUCCESS;
             } else if (anvil.getBlock() == Blocks.DAMAGED_ANVIL && (context.getItemInHand().getMaxDamage() - context.getItemInHand().getDamageValue()) >= 100) {
                 worldIn.setBlock(pos,Blocks.CHIPPED_ANVIL.defaultBlockState().setValue(HorizontalDirectionalBlock.FACING,anvil.getValue(HorizontalDirectionalBlock.FACING)),2);
                 worldIn.playSound(context.getPlayer(),pos, SoundEvents.IRON_GOLEM_REPAIR,SoundSource.BLOCKS,1.0f,worldIn.getRandom().nextFloat() * 0.4F + 0.8F);
-                context.getItemInHand().hurtAndBreak(100, context.getPlayer(), (entity) -> entity.broadcastBreakEvent(EquipmentSlot.MAINHAND));
+                context.getItemInHand().hurtAndBreak(100, context.getPlayer(), EquipmentSlot.MAINHAND);
                 return InteractionResult.SUCCESS;
             }
         } else if (context.getPlayer() != null && context.getLevel().getBlockState(context.getClickedPos()).getBlock().equals(RankineBlocks.GEODE.get())) {

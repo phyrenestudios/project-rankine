@@ -1,17 +1,16 @@
 package com.cannolicatfish.rankine.blocks.inductionfurnace;
 
 import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.RankineContainers;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.init.RankineRecipes;
 import com.cannolicatfish.rankine.items.AlloyTemplateItem;
-import com.cannolicatfish.rankine.items.AlloyTemplateItem;
 import com.cannolicatfish.rankine.items.BatteryItem;
-import com.cannolicatfish.rankine.items.alloys.AlloyItem;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
-import com.cannolicatfish.rankine.util.PeriodicTableUtils;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.Container;
@@ -19,6 +18,8 @@ import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.inventory.ContainerLevelAccess;
@@ -30,11 +31,10 @@ import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.SlotItemHandler;
 import net.neoforged.neoforge.items.wrapper.InvWrapper;
+import net.neoforged.neoforge.items.wrapper.RecipeWrapper;
 
 import java.util.AbstractMap;
 import java.util.Map;
-
-import static com.cannolicatfish.rankine.init.RankineBlocks.INDUCTION_FURNACE_CONTAINER;
 
 public class InductionFurnaceContainer extends AbstractContainerMenu {
     private final Container furnaceInventory;
@@ -43,6 +43,10 @@ public class InductionFurnaceContainer extends AbstractContainerMenu {
     private IItemHandler playerInventory;
     private final ContainerData data;
 
+    public InductionFurnaceContainer(int windowId, Inventory inv, FriendlyByteBuf extraData) {
+        this(windowId, inv.player.level(), extraData.readBlockPos(), inv, inv.player);
+    }
+
     public InductionFurnaceContainer(int windowId, Level world, BlockPos pos, Inventory playerInventory, Player player) {
         this(windowId,world,pos,playerInventory,player,new SimpleContainer(9),new SimpleContainerData(5));
 
@@ -50,7 +54,7 @@ public class InductionFurnaceContainer extends AbstractContainerMenu {
 
     }
     public InductionFurnaceContainer(int windowId, Level world, BlockPos pos, Inventory playerInventory, Player player, Container furnaceInventoryIn,  ContainerData furnaceData) {
-        super(INDUCTION_FURNACE_CONTAINER, windowId);
+        super(RankineContainers.INDUCTION_FURNACE_CONTAINER.get(), windowId);
         tileEntity = world.getBlockEntity(pos);
         checkContainerSize(furnaceInventoryIn, 9);
         checkContainerDataCount(furnaceData, 5);
@@ -76,11 +80,11 @@ public class InductionFurnaceContainer extends AbstractContainerMenu {
     }
 
     protected boolean hasElementRecipe(ItemStack stack) {
-        return this.playerEntity.getLevel().getRecipeManager().getRecipeFor(RankineRecipeTypes.ELEMENT, new SimpleContainer(stack), this.playerEntity.getLevel()).isPresent();
+        return this.playerEntity.level().getRecipeManager().getRecipeFor(RankineRecipeTypes.ELEMENT.get(), new SingleRecipeInput(stack), this.playerEntity.level()).isPresent();
     }
 
     protected AlloyingRecipe hasAlloyRecipe(Container inv) {
-        return this.playerEntity.getLevel().getRecipeManager().getRecipeFor(RankineRecipeTypes.ALLOYING, inv, this.playerEntity.getLevel()).orElse(null);
+        return this.playerEntity.level().getRecipeManager().getRecipeFor(RankineRecipeTypes.ALLOYING.get(), new RecipeWrapper(new InvWrapper(inv)), this.playerEntity.level()).map(RecipeHolder::value).orElse(null);
     }
 
     public AbstractMap.SimpleEntry<String[],Integer> getOutputString() {
@@ -88,7 +92,7 @@ public class InductionFurnaceContainer extends AbstractContainerMenu {
             ItemStack template = furnaceInventory.getItem(7);
             boolean correctInputs = (AlloyTemplateItem.getAlloyTier(template) & 1) == 1;
             if (correctInputs) {
-                Map<ElementRecipe,Integer> map = AlloyTemplateItem.getElementList(this.playerEntity.level,template);
+                Map<ElementRecipe,Integer> map = AlloyTemplateItem.getElementList(this.playerEntity.level(),template);
                 for (Map.Entry<ElementRecipe,Integer> entry : map.entrySet())
                 {
                     if (countMaterial(furnaceInventory,entry.getKey()) < entry.getValue()) {
@@ -102,7 +106,7 @@ public class InductionFurnaceContainer extends AbstractContainerMenu {
         }
         String ret = RankineRecipes.generateAlloyString(furnaceInventory,tileEntity.getLevel());
         AlloyingRecipe recipe = hasAlloyRecipe(furnaceInventory);
-        return new AbstractMap.SimpleEntry<>(ret.isEmpty() ? new String[]{""} : new String[]{recipe != null ? recipe.getResultItem().getDisplayName().getString() : "",ret},recipe != null ? 0x55FF55 : 0xFF5555);
+        return new AbstractMap.SimpleEntry<>(ret.isEmpty() ? new String[]{""} : new String[]{recipe != null ? recipe.getResultItem(tileEntity.getLevel().registryAccess()).getDisplayName().getString() : "",ret},recipe != null ? 0x55FF55 : 0xFF5555);
     }
 
     private int countMaterial(Container inv, ElementRecipe element) {

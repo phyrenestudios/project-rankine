@@ -2,22 +2,17 @@ package com.cannolicatfish.rankine.blocks.templatetable;
 
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.init.RankineItems;
-import com.cannolicatfish.rankine.init.packets.RankinePacketHandler;
 import com.cannolicatfish.rankine.init.packets.SelectAlloyPacket;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
-import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
-import net.minecraft.client.gui.GuiComponent;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.components.Button;
-import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
@@ -49,7 +44,9 @@ public class TemplateTableScreen extends AbstractContainerScreen<TemplateTableCo
     private void setSelectedAlloyRecipe() {
         this.menu.setCurrentRecipeIndex(this.selectedAlloyRecipe);
         this.menu.tryMoveItems(this.selectedAlloyRecipe);
-        RankinePacketHandler.INSTANCE.send(PacketDistributor.ALL.noArg(),new SelectAlloyPacket(this.selectedAlloyRecipe));
+        // PORT-NOTE(network): original sent via RankinePacketHandler.INSTANCE.send(PacketDistributor.ALL.noArg(), ...)
+        // from client code, which was invalid; the payload is client -> server, so sendToServer is used.
+        PacketDistributor.sendToServer(new SelectAlloyPacket(this.selectedAlloyRecipe));
     }
 
     protected void init() {
@@ -73,7 +70,7 @@ public class TemplateTableScreen extends AbstractContainerScreen<TemplateTableCo
     }
 
     @Override
-    protected void renderLabels(PoseStack matrixStack, int x, int y) {
+    protected void renderLabels(GuiGraphics guiGraphics, int x, int y) {
         /*int i = this.container.getMerchantLevel();
         if (i > 0 && i <= 5 && this.container.showProgressBar()) {
             ITextComponent itextcomponent = this.title.deepCopy().appendSibling(LEVEL_SEPARATOR).appendSibling(new TranslationTextComponent("merchant.level." + i));
@@ -84,19 +81,16 @@ public class TemplateTableScreen extends AbstractContainerScreen<TemplateTableCo
             this.font.drawText(matrixStack, this.title, (float)(49 + this.xSize / 2 - this.font.getStringPropertyWidth(this.title) / 2), 6.0F, 4210752);
         }*/
 
-        this.font.draw(matrixStack, "Template Table", (float)this.inventoryLabelX, (float)this.inventoryLabelY, 4210752);
+        guiGraphics.drawString(this.font, "Template Table", this.inventoryLabelX, this.inventoryLabelY, 4210752, false);
         int l = this.font.width(TRADES_LABEL);
-        this.font.draw(matrixStack, TRADES_LABEL, (float)(5 - l / 2 + 48), 6.0F, 4210752);
+        guiGraphics.drawString(this.font, TRADES_LABEL, 5 - l / 2 + 48, 6, 4210752, false);
     }
 
     @Override
-    protected void renderBg(PoseStack matrixStack, float partialTicks, int x, int y) {
-        RenderSystem.setShader(GameRenderer::getPositionTexShader);
-        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        RenderSystem.setShaderTexture(0, this.GUI);
+    protected void renderBg(GuiGraphics guiGraphics, float partialTicks, int x, int y) {
         int i = (this.width - this.imageWidth) / 2;
         int j = (this.height - this.imageHeight) / 2;
-        blit(matrixStack, i, j, this.getBlitOffset(), 0.0F, 0.0F, this.imageWidth, this.imageHeight, 512, 256);
+        guiGraphics.blit(GUI, i, j, 0, 0.0F, 0.0F, this.imageWidth, this.imageHeight, 256, 512);
         if (!alloyRecipes.isEmpty()) {
             int k = this.selectedAlloyRecipe;
             if (k < 0 || k >= alloyRecipes.size()) {
@@ -114,19 +108,14 @@ public class TemplateTableScreen extends AbstractContainerScreen<TemplateTableCo
 
 
 
-    public void render(PoseStack matrixStack, int mouseX, int mouseY, float partialTicks) {
-        this.renderBackground(matrixStack);
-        super.render(matrixStack, mouseX, mouseY, partialTicks);
+    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
+        super.render(guiGraphics, mouseX, mouseY, partialTicks);
         if (!alloyRecipes.isEmpty()) {
             int i = (this.width - this.imageWidth) / 2;
             int j = (this.height - this.imageHeight) / 2;
             int k = j + 16 + 1;
             int l = i + 5 + 5;
-            //RenderSystem.pushMatrix();
-            //RenderSystem.enableRescaleNormal();
-            RenderSystem.setShader(GameRenderer::getPositionTexShader);
-            RenderSystem.setShaderTexture(0, GUI);
-            //this.renderScroller(matrixStack, i, j, alloyRecipes);
+            //this.renderScroller(guiGraphics, i, j, alloyRecipes);
             int i1 = 0;
 
             for(AlloyingRecipe alloy : alloyRecipes) {
@@ -135,29 +124,27 @@ public class TemplateTableScreen extends AbstractContainerScreen<TemplateTableCo
                 } else {
                     Level worldIn = this.menu.getWorld();
                     ItemStack itemstack = new ItemStack(RankineItems.ELEMENT.get());
-                    this.itemRenderer.blitOffset = 100.0F;
                     int j1 = k + 2;
                     int len = 0;
                     for (Ingredient ing : alloy.getIngredientsList(worldIn,true)) {
                         int index = (Math.round(worldIn.getGameTime() / 30f) % ing.getItems().length);
-                        this.itemRenderer.renderAndDecorateFakeItem(ing.getItems()[index], l + len, j1);
-                        this.itemRenderer.renderGuiItemDecorations(this.font, ing.getItems()[index], l + len, j1);
+                        guiGraphics.renderFakeItem(ing.getItems()[index], l + len, j1);
+                        guiGraphics.renderItemDecorations(this.font, ing.getItems()[index], l + len, j1);
                         len += 8;
                     }
                     ItemStack itemstack1 = new ItemStack(RankineItems.ELEMENT.get());
                     ItemStack itemstack2 = new ItemStack(RankineItems.BUILDING_TOOL.get());
-                    ItemStack itemstack3 = alloy.getResultItem();
+                    ItemStack itemstack3 = alloy.getResultItem(worldIn.registryAccess());
 
-                    //this.renderItemOverlay(matrixStack, itemstack1, itemstack, l, j1);
+                    //this.renderItemOverlay(guiGraphics, itemstack1, itemstack, l, j1);
                     if (!itemstack2.isEmpty()) {
-                        this.itemRenderer.renderAndDecorateFakeItem(itemstack2, i + 5 + 35, j1);
-                        this.itemRenderer.renderGuiItemDecorations(this.font, itemstack2, i + 5 + 35, j1);
+                        guiGraphics.renderFakeItem(itemstack2, i + 5 + 35, j1);
+                        guiGraphics.renderItemDecorations(this.font, itemstack2, i + 5 + 35, j1);
                     }
 
-                    this.checkIfValid(matrixStack, alloy, i, j1);
-                    this.itemRenderer.renderAndDecorateFakeItem(itemstack3, i + 5 + 68, j1);
-                    this.itemRenderer.renderGuiItemDecorations(this.font, itemstack3, i + 5 + 68, j1);
-                    this.itemRenderer.blitOffset = 0.0F;
+                    this.checkIfValid(guiGraphics, alloy, i, j1);
+                    guiGraphics.renderFakeItem(itemstack3, i + 5 + 68, j1);
+                    guiGraphics.renderItemDecorations(this.font, itemstack3, i + 5 + 68, j1);
                     k += 20;
                     ++i1;
                 }
@@ -166,17 +153,17 @@ public class TemplateTableScreen extends AbstractContainerScreen<TemplateTableCo
             int k1 = this.selectedAlloyRecipe;
             AlloyingRecipe alloy1 = alloyRecipes.get(k1);
             /*if (this.container.showProgressBar()) {
-                this.renderProgressBar(matrixStack, i, j, alloy1);
+                this.renderProgressBar(guiGraphics, i, j, alloy1);
             }*/
 
             /*if (alloy1.cannotMake(this.playerInventory,this.container.getWorld()) && this.isPointInRegion(215, 61, 22, 21, (double)mouseX, (double)mouseY)) {
-                this.renderTooltip(matrixStack, DEPRECATED_TOOLTIP, mouseX, mouseY);
+                this.renderTooltip(guiGraphics, DEPRECATED_TOOLTIP, mouseX, mouseY);
             }*/
 
             for(AlloyButton alloyButton : this.tradeOfferButtons) {
                 if (alloyButton != null) {
                     if (alloyButton.isActive()) {
-                        alloyButton.renderToolTip(matrixStack, mouseX, mouseY);
+                        alloyButton.renderToolTip(guiGraphics, mouseX, mouseY);
                     }
                     alloyButton.visible = alloyButton.index < this.alloyRecipes.size();
                 }
@@ -184,25 +171,20 @@ public class TemplateTableScreen extends AbstractContainerScreen<TemplateTableCo
 
             }
 
-            //RenderSystem.popMatrix();
             RenderSystem.enableDepthTest();
         }
 
-        this.renderTooltip(matrixStack, mouseX, mouseY);
+        this.renderTooltip(guiGraphics, mouseX, mouseY);
     }
 
-    private void renderItemOverlay(PoseStack p_238841_1_, ItemStack p_238841_2_, ItemStack p_238841_3_, int p_238841_4_, int p_238841_5_) {
-        this.itemRenderer.renderAndDecorateFakeItem(p_238841_2_, p_238841_4_, p_238841_5_);
+    private void renderItemOverlay(GuiGraphics guiGraphics, ItemStack p_238841_2_, ItemStack p_238841_3_, int p_238841_4_, int p_238841_5_) {
+        guiGraphics.renderFakeItem(p_238841_2_, p_238841_4_, p_238841_5_);
         if (p_238841_3_.getCount() == p_238841_2_.getCount()) {
-            this.itemRenderer.renderGuiItemDecorations(this.font, p_238841_2_, p_238841_4_, p_238841_5_);
+            guiGraphics.renderItemDecorations(this.font, p_238841_2_, p_238841_4_, p_238841_5_);
         } else {
-            this.itemRenderer.renderGuiItemDecorations(this.font, p_238841_3_, p_238841_4_, p_238841_5_, p_238841_3_.getCount() == 1 ? "1" : null);
-            this.itemRenderer.renderGuiItemDecorations(this.font, p_238841_2_, p_238841_4_ + 14, p_238841_5_, p_238841_2_.getCount() == 1 ? "1" : null);
-                        RenderSystem.setShader(GameRenderer::getPositionTexShader);
-            RenderSystem.setShaderTexture(0, GUI);
-            this.setBlitOffset(this.getBlitOffset() + 300);
-            blit(p_238841_1_, p_238841_4_ + 7, p_238841_5_ + 12, this.getBlitOffset(), 0.0F, 176.0F, 9, 2, 256, 512);
-            this.setBlitOffset(this.getBlitOffset() - 300);
+            guiGraphics.renderItemDecorations(this.font, p_238841_3_, p_238841_4_, p_238841_5_, p_238841_3_.getCount() == 1 ? "1" : null);
+            guiGraphics.renderItemDecorations(this.font, p_238841_2_, p_238841_4_ + 14, p_238841_5_, p_238841_2_.getCount() == 1 ? "1" : null);
+            guiGraphics.blit(GUI, p_238841_4_ + 7, p_238841_5_ + 12, 300, 0.0F, 176.0F, 9, 2, 512, 256);
         }
 
     }
@@ -212,23 +194,21 @@ public class TemplateTableScreen extends AbstractContainerScreen<TemplateTableCo
     }
 
 
-    private void checkIfValid(PoseStack p_238842_1_, AlloyingRecipe p_238842_2_, int p_238842_3_, int p_238842_4_) {
+    private void checkIfValid(GuiGraphics guiGraphics, AlloyingRecipe p_238842_2_, int p_238842_3_, int p_238842_4_) {
         RenderSystem.enableBlend();
-        RenderSystem.setShader(GameRenderer::getPositionTexShader);
-        RenderSystem.setShaderTexture(0, GUI);
         /*if (p_238842_2_.cannotMake(this.inventory,this.menu.getWorld())) {
-            blit(p_238842_1_, p_238842_3_ + 5 + 35 + 20, p_238842_4_ + 3, this.getBlitOffset(), 25.0F, 171.0F, 10, 9, 256, 512);
+            guiGraphics.blit(GUI, p_238842_3_ + 5 + 35 + 20, p_238842_4_ + 3, 0, 25.0F, 171.0F, 10, 9, 512, 256);
         } else {
-            blit(p_238842_1_, p_238842_3_ + 5 + 35 + 20, p_238842_4_ + 3, this.getBlitOffset(), 15.0F, 171.0F, 10, 9, 256, 512);
+            guiGraphics.blit(GUI, p_238842_3_ + 5 + 35 + 20, p_238842_4_ + 3, 0, 15.0F, 171.0F, 10, 9, 512, 256);
         }*/
-        blit(p_238842_1_, p_238842_3_ + 5 + 35 + 20, p_238842_4_ + 3, this.getBlitOffset(), 15.0F, 171.0F, 10, 9, 256, 512);
+        guiGraphics.blit(GUI, p_238842_3_ + 5 + 35 + 20, p_238842_4_ + 3, 0, 15.0F, 171.0F, 10, 9, 512, 256);
     }
 
-    public boolean mouseScrolled(double mouseX, double mouseY, double delta) {
+    public boolean mouseScrolled(double mouseX, double mouseY, double scrollX, double scrollY) {
         int i = this.alloyRecipes.size();
         if (this.checkSeven(i)) {
             int j = i - 7;
-            this.scrollOff = (int)((double)this.scrollOff - delta);
+            this.scrollOff = (int)((double)this.scrollOff - scrollY);
             this.scrollOff = Mth.clamp(this.scrollOff, 0, j);
         }
 
@@ -266,7 +246,7 @@ public class TemplateTableScreen extends AbstractContainerScreen<TemplateTableCo
         final int index;
 
         public AlloyButton(int p_i50601_2_, int p_i50601_3_, int p_i50601_4_, Button.OnPress p_i50601_5_) {
-            super(p_i50601_2_, p_i50601_3_, 89, 20, TextComponent.EMPTY, p_i50601_5_);
+            super(p_i50601_2_, p_i50601_3_, 89, 20, Component.empty(), p_i50601_5_, Button.DEFAULT_NARRATION);
             this.index = p_i50601_4_;
             this.visible = false;
         }
@@ -275,29 +255,29 @@ public class TemplateTableScreen extends AbstractContainerScreen<TemplateTableCo
             return this.index;
         }
 
-        public void renderToolTip(PoseStack matrixStack, int mouseX, int mouseY) {
-            if (this.isHovered && TemplateTableScreen.this.alloyRecipes.size() > this.index + TemplateTableScreen.this.scrollOff) {
-                /*if (mouseX < this.x + 20) {
+        public void renderToolTip(GuiGraphics guiGraphics, int mouseX, int mouseY) {
+            if (this.isHovered() && TemplateTableScreen.this.alloyRecipes.size() > this.index + TemplateTableScreen.this.scrollOff) {
+                /*if (mouseX < this.getX() + 20) {
                     ItemStack itemstack = TemplateTableScreen.this.container.getAlloyRecipes().get(this.index + TemplateTableScreen.this.scrollOff).getRecipeOutput();
-                    TemplateTableScreen.this.renderTooltip(matrixStack, itemstack, mouseX, mouseY);
-                } else if (mouseX < this.x + 50 && mouseX > this.x + 30) {
+                    TemplateTableScreen.this.renderTooltip(guiGraphics, itemstack, mouseX, mouseY);
+                } else if (mouseX < this.getX() + 50 && mouseX > this.getX() + 30) {
                     ItemStack itemstack2 = TemplateTableScreen.this.container.getAlloyRecipes().get(this.index + TemplateTableScreen.this.scrollOff).getRecipeOutput();
                     if (!itemstack2.isEmpty()) {
-                        TemplateTableScreen.this.renderTooltip(matrixStack, itemstack2, mouseX, mouseY);
+                        TemplateTableScreen.this.renderTooltip(guiGraphics, itemstack2, mouseX, mouseY);
                     }
-                } else*/ if (mouseX > this.x + 65) {
-                    ItemStack itemstack1 = TemplateTableScreen.this.alloyRecipes.get(this.index + TemplateTableScreen.this.scrollOff).getResultItem();
-                    TemplateTableScreen.this.renderTooltip(matrixStack, itemstack1, mouseX, mouseY);
+                } else*/ if (mouseX > this.getX() + 65) {
+                    ItemStack itemstack1 = TemplateTableScreen.this.alloyRecipes.get(this.index + TemplateTableScreen.this.scrollOff).getResultItem(TemplateTableScreen.this.menu.getWorld().registryAccess());
+                    guiGraphics.renderTooltip(TemplateTableScreen.this.font, itemstack1, mouseX, mouseY);
                 } else {
                     Level worldIn = TemplateTableScreen.this.menu.getWorld();
                     AlloyingRecipe alloy = TemplateTableScreen.this.alloyRecipes.get(this.index + TemplateTableScreen.this.scrollOff);
-                    int mouseXsub = mouseX - this.x - 10;
+                    int mouseXsub = mouseX - this.getX() - 10;
                     List<Ingredient> e = alloy.getIngredientsList(worldIn,true);
                     int currentIndex = Math.floorDiv(mouseXsub,8);
                     if (e.size() - 1 >= currentIndex && currentIndex >= 0) {
                         int index = (Math.round(worldIn.getGameTime() / 30f) %  e.get(currentIndex).getItems().length);
                         ItemStack itemstack = e.get(currentIndex).getItems()[index];
-                        TemplateTableScreen.this.renderTooltip(matrixStack, itemstack, mouseX, mouseY);
+                        guiGraphics.renderTooltip(TemplateTableScreen.this.font, itemstack, mouseX, mouseY);
                     }
 
 

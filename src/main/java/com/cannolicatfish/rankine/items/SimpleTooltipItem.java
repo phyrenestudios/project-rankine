@@ -35,7 +35,7 @@ public class SimpleTooltipItem extends Item {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
+    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag flagIn) {
      /*   if (Screen.hasShiftDown()) {
             for (int i = 0; i < tooltipCount; i++) {
                 tooltip.add(new TranslationTextComponent(this.getTranslationKey() + ".tooltip" + i).mergeStyle(TextFormatting.GRAY));
@@ -43,6 +43,6 @@ public class SimpleTooltipItem extends Item {
     //    } else {
    //         tooltip.add(new StringTextComponent("Hold shift for information...").mergeStyle(TextFormatting.GRAY));
  //       }*/
-        super.appendHoverText(stack, worldIn, tooltip, flagIn);
+        super.appendHoverText(stack, context, tooltip, flagIn);
     }
 }

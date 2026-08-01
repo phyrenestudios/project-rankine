@@ -3,18 +3,13 @@ package com.cannolicatfish.rankine.entities;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineEntityTypes;
 import com.cannolicatfish.rankine.init.RankineItems;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.network.protocol.Packet;
 import net.minecraft.world.level.Level;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.network.NetworkHooks;
-import net.neoforged.neoforge.network.PlayMessages;
+import net.minecraft.world.level.block.state.BlockState;
 
 public class RopeCoilArrowEntity extends AbstractArrow {
 
@@ -23,30 +18,21 @@ public class RopeCoilArrowEntity extends AbstractArrow {
     }
 
     public RopeCoilArrowEntity(Level worldIn, LivingEntity shooter) {
-        super(RankineEntityTypes.ROPE_COIL_ARROW.get(), shooter, worldIn);
+        super(RankineEntityTypes.ROPE_COIL_ARROW.get(), shooter, worldIn, new ItemStack(RankineItems.ROPE_COIL_ARROW.get()), null);
     }
 
-    @OnlyIn(Dist.CLIENT)
-    public RopeCoilArrowEntity(PlayMessages.SpawnEntity spawnEntity, Level world, EntityType<RopeCoilArrowEntity> e) {
-        super(e, world);
-    }
+    // 1.21.1: getAddEntityPacket/NetworkHooks override removed — vanilla handles projectile spawn packets.
 
     @Override
-    public Packet<?> getAddEntityPacket() {
-        return NetworkHooks.getEntitySpawningPacket(this);
-    }
-
-    @Override
-    protected ItemStack getPickupItem() {
+    protected ItemStack getDefaultPickupItem() {
         return new ItemStack(RankineItems.ROPE_COIL_ARROW.get());
     }
-
 
     @Override
     protected void onInsideBlock(BlockState state) {
 
         if (this.inGround) {
-            Level worldIn = this.level;
+            Level worldIn = this.level();
             int rope = 1;
             if (this.getOwner() instanceof Player) {
                 Player player = ((Player) this.getOwner());

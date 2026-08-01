@@ -7,6 +7,9 @@ import com.cannolicatfish.rankine.items.tools.KnifeItem;
 import com.cannolicatfish.rankine.items.tools.SpearItem;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
+import net.minecraft.core.Holder;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentInstance;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
@@ -14,8 +17,8 @@ import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
-import net.neoforged.neoforge.registries.ForgeRegistries;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,21 +36,22 @@ import net.minecraft.world.item.SwordItem;
 
 public class AlloyEnchantmentUtils {
 
-    public static List<Enchantment> getAlloyEnchantments(AlloyingRecipe recipe, ItemStack stack, Level worldIn) {
-        List<Enchantment> enchantments = new ArrayList<>();
+    public static List<Holder<Enchantment>> getAlloyEnchantments(AlloyingRecipe recipe, ItemStack stack, Level worldIn) {
+        Registry<Enchantment> registry = worldIn.registryAccess().registryOrThrow(Registries.ENCHANTMENT);
+        List<Holder<Enchantment>> enchantments = new ArrayList<>();
         List<String> alloyEnchants = recipe.getEnchantments();
         List<String> alloyEnchantTypes = recipe.getEnchantmentTypes();
         for (int i = 0; i < alloyEnchants.size(); i++) {
-            Enchantment en;
+            Holder<Enchantment> en;
             if (alloyEnchants.get(i).equals("rankine:random")) {
-                List<EnchantmentInstance> dat = EnchantmentHelper.selectEnchantment(worldIn.getRandom(),stack,worldIn.getRandom().nextInt(40),true);
+                List<EnchantmentInstance> dat = EnchantmentHelper.selectEnchantment(worldIn.getRandom(),stack,worldIn.getRandom().nextInt(40),registry.holders().map(h -> (Holder<Enchantment>) h));
                 if (!dat.isEmpty()) {
                     en = dat.get(0).enchantment;
                 } else {
-                    en = Enchantments.UNBREAKING;
+                    en = registry.getHolderOrThrow(Enchantments.UNBREAKING);
                 }
             } else {
-                en = ForgeRegistries.ENCHANTMENTS.getValue(new ResourceLocation(alloyEnchants.get(i)));
+                en = getHolder(registry, alloyEnchants.get(i));
             }
             if (en != null && matchesEnchantmentType(en,stack,EnchantmentTypes.valueOf(alloyEnchantTypes.get(i)))) {
                 if (!enchantments.contains(en)) {
@@ -59,8 +63,9 @@ public class AlloyEnchantmentUtils {
         return enchantments;
     }
 
-    public static List<Enchantment> getElementEnchantments(List<ElementRecipe> elements, List<Integer> percents, ItemStack stack, Level worldIn) {
-        List<Enchantment> enchantments = new ArrayList<>();
+    public static List<Holder<Enchantment>> getElementEnchantments(List<ElementRecipe> elements, List<Integer> percents, ItemStack stack, Level worldIn) {
+        Registry<Enchantment> registry = worldIn.registryAccess().registryOrThrow(Registries.ENCHANTMENT);
+        List<Holder<Enchantment>> enchantments = new ArrayList<>();
         List<Float> enchantmentTotals = new ArrayList<>();
         for (int e = 0; e < elements.size(); e++) {
             ElementRecipe element = elements.get(e);
@@ -70,16 +75,16 @@ public class AlloyEnchantmentUtils {
             List<Float> elementEnchantFactors = element.getEnchantmentFactors();
 
             for (int i = 0; i < elementEnchants.size(); i++) {
-                Enchantment en;
+                Holder<Enchantment> en;
                 if (elementEnchants.get(i).equals("rankine:random")) {
-                    List<EnchantmentInstance> dat = EnchantmentHelper.selectEnchantment(worldIn.getRandom(),stack,1,true);
+                    List<EnchantmentInstance> dat = EnchantmentHelper.selectEnchantment(worldIn.getRandom(),stack,1,registry.holders().map(h -> (Holder<Enchantment>) h));
                     if (!dat.isEmpty()) {
                         en = dat.get(0).enchantment;
                     } else {
-                        en = Enchantments.UNBREAKING;
+                        en = registry.getHolderOrThrow(Enchantments.UNBREAKING);
                     }
                 } else {
-                    en = ForgeRegistries.ENCHANTMENTS.getValue(new ResourceLocation(elementEnchants.get(i)));
+                    en = getHolder(registry, elementEnchants.get(i));
                 }
                 if (en != null && matchesEnchantmentType(en,stack,EnchantmentTypes.valueOf(elementEnchantTypes.get(i)))) {
                     if (!enchantments.contains(en)) {
@@ -92,7 +97,7 @@ public class AlloyEnchantmentUtils {
             }
         }
 
-        List<Enchantment> finalEnchantments = new ArrayList<>();
+        List<Holder<Enchantment>> finalEnchantments = new ArrayList<>();
         for (int i = 0; i < enchantments.size(); i++) {
             if (enchantmentTotals.get(i) >= 1) {
                 finalEnchantments.add(enchantments.get(i));
@@ -102,7 +107,17 @@ public class AlloyEnchantmentUtils {
         return finalEnchantments;
     }
 
-    public static boolean matchesEnchantmentType(Enchantment enchantment, ItemStack stack, EnchantmentTypes type) {
+    @Nullable
+    private static Holder<Enchantment> getHolder(Registry<Enchantment> registry, String id) {
+        ResourceLocation rl = ResourceLocation.tryParse(id);
+        if (rl == null) {
+            return null;
+        }
+        return registry.getHolder(rl).map(h -> (Holder<Enchantment>) h).orElse(null);
+    }
+
+    public static boolean matchesEnchantmentType(Holder<Enchantment> enchantmentHolder, ItemStack stack, EnchantmentTypes type) {
+        Enchantment enchantment = enchantmentHolder.value();
         switch (type) {
             case ALL:
                 return enchantment.canEnchant(stack);
@@ -129,13 +144,13 @@ public class AlloyEnchantmentUtils {
             case CROWBAR:
                 return enchantment.canEnchant(stack) && (stack.getItem() instanceof CrowbarItem);
             case HELMET:
-                return enchantment.canEnchant(stack) && (stack.getItem() instanceof ArmorItem) && ((ArmorItem) stack.getItem()).getSlot() == EquipmentSlot.HEAD;
+                return enchantment.canEnchant(stack) && (stack.getItem() instanceof ArmorItem) && ((ArmorItem) stack.getItem()).getType().getSlot() == EquipmentSlot.HEAD;
             case CHESTPLATE:
-                return enchantment.canEnchant(stack) && (stack.getItem() instanceof ArmorItem) && ((ArmorItem) stack.getItem()).getSlot() == EquipmentSlot.CHEST;
+                return enchantment.canEnchant(stack) && (stack.getItem() instanceof ArmorItem) && ((ArmorItem) stack.getItem()).getType().getSlot() == EquipmentSlot.CHEST;
             case LEGGINGS:
-                return enchantment.canEnchant(stack) && (stack.getItem() instanceof ArmorItem) && ((ArmorItem) stack.getItem()).getSlot() == EquipmentSlot.LEGS;
+                return enchantment.canEnchant(stack) && (stack.getItem() instanceof ArmorItem) && ((ArmorItem) stack.getItem()).getType().getSlot() == EquipmentSlot.LEGS;
             case BOOTS:
-                return enchantment.canEnchant(stack) && (stack.getItem() instanceof ArmorItem) && ((ArmorItem) stack.getItem()).getSlot() == EquipmentSlot.FEET;
+                return enchantment.canEnchant(stack) && (stack.getItem() instanceof ArmorItem) && ((ArmorItem) stack.getItem()).getType().getSlot() == EquipmentSlot.FEET;
             case SHIELD:
                 return enchantment.canEnchant(stack) && (stack.getItem() instanceof ShieldItem);
             case FISHING_ROD:

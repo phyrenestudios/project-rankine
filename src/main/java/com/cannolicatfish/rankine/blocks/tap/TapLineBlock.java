@@ -73,11 +73,13 @@ public class TapLineBlock extends Block {
         return avoxelshape1;
     }
 
-    public boolean propagatesSkylightDown(BlockState state, BlockGetter reader, BlockPos pos) {
+    @Override
+    protected boolean propagatesSkylightDown(BlockState state, BlockGetter reader, BlockPos pos) {
         return false;
     }
 
-    public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
+    @Override
+    protected VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
         return this.shapes[this.getShapeIndex(state)];
     }
 
@@ -113,7 +115,8 @@ public class TapLineBlock extends Block {
                 .setValue(UP, blockU.is(this) || blockU.is(RankineBlocks.TREE_TAP.get()));
     }
 
-    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
+    @Override
+    protected BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
         if (!stateIn.canSurvive(worldIn, currentPos)) {
             worldIn.getBlockTicks().willTickThisTick(currentPos, this);
             return super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);

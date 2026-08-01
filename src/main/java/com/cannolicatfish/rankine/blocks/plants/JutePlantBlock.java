@@ -17,12 +17,13 @@ public class JutePlantBlock extends TripleCropsBlock {
         super(properties);
     }
 
+    @Override
     protected ItemLike getBaseSeedId() {
         return RankineItems.JUTE_SEEDS.get();
     }
 
     @Override
-    public void entityInside(BlockState state, Level worldIn, BlockPos pos, Entity entityIn) {
+    protected void entityInside(BlockState state, Level worldIn, BlockPos pos, Entity entityIn) {
         if (entityIn instanceof LivingEntity && state.getValue(AGE) > 2) {
             entityIn.makeStuckInBlock(state, new Vec3((double)0.95F, 1.0D, (double)0.95F));
         }

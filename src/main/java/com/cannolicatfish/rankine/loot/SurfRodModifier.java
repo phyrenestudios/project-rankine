@@ -1,57 +1,50 @@
 package com.cannolicatfish.rankine.loot;
 
-import com.google.gson.JsonObject;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import it.unimi.dsi.fastutil.objects.ObjectArrayList;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
-import net.minecraft.util.GsonHelper;
-import net.minecraft.resources.ResourceLocation;
-import net.neoforged.neoforge.common.loot.GlobalLootModifierSerializer;
+import net.neoforged.neoforge.common.loot.IGlobalLootModifier;
 import net.neoforged.neoforge.common.loot.LootModifier;
-import net.neoforged.neoforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.List;
-
+/**
+ * Global loot modifier replacing one item with another (surf rod fishing loot).
+ * 1.21.1: GlobalLootModifierSerializer is gone — serialization via MapCodec, JSON field
+ * names ("originalItem", "replacement") unchanged from 1.18.2.
+ * init/RankineLootModifiers.java registers {@link #CODEC} (other agent).
+ */
 public class SurfRodModifier extends LootModifier {
-    /**
-     * Constructs a LootModifier.
-     *
-     * @param conditionsIn the ILootConditions that need to be matched before the loot is modified.
-     */
+
+    public static final MapCodec<SurfRodModifier> CODEC = RecordCodecBuilder.mapCodec(instance ->
+            codecStart(instance).and(instance.group(
+                    BuiltInRegistries.ITEM.byNameCodec().fieldOf("originalItem").forGetter(m -> m.itemToReplace),
+                    BuiltInRegistries.ITEM.byNameCodec().fieldOf("replacement").forGetter(m -> m.itemReplacement)
+            )).apply(instance, SurfRodModifier::new));
+
     private final Item itemToReplace;
     private final Item itemReplacement;
-    public static final Serializer SERIALIZER = new Serializer();
+
     public SurfRodModifier(LootItemCondition[] conditionsIn, Item toReplace, Item replacement) {
         super(conditionsIn);
-        itemToReplace = toReplace;
-        itemReplacement = replacement;
+        this.itemToReplace = toReplace;
+        this.itemReplacement = replacement;
     }
 
     @NotNull
     @Override
-    protected List<ItemStack> doApply(List<ItemStack> generatedLoot, LootContext context) {
-        generatedLoot.removeIf(x -> x.getItem() == itemToReplace);
-        generatedLoot.add(new ItemStack(itemReplacement));
+    protected ObjectArrayList<ItemStack> doApply(ObjectArrayList<ItemStack> generatedLoot, LootContext context) {
+        generatedLoot.removeIf(x -> x.getItem() == this.itemToReplace);
+        generatedLoot.add(new ItemStack(this.itemReplacement));
         return generatedLoot;
     }
 
-
-    public static class Serializer extends GlobalLootModifierSerializer<SurfRodModifier> {
-        @Override
-        public SurfRodModifier read(ResourceLocation name, JsonObject json, LootItemCondition[] conditionsIn) {
-            Item toReplace = ForgeRegistries.ITEMS.getValue(new ResourceLocation((GsonHelper.getAsString(json, "originalItem"))));
-            Item replacement = ForgeRegistries.ITEMS.getValue(new ResourceLocation((GsonHelper.getAsString(json, "replacement"))));
-            return new SurfRodModifier(conditionsIn,toReplace,replacement);
-        }
-
-        @Override
-        public JsonObject write(SurfRodModifier instance) {
-            JsonObject json = makeConditions(instance.conditions);
-            json.addProperty("originalItem",ForgeRegistries.ITEMS.getKey(instance.itemToReplace).toString());
-            json.addProperty("replacement",ForgeRegistries.ITEMS.getKey(instance.itemReplacement).toString());
-            return json;
-        }
+    @Override
+    public MapCodec<? extends IGlobalLootModifier> codec() {
+        return CODEC;
     }
 }

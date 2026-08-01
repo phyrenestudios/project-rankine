@@ -1,15 +1,17 @@
 package com.cannolicatfish.rankine.blocks.fusionfurnace;
 
 import com.cannolicatfish.rankine.init.Config;
+import com.cannolicatfish.rankine.init.RankineBlockEntityTypes;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.items.BatteryItem;
 import com.cannolicatfish.rankine.items.GasBottleItem;
 import com.cannolicatfish.rankine.recipe.FusionFurnaceRecipe;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
 import net.minecraft.world.ContainerHelper;
@@ -21,6 +23,7 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.BottleItem;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.AbstractFurnaceBlock;
@@ -28,15 +31,16 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.common.ForgeHooks;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
+import net.neoforged.neoforge.items.IItemHandler;
+import net.neoforged.neoforge.items.wrapper.InvWrapper;
+import net.neoforged.neoforge.items.wrapper.RecipeWrapper;
+import net.neoforged.neoforge.items.wrapper.SidedInvWrapper;
 
 import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.List;
-
-import static com.cannolicatfish.rankine.init.RankineBlocks.FUSION_FURNACE_TILE;
 
 public class FusionFurnaceTile extends BlockEntity implements WorldlyContainer, MenuProvider {
     FluidTank inputTank = new FluidTank(64000);
@@ -47,7 +51,7 @@ public class FusionFurnaceTile extends BlockEntity implements WorldlyContainer, 
     private static final int[] SLOTS_HORIZONTAL = new int[]{2,3};
     private final int powerCost = Config.MACHINES.FUSION_FURNACE_POWER.get();
     public FusionFurnaceTile(BlockPos posIn, BlockState stateIn) {
-        super(FUSION_FURNACE_TILE, posIn, stateIn);
+        super(RankineBlockEntityTypes.FUSION_FURNACE.get(), posIn, stateIn);
     }
     private int burnTime;
     private int currentBurnTime;
@@ -96,27 +100,27 @@ public class FusionFurnaceTile extends BlockEntity implements WorldlyContainer, 
     };
 
     @Override
-    public void load(CompoundTag nbt) {
-        super.load(nbt);
+    protected void loadAdditional(CompoundTag nbt, HolderLookup.Provider provider) {
+        super.loadAdditional(nbt, provider);
         this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
-        ContainerHelper.loadAllItems(nbt,this.items);
-        this.inputTank = this.inputTank.readFromNBT(nbt.getCompound("InputTank"));
-        this.outputTank = this.outputTank.readFromNBT(nbt.getCompound("OutputTank"));
+        ContainerHelper.loadAllItems(nbt,this.items, provider);
+        this.inputTank = this.inputTank.readFromNBT(provider, nbt.getCompound("InputTank"));
+        this.outputTank = this.outputTank.readFromNBT(provider, nbt.getCompound("OutputTank"));
         this.burnTime = nbt.getInt("BurnTime");
         this.cookTime = nbt.getInt("CookTime");
         this.cookTimeTotal = nbt.getInt("CookTimeTotal");
-        this.currentBurnTime = ForgeHooks.getBurnTime(this.items.get(1), RecipeType.SMELTING);
+        this.currentBurnTime = this.items.get(1).getBurnTime(RecipeType.SMELTING);
     }
 
     @Override
-    public void saveAdditional(CompoundTag compound) {
-        super.saveAdditional(compound);
+    protected void saveAdditional(CompoundTag compound, HolderLookup.Provider provider) {
+        super.saveAdditional(compound, provider);
         compound.putInt("BurnTime", this.burnTime);
         compound.putInt("CookTime", this.cookTime);
         compound.putInt("CookTimeTotal", this.cookTimeTotal);
-        ContainerHelper.saveAllItems(compound, this.items);
-        compound.put("InputTank",this.inputTank.writeToNBT(new CompoundTag()));
-        compound.put("OutputTank",this.outputTank.writeToNBT(new CompoundTag()));
+        ContainerHelper.saveAllItems(compound, this.items, provider);
+        compound.put("InputTank",this.inputTank.writeToNBT(provider, new CompoundTag()));
+        compound.put("OutputTank",this.outputTank.writeToNBT(provider, new CompoundTag()));
     }
 
     public static void tick(Level level, BlockPos pos, BlockState bs, FusionFurnaceTile tile) {
@@ -212,8 +216,9 @@ public class FusionFurnaceTile extends BlockEntity implements WorldlyContainer, 
 
     private FusionFurnaceRecipe getFusionFurnaceRecipe() {
         if (this.level != null) {
-            for (FusionFurnaceRecipe recipe : this.level.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.FUSION_FURNACE)) {
-                if (recipe.matchesRecipe(this,this.inputTank,this.outputTank,this.level)){
+            for (RecipeHolder<FusionFurnaceRecipe> holder : this.level.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.FUSION_FURNACE.get())) {
+                FusionFurnaceRecipe recipe = holder.value();
+                if (recipe.matchesRecipe(new RecipeWrapper(new InvWrapper(this)),this.inputTank,this.outputTank,this.level)){
                     return recipe;
                 }
             }
@@ -249,7 +254,7 @@ public class FusionFurnaceTile extends BlockEntity implements WorldlyContainer, 
             } else {
                 for (int i = 0; i < 3; i++) {
                     ItemStack itemstack = this.items.get(4 + i);
-                    if ((!itemstack.sameItem(itemstacks.get(i)) && !itemstack.isEmpty())) {
+                    if ((!ItemStack.isSameItem(itemstack, itemstacks.get(i)) && !itemstack.isEmpty())) {
                         return false;
                     } else if (itemstack.getCount() + itemstacks.get(i).getCount() > this.getMaxStackSize() && itemstack.getCount() + itemstacks.get(i).getCount() > itemstack.getMaxStackSize()) {
                         return false;
@@ -265,32 +270,30 @@ public class FusionFurnaceTile extends BlockEntity implements WorldlyContainer, 
         }
     }
 
-    net.neoforged.neoforge.common.util.LazyOptional<? extends net.neoforged.neoforge.items.IItemHandler>[] handlers =
-            net.neoforged.neoforge.items.wrapper.SidedInvWrapper.create(this, Direction.UP, Direction.DOWN, Direction.NORTH);
+    private final IItemHandler[] handlers = new IItemHandler[] {
+            new SidedInvWrapper(this, Direction.UP),
+            new SidedInvWrapper(this, Direction.DOWN),
+            new SidedInvWrapper(this, Direction.NORTH)
+    };
 
-    @Override
-    public <T> net.neoforged.neoforge.common.util.LazyOptional<T> getCapability(net.neoforged.neoforge.common.capabilities.Capability<T> capability, @Nullable Direction facing) {
-        if (!this.remove && facing != null && capability == net.neoforged.neoforge.items.CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
-            if (facing == Direction.UP)
-                return handlers[0].cast();
-            else if (facing == Direction.DOWN)
-                return handlers[1].cast();
-            else
-                return handlers[2].cast();
+    // PORT-CAP: FusionFurnaceTile -> getItemHandler
+    @Nullable
+    public IItemHandler getItemHandler(@Nullable Direction side) {
+        if (this.remove || side == null) {
+            return null;
         }
-        return super.getCapability(capability, facing);
-    }
-
-    @Override
-    public void setRemoved() {
-        super.setRemoved();
-        for (int x = 0; x < handlers.length; x++)
-            handlers[x].invalidate();
+        if (side == Direction.UP) {
+            return handlers[0];
+        } else if (side == Direction.DOWN) {
+            return handlers[1];
+        } else {
+            return handlers[2];
+        }
     }
 
     @Override
     public Component getDisplayName() {
-        return Component.literal(getType().getRegistryName().getPath());
+        return Component.literal(BuiltInRegistries.BLOCK_ENTITY_TYPE.getKey(this.getType()).getPath());
     }
 
     @Override
@@ -356,7 +359,7 @@ public class FusionFurnaceTile extends BlockEntity implements WorldlyContainer, 
     @Override
     public void setItem(int index, ItemStack stack) {
         ItemStack itemstack = this.items.get(index);
-        boolean flag = !stack.isEmpty() && stack.sameItem(itemstack) && ItemStack.tagMatches(stack, itemstack);
+        boolean flag = !stack.isEmpty() && ItemStack.isSameItemSameComponents(stack, itemstack);
         this.items.set(index, stack);
         if (stack.getCount() > this.getMaxStackSize()) {
             stack.setCount(this.getMaxStackSize());

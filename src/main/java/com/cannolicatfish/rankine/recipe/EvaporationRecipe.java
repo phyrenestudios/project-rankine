@@ -4,19 +4,28 @@ import com.cannolicatfish.rankine.init.RankineRecipeSerializers;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.recipe.helper.AlloyIngredientHelper;
 import com.cannolicatfish.rankine.recipe.helper.FluidHelper;
+import com.cannolicatfish.rankine.recipe.helper.RankineMapCodec;
 import com.cannolicatfish.rankine.util.WeightedCollection;
-import com.google.gson.*;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.JsonSyntaxException;
+import com.mojang.serialization.MapCodec;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.Registry;
-import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.GsonHelper;
-import net.minecraft.world.Container;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeInput;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
@@ -27,9 +36,8 @@ import net.neoforged.neoforge.fluids.FluidStack;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EvaporationRecipe implements Recipe<Container> {
+public class EvaporationRecipe implements Recipe<RecipeInput> {
 
-    private final ResourceLocation id;
     private final int processTime;
     private final FluidStack fluid;
     private final boolean consumeFluid;
@@ -38,8 +46,7 @@ public class EvaporationRecipe implements Recipe<Container> {
     private final NonNullList<Ingredient> recipeOutputs;
     private final NonNullList<Float> weights;
 
-    public EvaporationRecipe(ResourceLocation idIn, int timeIn, FluidStack fluidIn, boolean consumeFluid, List<String> biomesIn, List<String> biomesTagsIn, NonNullList<Ingredient> recipeOutputsIn, NonNullList<Float> weightsIn) {
-        this.id = idIn;
+    public EvaporationRecipe(int timeIn, FluidStack fluidIn, boolean consumeFluid, List<String> biomesIn, List<String> biomesTagsIn, NonNullList<Ingredient> recipeOutputsIn, NonNullList<Float> weightsIn) {
         this.processTime = timeIn;
         this.fluid = fluidIn;
         this.consumeFluid = consumeFluid;
@@ -51,9 +58,10 @@ public class EvaporationRecipe implements Recipe<Container> {
 
     @Override
     public RecipeType<?> getType() {
-        return RankineRecipeTypes.EVAPORATION;
+        return RankineRecipeTypes.EVAPORATION.get();
     }
 
+    @Override
     public String getGroup() {
         return "";
     }
@@ -91,7 +99,7 @@ public class EvaporationRecipe implements Recipe<Container> {
     }
 
     @Override
-    public boolean matches(Container inv, Level worldIn) {
+    public boolean matches(RecipeInput inv, Level worldIn) {
         return false;
     }
 
@@ -100,11 +108,16 @@ public class EvaporationRecipe implements Recipe<Container> {
     }
 
     @Override
-    public ItemStack assemble(Container inv) {
+    public ItemStack assemble(RecipeInput inv, HolderLookup.Provider provider) {
         return ItemStack.EMPTY;
     }
 
     @Override
+    public ItemStack getResultItem(HolderLookup.Provider provider) {
+        return ItemStack.EMPTY;
+    }
+
+    /** Convenience overload matching the pre-1.21 API. */
     public ItemStack getResultItem() {
         return ItemStack.EMPTY;
     }
@@ -129,8 +142,8 @@ public class EvaporationRecipe implements Recipe<Container> {
         for (String b : recipeBiomes) {
             ResourceLocation RS = ResourceLocation.tryParse(b);
             if (RS != null) {
-                TagKey<Biome> biomeTagKey = TagKey.create(Registry.BIOME_REGISTRY, RS);
-                var reg = levelIn.registryAccess().registryOrThrow(Registry.BIOME_REGISTRY);
+                TagKey<Biome> biomeTagKey = TagKey.create(Registries.BIOME, RS);
+                Registry<Biome> reg = levelIn.registryAccess().registryOrThrow(Registries.BIOME);
                 Biome biome = reg.getOptional(biomeName).orElseThrow();
                 if (reg.getHolderOrThrow(reg.getResourceKey(biome).orElseThrow()).is(biomeTagKey)) {
                     return true;
@@ -151,32 +164,43 @@ public class EvaporationRecipe implements Recipe<Container> {
     }
 
     @Override
-    public ResourceLocation getId() {
-        return this.id;
-    }
-
-    @Override
     public RecipeSerializer<?> getSerializer() {
         return RankineRecipeSerializers.EVAPORATION_RECIPE_SERIALIZER.get();
     }
 
     public static ItemStack deserializeItem(JsonObject object) {
         String s = GsonHelper.getAsString(object, "item");
-        Item item = Registry.ITEM.getOptional(ResourceLocation.parse(s)).orElseThrow(() -> {
+        BuiltInRegistries.ITEM.getOptional(ResourceLocation.parse(s)).orElseThrow(() -> {
             return new JsonSyntaxException("Unknown item '" + s + "'");
         });
 
         if (object.has("data")) {
             throw new JsonParseException("Disallowed data tag found");
         } else {
-            int i = GsonHelper.getAsInt(object, "count", 1);
             return AlloyIngredientHelper.getItemStack(object, true);
         }
     }
 
-    public static class Serializer extends net.neoforged.neoforge.registries.ForgeRegistryEntry<RecipeSerializer<?>>  implements RecipeSerializer<EvaporationRecipe> {
+    public static class Serializer implements RecipeSerializer<EvaporationRecipe> {
+
+        public static final MapCodec<EvaporationRecipe> CODEC = RankineMapCodec.of(
+                Serializer::fromJson, Serializer::toJson,
+                RankineMapCodec.fixedKeys("processTime","input","consumeFluid","biomes","outputs"));
+
+        public static final StreamCodec<RegistryFriendlyByteBuf, EvaporationRecipe> STREAM_CODEC =
+                StreamCodec.of(Serializer::toNetwork, Serializer::fromNetwork);
+
         @Override
-        public EvaporationRecipe fromJson(ResourceLocation recipeId, JsonObject jsonObject) {
+        public MapCodec<EvaporationRecipe> codec() {
+            return CODEC;
+        }
+
+        @Override
+        public StreamCodec<RegistryFriendlyByteBuf, EvaporationRecipe> streamCodec() {
+            return STREAM_CODEC;
+        }
+
+        public static EvaporationRecipe fromJson(JsonObject jsonObject) {
             int processTime = jsonObject.has("processTime") ? jsonObject.get("processTime").getAsInt() : 20000;
             FluidStack fluid = FluidHelper.getFluidStack(GsonHelper.getAsJsonObject(jsonObject, "input"));
             boolean consumeFluid = GsonHelper.getAsBoolean(jsonObject, "consumeFluid", false);
@@ -206,7 +230,7 @@ public class EvaporationRecipe implements Recipe<Container> {
                 if (element.isJsonObject()) {
                     JsonObject object = element.getAsJsonObject();
                     if (object.has("item") || object.has("tag")) {
-                        stacks.set(i, Ingredient.fromJson(object));
+                        stacks.set(i, AlloyIngredientHelper.ingredientFromJson(object));
                     } else {
                         stacks.set(i, Ingredient.EMPTY);
                     }
@@ -219,12 +243,45 @@ public class EvaporationRecipe implements Recipe<Container> {
                 i++;
             }
 
-            return new EvaporationRecipe(recipeId, processTime, fluid, consumeFluid, biomes, biomeTags, stacks, weights);
+            return new EvaporationRecipe(processTime, fluid, consumeFluid, biomes, biomeTags, stacks, weights);
         }
 
-        public EvaporationRecipe fromNetwork(ResourceLocation recipeId, FriendlyByteBuf buffer) {
+        public static void toJson(EvaporationRecipe recipe, JsonObject json) {
+            json.addProperty("processTime", recipe.getProcessTime());
+            json.add("input", FluidHelper.fluidStackToJson(recipe.fluid));
+            json.addProperty("consumeFluid", recipe.getConsumeFluid());
+            if (!recipe.getBiomes().isEmpty() || !recipe.getBiomeTags().isEmpty()) {
+                JsonObject biomesObject = new JsonObject();
+                if (!recipe.getBiomes().isEmpty()) {
+                    JsonArray arr = new JsonArray();
+                    recipe.getBiomes().forEach(arr::add);
+                    biomesObject.add("biomes", arr);
+                } else {
+                    JsonArray arr = new JsonArray();
+                    recipe.getBiomeTags().forEach(arr::add);
+                    biomesObject.add("biomeTags", arr);
+                }
+                json.add("biomes", biomesObject);
+            }
+            JsonArray outputs = new JsonArray();
+            for (int i = 0; i < recipe.getOutputs().size(); i++) {
+                Ingredient out = recipe.getOutputs().get(i);
+                JsonObject object;
+                if (out.isEmpty()) {
+                    object = new JsonObject();
+                } else {
+                    JsonElement encoded = AlloyIngredientHelper.ingredientToJson(out);
+                    object = encoded.isJsonObject() ? encoded.getAsJsonObject() : new JsonObject();
+                }
+                object.addProperty("weight", recipe.getWeights().get(i));
+                outputs.add(object);
+            }
+            json.add("outputs", outputs);
+        }
+
+        public static EvaporationRecipe fromNetwork(RegistryFriendlyByteBuf buffer) {
             int processTime = buffer.readInt();
-            FluidStack fluid = buffer.readFluidStack();
+            FluidStack fluid = FluidStack.OPTIONAL_STREAM_CODEC.decode(buffer);
             boolean consumeFluid = buffer.readBoolean();
 
             int biomesSize = buffer.readInt();
@@ -239,7 +296,7 @@ public class EvaporationRecipe implements Recipe<Container> {
             List<String> biomeTags = new ArrayList<>();
             if (biomeTagsSize > 0) {
                 for (int i = 0; i < biomeTagsSize; i++) {
-                    biomes.add(buffer.readUtf());
+                    biomeTags.add(buffer.readUtf());
                 }
             }
 
@@ -248,33 +305,29 @@ public class EvaporationRecipe implements Recipe<Container> {
             NonNullList<Float> weights = NonNullList.withSize(t, 0f);
 
             for (int i = 0; i < stacks.size(); i++) {
-                stacks.set(i,Ingredient.fromNetwork(buffer));
+                stacks.set(i,Ingredient.CONTENTS_STREAM_CODEC.decode(buffer));
                 weights.set(i,buffer.readFloat());
             }
-            return new EvaporationRecipe(recipeId, processTime, fluid, consumeFluid, biomes, biomeTags, stacks, weights);
+            return new EvaporationRecipe(processTime, fluid, consumeFluid, biomes, biomeTags, stacks, weights);
         }
 
-        public void toNetwork(FriendlyByteBuf buffer, EvaporationRecipe recipe) {
+        public static void toNetwork(RegistryFriendlyByteBuf buffer, EvaporationRecipe recipe) {
             buffer.writeInt(recipe.getProcessTime());
-            buffer.writeFluidStack(recipe.getFluid());
+            FluidStack.OPTIONAL_STREAM_CODEC.encode(buffer, recipe.getFluid());
             buffer.writeBoolean(recipe.getConsumeFluid());
 
             buffer.writeInt(recipe.getBiomes().size());
-            if (recipe.getBiomes().size() > 0) {
-                for (int i = 0; i < recipe.getBiomes().size(); i++) {
-                    buffer.writeUtf(recipe.getBiomes().get(i));
-                }
+            for (int i = 0; i < recipe.getBiomes().size(); i++) {
+                buffer.writeUtf(recipe.getBiomes().get(i));
             }
             buffer.writeInt(recipe.getBiomeTags().size());
-            if (recipe.getBiomeTags().size() > 0) {
-                for (int i = 0; i < recipe.getBiomeTags().size(); i++) {
-                    buffer.writeUtf(recipe.getBiomeTags().get(i));
-                }
+            for (int i = 0; i < recipe.getBiomeTags().size(); i++) {
+                buffer.writeUtf(recipe.getBiomeTags().get(i));
             }
 
             buffer.writeVarInt(recipe.getOutputs().size());
             for (int i = 0; i < recipe.getOutputs().size(); i++) {
-                recipe.getOutputs().get(i).toNetwork(buffer);
+                Ingredient.CONTENTS_STREAM_CODEC.encode(buffer, recipe.getOutputs().get(i));
                 buffer.writeFloat(recipe.getWeights().get(i));
             }
         }

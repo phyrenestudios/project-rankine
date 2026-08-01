@@ -5,8 +5,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.IronBarsBlock;
 import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.material.Material;
-import net.minecraft.world.level.material.MaterialColor;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -14,8 +13,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 
@@ -24,7 +21,7 @@ public class MetalBarsBlock extends IronBarsBlock {
     int alloyColor;
 
     public MetalBarsBlock(int color) {
-        super(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.NONE).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL).noOcclusion());
+        super(BlockBehaviour.Properties.of().mapColor(MapColor.NONE).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL).noOcclusion());
         this.alloyColor = color;
         //this.setDefaultState(this.stateContainer.getBaseState().with(MODE, 0));
     }
@@ -61,9 +58,8 @@ public class MetalBarsBlock extends IronBarsBlock {
     //    builder.add(MODE);
     //}
 
-    @OnlyIn(Dist.CLIENT)
     @Override
-    public boolean skipRendering(BlockState state, BlockState adjacentBlockState, Direction side) {
+    protected boolean skipRendering(BlockState state, BlockState adjacentBlockState, Direction side) {
         if (adjacentBlockState.getBlock() instanceof IronBarsBlock) {
             if (!side.getAxis().isHorizontal()) {
                 return true;

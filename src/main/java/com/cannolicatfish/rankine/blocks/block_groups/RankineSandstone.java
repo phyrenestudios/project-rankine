@@ -9,9 +9,10 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.material.Material;
-import net.minecraft.world.level.material.MaterialColor;
-import net.neoforged.neoforge.registries.RegistryObject;
+import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
+
+import net.neoforged.neoforge.registries.DeferredBlock;
 
 import java.util.Arrays;
 import java.util.List;
@@ -19,17 +20,17 @@ import java.util.List;
 public class RankineSandstone {
 
     private final String registryName;
-    private RegistryObject<Block> sandstone;
-    private RegistryObject<RankineSlabBlock> sandstoneSlab;
-    private RegistryObject<RankineStairsBlock> sandstoneStairs;
-    private RegistryObject<RankineWallBlock> sandstoneWall;
-    private RegistryObject<Block> smoothSandstone;
-    private RegistryObject<RankineSlabBlock> smoothSandstoneSlab;
-    private RegistryObject<RankineStairsBlock> smoothSandstoneStairs;
-    private RegistryObject<RankineWallBlock> smoothSandstoneWall;
-    private RegistryObject<Block> cutSandstone;
-    private RegistryObject<RankineSlabBlock> cutSandstoneSlab;
-    private RegistryObject<Block> chiseledSandstone;
+    private DeferredBlock<Block> sandstone;
+    private DeferredBlock<RankineSlabBlock> sandstoneSlab;
+    private DeferredBlock<RankineStairsBlock> sandstoneStairs;
+    private DeferredBlock<RankineWallBlock> sandstoneWall;
+    private DeferredBlock<Block> smoothSandstone;
+    private DeferredBlock<RankineSlabBlock> smoothSandstoneSlab;
+    private DeferredBlock<RankineStairsBlock> smoothSandstoneStairs;
+    private DeferredBlock<RankineWallBlock> smoothSandstoneWall;
+    private DeferredBlock<Block> cutSandstone;
+    private DeferredBlock<RankineSlabBlock> cutSandstoneSlab;
+    private DeferredBlock<Block> chiseledSandstone;
 
 
     public RankineSandstone(String registryName) {
@@ -38,17 +39,17 @@ public class RankineSandstone {
 
     public static RankineSandstone newSandstoneReg(String baseName) {
         RankineSandstone newSandstone = new RankineSandstone(baseName);
-        newSandstone.sandstone =  RankineBlocks.BLOCKS.register(baseName, () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_BROWN).requiresCorrectToolForDrops().strength(0.8F)));
-        newSandstone.sandstoneSlab =  RankineBlocks.BLOCKS.register(baseName+"_slab", () -> new RankineSlabBlock(BlockBehaviour.Properties.copy(newSandstone.sandstone.get())));
-        newSandstone.sandstoneStairs =  RankineBlocks.BLOCKS.register(baseName+"_stairs", () -> new RankineStairsBlock(BlockBehaviour.Properties.copy(newSandstone.sandstone.get())));
-        newSandstone.sandstoneWall =  RankineBlocks.BLOCKS.register(baseName+"_wall", () -> new RankineWallBlock(BlockBehaviour.Properties.copy(newSandstone.sandstone.get())));
-        newSandstone.smoothSandstone =  RankineBlocks.BLOCKS.register("smooth_"+baseName, () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.COLOR_BROWN).requiresCorrectToolForDrops().strength(2.0F, 6.0F)));
-        newSandstone.smoothSandstoneSlab =  RankineBlocks.BLOCKS.register("smooth_"+baseName+"_slab", () -> new RankineSlabBlock(BlockBehaviour.Properties.copy(newSandstone.smoothSandstone.get())));
-        newSandstone.smoothSandstoneStairs =  RankineBlocks.BLOCKS.register("smooth_"+baseName+"_stairs", () -> new RankineStairsBlock(BlockBehaviour.Properties.copy(newSandstone.smoothSandstone.get())));
-        newSandstone.smoothSandstoneWall =  RankineBlocks.BLOCKS.register("smooth_"+baseName+"_wall", () -> new RankineWallBlock(BlockBehaviour.Properties.copy(newSandstone.smoothSandstone.get())));
-        newSandstone.cutSandstone =  RankineBlocks.BLOCKS.register("cut_"+baseName, () -> new RankineSlabBlock(BlockBehaviour.Properties.copy(newSandstone.sandstone.get())));
-        newSandstone.cutSandstoneSlab =  RankineBlocks.BLOCKS.register("cut_"+baseName+"_slab", () -> new RankineSlabBlock(BlockBehaviour.Properties.copy(newSandstone.sandstone.get())));
-        newSandstone.chiseledSandstone =  RankineBlocks.BLOCKS.register("chiseled_"+baseName, () -> new RankineSlabBlock(BlockBehaviour.Properties.copy(newSandstone.sandstone.get())));
+        newSandstone.sandstone =  RankineBlocks.BLOCKS.register(baseName, () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BROWN).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(0.8F)));
+        newSandstone.sandstoneSlab =  RankineBlocks.BLOCKS.register(baseName+"_slab", () -> new RankineSlabBlock(BlockBehaviour.Properties.ofFullCopy(newSandstone.sandstone.get())));
+        newSandstone.sandstoneStairs =  RankineBlocks.BLOCKS.register(baseName+"_stairs", () -> new RankineStairsBlock(BlockBehaviour.Properties.ofFullCopy(newSandstone.sandstone.get())));
+        newSandstone.sandstoneWall =  RankineBlocks.BLOCKS.register(baseName+"_wall", () -> new RankineWallBlock(BlockBehaviour.Properties.ofFullCopy(newSandstone.sandstone.get())));
+        newSandstone.smoothSandstone =  RankineBlocks.BLOCKS.register("smooth_"+baseName, () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BROWN).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(2.0F, 6.0F)));
+        newSandstone.smoothSandstoneSlab =  RankineBlocks.BLOCKS.register("smooth_"+baseName+"_slab", () -> new RankineSlabBlock(BlockBehaviour.Properties.ofFullCopy(newSandstone.smoothSandstone.get())));
+        newSandstone.smoothSandstoneStairs =  RankineBlocks.BLOCKS.register("smooth_"+baseName+"_stairs", () -> new RankineStairsBlock(BlockBehaviour.Properties.ofFullCopy(newSandstone.smoothSandstone.get())));
+        newSandstone.smoothSandstoneWall =  RankineBlocks.BLOCKS.register("smooth_"+baseName+"_wall", () -> new RankineWallBlock(BlockBehaviour.Properties.ofFullCopy(newSandstone.smoothSandstone.get())));
+        newSandstone.cutSandstone =  RankineBlocks.BLOCKS.register("cut_"+baseName, () -> new RankineSlabBlock(BlockBehaviour.Properties.ofFullCopy(newSandstone.sandstone.get())));
+        newSandstone.cutSandstoneSlab =  RankineBlocks.BLOCKS.register("cut_"+baseName+"_slab", () -> new RankineSlabBlock(BlockBehaviour.Properties.ofFullCopy(newSandstone.sandstone.get())));
+        newSandstone.chiseledSandstone =  RankineBlocks.BLOCKS.register("chiseled_"+baseName, () -> new RankineSlabBlock(BlockBehaviour.Properties.ofFullCopy(newSandstone.sandstone.get())));
 
         Item.Properties DEF_BUILDING = new Item.Properties().stacksTo(64);
         RankineBlocks.ITEMS.register(baseName, () -> new BlockItem(newSandstone.sandstone.get(), DEF_BUILDING));

@@ -18,13 +18,13 @@ public class MercuryFlowingFluidBlock extends RankineFlowingFluidBlock{
     }
 
     @Override
-    public void entityInside(BlockState state, Level worldIn, BlockPos pos, Entity entityIn) {
+    protected void entityInside(BlockState state, Level worldIn, BlockPos pos, Entity entityIn) {
         if (entityIn instanceof LivingEntity) {
             LivingEntity ent = (LivingEntity) entityIn;
             boolean flag = (entityIn instanceof Player && ((Player) entityIn).isCreative());
             if (!flag) {
-                MobEffectInstance cur = ent.getEffect(RankineMobEffects.MERCURY_POISONING.get());
-                ent.addEffect(new MobEffectInstance(RankineMobEffects.MERCURY_POISONING.get(), Math.min(1600,cur == null ? 5 : cur.getDuration() + 5), 0, false, false, true));
+                MobEffectInstance cur = ent.getEffect(RankineMobEffects.MERCURY_POISONING);
+                ent.addEffect(new MobEffectInstance(RankineMobEffects.MERCURY_POISONING, Math.min(1600,cur == null ? 5 : cur.getDuration() + 5), 0, false, false, true));
             }
         }
         super.entityInside(state, worldIn, pos, entityIn);

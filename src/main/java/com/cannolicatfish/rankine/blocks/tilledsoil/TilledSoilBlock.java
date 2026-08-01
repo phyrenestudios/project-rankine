@@ -3,9 +3,11 @@ package com.cannolicatfish.rankine.blocks.tilledsoil;
 import com.cannolicatfish.rankine.blocks.states.TilledSoilTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.FluidTags;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -26,10 +28,7 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.neoforged.neoforge.common.IPlantable;
-import net.neoforged.neoforge.registries.ForgeRegistries;
-
-import java.util.Random;
+import net.neoforged.neoforge.common.util.TriState;
 
 public class TilledSoilBlock extends Block {
     public static final IntegerProperty MOISTURE = BlockStateProperties.MOISTURE;
@@ -46,43 +45,47 @@ public class TilledSoilBlock extends Block {
         builder.add(MOISTURE, SOIL_TYPE);
     }
 
-    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
+    @Override
+    protected BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
         if (facing == Direction.UP && !stateIn.canSurvive(worldIn, currentPos)) {
             worldIn.getBlockTicks().willTickThisTick(currentPos, this);
         }
         return super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
     }
 
-    public boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
+    @Override
+    protected boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
         BlockState blockstate = worldIn.getBlockState(pos.above());
-        return !blockstate.getMaterial().isSolid() || blockstate.getBlock() instanceof FenceGateBlock || blockstate.getBlock() instanceof MovingPistonBlock;
+        return !blockstate.isSolid() || blockstate.getBlock() instanceof FenceGateBlock || blockstate.getBlock() instanceof MovingPistonBlock;
     }
 
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         return !this.defaultBlockState().canSurvive(context.getLevel(), context.getClickedPos()) ? Blocks.DIRT.defaultBlockState() : super.getStateForPlacement(context);
     }
 
-    public boolean useShapeForLightOcclusion(BlockState state) {
+    @Override
+    protected boolean useShapeForLightOcclusion(BlockState state) {
         return true;
     }
 
-    public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
+    @Override
+    protected VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
         return SHAPE;
     }
 
     @Override
-    public boolean canSustainPlant(BlockState state, BlockGetter levelIn, BlockPos pos, Direction facing, IPlantable plantable) {
-        if (plantable instanceof SugarCaneBlock) {
+    public TriState canSustainPlant(BlockState state, BlockGetter levelIn, BlockPos pos, Direction facing, BlockState plant) {
+        if (plant.getBlock() instanceof SugarCaneBlock) {
             for(Direction direction : Direction.Plane.HORIZONTAL) {
                 BlockState blockstate1 = levelIn.getBlockState(pos.relative(direction));
                 FluidState fluidstate = levelIn.getFluidState(pos.relative(direction));
                 if (fluidstate.is(FluidTags.WATER) || blockstate1.is(Blocks.FROSTED_ICE)) {
-                    return true;
+                    return TriState.TRUE;
                 }
             }
-            return false;
+            return TriState.FALSE;
         }
-        return true;
+        return TriState.TRUE;
     }
 
     @Override
@@ -90,13 +93,15 @@ public class TilledSoilBlock extends Block {
         return true;
     }
 
-    public void tick(BlockState state, ServerLevel worldIn, BlockPos pos, Random rand) {
+    @Override
+    protected void tick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource rand) {
         if (!state.canSurvive(worldIn, pos)) {
             turnToDirt(state, worldIn, pos);
         }
     }
 
-    public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, Random random) {
+    @Override
+    protected void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {
         int i = state.getValue(MOISTURE);
         if (!hasWater(worldIn, pos) && !worldIn.isRainingAt(pos.above())) {
             if (i > 0) {
@@ -109,8 +114,9 @@ public class TilledSoilBlock extends Block {
         }
     }
 
+    @Override
     public void fallOn(Level worldIn, BlockState state, BlockPos pos, Entity entityIn, float fallDistance) {
-        if (!worldIn.isClientSide && net.neoforged.neoforge.common.ForgeHooks.onFarmlandTrample(worldIn, pos, Blocks.DIRT.defaultBlockState(), fallDistance, entityIn)) { // Forge: Move logic to Entity#canTrample
+        if (!worldIn.isClientSide && net.neoforged.neoforge.common.CommonHooks.onFarmlandTrample(worldIn, pos, Blocks.DIRT.defaultBlockState(), fallDistance, entityIn)) { // Forge: Move logic to Entity#canTrample
             turnToDirt(state, worldIn, pos);
         }
         super.fallOn(worldIn, state, pos, entityIn, fallDistance);
@@ -123,7 +129,7 @@ public class TilledSoilBlock extends Block {
         } else if (state.getValue(SOIL_TYPE).equals(TilledSoilTypes.SOUL_SOIL)) {
             SOIL = Blocks.SOUL_SOIL;
         } else {
-            SOIL = ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse("rankine:"+state.getValue(SOIL_TYPE).getSerializedName()));
+            SOIL = BuiltInRegistries.BLOCK.get(ResourceLocation.tryParse("rankine:"+state.getValue(SOIL_TYPE).getSerializedName()));
         }
         worldIn.setBlockAndUpdate(pos, pushEntitiesUp(state, SOIL.defaultBlockState(), worldIn, pos));
     }
@@ -131,7 +137,9 @@ public class TilledSoilBlock extends Block {
     private boolean hasCrops(BlockGetter worldIn, BlockPos pos) {
         BlockState plant = worldIn.getBlockState(pos.above());
         BlockState state = worldIn.getBlockState(pos);
-        return plant.getBlock() instanceof net.neoforged.neoforge.common.IPlantable && state.canSustainPlant(worldIn, pos, Direction.UP, (net.neoforged.neoforge.common.IPlantable)plant.getBlock());
+        // PORT-TODO(plants): IPlantable is gone in NeoForge 1.21 — old check was `plant instanceof IPlantable && canSustainPlant(...)`.
+        // Closest equivalent: vanilla MAINTAINS_FARMLAND tag (the crop set) combined with the sided sustain check.
+        return plant.is(net.minecraft.tags.BlockTags.MAINTAINS_FARMLAND) && state.canSustainPlant(worldIn, pos, Direction.UP, plant).isTrue();
     }
 
     private static boolean hasWater(LevelReader worldIn, BlockPos pos) {
@@ -143,7 +151,8 @@ public class TilledSoilBlock extends Block {
         return net.neoforged.neoforge.common.FarmlandWaterManager.hasBlockWaterTicket(worldIn, pos);
     }
 
-    public boolean isPathfindable(BlockState state, BlockGetter worldIn, BlockPos pos, PathComputationType type) {
+    @Override
+    protected boolean isPathfindable(BlockState state, PathComputationType type) {
         return false;
     }
 

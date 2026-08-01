@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.blocks;
 
 import com.cannolicatfish.rankine.blocks.states.VerticalSlabStates;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -32,6 +33,13 @@ import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class RankineVerticalSlabBlock extends Block implements SimpleWaterloggedBlock {
+    public static final MapCodec<RankineVerticalSlabBlock> CODEC = simpleCodec(RankineVerticalSlabBlock::new);
+
+    @Override
+    public MapCodec<? extends RankineVerticalSlabBlock> codec() {
+        return CODEC;
+    }
+
     public static final DirectionProperty HORIZONTAL_FACING = HorizontalDirectionalBlock.FACING;
     public static final EnumProperty<VerticalSlabStates> TYPE = EnumProperty.create("type", VerticalSlabStates .class);
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
@@ -51,11 +59,12 @@ public class RankineVerticalSlabBlock extends Block implements SimpleWaterlogged
     }
 
     @Override
-    public boolean useShapeForLightOcclusion(BlockState state) {
+    protected boolean useShapeForLightOcclusion(BlockState state) {
         return state.getValue(TYPE) != VerticalSlabStates.DOUBLE;
     }
 
-    public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
+    @Override
+    protected VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
         Direction facing = state.getValue(HORIZONTAL_FACING);
         switch(state.getValue(TYPE)) {
             case DOUBLE:
@@ -98,6 +107,7 @@ public class RankineVerticalSlabBlock extends Block implements SimpleWaterlogged
     }
 
     @Nullable
+    @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         BlockPos blockpos = context.getClickedPos();
         BlockState blockstate = context.getLevel().getBlockState(blockpos);
@@ -135,9 +145,10 @@ public class RankineVerticalSlabBlock extends Block implements SimpleWaterlogged
         }
     }
 
-    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
+    @Override
+    protected BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
         if (stateIn.getValue(WATERLOGGED)) {
-            worldIn.getFluidTicks().willTickThisTick(currentPos, Fluids.WATER);
+            worldIn.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
         }
         if (facing != Direction.DOWN && facing != Direction.UP && facing != stateIn.getValue(HORIZONTAL_FACING).getOpposite()) {
             return stateIn;
@@ -146,18 +157,22 @@ public class RankineVerticalSlabBlock extends Block implements SimpleWaterlogged
         }
     }
 
-    public BlockState rotate(BlockState state, Rotation rot) {
+    @Override
+    protected BlockState rotate(BlockState state, Rotation rot) {
         return state.setValue(HORIZONTAL_FACING, rot.rotate(state.getValue(HORIZONTAL_FACING)));
     }
 
-    public BlockState mirror(BlockState state, Mirror mirrorIn) {
+    @Override
+    protected BlockState mirror(BlockState state, Mirror mirrorIn) {
         return state.rotate(mirrorIn.getRotation(state.getValue(HORIZONTAL_FACING)));
     }
 
-    public FluidState getFluidState(BlockState state) {
+    @Override
+    protected FluidState getFluidState(BlockState state) {
         return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }
 
+    @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(TYPE, HORIZONTAL_FACING, WATERLOGGED);
     }

@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.blocks.plants;
 
 import com.cannolicatfish.rankine.init.RankineItems;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -19,16 +20,24 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class CloverBlock extends BushBlock {
+    public static final MapCodec<CloverBlock> CODEC = simpleCodec(CloverBlock::new);
+
     public CloverBlock(Properties properties) {
         super(properties);
     }
 
-    public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+    @Override
+    public MapCodec<CloverBlock> codec() {
+        return CODEC;
+    }
+
+    @Override
+    protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         return Block.box(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D);
     }
 
     @Override
-    public boolean canBeReplaced(BlockState state, BlockPlaceContext useContext) {
+    protected boolean canBeReplaced(BlockState state, BlockPlaceContext useContext) {
         return true;
     }
 

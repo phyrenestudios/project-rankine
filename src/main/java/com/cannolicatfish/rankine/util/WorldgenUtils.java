@@ -3,11 +3,17 @@ package com.cannolicatfish.rankine.util;
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineLists;
 import net.minecraft.core.*;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BiomeTags;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.tags.TagKey;
+import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
@@ -21,8 +27,8 @@ import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
-import net.neoforged.neoforge.event.world.BiomeLoadingEvent;
-import net.neoforged.neoforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.common.util.TriState;
 
 import java.util.*;
 
@@ -52,6 +58,32 @@ public class WorldgenUtils {
     public static List<Block> ORE_STONES = new ArrayList<>();
     public static List<String> ORE_TEXTURES = new ArrayList<>();
 
+    /**
+     * PORT-NOTE: Biome.BiomeCategory was removed in 1.19. Category names used in the config
+     * (biomeSettings / oreSettings entries) are now mapped onto biome tags.
+     */
+    public static final Map<String, TagKey<Biome>> CATEGORY_TAGS = new HashMap<>();
+    static {
+        CATEGORY_TAGS.put("taiga", BiomeTags.IS_TAIGA);
+        CATEGORY_TAGS.put("extreme_hills", BiomeTags.IS_HILL);
+        CATEGORY_TAGS.put("jungle", BiomeTags.IS_JUNGLE);
+        CATEGORY_TAGS.put("mesa", BiomeTags.IS_BADLANDS);
+        CATEGORY_TAGS.put("plains", Tags.Biomes.IS_PLAINS);
+        CATEGORY_TAGS.put("savanna", BiomeTags.IS_SAVANNA);
+        CATEGORY_TAGS.put("icy", Tags.Biomes.IS_ICY);
+        CATEGORY_TAGS.put("theend", BiomeTags.IS_END);
+        CATEGORY_TAGS.put("beach", BiomeTags.IS_BEACH);
+        CATEGORY_TAGS.put("forest", BiomeTags.IS_FOREST);
+        CATEGORY_TAGS.put("ocean", BiomeTags.IS_OCEAN);
+        CATEGORY_TAGS.put("desert", Tags.Biomes.IS_DESERT);
+        CATEGORY_TAGS.put("river", BiomeTags.IS_RIVER);
+        CATEGORY_TAGS.put("swamp", Tags.Biomes.IS_SWAMP);
+        CATEGORY_TAGS.put("mushroom", Tags.Biomes.IS_MUSHROOM);
+        CATEGORY_TAGS.put("nether", BiomeTags.IS_NETHER);
+        CATEGORY_TAGS.put("underground", Tags.Biomes.IS_UNDERGROUND);
+        CATEGORY_TAGS.put("mountain", BiomeTags.IS_MOUNTAIN);
+    }
+
     public static List<String> ORES = Arrays.asList("minecraft:stone", "minecraft:granite", "minecraft:diorite", "minecraft:andesite", "minecraft:deepslate|minecraft:deepslate", "minecraft:sandstone|minecraft:sandstone_bottom", "minecraft:red_sandstone|minecraft:red_sandstone_bottom", "minecraft:netherrack", "minecraft:blackstone", "minecraft:basalt|minecraft:basalt_top", "minecraft:end_stone", "minecraft:obsidian", "rankine:pegmatite", "rankine:gray_granite", "rankine:rhyolite", "rankine:comendite", "rankine:granodiorite", "rankine:red_porphyry", "rankine:purple_porphyry", "rankine:hornblende_andesite", "rankine:black_dacite", "rankine:red_dacite", "rankine:tholeiitic_basalt", "rankine:diabase","rankine:gabbro", "rankine:anorthosite", "rankine:dunite", "rankine:harzburgite", "rankine:lherzolite", "rankine:wehrlite", "rankine:troctolite", "rankine:kimberlite", "rankine:komatiite","rankine:shonkinite", "rankine:norite", "rankine:pyroxenite", "rankine:rose_marble", "rankine:white_marble", "rankine:gray_marble", "rankine:black_marble", "rankine:gneiss", "rankine:mica_schist", "rankine:phyllite", "rankine:slate", "rankine:quartzite","rankine:mariposite","rankine:eclogite","rankine:limestone", "rankine:dolostone", "rankine:chalk", "rankine:soapstone", "rankine:shale", "rankine:siltstone", "rankine:itacolumite", "rankine:arkose", "rankine:mudstone","rankine:serpentinite","rankine:marlstone", "rankine:graywacke", "rankine:blueschist", "rankine:greenschist", "rankine:whiteschist","rankine:sommanite","rankine:post_perovskite","rankine:bridgmanham","rankine:ringwoodine","rankine:wadsleyone","rankine:honeystone", "rankine:meteorite", "rankine:frozen_meteorite", "rankine:enstatite_chondrite", "rankine:soul_sandstone|rankine:soul_sandstone_bottom", "rankine:white_sandstone|rankine:white_sandstone_bottom", "rankine:black_sandstone|rankine:black_sandstone_bottom", "rankine:desert_sandstone|rankine:desert_sandstone_bottom", "rankine:episyenite", "rankine:nepheline_syenite", "rankine:phonolite");
 
     public static void initOreTextures() {
@@ -67,80 +99,100 @@ public class WorldgenUtils {
         }
 
     }
+
+    /**
+     * Raw config rows whose biome selectors have not been resolved against the biome registry yet.
+     * PORT-NOTE: biomes are a datapack registry in 1.21 and cannot be enumerated during common setup,
+     * so resolution is deferred to {@link #ensureBiomesResolved(RegistryAccess)} (first worldgen access
+     * or server start).
+     */
+    private static final List<List<Object>> PENDING_BIOME_SETTINGS = new ArrayList<>();
+    private static volatile boolean biomesResolved = false;
+
     public static void initConfigs() {
 
         for (String ORE : ORES) {
-            ORE_STONES.add(ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse(ORE.split("\\|")[0])));
+            ORE_STONES.add(BuiltInRegistries.BLOCK.get(ResourceLocation.tryParse(ORE.split("\\|")[0])));
         }
 
+        PENDING_BIOME_SETTINGS.clear();
         for (List<Object> L : Config.BIOME_GEN.BIOME_SETTINGS.get()) {
-            String biomeToAdd = (String) L.get(0);
-            List<String> biomeName = Arrays.asList(biomeToAdd.split(":"));
-            if (biomeName.size() > 1) {
-                Block gravel = ResourceLocation.tryParse((String) L.get(5)) == null ? Blocks.AIR : ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse((String) L.get(5)));
-                Block sand = ResourceLocation.tryParse((String) L.get(6)) == null ? Blocks.AIR : ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse((String) L.get(6)));
-                Block sandstone = ResourceLocation.tryParse((String) L.get(7)) == null ? Blocks.AIR : ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse((String) L.get(7)));
-                Block dripstone = ResourceLocation.tryParse((String) L.get(8)) == null ? Blocks.AIR : ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse((String) L.get(8)));
-                populateLists(ResourceLocation.tryParse(biomeToAdd),(List<String>) L.get(1),(List<String>) L.get(2),(List<String>) L.get(3),(List<String>) L.get(4), gravel, sand, sandstone, dripstone);
-            } else {
-                for (ResourceLocation RS : getBiomeNamesFromCategory(Collections.singletonList(Biome.BiomeCategory.byName(biomeToAdd)), true)) {
-                    Block gravel = ResourceLocation.tryParse((String) L.get(5)) == null ? Blocks.AIR : ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse((String) L.get(5)));
-                    Block sand = ResourceLocation.tryParse((String) L.get(6)) == null ? Blocks.AIR : ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse((String) L.get(6)));
-                    Block sandstone = ResourceLocation.tryParse((String) L.get(7)) == null ? Blocks.AIR : ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse((String) L.get(7)));
-                    Block dripstone = ResourceLocation.tryParse((String) L.get(8)) == null ? Blocks.AIR : ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse((String) L.get(8)));
-                    populateLists(RS,(List<String>) L.get(1),(List<String>) L.get(2),(List<String>) L.get(3),(List<String>) L.get(4), gravel, sand, sandstone, dripstone);
+            PENDING_BIOME_SETTINGS.add(L);
+        }
+    }
+
+    /**
+     * Resolves the config biome settings against the actual (datapack-aware) biome registry.
+     * Idempotent and cheap after first call. Call with {@code level.registryAccess()} from worldgen,
+     * or from server start.
+     * PORT-TODO(events): call {@code WorldgenUtils.ensureBiomesResolved(event.getServer().registryAccess())}
+     * from a {@code ServerAboutToStartEvent} handler so that blocks (SoilBlock, GrassySoilBlock, retrogen)
+     * see resolved lists even before any Rankine feature has run.
+     */
+    public static void ensureBiomesResolved(RegistryAccess registryAccess) {
+        if (biomesResolved) return;
+        synchronized (WorldgenUtils.class) {
+            if (biomesResolved) return;
+            Registry<Biome> biomeRegistry = registryAccess.registryOrThrow(Registries.BIOME);
+
+            for (List<Object> L : PENDING_BIOME_SETTINGS) {
+                String biomeToAdd = (String) L.get(0);
+                List<String> biomeName = Arrays.asList(biomeToAdd.split(":"));
+                Block gravel = ResourceLocation.tryParse((String) L.get(5)) == null ? Blocks.AIR : BuiltInRegistries.BLOCK.get(ResourceLocation.tryParse((String) L.get(5)));
+                Block sand = ResourceLocation.tryParse((String) L.get(6)) == null ? Blocks.AIR : BuiltInRegistries.BLOCK.get(ResourceLocation.tryParse((String) L.get(6)));
+                Block sandstone = ResourceLocation.tryParse((String) L.get(7)) == null ? Blocks.AIR : BuiltInRegistries.BLOCK.get(ResourceLocation.tryParse((String) L.get(7)));
+                Block dripstone = ResourceLocation.tryParse((String) L.get(8)) == null ? Blocks.AIR : BuiltInRegistries.BLOCK.get(ResourceLocation.tryParse((String) L.get(8)));
+                if (biomeName.size() > 1) {
+                    populateLists(ResourceLocation.tryParse(biomeToAdd),(List<String>) L.get(1),(List<String>) L.get(2),(List<String>) L.get(3),(List<String>) L.get(4), gravel, sand, sandstone, dripstone);
+                } else {
+                    TagKey<Biome> tag = CATEGORY_TAGS.get(biomeToAdd);
+                    if (tag == null) continue;
+                    for (Holder.Reference<Biome> holder : biomeRegistry.holders().toList()) {
+                        if (holder.is(tag)) {
+                            populateLists(holder.key().location(),(List<String>) L.get(1),(List<String>) L.get(2),(List<String>) L.get(3),(List<String>) L.get(4), gravel, sand, sandstone, dripstone);
+                        }
+                    }
                 }
             }
 
-        }
-
-        for (List<String> I : INTRUSION_LISTS) {
-/*            if (I.isEmpty()) {
+            for (List<String> I : INTRUSION_LISTS) {
+                int ind = 0;
                 WeightedCollection<BlockState> col = new WeightedCollection<>();
-
-                INTRUSION_BLOCKS.add(Collections.singletonList(Blocks.AIR));
-                INTRUSION_WEIGHTS.add(Collections.singletonList(1.0f));
-                INTRUSION_ORES.add(Collections.singletonList(Blocks.AIR));
-                INTRUSION_ORE_CHANCES.add(Collections.singletonList(1.0f));
-                INTRUSION_COLLECTIONS.add(col.add(1,Blocks.AIR.getDefaultState()));
+                List<Block> tempIB = new ArrayList<>();
+                List<Float> tempIW = new ArrayList<>();
+                List<Block> tempIO = new ArrayList<>();
+                List<Float> tempIC = new ArrayList<>();
+                for (String entry : I) {
+                    tempIB.add(BuiltInRegistries.BLOCK.get(ResourceLocation.tryParse(entry.split("\\|")[0])));
+                    tempIW.add(Float.parseFloat(entry.split("\\|")[1]));
+                    tempIO.add(BuiltInRegistries.BLOCK.get(ResourceLocation.tryParse(entry.split("\\|")[2])));
+                    tempIC.add(Float.parseFloat(entry.split("\\|")[3]));
+                    col.add(tempIW.get(ind),tempIB.get(ind).defaultBlockState());
+                    ind += 1;
+                }
+                INTRUSION_BLOCKS.add(tempIB);
+                INTRUSION_WEIGHTS.add(tempIW);
+                INTRUSION_ORES.add(tempIO);
+                INTRUSION_ORE_CHANCES.add(tempIC);
+                INTRUSION_COLLECTIONS.add(col);
             }
 
- */
-            int ind = 0;
-            WeightedCollection<BlockState> col = new WeightedCollection<>();
-            List<Block> tempIB = new ArrayList<>();
-            List<Float> tempIW = new ArrayList<>();
-            List<Block> tempIO = new ArrayList<>();
-            List<Float> tempIC = new ArrayList<>();
-            for (String entry : I) {
-                tempIB.add(ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse(entry.split("\\|")[0])));
-                tempIW.add(Float.parseFloat(entry.split("\\|")[1]));
-                tempIO.add(ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse(entry.split("\\|")[2])));
-                tempIC.add(Float.parseFloat(entry.split("\\|")[3]));
-                col.add(tempIW.get(ind),tempIB.get(ind).defaultBlockState());
-                ind += 1;
+            for (List<String> V : VEGETATION_LISTS) {
+                int ind = 0;
+                WeightedCollection<BlockState> col = new WeightedCollection<>();
+                List<Block> tempVB = new ArrayList<>();
+                List<Float> tempVW = new ArrayList<>();
+                for (String entry : V) {
+                    tempVB.add(BuiltInRegistries.BLOCK.get(ResourceLocation.tryParse(entry.split("\\|")[0])));
+                    tempVW.add(Float.parseFloat(entry.split("\\|")[1]));
+                    col.add(tempVW.get(ind),tempVB.get(ind).defaultBlockState());
+                    ind += 1;
+                }
+                VEGETATION_COLLECTIONS.add(col);
             }
-            INTRUSION_BLOCKS.add(tempIB);
-            INTRUSION_WEIGHTS.add(tempIW);
-            INTRUSION_ORES.add(tempIO);
-            INTRUSION_ORE_CHANCES.add(tempIC);
-            INTRUSION_COLLECTIONS.add(col);
+
+            biomesResolved = true;
         }
-
-        for (List<String> V : VEGETATION_LISTS) {
-            int ind = 0;
-            WeightedCollection<BlockState> col = new WeightedCollection<>();
-            List<Block> tempVB = new ArrayList<>();
-            List<Float> tempVW = new ArrayList<>();
-            for (String entry : V) {
-                tempVB.add(ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse(entry.split("\\|")[0])));
-                tempVW.add(Float.parseFloat(entry.split("\\|")[1]));
-                col.add(tempVW.get(ind),tempVB.get(ind).defaultBlockState());
-                ind += 1;
-            }
-            VEGETATION_COLLECTIONS.add(col);
-        }
-
     }
 
     private static void populateLists(ResourceLocation BIOME, List<String> SOILS, List<String> INTRUSIONS, List<String> STONES, List<String> VEGETATION, Block GRAVEL, Block SAND, Block SANDSTONE, Block DRIPSTONE) {
@@ -153,12 +205,12 @@ public class WorldgenUtils {
             A2.add(Blocks.AIR);
             B2.add(Blocks.AIR);
         } else {
-            O1.add(ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse(SOILS.get(0))));
-            A1.add(ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse(SOILS.get(1))));
-            B1.add(ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse(SOILS.get(2))));
-            O2.add(ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse(SOILS.get(3))));
-            A2.add(ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse(SOILS.get(4))));
-            B2.add(ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse(SOILS.get(5))));
+            O1.add(BuiltInRegistries.BLOCK.get(ResourceLocation.tryParse(SOILS.get(0))));
+            A1.add(BuiltInRegistries.BLOCK.get(ResourceLocation.tryParse(SOILS.get(1))));
+            B1.add(BuiltInRegistries.BLOCK.get(ResourceLocation.tryParse(SOILS.get(2))));
+            O2.add(BuiltInRegistries.BLOCK.get(ResourceLocation.tryParse(SOILS.get(3))));
+            A2.add(BuiltInRegistries.BLOCK.get(ResourceLocation.tryParse(SOILS.get(4))));
+            B2.add(BuiltInRegistries.BLOCK.get(ResourceLocation.tryParse(SOILS.get(5))));
         }
         INTRUSION_LISTS.add(INTRUSIONS);
         LAYER_LISTS.add(STONES);
@@ -170,23 +222,26 @@ public class WorldgenUtils {
 
     }
 
+    /** Location of a biome holder, or null for a direct (unregistered) holder. */
+    public static ResourceLocation biomeLocation(Holder<Biome> biome) {
+        return biome.unwrapKey().map(key -> key.location()).orElse(null);
+    }
 
-    public static List<ResourceLocation> getBiomeNamesFromCategory(List<Biome.BiomeCategory> biomeCats, boolean include) {
-        List<ResourceLocation> b = new ArrayList<>();
+    /** Replacement for the old BiomeCategory-based overworld check: not nether and not end. */
+    public static boolean isOverworld(Holder<Biome> biome) {
+        return !biome.is(BiomeTags.IS_NETHER) && !biome.is(BiomeTags.IS_END);
+    }
 
-        for (Biome biome : ForgeRegistries.BIOMES) {
-            if (!biomeCats.isEmpty()) {
-                if (biomeCats.contains(Biome.getBiomeCategory(Holder.direct(biome)))) {
-                    if (include) b.add(biome.getRegistryName());
-                } else {
-                    if (!include) b.add(biome.getRegistryName());
-                }
-            } else if (!include) {
-                b.add(biome.getRegistryName());
-            }
-        }
-
-        return b;
+    /**
+     * Replacement for the removed Forge {@code canSustainPlant(..., IPlantable)} overload:
+     * asks the soil first (NeoForge TriState), falling back to the vanilla sapling rule (dirt or farmland).
+     */
+    public static boolean canSustainSapling(LevelAccessor level, BlockPos soilPos, Block sapling) {
+        BlockState soil = level.getBlockState(soilPos);
+        TriState result = soil.canSustainPlant(level, soilPos, Direction.UP, sapling.defaultBlockState());
+        if (result.isTrue()) return true;
+        if (result.isFalse()) return false;
+        return soil.is(BlockTags.DIRT) || soil.is(Blocks.FARMLAND);
     }
 
     public static boolean isWet(ChunkAccess chunk, BlockPos pos) {
@@ -198,7 +253,7 @@ public class WorldgenUtils {
         return false;
     }
 
-    public static Direction randomHorizontalDirection(Random rand) {
+    public static Direction randomHorizontalDirection(RandomSource rand) {
         List<Direction> dirs = Arrays.asList(Direction.NORTH,Direction.EAST,Direction.WEST,Direction.SOUTH);
         return dirs.get(rand.nextInt(dirs.size()));
     }
@@ -242,13 +297,13 @@ public class WorldgenUtils {
     public static int waterTableHeight(Level levelIn, BlockPos posIn) {
         if (!Config.GENERAL.DISABLE_WATER.get()) return levelIn.getMaxBuildHeight();
         int surface = levelIn.getHeight(Heightmap.Types.WORLD_SURFACE_WG,posIn.getX(),posIn.getZ());
-        return levelIn.getSeaLevel() + Math.max(0, Math.round((surface-levelIn.getSeaLevel()) * (1 - levelIn.getBiome(posIn).value().getDownfall())));
+        return levelIn.getSeaLevel() + Math.max(0, Math.round((surface-levelIn.getSeaLevel()) * (1 - levelIn.getBiome(posIn).value().getModifiedClimateSettings().downfall())));
     }
 
     public static boolean inArea(BlockPos b, double radius, boolean center, BlockPos... targets) {
         for (BlockPos target : targets) {
             if (center) {
-                if (b.offset(0.5,0.5,0.5).distSqr(target) < Math.pow(radius, 2) + 0.5) {
+                if (b.distSqr(target) < Math.pow(radius, 2) + 0.5) {
                     return true;
                 }
             } else {
@@ -287,16 +342,16 @@ public class WorldgenUtils {
 
 
     public static boolean inRadiusCenter(BlockPos center, BlockPos checkPos, double radius) {
-        return center.distSqr(new Vec3i(checkPos.getX()+0.5D,checkPos.getY()+0.5D,checkPos.getZ()+0.5D)) < radius*radius;
+        return center.distSqr(checkPos) < radius*radius;
     }
 
-    public static void checkLog(WorldGenLevel reader, BlockPos pos, Random rand, TreeConfiguration config, Direction.Axis axis) {
+    public static void checkLog(WorldGenLevel reader, BlockPos pos, RandomSource rand, TreeConfiguration config, Direction.Axis axis) {
         if (isAirOrLeaves(reader, pos)) {
             placeLogAt(reader, pos, rand, config, axis);
         }
     }
 
-    public static void placeLogAt(WorldGenLevel reader, BlockPos pos, Random rand, TreeConfiguration config, Direction.Axis axis) {
+    public static void placeLogAt(WorldGenLevel reader, BlockPos pos, RandomSource rand, TreeConfiguration config, Direction.Axis axis) {
         setLogState(reader, pos, config.trunkProvider.getState(rand, pos).setValue(BlockStateProperties.AXIS, axis));
     }
 
@@ -304,40 +359,27 @@ public class WorldgenUtils {
         reader.setBlock(pos, state, 18);
     }
 
-    public static void placeLeafAt(WorldGenLevel world, BlockPos pos, Random rand, TreeConfiguration config) {
+    public static void placeLeafAt(WorldGenLevel world, BlockPos pos, RandomSource rand, TreeConfiguration config) {
         if (isAirOrLeaves(world, pos)) {
             setLogState(world, pos, config.foliageProvider.getState(rand, pos).setValue(LeavesBlock.DISTANCE, 1));
         }
     }
 
     public static boolean isAirOrLeaves(WorldGenLevel levelIn, BlockPos pos) {
-        /*/if (reader instanceof net.minecraft.world.level.LevelReader) {
-            return reader.isStateAtPosition(pos, state -> state.canBeReplacedByLeaves((net.minecraft.world.level.LevelReader) reader, pos));
-        }*/
         return levelIn.isStateAtPosition(pos, (state) -> state.isAir() || state.is(BlockTags.LEAVES));
     }
 
     public static boolean isAir(WorldGenLevel reader, BlockPos pos) {
-        if (!(reader instanceof net.minecraft.world.level.BlockGetter)) {
-            return reader.isStateAtPosition(pos, BlockState::isAir);
-        }
-        else {
-            return reader.isStateAtPosition(pos, BlockBehaviour.BlockStateBase::isAir);
-        }
+        return reader.isStateAtPosition(pos, BlockBehaviour.BlockStateBase::isAir);
     }
 
     public static boolean isGasOrAir(Level reader, BlockPos pos) {
         return RankineLists.GAS_BLOCKS.contains(reader.getBlockState(pos).getBlock()) || reader.getBlockState(pos).isAir();
     }
 
-
-    public static boolean isOverworld(BiomeLoadingEvent biome) {
-        return biome.getCategory() != Biome.BiomeCategory.NETHER && biome.getCategory() != Biome.BiomeCategory.THEEND;
-    }
-
     public static boolean biomeTagCheck(Level level, Biome biome, TagKey<Biome> tag)
     {
-        var reg = level.registryAccess().registryOrThrow(Registry.BIOME_REGISTRY);
+        var reg = level.registryAccess().registryOrThrow(Registries.BIOME);
         return reg.getResourceKey(biome)
                 .flatMap(reg::getHolder)
                 .map(holder -> holder.is(tag)).orElse(false);

@@ -2,40 +2,40 @@ package com.cannolicatfish.rankine.recipe;
 
 import com.cannolicatfish.rankine.init.RankineRecipeSerializers;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
+import com.cannolicatfish.rankine.recipe.helper.AlloyIngredientHelper;
 import com.cannolicatfish.rankine.recipe.helper.BlockRecipeHelper;
+import com.cannolicatfish.rankine.recipe.helper.RankineMapCodec;
 import com.cannolicatfish.rankine.util.alloys.AlloyModifier;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.Container;
+import com.mojang.serialization.MapCodec;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.NonNullList;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.GsonHelper;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeInput;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.util.GsonHelper;
-import net.minecraft.core.NonNullList;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.core.Registry;
 import net.minecraft.world.level.Level;
-import net.neoforged.neoforge.registries.ForgeRegistryEntry;
 
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class AlloyModifierRecipe implements Recipe<Container> {
+public class AlloyModifierRecipe implements Recipe<RecipeInput> {
 
     protected Ingredient ingredient;
-    protected final ResourceLocation id;
     private final List<AlloyModifier> modifiers;
     private final List<String> enchantments;
     private final List<String> enchantmentTypes;
-    public AlloyModifierRecipe(ResourceLocation id, Ingredient input, List<AlloyModifier> alloyModifiers, List<String> enchantmentsIn, List<String> enchantmentTypesIn) {
-        this.id = id;
+    public AlloyModifierRecipe(Ingredient input, List<AlloyModifier> alloyModifiers, List<String> enchantmentsIn, List<String> enchantmentTypesIn) {
         this.ingredient = input;
         this.modifiers = alloyModifiers;
         this.enchantments = enchantmentsIn;
@@ -47,17 +47,18 @@ public class AlloyModifierRecipe implements Recipe<Container> {
         return true;
     }
 
+    @Override
     public String getGroup() {
         return "";
     }
 
     @Override
-    public boolean matches(Container inv, Level worldIn) {
+    public boolean matches(RecipeInput inv, Level worldIn) {
         return this.ingredient.test(inv.getItem(0));
     }
 
     @Override
-    public ItemStack assemble(Container inv) {
+    public ItemStack assemble(RecipeInput inv, HolderLookup.Provider provider) {
         return ItemStack.EMPTY;
     }
 
@@ -76,6 +77,11 @@ public class AlloyModifierRecipe implements Recipe<Container> {
     }
 
     @Override
+    public ItemStack getResultItem(HolderLookup.Provider provider) {
+        return ItemStack.EMPTY;
+    }
+
+    /** Convenience overload matching the pre-1.21 API. */
     public ItemStack getResultItem() {
         return ItemStack.EMPTY;
     }
@@ -93,24 +99,19 @@ public class AlloyModifierRecipe implements Recipe<Container> {
     }
 
     @Override
-    public ResourceLocation getId() {
-        return this.id;
-    }
-
-    @Override
     public RecipeSerializer<?> getSerializer() {
         return RankineRecipeSerializers.ALLOY_MODIFIER_RECIPE_SERIALIZER.get();
     }
 
     @Override
     public RecipeType<?> getType() {
-        return RankineRecipeTypes.ALLOY_MODIFIER;
+        return RankineRecipeTypes.ALLOY_MODIFIER.get();
     }
 
     public static ItemStack deserializeBlock(JsonObject object) {
         String s = GsonHelper.getAsString(object, "block");
 
-        Block block = Registry.BLOCK.getOptional(ResourceLocation.parse(s)).orElseThrow(() -> {
+        BuiltInRegistries.BLOCK.getOptional(ResourceLocation.parse(s)).orElseThrow(() -> {
             return new JsonParseException("Unknown block '" + s + "'");
         });
 
@@ -121,13 +122,34 @@ public class AlloyModifierRecipe implements Recipe<Container> {
         }
     }
 
-    public static class Serializer extends ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<AlloyModifierRecipe> {
+    public static class Serializer implements RecipeSerializer<AlloyModifierRecipe> {
+
+        public static final MapCodec<AlloyModifierRecipe> CODEC = RankineMapCodec.of(
+                Serializer::fromJson, Serializer::toJson,
+                RankineMapCodec.fixedKeys("input","modifiers","modifierTypes","values","enchantments","enchantmentTypes"));
+
+        public static final StreamCodec<RegistryFriendlyByteBuf, AlloyModifierRecipe> STREAM_CODEC =
+                StreamCodec.of(Serializer::toNetwork, Serializer::fromNetwork);
 
         @Override
-        public AlloyModifierRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
-            String[] s = recipeId.getPath().split("/");
-            String nm = recipeId.getNamespace() + ":" + s[s.length-1];
-            Ingredient ingredient = Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "input"));
+        public MapCodec<AlloyModifierRecipe> codec() {
+            return CODEC;
+        }
+
+        @Override
+        public StreamCodec<RegistryFriendlyByteBuf, AlloyModifierRecipe> streamCodec() {
+            return STREAM_CODEC;
+        }
+
+        // PORT-TODO: 1.21.1 recipes no longer know their own id during deserialization. The old code
+        // derived each AlloyModifier's name from "<namespace>:<last path segment>_<type>"; the recipe-id
+        // part is replaced by a constant prefix. Modifier names remain unique per type within a recipe.
+        private static String modifierName(String type) {
+            return "rankine:alloy_modifier_" + type.toLowerCase(Locale.ROOT);
+        }
+
+        public static AlloyModifierRecipe fromJson(JsonObject json) {
+            Ingredient ingredient = AlloyIngredientHelper.ingredientFromJson(json.get("input"));
 
             List<AlloyModifier> alloyModifiers = new ArrayList<>();
             if (json.has("modifiers")) {
@@ -135,7 +157,7 @@ public class AlloyModifierRecipe implements Recipe<Container> {
                 JsonArray modConds = GsonHelper.getAsJsonArray(json,"modifierTypes");
                 JsonArray modVals = GsonHelper.getAsJsonArray(json,"values");
                 for (int i = 0; i < modTypes.size(); i++) {
-                    String inName = nm + "_" + modTypes.get(i).getAsString().toLowerCase(Locale.ROOT);
+                    String inName = modifierName(modTypes.get(i).getAsString());
                     alloyModifiers.add(new AlloyModifier(inName,modTypes.get(i).getAsString().toUpperCase(Locale.ROOT),modConds.get(i).getAsString().toUpperCase(Locale.ROOT),modVals.get(i).getAsFloat()));
                 }
             }
@@ -150,15 +172,38 @@ public class AlloyModifierRecipe implements Recipe<Container> {
                     enchantmentTypes.add(eTypes.get(i).getAsString().toUpperCase(Locale.ROOT));
                 }
             }
-            return new AlloyModifierRecipe(recipeId,ingredient,alloyModifiers,enchantments,enchantmentTypes);
+            return new AlloyModifierRecipe(ingredient,alloyModifiers,enchantments,enchantmentTypes);
         }
 
-        @Nullable
-        @Override
-        public AlloyModifierRecipe fromNetwork(ResourceLocation recipeId, FriendlyByteBuf buffer) {
-            String[] s = recipeId.getPath().split("/");
-            String nm = recipeId.getNamespace() + ":" + s[s.length-1];
-            Ingredient input = Ingredient.fromNetwork(buffer);
+        public static void toJson(AlloyModifierRecipe recipe, JsonObject json) {
+            json.add("input", AlloyIngredientHelper.ingredientToJson(recipe.getIngredient()));
+            if (!recipe.getModifiers().isEmpty()) {
+                JsonArray modTypes = new JsonArray();
+                JsonArray modConds = new JsonArray();
+                JsonArray modVals = new JsonArray();
+                for (AlloyModifier mod : recipe.getModifiers()) {
+                    modTypes.add(mod.getType().toString().toUpperCase(Locale.ROOT));
+                    modConds.add(mod.getCondition().toString().toUpperCase(Locale.ROOT));
+                    modVals.add(mod.getValue());
+                }
+                json.add("modifiers", modTypes);
+                json.add("modifierTypes", modConds);
+                json.add("values", modVals);
+            }
+            if (!recipe.getEnchantments().isEmpty()) {
+                JsonArray e = new JsonArray();
+                JsonArray eTypes = new JsonArray();
+                for (int i = 0; i < recipe.getEnchantments().size(); i++) {
+                    e.add(recipe.getEnchantments().get(i));
+                    eTypes.add(recipe.getEnchantmentTypes().get(i));
+                }
+                json.add("enchantments", e);
+                json.add("enchantmentTypes", eTypes);
+            }
+        }
+
+        public static AlloyModifierRecipe fromNetwork(RegistryFriendlyByteBuf buffer) {
+            Ingredient input = Ingredient.CONTENTS_STREAM_CODEC.decode(buffer);
 
             int size = buffer.readInt();
             List<AlloyModifier> modifiers = new ArrayList<>();
@@ -166,8 +211,7 @@ public class AlloyModifierRecipe implements Recipe<Container> {
                 String type = buffer.readUtf().toUpperCase(Locale.ROOT);
                 String cond = buffer.readUtf().toUpperCase(Locale.ROOT);
                 float val = buffer.readFloat();
-                String inName = nm + "_" + type.toLowerCase(Locale.ROOT);
-                modifiers.add(new AlloyModifier(inName,type,cond,val));
+                modifiers.add(new AlloyModifier(modifierName(type),type,cond,val));
             }
 
             size = buffer.readInt();
@@ -178,12 +222,11 @@ public class AlloyModifierRecipe implements Recipe<Container> {
                 enchantmentTypes.add(buffer.readUtf().toUpperCase(Locale.ROOT));
             }
 
-            return new AlloyModifierRecipe(recipeId,input,modifiers,enchantments,enchantmentTypes);
+            return new AlloyModifierRecipe(input,modifiers,enchantments,enchantmentTypes);
         }
 
-        @Override
-        public void toNetwork(FriendlyByteBuf buffer, AlloyModifierRecipe recipe) {
-            recipe.getIngredient().toNetwork(buffer);
+        public static void toNetwork(RegistryFriendlyByteBuf buffer, AlloyModifierRecipe recipe) {
+            Ingredient.CONTENTS_STREAM_CODEC.encode(buffer, recipe.getIngredient());
 
             int size = recipe.getModifiers().size();
             buffer.writeInt(size);

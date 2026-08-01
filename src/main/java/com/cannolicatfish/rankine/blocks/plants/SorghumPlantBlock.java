@@ -14,7 +14,6 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 
-import net.minecraft.world.level.block.state.BlockBehaviour.OffsetType;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class SorghumPlantBlock extends TripleCropsBlock {
@@ -23,15 +22,18 @@ public class SorghumPlantBlock extends TripleCropsBlock {
     private static final VoxelShape[] TOP_SHAPE_BY_AGE = new VoxelShape[]{Block.box(0.0D, 0.0D, 0.0D, 0.0D, 0.0D, 0.0D), Block.box(0.0D, 0.0D, 0.0D, 0.0D, 0.0D, 0.0D), Block.box(0.0D, 0.0D, 0.0D, 0.0D, 0.0D, 0.0D), Block.box(0.0D, 0.0D, 0.0D, 0.0D, 0.0D, 0.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 10.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 12.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 12.0D, 16.0D)};
 
     public SorghumPlantBlock(Properties properties) {
-        super(properties);
+        // 1.21.1: offset type is baked into Properties; this block previously overrode getOffsetType() to NONE
+        // (overriding TripleCropsBlock's XZ), so it uses the protected constructor that applies no offset.
+        super(properties, BlockBehaviour.OffsetType.NONE);
     }
 
+    @Override
     protected ItemLike getBaseSeedId() {
         return RankineItems.SORGHUM_SEEDS.get();
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
+    protected VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
         switch (state.getValue(SECTION)) {
             case BOTTOM:
                 return BOTTOM_SHAPE_BY_AGE[state.getValue(this.getAgeProperty())];
@@ -44,15 +46,10 @@ public class SorghumPlantBlock extends TripleCropsBlock {
     }
 
     @Override
-    public void entityInside(BlockState state, Level worldIn, BlockPos pos, Entity entityIn) {
+    protected void entityInside(BlockState state, Level worldIn, BlockPos pos, Entity entityIn) {
         if (entityIn instanceof LivingEntity && state.getValue(AGE) > 2) {
             entityIn.makeStuckInBlock(state, new Vec3((double)0.98F, 1.0D, (double)0.98F));
         }
-    }
-
-    @Override
-    public BlockBehaviour.OffsetType getOffsetType() {
-        return OffsetType.NONE;
     }
 
 }

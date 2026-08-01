@@ -4,6 +4,7 @@ import com.cannolicatfish.rankine.blocks.beehiveoven.BeehiveOvenTile;
 import com.cannolicatfish.rankine.blocks.buildingmodes.BuildingModeBlock;
 import com.cannolicatfish.rankine.blocks.evaporationtower.EvaporationTowerTile;
 import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.RankineDataComponents;
 import com.cannolicatfish.rankine.init.RankineTags;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
@@ -33,7 +34,7 @@ public class BuildingToolItem extends Item {
             if (playerIn.getMainHandItem().getItem() instanceof BlockItem && ((BlockItem) playerIn.getMainHandItem().getItem()).getBlock() instanceof BuildingModeBlock) {
                 maxModes = ((BuildingModeBlock) ((BlockItem) playerIn.getMainHandItem().getItem()).getBlock()).getMaxStyles();
             }
-            heldItem.getOrCreateTag().putShort("buildingMode", (short) (mode + 1) % maxModes == 0 ? (short) maxModes : (short) ((mode + 1) % maxModes));
+            heldItem.set(RankineDataComponents.BUILDING_MODE.get(), (mode + 1) % maxModes == 0 ? maxModes : (mode + 1) % maxModes);
             playerIn.displayClientMessage(Component.translatable("item.rankine.building_tool.message", (mode + 1) % maxModes == 0 ? maxModes : ((mode + 1) % maxModes)).withStyle(ChatFormatting.WHITE), true);
         }
         return super.use(levelIn, playerIn, handIn);
@@ -81,10 +82,7 @@ public class BuildingToolItem extends Item {
     }
 
     public static int getBuildingMode(ItemStack stack) {
-        if (stack.hasTag()) {
-            return stack.getTag().getShort("buildingMode");
-        }
-        return 0;
+        return stack.getOrDefault(RankineDataComponents.BUILDING_MODE.get(), 0);
     }
 
 

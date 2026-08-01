@@ -7,6 +7,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.LiquidBlock;
@@ -14,19 +15,20 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FlowingFluid;
 import net.minecraft.world.phys.Vec3;
 
-import java.util.Random;
 import java.util.function.Supplier;
 
 public class RankineFlowingFluidBlock extends LiquidBlock {
     private boolean evaporates;
 
+    // Note: LiquidBlock takes the FlowingFluid directly in 1.21.1. Fluids register before blocks
+    // (BuiltInRegistries order), so resolving the supplier here is safe.
     public RankineFlowingFluidBlock(Supplier<? extends FlowingFluid> supplier, boolean evaporates, Properties properties) {
-        super(supplier, properties);
+        super(supplier.get(), properties);
         this.evaporates = evaporates;
     }
 
     @Override
-    public void tick(BlockState p_60462_, ServerLevel levelIn, BlockPos posIn, Random rand) {
+    protected void tick(BlockState p_60462_, ServerLevel levelIn, BlockPos posIn, RandomSource rand) {
         if (levelIn.dimensionType().ultraWarm() && evaporates) {
             if (!levelIn.isClientSide) {
                 levelIn.removeBlock(posIn, true);
@@ -43,7 +45,7 @@ public class RankineFlowingFluidBlock extends LiquidBlock {
     }
 
     @Override
-    public void entityInside(BlockState state, Level worldIn, BlockPos pos, Entity entityIn) {
+    protected void entityInside(BlockState state, Level worldIn, BlockPos pos, Entity entityIn) {
         Entity entity = entityIn.isVehicle() && entityIn.getControllingPassenger() != null ? entityIn.getControllingPassenger() : entityIn;
         float f = entity == entityIn ? 0.35F : 0.4F;
         Vec3 v = (FluidHelper.handleFluidAcceleration(entityIn,0.114D));

@@ -1,43 +1,47 @@
 package com.cannolicatfish.rankine.recipe;
 
-import com.cannolicatfish.rankine.blocks.alloyfurnace.AlloyFurnaceTile;
-import com.cannolicatfish.rankine.blocks.inductionfurnace.InductionFurnaceTile;
+import com.cannolicatfish.rankine.init.RankineDataComponents;
 import com.cannolicatfish.rankine.init.RankineRecipeSerializers;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
 import com.cannolicatfish.rankine.recipe.helper.AlloyIngredientHelper;
 import com.cannolicatfish.rankine.recipe.helper.AlloyRecipeHelper;
+import com.cannolicatfish.rankine.recipe.helper.RankineMapCodec;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
+import com.mojang.serialization.MapCodec;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
-import net.minecraft.core.Registry;
-import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
+import net.minecraft.util.RandomSource;
 import net.minecraft.util.Tuple;
-import net.minecraft.world.Container;
-import net.minecraft.world.SimpleContainer;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.RecipeInput;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.level.Level;
 
+import javax.annotation.Nullable;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class AlloyingRecipe implements Recipe<Container> {
+public class AlloyingRecipe implements Recipe<RecipeInput> {
 
     private final int total;
 
     private final int tier;
     private final NonNullList<ResourceLocation> elements;
     private final ItemStack recipeOutput;
-    private final ResourceLocation id;
     private final NonNullList<Float> mins;
     private final NonNullList<Float> maxes;
     private final NonNullList<Boolean> required;
@@ -51,10 +55,17 @@ public class AlloyingRecipe implements Recipe<Container> {
     private final boolean localName;
     private final boolean forceNBT;
 
-    public AlloyingRecipe(ResourceLocation idIn, int totalIn, int tierIn, NonNullList<ResourceLocation> elementsIn, NonNullList<Boolean> requiredIn, NonNullList<Float> minsIn, NonNullList<Float> maxesIn,
+    /**
+     * PORT NOTE: recipes no longer know their own id in 1.21.1. It is resolved lazily from the
+     * RecipeManager (or bound explicitly via {@link #bindId}) because the alloying logic stamps the
+     * recipe id into the crafted alloy's data components and derives the generated lang key from it.
+     */
+    @Nullable
+    private ResourceLocation cachedId;
+
+    public AlloyingRecipe(int totalIn, int tierIn, NonNullList<ResourceLocation> elementsIn, NonNullList<Boolean> requiredIn, NonNullList<Float> minsIn, NonNullList<Float> maxesIn,
                           ItemStack outputIn, List<Float> bonusValuesIn, List<String> enchantmentsIn, List<String> enchantmentTypesIn, int minEnchantabilityIn, int enchantIntervalIn, int maxEnchantLevelIn,
                           boolean nameIn, boolean forceNBTIn, int colorIn) {
-        this.id = idIn;
         this.total = totalIn;
         this.required = requiredIn;
         this.tier = tierIn; // Binary: 1 = Alloy Furnace, 2 = Induction Furnace, 3 = Alloy Furnace && Induction Furnace
@@ -73,6 +84,34 @@ public class AlloyingRecipe implements Recipe<Container> {
         this.forceNBT = forceNBTIn;
     }
 
+    /** Binds the recipe's own id (e.g. from a RecipeHolder). Safe to call multiple times. */
+    public void bindId(ResourceLocation id) {
+        if (this.cachedId == null) {
+            this.cachedId = id;
+        }
+    }
+
+    /** The recipe's own id, if it has been resolved yet. */
+    @Nullable
+    public ResourceLocation getId() {
+        return this.cachedId;
+    }
+
+    /** Resolves (and caches) this recipe's id via the recipe manager. */
+    @Nullable
+    public ResourceLocation resolveId(Level level) {
+        if (this.cachedId == null) {
+            for (RecipeHolder<AlloyingRecipe> holder : level.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.ALLOYING.get())) {
+                if (holder.value() == this) {
+                    this.cachedId = holder.id();
+                    break;
+                }
+            }
+        }
+        return this.cachedId;
+    }
+
+    @Override
     public String getGroup() {
         return "";
     }
@@ -86,13 +125,38 @@ public class AlloyingRecipe implements Recipe<Container> {
         return this.tier;
     }
 
+    /** Replacement for the removed {@code Ingredient.merge}. */
+    private static Ingredient mergeIngredients(List<Ingredient> parts) {
+        List<ItemStack> stacks = new ArrayList<>();
+        for (Ingredient part : parts) {
+            stacks.addAll(Arrays.asList(part.getItems()));
+        }
+        return Ingredient.of(stacks.toArray(new ItemStack[0]));
+    }
+
+    private static Optional<ElementRecipe> elementByKey(Level worldIn, ResourceLocation rs) {
+        return worldIn.getRecipeManager().byKey(rs)
+                .map(RecipeHolder::value)
+                .filter(recipe -> recipe instanceof ElementRecipe)
+                .map(recipe -> (ElementRecipe) recipe);
+    }
+
+    /** Index of the given element recipe instance within this recipe's element list, or -1. */
+    private int elementIndex(Level worldIn, ElementRecipe recipe) {
+        for (int i = 0; i < this.elements.size(); i++) {
+            Optional<ElementRecipe> other = elementByKey(worldIn, this.elements.get(i));
+            if (other.isPresent() && other.get() == recipe) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
     public List<Ingredient> getIngredientsList(Level worldIn) {
         List<Ingredient> ret = new ArrayList<>();
         for (ResourceLocation rs : this.elements) {
-            if (worldIn.getRecipeManager().byKey(rs).isPresent()) {
-                ElementRecipe recipe = (ElementRecipe) worldIn.getRecipeManager().byKey(rs).get();
-                ret.add(Ingredient.merge(recipe.getIngredients()));
-            }
+            Optional<ElementRecipe> recipe = elementByKey(worldIn, rs);
+            recipe.ifPresent(elementRecipe -> ret.add(mergeIngredients(elementRecipe.getIngredients())));
         }
         return ret;
     }
@@ -101,9 +165,9 @@ public class AlloyingRecipe implements Recipe<Container> {
         List<Ingredient> ret = new ArrayList<>();
         for (int i = 0; i < this.elements.size(); i++) {
             ResourceLocation rs = this.elements.get(i);
-            if (worldIn.getRecipeManager().byKey(rs).isPresent() && this.required.get(i).equals(required)) {
-                ElementRecipe recipe = (ElementRecipe) worldIn.getRecipeManager().byKey(rs).get();
-                ret.add(Ingredient.merge(recipe.getIngredients()));
+            Optional<ElementRecipe> recipe = elementByKey(worldIn, rs);
+            if (recipe.isPresent() && this.required.get(i).equals(required)) {
+                ret.add(mergeIngredients(recipe.get().getIngredients()));
             }
         }
         return ret;
@@ -114,8 +178,9 @@ public class AlloyingRecipe implements Recipe<Container> {
         List<Integer> groups = new ArrayList<>();
         for (int i = 0; i < this.elements.size(); i++) {
             ResourceLocation rs = this.elements.get(i);
-            if (worldIn.getRecipeManager().byKey(rs).isPresent() && this.required.get(i).equals(false)) {
-                ElementRecipe recipe = (ElementRecipe) worldIn.getRecipeManager().byKey(rs).get();
+            Optional<ElementRecipe> recipeOpt = elementByKey(worldIn, rs);
+            if (recipeOpt.isPresent() && this.required.get(i).equals(false)) {
+                ElementRecipe recipe = recipeOpt.get();
                 int atom = recipe.getAtomicNumber();
                 int sub = 0;
                 if (atom <= 0) {
@@ -148,14 +213,13 @@ public class AlloyingRecipe implements Recipe<Container> {
         for (int i = 0; i < groups.size(); i++) {
             if (groups.get(i) != -1) {
                 ResourceLocation rs = this.elements.get(i);
-                if (worldIn.getRecipeManager().byKey(rs).isPresent() ) {
-                    ElementRecipe recipe = (ElementRecipe) worldIn.getRecipeManager().byKey(rs).get();
-                    ret.set(groups.get(i), Ingredient.merge(Arrays.asList(ret.get(groups.get(i)),Ingredient.merge(recipe.getIngredients()))));
+                Optional<ElementRecipe> recipe = elementByKey(worldIn, rs);
+                if (recipe.isPresent()) {
+                    ret.set(groups.get(i), mergeIngredients(Arrays.asList(ret.get(groups.get(i)), mergeIngredients(recipe.get().getIngredients()))));
                 }
             }
 
         }
-        System.out.println(ret);
         return ret;
     }
 
@@ -210,9 +274,9 @@ public class AlloyingRecipe implements Recipe<Container> {
 
             for (ResourceLocation rs : resourceLocations) {
                 Ingredient mergeIng = ret.get(ingredientNumber);
-                if (worldIn.getRecipeManager().byKey(rs).isPresent()) {
-                    ElementRecipe recipe = (ElementRecipe) worldIn.getRecipeManager().byKey(rs).get();
-                    mergeIng = Ingredient.merge(Arrays.asList(mergeIng,Ingredient.merge(recipe.getIngredients())));
+                Optional<ElementRecipe> recipe = elementByKey(worldIn, rs);
+                if (recipe.isPresent()) {
+                    mergeIng = mergeIngredients(Arrays.asList(mergeIng, mergeIngredients(recipe.get().getIngredients())));
                 }
                 ret.set(ingredientNumber, mergeIng);
                 ingredientNumber++;
@@ -231,9 +295,9 @@ public class AlloyingRecipe implements Recipe<Container> {
     public Tuple<Float,Float> getMinMaxByElement(Level levelIn, ItemStack element) {
         ResourceLocation loc = null;
         for (ResourceLocation rs : this.elements) {
-            if (levelIn.getRecipeManager().byKey(rs).isPresent()) {
-                ElementRecipe recipe = (ElementRecipe) levelIn.getRecipeManager().byKey(rs).get();
-                for (Ingredient i : recipe.getIngredients()) {
+            Optional<ElementRecipe> recipe = elementByKey(levelIn, rs);
+            if (recipe.isPresent()) {
+                for (Ingredient i : recipe.get().getIngredients()) {
                     if (i.test(element)) {
                         loc = rs;
                         break;
@@ -252,9 +316,9 @@ public class AlloyingRecipe implements Recipe<Container> {
         List<ElementRecipe> ret = new ArrayList<>();
         for (int i = 0; i < this.elements.size(); i++) {
             ResourceLocation rs = this.elements.get(i);
-            if (worldIn.getRecipeManager().byKey(rs).isPresent() && this.required.get(i).equals(required)) {
-                ElementRecipe recipe = (ElementRecipe) worldIn.getRecipeManager().byKey(rs).get();
-                ret.add(recipe);
+            Optional<ElementRecipe> recipe = elementByKey(worldIn, rs);
+            if (recipe.isPresent() && this.required.get(i).equals(required)) {
+                ret.add(recipe.get());
             }
         }
         return ret;
@@ -263,10 +327,8 @@ public class AlloyingRecipe implements Recipe<Container> {
     public List<ElementRecipe> getElementList(Level worldIn) {
         List<ElementRecipe> ret = new ArrayList<>();
         for (ResourceLocation rs : this.elements) {
-            if (worldIn.getRecipeManager().byKey(rs).isPresent()) {
-                ElementRecipe recipe = (ElementRecipe) worldIn.getRecipeManager().byKey(rs).get();
-                ret.add(recipe);
-            }
+            Optional<ElementRecipe> recipe = elementByKey(worldIn, rs);
+            recipe.ifPresent(ret::add);
         }
         return ret;
     }
@@ -279,16 +341,24 @@ public class AlloyingRecipe implements Recipe<Container> {
         List<Integer> ret = new ArrayList<>();
         for (int i = 0; i < this.elements.size(); i++) {
             ResourceLocation rs = this.elements.get(i);
-            if (worldIn.getRecipeManager().byKey(rs).isPresent() && this.required.get(i).equals(required)) {
+            if (elementByKey(worldIn, rs).isPresent() && this.required.get(i).equals(required)) {
                 ret.add(i);
             }
         }
         return ret;
     }
 
-    public boolean cannotMake(Container inv, Level world) {
+    public boolean cannotMake(RecipeInput inv, Level world) {
         for (Ingredient i : this.getIngredientsList(world,true)) {
-            if (!inv.hasAnyOf(Arrays.stream(i.getItems()).map(ItemStack::getItem).collect(Collectors.toSet())))
+            Set<net.minecraft.world.item.Item> items = Arrays.stream(i.getItems()).map(ItemStack::getItem).collect(Collectors.toSet());
+            boolean hasAny = false;
+            for (int slot = 0; slot < inv.size(); slot++) {
+                if (items.contains(inv.getItem(slot).getItem())) {
+                    hasAny = true;
+                    break;
+                }
+            }
+            if (!hasAny)
             {
                 return true;
             }
@@ -296,21 +366,29 @@ public class AlloyingRecipe implements Recipe<Container> {
         return false;
     }
 
-    public ItemStack generateResult(Level worldIn, Container inv, int type) {
+    /**
+     * Slot layout matches the 1.18.2 alloy/induction furnace containers: slots 0-5 are the six inputs.
+     */
+    public ItemStack generateResult(Level worldIn, RecipeInput inv, int type) {
         if ((getTier() & type) != Math.min(getTier(),type) && getTier() != 0 && type != 0) {
             return ItemStack.EMPTY;
         }
+        resolveId(worldIn);
 
         List<ElementRecipe> currentElements = new ArrayList<>();
+        List<ResourceLocation> currentElementIds = new ArrayList<>();
         List<Integer> currentMaterial = new ArrayList<>();
         for (int i = 0; i < 6; i++) {
             ItemStack stack = inv.getItem(i);
             if (!stack.isEmpty()) {
                 boolean flag = false;
-                ElementRecipe element = worldIn.getRecipeManager().getRecipeFor(RankineRecipeTypes.ELEMENT, new SimpleContainer(stack), worldIn).orElse(null);
-                if (element != null && getElements().contains(element.getId())) {
+                RecipeInput elementInput = new SingleRecipeInput(stack);
+                RecipeHolder<ElementRecipe> elementHolder = worldIn.getRecipeManager().getRecipeFor(RankineRecipeTypes.ELEMENT.get(), elementInput, worldIn).orElse(null);
+                if (elementHolder != null && getElements().contains(elementHolder.id())) {
+                    ElementRecipe element = elementHolder.value();
                     if (!currentElements.contains(element)) {
                         currentElements.add(element);
+                        currentElementIds.add(elementHolder.id());
                         currentMaterial.add(element.getMaterialCount(stack.getItem()) * stack.getCount());
                     } else {
                         currentMaterial.set(currentElements.indexOf(element),currentMaterial.get(currentElements.indexOf(element)) + element.getMaterialCount(stack.getItem()) * stack.getCount());
@@ -332,7 +410,6 @@ public class AlloyingRecipe implements Recipe<Container> {
         int sum = currentMaterial.stream().mapToInt(Integer::intValue).sum();
 
         if (currentElements.size() > 1 && (Math.floorDiv(sum,9) > 64 || Math.floorDiv(sum,9) < 1) && currentElements.size() >= getTotalRequired()){
-            //System.out.println("Required total " + this.required + " not present or material total not between 1 and 64!");
             return ItemStack.EMPTY;
         }
 
@@ -341,12 +418,8 @@ public class AlloyingRecipe implements Recipe<Container> {
         for (int j = 0; j < currentElements.size(); j++) {
             ElementRecipe curEl = currentElements.get(j);
             int curPer = Math.round(currentMaterial.get(j) * 100f/sum);
-            int windex = getElements().indexOf(curEl.getId());
+            int windex = getElements().indexOf(currentElementIds.get(j));
             if (Math.round(getMins().get(windex) * 100) > curPer || Math.round(getMaxes().get(windex) * 100) < curPer) {
-                //System.out.println("Element " + curEl + " does not fall between max or min!");
-                //System.out.println("Min: " + Math.round(getMins().get(windex) * 100) + "%");
-                //System.out.println("Max: " + Math.round(getMaxes().get(windex) * 100) + "%");
-                //System.out.println("Element %: " + curPer + "%");
                 return ItemStack.EMPTY;
             }
             symbols.add(curEl.getSymbol());
@@ -357,9 +430,9 @@ public class AlloyingRecipe implements Recipe<Container> {
         }
         ItemStack out = new ItemStack(this.recipeOutput.copy().getItem(),Math.floorDiv(sum,9));
         if (out.getItem() instanceof IAlloyItem || this.forceNBT) {
-            ((IAlloyItem) out.getItem()).createAlloyNBT(out, worldIn, AlloyRecipeHelper.getDirectComposition(percents,symbols), this.id, !this.getLocalName().isEmpty() ? this.getLocalName() : null);
+            ((IAlloyItem) out.getItem()).createAlloyNBT(out, worldIn, AlloyRecipeHelper.getDirectComposition(percents,symbols), this.cachedId, !this.getLocalName().isEmpty() ? this.getLocalName() : null);
             if (this.getColor() != 16777215) {
-                out.getOrCreateTag().putInt("color",this.getColor());
+                IAlloyItem.addColorNBT(out, this.getColor());
             }
         }
 
@@ -369,7 +442,7 @@ public class AlloyingRecipe implements Recipe<Container> {
     public String generateRandomResult(Level worldIn) {
         List<Integer> percents = new ArrayList<>();
         List<String> symbols = new ArrayList<>();
-        Random rand = worldIn.getRandom();
+        RandomSource rand = worldIn.getRandom();
         List<ElementRecipe> req = getElementList(worldIn, true);
         List<ElementRecipe> nonreq = getElementList(worldIn, false);
         if (req.isEmpty() && nonreq.isEmpty()) {
@@ -381,17 +454,14 @@ public class AlloyingRecipe implements Recipe<Container> {
             List<ElementRecipe> available = nonreq.stream().filter(o -> !req.contains(o)).collect(Collectors.toList());
             req.add(available.get(rand.nextInt(available.size())));
         }
-       // System.out.println("Selected elements: " + req);
         List<Integer> maxes = new ArrayList<>();
         List<Integer> mins = new ArrayList<>();
         for (ElementRecipe element : req) {
-            int windex = getElements().indexOf(element.getId());
+            int windex = elementIndex(worldIn, element);
             symbols.add(element.getSymbol());
             maxes.add(Math.round(getMaxes().get(windex) * 100));
             mins.add(Math.round(getMins().get(windex) * 100));
         }
-        //System.out.println("Potential maxes: " + maxes);
-        //System.out.println("Potential mins: " + mins);
         List<String> options = new ArrayList<>();
         for (int b = 0; b < Math.pow(2,limit); b++) {
             List<Integer> sum = new ArrayList<>();
@@ -410,7 +480,6 @@ public class AlloyingRecipe implements Recipe<Container> {
             }
         }
 
-        //System.out.println("OPTIONS: " + options);
         if (options.size() != 0) {
             String selectedOption = options.get(rand.nextInt(options.size()));
             for (int i = 0; i < selectedOption.length(); i++) {
@@ -457,11 +526,12 @@ public class AlloyingRecipe implements Recipe<Container> {
     }
 
     public String getLocalName() {
-        if (!this.localName) {
+        if (!this.localName || this.cachedId == null) {
+            // PORT-TODO: before the recipe id is resolved (see resolveId), the generated lang key is unavailable.
             return "";
         } else {
-            String[] s = this.id.getPath().split("/");
-            return "item." + this.id.getNamespace() + "." + s[s.length-1];
+            String[] s = this.cachedId.getPath().split("/");
+            return "item." + this.cachedId.getNamespace() + "." + s[s.length-1];
         }
     }
 
@@ -528,33 +598,39 @@ public class AlloyingRecipe implements Recipe<Container> {
         return -1;
     }
 
+    /**
+     * PORT NOTE: machine block entities now query with RecipeWrapper inputs, so the recipe can no
+     * longer tell which furnace type is asking. Block entities should use
+     * {@code matches(inv, level, 1)} (alloy furnace) / {@code matches(inv, level, 2)} (induction furnace).
+     */
     @Override
-    public boolean matches(Container inv, Level worldIn) {
-        if (inv instanceof AlloyFurnaceTile) {
-            return !cannotMake(inv,worldIn) && !generateResult(worldIn,inv,1).isEmpty();
-        } else if (inv instanceof InductionFurnaceTile) {
-            return !cannotMake(inv,worldIn) && !generateResult(worldIn, inv,2).isEmpty();
-        } else if (getTier() != 0){
-            return !cannotMake(inv,worldIn) && !generateResult(worldIn, inv,3).isEmpty();
-        } else {
-            return false;
-        }
+    public boolean matches(RecipeInput inv, Level worldIn) {
+        return getTier() != 0 && matches(inv, worldIn, 3);
+    }
+
+    public boolean matches(RecipeInput inv, Level worldIn, int type) {
+        return !cannotMake(inv,worldIn) && !generateResult(worldIn, inv, type).isEmpty();
     }
 
     @Override
-    public ItemStack assemble(Container inv) {
+    public ItemStack assemble(RecipeInput inv, HolderLookup.Provider provider) {
         return ItemStack.EMPTY;
     }
 
     @Override
+    public ItemStack getResultItem(HolderLookup.Provider provider) {
+        return getResultItem();
+    }
+
+    /** Convenience overload matching the pre-1.21 API. */
     public ItemStack getResultItem() {
         ItemStack out = this.recipeOutput.copy();
         if (this.getColor() != 16777215) {
-            out.getOrCreateTag().putInt("color",this.getColor());
+            IAlloyItem.addColorNBT(out, this.getColor());
         }
 
         if (!this.getLocalName().isEmpty()) {
-            out.getOrCreateTag().putString("nameOverride",this.getLocalName());
+            out.set(RankineDataComponents.NAME_OVERRIDE.get(), this.getLocalName());
         }
         return out;
     }
@@ -578,38 +654,54 @@ public class AlloyingRecipe implements Recipe<Container> {
     }
 
     @Override
-    public ResourceLocation getId() {
-        return this.id;
-    }
-
-    @Override
     public RecipeSerializer<?> getSerializer() {
         return RankineRecipeSerializers.ALLOYING_RECIPE_SERIALIZER.get();
     }
 
     public static ItemStack deserializeItem(JsonObject object) {
         String s = GsonHelper.getAsString(object, "item");
-        Item item = Registry.ITEM.getOptional(ResourceLocation.parse(s)).orElseThrow(() -> {
+        BuiltInRegistries.ITEM.getOptional(ResourceLocation.parse(s)).orElseThrow(() -> {
             return new JsonSyntaxException("Unknown item '" + s + "'");
         });
 
         if (object.has("data")) {
             throw new JsonParseException("Disallowed data tag found");
         } else {
-            int i = GsonHelper.getAsInt(object, "count", 1);
             return AlloyIngredientHelper.getItemStack(object, true, false);
         }
     }
 
     @Override
     public RecipeType<?> getType() {
-        return RankineRecipeTypes.ALLOYING;
+        return RankineRecipeTypes.ALLOYING.get();
     }
 
-    public static class Serializer extends net.neoforged.neoforge.registries.ForgeRegistryEntry<RecipeSerializer<?>>  implements RecipeSerializer<AlloyingRecipe> {
-        private static final ResourceLocation NAME = ResourceLocation.fromNamespaceAndPath("rankine", "alloying");
-        public AlloyingRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
-            int reqcount = 0;
+    public static class Serializer implements RecipeSerializer<AlloyingRecipe> {
+
+        private static final String[] STATS = new String[]{"durability","miningspeed","mininglevel","enchantability","damage","attackspeed",
+                "corrosionresist","heatresist","knockbackresist","toughness"};
+
+        public static final MapCodec<AlloyingRecipe> CODEC = RankineMapCodec.of(
+                Serializer::fromJson, Serializer::toJson,
+                RankineMapCodec.withNumbered(RankineMapCodec.fixedKeys("total","tier","color","genName","forceNBT","result",
+                        "durability","miningspeed","mininglevel","enchantability","damage","attackspeed",
+                        "corrosionresist","heatresist","knockbackresist","toughness",
+                        "enchantments","enchantmentTypes","minEnchantability","enchantInterval","maxEnchantLevel"), "input", 64));
+
+        public static final StreamCodec<RegistryFriendlyByteBuf, AlloyingRecipe> STREAM_CODEC =
+                StreamCodec.of(Serializer::toNetwork, Serializer::fromNetwork);
+
+        @Override
+        public MapCodec<AlloyingRecipe> codec() {
+            return CODEC;
+        }
+
+        @Override
+        public StreamCodec<RegistryFriendlyByteBuf, AlloyingRecipe> streamCodec() {
+            return STREAM_CODEC;
+        }
+
+        public static AlloyingRecipe fromJson(JsonObject json) {
             int t = json.get("total").getAsInt();
             int y;
             if (json.has("tier")) {
@@ -631,9 +723,9 @@ public class AlloyingRecipe implements Recipe<Container> {
 
             String s1 = GsonHelper.getAsString(json, "result");
             ResourceLocation resourcelocation = ResourceLocation.parse(s1);
-            ItemStack stack = new ItemStack(Registry.ITEM.getOptional(resourcelocation).orElseThrow(() -> new IllegalStateException("Item: " + s1 + " does not exist")));
+            ItemStack stack = new ItemStack(BuiltInRegistries.ITEM.getOptional(resourcelocation).orElseThrow(() -> new IllegalStateException("Item: " + s1 + " does not exist")));
 
-            NonNullList<ResourceLocation> elements = NonNullList.withSize(t, ResourceLocation.parse(""));
+            NonNullList<ResourceLocation> elements = NonNullList.withSize(t, ResourceLocation.fromNamespaceAndPath("rankine","elements/mercury"));
             NonNullList<Float> mins = NonNullList.withSize(t, 0f);
             NonNullList<Float> maxes = NonNullList.withSize(t, 0f);
             NonNullList<Boolean> reqs = NonNullList.withSize(t, false);
@@ -643,7 +735,7 @@ public class AlloyingRecipe implements Recipe<Container> {
                 if (json.has(input)) {
                     JsonObject object = GsonHelper.getAsJsonObject(json, input);
                     if (object.has("element")){
-                        elements.set(i, new ResourceLocation(object.get("element").getAsString()));
+                        elements.set(i, ResourceLocation.parse(object.get("element").getAsString()));
                     } else {
                         throw new JsonParseException("Object 'element' for " + input + " does not exist!");
                     }
@@ -669,10 +761,8 @@ public class AlloyingRecipe implements Recipe<Container> {
                 throw new JsonParseException("Unsupported number of alloy ingredient requirements (" + r + ") in " + json);
             }
 
-            String[] stats = new String[]{"durability","miningspeed","mininglevel","enchantability","damage","attackspeed",
-                    "corrosionresist","heatresist","knockbackresist","toughness"};
             List<Float> bonusStats = new ArrayList<>();
-            for (String stat : stats) {
+            for (String stat : STATS) {
                 if (json.has(stat)) {
                     bonusStats.add(GsonHelper.getAsFloat(json, stat));
                 } else {
@@ -694,21 +784,56 @@ public class AlloyingRecipe implements Recipe<Container> {
             int startEnchant = json.has("minEnchantability") ? json.get("minEnchantability").getAsInt() : 20;
             int interval = json.has("enchantInterval") ? json.get("enchantInterval").getAsInt() : 5;
             int maxLvl = json.has("maxEnchantLevel") ? json.get("maxEnchantLevel").getAsInt() : 3;
-            return new AlloyingRecipe(recipeId, t, y, elements, reqs, mins, maxes, stack, bonusStats,enchantments,enchantmentTypes,startEnchant,interval,maxLvl,n,force,c);
+            return new AlloyingRecipe(t, y, elements, reqs, mins, maxes, stack, bonusStats,enchantments,enchantmentTypes,startEnchant,interval,maxLvl,n,force,c);
         }
 
-        public AlloyingRecipe fromNetwork(ResourceLocation recipeId, FriendlyByteBuf buffer) {
+        public static void toJson(AlloyingRecipe recipe, JsonObject json) {
+            json.addProperty("total", recipe.getTotal());
+            json.addProperty("tier", recipe.getTier());
+            json.addProperty("color", recipe.getColor());
+            json.addProperty("genName", recipe.localName);
+            json.addProperty("forceNBT", recipe.forceNBT);
+            json.addProperty("result", BuiltInRegistries.ITEM.getKey(recipe.recipeOutput.getItem()).toString());
+            for (int i = 0; i < recipe.getElements().size(); i++) {
+                JsonObject object = new JsonObject();
+                object.addProperty("element", recipe.getElements().get(i).toString());
+                object.addProperty("min", recipe.getMins().get(i));
+                object.addProperty("max", recipe.getMaxes().get(i));
+                object.addProperty("required", recipe.getRequired().get(i));
+                json.add("input" + (i+1), object);
+            }
+            for (int i = 0; i < STATS.length; i++) {
+                if (recipe.getBonusValues().get(i) != 0f) {
+                    json.addProperty(STATS[i], recipe.getBonusValues().get(i));
+                }
+            }
+            if (!recipe.getEnchantments().isEmpty()) {
+                JsonArray e = new JsonArray();
+                JsonArray eTypes = new JsonArray();
+                for (int i = 0; i < recipe.getEnchantments().size(); i++) {
+                    e.add(recipe.getEnchantments().get(i));
+                    eTypes.add(recipe.getEnchantmentTypes().get(i));
+                }
+                json.add("enchantments", e);
+                json.add("enchantmentTypes", eTypes);
+            }
+            json.addProperty("minEnchantability", recipe.getMinEnchantability());
+            json.addProperty("enchantInterval", recipe.getEnchantInterval());
+            json.addProperty("maxEnchantLevel", recipe.getMaxEnchantLevelIn());
+        }
+
+        public static AlloyingRecipe fromNetwork(RegistryFriendlyByteBuf buffer) {
             int t = buffer.readInt();
             int y = buffer.readInt();
             List<Float> bonusStats = new ArrayList<>();
 
-            NonNullList<ResourceLocation> elements = NonNullList.withSize(t, ResourceLocation.parse(""));
+            NonNullList<ResourceLocation> elements = NonNullList.withSize(t, ResourceLocation.fromNamespaceAndPath("rankine","elements/mercury"));
 
             for(int k = 0; k < elements.size(); ++k) {
-                elements.set(k, new ResourceLocation(buffer.readUtf()));
+                elements.set(k, ResourceLocation.parse(buffer.readUtf()));
             }
 
-            ItemStack stack = buffer.readItem();
+            ItemStack stack = ItemStack.OPTIONAL_STREAM_CODEC.decode(buffer);
 
             NonNullList<Float> mins = NonNullList.withSize(t, 0f);
             for(int k = 0; k < mins.size(); ++k) {
@@ -745,10 +870,10 @@ public class AlloyingRecipe implements Recipe<Container> {
             int startEnchant = buffer.readInt();
             int interval = buffer.readInt();
             int maxLvl = buffer.readInt();
-            return new AlloyingRecipe(recipeId,t,y, elements, reqs, mins, maxes, stack,bonusStats,enchantments,enchantmentTypes,startEnchant,interval,maxLvl,n,force,c);
+            return new AlloyingRecipe(t,y, elements, reqs, mins, maxes, stack,bonusStats,enchantments,enchantmentTypes,startEnchant,interval,maxLvl,n,force,c);
         }
 
-        public void toNetwork(FriendlyByteBuf buffer, AlloyingRecipe recipe) {
+        public static void toNetwork(RegistryFriendlyByteBuf buffer, AlloyingRecipe recipe) {
             buffer.writeInt(recipe.total);
             buffer.writeInt(recipe.tier);
 
@@ -762,7 +887,7 @@ public class AlloyingRecipe implements Recipe<Container> {
                 count++;
             }
 
-            buffer.writeItem(recipe.recipeOutput);
+            ItemStack.OPTIONAL_STREAM_CODEC.encode(buffer, recipe.recipeOutput);
 
             count = 0;
             for (float chance : recipe.mins) {

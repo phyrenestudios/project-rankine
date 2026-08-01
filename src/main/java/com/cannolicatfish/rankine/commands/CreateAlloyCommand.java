@@ -9,43 +9,45 @@ import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.suggestion.SuggestionProvider;
+import net.minecraft.commands.CommandBuildContext;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.SharedSuggestionProvider;
 import net.minecraft.commands.arguments.EntityArgument;
+import net.minecraft.commands.arguments.ResourceLocationArgument;
 import net.minecraft.commands.arguments.item.ItemArgument;
 import net.minecraft.commands.arguments.item.ItemInput;
-import net.minecraft.commands.arguments.ResourceLocationArgument;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.crafting.RecipeHolder;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 public class CreateAlloyCommand {
 
     public static final SuggestionProvider<CommandSourceStack> ALLOY_RECIPE_SUGGESTER = (p_198477_0_, p_198477_1_) -> {
-        Collection<AlloyingRecipe> collection = p_198477_0_.getSource().getServer().getRecipeManager().getAllRecipesFor(RankineRecipeTypes.ALLOYING);
-        return SharedSuggestionProvider.suggestResource(collection.stream().map(AlloyingRecipe::getId), p_198477_1_);
+        List<RecipeHolder<AlloyingRecipe>> collection = p_198477_0_.getSource().getServer().getRecipeManager().getAllRecipesFor(RankineRecipeTypes.ALLOYING.get());
+        return SharedSuggestionProvider.suggestResource(collection.stream().map(RecipeHolder::id), p_198477_1_);
     };
 
     public static final SuggestionProvider<CommandSourceStack> MODIFIER_RECIPE_SUGGESTER = (p_198477_0_, p_198477_1_) -> {
-        Collection<AlloyModifierRecipe> collection = p_198477_0_.getSource().getServer().getRecipeManager().getAllRecipesFor(RankineRecipeTypes.ALLOY_MODIFIER);
-        return SharedSuggestionProvider.suggestResource(collection.stream().map(AlloyModifierRecipe::getId), p_198477_1_);
+        List<RecipeHolder<AlloyModifierRecipe>> collection = p_198477_0_.getSource().getServer().getRecipeManager().getAllRecipesFor(RankineRecipeTypes.ALLOY_MODIFIER.get());
+        return SharedSuggestionProvider.suggestResource(collection.stream().map(RecipeHolder::id), p_198477_1_);
     };
 
-    public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
+    public static void register(CommandDispatcher<CommandSourceStack> dispatcher, CommandBuildContext context) {
         dispatcher.register(Commands.literal("givealloy").requires((p_198496_0_) -> {
             return p_198496_0_.hasPermission(2);
-        }).then(Commands.argument("targets", EntityArgument.players()).then(Commands.argument("item", ItemArgument.item()).executes((p_198492_0_) -> {
+        }).then(Commands.argument("targets", EntityArgument.players()).then(Commands.argument("item", ItemArgument.item(context)).executes((p_198492_0_) -> {
             Item in = ItemArgument.getItem(p_198492_0_, "item").getItem();
             return giveItem(p_198492_0_.getSource(), ItemArgument.getItem(p_198492_0_, "item"),in instanceof IAlloyItem ? ((IAlloyItem) in).getDefaultComposition() : "", in instanceof IAlloyItem ? ((IAlloyItem) in).getDefaultRecipe() : ResourceLocation.parse(""), EntityArgument.getPlayers(p_198492_0_, "targets"), 1, null,16777215);
         }).then(Commands.argument("composition", StringArgumentType.string()).executes((p_198493_0_) -> {
@@ -67,17 +69,18 @@ public class CreateAlloyCommand {
             int i = count;
 
             while(i > 0) {
-                int j = Math.min(itemIn.getItem().getMaxStackSize(), i);
+                int j = Math.min(itemIn.createItemStack(1, false).getMaxStackSize(), i);
                 i -= j;
                 ItemStack itemstack = itemIn.createItemStack(j, false);
                 if (itemstack.getItem() instanceof IAlloyItem) {
-                    AlloyingRecipe alloy = null;
+                    AlloyingRecipe alloy;
                     if (!recipe.equals(ResourceLocation.parse("")) || color != 16777215) {
                         if (!recipe.equals(ResourceLocation.parse(""))) {
-                            Optional<? extends Recipe<?>> r = serverplayerentity.getCommandSenderWorld().getRecipeManager().byKey(recipe);
-                            if (r.isPresent() && r.get() instanceof AlloyingRecipe) {
-                                alloy = (AlloyingRecipe) r.get();
-                                ((IAlloyItem) itemstack.getItem()).createAlloyNBT(itemstack,serverplayerentity.level,data,recipe,alloy.getLocalName());
+                            // 1.21.1: RecipeManager#byKey returns Optional<RecipeHolder<?>>
+                            Optional<RecipeHolder<?>> r = serverplayerentity.getCommandSenderWorld().getRecipeManager().byKey(recipe);
+                            if (r.isPresent() && r.get().value() instanceof AlloyingRecipe) {
+                                alloy = (AlloyingRecipe) r.get().value();
+                                ((IAlloyItem) itemstack.getItem()).createAlloyNBT(itemstack,serverplayerentity.level(),data,recipe,alloy.getLocalName());
                                 if (color != 16777215) {
                                     IAlloyItem.addColorNBT(itemstack,Math.min(Math.max(color,0),16777215));
                                 } else {
@@ -85,7 +88,7 @@ public class CreateAlloyCommand {
                                 }
                             }
                         } else {
-                            ((IAlloyItem) itemstack.getItem()).createAlloyNBT(itemstack,serverplayerentity.level,data,recipe,null);
+                            ((IAlloyItem) itemstack.getItem()).createAlloyNBT(itemstack,serverplayerentity.level(),data,recipe,null);
                             IAlloyItem.addColorNBT(itemstack,Math.min(Math.max(color,0),16777215));
                         }
 
@@ -95,16 +98,16 @@ public class CreateAlloyCommand {
                         IAlloyTieredItem tieredItem = ((IAlloyTieredItem) itemstack.getItem());
                         AlloyModifierRecipe mod = null;
                         if (modifier != null) {
-                            Optional<? extends Recipe<?>> modR = serverplayerentity.getCommandSenderWorld().getRecipeManager().byKey(modifier);
-                            if (modR.isPresent() && modR.get() instanceof AlloyModifierRecipe) {
-                                mod = (AlloyModifierRecipe) modR.get();
+                            Optional<RecipeHolder<?>> modR = serverplayerentity.getCommandSenderWorld().getRecipeManager().byKey(modifier);
+                            if (modR.isPresent() && modR.get().value() instanceof AlloyModifierRecipe) {
+                                mod = (AlloyModifierRecipe) modR.get().value();
                             }
                         }
-                        tieredItem.initStats(itemstack,tieredItem.getElementMap(data,serverplayerentity.level),tieredItem.getAlloyingRecipe(recipe,serverplayerentity.level),mod);
-                        tieredItem.applyAlloyEnchantments(itemstack,serverplayerentity.level);
+                        tieredItem.initStats(itemstack,tieredItem.getElementMap(data,serverplayerentity.level()),tieredItem.getAlloyingRecipe(recipe,serverplayerentity.level()),mod);
+                        tieredItem.applyAlloyEnchantments(itemstack,serverplayerentity.level());
                     }
 
-                } 
+                }
 
                 boolean flag = serverplayerentity.getInventory().add(itemstack);
                 if (flag && itemstack.isEmpty()) {
@@ -114,22 +117,22 @@ public class CreateAlloyCommand {
                         itementity1.makeFakeItem();
                     }
 
-                    serverplayerentity.level.playSound((Player)null, serverplayerentity.getX(), serverplayerentity.getY(), serverplayerentity.getZ(), SoundEvents.ITEM_PICKUP, SoundSource.PLAYERS, 0.2F, ((serverplayerentity.getRandom().nextFloat() - serverplayerentity.getRandom().nextFloat()) * 0.7F + 1.0F) * 2.0F);
+                    serverplayerentity.level().playSound((Player)null, serverplayerentity.getX(), serverplayerentity.getY(), serverplayerentity.getZ(), SoundEvents.ITEM_PICKUP, SoundSource.PLAYERS, 0.2F, ((serverplayerentity.getRandom().nextFloat() - serverplayerentity.getRandom().nextFloat()) * 0.7F + 1.0F) * 2.0F);
                     serverplayerentity.inventoryMenu.broadcastChanges();
                 } else {
                     ItemEntity itementity = serverplayerentity.drop(itemstack, false);
                     if (itementity != null) {
                         itementity.setNoPickUpDelay();
-                        itementity.setOwner(serverplayerentity.getUUID());
+                        itementity.setTarget(serverplayerentity.getUUID());
                     }
                 }
             }
         }
 
         if (targets.size() == 1) {
-            source.sendSuccess(Component.translatable("commands.give.success.single", count, itemIn.createItemStack(count, false).getDisplayName(), targets.iterator().next().getDisplayName()), true);
+            source.sendSuccess(() -> Component.translatable("commands.give.success.single", count, itemIn.createItemStack(count, false).getDisplayName(), targets.iterator().next().getDisplayName()), true);
         } else {
-            source.sendSuccess(Component.translatable("commands.give.success.single", count, itemIn.createItemStack(count, false).getDisplayName(), targets.size()), true);
+            source.sendSuccess(() -> Component.translatable("commands.give.success.single", count, itemIn.createItemStack(count, false).getDisplayName(), targets.size()), true);
         }
 
         return targets.size();

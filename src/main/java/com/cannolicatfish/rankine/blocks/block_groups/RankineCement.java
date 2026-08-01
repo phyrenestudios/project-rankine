@@ -10,8 +10,9 @@ import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.material.Material;
-import net.neoforged.neoforge.registries.RegistryObject;
+import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
+import net.neoforged.neoforge.registries.DeferredBlock;
 
 import java.util.Arrays;
 import java.util.List;
@@ -19,10 +20,10 @@ import java.util.List;
 public class RankineCement {
 
     private final String registryName;
-    private RegistryObject<Block> cement;
-    private RegistryObject<QuarterSlabPoleBlock> cementSlab;
-    private RegistryObject<RankineStairsBlock> cementStairs;
-    private RegistryObject<RankineWallBlock> cementWall;
+    private DeferredBlock<Block> cement;
+    private DeferredBlock<QuarterSlabPoleBlock> cementSlab;
+    private DeferredBlock<RankineStairsBlock> cementStairs;
+    private DeferredBlock<RankineWallBlock> cementWall;
 
     public RankineCement(String registryName) {
         this.registryName = registryName;
@@ -30,10 +31,10 @@ public class RankineCement {
 
     public static RankineCement newCementReg(String baseName, DyeColor color) {
         RankineCement newCement = new RankineCement(baseName);
-        newCement.cement =  RankineBlocks.BLOCKS.register(baseName, () -> new Block(BlockBehaviour.Properties.of(Material.STONE, color).requiresCorrectToolForDrops().strength(4.0f)));
-        newCement.cementSlab =  RankineBlocks.BLOCKS.register(baseName+"_slab", () -> new QuarterSlabPoleBlock(BlockBehaviour.Properties.copy(newCement.cement.get()).noCollission()));
-        newCement.cementStairs =  RankineBlocks.BLOCKS.register(baseName+"_stairs", () -> new RankineStairsBlock(BlockBehaviour.Properties.copy(newCement.cement.get())));
-        newCement.cementWall =  RankineBlocks.BLOCKS.register(baseName+"_wall", () -> new RankineWallBlock(BlockBehaviour.Properties.copy(newCement.cement.get())));
+        newCement.cement =  RankineBlocks.BLOCKS.register(baseName, () -> new Block(BlockBehaviour.Properties.of().mapColor(color).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(4.0f)));
+        newCement.cementSlab =  RankineBlocks.BLOCKS.register(baseName+"_slab", () -> new QuarterSlabPoleBlock(BlockBehaviour.Properties.ofFullCopy(newCement.cement.get()).noCollission()));
+        newCement.cementStairs =  RankineBlocks.BLOCKS.register(baseName+"_stairs", () -> new RankineStairsBlock(BlockBehaviour.Properties.ofFullCopy(newCement.cement.get())));
+        newCement.cementWall =  RankineBlocks.BLOCKS.register(baseName+"_wall", () -> new RankineWallBlock(BlockBehaviour.Properties.ofFullCopy(newCement.cement.get())));
 
         Item.Properties DEF_BUILDING = new Item.Properties().stacksTo(64);
         RankineBlocks.ITEMS.register(baseName, () -> new BlockItem(newCement.cement.get(), DEF_BUILDING));

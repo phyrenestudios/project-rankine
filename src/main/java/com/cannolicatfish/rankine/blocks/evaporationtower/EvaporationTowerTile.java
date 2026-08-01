@@ -1,14 +1,17 @@
 package com.cannolicatfish.rankine.blocks.evaporationtower;
 
+import com.cannolicatfish.rankine.init.RankineBlockEntityTypes;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.recipe.EvaporationRecipe;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.WorldlyContainer;
@@ -17,17 +20,18 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
+import net.neoforged.neoforge.items.IItemHandler;
+import net.neoforged.neoforge.items.wrapper.SidedInvWrapper;
 
 import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.List;
-
-import static com.cannolicatfish.rankine.init.RankineBlocks.EVAPORATION_TOWER_TILE;
 
 
 public class EvaporationTowerTile extends BlockEntity implements WorldlyContainer, MenuProvider {
@@ -65,22 +69,22 @@ public class EvaporationTowerTile extends BlockEntity implements WorldlyContaine
     };
 
     public EvaporationTowerTile(BlockPos posIn, BlockState stateIn) {
-        super(EVAPORATION_TOWER_TILE, posIn, stateIn);
+        super(RankineBlockEntityTypes.EVAPORATION_TOWER.get(), posIn, stateIn);
     }
 
     @Override
-    public void load(CompoundTag nbt) {
-        super.load(nbt);
+    protected void loadAdditional(CompoundTag nbt, HolderLookup.Provider provider) {
+        super.loadAdditional(nbt, provider);
         this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
-        ContainerHelper.loadAllItems(nbt,this.items);
+        ContainerHelper.loadAllItems(nbt,this.items, provider);
         this.cookTime = nbt.getInt("CookTime");
         this.cookTimeTotal = nbt.getInt("CookTimeTotal");
     }
 
     @Override
-    public void saveAdditional(CompoundTag compound) {
-        super.saveAdditional(compound);
-        ContainerHelper.saveAllItems(compound, this.items);
+    protected void saveAdditional(CompoundTag compound, HolderLookup.Provider provider) {
+        super.saveAdditional(compound, provider);
+        ContainerHelper.saveAllItems(compound, this.items, provider);
         compound.putInt("CookTime", this.cookTime);
         compound.putInt("CookTimeTotal", this.cookTimeTotal);
     }
@@ -97,7 +101,7 @@ public class EvaporationTowerTile extends BlockEntity implements WorldlyContaine
                         tile.cookTimeTotal = Math.round(recipe.getProcessTime() * (1 - (processHeight / 21F)));
                         ++tile.cookTime;
                         if (tile.cookTime >= tile.cookTimeTotal) {
-                            tile.items.set(0, recipe.getEvaporationResult(levelIn, levelIn.getBiome(posIn).value().getRegistryName()));
+                            tile.items.set(0, recipe.getEvaporationResult(levelIn, levelIn.getBiome(posIn).unwrapKey().map(ResourceKey::location).orElse(null)));
                             tile.cookTime = 0;
                             if (recipe.getConsumeFluid()) {
                                 for (BlockPos b : fluidStructure(posIn)) {
@@ -121,8 +125,9 @@ public class EvaporationTowerTile extends BlockEntity implements WorldlyContaine
 
     private EvaporationRecipe getEvaporationRecipe(Level levelIn, BlockPos posIn) {
         if (this.level != null) {
-            for (EvaporationRecipe recipe : levelIn.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.EVAPORATION)) {
-                if (!recipe.getEvaporationResult(levelIn, levelIn.getBiome(posIn).value().getRegistryName()).isEmpty() && recipe.fluidMatch(levelIn.getFluidState(posIn.above()).getType())) {
+            for (RecipeHolder<EvaporationRecipe> holder : levelIn.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.EVAPORATION.get())) {
+                EvaporationRecipe recipe = holder.value();
+                if (!recipe.getEvaporationResult(levelIn, levelIn.getBiome(posIn).unwrapKey().map(ResourceKey::location).orElse(null)).isEmpty() && recipe.fluidMatch(levelIn.getFluidState(posIn.above()).getType())) {
                     return recipe;
                 }
             }
@@ -130,27 +135,25 @@ public class EvaporationTowerTile extends BlockEntity implements WorldlyContaine
         return null;
     }
 
-    net.neoforged.neoforge.common.util.LazyOptional<? extends net.neoforged.neoforge.items.IItemHandler>[] handlers =
-            net.neoforged.neoforge.items.wrapper.SidedInvWrapper.create(this, Direction.UP, Direction.DOWN, Direction.NORTH);
+    private final IItemHandler[] handlers = new IItemHandler[] {
+            new SidedInvWrapper(this, Direction.UP),
+            new SidedInvWrapper(this, Direction.DOWN),
+            new SidedInvWrapper(this, Direction.NORTH)
+    };
 
-    @Override
-    public <T> net.neoforged.neoforge.common.util.LazyOptional<T> getCapability(net.neoforged.neoforge.common.capabilities.Capability<T> capability, @Nullable Direction facing) {
-        if (!this.remove && facing != null && capability == net.neoforged.neoforge.items.CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
-            if (facing == Direction.UP)
-                return handlers[0].cast();
-            else if (facing == Direction.DOWN)
-                return handlers[1].cast();
-            else
-                return handlers[2].cast();
+    // PORT-CAP: EvaporationTowerTile -> getItemHandler
+    @Nullable
+    public IItemHandler getItemHandler(@Nullable Direction side) {
+        if (this.remove || side == null) {
+            return null;
         }
-        return super.getCapability(capability, facing);
-    }
-
-    @Override
-    public void setRemoved() {
-        super.setRemoved();
-        for (int x = 0; x < handlers.length; x++)
-            handlers[x].invalidate();
+        if (side == Direction.UP) {
+            return handlers[0];
+        } else if (side == Direction.DOWN) {
+            return handlers[1];
+        } else {
+            return handlers[2];
+        }
     }
 
     public static List<BlockPos> wallStructure(BlockPos posIn) {
@@ -249,10 +252,10 @@ public class EvaporationTowerTile extends BlockEntity implements WorldlyContaine
         }
         return 20;
     }
-    
+
     @Override
     public Component getDisplayName() {
-        return Component.literal(getType().getRegistryName().getPath());
+        return Component.literal(BuiltInRegistries.BLOCK_ENTITY_TYPE.getKey(this.getType()).getPath());
     }
 
     @Override
@@ -314,7 +317,7 @@ public class EvaporationTowerTile extends BlockEntity implements WorldlyContaine
     @Override
     public void setItem(int index, ItemStack stack) {
         ItemStack itemstack = this.items.get(index);
-        boolean flag = !stack.isEmpty() && stack.sameItem(itemstack) && ItemStack.tagMatches(stack, itemstack);
+        boolean flag = !stack.isEmpty() && ItemStack.isSameItemSameComponents(stack, itemstack);
         this.items.set(index, stack);
         if (stack.getCount() > this.getMaxStackSize()) {
             stack.setCount(this.getMaxStackSize());

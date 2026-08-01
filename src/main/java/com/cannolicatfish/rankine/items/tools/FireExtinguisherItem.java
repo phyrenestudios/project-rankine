@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.items.tools;
 
 import com.cannolicatfish.rankine.init.Config;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.block.BaseFireBlock;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CampfireBlock;
@@ -37,9 +38,7 @@ public class FireExtinguisherItem extends Item {
                 }
             }
             worldIn.playSound(playerIn, pos, SoundEvents.GENERIC_SPLASH, SoundSource.BLOCKS, 1.0f, 1.0f);
-            playerIn.getItemInHand(handIn).hurtAndBreak(1,playerIn,(p_220040_1_) -> {
-                p_220040_1_.broadcastBreakEvent(handIn);
-            });
+            playerIn.getItemInHand(handIn).hurtAndBreak(1, playerIn, LivingEntity.getSlotForHand(handIn));
             return InteractionResultHolder.success(playerIn.getItemInHand(handIn));
         //}
 

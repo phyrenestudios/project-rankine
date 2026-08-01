@@ -17,7 +17,7 @@ public class ParticleAcceleratorBlock extends Block {
 
 
     @Override
-    public int getLightBlock(BlockState state, BlockGetter worldIn, BlockPos pos) {
+    protected int getLightBlock(BlockState state, BlockGetter worldIn, BlockPos pos) {
         return 10;
     }
 }

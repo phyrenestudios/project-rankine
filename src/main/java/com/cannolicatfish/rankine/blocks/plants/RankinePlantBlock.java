@@ -2,14 +2,18 @@ package com.cannolicatfish.rankine.blocks.plants;
 
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineItems;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -20,6 +24,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.BushBlock;
@@ -27,32 +32,35 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
-import net.minecraft.world.level.pathfinder.BlockPathTypes;
+import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.neoforged.neoforge.common.PlantType;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Random;
-
 public class RankinePlantBlock extends BushBlock implements BonemealableBlock {
+    // PORT-TODO(init): IPlantable/PlantType are removed in NeoForge 1.21 — the PlantType constructor parameter was dropped.
+    // Call sites in RankineBlocks must drop the trailing PlantType argument. Soil behavior (PLAINS vs DESERT) is preserved
+    // by mayPlaceOn below (types 7/8/10 = pineapple/banana yucca/aloe accept sand).
+    public static final MapCodec<RankinePlantBlock> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
+            Codec.INT.fieldOf("type").forGetter(b -> b.type),
+            propertiesCodec()
+    ).apply(instance, (typeIn, props) -> new RankinePlantBlock(props, typeIn)));
     public static final IntegerProperty AGE = BlockStateProperties.AGE_3;
     private static final VoxelShape AGE0 = Block.box(3.0D, 0.0D, 3.0D, 13.0D, 8.0D, 13.0D);
     private static final VoxelShape AGE3 = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 16.0D, 15.0D);
-    private int type;
-    private PlantType plantType;
-    public RankinePlantBlock(Properties p_i49971_1_, int type, PlantType plantType) {
+    private final int type;
+
+    public RankinePlantBlock(Properties p_i49971_1_, int type) {
         super(p_i49971_1_);
         this.type = type;
-        this.plantType = plantType;
         this.registerDefaultState(this.stateDefinition.any().setValue(AGE, 0));
     }
 
     @Override
-    public PlantType getPlantType(BlockGetter world, BlockPos pos) {
-        return plantType;
+    public MapCodec<RankinePlantBlock> codec() {
+        return CODEC;
     }
 
     @Override
@@ -65,7 +73,7 @@ public class RankinePlantBlock extends BushBlock implements BonemealableBlock {
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
+    protected VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
         if (state.getValue(AGE) == 0) {
             return AGE0;
         } else {
@@ -73,21 +81,23 @@ public class RankinePlantBlock extends BushBlock implements BonemealableBlock {
         }
     }
 
-    public boolean isRandomlyTicking(BlockState p_57284_) {
+    @Override
+    protected boolean isRandomlyTicking(BlockState p_57284_) {
         return p_57284_.getValue(AGE) < 3;
     }
 
-    public void randomTick(BlockState p_57286_, ServerLevel p_57287_, BlockPos p_57288_, Random p_57289_) {
+    @Override
+    protected void randomTick(BlockState p_57286_, ServerLevel p_57287_, BlockPos p_57288_, RandomSource p_57289_) {
         int i = p_57286_.getValue(AGE);
-        if (i < 3 && p_57287_.getRawBrightness(p_57288_.above(), 0) >= 9 && net.neoforged.neoforge.common.ForgeHooks.onCropsGrowPre(p_57287_, p_57288_, p_57286_,p_57289_.nextInt(5) == 0)) {
+        if (i < 3 && p_57287_.getRawBrightness(p_57288_.above(), 0) >= 9 && net.neoforged.neoforge.common.CommonHooks.canCropGrow(p_57287_, p_57288_, p_57286_,p_57289_.nextInt(5) == 0)) {
             p_57287_.setBlock(p_57288_, p_57286_.setValue(AGE, i + 1), 2);
-            net.neoforged.neoforge.common.ForgeHooks.onCropsGrowPost(p_57287_, p_57288_, p_57286_);
+            net.neoforged.neoforge.common.CommonHooks.fireCropGrowPost(p_57287_, p_57288_, p_57286_);
         }
 
     }
 
     @Override
-    public void entityInside(BlockState state, Level worldIn, BlockPos pos, Entity entityIn) {
+    protected void entityInside(BlockState state, Level worldIn, BlockPos pos, Entity entityIn) {
         if (entityIn instanceof LivingEntity && entityIn.getType() != EntityType.FOX && entityIn.getType() != EntityType.BEE) {
             entityIn.makeStuckInBlock(state, new Vec3((double)0.98F, 0.98D, (double)0.98F));
             if (!worldIn.isClientSide && state.getValue(AGE) > 0 && (entityIn.xOld != entityIn.getX() || entityIn.zOld != entityIn.getZ())) {
@@ -95,10 +105,10 @@ public class RankinePlantBlock extends BushBlock implements BonemealableBlock {
                 double d1 = Math.abs(entityIn.getZ() - entityIn.zOld);
                 if (d0 >= (double)0.01F || d1 >= (double)0.01F) {
                     if (state.getBlock() == RankineBlocks.RASPBERRY_BUSH.get() || state.getBlock() == RankineBlocks.BLACKBERRY_BUSH.get()) {
-                        entityIn.hurt(DamageSource.SWEET_BERRY_BUSH, 1.0F);
+                        entityIn.hurt(worldIn.damageSources().sweetBerryBush(), 1.0F);
                     }
                     if (state.getBlock() == RankineBlocks.SNOWBERRY_BUSH.get() || state.getBlock() == RankineBlocks.CRANBERRY_BUSH.get() || state.getBlock() == RankineBlocks.PINEAPPLE_BUSH.get()) {
-                        entityIn.hurt(DamageSource.SWEET_BERRY_BUSH, 0.5F);
+                        entityIn.hurt(worldIn.damageSources().sweetBerryBush(), 0.5F);
                     }
                 }
             }
@@ -106,12 +116,19 @@ public class RankinePlantBlock extends BushBlock implements BonemealableBlock {
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
+    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
+        // 1.18 use(): bone meal on a non-mature plant returned PASS so BoneMealItem could handle growth.
+        if (state.getValue(AGE) != 3 && stack.is(Items.BONE_MEAL)) {
+            return ItemInteractionResult.SKIP_DEFAULT_BLOCK_INTERACTION;
+        }
+        return super.useItemOn(stack, state, worldIn, pos, player, handIn, hit);
+    }
+
+    @Override
+    protected InteractionResult useWithoutItem(BlockState state, Level worldIn, BlockPos pos, Player player, BlockHitResult hit) {
         int i = state.getValue(AGE);
         boolean flag = i == 3;
-        if (!flag && player.getItemInHand(handIn).getItem() == Items.BONE_MEAL) {
-            return InteractionResult.PASS;
-        } else if (flag && !worldIn.isClientSide && worldIn.getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS) && !worldIn.restoringBlockSnapshots) {
+        if (flag && !worldIn.isClientSide && worldIn.getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS) && !worldIn.restoringBlockSnapshots) {
             switch (type) {
                 case 0:
                     popResource(worldIn, pos, new ItemStack(RankineItems.ELDERBERRIES.get(), 1 + worldIn.random.nextInt(2)));
@@ -157,14 +174,13 @@ public class RankinePlantBlock extends BushBlock implements BonemealableBlock {
             worldIn.setBlock(pos, state.setValue(AGE, 1), 2);
             return InteractionResult.sidedSuccess(worldIn.isClientSide);
         } else {
-            return super.use(state, worldIn, pos, player, handIn, hit);
+            return super.useWithoutItem(state, worldIn, pos, player, hit);
         }
     }
 
-   // @Nullable
     @Override
-    public BlockPathTypes getAiPathNodeType(BlockState state, BlockGetter world, BlockPos pos, @Nullable Mob entity) {
-        return BlockPathTypes.DANGER_OTHER;
+    public PathType getBlockPathType(BlockState state, BlockGetter world, BlockPos pos, @Nullable Mob entity) {
+        return PathType.DANGER_OTHER;
     }
 
     @Override
@@ -176,16 +192,17 @@ public class RankinePlantBlock extends BushBlock implements BonemealableBlock {
      * Whether this IGrowable can grow
      */
     @Override
-    public boolean isValidBonemealTarget(BlockGetter worldIn, BlockPos pos, BlockState state, boolean isClient) {
+    public boolean isValidBonemealTarget(LevelReader worldIn, BlockPos pos, BlockState state) {
         return state.getValue(AGE) < 3;
     }
 
     @Override
-    public boolean isBonemealSuccess(Level worldIn, Random rand, BlockPos pos, BlockState state) {
+    public boolean isBonemealSuccess(Level worldIn, RandomSource rand, BlockPos pos, BlockState state) {
         return true;
     }
 
-    public void performBonemeal(ServerLevel p_225535_1_, Random p_225535_2_, BlockPos p_225535_3_, BlockState p_225535_4_) {
+    @Override
+    public void performBonemeal(ServerLevel p_225535_1_, RandomSource p_225535_2_, BlockPos p_225535_3_, BlockState p_225535_4_) {
         int i = Math.min(3, p_225535_4_.getValue(AGE) + 1);
         p_225535_1_.setBlock(p_225535_3_, p_225535_4_.setValue(AGE, i), 2);
     }

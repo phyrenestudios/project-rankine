@@ -1,13 +1,11 @@
 package com.cannolicatfish.rankine.entities;
 
 import com.cannolicatfish.rankine.init.RankineItems;
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.network.protocol.Packet;
-import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
-import net.neoforged.neoforge.network.NetworkHooks;
 
 public class DryMortarItemEntity extends ItemEntity {
 
@@ -26,14 +24,14 @@ public class DryMortarItemEntity extends ItemEntity {
         super(EntityType.ITEM,worldIn);
         this.setPos(x, y, z);
         this.setItem(stack);
-        this.lifespan = (stack.getItem() == null ? 6000 : stack.getEntityLifespan(worldIn));
+        this.lifespan = stack.getEntityLifespan(worldIn);
     }
 
     public DryMortarItemEntity(Level worldIn, double x, double y, double z, float radius, boolean canBreakBlocks, ItemStack stack) {
         super(EntityType.ITEM,worldIn);
         this.setPos(x, y, z);
         this.setItem(stack);
-        this.lifespan = (stack.getItem() == null ? 6000 : stack.getEntityLifespan(worldIn));
+        this.lifespan = stack.getEntityLifespan(worldIn);
     }
 
     @Override
@@ -55,7 +53,5 @@ public class DryMortarItemEntity extends ItemEntity {
         super.tick();
     }
 
-    public Packet<?> getAddEntityPacket() {
-        return NetworkHooks.getEntitySpawningPacket(this);
-    }
+    // 1.21.1: getAddEntityPacket/NetworkHooks override removed — vanilla handles spawn packets.
 }

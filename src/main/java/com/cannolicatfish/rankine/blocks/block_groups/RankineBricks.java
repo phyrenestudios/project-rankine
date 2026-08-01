@@ -11,9 +11,10 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.material.Material;
-import net.minecraft.world.level.material.MaterialColor;
-import net.neoforged.neoforge.registries.RegistryObject;
+import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
+
+import net.neoforged.neoforge.registries.DeferredBlock;
 
 import java.util.Arrays;
 import java.util.List;
@@ -21,22 +22,22 @@ import java.util.List;
 public class RankineBricks {
 
     private final String registryName;
-    private RegistryObject<RankineBricksBlock> bricks;
-    private RegistryObject<RankineSlabBlock> bricksSlab;
-    private RegistryObject<RankineStairsBlock> bricksStairs;
-    private RegistryObject<RankineWallBlock> bricksWall;
+    private DeferredBlock<RankineBricksBlock> bricks;
+    private DeferredBlock<RankineSlabBlock> bricksSlab;
+    private DeferredBlock<RankineStairsBlock> bricksStairs;
+    private DeferredBlock<RankineWallBlock> bricksWall;
 
     public RankineBricks(String registryName) {
         this.registryName = registryName;
     }
 
-    public static RankineBricks newBricksReg(String baseName, MaterialColor color) {
+    public static RankineBricks newBricksReg(String baseName, MapColor color) {
         RankineBricks newBricks = new RankineBricks(baseName);
 //        RankineLists.RANKINE_BRICKS.add(newBricks);
-        newBricks.bricks =  RankineBlocks.BLOCKS.register(baseName, () -> new RankineBricksBlock(BlockBehaviour.Properties.of(Material.STONE, color).requiresCorrectToolForDrops().strength(2.0F, 6.0F)));
-        newBricks.bricksSlab =  RankineBlocks.BLOCKS.register(baseName+"_slab", () -> new RankineSlabBlock(BlockBehaviour.Properties.copy(newBricks.bricks.get()).noCollission()));
-        newBricks.bricksStairs =  RankineBlocks.BLOCKS.register(baseName+"_stairs", () -> new RankineStairsBlock(BlockBehaviour.Properties.copy(newBricks.bricks.get())));
-        newBricks.bricksWall =  RankineBlocks.BLOCKS.register(baseName+"_wall", () -> new RankineWallBlock(BlockBehaviour.Properties.copy(newBricks.bricks.get())));
+        newBricks.bricks =  RankineBlocks.BLOCKS.register(baseName, () -> new RankineBricksBlock(BlockBehaviour.Properties.of().mapColor(color).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(2.0F, 6.0F)));
+        newBricks.bricksSlab =  RankineBlocks.BLOCKS.register(baseName+"_slab", () -> new RankineSlabBlock(BlockBehaviour.Properties.ofFullCopy(newBricks.bricks.get()).noCollission()));
+        newBricks.bricksStairs =  RankineBlocks.BLOCKS.register(baseName+"_stairs", () -> new RankineStairsBlock(BlockBehaviour.Properties.ofFullCopy(newBricks.bricks.get())));
+        newBricks.bricksWall =  RankineBlocks.BLOCKS.register(baseName+"_wall", () -> new RankineWallBlock(BlockBehaviour.Properties.ofFullCopy(newBricks.bricks.get())));
 
         Item.Properties DEF_BUILDING = new Item.Properties().stacksTo(64);
         RankineBlocks.ITEMS.register(baseName, () -> new BuildingModeBlockItem(newBricks.bricks.get(), DEF_BUILDING));

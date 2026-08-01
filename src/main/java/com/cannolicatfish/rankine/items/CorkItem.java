@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.items;
 
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.InteractionResultHolder;
@@ -24,7 +25,7 @@ public class CorkItem extends BlockItem {
     @Override
     public InteractionResult useOn(UseOnContext context) {
         InteractionResult actionresulttype = this.place(new BlockPlaceContext(context));
-        return !actionresulttype.consumesAction() && this.isEdible() ? this.use(context.getLevel(), context.getPlayer(), context.getHand()).getResult() : actionresulttype;
+        return !actionresulttype.consumesAction() && context.getItemInHand().has(DataComponents.FOOD) ? this.use(context.getLevel(), context.getPlayer(), context.getHand()).getResult() : actionresulttype;
     }
 
     @Override

@@ -3,34 +3,41 @@ package com.cannolicatfish.rankine.recipe;
 import com.cannolicatfish.rankine.init.RankineRecipeSerializers;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.recipe.helper.AlloyIngredientHelper;
+import com.cannolicatfish.rankine.recipe.helper.RankineMapCodec;
 import com.cannolicatfish.rankine.util.WeightedCollection;
-import com.google.gson.*;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.JsonSyntaxException;
+import com.mojang.serialization.MapCodec;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.Registry;
-import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.GsonHelper;
-import net.minecraft.world.Container;
-import net.minecraft.world.item.Item;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.RecipeInput;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.neoforge.registries.ForgeRegistryEntry;
 
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
-public class ForagingRecipe implements Recipe<Container> {
+public class ForagingRecipe implements Recipe<RecipeInput> {
 
-    private final ResourceLocation id;
     private final List<String> biomes;
     private final List<String> biomeTags;
     private final Ingredient ingredient;
@@ -39,8 +46,7 @@ public class ForagingRecipe implements Recipe<Container> {
     private final NonNullList<Boolean> enchantments;
     private final boolean allBiomes;
 
-    public ForagingRecipe(ResourceLocation id, List<String> biomes, List<String> biomeTags, Ingredient ingredientIn, NonNullList<Ingredient> recipeOutputsIn, NonNullList<Float> weights, NonNullList<Boolean> enchantments, boolean allBiomes) {
-        this.id = id;
+    public ForagingRecipe(List<String> biomes, List<String> biomeTags, Ingredient ingredientIn, NonNullList<Ingredient> recipeOutputsIn, NonNullList<Float> weights, NonNullList<Boolean> enchantments, boolean allBiomes) {
         this.biomes = biomes;
         this.biomeTags = biomeTags;
         this.ingredient = ingredientIn;
@@ -55,17 +61,18 @@ public class ForagingRecipe implements Recipe<Container> {
         return true;
     }
 
+    @Override
     public String getGroup() {
         return "";
     }
 
     @Override
-    public boolean matches(Container inv, Level worldIn) {
+    public boolean matches(RecipeInput inv, Level worldIn) {
         return false;
     }
 
     @Override
-    public ItemStack assemble(Container inv) {
+    public ItemStack assemble(RecipeInput inv, HolderLookup.Provider provider) {
         return ItemStack.EMPTY;
     }
 
@@ -75,6 +82,11 @@ public class ForagingRecipe implements Recipe<Container> {
     }
 
     @Override
+    public ItemStack getResultItem(HolderLookup.Provider provider) {
+        return ItemStack.EMPTY;
+    }
+
+    /** Convenience overload matching the pre-1.21 API. */
     public ItemStack getResultItem() {
         return ItemStack.EMPTY;
     }
@@ -112,14 +124,9 @@ public class ForagingRecipe implements Recipe<Container> {
         return this.ingredient;
     }
 
-    @Override
-    public ResourceLocation getId() {
-        return this.id;
-    }
-
     public static ItemStack getForagingResult(Level levelIn, ResourceLocation biomeName, BlockState state, boolean enchantmentPresent) {
         WeightedCollection<ItemStack> col = new WeightedCollection<>();
-        Random rand = levelIn.getRandom();
+        RandomSource rand = levelIn.getRandom();
         for (ForagingRecipe recipe : getValidRecipes(levelIn, biomeName, state)) {
             for (int i = 0; i < recipe.getOutputs().size(); i++) {
                 if (recipe.getEnchantments().get(i) && !enchantmentPresent) continue;
@@ -137,7 +144,8 @@ public class ForagingRecipe implements Recipe<Container> {
     public static List<ForagingRecipe> getValidRecipes(Level levelIn, ResourceLocation biomeName, BlockState state) {
         if (levelIn != null) {
             List<ForagingRecipe> recipes = new ArrayList<>();
-            for (ForagingRecipe recipe : levelIn.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.FORAGING)) {
+            for (RecipeHolder<ForagingRecipe> holder : levelIn.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.FORAGING.get())) {
+                ForagingRecipe recipe = holder.value();
                 if ((recipe.allBiomes || recipe.getBiomes().contains(biomeName.toString()) || biomeTagCheck(levelIn, biomeName, recipe.getBiomeTags())) && recipe.getIngredient().test(new ItemStack(state.getBlock().asItem()))) {
                     recipes.add(recipe);
                 }
@@ -152,8 +160,8 @@ public class ForagingRecipe implements Recipe<Container> {
         for (String b : recipeBiomes) {
             ResourceLocation RS = ResourceLocation.tryParse(b);
             if (RS != null) {
-                TagKey<Biome> biomeTagKey = TagKey.create(Registry.BIOME_REGISTRY, RS);
-                var reg = levelIn.registryAccess().registryOrThrow(Registry.BIOME_REGISTRY);
+                TagKey<Biome> biomeTagKey = TagKey.create(Registries.BIOME, RS);
+                Registry<Biome> reg = levelIn.registryAccess().registryOrThrow(Registries.BIOME);
                 Biome biome = reg.getOptional(biomeName).orElseThrow();
                 if (reg.getHolderOrThrow(reg.getResourceKey(biome).orElseThrow()).is(biomeTagKey)) {
                     return true;
@@ -170,12 +178,12 @@ public class ForagingRecipe implements Recipe<Container> {
 
     @Override
     public RecipeType<?> getType() {
-        return RankineRecipeTypes.FORAGING;
+        return RankineRecipeTypes.FORAGING.get();
     }
 
     public static ItemStack deserializeItem(JsonObject object) {
         String s = GsonHelper.getAsString(object, "item");
-        Item item = Registry.ITEM.getOptional(ResourceLocation.parse(s)).orElseThrow(() -> {
+        BuiltInRegistries.ITEM.getOptional(ResourceLocation.parse(s)).orElseThrow(() -> {
             return new JsonSyntaxException("Unknown item '" + s + "'");
         });
 
@@ -187,9 +195,26 @@ public class ForagingRecipe implements Recipe<Container> {
     }
 
 
-    public static class Serializer extends ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<ForagingRecipe> {
+    public static class Serializer implements RecipeSerializer<ForagingRecipe> {
+
+        public static final MapCodec<ForagingRecipe> CODEC = RankineMapCodec.of(
+                Serializer::fromJson, Serializer::toJson,
+                RankineMapCodec.fixedKeys("biomes","input","outputs"));
+
+        public static final StreamCodec<RegistryFriendlyByteBuf, ForagingRecipe> STREAM_CODEC =
+                StreamCodec.of(Serializer::toNetwork, Serializer::fromNetwork);
+
         @Override
-        public ForagingRecipe fromJson(ResourceLocation recipeId, JsonObject jsonObject) {
+        public MapCodec<ForagingRecipe> codec() {
+            return CODEC;
+        }
+
+        @Override
+        public StreamCodec<RegistryFriendlyByteBuf, ForagingRecipe> streamCodec() {
+            return STREAM_CODEC;
+        }
+
+        public static ForagingRecipe fromJson(JsonObject jsonObject) {
             JsonElement biomesArray = jsonObject.has("biomes") ? jsonObject.get("biomes") : null;
             List<String> biomes = new ArrayList<>();
             List<String> biomeTags = new ArrayList<>();
@@ -204,7 +229,7 @@ public class ForagingRecipe implements Recipe<Container> {
                 }
             }
 
-            Ingredient ingredient = Ingredient.fromJson(GsonHelper.getAsJsonObject(jsonObject, "input"));
+            Ingredient ingredient = AlloyIngredientHelper.ingredientFromJson(jsonObject.get("input"));
 
 
             JsonArray outputsArray = GsonHelper.getAsJsonArray(jsonObject, "outputs");
@@ -217,7 +242,7 @@ public class ForagingRecipe implements Recipe<Container> {
                 if (element.isJsonObject()) {
                     JsonObject object = element.getAsJsonObject();
                     if (object.has("item") || object.has("tag")) {
-                        stacks.set(i, Ingredient.fromJson(object));
+                        stacks.set(i, AlloyIngredientHelper.ingredientFromJson(object));
                     } else {
                         stacks.set(i, Ingredient.EMPTY);
                     }
@@ -235,33 +260,54 @@ public class ForagingRecipe implements Recipe<Container> {
                 i++;
             }
 
-            return new ForagingRecipe(recipeId,biomes,biomeTags,ingredient,stacks,weights,enchantements,allBiomes);
+            return new ForagingRecipe(biomes,biomeTags,ingredient,stacks,weights,enchantements,allBiomes);
         }
 
-        @Nullable
-        @Override
-        public ForagingRecipe fromNetwork(ResourceLocation recipeId, FriendlyByteBuf buffer) {
+        public static void toJson(ForagingRecipe recipe, JsonObject json) {
+            if (!recipe.isAllBiomes()) {
+                JsonObject biomesObject = new JsonObject();
+                if (!recipe.getBiomes().isEmpty()) {
+                    biomesObject.addProperty("biome", recipe.getBiomes().get(0));
+                } else if (!recipe.getBiomeTags().isEmpty()) {
+                    biomesObject.addProperty("biomeTag", recipe.getBiomeTags().get(0));
+                }
+                json.add("biomes", biomesObject);
+            }
+            json.add("input", AlloyIngredientHelper.ingredientToJson(recipe.getIngredient()));
+            JsonArray outputs = new JsonArray();
+            for (int i = 0; i < recipe.getOutputs().size(); i++) {
+                Ingredient out = recipe.getOutputs().get(i);
+                JsonObject object;
+                if (out.isEmpty()) {
+                    object = new JsonObject();
+                } else {
+                    JsonElement encoded = AlloyIngredientHelper.ingredientToJson(out);
+                    object = encoded.isJsonObject() ? encoded.getAsJsonObject() : new JsonObject();
+                }
+                object.addProperty("weight", recipe.getWeights().get(i));
+                object.addProperty("enchantmentRequired", recipe.getEnchantments().get(i));
+                outputs.add(object);
+            }
+            json.add("outputs", outputs);
+        }
+
+        public static ForagingRecipe fromNetwork(RegistryFriendlyByteBuf buffer) {
+            boolean allBiomes = buffer.readBoolean();
+
             int biomesSize = buffer.readInt();
             List<String> biomes = new ArrayList<>();
-            boolean allBiomes = true;
-            if (biomesSize > 0) {
-                allBiomes = false;
-                for (int i = 0; i < biomesSize; i++) {
-                    biomes.add(buffer.readUtf());
-                }
+            for (int i = 0; i < biomesSize; i++) {
+                biomes.add(buffer.readUtf());
             }
 
             int biomeTagsSize = buffer.readInt();
             List<String> biomeTags = new ArrayList<>();
-            if (biomeTagsSize > 0) {
-                allBiomes = false;
-                for (int i = 0; i < biomeTagsSize; i++) {
-                    biomes.add(buffer.readUtf());
-                }
+            for (int i = 0; i < biomeTagsSize; i++) {
+                biomeTags.add(buffer.readUtf());
             }
 
 
-            Ingredient input = Ingredient.fromNetwork(buffer);
+            Ingredient input = Ingredient.CONTENTS_STREAM_CODEC.decode(buffer);
 
             int t = buffer.readVarInt();
             NonNullList<Ingredient> stacks = NonNullList.withSize(t, Ingredient.EMPTY);
@@ -269,34 +315,31 @@ public class ForagingRecipe implements Recipe<Container> {
             NonNullList<Boolean> enchantements = NonNullList.withSize(t, false);
 
             for (int i = 0; i < stacks.size(); i++) {
-                stacks.set(i,Ingredient.fromNetwork(buffer));
+                stacks.set(i,Ingredient.CONTENTS_STREAM_CODEC.decode(buffer));
                 weights.set(i,buffer.readFloat());
                 enchantements.set(i,buffer.readBoolean());
             }
 
-            return new ForagingRecipe(recipeId, biomes, biomeTags, input, stacks, weights, enchantements, allBiomes);
+            return new ForagingRecipe(biomes, biomeTags, input, stacks, weights, enchantements, allBiomes);
         }
 
-        @Override
-        public void toNetwork(FriendlyByteBuf buffer, ForagingRecipe recipe) {
+        public static void toNetwork(RegistryFriendlyByteBuf buffer, ForagingRecipe recipe) {
+            buffer.writeBoolean(recipe.isAllBiomes());
+
             buffer.writeInt(recipe.getBiomes().size());
-            if (recipe.getBiomes().size() > 0) {
-                for (int i = 0; i < recipe.getBiomes().size(); i++) {
-                    buffer.writeUtf(recipe.getBiomes().get(i));
-                }
+            for (int i = 0; i < recipe.getBiomes().size(); i++) {
+                buffer.writeUtf(recipe.getBiomes().get(i));
             }
             buffer.writeInt(recipe.getBiomeTags().size());
-            if (recipe.getBiomeTags().size() > 0) {
-                for (int i = 0; i < recipe.getBiomeTags().size(); i++) {
-                    buffer.writeUtf(recipe.getBiomeTags().get(i));
-                }
+            for (int i = 0; i < recipe.getBiomeTags().size(); i++) {
+                buffer.writeUtf(recipe.getBiomeTags().get(i));
             }
 
-            recipe.getIngredient().toNetwork(buffer);
+            Ingredient.CONTENTS_STREAM_CODEC.encode(buffer, recipe.getIngredient());
 
             buffer.writeVarInt(recipe.getOutputs().size());
             for (int i = 0; i < recipe.getOutputs().size(); i++) {
-                recipe.getOutputs().get(i).toNetwork(buffer);
+                Ingredient.CONTENTS_STREAM_CODEC.encode(buffer, recipe.getOutputs().get(i));
                 buffer.writeFloat(recipe.getWeights().get(i));
                 buffer.writeBoolean(recipe.getEnchantments().get(i));
             }

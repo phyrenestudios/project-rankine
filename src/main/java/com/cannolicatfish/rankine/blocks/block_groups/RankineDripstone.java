@@ -8,9 +8,10 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.material.Material;
-import net.minecraft.world.level.material.MaterialColor;
-import net.neoforged.neoforge.registries.RegistryObject;
+import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
+
+import net.neoforged.neoforge.registries.DeferredBlock;
 
 import java.util.Arrays;
 import java.util.List;
@@ -18,17 +19,17 @@ import java.util.List;
 public class RankineDripstone {
 
     private final String registryName;
-    private RegistryObject<Block> dripstone;
-    private RegistryObject<RankinePointedDripstoneBlock> pointedDripstone;
+    private DeferredBlock<Block> dripstone;
+    private DeferredBlock<RankinePointedDripstoneBlock> pointedDripstone;
 
     public RankineDripstone(String registryName) {
         this.registryName = registryName;
     }
 
-    public static RankineDripstone newDripstoneReg(String baseName, MaterialColor color) {
+    public static RankineDripstone newDripstoneReg(String baseName, MapColor color) {
         RankineDripstone newDripstone = new RankineDripstone(baseName);
-        newDripstone.dripstone =  RankineBlocks.BLOCKS.register(baseName+"_block", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, color).sound(SoundType.DRIPSTONE_BLOCK).requiresCorrectToolForDrops().strength(1.5F, 1.0F)));
-        newDripstone.pointedDripstone = RankineBlocks.BLOCKS.register("pointed_"+baseName, () -> new RankinePointedDripstoneBlock(BlockBehaviour.Properties.of(Material.STONE, color).noOcclusion().sound(SoundType.POINTED_DRIPSTONE).randomTicks().strength(1.5F, 3.0F).dynamicShape(), newDripstone.dripstone.get()));
+        newDripstone.dripstone =  RankineBlocks.BLOCKS.register(baseName+"_block", () -> new Block(BlockBehaviour.Properties.of().mapColor(color).instrument(NoteBlockInstrument.BASEDRUM).sound(SoundType.DRIPSTONE_BLOCK).requiresCorrectToolForDrops().strength(1.5F, 1.0F)));
+        newDripstone.pointedDripstone = RankineBlocks.BLOCKS.register("pointed_"+baseName, () -> new RankinePointedDripstoneBlock(BlockBehaviour.Properties.of().mapColor(color).instrument(NoteBlockInstrument.BASEDRUM).noOcclusion().sound(SoundType.POINTED_DRIPSTONE).randomTicks().strength(1.5F, 3.0F).dynamicShape(), newDripstone.dripstone.get()));
 
         Item.Properties DEF_BUILDING = new Item.Properties().stacksTo(64);
         RankineBlocks.ITEMS.register(baseName+"_block", () -> new BlockItem(newDripstone.dripstone.get(), DEF_BUILDING));

@@ -1,10 +1,11 @@
 package com.cannolicatfish.rankine.blocks.evaporationtower;
 
 import com.cannolicatfish.rankine.init.RankineBlockEntityTypes;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.InteractionHand;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Player;
@@ -16,22 +17,26 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
-import net.neoforged.neoforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Random;
-
 public class EvaporationTowerBlock extends BaseEntityBlock {
+    public static final MapCodec<EvaporationTowerBlock> CODEC = simpleCodec(EvaporationTowerBlock::new);
+
+    @Override
+    protected MapCodec<EvaporationTowerBlock> codec() {
+        return CODEC;
+    }
+
     public EvaporationTowerBlock(Properties properties) {
         super(properties);
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
+    protected InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult result) {
         if (!world.isClientSide) {
             BlockEntity tileEntity = world.getBlockEntity(pos);
             if (tileEntity instanceof MenuProvider) {
-                NetworkHooks.openGui((ServerPlayer) player, (MenuProvider) tileEntity, tileEntity.getBlockPos());
+                ((ServerPlayer) player).openMenu((MenuProvider) tileEntity, tileEntity.getBlockPos());
             } else {
                 throw new IllegalStateException("Our named container provider is missing!");
             }
@@ -43,7 +48,8 @@ public class EvaporationTowerBlock extends BaseEntityBlock {
     }
 
 
-    public RenderShape getRenderShape(BlockState p_49232_) {
+    @Override
+    protected RenderShape getRenderShape(BlockState p_49232_) {
         return RenderShape.MODEL;
     }
 
@@ -65,7 +71,7 @@ public class EvaporationTowerBlock extends BaseEntityBlock {
     }
 
     @Override
-    public void randomTick(BlockState stateIn, ServerLevel levelIn, BlockPos posIn, Random rand) {
+    protected void randomTick(BlockState stateIn, ServerLevel levelIn, BlockPos posIn, RandomSource rand) {
         if (rand.nextFloat() < 0.01) {
             EvaporationTowerTile tileIn = (EvaporationTowerTile) levelIn.getBlockEntity(posIn);
             if (tileIn != null && tileIn.structureHeight(levelIn, posIn) > 3 && EvaporationTowerTile.wallStructure(posIn).size() > 0) {
@@ -75,4 +81,3 @@ public class EvaporationTowerBlock extends BaseEntityBlock {
         super.randomTick(stateIn, levelIn, posIn, rand);
     }
 }
-

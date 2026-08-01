@@ -3,6 +3,7 @@ package com.cannolicatfish.rankine.world.gen.trees;
 import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.mojang.serialization.Codec;
+import net.minecraft.util.RandomSource;
 import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.WorldGenLevel;
@@ -13,7 +14,6 @@ import net.minecraft.world.level.levelgen.feature.configurations.TreeConfigurati
 import net.minecraft.world.level.levelgen.feature.Feature;
 
 import javax.annotation.Nullable;
-import java.util.Random;
 
 public class PetrifiedChorusTreeFeature extends Feature<TreeConfiguration> {
 
@@ -25,7 +25,7 @@ public class PetrifiedChorusTreeFeature extends Feature<TreeConfiguration> {
     public boolean place(FeaturePlaceContext<TreeConfiguration> p_159749_) {
         WorldGenLevel reader = p_159749_.level();
         BlockPos pos = p_159749_.origin();
-        Random rand = reader.getRandom();
+        RandomSource rand = p_159749_.random();
         TreeConfiguration config = p_159749_.config();
         int trunkHeight = rand.nextInt(11) + 10;
 
@@ -74,7 +74,7 @@ public class PetrifiedChorusTreeFeature extends Feature<TreeConfiguration> {
         }
     }
 
-    private void branch(WorldGenLevel reader, BlockPos pos, Random rand, TreeConfiguration config, int tier) {
+    private void branch(WorldGenLevel reader, BlockPos pos, RandomSource rand, TreeConfiguration config, int tier) {
         tier += 1;
         int height = rand.nextInt(3)+2;
         for (int i = 1; i <= height; ++i) {

@@ -52,7 +52,8 @@ public class CarbonDisulfideFlowingFluidBlock extends RankineFlowingFluidBlock {
         world.removeBlock(pos, false);
     }
 
-    public void neighborChanged(BlockState state, Level worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
+    @Override
+    protected void neighborChanged(BlockState state, Level worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
         if (worldIn.getBlockState(pos).getBlock() instanceof CarbonDisulfideFlowingFluidBlock && worldIn.getBlockState(pos).isBurning(worldIn,pos)) {
             onCaughtFire(state, worldIn, pos, null, null);
         }

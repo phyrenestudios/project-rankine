@@ -1,49 +1,55 @@
 package com.cannolicatfish.rankine.blocks.laserquarry;
+// PORT-TODO(init): LASER_QUARRY BlockEntityType/MenuType not registered — init agent must add or keep this class dormant
+// PORT-TODO(init): depends on unregistered blocks (RankineBlocks.QUARRY_BARRIER, LASER_PYLON_BASE, LASER_PYLON_TOP,
+// STAINLESS_STEEL_SHEETMETAL is registered) and missing config values (Config.MACHINES.LASER_QUARRY_SPEED / LASER_QUARRY_RANGE);
+// the class below has been modernized to 1.21.1 NeoForge (1.16-era code updated) but stays commented out to match its dormant 1.18 state.
 /*
 import com.cannolicatfish.rankine.init.Config;
+import com.cannolicatfish.rankine.init.RankineBlockEntityTypes;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.items.BatteryItem;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.ISidedInventory;
-import net.minecraft.inventory.ItemStackHelper;
-import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.INamedContainerProvider;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.tileentity.ITickableTileEntity;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Direction;
-import net.minecraft.util.IIntArray;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.NonNullList;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
+import net.minecraft.util.Mth;
+import net.minecraft.world.ContainerHelper;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.WorldlyContainer;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.neoforge.items.IItemHandler;
+import net.neoforged.neoforge.items.wrapper.SidedInvWrapper;
 
 import javax.annotation.Nullable;
-
 
 import java.util.Arrays;
 import java.util.List;
 
-import static com.cannolicatfish.rankine.init.RankineBlocks.LASER_QUARRY_TILE;
+public class LaserQuarryTile extends BlockEntity implements WorldlyContainer, MenuProvider {
 
-
-public class LaserQuarryTile extends TileEntity implements ISidedInventory, ITickableTileEntity, INamedContainerProvider {
-
+    private static final TagKey<Block> NONQUARRYABLE = TagKey.create(Registries.BLOCK, ResourceLocation.parse("rankine:nonquarryable"));
     private static final int[] SLOTS_UP = new int[]{};
     private static final int[] SLOTS_DOWN = new int[]{0};
     private static final int[] SLOTS_HORIZONTAL = new int[]{};
     private int cookTime;
-    private int cookTimeTotal = Config.MACHINES.LASER_QUARRY_SPEED.get();
+    private int cookTimeTotal = Config.MACHINES.LASER_QUARRY_SPEED.get(); // PORT-TODO(init): LASER_QUARRY_SPEED missing from Config.MACHINES
     protected NonNullList<ItemStack> items = NonNullList.withSize(1,ItemStack.EMPTY);
-    private final IIntArray towerData = new IIntArray(){
+    private final ContainerData towerData = new ContainerData(){
         public int get(int index)
         {
             switch(index)
@@ -68,31 +74,31 @@ public class LaserQuarryTile extends TileEntity implements ISidedInventory, ITic
                     break;
             }
         }
-        public int size() {
+        public int getCount() {
             return 2;
         }
     };
 
-    public LaserQuarryTile() {
-        super(LASER_QUARRY_TILE);
+    public LaserQuarryTile(BlockPos posIn, BlockState stateIn) {
+        // PORT-TODO(init): LASER_QUARRY BlockEntityType/MenuType not registered — init agent must add or keep this class dormant
+        super(RankineBlockEntityTypes.LASER_QUARRY.get(), posIn, stateIn);
     }
 
     @Override
-    public void read(BlockState state, CompoundNBT nbt) {
-        super.read(state, nbt);
-        this.items = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
-        ItemStackHelper.loadAllItems(nbt,this.items);
+    protected void loadAdditional(CompoundTag nbt, HolderLookup.Provider provider) {
+        super.loadAdditional(nbt, provider);
+        this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
+        ContainerHelper.loadAllItems(nbt,this.items, provider);
         this.cookTime = nbt.getInt("CookTime");
         this.cookTimeTotal = nbt.getInt("CookTimeTotal");
     }
 
     @Override
-    public CompoundNBT write(CompoundNBT compound) {
-        super.write(compound);
-        ItemStackHelper.saveAllItems(compound, this.items);
+    protected void saveAdditional(CompoundTag compound, HolderLookup.Provider provider) {
+        super.saveAdditional(compound, provider);
+        ContainerHelper.saveAllItems(compound, this.items, provider);
         compound.putInt("CookTime", this.cookTime);
         compound.putInt("CookTimeTotal", this.cookTimeTotal);
-        return compound;
     }
 
     int i = 0;
@@ -100,20 +106,18 @@ public class LaserQuarryTile extends TileEntity implements ISidedInventory, ITic
     int y = 1;
     int z = 0;
 
-    @Override
-    public void tick() {
-        World worldIn = this.getWorld();
-        int maxRadius = checkStructure(pos,worldIn);
-        if (!worldIn.isRemote && i <= maxRadius){
-            if (worldIn.isBlockPowered(pos) && maxRadius > 0 && this.items.get(0).getItem() instanceof BatteryItem) {
-                ++this.cookTime;
-                if (this.cookTime == this.cookTimeTotal) {
-                    for (BlockPos TARGET_POS : BlockPos.getAllInBoxMutable(pos.add(-i,-y,-i), pos.add(i,-y,i))) {
+    public static void tick(Level worldIn, BlockPos pos, BlockState bs, LaserQuarryTile tile) {
+        int maxRadius = tile.checkStructure(pos,worldIn);
+        if (!worldIn.isClientSide && tile.i <= maxRadius){
+            if (worldIn.hasNeighborSignal(pos) && maxRadius > 0 && tile.items.get(0).getItem() instanceof BatteryItem) {
+                ++tile.cookTime;
+                if (tile.cookTime == tile.cookTimeTotal) {
+                    for (BlockPos TARGET_POS : BlockPos.betweenClosed(pos.offset(-tile.i,-tile.y,-tile.i), pos.offset(tile.i,-tile.y,tile.i))) {
                         Block TARGET_BLOCK = worldIn.getBlockState(TARGET_POS).getBlock();
                         boolean stop = false;
-                        if (TARGET_BLOCK != Blocks.AIR && !TARGET_BLOCK.getTags().contains(ResourceLocation.parse("rankine:nonquarryable"))) {
-                            for (int height = TARGET_POS.getY(); height <= this.pos.getY(); ++height) {
-                                if (worldIn.getBlockState(new BlockPos(TARGET_POS.getX(), height, TARGET_POS.getZ())) == RankineBlocks.QUARRY_BARRIER.get().getDefaultState()) {
+                        if (TARGET_BLOCK != Blocks.AIR && !worldIn.getBlockState(TARGET_POS).is(NONQUARRYABLE)) {
+                            for (int height = TARGET_POS.getY(); height <= pos.getY(); ++height) {
+                                if (worldIn.getBlockState(new BlockPos(TARGET_POS.getX(), height, TARGET_POS.getZ())) == RankineBlocks.QUARRY_BARRIER.get().defaultBlockState()) {
                                     stop = true;
                                     break;
                                 }
@@ -122,97 +126,68 @@ public class LaserQuarryTile extends TileEntity implements ISidedInventory, ITic
                                 worldIn.destroyBlock(TARGET_POS, false);
                             }
                         }
-                        cookTime = 0;
+                        tile.cookTime = 0;
                     }
-                    ++y;
-                    if (y >= pos.getY()) {
-                        y = 1;
-                        ++i;
+                    ++tile.y;
+                    if (tile.y >= pos.getY()) {
+                        tile.y = 1;
+                        ++tile.i;
                     }
-
-                    /*BlockPos TARGET_POS = pos.add(x,-y,z);
-                    Block TARGET_BLOCK = worldIn.getBlockState(TARGET_POS).getBlock();
-                    if (TARGET_BLOCK == Blocks.AIR || TARGET_BLOCK.getTags().contains(ResourceLocation.parse("rankine:nonquarryable")) || TARGET_BLOCK.getTags().contains(ResourceLocation.parse("forge:ores"))) {
-                        cookTime = cookTimeTotal - 1;
-                    } else {
-                        worldIn.destroyBlock(TARGET_POS,false);
-                        cookTime = 0;
-                    }
-                    if (x == i) {
-                        if (z == i) {
-                            ++y;
-                            if (y >= pos.getY()) {
-                                y = 1;
-                                ++i;
-                            }
-                            x = -i;
-                            z = -i;
-                        } else {
-                            x = -i;
-                            ++z;
-                        }
-                    } else {
-                        ++x;
-                    } */
-/*
                 }
-            } else if (cookTime > 0) {
-                this.cookTime = MathHelper.clamp(this.cookTime - 2, 0, this.cookTimeTotal);
+            } else if (tile.cookTime > 0) {
+                tile.cookTime = Mth.clamp(tile.cookTime - 2, 0, tile.cookTimeTotal);
             }
         }
     }
 
-    private int checkStructure(BlockPos pos, World worldIn) {
-        List<BlockPos> Base = Arrays.asList(pos.add(1,0,0),pos.add(2,0,0),pos.add(0,0,1),pos.add(0,0,2),pos.add(-1,0,0),pos.add(-2,0,0),pos.add(0,0,-1),pos.add(0,0,-2),pos.add(1,0,1),pos.add(1,0,-1),pos.add(-1,0,1),pos.add(-1,0,-1));
+    private int checkStructure(BlockPos pos, Level worldIn) {
+        List<BlockPos> Base = Arrays.asList(pos.offset(1,0,0),pos.offset(2,0,0),pos.offset(0,0,1),pos.offset(0,0,2),pos.offset(-1,0,0),pos.offset(-2,0,0),pos.offset(0,0,-1),pos.offset(0,0,-2),pos.offset(1,0,1),pos.offset(1,0,-1),pos.offset(-1,0,1),pos.offset(-1,0,-1));
         for(BlockPos b : Base) {
-            if (worldIn.getBlockState(b) != RankineBlocks.STAINLESS_STEEL_SHEETMETAL.get().getDefaultState()) {
+            if (worldIn.getBlockState(b) != RankineBlocks.STAINLESS_STEEL_SHEETMETAL.get().defaultBlockState()) {
                 return 0;
             }
         }
-        BlockState lqb = RankineBlocks.LASER_PYLON_BASE.get().getDefaultState();
-        BlockState lqt = RankineBlocks.LASER_PYLON_TOP.get().getDefaultState();
-        for (int i = 1; i <= Config.MACHINES.LASER_QUARRY_RANGE.get(); ++i) {
-            if (worldIn.getBlockState(pos.add(2,i,0)) == lqt && worldIn.getBlockState(pos.add(-2,i,0)) == lqt && worldIn.getBlockState(pos.add(0,i,-2)) == lqt && worldIn.getBlockState(pos.add(0,i,2)) == lqt) {
+        BlockState lqb = RankineBlocks.LASER_PYLON_BASE.get().defaultBlockState();
+        BlockState lqt = RankineBlocks.LASER_PYLON_TOP.get().defaultBlockState();
+        for (int i = 1; i <= Config.MACHINES.LASER_QUARRY_RANGE.get(); ++i) { // PORT-TODO(init): LASER_QUARRY_RANGE missing from Config.MACHINES
+            if (worldIn.getBlockState(pos.offset(2,i,0)) == lqt && worldIn.getBlockState(pos.offset(-2,i,0)) == lqt && worldIn.getBlockState(pos.offset(0,i,-2)) == lqt && worldIn.getBlockState(pos.offset(0,i,2)) == lqt) {
                 return i;
-            } else if (worldIn.getBlockState(pos.add(2,i,0)) != lqb && worldIn.getBlockState(pos.add(-2,i,0)) != lqb && worldIn.getBlockState(pos.add(0,i,-2)) != lqb && worldIn.getBlockState(pos.add(0,i,2)) != lqb) {
+            } else if (worldIn.getBlockState(pos.offset(2,i,0)) != lqb && worldIn.getBlockState(pos.offset(-2,i,0)) != lqb && worldIn.getBlockState(pos.offset(0,i,-2)) != lqb && worldIn.getBlockState(pos.offset(0,i,2)) != lqb) {
                 return 0;
             }
         }
         return 0;
     }
 
-    net.neoforged.neoforge.common.util.LazyOptional<? extends net.neoforged.neoforge.items.IItemHandler>[] handlers =
-            net.neoforged.neoforge.items.wrapper.SidedInvWrapper.create(this, Direction.UP, Direction.DOWN, Direction.NORTH);
+    private final IItemHandler[] handlers = new IItemHandler[] {
+            new SidedInvWrapper(this, Direction.UP),
+            new SidedInvWrapper(this, Direction.DOWN),
+            new SidedInvWrapper(this, Direction.NORTH)
+    };
 
-    @Override
-    public <T> net.neoforged.neoforge.common.util.LazyOptional<T> getCapability(net.neoforged.neoforge.common.capabilities.Capability<T> capability, @Nullable Direction facing) {
-        if (!this.removed && facing != null && capability == net.neoforged.neoforge.items.CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
-            if (facing == Direction.UP)
-                return handlers[0].cast();
-            else if (facing == Direction.DOWN)
-                return handlers[1].cast();
-            else
-                return handlers[2].cast();
+    // PORT-CAP: LaserQuarryTile -> getItemHandler
+    @Nullable
+    public IItemHandler getItemHandler(@Nullable Direction side) {
+        if (this.remove || side == null) {
+            return null;
         }
-        return super.getCapability(capability, facing);
+        if (side == Direction.UP)
+            return handlers[0];
+        else if (side == Direction.DOWN)
+            return handlers[1];
+        else
+            return handlers[2];
     }
 
     @Override
-    public void remove() {
-        super.remove();
-        for (int x = 0; x < handlers.length; x++)
-            handlers[x].invalidate();
-    }
-
-    @Override
-    public ITextComponent getDisplayName() {
-        return new StringTextComponent(getType().getRegistryName().getPath());
+    public Component getDisplayName() {
+        return Component.literal(BuiltInRegistries.BLOCK_ENTITY_TYPE.getKey(this.getType()).getPath());
     }
 
     @Override
     @Nullable
-    public Container createMenu(int i, PlayerInventory playerInventory, PlayerEntity playerEntity) {
-        return new LaserQuarryContainer(i, world, pos, playerInventory, playerEntity, this, this.towerData);
+    public AbstractContainerMenu createMenu(int i, Inventory playerInventory, Player playerEntity) {
+        return new LaserQuarryContainer(i, level, worldPosition, playerInventory, playerEntity, this, this.towerData);
     }
 
     @Override
@@ -225,17 +200,17 @@ public class LaserQuarryTile extends TileEntity implements ISidedInventory, ITic
     }
 
     @Override
-    public boolean canInsertItem(int index, ItemStack itemStackIn, @Nullable Direction direction) {
-        return this.isItemValidForSlot(index, itemStackIn);
+    public boolean canPlaceItemThroughFace(int index, ItemStack itemStackIn, @Nullable Direction direction) {
+        return this.canPlaceItem(index, itemStackIn);
     }
 
     @Override
-    public boolean canExtractItem(int index, ItemStack stack, Direction direction) {
+    public boolean canTakeItemThroughFace(int index, ItemStack stack, Direction direction) {
         return true;
     }
 
     @Override
-    public int getSizeInventory() {
+    public int getContainerSize() {
         return this.items.size();
     }
 
@@ -251,45 +226,45 @@ public class LaserQuarryTile extends TileEntity implements ISidedInventory, ITic
     }
 
     @Override
-    public ItemStack getStackInSlot(int index) {
+    public ItemStack getItem(int index) {
         return this.items.get(index);
     }
 
     @Override
-    public ItemStack decrStackSize(int index, int count) {
-        return ItemStackHelper.getAndSplit(this.items, index, count);
+    public ItemStack removeItem(int index, int count) {
+        return ContainerHelper.removeItem(this.items, index, count);
     }
 
     @Override
-    public ItemStack removeStackFromSlot(int index) {
-        return ItemStackHelper.getAndRemove(this.items, index);
+    public ItemStack removeItemNoUpdate(int index) {
+        return ContainerHelper.takeItem(this.items, index);
     }
 
     @Override
-    public void setInventorySlotContents(int index, ItemStack stack) {
+    public void setItem(int index, ItemStack stack) {
         ItemStack itemstack = this.items.get(index);
-        boolean flag = !stack.isEmpty() && stack.isItemEqual(itemstack) && ItemStack.areItemStackTagsEqual(stack, itemstack);
+        boolean flag = !stack.isEmpty() && ItemStack.isSameItemSameComponents(stack, itemstack);
         this.items.set(index, stack);
-        if (stack.getCount() > this.getInventoryStackLimit()) {
-            stack.setCount(this.getInventoryStackLimit());
+        if (stack.getCount() > this.getMaxStackSize()) {
+            stack.setCount(this.getMaxStackSize());
         }
 
         if (index == 0 && !flag) {
-            this.markDirty();
+            this.setChanged();
         }
     }
 
     @Override
-    public boolean isUsableByPlayer(PlayerEntity player) {
-        if (this.world.getTileEntity(this.pos) != this) {
+    public boolean stillValid(Player player) {
+        if (this.level.getBlockEntity(this.worldPosition) != this) {
             return false;
         } else {
-            return player.getDistanceSq((double)this.pos.getX() + 0.5D, (double)this.pos.getY() + 0.5D, (double)this.pos.getZ() + 0.5D) <= 64.0D;
+            return player.distanceToSqr((double)this.worldPosition.getX() + 0.5D, (double)this.worldPosition.getY() + 0.5D, (double)this.worldPosition.getZ() + 0.5D) <= 64.0D;
         }
     }
 
     @Override
-    public boolean isItemValidForSlot(int index, ItemStack stack) {
+    public boolean canPlaceItem(int index, ItemStack stack) {
         if (index == 0) {
             return stack.getItem() instanceof BatteryItem;
         }
@@ -297,12 +272,10 @@ public class LaserQuarryTile extends TileEntity implements ISidedInventory, ITic
     }
 
     @Override
-    public void clear() {
+    public void clearContent() {
         this.items.clear();
     }
 
 
 }
-
-
- */
+*/

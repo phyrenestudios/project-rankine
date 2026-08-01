@@ -6,8 +6,9 @@ import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -21,7 +22,8 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
-import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -38,7 +40,7 @@ public class MetalLadderBlock extends BuildingModeBlock implements SimpleWaterlo
     int alloyColor;
 
     public MetalLadderBlock(int color) {
-        super(Block.Properties.of(Material.DECORATION).sound(SoundType.METAL).strength(1.0F).noOcclusion());
+        super(Block.Properties.of().mapColor(MapColor.NONE).forceSolidOff().sound(SoundType.METAL).strength(1.0F).noOcclusion().pushReaction(PushReaction.DESTROY));
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(WATERLOGGED, Boolean.FALSE));
         this.alloyColor = color;
     }
@@ -47,9 +49,9 @@ public class MetalLadderBlock extends BuildingModeBlock implements SimpleWaterlo
     public int getMaxStyles() {
         return 4;
     }
-    
+
     @Override
-    public VoxelShape getShape(BlockState p_54372_, BlockGetter p_54373_, BlockPos p_54374_, CollisionContext p_54375_) {
+    protected VoxelShape getShape(BlockState p_54372_, BlockGetter p_54373_, BlockPos p_54374_, CollisionContext p_54375_) {
         switch(p_54372_.getValue(FACING)) {
             case NORTH:
                 return NORTH_AABB;
@@ -68,7 +70,7 @@ public class MetalLadderBlock extends BuildingModeBlock implements SimpleWaterlo
     }
 
     @Override
-    public boolean canSurvive(BlockState state, LevelReader levelIn, BlockPos pos) {
+    protected boolean canSurvive(BlockState state, LevelReader levelIn, BlockPos pos) {
         Direction direction = state.getValue(FACING);
         if (canAttachTo(levelIn, pos.relative(direction.getOpposite()), direction)) return true;
         for (int n = 1; n <= 7; ++n) {
@@ -84,7 +86,7 @@ public class MetalLadderBlock extends BuildingModeBlock implements SimpleWaterlo
     }
 
     @Override
-    public BlockState updateShape(BlockState stateIn, Direction dirIn, BlockState facingState, LevelAccessor levelIn, BlockPos posIn, BlockPos facingPos) {
+    protected BlockState updateShape(BlockState stateIn, Direction dirIn, BlockState facingState, LevelAccessor levelIn, BlockPos posIn, BlockPos facingPos) {
         if (!canSurvive(stateIn, levelIn, posIn)) return Blocks.AIR.defaultBlockState();
         if (stateIn.getValue(WATERLOGGED)) {
             levelIn.scheduleTick(posIn, Fluids.WATER, Fluids.WATER.getTickDelay(levelIn));
@@ -120,8 +122,8 @@ public class MetalLadderBlock extends BuildingModeBlock implements SimpleWaterlo
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level levelIn, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
-        if (!player.getItemInHand(hand).is(this.asItem())) return super.use(state, levelIn, pos, player, hand, result);
+    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level levelIn, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
+        if (!stack.is(this.asItem())) return super.useItemOn(stack, state, levelIn, pos, player, hand, result);
         int n = 0;
         while (!levelIn.isEmptyBlock(pos.above(n))) {
             n += 1;
@@ -130,24 +132,28 @@ public class MetalLadderBlock extends BuildingModeBlock implements SimpleWaterlo
             levelIn.setBlockAndUpdate(pos.above(n), state.setValue(getProperty(), ((BuildingModeBlockItem) player.getItemInHand(hand).getItem()).getBuildingMode(player.getItemInHand(hand))));
             levelIn.playSound(null,pos.above(n), SoundEvents.METAL_PLACE, SoundSource.BLOCKS,1.0f,1.0f);
             if (!player.isCreative()) player.getItemInHand(hand).shrink(1);
-            return InteractionResult.sidedSuccess(levelIn.isClientSide);
+            return ItemInteractionResult.sidedSuccess(levelIn.isClientSide);
         }
-        return super.use(state, levelIn, pos, player, hand, result);
+        return super.useItemOn(stack, state, levelIn, pos, player, hand, result);
     }
 
-    public BlockState rotate(BlockState p_54360_, Rotation p_54361_) {
+    @Override
+    protected BlockState rotate(BlockState p_54360_, Rotation p_54361_) {
         return p_54360_.setValue(FACING, p_54361_.rotate(p_54360_.getValue(FACING)));
     }
 
-    public BlockState mirror(BlockState p_54357_, Mirror p_54358_) {
+    @Override
+    protected BlockState mirror(BlockState p_54357_, Mirror p_54358_) {
         return p_54357_.rotate(p_54358_.getRotation(p_54357_.getValue(FACING)));
     }
 
+    @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> p_54370_) {
         p_54370_.add(FACING, WATERLOGGED, getProperty());
     }
 
-    public FluidState getFluidState(BlockState p_54377_) {
+    @Override
+    protected FluidState getFluidState(BlockState p_54377_) {
         return p_54377_.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(p_54377_);
     }
 }

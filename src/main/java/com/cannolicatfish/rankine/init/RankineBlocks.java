@@ -67,6 +67,7 @@ import com.cannolicatfish.rankine.fluids.RankineFlowingFluidBlock;
 import com.cannolicatfish.rankine.util.GasUtilsEnum;
 import com.cannolicatfish.rankine.world.grower.*;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.inventory.MenuType;
@@ -77,20 +78,20 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.material.Material;
-import net.minecraft.world.level.material.MaterialColor;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
+import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.neoforge.common.PlantType;
+import net.neoforged.neoforge.registries.DeferredBlock;
+import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import net.neoforged.neoforge.registries.ForgeRegistries;
-import net.neoforged.neoforge.registries.ObjectHolder;
-import net.neoforged.neoforge.registries.RegistryObject;
 
 import java.util.function.ToIntFunction;
 
 public class RankineBlocks {
 
-    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, ProjectRankine.MODID);
-    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, ProjectRankine.MODID);
+    public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(ProjectRankine.MODID);
+    public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(ProjectRankine.MODID);
 
     //Base Properties
     public static Block.Properties IGNEOUS_STONE_BRICKS = Block.Properties.of(Material.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(2.0F * Config.BLOCK_PROPERTIES.BRICKS_HARDNESS_MULT.get().floatValue(), 6.0F * Config.BLOCK_PROPERTIES.BRICKS_RESISTANCE_MULT.get().floatValue());
@@ -1461,6 +1462,12 @@ public class RankineBlocks {
 
     //OTHER STUFFS
 
+    // PORT-TODO(init): net.neoforged.neoforge.registries.ObjectHolder no longer exists in NeoForge 1.21.1 (the
+    // annotation-injection registry mechanism was removed). The @ObjectHolder annotations below have been dropped
+    // and these fields are left as plain uninitialized static fields; nothing else in the codebase reads them
+    // (verified via repo-wide search) and the real, modern registrations already live in RankineContainers.java
+    // (MenuType) and RankineBlockEntityTypes.java (BlockEntityType). These fields appear to be dead/superseded
+    // duplicates from the old registration style — their owner should confirm and likely delete this whole block.
     @ObjectHolder("rankine:alloy_furnace")
     public static MenuType<AlloyFurnaceContainer> ALLOY_FURNACE_CONTAINER;
 
@@ -1557,7 +1564,7 @@ public class RankineBlocks {
 
 
     public static Block getBlock(String name) {
-        Block block = ForgeRegistries.BLOCKS.getValue(ResourceLocation.fromNamespaceAndPath("rankine", name));
+        Block block = BuiltInRegistries.BLOCK.get(ResourceLocation.fromNamespaceAndPath("rankine", name));
         if (block != null) {
             return block;
         } else {

@@ -20,7 +20,7 @@ public class BarleyPlantBlock extends DoubleCropsBlock {
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
+    protected VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
         switch (state.getValue(SECTION)) {
             case LOWER:
                 return LOWER_SHAPE_BY_AGE[state.getValue(this.getAgeProperty())];
@@ -30,6 +30,7 @@ public class BarleyPlantBlock extends DoubleCropsBlock {
         return super.getShape(state, worldIn, pos, context);
     }
 
+    @Override
     protected ItemLike getBaseSeedId() {
         return RankineItems.BARLEY_SEEDS.get();
     }

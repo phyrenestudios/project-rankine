@@ -3,7 +3,9 @@ package com.cannolicatfish.rankine.init;
 import com.cannolicatfish.rankine.blocks.block_groups.RankineStone;
 import com.cannolicatfish.rankine.blocks.block_groups.RankineWood;
 import com.cannolicatfish.rankine.blocks.states.TilledSoilTypes;
-import net.minecraft.core.Registry;
+import net.minecraft.core.Holder;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
@@ -15,7 +17,6 @@ import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.common.ModConfigSpec;
-import net.neoforged.neoforge.registries.ForgeRegistries;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -101,8 +102,8 @@ public class VanillaIntegration {
         RankineStonesMap.put(RankineBlocks.HONEYSTONE.getStone(), RankineBlocks.HONEYSTONE);
         
         
-        vegetationMap.put(RankineBlocks.SHORT_GRASS.get().defaultBlockState(), Blocks.GRASS.defaultBlockState());
-        vegetationMap.put(Blocks.GRASS.defaultBlockState(), Blocks.TALL_GRASS.defaultBlockState());
+        vegetationMap.put(RankineBlocks.SHORT_GRASS.get().defaultBlockState(), Blocks.SHORT_GRASS.defaultBlockState());
+        vegetationMap.put(Blocks.SHORT_GRASS.defaultBlockState(), Blocks.TALL_GRASS.defaultBlockState());
 
 
         oreNuggetMap.put(RankineBlocks.MALACHITE_ORE.get(),RankineItems.COPPER_NUGGET.get());
@@ -323,15 +324,16 @@ public class VanillaIntegration {
 
                     if (RS.contains("#")) {
                         ResourceLocation newRS = ResourceLocation.tryParse(RS.replace("#",""));
-                        TagKey<Item> tag = TagKey.create(Registry.ITEM_REGISTRY,newRS);
-                        for (Item item : ForgeRegistries.ITEMS.tags().getTag(tag).stream().toList()) {
-                            if (item != null && !fuelValueMap.containsKey(item)) {
+                        TagKey<Item> tag = TagKey.create(Registries.ITEM,newRS);
+                        for (Holder<Item> holder : BuiltInRegistries.ITEM.getTagOrEmpty(tag)) {
+                            Item item = holder.value();
+                            if (!fuelValueMap.containsKey(item)) {
                                 fuelValueMap.put(item, burnTime);
                             }
                         }
                     } else {
-                        Item item = ForgeRegistries.ITEMS.getValue(ResourceLocation.tryParse(RS));
-                        if (item != null && !fuelValueMap.containsKey(item)) {
+                        Item item = BuiltInRegistries.ITEM.get(ResourceLocation.tryParse(RS));
+                        if (item != Items.AIR && !fuelValueMap.containsKey(item)) {
                             fuelValueMap.put(item,burnTime);
                         }
                     }
@@ -404,7 +406,7 @@ public class VanillaIntegration {
     }
 
     public static void addFlowerPot(Block plant, FlowerPotBlock plantPot) {
-        ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(plant.getRegistryName(), () -> plantPot);
+        ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(BuiltInRegistries.BLOCK.getKey(plant), () -> plantPot);
     }
 
 

@@ -1,43 +1,44 @@
 package com.cannolicatfish.rankine.items.alloys;
 
 import com.cannolicatfish.rankine.init.RankineEnchantments;
-import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
-import com.google.common.collect.ImmutableSet;
+import com.cannolicatfish.rankine.items.tools.RankineToolMaterials;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.common.Tags;
-import net.neoforged.neoforge.common.TierSortingRegistry;
 
 import javax.annotation.Nullable;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
 
 public class AlloyHoeItem extends HoeItem implements IAlloyTool {
-    private static final Set<Block> EFFECTIVE_ON_BLOCKS = ImmutableSet.of(Blocks.NETHER_WART_BLOCK, Blocks.WARPED_WART_BLOCK, Blocks.HAY_BLOCK, Blocks.DRIED_KELP_BLOCK, Blocks.TARGET, Blocks.SHROOMLIGHT, Blocks.SPONGE, Blocks.WET_SPONGE, Blocks.JUNGLE_LEAVES, Blocks.OAK_LEAVES, Blocks.SPRUCE_LEAVES, Blocks.DARK_OAK_LEAVES, Blocks.ACACIA_LEAVES, Blocks.BIRCH_LEAVES);
     private final String defaultComposition;
     private final ResourceLocation defaultAlloyRecipe;
 
     public AlloyHoeItem(Tier tier, float attackDamageIn, float attackSpeedIn, String defaultCompositionIn, @Nullable ResourceLocation defaultAlloyRecipeIn,  Item.Properties builder) {
-        super( tier, (int) attackDamageIn, attackSpeedIn, builder);
+        super(tier, builder.attributes(HoeItem.createAttributes(tier, (float)(int) attackDamageIn, attackSpeedIn)));
         this.defaultComposition = defaultCompositionIn;
         this.defaultAlloyRecipe = defaultAlloyRecipeIn;
+    }
+
+    private static int getEnchantmentLevel(ItemStack stack, ResourceKey<Enchantment> key) {
+        for (var entry : stack.getTagEnchantments().entrySet()) {
+            if (entry.getKey().is(key)) return entry.getIntValue();
+        }
+        return 0;
     }
 
     @Override
@@ -45,10 +46,15 @@ public class AlloyHoeItem extends HoeItem implements IAlloyTool {
         return false;
     }
 
+    @Nullable
+    @Override
+    public TagKey<Block> getAlloyMineableTag() {
+        return BlockTags.MINEABLE_WITH_HOE;
+    }
+
     @Override
     public boolean isCorrectToolForDrops(ItemStack stack, BlockState state) {
-        List<Tiers> tiers = Arrays.asList(Tiers.WOOD,Tiers.STONE,Tiers.IRON,Tiers.DIAMOND,Tiers.NETHERITE);
-        return state.is(BlockTags.MINEABLE_WITH_HOE) && TierSortingRegistry.isCorrectTierForDrops(tiers.get(getAlloyHarvestLevel(stack)),state);
+        return state.is(BlockTags.MINEABLE_WITH_HOE) && !state.is(RankineToolMaterials.incorrectBlocksForLevel(getAlloyHarvestLevel(stack)));
     }
 
     @Override
@@ -61,55 +67,26 @@ public class AlloyHoeItem extends HoeItem implements IAlloyTool {
 
     @Override
     public float getDestroySpeed(ItemStack p_41004_, BlockState p_41005_) {
-        return p_41005_.is(BlockTags.MINEABLE_WITH_HOE) || ((EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.FORAGING.get(),p_41004_) >= 1 && p_41005_.is(BlockTags.MINEABLE_WITH_SHOVEL))) ? getAlloyMiningSpeed(p_41004_) : 1.0F;
+        return p_41005_.is(BlockTags.MINEABLE_WITH_HOE) || ((getEnchantmentLevel(p_41004_, RankineEnchantments.FORAGING) >= 1 && p_41005_.is(BlockTags.MINEABLE_WITH_SHOVEL))) ? getAlloyMiningSpeed(p_41004_) : 1.0F;
     }
 
-/*
     @Override
-    public ActionResultType onItemUse(ItemUseContext context) {
-        World world = context.getWorld();
-        BlockPos blockpos = context.getPos();
-        int hook = net.neoforged.neoforge.event.ForgeEventFactory.onHoeUse(context);
-        if (hook != 0) return hook > 0 ? ActionResultType.SUCCESS : ActionResultType.FAIL;
-        if (context.getFace() != Direction.DOWN && world.isAirBlock(blockpos.up())) {
-            BlockState blockstate = HOE_LOOKUP.get(world.getBlockState(blockpos).getBlock());
-            if (blockstate != null) {
-                PlayerEntity playerentity = context.getPlayer();
-                world.playSound(playerentity, blockpos, SoundEvents.ITEM_HOE_TILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                if (!world.isRemote) {
-                    world.setBlockState(blockpos, blockstate, 11);
-                    if (playerentity != null) {
-                        context.getItem().damageItem(calcDurabilityLoss(context.getItem(),context.getWorld(),context.getPlayer(),true), playerentity, (p_220043_1_) -> {
-                            p_220043_1_.sendBreakAnimation(context.getHand());
-                        });
-                    }
-                }
-
-                return ActionResultType.sidedSuccess(world.isRemote);
-            }
-        }
-
-        return ActionResultType.PASS;
+    public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+        return true;
     }
 
- */
-
-
-    public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        stack.hurtAndBreak(calcDurabilityLoss(stack,attacker.getCommandSenderWorld(),attacker,false), attacker, (entity) -> {
-            entity.broadcastBreakEvent(EquipmentSlot.MAINHAND);
-        });
-        return true;
+    @Override
+    public void postHurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+        stack.hurtAndBreak(calcDurabilityLoss(stack,attacker.getCommandSenderWorld(),attacker,false), attacker, EquipmentSlot.MAINHAND);
     }
 
     /**
      * Called when a Block is destroyed using this Item. Return true to trigger the "Use Item" statistic.
      */
+    @Override
     public boolean mineBlock(ItemStack stack, Level worldIn, BlockState state, BlockPos pos, LivingEntity entityLiving) {
         if (!worldIn.isClientSide && state.getDestroySpeed(worldIn, pos) != 0.0F) {
-            stack.hurtAndBreak(calcDurabilityLoss(stack,worldIn,entityLiving,true), entityLiving, (entity) -> {
-                entity.broadcastBreakEvent(EquipmentSlot.MAINHAND);
-            });
+            stack.hurtAndBreak(calcDurabilityLoss(stack,worldIn,entityLiving,true), entityLiving, EquipmentSlot.MAINHAND);
         }
 
         return true;
@@ -121,16 +98,16 @@ public class AlloyHoeItem extends HoeItem implements IAlloyTool {
     }
 
     @Override
-    public int getItemEnchantability(ItemStack stack) {
+    public int getEnchantmentValue(ItemStack stack) {
         return this.getAlloyEnchantability(stack);
     }
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-        addAlloyInformation(stack,worldIn,tooltip,flagIn);
+    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag flagIn) {
+        addAlloyInformation(stack,context.level(),tooltip,flagIn);
         if (flagIn.isAdvanced()) {
-            addAdvancedAlloyInformation(stack,worldIn,tooltip,flagIn);
+            addAdvancedAlloyInformation(stack,context.level(),tooltip,flagIn);
         }
     }
 
@@ -154,15 +131,9 @@ public class AlloyHoeItem extends HoeItem implements IAlloyTool {
         super.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
     }
 
-    @Override
-    public void fillItemCategory(CreativeModeTab group, NonNullList<ItemStack> items) {
-        if (this.allowdedIn(group) && this.defaultAlloyRecipe == null) {
-            items.addAll(AlloyCustomHelper.getItemsFromAlloying(this));
-            items.addAll(AlloyCustomHelper.getItemsFromAlloyCrafting(this));
-        } else if (this.allowdedIn(group)) {
-            super.fillItemCategory(group,items);
-        }
-    }
+    // PORT-TODO(init): fillItemCategory is gone — dynamic creative-tab variants
+    // (AlloyCustomHelper.getItemsFromAlloying/getItemsFromAlloyCrafting when defaultAlloyRecipe == null)
+    // must be added in RankineCreativeTabs' displayItems.
 
     @Override
     public String getDefaultComposition() {
@@ -180,8 +151,8 @@ public class AlloyHoeItem extends HoeItem implements IAlloyTool {
             String s = IAlloyItem.getAlloyComposition(repair);
             String r = IAlloyItem.getAlloyComposition(toRepair);
 
-            String s2 = IAlloyItem.getAlloyRecipe(repair).toString();
-            String r2 = IAlloyItem.getAlloyRecipe(toRepair).toString();
+            String s2 = String.valueOf(IAlloyItem.getAlloyRecipe(repair));
+            String r2 = String.valueOf(IAlloyItem.getAlloyRecipe(toRepair));
             return !s.isEmpty() && s.equals(r) && s2.equals(r2);
         }
         return false;

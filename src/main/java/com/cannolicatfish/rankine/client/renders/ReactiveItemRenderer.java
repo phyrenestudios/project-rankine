@@ -8,7 +8,7 @@ import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.resources.model.BakedModel;
-import net.minecraft.client.renderer.block.model.ItemTransforms;
+import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.world.entity.LivingEntity;
@@ -16,7 +16,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
@@ -56,15 +56,15 @@ public class ReactiveItemRenderer extends EntityRenderer<ReactiveItemEntity> {
         ItemStack itemstack = entityIn.getItem();
         int i = itemstack.isEmpty() ? 187 : Item.getId(itemstack.getItem()) + itemstack.getDamageValue();
         this.random.setSeed((long)i);
-        BakedModel ibakedmodel = this.itemRenderer.getModel(itemstack, entityIn.level, (LivingEntity)null, entityIn.getId());
+        BakedModel ibakedmodel = this.itemRenderer.getModel(itemstack, entityIn.level(), (LivingEntity)null, entityIn.getId());
         boolean flag = ibakedmodel.isGui3d();
         int j = this.getModelCount(itemstack);
         float f = 0.25F;
         float f1 = Mth.sin(((float)entityIn.getAge() + partialTicks) / 10.0F + entityIn.bobOffs) * 0.1F + 0.1F;
-        float f2 = shouldBob() ? ibakedmodel.getTransforms().getTransform(ItemTransforms.TransformType.GROUND).scale.y() : 0;
+        float f2 = shouldBob() ? ibakedmodel.getTransforms().getTransform(ItemDisplayContext.GROUND).scale.y() : 0;
         matrixStackIn.translate(0.0D, (double)(f1 + 0.25F * f2), 0.0D);
         float f3 = entityIn.getSpin(partialTicks);
-        matrixStackIn.mulPose(Vector3f.YP.rotation(f3));
+        matrixStackIn.mulPose(Axis.YP.rotation(f3));
         if (!flag) {
             float f7 = -0.0F * (float)(j - 1) * 0.5F;
             float f8 = -0.0F * (float)(j - 1) * 0.5F;
@@ -87,7 +87,7 @@ public class ReactiveItemRenderer extends EntityRenderer<ReactiveItemEntity> {
                 }
             }
 
-            this.itemRenderer.render(itemstack, ItemTransforms.TransformType.GROUND, false, matrixStackIn, bufferIn, packedLightIn, OverlayTexture.NO_OVERLAY, ibakedmodel);
+            this.itemRenderer.render(itemstack, ItemDisplayContext.GROUND, false, matrixStackIn, bufferIn, packedLightIn, OverlayTexture.NO_OVERLAY, ibakedmodel);
             matrixStackIn.popPose();
             if (!flag) {
                 matrixStackIn.translate(0.0, 0.0, 0.09375F);

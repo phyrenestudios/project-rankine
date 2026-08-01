@@ -5,19 +5,22 @@ import com.cannolicatfish.rankine.init.RankineRecipeSerializers;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.recipe.helper.AlloyIngredientHelper;
 import com.cannolicatfish.rankine.recipe.helper.FluidHelper;
+import com.cannolicatfish.rankine.recipe.helper.RankineMapCodec;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
+import com.mojang.serialization.MapCodec;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
-import net.minecraft.core.Registry;
-import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
-import net.minecraft.world.Container;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeInput;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
@@ -27,7 +30,7 @@ import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
 import java.util.Arrays;
 import java.util.List;
 
-public class FusionFurnaceRecipe implements Recipe<Container> {
+public class FusionFurnaceRecipe implements Recipe<RecipeInput> {
 
     protected int cookTime;
     protected FluidStack fluidIn;
@@ -39,10 +42,7 @@ public class FusionFurnaceRecipe implements Recipe<Container> {
     protected ItemStack result1;
     protected ItemStack result2;
 
-    protected final ResourceLocation id;
-
-    public FusionFurnaceRecipe(ResourceLocation id, FluidStack fluidIn, ItemStack gasIn, Ingredient input1, Ingredient input2, FluidStack fluidOut, ItemStack gasOut, ItemStack output1,ItemStack output2,int cookTimeIn) {
-        this.id = id;
+    public FusionFurnaceRecipe(FluidStack fluidIn, ItemStack gasIn, Ingredient input1, Ingredient input2, FluidStack fluidOut, ItemStack gasOut, ItemStack output1,ItemStack output2,int cookTimeIn) {
         this.ingredient1 = input1;
         this.ingredient2 = input2;
         this.fluidIn = fluidIn;
@@ -59,21 +59,25 @@ public class FusionFurnaceRecipe implements Recipe<Container> {
         return true;
     }
 
+    @Override
     public String getGroup() {
         return "";
     }
 
     @Override
-    public boolean matches(Container inv, Level worldIn) {
+    public boolean matches(RecipeInput inv, Level worldIn) {
         return false;
     }
 
-    public boolean matchesRecipe(Container inv, FluidTank tankIn, FluidTank tankOut, Level worldIn) {
+    /**
+     * Slot layout matches the 1.18.2 fusion furnace container: 0 and 1 are the item inputs, 3 is the gas input.
+     */
+    public boolean matchesRecipe(RecipeInput inv, FluidTank tankIn, FluidTank tankOut, Level worldIn) {
         boolean fluidInCheck = this.fluidIn.isEmpty() || tankIn.getFluid().containsFluid(this.fluidIn);
         boolean fluidOutCheck = this.fluidIn.isEmpty() || tankOut.isFluidValid(this.fluidOut);
         return ((this.ingredient2.test(inv.getItem(0)) && this.ingredient1.test(inv.getItem(1)))
                 || (this.ingredient1.test(inv.getItem(0)) && this.ingredient2.test(inv.getItem(1))))
-                && (this.gasIn.isEmpty() || inv.getItem(3).sameItem(this.gasIn)) && fluidInCheck && fluidOutCheck;
+                && (this.gasIn.isEmpty() || ItemStack.isSameItem(inv.getItem(3), this.gasIn)) && fluidInCheck && fluidOutCheck;
     }
 
     public Ingredient getIngredient1() {
@@ -85,7 +89,7 @@ public class FusionFurnaceRecipe implements Recipe<Container> {
     }
 
     @Override
-    public ItemStack assemble(Container inv) {
+    public ItemStack assemble(RecipeInput inv, HolderLookup.Provider provider) {
         return ItemStack.EMPTY;
     }
 
@@ -121,6 +125,11 @@ public class FusionFurnaceRecipe implements Recipe<Container> {
     }
 
     @Override
+    public ItemStack getResultItem(HolderLookup.Provider provider) {
+        return ItemStack.EMPTY;
+    }
+
+    /** Convenience overload matching the pre-1.21 API. */
     public ItemStack getResultItem() {
         return ItemStack.EMPTY;
     }
@@ -146,30 +155,24 @@ public class FusionFurnaceRecipe implements Recipe<Container> {
     }
 
     @Override
-    public ResourceLocation getId() {
-        return this.id;
-    }
-
-    @Override
     public RecipeSerializer<?> getSerializer() {
         return RankineRecipeSerializers.FUSION_FURNACE_RECIPE_SERIALIZER.get();
     }
 
     @Override
     public RecipeType<?> getType() {
-        return RankineRecipeTypes.FUSION_FURNACE;
+        return RankineRecipeTypes.FUSION_FURNACE.get();
     }
 
     public static ItemStack deserializeItem(JsonObject object) {
         String s = GsonHelper.getAsString(object, "item");
-        Item item = Registry.ITEM.getOptional(ResourceLocation.parse(s)).orElseThrow(() -> {
+        BuiltInRegistries.ITEM.getOptional(ResourceLocation.parse(s)).orElseThrow(() -> {
             return new JsonSyntaxException("Unknown item '" + s + "'");
         });
 
         if (object.has("data")) {
             throw new JsonParseException("Disallowed data tag found");
         } else {
-            int i = GsonHelper.getAsInt(object, "count", 1);
             return AlloyIngredientHelper.getItemStack(object, true);
         }
     }
@@ -182,47 +185,75 @@ public class FusionFurnaceRecipe implements Recipe<Container> {
         return fluidIn;
     }
 
-    public static class Serializer extends net.neoforged.neoforge.registries.ForgeRegistryEntry<RecipeSerializer<?>>  implements RecipeSerializer<FusionFurnaceRecipe> {
-        private static final ResourceLocation NAME = ResourceLocation.fromNamespaceAndPath("rankine", "fusion_furnace");
-        public FusionFurnaceRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
+    public static class Serializer implements RecipeSerializer<FusionFurnaceRecipe> {
+
+        public static final MapCodec<FusionFurnaceRecipe> CODEC = RankineMapCodec.of(
+                Serializer::fromJson, Serializer::toJson,
+                RankineMapCodec.fixedKeys("cookTime","fluidInput","gasInput","input1","input2","result1","result2","gasOutput","fluidOutput"));
+
+        public static final StreamCodec<RegistryFriendlyByteBuf, FusionFurnaceRecipe> STREAM_CODEC =
+                StreamCodec.of(Serializer::toNetwork, Serializer::fromNetwork);
+
+        @Override
+        public MapCodec<FusionFurnaceRecipe> codec() {
+            return CODEC;
+        }
+
+        @Override
+        public StreamCodec<RegistryFriendlyByteBuf, FusionFurnaceRecipe> streamCodec() {
+            return STREAM_CODEC;
+        }
+
+        public static FusionFurnaceRecipe fromJson(JsonObject json) {
             int w = json.has("cookTime") ? json.get("cookTime").getAsInt() : 400;
             FluidStack fIn = json.has("fluidInput") ? FluidHelper.getFluidStack(GsonHelper.getAsJsonObject(json, "fluidInput")) : FluidStack.EMPTY;
             ItemStack gIn = json.has("gasInput") ? deserializeItem(GsonHelper.getAsJsonObject(json,"gasInput")) : ItemStack.EMPTY;
-            Ingredient in1 = json.has("input1") ? Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "input1")) : Ingredient.EMPTY;
-            Ingredient in2 = json.has("input2") ? Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "input2")) : Ingredient.EMPTY;
+            Ingredient in1 = json.has("input1") ? AlloyIngredientHelper.ingredientFromJson(json.get("input1")) : Ingredient.EMPTY;
+            Ingredient in2 = json.has("input2") ? AlloyIngredientHelper.ingredientFromJson(json.get("input2")) : Ingredient.EMPTY;
             ItemStack output1 = json.has("result1") ? deserializeItem(GsonHelper.getAsJsonObject(json,"result1")) : ItemStack.EMPTY;
             ItemStack output2 = json.has("result2") ? deserializeItem(GsonHelper.getAsJsonObject(json,"result2")) : ItemStack.EMPTY;
             ItemStack gOut = json.has("gasOutput") ? deserializeItem(GsonHelper.getAsJsonObject(json,"gasOutput")) : ItemStack.EMPTY;
             FluidStack fOut = json.has("fluidOutput") ? FluidHelper.getFluidStack(GsonHelper.getAsJsonObject(json, "fluidOutput")) : FluidStack.EMPTY;
 
-            return new FusionFurnaceRecipe(recipeId,fIn,gIn,in1,in2,fOut,gOut,output1,output2,w);
+            return new FusionFurnaceRecipe(fIn,gIn,in1,in2,fOut,gOut,output1,output2,w);
         }
 
-        public FusionFurnaceRecipe fromNetwork(ResourceLocation recipeId, FriendlyByteBuf buffer) {
+        public static void toJson(FusionFurnaceRecipe recipe, JsonObject json) {
+            json.addProperty("cookTime", recipe.cookTime);
+            if (!recipe.fluidIn.isEmpty()) json.add("fluidInput", FluidHelper.fluidStackToJson(recipe.fluidIn));
+            if (!recipe.gasIn.isEmpty()) json.add("gasInput", AlloyIngredientHelper.itemStackToJson(recipe.gasIn));
+            if (!recipe.ingredient1.isEmpty()) json.add("input1", AlloyIngredientHelper.ingredientToJson(recipe.ingredient1));
+            if (!recipe.ingredient2.isEmpty()) json.add("input2", AlloyIngredientHelper.ingredientToJson(recipe.ingredient2));
+            if (!recipe.result1.isEmpty()) json.add("result1", AlloyIngredientHelper.itemStackToJson(recipe.result1));
+            if (!recipe.result2.isEmpty()) json.add("result2", AlloyIngredientHelper.itemStackToJson(recipe.result2));
+            if (!recipe.gasOut.isEmpty()) json.add("gasOutput", AlloyIngredientHelper.itemStackToJson(recipe.gasOut));
+            if (!recipe.fluidOut.isEmpty()) json.add("fluidOutput", FluidHelper.fluidStackToJson(recipe.fluidOut));
+        }
+
+        public static FusionFurnaceRecipe fromNetwork(RegistryFriendlyByteBuf buffer) {
             int w = buffer.readInt();
-            FluidStack fIn = buffer.readFluidStack();
-            ItemStack gIn = buffer.readItem();
-            Ingredient in1 = Ingredient.fromNetwork(buffer);
-            Ingredient in2 = Ingredient.fromNetwork(buffer);
-            ItemStack output1 = buffer.readItem();
-            ItemStack output2 = buffer.readItem();
-            ItemStack gOut = buffer.readItem();
-            FluidStack fOut = buffer.readFluidStack();
-            return new FusionFurnaceRecipe(recipeId,fIn,gIn,in1,in2,fOut,gOut,output1,output2,w);
+            FluidStack fIn = FluidStack.OPTIONAL_STREAM_CODEC.decode(buffer);
+            ItemStack gIn = ItemStack.OPTIONAL_STREAM_CODEC.decode(buffer);
+            Ingredient in1 = Ingredient.CONTENTS_STREAM_CODEC.decode(buffer);
+            Ingredient in2 = Ingredient.CONTENTS_STREAM_CODEC.decode(buffer);
+            ItemStack output1 = ItemStack.OPTIONAL_STREAM_CODEC.decode(buffer);
+            ItemStack output2 = ItemStack.OPTIONAL_STREAM_CODEC.decode(buffer);
+            ItemStack gOut = ItemStack.OPTIONAL_STREAM_CODEC.decode(buffer);
+            FluidStack fOut = FluidStack.OPTIONAL_STREAM_CODEC.decode(buffer);
+            return new FusionFurnaceRecipe(fIn,gIn,in1,in2,fOut,gOut,output1,output2,w);
         }
 
-        public void toNetwork(FriendlyByteBuf buffer, FusionFurnaceRecipe recipe) {
+        public static void toNetwork(RegistryFriendlyByteBuf buffer, FusionFurnaceRecipe recipe) {
             buffer.writeInt(recipe.cookTime);
-            buffer.writeFluidStack(recipe.fluidIn);
-            buffer.writeItem(recipe.gasIn);
-            recipe.ingredient1.toNetwork(buffer);
-            recipe.ingredient2.toNetwork(buffer);
-            buffer.writeItem(recipe.result1);
-            buffer.writeItem(recipe.result2);
-            buffer.writeItem(recipe.gasOut);
-            buffer.writeFluidStack(recipe.fluidOut);
+            FluidStack.OPTIONAL_STREAM_CODEC.encode(buffer, recipe.fluidIn);
+            ItemStack.OPTIONAL_STREAM_CODEC.encode(buffer, recipe.gasIn);
+            Ingredient.CONTENTS_STREAM_CODEC.encode(buffer, recipe.ingredient1);
+            Ingredient.CONTENTS_STREAM_CODEC.encode(buffer, recipe.ingredient2);
+            ItemStack.OPTIONAL_STREAM_CODEC.encode(buffer, recipe.result1);
+            ItemStack.OPTIONAL_STREAM_CODEC.encode(buffer, recipe.result2);
+            ItemStack.OPTIONAL_STREAM_CODEC.encode(buffer, recipe.gasOut);
+            FluidStack.OPTIONAL_STREAM_CODEC.encode(buffer, recipe.fluidOut);
         }
     }
 
 }
-

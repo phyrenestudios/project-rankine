@@ -1,9 +1,12 @@
 package com.cannolicatfish.rankine.items.alloys;
 
+import com.cannolicatfish.rankine.init.RankineDataComponents;
+import com.cannolicatfish.rankine.init.RankineDataComponents.AlloyStats;
 import com.cannolicatfish.rankine.recipe.AlloyModifierRecipe;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import com.cannolicatfish.rankine.util.alloys.AlloyModifier;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.item.ItemStack;
 
 import javax.annotation.Nullable;
@@ -29,67 +32,41 @@ public interface IAlloySpecialItem extends IAlloyItem {
         return null;
     }
 
-    // Used for applying an alloy modifier after a tool has already been created (ex. Smithing Table)
-    /*
-    default void applyAlloyModifier(ItemStack stack, AlloyModifierRecipe modifier) {
-        if (stack.getTag() != null && (!stack.getTag().contains("AlloyModifiers") || !stack.getTag().getCompound("AlloyModifiers").contains(modifier.getName()))) {
-            if (!stack.getTag().contains("AlloyModifiers")) {
-                stack.getTag().put("AlloyModifiers",new CompoundNBT());
+    /**
+     * Central helper: stores the computed alloy stats component and mirrors the durability into
+     * the vanilla MAX_DAMAGE component so the stack is damageable/repairable like in 1.18.2
+     * (old code overrode getMaxDamage(ItemStack) from NBT; the override is kept as well).
+     */
+    default void applyAlloyStats(ItemStack stack, AlloyStats stats) {
+        stack.set(RankineDataComponents.ALLOY_STATS.get(), stats);
+        if (stats.durability() > 0) {
+            stack.set(DataComponents.MAX_DAMAGE, stats.durability());
+            if (!stack.has(DataComponents.DAMAGE)) {
+                stack.set(DataComponents.DAMAGE, 0);
             }
-            switch (modifier.getType()) {
-                case DURABILITY:
-                    stack.getTag().getCompound("StoredAlloy").putInt("durability", (int) modifier.returnModification(this.getAlloyDurability(stack)));
-                    stack.getTag().getCompound("AlloyModifiers").putInt(modifier.getName(), (int) modifier.getValue());
-                    return;
-                case HARVEST_LEVEL:
-                    stack.getTag().getCompound("StoredAlloy").putInt("harvestLevel", (int) modifier.returnModification(this.getAlloyDurability(stack)));
-                    stack.getTag().getCompound("AlloyModifiers").putInt(modifier.getName(), (int) modifier.getValue());
-                    return;
-                case ENCHANTABILITY:
-                    stack.getTag().getCompound("StoredAlloy").putInt("enchantability", (int) modifier.returnModification(this.getAlloyDurability(stack)));
-                    stack.getTag().getCompound("AlloyModifiers").putInt(modifier.getName(), (int) modifier.getValue());
-                    return;
-                case MINING_SPEED:
-                    stack.getTag().getCompound("StoredAlloy").putFloat("miningSpeed", modifier.returnModification(this.getAlloyDurability(stack)));
-                    stack.getTag().getCompound("AlloyModifiers").putFloat(modifier.getName(), modifier.getValue());
-                    return;
-                case ATTACK_DAMAGE:
-                    stack.getTag().getCompound("StoredAlloy").putFloat("attackDamage", modifier.returnModification(this.getAlloyDurability(stack)));
-                    stack.getTag().getCompound("AlloyModifiers").putFloat(modifier.getName(), modifier.getValue());
-                    return;
-                case ATTACK_SPEED:
-                    stack.getTag().getCompound("StoredAlloy").putFloat("attackSpeed", modifier.returnModification(this.getAlloyDurability(stack)));
-                    stack.getTag().getCompound("AlloyModifiers").putFloat(modifier.getName(), modifier.getValue());
-                    return;
-                case CORROSION_RESISTANCE:
-                    stack.getTag().getCompound("StoredAlloy").putFloat("corrResist", modifier.returnModification(this.getAlloyDurability(stack)));
-                    stack.getTag().getCompound("AlloyModifiers").putFloat(modifier.getName(), modifier.getValue());
-                    return;
-                case HEAT_RESISTANCE:
-                    stack.getTag().getCompound("StoredAlloy").putFloat("heatResist", modifier.returnModification(this.getAlloyDurability(stack)));
-                    stack.getTag().getCompound("AlloyModifiers").putFloat(modifier.getName(), modifier.getValue());
-                    return;
-                case TOUGHNESS:
-                    stack.getTag().getCompound("StoredAlloy").putFloat("toughness", modifier.returnModification(this.getAlloyDurability(stack)));
-                    stack.getTag().getCompound("AlloyModifiers").putFloat(modifier.getName(), modifier.getValue());
-            }
-
         }
+    }
 
-    }*/
+    @Nullable
+    default AlloyStats getAlloyStats(ItemStack stack) {
+        return stack.get(RankineDataComponents.ALLOY_STATS.get());
+    }
 
     @Override
     default boolean isAlloyInit(ItemStack stack) {
-        return stack.getTag() != null && (!stack.getTag().getCompound("StoredAlloy").isEmpty() || !stack.getTag().getCompound("StoredAlloyStats").isEmpty());
+        return stack.has(RankineDataComponents.ALLOY_COMPOSITION.get()) || stack.has(RankineDataComponents.ALLOY_RECIPE.get())
+                || stack.has(RankineDataComponents.ALLOY_STATS.get());
     }
 
+    @Override
     default boolean needsRefresh(ItemStack stack) {
-        return stack.getTag() != null && (!stack.getTag().getCompound("StoredAlloy").isEmpty() || !stack.getTag().getCompound("StoredAlloyStats").isEmpty()) && stack.getTag().getBoolean("RegenerateAlloy");
+        return this.isAlloyInit(stack) && stack.getOrDefault(RankineDataComponents.REGENERATE_ALLOY.get(), false);
     }
 
+    @Override
     default void setRefresh(ItemStack stack) {
-        if (stack.getTag() != null && (!stack.getTag().getCompound("StoredAlloy").isEmpty() || !stack.getTag().getCompound("StoredAlloyStats").isEmpty())) {
-            stack.getTag().putBoolean("RegenerateAlloy",true);
+        if (this.isAlloyInit(stack)) {
+            stack.set(RankineDataComponents.REGENERATE_ALLOY.get(), true);
         }
     }
 

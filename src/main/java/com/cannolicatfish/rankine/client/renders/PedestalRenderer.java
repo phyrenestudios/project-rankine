@@ -2,11 +2,10 @@ package com.cannolicatfish.rankine.client.renders;
 
 import com.cannolicatfish.rankine.blocks.pedestal.PedestalTile;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Quaternion;
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.block.model.ItemTransforms;
+import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.entity.ItemRenderer;
@@ -16,6 +15,7 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
+import org.joml.Quaternionf;
 
 @OnlyIn(Dist.CLIENT)
 public class PedestalRenderer implements BlockEntityRenderer<PedestalTile> {
@@ -30,12 +30,12 @@ public class PedestalRenderer implements BlockEntityRenderer<PedestalTile> {
 
         matrixStack.pushPose();
         //if (!blockEntityIn.isEmpty()) {
-            if (blockEntityIn.entity == null || !ItemStack.isSame(blockEntityIn.entity.getItem(), blockEntityIn.getItem(0))) {
+            if (blockEntityIn.entity == null || !ItemStack.isSameItemSameComponents(blockEntityIn.entity.getItem(), blockEntityIn.getItem(0))) {
                 blockEntityIn.entity = new ItemEntity(blockEntityIn.getLevel(), x, y, z, blockEntityIn.getItem(0));
             }
 
             float angle = (blockEntityIn.getLevel().getGameTime()) % 360;
-            Quaternion rotation = Vector3f.YP.rotationDegrees(angle);
+            Quaternionf rotation = Axis.YP.rotationDegrees(angle);
 
             matrixStack.translate(0.5D, 1.25D, 0.5D);
             matrixStack.mulPose(rotation);
@@ -44,7 +44,7 @@ public class PedestalRenderer implements BlockEntityRenderer<PedestalTile> {
             ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
             ItemStack stack = blockEntityIn.entity.getItem();
             BakedModel bakedmodel = itemRenderer.getModel(stack, blockEntityIn.getLevel(), (LivingEntity) null, blockEntityIn.entity.getId());
-            itemRenderer.render(stack, ItemTransforms.TransformType.FIXED, true, matrixStack, buffer, combinedLight, combinedOverlay, bakedmodel);
+            itemRenderer.render(stack, ItemDisplayContext.FIXED, true, matrixStack, buffer, combinedLight, combinedOverlay, bakedmodel);
 
         //}
         matrixStack.popPose();

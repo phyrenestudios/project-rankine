@@ -1,10 +1,12 @@
 package com.cannolicatfish.rankine.blocks.pedestal;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -22,7 +24,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
-import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -33,9 +35,19 @@ import javax.annotation.Nonnull;
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.WATERLOGGED;
 
 public class PedestalBlock extends BaseEntityBlock {
+    public static final MapCodec<PedestalBlock> CODEC = simpleCodec(PedestalBlock::new);
+
+    @Override
+    protected MapCodec<PedestalBlock> codec() {
+        return CODEC;
+    }
 
     public PedestalBlock() {
-        super(Block.Properties.of(Material.METAL).sound(SoundType.METAL).requiresCorrectToolForDrops().strength(5.0F, 10.0F));
+        this(Block.Properties.of().mapColor(MapColor.METAL).sound(SoundType.METAL).requiresCorrectToolForDrops().strength(5.0F, 10.0F));
+    }
+
+    public PedestalBlock(Properties properties) {
+        super(properties);
         registerDefaultState(defaultBlockState().setValue(BlockStateProperties.WATERLOGGED, false));
     }
 
@@ -44,7 +56,8 @@ public class PedestalBlock extends BaseEntityBlock {
         builder.add(WATERLOGGED);
     }
 
-    public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
+    @Override
+    protected VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
         return Shapes.or(
                 Block.box(2.0D, 0.0D, 2.0D, 14.0D, 2.0D, 14.0D),
                 Block.box(3.0D, 2.0D, 3.0D, 13.0D, 5.0D, 13.0D),
@@ -56,9 +69,27 @@ public class PedestalBlock extends BaseEntityBlock {
 
 
     @Override
-    public InteractionResult use(BlockState state, Level levelIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
+    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level levelIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
+        InteractionResult result = interactPedestal(state, levelIn, pos, player, handIn);
+        if (result == InteractionResult.SUCCESS) {
+            return ItemInteractionResult.SUCCESS;
+        } else if (result == InteractionResult.CONSUME) {
+            return ItemInteractionResult.CONSUME;
+        }
+        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+    }
+
+    @Override
+    protected InteractionResult useWithoutItem(BlockState state, Level levelIn, BlockPos pos, Player player, BlockHitResult hit) {
+        InteractionResult result = interactPedestal(state, levelIn, pos, player, InteractionHand.MAIN_HAND);
+        return result == null ? super.useWithoutItem(state, levelIn, pos, player, hit) : result;
+    }
+
+    // Shared logic of the old Block#use — handles both take-out (empty hand) and put-in (held item).
+    @javax.annotation.Nullable
+    private InteractionResult interactPedestal(BlockState state, Level levelIn, BlockPos pos, Player player, InteractionHand handIn) {
         PedestalTile tile = (PedestalTile) levelIn.getBlockEntity(pos);
-        if (tile == null) return super.use(state, levelIn, pos, player, handIn, hit);
+        if (tile == null) return null;
         //if (levelIn.isClientSide) return InteractionResult.CONSUME;
         ItemStack tileStack = tile.getItem(0);
         ItemStack playerStack = player.getItemInHand(handIn).copy();
@@ -82,10 +113,10 @@ public class PedestalBlock extends BaseEntityBlock {
             return InteractionResult.SUCCESS;
         }
         return InteractionResult.CONSUME;
-
     }
 
-    public void onRemove(BlockState state, Level worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
+    @Override
+    protected void onRemove(BlockState state, Level worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
         if (!state.is(newState.getBlock())) {
             BlockEntity tileentity = worldIn.getBlockEntity(pos);
             if (tileentity instanceof PedestalTile) {
@@ -96,7 +127,8 @@ public class PedestalBlock extends BaseEntityBlock {
         }
     }
 
-    public RenderShape getRenderShape(BlockState p_49232_) {
+    @Override
+    protected RenderShape getRenderShape(BlockState p_49232_) {
         return RenderShape.MODEL;
     }
 
@@ -106,12 +138,13 @@ public class PedestalBlock extends BaseEntityBlock {
         return new PedestalTile(p_153215_,p_153216_);
     }
 
-    public boolean hasAnalogOutputSignal(BlockState p_48700_) {
+    @Override
+    protected boolean hasAnalogOutputSignal(BlockState p_48700_) {
         return true;
     }
 
     @Override
-    public int getAnalogOutputSignal(BlockState p_48702_, Level p_48703_, BlockPos p_48704_) {
+    protected int getAnalogOutputSignal(BlockState p_48702_, Level p_48703_, BlockPos p_48704_) {
         BlockEntity tileentity = p_48703_.getBlockEntity(p_48704_);
         if (tileentity instanceof PedestalTile) {
             return ((PedestalTile)tileentity).getComparatorSignalLevel();
@@ -119,7 +152,7 @@ public class PedestalBlock extends BaseEntityBlock {
         return 0;
     }
     @Override
-    public FluidState getFluidState(BlockState state) {
+    protected FluidState getFluidState(BlockState state) {
         return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : Fluids.EMPTY.defaultFluidState();
     }
 
@@ -131,7 +164,7 @@ public class PedestalBlock extends BaseEntityBlock {
     }
 
     @Override
-    public BlockState updateShape(BlockState stateIn, Direction side, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
+    protected BlockState updateShape(BlockState stateIn, Direction side, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
         if (stateIn.getValue(WATERLOGGED)) {
             worldIn.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
         }

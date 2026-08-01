@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.blocks;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.FenceBlock;
 import net.minecraft.core.Direction;
@@ -9,6 +10,14 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class RankineWoodenFence extends FenceBlock {
+    public static final MapCodec<RankineWoodenFence> CODEC = simpleCodec(RankineWoodenFence::new);
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public MapCodec<FenceBlock> codec() {
+        return (MapCodec<FenceBlock>) (MapCodec<?>) CODEC;
+    }
+
     public RankineWoodenFence(Properties properties) {
         super(properties);
     }

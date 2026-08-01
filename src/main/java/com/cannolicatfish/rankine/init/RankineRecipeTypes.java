@@ -1,116 +1,34 @@
 package com.cannolicatfish.rankine.init;
 
+import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.recipe.*;
-import net.minecraft.world.Container;
-import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.RecipeType;
-import net.minecraft.world.level.Level;
-
-import java.util.Optional;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class RankineRecipeTypes {
-    public static final RecipeType<AlloyingRecipe> ALLOYING = new RecipeType<AlloyingRecipe>() {
-        @Override
-        public <C extends Container> Optional<AlloyingRecipe> tryMatch(Recipe<C> recipe, Level worldIn, C inv) {
-            return recipe.matches(inv, worldIn) ? Optional.of((AlloyingRecipe) recipe) : Optional.empty();
-        }
-    };
 
-    public static final RecipeType<CrushingRecipe> CRUSHING = new RecipeType<CrushingRecipe>() {
-        @Override
-        public <C extends Container> Optional<CrushingRecipe> tryMatch(Recipe<C> recipe, Level worldIn, C inv) {
-            return recipe.matches(inv, worldIn) ? Optional.of((CrushingRecipe) recipe) : Optional.empty();
-        }
-    };
+    public static final DeferredRegister<RecipeType<?>> RECIPE_TYPES = DeferredRegister.create(Registries.RECIPE_TYPE, ProjectRankine.MODID);
 
-    public static final RecipeType<BeehiveOvenRecipe> BEEHIVE = new RecipeType<BeehiveOvenRecipe>() {
-        @Override
-        public <C extends Container> Optional<BeehiveOvenRecipe> tryMatch(Recipe<C> recipe, Level worldIn, C inv) {
-            return recipe.matches(inv, worldIn) ? Optional.of((BeehiveOvenRecipe) recipe) : Optional.empty();
-        }
-    };
+    public static final DeferredHolder<RecipeType<?>, RecipeType<AlloyingRecipe>> ALLOYING = RECIPE_TYPES.register("alloying", () -> RecipeType.simple(rl("alloying")));
+    public static final DeferredHolder<RecipeType<?>, RecipeType<CrushingRecipe>> CRUSHING = RECIPE_TYPES.register("crushing", () -> RecipeType.simple(rl("crushing")));
+    public static final DeferredHolder<RecipeType<?>, RecipeType<BeehiveOvenRecipe>> BEEHIVE = RECIPE_TYPES.register("beehive_oven", () -> RecipeType.simple(rl("beehive_oven")));
+    public static final DeferredHolder<RecipeType<?>, RecipeType<SluicingRecipe>> SLUICING = RECIPE_TYPES.register("sluicing", () -> RecipeType.simple(rl("sluicing")));
+    public static final DeferredHolder<RecipeType<?>, RecipeType<ElementRecipe>> ELEMENT = RECIPE_TYPES.register("element", () -> RecipeType.simple(rl("element")));
+    public static final DeferredHolder<RecipeType<?>, RecipeType<EvaporationRecipe>> EVAPORATION = RECIPE_TYPES.register("evaporation", () -> RecipeType.simple(rl("evaporation")));
+    public static final DeferredHolder<RecipeType<?>, RecipeType<CrucibleRecipe>> CRUCIBLE = RECIPE_TYPES.register("crucible", () -> RecipeType.simple(rl("crucible")));
+    public static final DeferredHolder<RecipeType<?>, RecipeType<RockGeneratorRecipe>> ROCK_GENERATOR = RECIPE_TYPES.register("rock_generator", () -> RecipeType.simple(rl("rock_generator")));
+    public static final DeferredHolder<RecipeType<?>, RecipeType<FusionFurnaceRecipe>> FUSION_FURNACE = RECIPE_TYPES.register("fusion_furnace", () -> RecipeType.simple(rl("fusion_furnace")));
+    public static final DeferredHolder<RecipeType<?>, RecipeType<TreetappingRecipe>> TREETAPPING = RECIPE_TYPES.register("treetapping", () -> RecipeType.simple(rl("treetapping")));
+    public static final DeferredHolder<RecipeType<?>, RecipeType<StrippingRecipe>> STRIPPING = RECIPE_TYPES.register("stripping", () -> RecipeType.simple(rl("stripping")));
+    public static final DeferredHolder<RecipeType<?>, RecipeType<ForagingRecipe>> FORAGING = RECIPE_TYPES.register("foraging", () -> RecipeType.simple(rl("foraging")));
+    public static final DeferredHolder<RecipeType<?>, RecipeType<AirDistillationRecipe>> AIR_DISTILLATION = RECIPE_TYPES.register("air_distillation", () -> RecipeType.simple(rl("air_distillation")));
+    public static final DeferredHolder<RecipeType<?>, RecipeType<MixingRecipe>> MIXING = RECIPE_TYPES.register("mixing", () -> RecipeType.simple(rl("mixing")));
+    public static final DeferredHolder<RecipeType<?>, RecipeType<AlloyModifierRecipe>> ALLOY_MODIFIER = RECIPE_TYPES.register("alloy_modifier", () -> RecipeType.simple(rl("alloy_modifier")));
 
-    public static final RecipeType<SluicingRecipe> SLUICING = new RecipeType<SluicingRecipe>() {
-        @Override
-        public <C extends Container> Optional<SluicingRecipe> tryMatch(Recipe<C> recipe, Level worldIn, C inv) {
-            return recipe.matches(inv, worldIn) ? Optional.of((SluicingRecipe) recipe) : Optional.empty();
-        }
-    };
-
-    public static final RecipeType<ElementRecipe> ELEMENT = new RecipeType<ElementRecipe>() {
-        @Override
-        public <C extends Container> Optional<ElementRecipe> tryMatch(Recipe<C> recipe, Level worldIn, C inv) {
-            return recipe.matches(inv, worldIn) ? Optional.of((ElementRecipe) recipe) : Optional.empty();
-        }
-    };
-            
-    public static final RecipeType<EvaporationRecipe> EVAPORATION = new RecipeType<EvaporationRecipe>() {
-        @Override
-        public <C extends Container> Optional<EvaporationRecipe> tryMatch(Recipe<C> recipe, Level worldIn, C inv) {
-            return recipe.matches(inv, worldIn) ? Optional.of((EvaporationRecipe) recipe) : Optional.empty();
-        }
-    };
-
-    public static final RecipeType<CrucibleRecipe> CRUCIBLE = new RecipeType<CrucibleRecipe>() {
-        @Override
-        public <C extends Container> Optional<CrucibleRecipe> tryMatch(Recipe<C> recipe, Level worldIn, C inv) {
-            return recipe.matches(inv, worldIn) ? Optional.of((CrucibleRecipe) recipe) : Optional.empty();
-        }
-    };
-
-    public static final RecipeType<RockGeneratorRecipe> ROCK_GENERATOR = new RecipeType<RockGeneratorRecipe>() {
-        @Override
-        public <C extends Container> Optional<RockGeneratorRecipe> tryMatch(Recipe<C> recipe, Level worldIn, C inv) {
-            return recipe.matches(inv, worldIn) ? Optional.of((RockGeneratorRecipe) recipe) : Optional.empty();
-        }
-    };
-
-    public static final RecipeType<FusionFurnaceRecipe> FUSION_FURNACE = new RecipeType<FusionFurnaceRecipe>() {
-        @Override
-        public <C extends Container> Optional<FusionFurnaceRecipe> tryMatch(Recipe<C> recipe, Level worldIn, C inv) {
-            return recipe.matches(inv, worldIn) ? Optional.of((FusionFurnaceRecipe) recipe) : Optional.empty();
-        }
-    };
-
-    public static final RecipeType<TreetappingRecipe> TREETAPPING = new RecipeType<TreetappingRecipe>() {
-        @Override
-        public <C extends Container> Optional<TreetappingRecipe> tryMatch(Recipe<C> recipe, Level worldIn, C inv) {
-            return recipe.matches(inv, worldIn) ? Optional.of((TreetappingRecipe) recipe) : Optional.empty();
-        }
-    };
-
-    public static final RecipeType<StrippingRecipe> STRIPPING = new RecipeType<StrippingRecipe>() {
-        @Override
-        public <C extends Container> Optional<StrippingRecipe> tryMatch(Recipe<C> recipe, Level worldIn, C inv) {
-            return recipe.matches(inv, worldIn) ? Optional.of((StrippingRecipe) recipe) : Optional.empty();
-        }
-    };
-
-    public static final RecipeType<ForagingRecipe> FORAGING = new RecipeType<ForagingRecipe>() {
-        @Override
-        public <C extends Container> Optional<ForagingRecipe> tryMatch(Recipe<C> recipe, Level worldIn, C inv) {
-            return recipe.matches(inv, worldIn) ? Optional.of((ForagingRecipe) recipe) : Optional.empty();
-        }
-    };
-
-    public static final RecipeType<AirDistillationRecipe> AIR_DISTILLATION = new RecipeType<AirDistillationRecipe>() {
-        @Override
-        public <C extends Container> Optional<AirDistillationRecipe> tryMatch(Recipe<C> recipe, Level worldIn, C inv) {
-            return recipe.matches(inv, worldIn) ? Optional.of((AirDistillationRecipe) recipe) : Optional.empty();
-        }
-    };
-
-    public static final RecipeType<MixingRecipe> MIXING = new RecipeType<MixingRecipe>() {
-        @Override
-        public <C extends Container> Optional<MixingRecipe> tryMatch(Recipe<C> recipe, Level worldIn, C inv) {
-            return recipe.matches(inv, worldIn) ? Optional.of((MixingRecipe) recipe) : Optional.empty();
-        }
-    };
-
-    public static final RecipeType<AlloyModifierRecipe> ALLOY_MODIFIER = new RecipeType<AlloyModifierRecipe>() {
-        @Override
-        public <C extends Container> Optional<AlloyModifierRecipe> tryMatch(Recipe<C> recipe, Level worldIn, C inv) {
-            return recipe.matches(inv, worldIn) ? Optional.of((AlloyModifierRecipe) recipe) : Optional.empty();
-        }
-    };
+    private static ResourceLocation rl(String path) {
+        return ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID, path);
+    }
 }

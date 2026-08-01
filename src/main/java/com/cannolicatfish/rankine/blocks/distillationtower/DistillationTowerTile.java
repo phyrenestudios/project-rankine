@@ -1,17 +1,21 @@
 package com.cannolicatfish.rankine.blocks.distillationtower;
 
 import com.cannolicatfish.rankine.init.Config;
+import com.cannolicatfish.rankine.init.RankineBlockEntityTypes;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.recipe.AirDistillationRecipe;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -23,18 +27,18 @@ import static com.cannolicatfish.rankine.init.RankineBlocks.*;
 public class DistillationTowerTile extends BlockEntity {
     private int proccessTime;
     public DistillationTowerTile(BlockPos posIn, BlockState stateIn) {
-        super(DISTILLATION_TOWER_TILE, posIn, stateIn);
+        super(RankineBlockEntityTypes.DISTILLATION_TOWER.get(), posIn, stateIn);
     }
 
     @Override
-    public void load(CompoundTag nbt) {
-        super.load(nbt);
+    protected void loadAdditional(CompoundTag nbt, HolderLookup.Provider provider) {
+        super.loadAdditional(nbt, provider);
         this.proccessTime = nbt.getInt("ProcessTime");
     }
 
     @Override
-    public void saveAdditional(CompoundTag compound) {
-        super.saveAdditional(compound);
+    protected void saveAdditional(CompoundTag compound, HolderLookup.Provider provider) {
+        super.saveAdditional(compound, provider);
         compound.putInt("ProcessTime", this.proccessTime);
     }
 
@@ -44,11 +48,11 @@ public class DistillationTowerTile extends BlockEntity {
         if (!level.isClientSide && LAYERS > 0) {
             ++tile.proccessTime;
             if (tile.proccessTime >= Config.MACHINES.AIR_DISTILLATION_SPEED.get()) {
-                AirDistillationRecipe recipe =  tile.getRecipe(level,level.getBiome(tile.worldPosition).value().getRegistryName(), level.dimension().location());
+                AirDistillationRecipe recipe =  tile.getRecipe(level,level.getBiome(tile.worldPosition).unwrapKey().map(ResourceKey::location).orElse(null), level.dimension().location());
                 if (recipe != null) {
                     for (int i = 4; i < LAYERS * 3 + 2; i+=3) {
                         if (level.getBlockState(tile.worldPosition.above(i)).is(Blocks.AIR)) {
-                            ItemStack result = recipe.getDistillationWithChances(level, Math.floorDiv(i,3), level.getBiome(tile.worldPosition).value().getRegistryName(), level.dimension().location());
+                            ItemStack result = recipe.getDistillationWithChances(level, Math.floorDiv(i,3), level.getBiome(tile.worldPosition).unwrapKey().map(ResourceKey::location).orElse(null), level.dimension().location());
                             if (result.getItem() instanceof BlockItem) {
                                 level.setBlockAndUpdate(tile.worldPosition.above(i), ((BlockItem) result.getItem()).getBlock().defaultBlockState());
                             }
@@ -61,7 +65,8 @@ public class DistillationTowerTile extends BlockEntity {
     }
 
     private AirDistillationRecipe getRecipe(Level worldIn, ResourceLocation biome, ResourceLocation dim) {
-        for (AirDistillationRecipe recipe : worldIn.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.AIR_DISTILLATION)) {
+        for (RecipeHolder<AirDistillationRecipe> holder : worldIn.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.AIR_DISTILLATION.get())) {
+            AirDistillationRecipe recipe = holder.value();
             if (recipe.matchesDistillationRecipe(biome, dim)){
                 return recipe;
             }
@@ -174,5 +179,3 @@ public class DistillationTowerTile extends BlockEntity {
     }
 
 }
-
-

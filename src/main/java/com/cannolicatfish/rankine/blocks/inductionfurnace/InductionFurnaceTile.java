@@ -1,14 +1,15 @@
 package com.cannolicatfish.rankine.blocks.inductionfurnace;
 
-import com.cannolicatfish.rankine.blocks.groundtap.GroundTapTile;
 import com.cannolicatfish.rankine.init.Config;
+import com.cannolicatfish.rankine.init.RankineBlockEntityTypes;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.items.AlloyTemplateItem;
 import com.cannolicatfish.rankine.items.BatteryItem;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
-import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
-import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.AbstractFurnaceBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -28,9 +29,12 @@ import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.core.NonNullList;
 import net.minecraft.util.Mth;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.Component;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.items.IItemHandler;
+import net.neoforged.neoforge.items.wrapper.InvWrapper;
+import net.neoforged.neoforge.items.wrapper.RecipeWrapper;
+import net.neoforged.neoforge.items.wrapper.SidedInvWrapper;
 
 import javax.annotation.Nullable;
 
@@ -38,8 +42,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-
-import static com.cannolicatfish.rankine.init.RankineBlocks.INDUCTION_FURNACE_TILE;
 
 public class InductionFurnaceTile extends BlockEntity implements WorldlyContainer, MenuProvider {
 
@@ -50,7 +52,7 @@ public class InductionFurnaceTile extends BlockEntity implements WorldlyContaine
     private static final int[] SLOTS_DOWN = new int[]{6,8};
 
     public InductionFurnaceTile(BlockPos posIn, BlockState stateIn) {
-        super(INDUCTION_FURNACE_TILE, posIn, stateIn);
+        super(RankineBlockEntityTypes.INDUCTION_FURNACE.get(), posIn, stateIn);
     }
 
     protected NonNullList<ItemStack> items = NonNullList.withSize(9, ItemStack.EMPTY);
@@ -104,10 +106,10 @@ public class InductionFurnaceTile extends BlockEntity implements WorldlyContaine
     };
 
     @Override
-    public void load(CompoundTag nbt) {
-        super.load(nbt);
+    protected void loadAdditional(CompoundTag nbt, HolderLookup.Provider provider) {
+        super.loadAdditional(nbt, provider);
         this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
-        ContainerHelper.loadAllItems(nbt, this.items);
+        ContainerHelper.loadAllItems(nbt, this.items, provider);
         this.burnTime = nbt.getInt("BurnTime");
         this.cookTime = nbt.getInt("CookTime");
         this.cookTimeTotal = nbt.getInt("CookTimeTotal");
@@ -115,12 +117,12 @@ public class InductionFurnaceTile extends BlockEntity implements WorldlyContaine
     }
 
     @Override
-    public void saveAdditional(CompoundTag compound) {
-        super.saveAdditional(compound);
+    protected void saveAdditional(CompoundTag compound, HolderLookup.Provider provider) {
+        super.saveAdditional(compound, provider);
         compound.putInt("BurnTime", this.burnTime);
         compound.putInt("CookTime", this.cookTime);
         compound.putInt("CookTimeTotal", this.cookTimeTotal);
-        ContainerHelper.saveAllItems(compound, this.items);
+        ContainerHelper.saveAllItems(compound, this.items, provider);
     }
 
     public static void tick(Level level, BlockPos pos, BlockState bs, InductionFurnaceTile tile) {
@@ -133,7 +135,7 @@ public class InductionFurnaceTile extends BlockEntity implements WorldlyContaine
             ItemStack[] inputs = new ItemStack[]{tile.items.get(0), tile.items.get(1), tile.items.get(2), tile.items.get(3), tile.items.get(4), tile.items.get(5)};
             ItemStack battery = tile.items.get(6);
             if ((tile.isBurning() || !battery.isEmpty() && BatteryItem.hasPowerRequired(battery,tile.powerCost) && !Arrays.stream(inputs).allMatch(ItemStack::isEmpty))) {
-                AlloyingRecipe irecipe = tile.level.getRecipeManager().getRecipeFor(RankineRecipeTypes.ALLOYING, tile, tile.level).orElse(null);
+                AlloyingRecipe irecipe = tile.level.getRecipeManager().getRecipeFor(RankineRecipeTypes.ALLOYING.get(), new RecipeWrapper(new InvWrapper(tile)), tile.level).map(RecipeHolder::value).orElse(null);
                 if (!tile.isBurning() && tile.canSmelt(irecipe, tile)) {
                     tile.burnTime = BatteryItem.hasPowerRequired(battery,tile.powerCost) ? 50 : 0;
                     tile.currentBurnTime = tile.burnTime;
@@ -181,7 +183,7 @@ public class InductionFurnaceTile extends BlockEntity implements WorldlyContaine
                                 tile.items.set(8, smelting);
                             }
                         } else {
-                            output = irecipe.generateResult(level,tile, 2).copy();
+                            output = irecipe.generateResult(level,new RecipeWrapper(new InvWrapper(tile)), 2).copy();
                             x = new int[]{inputs[0].getCount(), inputs[1].getCount(), inputs[2].getCount(), inputs[3].getCount(), inputs[4].getCount(), inputs[5].getCount()};
                             smelting = output;
                             if (tile.items.get(8).getCount() > 0) {
@@ -251,14 +253,14 @@ public class InductionFurnaceTile extends BlockEntity implements WorldlyContaine
                     }
                 }
             }
-            ItemStack stack = recipeMode ? AlloyTemplateItem.getResult(level,template) : recipeIn.generateResult(level,inv, 2);
+            ItemStack stack = recipeMode ? AlloyTemplateItem.getResult(level,template) : recipeIn.generateResult(level,new RecipeWrapper(new InvWrapper(inv)), 2);
             if (stack.isEmpty()) {
                 return false;
             } else {
                 ItemStack itemstack1 = this.items.get(8);
                 if (itemstack1.isEmpty()) {
                     return true;
-                } else if ((!itemstack1.sameItem(stack) || !ItemStack.tagMatches(stack,itemstack1)) && !itemstack1.isEmpty()) {
+                } else if (!ItemStack.isSameItemSameComponents(itemstack1, stack) && !itemstack1.isEmpty()) {
                     return false;
                 } else if (itemstack1.getCount() + stack.getCount() <= this.getMaxStackSize() && itemstack1.getCount() + stack.getCount() <= itemstack1.getMaxStackSize()) {
                     return true;
@@ -273,38 +275,37 @@ public class InductionFurnaceTile extends BlockEntity implements WorldlyContaine
     }
 
 
-    net.neoforged.neoforge.common.util.LazyOptional<? extends net.neoforged.neoforge.items.IItemHandler>[] handlers =
-            net.neoforged.neoforge.items.wrapper.SidedInvWrapper.create(this, Direction.UP, Direction.DOWN, Direction.EAST, Direction.WEST, Direction.SOUTH);
+    private final IItemHandler[] handlers = new IItemHandler[] {
+            new SidedInvWrapper(this, Direction.UP),
+            new SidedInvWrapper(this, Direction.DOWN),
+            new SidedInvWrapper(this, Direction.EAST),
+            new SidedInvWrapper(this, Direction.WEST),
+            new SidedInvWrapper(this, Direction.SOUTH)
+    };
 
-    @Override
-    public <T> net.neoforged.neoforge.common.util.LazyOptional<T> getCapability(net.neoforged.neoforge.common.capabilities.Capability<T> capability, @Nullable Direction facing) {
-        if (!this.remove && facing != null && capability == net.neoforged.neoforge.items.CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
-            switch (facing) {
-                case UP:
-                    return handlers[0].cast();
-                case DOWN:
-                    return handlers[1].cast();
-                case EAST:
-                    return handlers[2].cast();
-                case WEST:
-                    return handlers[3].cast();
-                default:
-                    return handlers[4].cast();
-            }
+    // PORT-CAP: InductionFurnaceTile -> getItemHandler
+    @Nullable
+    public IItemHandler getItemHandler(@Nullable Direction side) {
+        if (this.remove || side == null) {
+            return null;
         }
-        return super.getCapability(capability, facing);
-    }
-
-    @Override
-    public void setRemoved() {
-        super.setRemoved();
-        for (int x = 0; x < handlers.length; x++)
-            handlers[x].invalidate();
+        switch (side) {
+            case UP:
+                return handlers[0];
+            case DOWN:
+                return handlers[1];
+            case EAST:
+                return handlers[2];
+            case WEST:
+                return handlers[3];
+            default:
+                return handlers[4];
+        }
     }
 
     @Override
     public Component getDisplayName() {
-        return Component.literal(getType().getRegistryName().getPath());
+        return Component.literal(BuiltInRegistries.BLOCK_ENTITY_TYPE.getKey(this.getType()).getPath());
     }
 
     @Override
@@ -379,7 +380,7 @@ public class InductionFurnaceTile extends BlockEntity implements WorldlyContaine
     @Override
     public void setItem(int index, ItemStack stack) {
         ItemStack itemstack = this.items.get(index);
-        boolean flag = !stack.isEmpty() && stack.sameItem(itemstack) && ItemStack.tagMatches(stack, itemstack);
+        boolean flag = !stack.isEmpty() && ItemStack.isSameItemSameComponents(stack, itemstack);
         this.items.set(index, stack);
         if (stack.getCount() > this.getMaxStackSize()) {
             stack.setCount(this.getMaxStackSize());

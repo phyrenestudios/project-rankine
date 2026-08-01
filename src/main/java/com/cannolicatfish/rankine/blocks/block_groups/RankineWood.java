@@ -1,6 +1,5 @@
 package com.cannolicatfish.rankine.blocks.block_groups;
 
-import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.blocks.*;
 import com.cannolicatfish.rankine.blocks.buildingmodes.RankineBookshelvesBlock;
 import com.cannolicatfish.rankine.blocks.buildingmodes.RankinePlanksBlock;
@@ -17,10 +16,14 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.grower.AbstractTreeGrower;
+import net.minecraft.world.level.block.grower.TreeGrower;
+import net.minecraft.world.level.block.state.properties.BlockSetType;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.block.state.properties.WoodType;
-import net.minecraft.world.level.material.Material;
-import net.neoforged.neoforge.registries.RegistryObject;
+import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
+import net.neoforged.neoforge.registries.DeferredBlock;
+import net.neoforged.neoforge.registries.DeferredItem;
 
 import java.util.Arrays;
 import java.util.List;
@@ -31,43 +34,43 @@ public class RankineWood {
     private boolean hasLogs;
     private boolean isTree;
     private WoodType woodType;
-    private RegistryObject<RankineLogBlock> log;
-    private RegistryObject<RankineLogBlock> strippedLog;
-    private RegistryObject<RankineLogBlock> wood;
-    private RegistryObject<RankineLogBlock> strippedWood;
-    private RegistryObject<HollowLogBlock> hollowLog;
-    private RegistryObject<RankinePlanksBlock> planks;
-    private RegistryObject<RankineWoodenSlabBlock> slab;
-    private RegistryObject<RankineWoodenStairsBlock> stairs;
-    private RegistryObject<RankineWoodenFence> fence;
-    private RegistryObject<RankineWoodenFenceGate> fenceGate;
-    private RegistryObject<RankineWoodenDoor> door;
-    private RegistryObject<RankineWoodenTrapDoor> trapdoor;
-    private RegistryObject<RankineWoodenPressurePlate> pressurePlate;
-    private RegistryObject<RankineWoodenButton> button;
-    private RegistryObject<RankineSignBlock> sign;
-    private RegistryObject<RankineWallSignBlock> wallSign;
-    private RegistryObject<RankineBookshelvesBlock> bookshelf;
-    private RegistryObject<RankineLeavesBlock> leaves;
-    private RegistryObject<LeafLitterBlock> leafLitter;
-    private RegistryObject<RankineSaplingBlock> sapling;
-    private RegistryObject<FlowerPotBlock> pottedSapling;
-    private RegistryObject<SignItem> signItem;
-    private RegistryObject<Item> boat;
+    private DeferredBlock<RankineLogBlock> log;
+    private DeferredBlock<RankineLogBlock> strippedLog;
+    private DeferredBlock<RankineLogBlock> wood;
+    private DeferredBlock<RankineLogBlock> strippedWood;
+    private DeferredBlock<HollowLogBlock> hollowLog;
+    private DeferredBlock<RankinePlanksBlock> planks;
+    private DeferredBlock<RankineWoodenSlabBlock> slab;
+    private DeferredBlock<RankineWoodenStairsBlock> stairs;
+    private DeferredBlock<RankineWoodenFence> fence;
+    private DeferredBlock<RankineWoodenFenceGate> fenceGate;
+    private DeferredBlock<RankineWoodenDoor> door;
+    private DeferredBlock<RankineWoodenTrapDoor> trapdoor;
+    private DeferredBlock<RankineWoodenPressurePlate> pressurePlate;
+    private DeferredBlock<RankineWoodenButton> button;
+    private DeferredBlock<RankineSignBlock> sign;
+    private DeferredBlock<RankineWallSignBlock> wallSign;
+    private DeferredBlock<RankineBookshelvesBlock> bookshelf;
+    private DeferredBlock<RankineLeavesBlock> leaves;
+    private DeferredBlock<LeafLitterBlock> leafLitter;
+    private DeferredBlock<RankineSaplingBlock> sapling;
+    private DeferredBlock<FlowerPotBlock> pottedSapling;
+    private DeferredItem<SignItem> signItem;
+    private DeferredItem<Item> boat;
 
 
     public RankineWood(String registryName) {
         this.registryName = registryName;
     }
 
-    public static RankineWood newWoodReg(String baseName, float strength, boolean hasLogs, boolean isTree, int saplingType, AbstractTreeGrower treeGrower) {
+    public static RankineWood newWoodReg(String baseName, float strength, boolean hasLogs, boolean isTree, int saplingType, TreeGrower treeGrower) {
 
-        Block.Properties woodProps = Block.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(strength, 1.5f*strength);
+        Block.Properties woodProps = Block.Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BASS).ignitedByLava().sound(SoundType.WOOD).strength(strength, 1.5f*strength);
 
         RankineWood newWood = new RankineWood(baseName);
         newWood.hasLogs = hasLogs;
         newWood.isTree = isTree;
-        newWood.woodType = WoodType.create("rankine:"+baseName);
+        newWood.woodType = WoodType.register(new WoodType("rankine:"+baseName, BlockSetType.register(new BlockSetType("rankine:"+baseName))));
         if (newWood.hasLogs) {
             newWood.log = RankineBlocks.BLOCKS.register(baseName + "_log", () -> new RankineLogBlock(woodProps));
             newWood.strippedLog = RankineBlocks.BLOCKS.register("stripped_" + baseName + "_log", () -> new RankineLogBlock(woodProps));
@@ -94,10 +97,10 @@ public class RankineWood {
         if (newWood.isTree) {
             newWood.leaves = RankineBlocks.BLOCKS.register(baseName + "_leaves", RankineLeavesBlock::new);
             newWood.leafLitter = RankineBlocks.BLOCKS.register(baseName + "_leaf_litter", LeafLitterBlock::new);
-            newWood.sapling = RankineBlocks.BLOCKS.register(baseName + "_sapling", () -> new RankineSaplingBlock(treeGrower, Block.Properties.of(Material.PLANT).noCollission().randomTicks().strength(0).sound(SoundType.GRASS), saplingType));
-            newWood.pottedSapling = RankineBlocks.BLOCKS.register("potted_"+baseName+"_sapling", () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, newWood.sapling, Block.Properties.of(Material.DECORATION).strength(0.0f).noOcclusion()));
+            newWood.sapling = RankineBlocks.BLOCKS.register(baseName + "_sapling", () -> new RankineSaplingBlock(treeGrower, Block.Properties.of().mapColor(MapColor.PLANT).pushReaction(PushReaction.DESTROY).noCollission().randomTicks().strength(0).sound(SoundType.GRASS), saplingType));
+            newWood.pottedSapling = RankineBlocks.BLOCKS.register("potted_"+baseName+"_sapling", () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, newWood.sapling, Block.Properties.of().pushReaction(PushReaction.DESTROY).strength(0.0f).noOcclusion()));
         }
-        
+
         Item.Properties DEF_BUILDING = new Item.Properties().stacksTo(64);
         if (newWood.hasLogs) {
              RankineBlocks.ITEMS.register(baseName + "_log", () -> new BlockItem(newWood.log.get(), DEF_BUILDING));
@@ -130,7 +133,7 @@ public class RankineWood {
 
         return newWood;
     }
-    
+
 
     public List<Block> getWoodBlocks() {
         return Arrays.asList(

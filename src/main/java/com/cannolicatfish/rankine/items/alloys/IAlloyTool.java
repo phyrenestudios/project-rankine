@@ -1,16 +1,19 @@
 package com.cannolicatfish.rankine.items.alloys;
 
 import com.cannolicatfish.rankine.init.Config;
+import com.cannolicatfish.rankine.init.RankineDataComponents.AlloyStats;
 import com.cannolicatfish.rankine.recipe.AlloyModifierRecipe;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import com.cannolicatfish.rankine.util.alloys.AlloyModifier;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.item.component.Tool;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.Util;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Component;
 import net.minecraft.ChatFormatting;
 import net.minecraft.world.level.Level;
@@ -34,19 +37,53 @@ public interface IAlloyTool extends IAlloyTieredItem {
         return STATS;
     }
 
+    /**
+     * The mineable tag of this tool ("minecraft:mineable/pickaxe" etc). Used to build the vanilla
+     * TOOL data component when stats are applied. Null for weapons without block-breaking rules.
+     */
+    @Nullable
+    default TagKey<Block> getAlloyMineableTag() {
+        return null;
+    }
+
     @Override
     default void initStats(ItemStack stack, Map<ElementRecipe, Integer> elementMap, @Nullable AlloyingRecipe alloyRecipe, @Nullable AlloyModifierRecipe alloyModifier) {
-        CompoundTag listnbt = new CompoundTag();
-        listnbt.putInt("durability",createValueForDurability(elementMap,alloyRecipe,getModifierForStat(alloyModifier, AlloyModifier.ModifierType.DURABILITY)));
-        listnbt.putFloat("miningSpeed",createValueForMiningSpeed(elementMap,alloyRecipe,getModifierForStat(alloyModifier, AlloyModifier.ModifierType.MINING_SPEED)));
-        listnbt.putInt("harvestLevel",createValueForHarvestLevel(elementMap,alloyRecipe,getModifierForStat(alloyModifier, AlloyModifier.ModifierType.HARVEST_LEVEL)));
-        listnbt.putInt("enchantability",createValueForEnchantability(elementMap,alloyRecipe,getModifierForStat(alloyModifier, AlloyModifier.ModifierType.ENCHANTABILITY)));
-        listnbt.putFloat("attackDamage",createValueForAttackDamage(elementMap,alloyRecipe,getModifierForStat(alloyModifier, AlloyModifier.ModifierType.ATTACK_DAMAGE)) + createValueForHarvestLevel(elementMap,alloyRecipe,getModifierForStat(alloyModifier, AlloyModifier.ModifierType.HARVEST_LEVEL)));
-        listnbt.putFloat("attackSpeed",createValueForAttackSpeed(elementMap,alloyRecipe,getModifierForStat(alloyModifier, AlloyModifier.ModifierType.ATTACK_SPEED)));
-        listnbt.putFloat("corrResist",createValueForCorrosionResistance(elementMap,alloyRecipe,getModifierForStat(alloyModifier, AlloyModifier.ModifierType.CORROSION_RESISTANCE)));
-        listnbt.putFloat("heatResist",createValueForHeatResistance(elementMap,alloyRecipe,getModifierForStat(alloyModifier, AlloyModifier.ModifierType.HEAT_RESISTANCE)));
-        listnbt.putFloat("toughness",createValueForToughness(elementMap,alloyRecipe,getModifierForStat(alloyModifier, AlloyModifier.ModifierType.TOUGHNESS)));
-        stack.getOrCreateTag().put("StoredAlloyStats", listnbt);
+        // was NBT "StoredAlloyStats" {durability, miningSpeed, harvestLevel, enchantability,
+        // attackDamage, attackSpeed, corrResist, heatResist, toughness}
+        int harvestLevel = createValueForHarvestLevel(elementMap,alloyRecipe,getModifierForStat(alloyModifier, AlloyModifier.ModifierType.HARVEST_LEVEL));
+        AlloyStats stats = new AlloyStats(
+                createValueForDurability(elementMap,alloyRecipe,getModifierForStat(alloyModifier, AlloyModifier.ModifierType.DURABILITY)),
+                createValueForMiningSpeed(elementMap,alloyRecipe,getModifierForStat(alloyModifier, AlloyModifier.ModifierType.MINING_SPEED)),
+                harvestLevel,
+                createValueForEnchantability(elementMap,alloyRecipe,getModifierForStat(alloyModifier, AlloyModifier.ModifierType.ENCHANTABILITY)),
+                createValueForAttackDamage(elementMap,alloyRecipe,getModifierForStat(alloyModifier, AlloyModifier.ModifierType.ATTACK_DAMAGE)) + harvestLevel,
+                createValueForAttackSpeed(elementMap,alloyRecipe,getModifierForStat(alloyModifier, AlloyModifier.ModifierType.ATTACK_SPEED)),
+                createValueForCorrosionResistance(elementMap,alloyRecipe,getModifierForStat(alloyModifier, AlloyModifier.ModifierType.CORROSION_RESISTANCE)),
+                createValueForHeatResistance(elementMap,alloyRecipe,getModifierForStat(alloyModifier, AlloyModifier.ModifierType.HEAT_RESISTANCE)),
+                createValueForToughness(elementMap,alloyRecipe,getModifierForStat(alloyModifier, AlloyModifier.ModifierType.TOUGHNESS)),
+                0, 0, 0f, 0f);
+        applyAlloyStats(stack, stats);
+        applyAlloyToolComponent(stack, stats);
+        // NOTE: attack damage/speed attribute modifiers are intentionally NOT baked into the
+        // ATTRIBUTE_MODIFIERS component here — they are applied per-query by
+        // events/handlers/common/ItemAttributeModifierHandler (ItemAttributeModifierEvent still
+        // exists in NeoForge 21.1) via getAlloyAttackDamage/getAlloyAttackSpeed, exactly as in 1.18.2.
+    }
+
+    /**
+     * Mirrors the dynamic mining stats into the vanilla TOOL component so anything reading
+     * the component (e.g. ItemStack#getDestroySpeed default path) agrees with the overrides
+     * the alloy tools keep. damage_per_block is 0 because alloy tools apply their own
+     * durability loss in mineBlock via calcDurabilityLoss.
+     */
+    default void applyAlloyToolComponent(ItemStack stack, AlloyStats stats) {
+        TagKey<Block> mineable = getAlloyMineableTag();
+        if (mineable != null) {
+            stack.set(DataComponents.TOOL, new Tool(List.of(
+                    Tool.Rule.deniesDrops(getAlloyTier(stack).getIncorrectBlocksForDrops()),
+                    Tool.Rule.minesAndDrops(mineable, stats.miningSpeed())),
+                    1.0F, 0));
+        }
     }
 
     @Override
@@ -66,7 +103,7 @@ public interface IAlloyTool extends IAlloyTieredItem {
                 }
 
                 if (!IAlloyItem.getAlloyModifiers(stack).isEmpty()) {
-                    tooltip.add((Component.literal("Modifier: " + (IAlloyItem.getAlloyModifiers(stack).getCompound(0).getString("modifierName"))).withStyle(ChatFormatting.AQUA)));
+                    tooltip.add((Component.literal("Modifier: " + (IAlloyItem.getAlloyModifiers(stack).get(0).name())).withStyle(ChatFormatting.AQUA)));
                 }
 
                 if (!this.needsRefresh(stack)) {

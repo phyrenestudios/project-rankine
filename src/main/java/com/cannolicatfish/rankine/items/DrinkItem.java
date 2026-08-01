@@ -16,7 +16,8 @@ public class DrinkItem extends Item {
         super(properties);
     }
 
-    public int getUseDuration(ItemStack stack) {
+    @Override
+    public int getUseDuration(ItemStack stack, net.minecraft.world.entity.LivingEntity entity) {
         return 32;
     }
 

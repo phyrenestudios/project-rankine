@@ -1,9 +1,11 @@
 package com.cannolicatfish.rankine.blocks.groundtap;
 
 import com.cannolicatfish.rankine.init.Config;
+import com.cannolicatfish.rankine.init.RankineBlockEntityTypes;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -14,24 +16,22 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Stack;
 
-import static com.cannolicatfish.rankine.init.RankineBlocks.GROUND_TAP_TILE;
-
 public class GroundTapTile extends BlockEntity {
     private int proccessTime;
 
     public GroundTapTile(BlockPos posIn, BlockState stateIn) {
-        super(GROUND_TAP_TILE, posIn, stateIn);
+        super(RankineBlockEntityTypes.GROUND_TAP.get(), posIn, stateIn);
     }
 
     @Override
-    public void load(CompoundTag nbt) {
-        super.load(nbt);
+    protected void loadAdditional(CompoundTag nbt, HolderLookup.Provider provider) {
+        super.loadAdditional(nbt, provider);
         this.proccessTime = nbt.getInt("ProcessTime");
     }
 
     @Override
-    public void saveAdditional(CompoundTag compound) {
-        super.saveAdditional(compound);
+    protected void saveAdditional(CompoundTag compound, HolderLookup.Provider provider) {
+        super.saveAdditional(compound, provider);
         compound.putInt("ProcessTime", this.proccessTime);
     }
 

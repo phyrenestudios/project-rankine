@@ -1,7 +1,8 @@
 package com.cannolicatfish.rankine.blocks.fusionfurnace;
 
-import com.cannolicatfish.rankine.blocks.fusionfurnace.FusionFurnaceTile;
 import com.cannolicatfish.rankine.init.RankineBlockEntityTypes;
+import com.mojang.serialization.MapCodec;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
@@ -13,6 +14,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -23,29 +25,35 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.common.util.LazyOptional;
 import net.neoforged.neoforge.fluids.FluidActionResult;
 import net.neoforged.neoforge.fluids.FluidUtil;
 import net.neoforged.neoforge.fluids.capability.IFluidHandlerItem;
-import net.neoforged.neoforge.network.NetworkHooks;
 import net.neoforged.neoforge.items.wrapper.InvWrapper;
 
 import javax.annotation.Nullable;
-import java.util.Random;
+import java.util.Optional;
 
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 
 public class FusionFurnaceBlock extends BaseEntityBlock {
+    public static final MapCodec<FusionFurnaceBlock> CODEC = simpleCodec(FusionFurnaceBlock::new);
+
+    @Override
+    protected MapCodec<FusionFurnaceBlock> codec() {
+        return CODEC;
+    }
+
     public FusionFurnaceBlock(BlockBehaviour.Properties properties) {
         super(properties);
     }
 
     @OnlyIn(Dist.CLIENT)
-    public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, Random rand) {
+    public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, RandomSource rand) {
         if (stateIn.getValue(BlockStateProperties.LIT)) {
             double d0 = (double)pos.getX() + 0.5D;
             double d1 = (double)pos.getY() + 0.4D;
@@ -70,35 +78,51 @@ public class FusionFurnaceBlock extends BaseEntityBlock {
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
+    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
         if (!world.isClientSide) {
-            LazyOptional<IFluidHandlerItem> item = FluidUtil.getFluidHandler(player.getItemInHand(hand));
+            Optional<IFluidHandlerItem> item = FluidUtil.getFluidHandler(player.getItemInHand(hand));
             FusionFurnaceTile fusionFurnaceTile = (FusionFurnaceTile) world.getBlockEntity(pos);
             if (item.isPresent() && fusionFurnaceTile != null) {
                 FluidActionResult emptyContainerAndStow = FluidUtil.tryEmptyContainerAndStow(player.getItemInHand(hand), fusionFurnaceTile.inputTank, new InvWrapper(player.getInventory()), fusionFurnaceTile.inputTank.getCapacity(), player, true);
                 if (emptyContainerAndStow.isSuccess()) {
                     player.setItemInHand(hand, emptyContainerAndStow.getResult());
                     world.blockEntityChanged(pos);
-                    return InteractionResult.CONSUME;
+                    return ItemInteractionResult.CONSUME;
                 }
 
                 FluidActionResult fillContainerAndStowOutput = FluidUtil.tryFillContainerAndStow(player.getItemInHand(hand), fusionFurnaceTile.outputTank, new InvWrapper(player.getInventory()), fusionFurnaceTile.outputTank.getFluidAmount(), player, true);
                 if (fillContainerAndStowOutput.isSuccess()) {
                     player.setItemInHand(hand, fillContainerAndStowOutput.getResult());
                     world.blockEntityChanged(pos);
-                    return InteractionResult.CONSUME;
+                    return ItemInteractionResult.CONSUME;
                 }
 
                 FluidActionResult fillContainerAndStowInput = FluidUtil.tryFillContainerAndStow(player.getItemInHand(hand), fusionFurnaceTile.inputTank, new InvWrapper(player.getInventory()), fusionFurnaceTile.inputTank.getFluidAmount(), player, true);
                 if (fillContainerAndStowInput.isSuccess()) {
                     player.setItemInHand(hand, fillContainerAndStowInput.getResult());
                     world.blockEntityChanged(pos);
-                    return InteractionResult.CONSUME;
+                    return ItemInteractionResult.CONSUME;
                 }
             }
             BlockEntity tileEntity = world.getBlockEntity(pos);
             if (tileEntity instanceof MenuProvider) {
-                NetworkHooks.openGui((ServerPlayer) player, (MenuProvider) tileEntity, tileEntity.getBlockPos());
+                ((ServerPlayer) player).openMenu((MenuProvider) tileEntity, tileEntity.getBlockPos());
+            } else {
+                throw new IllegalStateException("Our named container provider is missing!");
+            }
+            return ItemInteractionResult.CONSUME;
+        } else
+        {
+            return ItemInteractionResult.SUCCESS;
+        }
+    }
+
+    @Override
+    protected InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult result) {
+        if (!world.isClientSide) {
+            BlockEntity tileEntity = world.getBlockEntity(pos);
+            if (tileEntity instanceof MenuProvider) {
+                ((ServerPlayer) player).openMenu((MenuProvider) tileEntity, tileEntity.getBlockPos());
             } else {
                 throw new IllegalStateException("Our named container provider is missing!");
             }
@@ -109,7 +133,8 @@ public class FusionFurnaceBlock extends BaseEntityBlock {
         }
     }
 
-    public void onRemove(BlockState state, Level worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
+    @Override
+    protected void onRemove(BlockState state, Level worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
         if (!state.is(newState.getBlock())) {
             BlockEntity tileentity = worldIn.getBlockEntity(pos);
             if (tileentity instanceof FusionFurnaceTile) {
@@ -126,7 +151,7 @@ public class FusionFurnaceBlock extends BaseEntityBlock {
     }
 
     @Override
-    public boolean triggerEvent(BlockState state, Level worldIn, BlockPos pos, int id, int param) {
+    protected boolean triggerEvent(BlockState state, Level worldIn, BlockPos pos, int id, int param) {
         super.triggerEvent(state, worldIn, pos, id, param);
         BlockEntity tileentity = worldIn.getBlockEntity(pos);
         return tileentity == null ? false : tileentity.triggerEvent(id, param);
@@ -134,12 +159,13 @@ public class FusionFurnaceBlock extends BaseEntityBlock {
 
     @Override
     @Nullable
-    public MenuProvider getMenuProvider(BlockState state, Level worldIn, BlockPos pos) {
+    protected MenuProvider getMenuProvider(BlockState state, Level worldIn, BlockPos pos) {
         BlockEntity tileentity = worldIn.getBlockEntity(pos);
         return tileentity instanceof MenuProvider ? (MenuProvider)tileentity : null;
     }
 
-    public RenderShape getRenderShape(BlockState p_49232_) {
+    @Override
+    protected RenderShape getRenderShape(BlockState p_49232_) {
         return RenderShape.MODEL;
     }
 
@@ -156,4 +182,3 @@ public class FusionFurnaceBlock extends BaseEntityBlock {
     }
 
 }
-

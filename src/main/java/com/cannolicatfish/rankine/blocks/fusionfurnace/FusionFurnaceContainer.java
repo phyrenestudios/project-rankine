@@ -2,9 +2,10 @@ package com.cannolicatfish.rankine.blocks.fusionfurnace;
 
 import com.cannolicatfish.rankine.init.*;
 import com.cannolicatfish.rankine.init.packets.FluidStackPacket;
-import com.cannolicatfish.rankine.init.packets.RankinePacketHandler;
 import com.cannolicatfish.rankine.items.BatteryItem;
 import com.cannolicatfish.rankine.items.GasBottleItem;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.Container;
@@ -27,14 +28,16 @@ import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.SlotItemHandler;
 import net.neoforged.neoforge.items.wrapper.InvWrapper;
 
-import static com.cannolicatfish.rankine.init.RankineBlocks.FUSION_FURNACE_CONTAINER;
-
 public class FusionFurnaceContainer extends AbstractContainerMenu {
     private final Container furnaceInventory;
     private BlockEntity tileEntity;
     private Player playerEntity;
     private IItemHandler playerInventory;
     private final ContainerData data;
+
+    public FusionFurnaceContainer(int windowId, Inventory inv, FriendlyByteBuf extraData) {
+        this(windowId, inv.player.level(), extraData.readBlockPos(), inv, inv.player);
+    }
 
     public FusionFurnaceContainer(int windowId, Level world, BlockPos pos, Inventory playerInventory, Player player) {
         this(windowId,world,pos,playerInventory,player,new SimpleContainer(7),new SimpleContainerData(4));
@@ -43,7 +46,7 @@ public class FusionFurnaceContainer extends AbstractContainerMenu {
 
     }
     public FusionFurnaceContainer(int windowId, Level world, BlockPos pos, Inventory playerInventory, Player player, Container furnaceInventoryIn, ContainerData furnaceData) {
-        super(FUSION_FURNACE_CONTAINER, windowId);
+        super(RankineContainers.FUSION_FURNACE_CONTAINER.get(), windowId);
         tileEntity = world.getBlockEntity(pos);
         checkContainerSize(furnaceInventoryIn, 7);
         checkContainerDataCount(furnaceData, 4);
@@ -93,7 +96,7 @@ public class FusionFurnaceContainer extends AbstractContainerMenu {
 
     public String getInputTankInfo() {
         FusionFurnaceTile fusionFurnaceTile = (FusionFurnaceTile) tileEntity;
-        return fusionFurnaceTile.inputTank.getFluid().getFluid().getRegistryName() + " : " + fusionFurnaceTile.inputTank.getFluid().getAmount();
+        return BuiltInRegistries.FLUID.getKey(fusionFurnaceTile.inputTank.getFluid().getFluid()) + " : " + fusionFurnaceTile.inputTank.getFluid().getAmount();
     }
 
     public FluidTank getInputTank() {
@@ -103,7 +106,7 @@ public class FusionFurnaceContainer extends AbstractContainerMenu {
 
     public String getOutputTankInfo() {
         FusionFurnaceTile fusionFurnaceTile = (FusionFurnaceTile) tileEntity;
-        return fusionFurnaceTile.outputTank.getFluid().getFluid().getRegistryName() + " : " + fusionFurnaceTile.outputTank.getFluid().getAmount();
+        return BuiltInRegistries.FLUID.getKey(fusionFurnaceTile.outputTank.getFluid().getFluid()) + " : " + fusionFurnaceTile.outputTank.getFluid().getAmount();
     }
 
     public FluidTank getOutputTank() {
@@ -115,8 +118,11 @@ public class FusionFurnaceContainer extends AbstractContainerMenu {
     public void broadcastChanges() {
         super.broadcastChanges();
         FusionFurnaceTile fusionFurnaceTile = (FusionFurnaceTile) tileEntity;
-        RankinePacketHandler.INSTANCE.send(PacketDistributor.ALL.noArg(),new FluidStackPacket(fusionFurnaceTile.inputTank.getFluid(),tileEntity.getBlockPos(),true));
-        RankinePacketHandler.INSTANCE.send(PacketDistributor.ALL.noArg(),new FluidStackPacket(fusionFurnaceTile.outputTank.getFluid(),tileEntity.getBlockPos(), playerEntity.canBeCollidedWith()));
+        // PORT-TODO(networking): FluidStackPacket is owned by the packets port; assumes it becomes a
+        // CustomPacketPayload keeping the (FluidStack, BlockPos, boolean) constructor. Old code sent via
+        // RankinePacketHandler.INSTANCE.send(PacketDistributor.ALL.noArg(), ...).
+        PacketDistributor.sendToAllPlayers(new FluidStackPacket(fusionFurnaceTile.inputTank.getFluid(),tileEntity.getBlockPos(),true));
+        PacketDistributor.sendToAllPlayers(new FluidStackPacket(fusionFurnaceTile.outputTank.getFluid(),tileEntity.getBlockPos(), playerEntity.canBeCollidedWith()));
     }
 
     //TODO Rewrite this

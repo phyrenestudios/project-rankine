@@ -1,13 +1,12 @@
 package com.cannolicatfish.rankine.blocks.mtt;
 
-import com.cannolicatfish.rankine.blocks.fusionfurnace.FusionFurnaceContainer;
+import com.cannolicatfish.rankine.init.RankineBlockEntityTypes;
 import com.cannolicatfish.rankine.init.RankineTags;
-import com.cannolicatfish.rankine.items.BatteryItem;
-import com.cannolicatfish.rankine.items.GasBottleItem;
 import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
 import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
-import com.cannolicatfish.rankine.util.PeriodicTableUtils;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.Inventory;
@@ -21,61 +20,56 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.Component;
-import net.neoforged.neoforge.common.ForgeHooks;
+import net.neoforged.neoforge.items.IItemHandler;
+import net.neoforged.neoforge.items.wrapper.SidedInvWrapper;
 
 import javax.annotation.Nullable;
-
-import static com.cannolicatfish.rankine.init.RankineBlocks.MATERIAL_TESTING_TABLE_TILE;
 
 public class MaterialTestingTableTile extends BlockEntity implements WorldlyContainer, MenuProvider {
     protected NonNullList<ItemStack> items = NonNullList.withSize(14, ItemStack.EMPTY);
     private static final int[] SLOTS_UP = new int[]{0,1};
     private static final int[] SLOTS_HORIZONTAL = new int[]{2,3,4,5,6,7,8,9,10,11,12,13};
     public MaterialTestingTableTile(BlockPos posIn, BlockState stateIn) {
-        super(MATERIAL_TESTING_TABLE_TILE, posIn, stateIn);
+        super(RankineBlockEntityTypes.MATERIAL_TESTING_TABLE.get(), posIn, stateIn);
     }
 
     @Override
-    public void load(CompoundTag nbt) {
-        super.load(nbt);
+    protected void loadAdditional(CompoundTag nbt, HolderLookup.Provider provider) {
+        super.loadAdditional(nbt, provider);
         this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
-        ContainerHelper.loadAllItems(nbt,this.items);
+        ContainerHelper.loadAllItems(nbt,this.items, provider);
     }
 
     @Override
-    public void saveAdditional(CompoundTag compound) {
-        super.saveAdditional(compound);
-        ContainerHelper.saveAllItems(compound, this.items);
+    protected void saveAdditional(CompoundTag compound, HolderLookup.Provider provider) {
+        super.saveAdditional(compound, provider);
+        ContainerHelper.saveAllItems(compound, this.items, provider);
     }
 
 
-    net.neoforged.neoforge.common.util.LazyOptional<? extends net.neoforged.neoforge.items.IItemHandler>[] handlers =
-            net.neoforged.neoforge.items.wrapper.SidedInvWrapper.create(this, Direction.UP, Direction.DOWN, Direction.NORTH);
+    private final IItemHandler[] handlers = new IItemHandler[] {
+            new SidedInvWrapper(this, Direction.UP),
+            new SidedInvWrapper(this, Direction.DOWN),
+            new SidedInvWrapper(this, Direction.NORTH)
+    };
 
-    @Override
-    public <T> net.neoforged.neoforge.common.util.LazyOptional<T> getCapability(net.neoforged.neoforge.common.capabilities.Capability<T> capability, @Nullable Direction facing) {
-        if (!this.remove && facing != null && capability == net.neoforged.neoforge.items.CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
-            if (facing == Direction.UP)
-                return handlers[0].cast();
-            else if (facing == Direction.DOWN)
-                return handlers[1].cast();
-            else
-                return handlers[2].cast();
+    // PORT-CAP: MaterialTestingTableTile -> getItemHandler
+    @Nullable
+    public IItemHandler getItemHandler(@Nullable Direction side) {
+        if (this.remove || side == null) {
+            return null;
         }
-        return super.getCapability(capability, facing);
-    }
-
-    @Override
-    public void setRemoved() {
-        super.setRemoved();
-        for (int x = 0; x < handlers.length; x++)
-            handlers[x].invalidate();
+        if (side == Direction.UP)
+            return handlers[0];
+        else if (side == Direction.DOWN)
+            return handlers[1];
+        else
+            return handlers[2];
     }
 
     @Override
     public Component getDisplayName() {
-        return Component.literal(getType().getRegistryName().getPath());
+        return Component.literal(BuiltInRegistries.BLOCK_ENTITY_TYPE.getKey(this.getType()).getPath());
     }
 
     @Override
@@ -134,7 +128,7 @@ public class MaterialTestingTableTile extends BlockEntity implements WorldlyCont
     @Override
     public void setItem(int index, ItemStack stack) {
         ItemStack itemstack = this.items.get(index);
-        boolean flag = !stack.isEmpty() && stack.sameItem(itemstack) && ItemStack.tagMatches(stack, itemstack);
+        boolean flag = !stack.isEmpty() && ItemStack.isSameItemSameComponents(stack, itemstack);
         this.items.set(index, stack);
         if (stack.getCount() > this.getMaxStackSize()) {
             stack.setCount(this.getMaxStackSize());

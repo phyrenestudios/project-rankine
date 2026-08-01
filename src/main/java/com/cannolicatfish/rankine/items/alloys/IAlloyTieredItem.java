@@ -1,6 +1,8 @@
 package com.cannolicatfish.rankine.items.alloys;
 
 import com.cannolicatfish.rankine.init.Config;
+import com.cannolicatfish.rankine.init.RankineDataComponents.AlloyStats;
+import com.cannolicatfish.rankine.enchantment.RankineEnchantmentHelper;
 import com.cannolicatfish.rankine.init.RankineEnchantments;
 import com.cannolicatfish.rankine.recipe.AlloyModifierRecipe;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
@@ -10,15 +12,16 @@ import com.cannolicatfish.rankine.util.alloys.AlloyModifier;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
+import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.Tiers;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
@@ -29,7 +32,7 @@ import java.text.DecimalFormatSymbols;
 import java.util.*;
 
 public interface IAlloyTieredItem extends IAlloySpecialItem {
-    
+
     List<AlloyModifier.ModifierType> STATS = Arrays.asList(AlloyModifier.ModifierType.DURABILITY, AlloyModifier.ModifierType.CORROSION_RESISTANCE, AlloyModifier.ModifierType.HEAT_RESISTANCE, AlloyModifier.ModifierType.TOUGHNESS);
 
     @Override
@@ -39,13 +42,19 @@ public interface IAlloyTieredItem extends IAlloySpecialItem {
 
     @Override
     default void initStats(ItemStack stack, Map<ElementRecipe, Integer> elementMap, @Nullable AlloyingRecipe alloyRecipe, @Nullable AlloyModifierRecipe alloyModifier) {
-        CompoundTag listnbt = new CompoundTag();
-        listnbt.putInt("durability",createValueForDurability(elementMap,alloyRecipe,getModifierForStat(alloyModifier, AlloyModifier.ModifierType.DURABILITY)));
-        listnbt.putInt("enchantability",createValueForEnchantability(elementMap,alloyRecipe,getModifierForStat(alloyModifier, AlloyModifier.ModifierType.ENCHANTABILITY)));
-        listnbt.putFloat("corrResist",createValueForCorrosionResistance(elementMap,alloyRecipe,getModifierForStat(alloyModifier, AlloyModifier.ModifierType.CORROSION_RESISTANCE)));
-        listnbt.putFloat("heatResist",createValueForHeatResistance(elementMap,alloyRecipe,getModifierForStat(alloyModifier, AlloyModifier.ModifierType.HEAT_RESISTANCE)));
-        listnbt.putFloat("toughness",createValueForToughness(elementMap,alloyRecipe,getModifierForStat(alloyModifier, AlloyModifier.ModifierType.TOUGHNESS)));
-        stack.getOrCreateTag().put("StoredAlloyStats", listnbt);
+        // was NBT "StoredAlloyStats" {durability, enchantability, corrResist, heatResist, toughness}
+        AlloyStats stats = new AlloyStats(
+                createValueForDurability(elementMap,alloyRecipe,getModifierForStat(alloyModifier, AlloyModifier.ModifierType.DURABILITY)),
+                0f,
+                0,
+                createValueForEnchantability(elementMap,alloyRecipe,getModifierForStat(alloyModifier, AlloyModifier.ModifierType.ENCHANTABILITY)),
+                0f,
+                0f,
+                createValueForCorrosionResistance(elementMap,alloyRecipe,getModifierForStat(alloyModifier, AlloyModifier.ModifierType.CORROSION_RESISTANCE)),
+                createValueForHeatResistance(elementMap,alloyRecipe,getModifierForStat(alloyModifier, AlloyModifier.ModifierType.HEAT_RESISTANCE)),
+                createValueForToughness(elementMap,alloyRecipe,getModifierForStat(alloyModifier, AlloyModifier.ModifierType.TOUGHNESS)),
+                0, 0, 0f, 0f);
+        applyAlloyStats(stack, stats);
     }
 
     @Override
@@ -65,7 +74,7 @@ public interface IAlloyTieredItem extends IAlloySpecialItem {
                 }
 
                 if (!IAlloyItem.getAlloyModifiers(stack).isEmpty()) {
-                    tooltip.add((Component.literal("Modifier: " + (IAlloyItem.getAlloyModifiers(stack).getCompound(0).getString("modifierName"))).withStyle(ChatFormatting.AQUA)));
+                    tooltip.add((Component.literal("Modifier: " + (IAlloyItem.getAlloyModifiers(stack).get(0).name())).withStyle(ChatFormatting.AQUA)));
                 }
 
                 if (!this.needsRefresh(stack)) {
@@ -255,30 +264,19 @@ public interface IAlloyTieredItem extends IAlloySpecialItem {
 
     default int getAlloyDurability(ItemStack stack)
     {
-        if (stack.getTag() != null) {
-            return stack.getTag().getCompound("StoredAlloyStats").getInt("durability");
-        } else {
-            return 1;
-        }
-
+        var stats = getAlloyStats(stack);
+        return stats != null ? stats.durability() : 1;
     }
 
     default float getAlloyMiningSpeed(ItemStack stack)
     {
-        if (stack.getTag() != null) {
-            return stack.getTag().getCompound("StoredAlloyStats").getFloat("miningSpeed");
-        } else {
-            return 0.1f;
-        }
-
+        var stats = getAlloyStats(stack);
+        return stats != null ? stats.miningSpeed() : 0.1f;
     }
 
     default int getAlloyEnchantability(ItemStack stack) {
-        if (stack.getTag() != null) {
-            return stack.getTag().getCompound("StoredAlloyStats").getInt("enchantability");
-        } else {
-            return 1;
-        }
+        var stats = getAlloyStats(stack);
+        return stats != null ? stats.enchantability() : 1;
     }
 
     default Tier getAlloyTier(ItemStack stack) {
@@ -292,31 +290,20 @@ public interface IAlloyTieredItem extends IAlloySpecialItem {
     }
 
     default int getAlloyHarvestLevel(ItemStack stack) {
-        if (stack.getTag() != null) {
-            return stack.getTag().getCompound("StoredAlloyStats").getInt("harvestLevel");
-        } else {
-            return 0;
-        }
+        var stats = getAlloyStats(stack);
+        return stats != null ? stats.harvestLevel() : 0;
     }
 
     default float getAlloyAttackSpeed(ItemStack stack)
     {
-        if (stack.getTag() != null) {
-            return stack.getTag().getCompound("StoredAlloyStats").getFloat("attackSpeed");
-        } else {
-            return 0.1f;
-        }
-
+        var stats = getAlloyStats(stack);
+        return stats != null ? stats.attackSpeed() : 0.1f;
     }
 
     default float getAlloyAttackDamage(ItemStack stack)
     {
-        if (stack.getTag() != null) {
-            return stack.getTag().getCompound("StoredAlloyStats").getFloat("attackDamage");
-        } else {
-            return 0.1f;
-        }
-
+        var stats = getAlloyStats(stack);
+        return stats != null ? stats.attackDamage() : 0.1f;
     }
 
     default float getCorrResist(ItemStack stack)
@@ -325,12 +312,8 @@ public interface IAlloyTieredItem extends IAlloySpecialItem {
         {
             return 100;
         }
-        if (stack.getTag() != null) {
-            return stack.getTag().getCompound("StoredAlloyStats").getFloat("corrResist");
-        } else {
-            return 0;
-        }
-
+        var stats = getAlloyStats(stack);
+        return stats != null ? stats.corrResist() : 0;
     }
 
 
@@ -340,11 +323,8 @@ public interface IAlloyTieredItem extends IAlloySpecialItem {
         {
             return 100;
         }
-        if (stack.getTag() != null) {
-            return stack.getTag().getCompound("StoredAlloyStats").getFloat("heatResist");
-        } else {
-            return 0;
-        }
+        var stats = getAlloyStats(stack);
+        return stats != null ? stats.heatResist() : 0;
     }
 
     default float getToughness(ItemStack stack)
@@ -353,26 +333,21 @@ public interface IAlloyTieredItem extends IAlloySpecialItem {
         {
             return 0;
         }
-        if (stack.getTag() != null) {
-            return stack.getTag().getCompound("StoredAlloyStats").getFloat("toughness");
-        } else {
-            return 0;
-        }
+        var stats = getAlloyStats(stack);
+        return stats != null ? stats.toughness() : 0;
     }
 
     default float getKnockbackResistance(ItemStack stack)
     {
-        if (stack.getTag() != null) {
-            return stack.getTag().getCompound("StoredAlloyStats").getInt("knockbackResist");
-        } else {
-            return 0;
-        }
-
+        // NOTE: 1.18.2 wrote this stat as a float but read it back with getInt(), which always
+        // returned 0 for float tags. Reading the real value here is the intended behavior.
+        var stats = getAlloyStats(stack);
+        return stats != null ? stats.knockbackResist() : 0;
     }
 
     default int calcDurabilityLoss(ItemStack stack, Level worldIn, LivingEntity entityLiving, boolean isEfficient)
     {
-        Random rand = worldIn.getRandom();
+        RandomSource rand = worldIn.getRandom();
         int i = 1;
         i += calcToughnessProc(stack,rand);
         i += calcCorrosionResistanceProc(stack,entityLiving,rand);
@@ -384,14 +359,14 @@ public interface IAlloyTieredItem extends IAlloySpecialItem {
             i *= 2;
         }
 
-        if (hr > 0 && EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.SHAPE_MEMORY.get(),stack) >= 1) {
+        if (hr > 0 && RankineEnchantmentHelper.getLevel(worldIn, RankineEnchantments.SHAPE_MEMORY, stack) >= 1) {
             stack.setDamageValue(Math.max(stack.getDamageValue() - i,0));
             i = 0;
         }
         return i;
     }
 
-    default int calcCorrosionResistanceProc(ItemStack stack, LivingEntity entity, Random random) {
+    default int calcCorrosionResistanceProc(ItemStack stack, LivingEntity entity, RandomSource random) {
         float corrResist = getCorrResist(stack);
         if ((random.nextFloat() > corrResist && entity.isInWaterOrRain())) {
             return Config.ALLOYS.ALLOY_CORROSION_AMT.get();
@@ -399,7 +374,7 @@ public interface IAlloyTieredItem extends IAlloySpecialItem {
         return 0;
     }
 
-    default int calcHeatResistanceProc(ItemStack stack, LivingEntity entity, Random random) {
+    default int calcHeatResistanceProc(ItemStack stack, LivingEntity entity, RandomSource random) {
         float heatResist = getHeatResist(stack);
         if ((random.nextFloat() > heatResist &&  (entity.isInLava() || entity.getRemainingFireTicks() > 0 || entity.getCommandSenderWorld().dimension() == Level.NETHER))) {
             return Config.ALLOYS.ALLOY_HEAT_AMT.get();
@@ -407,7 +382,7 @@ public interface IAlloyTieredItem extends IAlloySpecialItem {
         return 0;
     }
 
-    default int calcToughnessProc(ItemStack stack, Random random) {
+    default int calcToughnessProc(ItemStack stack, RandomSource random) {
         float toughness = getToughness(stack);
         if (toughness > 0 && random.nextFloat() < toughness) {
             return -1;
@@ -422,22 +397,22 @@ public interface IAlloyTieredItem extends IAlloySpecialItem {
         int interval = 5;
         int maxLvl = 5;
         ResourceLocation rs = IAlloyItem.getAlloyRecipe(stack);
-        if (rs != null && worldIn.getRecipeManager().byKey(rs).isPresent()) {
-            AlloyingRecipe recipe = (AlloyingRecipe) worldIn.getRecipeManager().byKey(rs).get();
+        Optional<RecipeHolder<?>> holder = rs != null ? worldIn.getRecipeManager().byKey(rs) : Optional.empty();
+        if (holder.isPresent() && holder.get().value() instanceof AlloyingRecipe recipe) {
             start = recipe.getMinEnchantability();
             interval = recipe.getEnchantInterval();
             maxLvl = recipe.getMaxEnchantLevelIn();
-            for (Enchantment e: AlloyEnchantmentUtils.getAlloyEnchantments(recipe,stack,worldIn)) {
+            for (Holder<Enchantment> e: AlloyEnchantmentUtils.getAlloyEnchantments(recipe,stack,worldIn)) {
                 int enchLvl = Math.min(Math.floorDiv(Math.max(getAlloyEnchantability(stack) - start + interval,0),interval),maxLvl);
                 if (enchLvl > 0 && EnchantmentHelper.getItemEnchantmentLevel(e,stack) == 0) {
-                    stack.enchant(e,Math.min(e.getMaxLevel(),enchLvl));
+                    stack.enchant(e,Math.min(e.value().getMaxLevel(),enchLvl));
                 }
             }
         }
-        for (Enchantment e: AlloyEnchantmentUtils.getElementEnchantments(getElementRecipes(IAlloyItem.getAlloyComposition(stack),worldIn),getPercents(IAlloyItem.getAlloyComposition(stack)),stack,worldIn)) {
+        for (Holder<Enchantment> e: AlloyEnchantmentUtils.getElementEnchantments(getElementRecipes(IAlloyItem.getAlloyComposition(stack),worldIn),getPercents(IAlloyItem.getAlloyComposition(stack)),stack,worldIn)) {
             int enchLvl = Math.min(Math.floorDiv(Math.max(getAlloyEnchantability(stack) - start + interval,0),interval),maxLvl);
             if (enchLvl > 0 && EnchantmentHelper.getItemEnchantmentLevel(e,stack) == 0) {
-                stack.enchant(e,Math.min(e.getMaxLevel(),enchLvl));
+                stack.enchant(e,Math.min(e.value().getMaxLevel(),enchLvl));
             }
         }
 

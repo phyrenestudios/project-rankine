@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.blocks;
 
 import com.cannolicatfish.rankine.init.Config;
 import com.google.common.collect.Lists;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.Tuple;
@@ -27,7 +28,13 @@ import java.util.Set;
 
 public class FloodGateBlock extends Block implements SimpleWaterloggedBlock {
 
+    public static final MapCodec<FloodGateBlock> CODEC = simpleCodec(FloodGateBlock::new);
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
+
+    @Override
+    public MapCodec<? extends FloodGateBlock> codec() {
+        return CODEC;
+    }
 
     public FloodGateBlock(Properties properties) {
         super(properties);

@@ -1,30 +1,42 @@
 package com.cannolicatfish.rankine.recipe;
 
+import com.cannolicatfish.rankine.init.RankineDataComponents;
 import com.cannolicatfish.rankine.init.RankineRecipeSerializers;
 import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
 import com.cannolicatfish.rankine.items.alloys.IAlloySpecialItem;
 import com.cannolicatfish.rankine.recipe.helper.AlloyIngredientHelper;
+import com.cannolicatfish.rankine.recipe.helper.RankineMapCodec;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
-import com.google.gson.*;
-import net.minecraft.world.inventory.CraftingContainer;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.CraftingRecipe;
-import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.util.GsonHelper;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.JsonSyntaxException;
+import com.mojang.serialization.MapCodec;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.core.Registry;
+import net.minecraft.util.GsonHelper;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.CraftingBookCategory;
+import net.minecraft.world.item.crafting.CraftingInput;
+import net.minecraft.world.item.crafting.CraftingRecipe;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 
+import javax.annotation.Nullable;
 import java.util.Map;
 import java.util.Set;
 
-public class AlloyCraftingRecipe implements CraftingRecipe, net.neoforged.neoforge.common.crafting.IShapedRecipe<CraftingContainer> {
+public class AlloyCraftingRecipe implements CraftingRecipe {
     static int MAX_WIDTH = 3;
     static int MAX_HEIGHT = 3;
     /**
@@ -42,16 +54,22 @@ public class AlloyCraftingRecipe implements CraftingRecipe, net.neoforged.neofor
     private final int recipeHeight;
     private final NonNullList<Ingredient> recipeItems;
     private final ItemStack recipeOutput;
-    private final ResourceLocation id;
     private final String group;
     private final boolean inherit;
     private final String inheritRecipe;
     private final int color;
     private final String localName;
 
-    public AlloyCraftingRecipe(ResourceLocation idIn, String groupIn, int recipeWidthIn, int recipeHeightIn, NonNullList<Ingredient> recipeItemsIn, ItemStack recipeOutputIn, boolean inherit,
+    /**
+     * PORT NOTE: recipes no longer know their own id in 1.21.1. It is resolved lazily from the
+     * RecipeManager during matches() (or bound via {@link #bindId}) because the "def" langName
+     * option derives the generated lang key from the recipe id.
+     */
+    @Nullable
+    private ResourceLocation cachedId;
+
+    public AlloyCraftingRecipe(String groupIn, int recipeWidthIn, int recipeHeightIn, NonNullList<Ingredient> recipeItemsIn, ItemStack recipeOutputIn, boolean inherit,
                                String inheritRecipeIn, String nameIn, int colorIn) {
-        this.id = idIn;
         this.group = groupIn;
         this.recipeWidth = recipeWidthIn;
         this.recipeHeight = recipeHeightIn;
@@ -63,17 +81,43 @@ public class AlloyCraftingRecipe implements CraftingRecipe, net.neoforged.neofor
         this.localName = nameIn;
     }
 
-    public ResourceLocation getId() {
-        return this.id;
+    /** Binds the recipe's own id (e.g. from a RecipeHolder). Safe to call multiple times. */
+    public void bindId(ResourceLocation id) {
+        if (this.cachedId == null) {
+            this.cachedId = id;
+        }
     }
 
+    @Nullable
+    public ResourceLocation getId() {
+        return this.cachedId;
+    }
+
+    private void resolveId(Level level) {
+        if (this.cachedId == null && this.localName.equals("def")) {
+            for (RecipeHolder<CraftingRecipe> holder : level.getRecipeManager().getAllRecipesFor(RecipeType.CRAFTING)) {
+                if (holder.value() == this) {
+                    this.cachedId = holder.id();
+                    break;
+                }
+            }
+        }
+    }
+
+    @Override
     public RecipeSerializer<?> getSerializer() {
         return RankineRecipeSerializers.ALLOY_CRAFTING_RECIPE_SERIALIZER.get();
+    }
+
+    @Override
+    public CraftingBookCategory category() {
+        return CraftingBookCategory.MISC;
     }
 
     /**
      * Recipes with equal group are combined into one button in the recipe book
      */
+    @Override
     public String getGroup() {
         return this.group;
     }
@@ -94,8 +138,12 @@ public class AlloyCraftingRecipe implements CraftingRecipe, net.neoforged.neofor
             String[] s = rs.getPath().split("/");
             return "item." + rs.getNamespace() + "." + s[s.length-1];
         } else if (this.localName.equals("def")){
-            String[] s = this.id.getPath().split("/");
-            return "item." + this.id.getNamespace() + "." + s[s.length-1];
+            if (this.cachedId == null) {
+                // PORT-TODO: id unresolved until matches() has run once (see resolveId).
+                return "";
+            }
+            String[] s = this.cachedId.getPath().split("/");
+            return "item." + this.cachedId.getNamespace() + "." + s[s.length-1];
         } else {
             return this.localName;
         }
@@ -106,18 +154,25 @@ public class AlloyCraftingRecipe implements CraftingRecipe, net.neoforged.neofor
      * Get the result of this recipe, usually for display purposes (e.g. recipe book). If your recipe has more than one
      * possible result (e.g. it's dynamic and depends on its inputs), then return an empty stack.
      */
+    @Override
+    public ItemStack getResultItem(HolderLookup.Provider provider) {
+        return getResultItem();
+    }
+
+    /** Convenience overload matching the pre-1.21 API. */
     public ItemStack getResultItem() {
         ItemStack out = this.recipeOutput.copy();
         if (this.getColor() != 16777215) {
-            out.getOrCreateTag().putInt("color",this.getColor());
+            IAlloyItem.addColorNBT(out, this.getColor());
         }
 
         if (!this.getLocalName().isEmpty()) {
-            out.getOrCreateTag().putString("nameOverride",this.getLocalName());
+            out.set(RankineDataComponents.NAME_OVERRIDE.get(), this.getLocalName());
         }
         return out;
     }
 
+    @Override
     public NonNullList<Ingredient> getIngredients() {
         return this.recipeItems;
     }
@@ -125,6 +180,7 @@ public class AlloyCraftingRecipe implements CraftingRecipe, net.neoforged.neofor
     /**
      * Used to determine if this recipe can fit in a grid of the given width/height
      */
+    @Override
     public boolean canCraftInDimensions(int width, int height) {
         return width >= this.recipeWidth && height >= this.recipeHeight;
     }
@@ -132,9 +188,11 @@ public class AlloyCraftingRecipe implements CraftingRecipe, net.neoforged.neofor
     /**
      * Used to check if a recipe matches current crafting inventory
      */
-    public boolean matches(CraftingContainer inv, Level worldIn) {
-        for(int i = 0; i <= inv.getWidth() - this.recipeWidth; ++i) {
-            for(int j = 0; j <= inv.getHeight() - this.recipeHeight; ++j) {
+    @Override
+    public boolean matches(CraftingInput inv, Level worldIn) {
+        resolveId(worldIn);
+        for(int i = 0; i <= inv.width() - this.recipeWidth; ++i) {
+            for(int j = 0; j <= inv.height() - this.recipeHeight; ++j) {
                 if (this.checkMatch(inv, i, j, true)) {
                     return true;
                 }
@@ -151,22 +209,21 @@ public class AlloyCraftingRecipe implements CraftingRecipe, net.neoforged.neofor
     /**
      * Checks if the region of a crafting inventory is match for the recipe.
      */
-    private boolean checkMatch(CraftingContainer craftingInventory, int width, int height, boolean p_77573_4_) {
-        //String workingComposition = "";
-        for(int i = 0; i < craftingInventory.getWidth(); ++i) {
-            for(int j = 0; j < craftingInventory.getHeight(); ++j) {
+    private boolean checkMatch(CraftingInput craftingInventory, int width, int height, boolean mirrored) {
+        for(int i = 0; i < craftingInventory.width(); ++i) {
+            for(int j = 0; j < craftingInventory.height(); ++j) {
                 int k = i - width;
                 int l = j - height;
                 Ingredient ingredient = Ingredient.EMPTY;
                 if (k >= 0 && l >= 0 && k < this.recipeWidth && l < this.recipeHeight) {
-                    if (p_77573_4_) {
+                    if (mirrored) {
                         ingredient = this.recipeItems.get(this.recipeWidth - k - 1 + l * this.recipeWidth);
                     } else {
                         ingredient = this.recipeItems.get(k + l * this.recipeWidth);
                     }
                 }
 
-                ItemStack stackInSlot = craftingInventory.getItem(i + j * craftingInventory.getWidth());
+                ItemStack stackInSlot = craftingInventory.getItem(i + j * craftingInventory.width());
                 if (!ingredient.test(stackInSlot)) {
                     return false;
                 }
@@ -174,18 +231,12 @@ public class AlloyCraftingRecipe implements CraftingRecipe, net.neoforged.neofor
                 {
                     if (!IAlloyItem.getAlloyComposition(ingredient.getItems()[0]).isEmpty() &&
                             !IAlloyItem.getAlloyComposition(ingredient.getItems()[0]).equals(IAlloyItem.getAlloyComposition(stackInSlot))) {
-                        //System.out.println("Item " + stackInSlot + " does not match composition of " + ingredient.getMatchingStacks()[0]);
-                        //System.out.println("ingredient comp: " + (IAlloyItem.getAlloyComposition(ingredient.getMatchingStacks()[0])));
-                        //System.out.println("stackInSlot comp: " + (IAlloyItem.getAlloyComposition(stackInSlot)));
                         return false;
                     }
                     ResourceLocation rs = IAlloyItem.getAlloyRecipe(ingredient.getItems()[0]);
                     ResourceLocation inSlot = IAlloyItem.getAlloyRecipe(stackInSlot);
                     if (rs != null &&
                             (inSlot == null || !rs.toString().equals(inSlot.toString()))) {
-                        //System.out.println("Item " + stackInSlot + " does not match alloy recipe of " + ingredient.getMatchingStacks()[0]);
-                        //System.out.println("ingredient recipe: " + (IAlloyItem.getAlloyRecipe(ingredient.getMatchingStacks()[0])));
-                        //System.out.println("stackInSlot recipe: " + (IAlloyItem.getAlloyRecipe(stackInSlot)));
                         return false;
                     }
                 }
@@ -198,7 +249,8 @@ public class AlloyCraftingRecipe implements CraftingRecipe, net.neoforged.neofor
     /**
      * Returns an Item that is the result of this recipe
      */
-    public ItemStack assemble(CraftingContainer inv) {
+    @Override
+    public ItemStack assemble(CraftingInput inv, HolderLookup.Provider provider) {
         ItemStack res = this.getResultItem().copy();
         if (this.inherit)
         {
@@ -207,24 +259,21 @@ public class AlloyCraftingRecipe implements CraftingRecipe, net.neoforged.neofor
                 workingRecipe = this.inheritRecipe;
             }
             String workingComposition = "";
-            for(int i = 0; i < inv.getWidth(); ++i) {
-                for (int j = 0; j < inv.getHeight(); ++j) {
+            for(int i = 0; i < inv.width(); ++i) {
+                for (int j = 0; j < inv.height(); ++j) {
 
-                    ItemStack stackInSlot = inv.getItem(i + j * inv.getWidth());
+                    ItemStack stackInSlot = inv.getItem(i + j * inv.width());
                     ResourceLocation rs = IAlloyItem.getAlloyRecipe(stackInSlot);
-                    //System.out.println(stackInSlot + " has alloy recipe of " + rs);
                     if (!this.inheritRecipe.isEmpty()) {
                         if (rs != null && rs.toString().equals(this.inheritRecipe))
                         {
                             String comp = IAlloyItem.getAlloyComposition(stackInSlot);
                             if (workingComposition.isEmpty())
                             {
-                                //System.out.println("Composition updated to " + comp);
                                 workingComposition = comp;
                             }
                             else if (!comp.equals(workingComposition))
                             {
-                                //System.out.println("Not all compositions match!");
                                 return ItemStack.EMPTY;
                             }
                         }
@@ -234,20 +283,16 @@ public class AlloyCraftingRecipe implements CraftingRecipe, net.neoforged.neofor
                         String recipe = rs.toString();
                         if (workingComposition.isEmpty())
                         {
-                            //System.out.println("Composition updated to " + comp);
                             workingComposition = comp;
                         }
                         else if (!comp.equals(workingComposition))
                         {
-                            //System.out.println("Not all compositions match!");
                             return ItemStack.EMPTY;
                         }
 
                         if (workingRecipe.isEmpty()) {
-                            //System.out.println("Recipe updated to " + recipe);
                             workingRecipe = recipe;
                         } else if (!recipe.equals(workingRecipe)) {
-                            //System.out.println("Not all recipes match!");
                             return ItemStack.EMPTY;
                         }
                     }
@@ -255,20 +300,18 @@ public class AlloyCraftingRecipe implements CraftingRecipe, net.neoforged.neofor
                 }
             }
             if (workingComposition.isEmpty()) {
-                //System.out.println("No matching compositions for inheritRecipe " + workingRecipe);
                 return ItemStack.EMPTY;
             } else {
                 IAlloyItem.createDirectAlloyNBT(res,workingComposition,workingRecipe,null,res.getItem() instanceof IAlloySpecialItem);
             }
         }
         if (this.getColor() != 16777215) {
-            res.getOrCreateTag().putInt("color",this.getColor());
+            IAlloyItem.addColorNBT(res, this.getColor());
         }
 
         if (!this.getLocalName().isEmpty()) {
-            res.getOrCreateTag().putString("nameOverride",this.getLocalName());
+            res.set(RankineDataComponents.NAME_OVERRIDE.get(), this.getLocalName());
         }
-        //System.out.println("RECIPE OUTPUT: " + res);
         return res;
     }
 
@@ -276,7 +319,6 @@ public class AlloyCraftingRecipe implements CraftingRecipe, net.neoforged.neofor
         return this.recipeWidth;
     }
 
-    @Override
     public int getRecipeWidth() {
         return getWidth();
     }
@@ -285,7 +327,6 @@ public class AlloyCraftingRecipe implements CraftingRecipe, net.neoforged.neofor
         return this.recipeHeight;
     }
 
-    @Override
     public int getRecipeHeight() {
         return getHeight();
     }
@@ -436,21 +477,37 @@ public class AlloyCraftingRecipe implements CraftingRecipe, net.neoforged.neofor
 
     public static ItemStack deserializeItem(JsonObject object) {
         String s = GsonHelper.getAsString(object, "item");
-        Item item = Registry.ITEM.getOptional(ResourceLocation.parse(s)).orElseThrow(() -> {
+        BuiltInRegistries.ITEM.getOptional(ResourceLocation.parse(s)).orElseThrow(() -> {
             return new JsonSyntaxException("Unknown item '" + s + "'");
         });
 
         if (object.has("data")) {
             throw new JsonParseException("Disallowed data tag found");
         } else {
-            int i = GsonHelper.getAsInt(object, "count", 1);
             return AlloyIngredientHelper.getItemStack(object, true);
         }
     }
 
-    public static class Serializer extends net.neoforged.neoforge.registries.ForgeRegistryEntry<RecipeSerializer<?>>  implements RecipeSerializer<AlloyCraftingRecipe> {
-        private static final ResourceLocation NAME = ResourceLocation.fromNamespaceAndPath("rankine", "alloy_crafting");
-        public AlloyCraftingRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
+    public static class Serializer implements RecipeSerializer<AlloyCraftingRecipe> {
+
+        public static final MapCodec<AlloyCraftingRecipe> CODEC = RankineMapCodec.of(
+                Serializer::fromJson, Serializer::toJson,
+                RankineMapCodec.fixedKeys("group","color","langName","key","pattern","result","inherit","inheritRecipe"));
+
+        public static final StreamCodec<RegistryFriendlyByteBuf, AlloyCraftingRecipe> STREAM_CODEC =
+                StreamCodec.of(Serializer::toNetwork, Serializer::fromNetwork);
+
+        @Override
+        public MapCodec<AlloyCraftingRecipe> codec() {
+            return CODEC;
+        }
+
+        @Override
+        public StreamCodec<RegistryFriendlyByteBuf, AlloyCraftingRecipe> streamCodec() {
+            return STREAM_CODEC;
+        }
+
+        public static AlloyCraftingRecipe fromJson(JsonObject json) {
             String s = GsonHelper.getAsString(json, "group", "");
             int c;
             if (json.has("color")) {
@@ -467,37 +524,77 @@ public class AlloyCraftingRecipe implements CraftingRecipe, net.neoforged.neofor
             ItemStack itemstack = AlloyCraftingRecipe.deserializeItem(GsonHelper.getAsJsonObject(json, "result"));
             boolean in = json.has("inherit") && GsonHelper.getAsBoolean(json, "inherit");
             String inR = json.has("inheritRecipe") ? GsonHelper.getAsString(json, "inheritRecipe") : "";
-            return new AlloyCraftingRecipe(recipeId, s, i, j, nonnulllist, itemstack, in, inR,n,c);
+            return new AlloyCraftingRecipe(s, i, j, nonnulllist, itemstack, in, inR,n,c);
         }
 
-        public AlloyCraftingRecipe fromNetwork(ResourceLocation recipeId, FriendlyByteBuf buffer) {
+        /**
+         * PORT-TODO: encode emits one unique key letter per grid slot rather than reconstructing the
+         * original shared pattern keys. Decode(encode(x)) is functionally equivalent (same ingredient
+         * grid, same result); only the generated JSON is more verbose than a hand-written file.
+         */
+        public static void toJson(AlloyCraftingRecipe recipe, JsonObject json) {
+            if (!recipe.group.isEmpty()) {
+                json.addProperty("group", recipe.group);
+            }
+            json.addProperty("color", recipe.color);
+            if (!recipe.localName.isEmpty()) {
+                json.addProperty("langName", recipe.localName);
+            }
+            String symbols = "ABCDEFGHIJKLMNOPQRSTUVWXY";
+            JsonObject key = new JsonObject();
+            JsonArray pattern = new JsonArray();
+            for (int row = 0; row < recipe.recipeHeight; row++) {
+                StringBuilder line = new StringBuilder();
+                for (int col = 0; col < recipe.recipeWidth; col++) {
+                    int index = col + row * recipe.recipeWidth;
+                    Ingredient ingredient = recipe.recipeItems.get(index);
+                    if (ingredient.isEmpty()) {
+                        line.append(' ');
+                    } else {
+                        char symbol = symbols.charAt(index % symbols.length());
+                        line.append(symbol);
+                        key.add(String.valueOf(symbol), AlloyIngredientHelper.ingredientToJson(ingredient));
+                    }
+                }
+                pattern.add(line.toString());
+            }
+            json.add("key", key);
+            json.add("pattern", pattern);
+            json.add("result", AlloyIngredientHelper.itemStackToJson(recipe.recipeOutput));
+            json.addProperty("inherit", recipe.inherit);
+            if (!recipe.inheritRecipe.isEmpty()) {
+                json.addProperty("inheritRecipe", recipe.inheritRecipe);
+            }
+        }
+
+        public static AlloyCraftingRecipe fromNetwork(RegistryFriendlyByteBuf buffer) {
             int i = buffer.readVarInt();
             int j = buffer.readVarInt();
             String s = buffer.readUtf(32767);
             NonNullList<Ingredient> nonnulllist = NonNullList.withSize(i * j, Ingredient.EMPTY);
 
             for(int k = 0; k < nonnulllist.size(); ++k) {
-                nonnulllist.set(k, Ingredient.fromNetwork(buffer));
+                nonnulllist.set(k, Ingredient.CONTENTS_STREAM_CODEC.decode(buffer));
             }
 
-            ItemStack itemstack = buffer.readItem();
+            ItemStack itemstack = ItemStack.OPTIONAL_STREAM_CODEC.decode(buffer);
             boolean in = buffer.readBoolean();
             String inR = buffer.readUtf();
             String n = buffer.readUtf();
             int c = buffer.readInt();
-            return new AlloyCraftingRecipe(recipeId, s, i, j, nonnulllist, itemstack, in, inR,n,c);
+            return new AlloyCraftingRecipe(s, i, j, nonnulllist, itemstack, in, inR,n,c);
         }
 
-        public void toNetwork(FriendlyByteBuf buffer, AlloyCraftingRecipe recipe) {
+        public static void toNetwork(RegistryFriendlyByteBuf buffer, AlloyCraftingRecipe recipe) {
             buffer.writeVarInt(recipe.recipeWidth);
             buffer.writeVarInt(recipe.recipeHeight);
             buffer.writeUtf(recipe.group);
 
 
             for(Ingredient ingredient : recipe.recipeItems) {
-                ingredient.toNetwork(buffer);
+                Ingredient.CONTENTS_STREAM_CODEC.encode(buffer, ingredient);
             }
-            buffer.writeItem(recipe.recipeOutput);
+            ItemStack.OPTIONAL_STREAM_CODEC.encode(buffer, recipe.recipeOutput);
             buffer.writeBoolean(recipe.inherit);
             buffer.writeUtf(recipe.inheritRecipe);
             buffer.writeUtf(recipe.localName);

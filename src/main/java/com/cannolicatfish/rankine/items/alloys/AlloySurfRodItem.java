@@ -1,13 +1,14 @@
 package com.cannolicatfish.rankine.items.alloys;
 
-import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
-import net.minecraft.core.NonNullList;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.FishingRodItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -44,16 +45,16 @@ public class AlloySurfRodItem extends FishingRodItem implements IAlloyTieredItem
     }
 
     @Override
-    public int getItemEnchantability(ItemStack stack) {
+    public int getEnchantmentValue(ItemStack stack) {
         return this.getAlloyEnchantability(stack);
     }
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-        addAlloyInformation(stack,worldIn,tooltip,flagIn);
+    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag flagIn) {
+        addAlloyInformation(stack,context.level(),tooltip,flagIn);
         if (flagIn.isAdvanced()) {
-            addAdvancedAlloyInformation(stack,worldIn,tooltip,flagIn);
+            addAdvancedAlloyInformation(stack,context.level(),tooltip,flagIn);
         }
     }
 
@@ -93,20 +94,14 @@ public class AlloySurfRodItem extends FishingRodItem implements IAlloyTieredItem
             String s = IAlloyItem.getAlloyComposition(repair);
             String r = IAlloyItem.getAlloyComposition(toRepair);
 
-            String s2 = IAlloyItem.getAlloyRecipe(repair).toString();
-            String r2 = IAlloyItem.getAlloyRecipe(toRepair).toString();
+            String s2 = String.valueOf(IAlloyItem.getAlloyRecipe(repair));
+            String r2 = String.valueOf(IAlloyItem.getAlloyRecipe(toRepair));
             return !s.isEmpty() && s.equals(r) && s2.equals(r2);
         }
         return false;
     }
 
-    @Override
-    public void fillItemCategory(CreativeModeTab group, NonNullList<ItemStack> items) {
-        if (this.allowdedIn(group) && this.defaultAlloyRecipe == null) {
-            items.addAll(AlloyCustomHelper.getItemsFromAlloying(this));
-            items.addAll(AlloyCustomHelper.getItemsFromAlloyCrafting(this));
-        } else if (this.allowdedIn(group)) {
-            super.fillItemCategory(group,items);
-        }
-    }
+    // PORT-TODO(init): fillItemCategory is gone — dynamic creative-tab variants
+    // (AlloyCustomHelper.getItemsFromAlloying/getItemsFromAlloyCrafting when defaultAlloyRecipe == null)
+    // must be added in RankineCreativeTabs' displayItems.
 }

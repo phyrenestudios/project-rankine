@@ -1,7 +1,9 @@
 package com.cannolicatfish.rankine.blocks.gasbottler;
 
 import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.RankineContainers;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
@@ -17,20 +19,22 @@ import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.SlotItemHandler;
 import net.neoforged.neoforge.items.wrapper.InvWrapper;
 
-import static com.cannolicatfish.rankine.init.RankineBlocks.GAS_CONDENSER_CONTAINER;
-
 public class GasBottlerContainer extends AbstractContainerMenu {
     private BlockEntity tileEntity;
     private Player playerEntity;
     private IItemHandler playerInventory;
     private final ContainerData data;
 
+    public GasBottlerContainer(int windowId, Inventory inv, FriendlyByteBuf extraData) {
+        this(windowId, inv.player.level(), extraData.readBlockPos(), inv, inv.player);
+    }
+
     public GasBottlerContainer(int windowId, Level world, BlockPos pos, Inventory playerInventory, Player player) {
         this(windowId,world,pos,playerInventory,player,new SimpleContainer(2), new SimpleContainerData(2));
 
     }
     public GasBottlerContainer(int windowId, Level world, BlockPos pos, Inventory playerInventory, Player player, Container furnaceInventoryIn, ContainerData towerData) {
-        super(GAS_CONDENSER_CONTAINER, windowId);
+        super(RankineContainers.GAS_CONDENSER_CONTAINER.get(), windowId);
         tileEntity = world.getBlockEntity(pos);
         checkContainerSize(furnaceInventoryIn, 2);
         checkContainerDataCount(towerData, 2);

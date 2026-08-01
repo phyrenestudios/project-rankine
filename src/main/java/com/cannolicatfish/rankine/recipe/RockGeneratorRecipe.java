@@ -2,41 +2,42 @@ package com.cannolicatfish.rankine.recipe;
 
 import com.cannolicatfish.rankine.init.RankineRecipeSerializers;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
+import com.cannolicatfish.rankine.recipe.helper.AlloyIngredientHelper;
 import com.cannolicatfish.rankine.recipe.helper.BlockRecipeHelper;
+import com.cannolicatfish.rankine.recipe.helper.RankineMapCodec;
 import com.cannolicatfish.rankine.util.RockGeneratorUtils;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
-import net.minecraft.core.Registry;
-import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
-import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeInput;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.neoforged.neoforge.registries.ForgeRegistryEntry;
 
-import javax.annotation.Nullable;
 import java.util.Locale;
 import java.util.Map;
 
-public class RockGeneratorRecipe implements Recipe<Container> {
+public class RockGeneratorRecipe implements Recipe<RecipeInput> {
 
     protected RockGeneratorUtils.RockGenType genType;
     protected Ingredient ingredient1;
     protected Ingredient ingredient2;
     protected ItemStack result;
-    protected final ResourceLocation id;
 
-    public RockGeneratorRecipe(ResourceLocation id, RockGeneratorUtils.RockGenType genType, Ingredient input, Ingredient input2, ItemStack output) {
-        this.id = id;
+    public RockGeneratorRecipe(RockGeneratorUtils.RockGenType genType, Ingredient input, Ingredient input2, ItemStack output) {
         this.genType = genType;
         this.ingredient1 = input;
         this.ingredient2 = input2;
@@ -48,6 +49,7 @@ public class RockGeneratorRecipe implements Recipe<Container> {
         return true;
     }
 
+    @Override
     public String getGroup() {
         return "";
     }
@@ -57,11 +59,11 @@ public class RockGeneratorRecipe implements Recipe<Container> {
     }
 
     @Override
-    public boolean matches(Container inv, Level worldIn) {
+    public boolean matches(RecipeInput inv, Level worldIn) {
         if (this.getGenType().equals(RockGeneratorUtils.RockGenType.EXTRUSIVE_IGNEOUS) || this.getGenType().equals(RockGeneratorUtils.RockGenType.METAMORPHIC) || this.getGenType().equals(RockGeneratorUtils.RockGenType.VOLCANIC) ||
         this.getGenType().equals(RockGeneratorUtils.RockGenType.SEDIMENTARY)) {
             boolean test;
-            for (int i = 0; i < inv.getContainerSize(); i++) {
+            for (int i = 0; i < inv.size(); i++) {
                 test = this.ingredient1.test(inv.getItem(i));
                 if (test) {
                     return true;
@@ -71,7 +73,7 @@ public class RockGeneratorRecipe implements Recipe<Container> {
         } else {
             boolean test1 = false;
             boolean test2 = false;
-            for (int i = 0; i < inv.getContainerSize(); i++) {
+            for (int i = 0; i < inv.size(); i++) {
                 if (!test1) {
                     test1 = this.ingredient1.test(inv.getItem(i));
                 }
@@ -87,7 +89,7 @@ public class RockGeneratorRecipe implements Recipe<Container> {
     }
 
     @Override
-    public ItemStack assemble(Container inv) {
+    public ItemStack assemble(RecipeInput inv, HolderLookup.Provider provider) {
         return ItemStack.EMPTY;
     }
 
@@ -126,13 +128,13 @@ public class RockGeneratorRecipe implements Recipe<Container> {
     }
 
     @Override
-    public ItemStack getResultItem() {
+    public ItemStack getResultItem(HolderLookup.Provider provider) {
         return result;
     }
 
-    @Override
-    public ResourceLocation getId() {
-        return this.id;
+    /** Convenience overload matching the pre-1.21 API. */
+    public ItemStack getResultItem() {
+        return result;
     }
 
     @Override
@@ -142,13 +144,13 @@ public class RockGeneratorRecipe implements Recipe<Container> {
 
     @Override
     public RecipeType<?> getType() {
-        return RankineRecipeTypes.ROCK_GENERATOR;
+        return RankineRecipeTypes.ROCK_GENERATOR.get();
     }
 
     public static ItemStack deserializeBlock(JsonObject object) {
         String s = GsonHelper.getAsString(object, "block");
 
-        Block block = Registry.BLOCK.getOptional(ResourceLocation.parse(s)).orElseThrow(() -> {
+        BuiltInRegistries.BLOCK.getOptional(ResourceLocation.parse(s)).orElseThrow(() -> {
             return new JsonParseException("Unknown block '" + s + "'");
         });
 
@@ -159,40 +161,64 @@ public class RockGeneratorRecipe implements Recipe<Container> {
         }
     }
 
-    public static class Serializer extends ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<RockGeneratorRecipe> {
+    public static class Serializer implements RecipeSerializer<RockGeneratorRecipe> {
+
+        public static final MapCodec<RockGeneratorRecipe> CODEC = RankineMapCodec.of(
+                Serializer::fromJson, Serializer::toJson,
+                RankineMapCodec.fixedKeys("genType","input1","input2","result"));
+
+        public static final StreamCodec<RegistryFriendlyByteBuf, RockGeneratorRecipe> STREAM_CODEC =
+                StreamCodec.of(Serializer::toNetwork, Serializer::fromNetwork);
 
         @Override
-        public RockGeneratorRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
+        public MapCodec<RockGeneratorRecipe> codec() {
+            return CODEC;
+        }
+
+        @Override
+        public StreamCodec<RegistryFriendlyByteBuf, RockGeneratorRecipe> streamCodec() {
+            return STREAM_CODEC;
+        }
+
+        public static RockGeneratorRecipe fromJson(JsonObject json) {
             RockGeneratorUtils.RockGenType t = json.has("genType") ? RockGeneratorUtils.RockGenType.valueOf(json.get("genType").getAsString().toUpperCase(Locale.ROOT)) : RockGeneratorUtils.RockGenType.INTRUSIVE_IGNEOUS;
-            Ingredient ingredient1 = Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "input1"));
+            Ingredient ingredient1 = AlloyIngredientHelper.ingredientFromJson(json.get("input1"));
             Ingredient ingredient2;
             if (t.equals(RockGeneratorUtils.RockGenType.EXTRUSIVE_IGNEOUS) || t.equals(RockGeneratorUtils.RockGenType.METAMORPHIC) || t.equals(RockGeneratorUtils.RockGenType.VOLCANIC)) {
                 ingredient2 = Ingredient.EMPTY;
             } else {
-                ingredient2 = json.has("input2") ? Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "input2")) : Ingredient.EMPTY;
+                ingredient2 = json.has("input2") ? AlloyIngredientHelper.ingredientFromJson(json.get("input2")) : Ingredient.EMPTY;
             }
 
             ItemStack result = deserializeBlock(GsonHelper.getAsJsonObject(json, "result"));
-            return new RockGeneratorRecipe(recipeId,t,ingredient1,ingredient2,result);
+            return new RockGeneratorRecipe(t,ingredient1,ingredient2,result);
         }
 
-        @Nullable
-        @Override
-        public RockGeneratorRecipe fromNetwork(ResourceLocation recipeId, FriendlyByteBuf buffer) {
+        public static void toJson(RockGeneratorRecipe recipe, JsonObject json) {
+            json.addProperty("genType", recipe.getGenType().toString().toLowerCase(Locale.ROOT));
+            json.add("input1", AlloyIngredientHelper.ingredientToJson(recipe.getFirstIngredient()));
+            if (!recipe.getSecondIngredient().isEmpty()) {
+                json.add("input2", AlloyIngredientHelper.ingredientToJson(recipe.getSecondIngredient()));
+            }
+            JsonObject result = new JsonObject();
+            result.addProperty("block", BuiltInRegistries.ITEM.getKey(recipe.result.getItem()).toString());
+            json.add("result", result);
+        }
+
+        public static RockGeneratorRecipe fromNetwork(RegistryFriendlyByteBuf buffer) {
             RockGeneratorUtils.RockGenType t = RockGeneratorUtils.RockGenType.valueOf(buffer.readUtf().toUpperCase(Locale.ROOT));
-            Ingredient input1 = Ingredient.fromNetwork(buffer);
-            Ingredient input2 = Ingredient.fromNetwork(buffer);
-            ItemStack output = buffer.readItem();
+            Ingredient input1 = Ingredient.CONTENTS_STREAM_CODEC.decode(buffer);
+            Ingredient input2 = Ingredient.CONTENTS_STREAM_CODEC.decode(buffer);
+            ItemStack output = ItemStack.OPTIONAL_STREAM_CODEC.decode(buffer);
 
-            return new RockGeneratorRecipe(recipeId,t,input1,input2,output);
+            return new RockGeneratorRecipe(t,input1,input2,output);
         }
 
-        @Override
-        public void toNetwork(FriendlyByteBuf buffer, RockGeneratorRecipe recipe) {
+        public static void toNetwork(RegistryFriendlyByteBuf buffer, RockGeneratorRecipe recipe) {
             buffer.writeUtf(recipe.getGenType().toString());
-            recipe.getFirstIngredient().toNetwork(buffer);
-            recipe.getSecondIngredient().toNetwork(buffer);
-            buffer.writeItem(recipe.getResultItem());
+            Ingredient.CONTENTS_STREAM_CODEC.encode(buffer, recipe.getFirstIngredient());
+            Ingredient.CONTENTS_STREAM_CODEC.encode(buffer, recipe.getSecondIngredient());
+            ItemStack.OPTIONAL_STREAM_CODEC.encode(buffer, recipe.result);
         }
     }
 

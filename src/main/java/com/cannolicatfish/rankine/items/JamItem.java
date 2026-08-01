@@ -13,7 +13,8 @@ public class JamItem extends Item {
         super(properties);
     }
 
-    public int getUseDuration(ItemStack stack) {
+    @Override
+    public int getUseDuration(ItemStack stack, LivingEntity entity) {
         return 32;
     }
 

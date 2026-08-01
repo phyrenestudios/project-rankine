@@ -2,10 +2,8 @@ package com.cannolicatfish.rankine.items.alloys;
 
 import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.items.tools.CrowbarItem;
-import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
+import com.cannolicatfish.rankine.items.tools.RankineToolMaterials;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.NonNullList;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundSource;
@@ -22,10 +20,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.common.Tags;
-import net.neoforged.neoforge.common.TierSortingRegistry;
 
 import javax.annotation.Nullable;
-import java.util.Arrays;
 import java.util.List;
 
 public class AlloyCrowbarItem extends CrowbarItem implements IAlloyTool {
@@ -44,8 +40,7 @@ public class AlloyCrowbarItem extends CrowbarItem implements IAlloyTool {
 
     @Override
     public boolean isCorrectToolForDrops(ItemStack stack, BlockState state) {
-        List<Tiers> tiers = Arrays.asList(Tiers.WOOD,Tiers.STONE,Tiers.IRON,Tiers.DIAMOND,Tiers.NETHERITE);
-        return state.is(RankineTags.Blocks.MINEABLE_WITH_CROWBAR) && !state.is(RankineTags.Blocks.CROWBAR_RESISTANT) && TierSortingRegistry.isCorrectTierForDrops(tiers.get(getAlloyHarvestLevel(stack)),state);
+        return state.is(RankineTags.Blocks.MINEABLE_WITH_CROWBAR) && !state.is(RankineTags.Blocks.CROWBAR_RESISTANT) && !state.is(RankineToolMaterials.incorrectBlocksForLevel(getAlloyHarvestLevel(stack)));
     }
 
     @Override
@@ -56,13 +51,17 @@ public class AlloyCrowbarItem extends CrowbarItem implements IAlloyTool {
         return Component.translatable(this.getDescriptionId(stack),Component.translatable(generateLangFromRecipe(this.defaultAlloyRecipe)));
     }
 
+    @Override
     public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        stack.hurtAndBreak(calcDurabilityLoss(stack,attacker.getCommandSenderWorld(),attacker,true), attacker, (entity) -> {
-            entity.broadcastBreakEvent(EquipmentSlot.MAINHAND);
-        });
         return true;
     }
 
+    @Override
+    public void postHurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+        stack.hurtAndBreak(calcDurabilityLoss(stack,attacker.getCommandSenderWorld(),attacker,true), attacker, EquipmentSlot.MAINHAND);
+    }
+
+    @Override
     public boolean mineBlock(ItemStack stack, Level worldIn, BlockState state, BlockPos pos, LivingEntity entityLiving) {
         if ((isCorrectToolForDrops(stack,state) || (canHarvestWithRetrieval(stack,state) && worldIn.getBlockEntity(pos) == null && worldIn.getFluidState(pos).isEmpty())) && !worldIn.isClientSide && !stack.isEmpty() && worldIn.getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS) && !worldIn.restoringBlockSnapshots) {
             Block.popResource(worldIn, pos, new ItemStack(state.getBlock().asItem(), 1));
@@ -70,9 +69,7 @@ public class AlloyCrowbarItem extends CrowbarItem implements IAlloyTool {
             SoundType soundtype = worldIn.getBlockState(pos).getSoundType(worldIn, pos, null);
             worldIn.playLocalSound(pos.getX(),pos.getY(),pos.getZ(), soundtype.getBreakSound(), SoundSource.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F, false);
             if (state.getDestroySpeed(worldIn, pos) != 0.0F) {
-                stack.hurtAndBreak(calcDurabilityLoss(stack,worldIn,entityLiving,true), entityLiving, (entity) -> {
-                    entity.broadcastBreakEvent(EquipmentSlot.MAINHAND);
-                });
+                stack.hurtAndBreak(calcDurabilityLoss(stack,worldIn,entityLiving,true), entityLiving, EquipmentSlot.MAINHAND);
             }
         }
         return true;
@@ -85,16 +82,16 @@ public class AlloyCrowbarItem extends CrowbarItem implements IAlloyTool {
     }
 
     @Override
-    public int getItemEnchantability(ItemStack stack) {
+    public int getEnchantmentValue(ItemStack stack) {
         return this.getAlloyEnchantability(stack);
     }
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-        addAlloyInformation(stack,worldIn,tooltip,flagIn);
+    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag flagIn) {
+        addAlloyInformation(stack,context.level(),tooltip,flagIn);
         if (flagIn.isAdvanced()) {
-            addAdvancedAlloyInformation(stack,worldIn,tooltip,flagIn);
+            addAdvancedAlloyInformation(stack,context.level(),tooltip,flagIn);
         }
     }
 
@@ -119,15 +116,9 @@ public class AlloyCrowbarItem extends CrowbarItem implements IAlloyTool {
         super.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
     }
 
-    @Override
-    public void fillItemCategory(CreativeModeTab group, NonNullList<ItemStack> items) {
-        if (this.allowdedIn(group) && this.defaultAlloyRecipe == null) {
-            items.addAll(AlloyCustomHelper.getItemsFromAlloying(this));
-            items.addAll(AlloyCustomHelper.getItemsFromAlloyCrafting(this));
-        } else if (this.allowdedIn(group)) {
-            super.fillItemCategory(group,items);
-        }
-    }
+    // PORT-TODO(init): fillItemCategory is gone — dynamic creative-tab variants
+    // (AlloyCustomHelper.getItemsFromAlloying/getItemsFromAlloyCrafting when defaultAlloyRecipe == null)
+    // must be added in RankineCreativeTabs' displayItems.
 
     @Override
     public String getDefaultComposition() {
@@ -145,8 +136,8 @@ public class AlloyCrowbarItem extends CrowbarItem implements IAlloyTool {
             String s = IAlloyItem.getAlloyComposition(repair);
             String r = IAlloyItem.getAlloyComposition(toRepair);
 
-            String s2 = IAlloyItem.getAlloyRecipe(repair).toString();
-            String r2 = IAlloyItem.getAlloyRecipe(toRepair).toString();
+            String s2 = String.valueOf(IAlloyItem.getAlloyRecipe(repair));
+            String r2 = String.valueOf(IAlloyItem.getAlloyRecipe(toRepair));
             return !s.isEmpty() && s.equals(r) && s2.equals(r2);
         }
         return false;

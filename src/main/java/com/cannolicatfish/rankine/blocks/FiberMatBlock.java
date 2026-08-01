@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.blocks;
 
-
+import com.mojang.serialization.MapCodec;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -25,8 +25,14 @@ import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class FiberMatBlock extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock{
+    public static final MapCodec<FiberMatBlock> CODEC = simpleCodec(FiberMatBlock::new);
     protected static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D);
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
+
+    @Override
+    public MapCodec<? extends FiberMatBlock> codec() {
+        return CODEC;
+    }
 
     public FiberMatBlock(Properties properties) {
         super(properties);

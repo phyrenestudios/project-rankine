@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.world.gen.trees;
 
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.mojang.serialization.Codec;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.GrowingPlantHeadBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.Blocks;
@@ -14,7 +15,6 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
-import java.util.Random;
 
 public class WillowBranchletFeature extends Feature<NoneFeatureConfiguration> {
     private static final Direction[] DIRECTIONS = Direction.values();
@@ -27,7 +27,7 @@ public class WillowBranchletFeature extends Feature<NoneFeatureConfiguration> {
     public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> p_159749_) {
         WorldGenLevel reader = p_159749_.level();
         BlockPos pos = p_159749_.origin();
-        Random rand = reader.getRandom();
+        RandomSource rand = p_159749_.random();
         if (!reader.isEmptyBlock(pos)) {
             return false;
         } else {
@@ -42,7 +42,7 @@ public class WillowBranchletFeature extends Feature<NoneFeatureConfiguration> {
         }
     }
 
-    private void placeRoofNetherWart(LevelAccessor p_236428_1_, Random p_236428_2_, BlockPos p_236428_3_) {
+    private void placeRoofNetherWart(LevelAccessor p_236428_1_, RandomSource p_236428_2_, BlockPos p_236428_3_) {
         p_236428_1_.setBlock(p_236428_3_, Blocks.NETHER_WART_BLOCK.defaultBlockState(), 2);
         BlockPos.MutableBlockPos lvt_4_1_ = new BlockPos.MutableBlockPos();
         BlockPos.MutableBlockPos lvt_5_1_ = new BlockPos.MutableBlockPos();
@@ -74,7 +74,7 @@ public class WillowBranchletFeature extends Feature<NoneFeatureConfiguration> {
 
     }
 
-    private void placeRoofWeepingVines(LevelAccessor p_236429_1_, Random p_236429_2_, BlockPos p_236429_3_) {
+    private void placeRoofWeepingVines(LevelAccessor p_236429_1_, RandomSource p_236429_2_, BlockPos p_236429_3_) {
         BlockPos.MutableBlockPos lvt_4_1_ = new BlockPos.MutableBlockPos();
 
         for(int lvt_5_1_ = 0; lvt_5_1_ < 100; ++lvt_5_1_) {
@@ -100,7 +100,7 @@ public class WillowBranchletFeature extends Feature<NoneFeatureConfiguration> {
 
     }
 
-    public static void placeWeepingVinesColumn(LevelAccessor p_236427_0_, Random p_236427_1_, BlockPos.MutableBlockPos p_236427_2_, int p_236427_3_, int p_236427_4_, int p_236427_5_) {
+    public static void placeWeepingVinesColumn(LevelAccessor p_236427_0_, RandomSource p_236427_1_, BlockPos.MutableBlockPos p_236427_2_, int p_236427_3_, int p_236427_4_, int p_236427_5_) {
         for(int lvt_6_1_ = 0; lvt_6_1_ <= p_236427_3_; ++lvt_6_1_) {
             if (p_236427_0_.isEmptyBlock(p_236427_2_)) {
                 if (lvt_6_1_ == p_236427_3_ || !p_236427_0_.isEmptyBlock(p_236427_2_.below())) {

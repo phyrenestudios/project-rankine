@@ -1,19 +1,15 @@
 package com.cannolicatfish.rankine.entities;
 
 import com.cannolicatfish.rankine.blocks.gases.GasBlock;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.network.protocol.Packet;
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
-import net.neoforged.neoforge.network.NetworkHooks;
-import org.jetbrains.annotations.NotNull;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 
 public class ReactiveItemEntity extends ItemEntity {
 
@@ -43,7 +39,7 @@ public class ReactiveItemEntity extends ItemEntity {
         this.setItem(stack);
         this.radius = 1f;
         this.canBreakBlocks = false;
-        this.lifespan = (stack.getItem() == null ? 6000 : stack.getEntityLifespan(worldIn));
+        this.lifespan = stack.getEntityLifespan(worldIn);
         this.newItem = Items.AIR;
         this.releasedGas = Blocks.AIR;
     }
@@ -54,7 +50,7 @@ public class ReactiveItemEntity extends ItemEntity {
         this.setItem(stack);
         this.radius = radius;
         this.canBreakBlocks = canBreakBlocks;
-        this.lifespan = (stack.getItem() == null ? 6000 : stack.getEntityLifespan(worldIn));
+        this.lifespan = stack.getEntityLifespan(worldIn);
         this.newItem = newItem;
         this.releasedGas = releasedGas;
     }
@@ -65,27 +61,28 @@ public class ReactiveItemEntity extends ItemEntity {
         if (this.wasTouchingWater)
         {
             BlockPos pos = this.blockPosition();
+            // 1.21.1: Explosion.BlockInteraction BREAK/NONE -> Level.ExplosionInteraction BLOCK/NONE
             if (canBreakBlocks)
             {
-                this.getCommandSenderWorld().explode(null, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), this.radius, Explosion.BlockInteraction.BREAK);
+                this.getCommandSenderWorld().explode(null, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), this.radius, Level.ExplosionInteraction.BLOCK);
             } else {
-                this.getCommandSenderWorld().explode(null, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), this.radius, Explosion.BlockInteraction.NONE);
+                this.getCommandSenderWorld().explode(null, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), this.radius, Level.ExplosionInteraction.NONE);
             }
-            if (!level.isClientSide && !level.restoringBlockSnapshots && !newItem.equals(Items.AIR)) {
-                double d0 = (double) (level.random.nextFloat() * 0.5F) + 0.25D;
-                double d1 = (double) (level.random.nextFloat() * 0.5F) + 0.25D;
-                double d2 = (double) (level.random.nextFloat() * 0.5F) + 0.25D;
-                ItemEntity itementity = new ItemEntity(level, (double) pos.getX() + d0, (double) pos.getY() + d1, (double) pos.getZ() + d2, new ItemStack(newItem,this.getItem().getCount()));
+            if (!level().isClientSide && !level().restoringBlockSnapshots && !newItem.equals(Items.AIR)) {
+                double d0 = (double) (level().random.nextFloat() * 0.5F) + 0.25D;
+                double d1 = (double) (level().random.nextFloat() * 0.5F) + 0.25D;
+                double d2 = (double) (level().random.nextFloat() * 0.5F) + 0.25D;
+                ItemEntity itementity = new ItemEntity(level(), (double) pos.getX() + d0, (double) pos.getY() + d1, (double) pos.getZ() + d2, new ItemStack(newItem,this.getItem().getCount()));
                 itementity.setDefaultPickUpDelay();
-                level.addFreshEntity(itementity);
+                level().addFreshEntity(itementity);
             }
-            if (!level.isClientSide && !releasedGas.equals(Blocks.AIR)) {
+            if (!level().isClientSide && !releasedGas.equals(Blocks.AIR)) {
                 for (int i = 0; i < Math.max(1,Math.round(this.radius)); i++) {
-                    BlockPos close = BlockPos.findClosestMatch(pos,3,3,B -> level.isEmptyBlock(B) && !(level.getBlockState(B).getBlock() instanceof GasBlock)).orElse(null);
+                    BlockPos close = BlockPos.findClosestMatch(pos,3,3,B -> level().isEmptyBlock(B) && !(level().getBlockState(B).getBlock() instanceof GasBlock)).orElse(null);
                     if (close == null) {
                         break;
                     } else {
-                        level.setBlock(close,this.releasedGas.defaultBlockState(),2);
+                        level().setBlock(close,this.releasedGas.defaultBlockState(),2);
                     }
                 }
             }
@@ -94,7 +91,5 @@ public class ReactiveItemEntity extends ItemEntity {
         super.tick();
     }
 
-    public @NotNull Packet<?> getAddEntityPacket() {
-        return NetworkHooks.getEntitySpawningPacket(this);
-    }
+    // 1.21.1: getAddEntityPacket/NetworkHooks override removed — vanilla handles spawn packets.
 }

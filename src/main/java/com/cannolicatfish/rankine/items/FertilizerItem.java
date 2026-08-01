@@ -53,7 +53,7 @@ public class FertilizerItem extends Item {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
+    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag flagIn) {
             tooltip.add(Component.literal("Restores vegetation").withStyle(ChatFormatting.GRAY));
     }
 

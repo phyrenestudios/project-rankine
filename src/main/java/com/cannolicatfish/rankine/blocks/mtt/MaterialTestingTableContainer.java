@@ -1,13 +1,14 @@
 package com.cannolicatfish.rankine.blocks.mtt;
 
 import com.cannolicatfish.rankine.init.RankineBlocks;
-import com.cannolicatfish.rankine.init.RankineRecipeTypes;
+import com.cannolicatfish.rankine.init.RankineContainers;
 import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
 import com.cannolicatfish.rankine.util.PeriodicTableUtils;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.Container;
@@ -23,20 +24,22 @@ import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.SlotItemHandler;
 import net.neoforged.neoforge.items.wrapper.InvWrapper;
 
-import static com.cannolicatfish.rankine.init.RankineBlocks.MATERIAL_TESTING_TABLE_CONTAINER;
-
 public class MaterialTestingTableContainer extends AbstractContainerMenu {
     private static final PeriodicTableUtils utils = new PeriodicTableUtils();
     private IItemHandler playerInventory;
     private final Container inputInventory;
     private BlockEntity tileEntity;
 
+    public MaterialTestingTableContainer(int windowId, Inventory inv, FriendlyByteBuf extraData) {
+        this(windowId, inv.player.level(), extraData.readBlockPos(), inv, inv.player);
+    }
+
     public MaterialTestingTableContainer(int id,  Level world, BlockPos pos, Inventory playerInventory, Player player) {
         this(id,world,pos,playerInventory,player, new SimpleContainer(14));
     }
 
     public MaterialTestingTableContainer(int windowId, Level world, BlockPos pos, Inventory playerInventory, Player player, Container inv) {
-        super(MATERIAL_TESTING_TABLE_CONTAINER,windowId);
+        super(RankineContainers.MATERIAL_TESTING_TABLE_CONTAINER.get(),windowId);
         tileEntity = world.getBlockEntity(pos);
         checkContainerSize(inv, 7);
         this.inputInventory = inv;

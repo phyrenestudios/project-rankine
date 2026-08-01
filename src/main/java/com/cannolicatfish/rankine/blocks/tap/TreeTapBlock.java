@@ -2,11 +2,13 @@ package com.cannolicatfish.rankine.blocks.tap;
 
 import com.cannolicatfish.rankine.init.RankineBlockEntityTypes;
 import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -24,19 +26,25 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.neoforged.neoforge.common.util.LazyOptional;
 import net.neoforged.neoforge.fluids.FluidUtil;
 import net.neoforged.neoforge.fluids.capability.IFluidHandlerItem;
 
 import javax.annotation.Nullable;
+import java.util.Optional;
 
 public class TreeTapBlock extends BaseEntityBlock {
+    public static final MapCodec<TreeTapBlock> CODEC = simpleCodec(TreeTapBlock::new);
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty CONNECTED = BooleanProperty.create("connected");
     protected static final VoxelShape TAP_WEST_AABB = Block.box(7.0D, 3.0D, 6.0D, 16.0D, 13.0D, 10.0D);
     protected static final VoxelShape TAP_EAST_AABB = Block.box(0.0D, 3.0D, 6.0D, 9.0D, 13.0D, 10.0D);
     protected static final VoxelShape TAP_NORTH_AABB = Block.box(6.0D, 3.0D, 7.0D, 10.0D, 13.0D, 16.0D);
     protected static final VoxelShape TAP_SOUTH_AABB = Block.box(6.0D, 3.0D, 0.0D, 10.0D, 13.0D, 9.0D);
+
+    @Override
+    protected MapCodec<TreeTapBlock> codec() {
+        return CODEC;
+    }
 
     public TreeTapBlock(BlockBehaviour.Properties properties) {
         super(properties);
@@ -47,7 +55,8 @@ public class TreeTapBlock extends BaseEntityBlock {
         builder.add(FACING, CONNECTED);
     }
 
-    public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
+    @Override
+    protected VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
         switch(state.getValue(FACING)) {
             case NORTH:
                 return TAP_NORTH_AABB;
@@ -62,18 +71,18 @@ public class TreeTapBlock extends BaseEntityBlock {
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
-        if (world.isClientSide) return super.use(state, world, pos, player, hand, result);
+    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
+        if (world.isClientSide) return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
 
-        LazyOptional<IFluidHandlerItem> item = FluidUtil.getFluidHandler(player.getItemInHand(hand));
+        Optional<IFluidHandlerItem> item = FluidUtil.getFluidHandler(player.getItemInHand(hand));
         TreeTapTile treeTapTile = (TreeTapTile) world.getBlockEntity(pos);
         if (item.isPresent() && treeTapTile != null) {
             if (FluidUtil.interactWithFluidHandler(player, hand, treeTapTile.outputTank)) {
                 world.blockEntityChanged(pos);
-                return InteractionResult.SUCCESS;
+                return ItemInteractionResult.SUCCESS;
             }
         }
-        return super.use(state, world, pos, player, hand, result);
+        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 
     private boolean canAttachTo(BlockGetter blockReader, BlockPos pos, Direction direction) {
@@ -81,7 +90,8 @@ public class TreeTapBlock extends BaseEntityBlock {
         return blockstate.isFaceSturdy(blockReader, pos, direction);
     }
 
-    public boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
+    @Override
+    protected boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
         Direction direction = state.getValue(FACING);
         return this.canAttachTo(worldIn, pos.relative(direction.getOpposite()), direction);
     }
@@ -91,20 +101,24 @@ public class TreeTapBlock extends BaseEntityBlock {
         return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite()).setValue(CONNECTED, context.getLevel().getBlockState(context.getClickedPos().below().relative(context.getHorizontalDirection().getOpposite())).is(RankineBlocks.TAP_LINE.get()));
     }
 
-    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
+    @Override
+    protected BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
         return facing.getOpposite() == stateIn.getValue(FACING) && !stateIn.canSurvive(worldIn, currentPos) ? Blocks.AIR.defaultBlockState() : stateIn.setValue(CONNECTED, worldIn.getBlockState(currentPos.below()).is(RankineBlocks.TAP_LINE.get()));
     }
 
-    public BlockState rotate(BlockState state, Rotation rot) {
+    @Override
+    protected BlockState rotate(BlockState state, Rotation rot) {
         return state.setValue(FACING, rot.rotate(state.getValue(FACING)));
     }
 
-    public BlockState mirror(BlockState state, Mirror mirrorIn) {
+    @Override
+    protected BlockState mirror(BlockState state, Mirror mirrorIn) {
         return state.rotate(mirrorIn.getRotation(state.getValue(FACING)));
     }
 
 
-    public RenderShape getRenderShape(BlockState p_49232_) {
+    @Override
+    protected RenderShape getRenderShape(BlockState p_49232_) {
         return RenderShape.MODEL;
     }
 

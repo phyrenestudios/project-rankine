@@ -4,6 +4,7 @@ import com.cannolicatfish.rankine.blocks.RankineWallMushroomBlock;
 import com.cannolicatfish.rankine.init.RankineLists;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.mojang.serialization.Codec;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.tags.BlockTags;
@@ -15,7 +16,6 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
-import java.util.Random;
 
 public class WallMushroomsFeature extends Feature<NoneFeatureConfiguration> {
 
@@ -28,7 +28,7 @@ public class WallMushroomsFeature extends Feature<NoneFeatureConfiguration> {
     public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> p_159749_) {
         WorldGenLevel reader = p_159749_.level();
         BlockPos pos = p_159749_.origin();
-        Random rand = reader.getRandom();
+        RandomSource rand = p_159749_.random();
         BlockPos posShift = pos.offset(8,0,8);
         Block MUSH = RankineLists.WALL_MUSHROOMS.get(rand.nextInt(RankineLists.WALL_MUSHROOMS.size()));
         BlockPos surface = new BlockPos(posShift.getX(), reader.getHeight(Heightmap.Types.OCEAN_FLOOR_WG, posShift.getX(), posShift.getZ()), posShift.getZ());

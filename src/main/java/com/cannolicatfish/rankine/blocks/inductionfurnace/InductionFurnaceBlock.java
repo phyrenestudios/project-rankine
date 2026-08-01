@@ -1,7 +1,8 @@
 package com.cannolicatfish.rankine.blocks.inductionfurnace;
 
-import com.cannolicatfish.rankine.blocks.inductionfurnace.InductionFurnaceTile;
 import com.cannolicatfish.rankine.init.RankineBlockEntityTypes;
+import com.mojang.serialization.MapCodec;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RenderShape;
@@ -24,23 +25,26 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
-import java.util.Random;
 
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.neoforged.neoforge.network.NetworkHooks;
 
 public class InductionFurnaceBlock extends BaseEntityBlock {
+    public static final MapCodec<InductionFurnaceBlock> CODEC = simpleCodec(InductionFurnaceBlock::new);
+
+    @Override
+    protected MapCodec<InductionFurnaceBlock> codec() {
+        return CODEC;
+    }
 
     public InductionFurnaceBlock(Properties properties) {
         super(properties);
     }
 
     @OnlyIn(Dist.CLIENT)
-    public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, Random rand) {
+    public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, RandomSource rand) {
         if (stateIn.getValue(BlockStateProperties.LIT)) {
             double d0 = (double)pos.getX();
             double d1 = (double)pos.getY() + 0.9D;
@@ -67,11 +71,11 @@ public class InductionFurnaceBlock extends BaseEntityBlock {
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
+    protected InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult result) {
         if (!world.isClientSide) {
             BlockEntity tileEntity = world.getBlockEntity(pos);
             if (tileEntity instanceof MenuProvider) {
-                NetworkHooks.openGui((ServerPlayer) player, (MenuProvider) tileEntity, tileEntity.getBlockPos());
+                ((ServerPlayer) player).openMenu((MenuProvider) tileEntity, tileEntity.getBlockPos());
             } else {
                 throw new IllegalStateException("Our named container provider is missing!");
             }
@@ -83,7 +87,8 @@ public class InductionFurnaceBlock extends BaseEntityBlock {
     }
 
 
-    public void onRemove(BlockState state, Level worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
+    @Override
+    protected void onRemove(BlockState state, Level worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
         if (!state.is(newState.getBlock())) {
             BlockEntity tileentity = worldIn.getBlockEntity(pos);
             if (tileentity instanceof InductionFurnaceTile) {
@@ -102,7 +107,7 @@ public class InductionFurnaceBlock extends BaseEntityBlock {
     }
 
     @Override
-    public boolean triggerEvent(BlockState state, Level worldIn, BlockPos pos, int id, int param) {
+    protected boolean triggerEvent(BlockState state, Level worldIn, BlockPos pos, int id, int param) {
         super.triggerEvent(state, worldIn, pos, id, param);
         BlockEntity tileentity = worldIn.getBlockEntity(pos);
         return tileentity == null ? false : tileentity.triggerEvent(id, param);
@@ -110,12 +115,13 @@ public class InductionFurnaceBlock extends BaseEntityBlock {
 
     @Override
     @Nullable
-    public MenuProvider getMenuProvider(BlockState state, Level worldIn, BlockPos pos) {
+    protected MenuProvider getMenuProvider(BlockState state, Level worldIn, BlockPos pos) {
         BlockEntity tileentity = worldIn.getBlockEntity(pos);
         return tileentity instanceof MenuProvider ? (MenuProvider)tileentity : null;
     }
 
-    public RenderShape getRenderShape(BlockState p_49232_) {
+    @Override
+    protected RenderShape getRenderShape(BlockState p_49232_) {
         return RenderShape.MODEL;
     }
 

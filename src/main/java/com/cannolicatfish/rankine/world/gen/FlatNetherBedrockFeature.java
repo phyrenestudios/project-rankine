@@ -1,13 +1,13 @@
 package com.cannolicatfish.rankine.world.gen;
 
 import com.mojang.serialization.Codec;
+import net.minecraft.util.RandomSource;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.chunk.ChunkAccess;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 
-import java.util.Random;
 
 public class FlatNetherBedrockFeature extends Feature<ReplacerFeatureConfig> {
     public FlatNetherBedrockFeature(Codec<ReplacerFeatureConfig> configFactoryIn) {
@@ -18,7 +18,7 @@ public class FlatNetherBedrockFeature extends Feature<ReplacerFeatureConfig> {
     public boolean place(FeaturePlaceContext<ReplacerFeatureConfig> p_159749_) {
         WorldGenLevel reader = p_159749_.level();
         BlockPos pos = p_159749_.origin();
-        Random rand = reader.getRandom();
+        RandomSource rand = p_159749_.random();
         ReplacerFeatureConfig config = p_159749_.config();
         ChunkAccess chunk = reader.getChunk(pos);
         int startX = chunk.getPos().getMinBlockX();

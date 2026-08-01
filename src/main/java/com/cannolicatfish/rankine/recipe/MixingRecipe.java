@@ -1,37 +1,36 @@
 package com.cannolicatfish.rankine.recipe;
 
-import com.cannolicatfish.rankine.blocks.mixingbarrel.MixingBarrelTile;
 import com.cannolicatfish.rankine.init.RankineRecipeSerializers;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.recipe.helper.AlloyIngredientHelper;
 import com.cannolicatfish.rankine.recipe.helper.FluidHelper;
+import com.cannolicatfish.rankine.recipe.helper.RankineMapCodec;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
-import net.minecraft.world.Container;
-import net.minecraft.world.item.Item;
+import com.mojang.serialization.MapCodec;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.NonNullList;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.GsonHelper;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeInput;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.util.GsonHelper;
-import net.minecraft.core.NonNullList;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.core.Registry;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.fluids.FluidStack;
-import net.neoforged.neoforge.registries.ForgeRegistryEntry;
 
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class MixingRecipe implements Recipe<Container> {
+public class MixingRecipe implements Recipe<RecipeInput> {
 
-    private final ResourceLocation id;
     private final int mixTime;
     private final int ingredientTotal;
     private final float matScale;
@@ -42,9 +41,8 @@ public class MixingRecipe implements Recipe<Container> {
     private final NonNullList<Float> maxes;
     private final ItemStack recipeOutput;
 
-    public MixingRecipe(ResourceLocation idIn, int mixTimeIn, float matScaleIn, int ingredientTotalIn, FluidStack fluidIn,
+    public MixingRecipe(int mixTimeIn, float matScaleIn, int ingredientTotalIn, FluidStack fluidIn,
                         NonNullList<Ingredient> recipeItemsIn, NonNullList<Boolean> requiredIn, NonNullList<Float> minsIn, NonNullList<Float> maxesIn, ItemStack outputIn) {
-        this.id = idIn;
         this.mixTime = mixTimeIn;
         this.matScale = matScaleIn;
         this.ingredientTotal = ingredientTotalIn;
@@ -56,6 +54,7 @@ public class MixingRecipe implements Recipe<Container> {
         this.recipeOutput = outputIn;
     }
 
+    @Override
     public String getGroup() {
         return "";
     }
@@ -75,21 +74,27 @@ public class MixingRecipe implements Recipe<Container> {
         return fluidStack;
     }
 
+    /**
+     * PORT NOTE: the 1.18.2 version additionally verified the mixing barrel's input tank fluid when the
+     * inventory was a MixingBarrelTile. With RecipeInput wrappers the recipe can no longer see the tank;
+     * the mixing barrel block entity must check {@link #getOutputFluidReq} against its tank itself.
+     */
     @Override
-    public boolean matches(Container inv, Level worldIn) {
-        if (inv instanceof MixingBarrelTile) {
-            return ((MixingBarrelTile)inv).getInputTank().getFluid().containsFluid(getOutputFluidReq(inv)) && !getMixingResult(inv,worldIn).isEmpty();
-        } else {
-            return !getMixingResult(inv,worldIn).isEmpty();
-        }
+    public boolean matches(RecipeInput inv, Level worldIn) {
+        return !getMixingResult(inv,worldIn).isEmpty();
     }
 
     @Override
-    public ItemStack assemble(Container inv) {
+    public ItemStack assemble(RecipeInput inv, HolderLookup.Provider provider) {
         return ItemStack.EMPTY;
     }
 
     @Override
+    public ItemStack getResultItem(HolderLookup.Provider provider) {
+        return this.recipeOutput.copy();
+    }
+
+    /** Convenience overload matching the pre-1.21 API. */
     public ItemStack getResultItem() {
         return this.recipeOutput.copy();
     }
@@ -98,9 +103,9 @@ public class MixingRecipe implements Recipe<Container> {
         return mixTime;
     }
 
-    public int getOutputMixTime(Container inv) {
+    public int getOutputMixTime(RecipeInput inv) {
         int sum = 0;
-        for (int i = 0; i < inv.getContainerSize(); i++) {
+        for (int i = 0; i < inv.size(); i++) {
             sum += inv.getItem(i).getCount();
         }
         return Math.round(mixTime * (sum*getMatScale()));
@@ -110,9 +115,9 @@ public class MixingRecipe implements Recipe<Container> {
         return Math.round(mixTime * (count*getMatScale()));
     }
 
-    public FluidStack getOutputFluidReq(Container inv) {
+    public FluidStack getOutputFluidReq(RecipeInput inv) {
         int sum = 0;
-        for (int i = 0; i < inv.getContainerSize(); i++) {
+        for (int i = 0; i < inv.size(); i++) {
             sum += inv.getItem(i).getCount();
         }
 
@@ -156,38 +161,32 @@ public class MixingRecipe implements Recipe<Container> {
     }
 
     @Override
-    public ResourceLocation getId() {
-        return this.id;
-    }
-
-    @Override
     public RecipeSerializer<?> getSerializer() {
         return RankineRecipeSerializers.MIXING_RECIPE_SERIALIZER.get();
     }
 
     @Override
     public RecipeType<?> getType() {
-        return RankineRecipeTypes.MIXING;
+        return RankineRecipeTypes.MIXING.get();
     }
 
     public static ItemStack deserializeItem(JsonObject object) {
         String s = GsonHelper.getAsString(object, "item");
-        Item item = Registry.ITEM.getOptional(ResourceLocation.parse(s)).orElseThrow(() -> {
+        BuiltInRegistries.ITEM.getOptional(ResourceLocation.parse(s)).orElseThrow(() -> {
             return new JsonSyntaxException("Unknown item '" + s + "'");
         });
 
         if (object.has("data")) {
             throw new JsonParseException("Disallowed data tag found");
         } else {
-            int i = GsonHelper.getAsInt(object, "count", 1);
             return AlloyIngredientHelper.getItemStack(object, true);
         }
     }
 
-    public ItemStack getMixingResult(Container inv, Level worldIn) {
+    public ItemStack getMixingResult(RecipeInput inv, Level worldIn) {
         List<Ingredient> currentIngredients = new ArrayList<>();
         List<Integer> currentMaterial = new ArrayList<>();
-        for (int i = 0; i < inv.getContainerSize(); i++) {
+        for (int i = 0; i < inv.size(); i++) {
             ItemStack stack = inv.getItem(i);
             if (!stack.isEmpty()) {
                 boolean flag = false;
@@ -228,10 +227,26 @@ public class MixingRecipe implements Recipe<Container> {
     }
 
 
-    public static class Serializer extends ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<MixingRecipe> {
+    public static class Serializer implements RecipeSerializer<MixingRecipe> {
+
+        public static final MapCodec<MixingRecipe> CODEC = RankineMapCodec.of(
+                Serializer::fromJson, Serializer::toJson,
+                RankineMapCodec.withNumbered(RankineMapCodec.fixedKeys("mixTime","ingredientTotal","matScale","fluidInput","result"), "input", 64));
+
+        public static final StreamCodec<RegistryFriendlyByteBuf, MixingRecipe> STREAM_CODEC =
+                StreamCodec.of(Serializer::toNetwork, Serializer::fromNetwork);
 
         @Override
-        public MixingRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
+        public MapCodec<MixingRecipe> codec() {
+            return CODEC;
+        }
+
+        @Override
+        public StreamCodec<RegistryFriendlyByteBuf, MixingRecipe> streamCodec() {
+            return STREAM_CODEC;
+        }
+
+        public static MixingRecipe fromJson(JsonObject json) {
             int mixT = json.get("mixTime").getAsInt();
             int ingT = json.get("ingredientTotal").getAsInt();
             float matS = json.has("matScale") ? json.get("matScale").getAsFloat() : 1;
@@ -261,16 +276,36 @@ public class MixingRecipe implements Recipe<Container> {
                 }
             }
             ItemStack result = json.has("result") ? deserializeItem(GsonHelper.getAsJsonObject(json,"result")) : ItemStack.EMPTY;
-            return new MixingRecipe(recipeId,mixT,matS,ingT,fluidInput,ingredients,reqs,mins,maxes,result);
+            return new MixingRecipe(mixT,matS,ingT,fluidInput,ingredients,reqs,mins,maxes,result);
         }
 
-        @Nullable
-        @Override
-        public MixingRecipe fromNetwork(ResourceLocation recipeId, FriendlyByteBuf buffer) {
+        public static void toJson(MixingRecipe recipe, JsonObject json) {
+            json.addProperty("mixTime", recipe.getMixTime());
+            json.addProperty("ingredientTotal", recipe.getIngredientTotal());
+            json.addProperty("matScale", recipe.getMatScale());
+            json.add("fluidInput", FluidHelper.fluidStackToJson(recipe.fluid));
+            for (int i = 0; i < recipe.getIngredientTotal(); i++) {
+                Ingredient ing = recipe.getIngredients().get(i);
+                if (ing.isEmpty()) {
+                    continue;
+                }
+                com.google.gson.JsonElement encoded = AlloyIngredientHelper.ingredientToJson(ing);
+                JsonObject object = encoded.isJsonObject() ? encoded.getAsJsonObject() : new JsonObject();
+                object.addProperty("min", recipe.getMins().get(i));
+                object.addProperty("max", recipe.getMaxes().get(i));
+                object.addProperty("required", recipe.getRequired().get(i));
+                json.add("input" + (i+1), object);
+            }
+            if (!recipe.recipeOutput.isEmpty()) {
+                json.add("result", AlloyIngredientHelper.itemStackToJson(recipe.recipeOutput));
+            }
+        }
+
+        public static MixingRecipe fromNetwork(RegistryFriendlyByteBuf buffer) {
             int mixT = buffer.readInt();
             int ingT = buffer.readInt();
             float matS = buffer.readFloat();
-            FluidStack fluidInput = buffer.readFluidStack();
+            FluidStack fluidInput = FluidStack.OPTIONAL_STREAM_CODEC.decode(buffer);
 
             NonNullList<Ingredient> ingredients = NonNullList.withSize(ingT, Ingredient.EMPTY);
             NonNullList<Float> mins = NonNullList.withSize(ingT,0f);
@@ -278,33 +313,32 @@ public class MixingRecipe implements Recipe<Container> {
             NonNullList<Boolean> reqs = NonNullList.withSize(ingT, false);
 
             for (int i = 0; i < ingT; i++) {
-                ingredients.set(i,Ingredient.fromNetwork(buffer));
+                ingredients.set(i,Ingredient.CONTENTS_STREAM_CODEC.decode(buffer));
                 mins.set(i, buffer.readFloat());
                 maxes.set(i, buffer.readFloat());
                 reqs.set(i, buffer.readBoolean());
 
             }
 
-            ItemStack result = buffer.readItem();
+            ItemStack result = ItemStack.OPTIONAL_STREAM_CODEC.decode(buffer);
 
-            return new MixingRecipe(recipeId,mixT,matS,ingT,fluidInput,ingredients,reqs,mins,maxes,result);
+            return new MixingRecipe(mixT,matS,ingT,fluidInput,ingredients,reqs,mins,maxes,result);
         }
 
-        @Override
-        public void toNetwork(FriendlyByteBuf buffer, MixingRecipe recipe) {
+        public static void toNetwork(RegistryFriendlyByteBuf buffer, MixingRecipe recipe) {
             buffer.writeInt(recipe.getMixTime());
             buffer.writeInt(recipe.getIngredientTotal());
             buffer.writeFloat(recipe.getMatScale());
-            buffer.writeFluidStack(recipe.getFluid());
+            FluidStack.OPTIONAL_STREAM_CODEC.encode(buffer, recipe.getFluid());
 
             for (int i = 0; i < recipe.getIngredientTotal(); i++) {
-                recipe.getIngredients().get(i).toNetwork(buffer);
+                Ingredient.CONTENTS_STREAM_CODEC.encode(buffer, recipe.getIngredients().get(i));
                 buffer.writeFloat(recipe.getMins().get(i));
                 buffer.writeFloat(recipe.getMaxes().get(i));
                 buffer.writeBoolean(recipe.getRequired().get(i));
             }
 
-            buffer.writeItem(recipe.getResultItem());
+            ItemStack.OPTIONAL_STREAM_CODEC.encode(buffer, recipe.recipeOutput);
         }
     }
 

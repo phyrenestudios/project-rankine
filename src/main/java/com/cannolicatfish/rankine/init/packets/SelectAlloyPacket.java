@@ -1,33 +1,29 @@
 package com.cannolicatfish.rankine.init.packets;
 
-import net.minecraft.network.FriendlyByteBuf;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.network.NetworkEvent;
+import com.cannolicatfish.rankine.ProjectRankine;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import net.minecraft.resources.ResourceLocation;
 
-import java.util.function.Supplier;
+/**
+ * Client -> server notification of the selected alloy recipe in the template table screen.
+ * NOTE: the 1.18.2 handler was a no-op (handling code was commented out); that behavior is preserved
+ * in {@link RankinePayloads} where this payload is registered with an empty handler.
+ */
+public record SelectAlloyPacket(int index) implements CustomPacketPayload {
 
-public class SelectAlloyPacket {
-    public final int index;
+    public static final CustomPacketPayload.Type<SelectAlloyPacket> TYPE =
+            new CustomPacketPayload.Type<>(ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID, "select_alloy"));
 
-    public SelectAlloyPacket(FriendlyByteBuf buffer) {
-        this.index = buffer.readVarInt();
-    }
+    public static final StreamCodec<RegistryFriendlyByteBuf, SelectAlloyPacket> STREAM_CODEC =
+            StreamCodec.composite(
+                    ByteBufCodecs.VAR_INT, SelectAlloyPacket::index,
+                    SelectAlloyPacket::new);
 
-    @OnlyIn(Dist.CLIENT)
-    public SelectAlloyPacket(int index) {
-        this.index = index;
-    }
-
-    public static void encode(SelectAlloyPacket packet, FriendlyByteBuf buffer) {
-        buffer.writeVarInt(packet.index);
-    }
-
-    public static void handle(SelectAlloyPacket packet, Supplier<NetworkEvent.Context> context) {
-        NetworkEvent.Context ctx = context.get();
-        /*ctx.enqueueWork(() ->
-                DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> RankineClientPacketHandler.handlePacket(packet, context))
-        );*/
-        ctx.setPacketHandled(true);
+    @Override
+    public CustomPacketPayload.Type<SelectAlloyPacket> type() {
+        return TYPE;
     }
 }

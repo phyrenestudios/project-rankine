@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.blocks.gases;
 
+import com.cannolicatfish.rankine.enchantment.RankineEnchantmentHelper;
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineDamageSources;
 import com.cannolicatfish.rankine.init.RankineEnchantments;
@@ -8,6 +9,7 @@ import com.cannolicatfish.rankine.util.GasUtilsEnum;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.util.Tuple;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
@@ -15,7 +17,6 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
@@ -28,11 +29,8 @@ import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
 
 import java.util.List;
-import java.util.Random;
 
 public abstract class AbstractGasBlock extends AirBlock implements PitchModulating {
 
@@ -62,30 +60,50 @@ public abstract class AbstractGasBlock extends AirBlock implements PitchModulati
         return flammability;
     }
 
+    /**
+     * 1.21.1 Level.explode takes Level.ExplosionInteraction instead of Explosion.BlockInteraction
+     * (whose NONE constant is gone; values are now KEEP/DESTROY/DESTROY_WITH_DECAY/TRIGGER_BLOCK).
+     * PORT-TODO(util): GasUtilsEnum still supplies Tuple<Explosion.BlockInteraction,Float> using the removed
+     * BlockInteraction.NONE — its owner should switch those constants to Explosion.BlockInteraction.KEEP
+     * (the 1.18 NONE equivalent); this mapper then preserves the old "no block damage" behavior.
+     */
+    private static Level.ExplosionInteraction toExplosionInteraction(Explosion.BlockInteraction blockInteraction) {
+        switch (blockInteraction) {
+            case KEEP:
+                return Level.ExplosionInteraction.NONE;
+            case TRIGGER_BLOCK:
+                return Level.ExplosionInteraction.TRIGGER;
+            case DESTROY:
+            case DESTROY_WITH_DECAY:
+            default:
+                return Level.ExplosionInteraction.BLOCK;
+        }
+    }
+
     @Override
-    public RenderShape getRenderShape(BlockState state) {
+    protected RenderShape getRenderShape(BlockState state) {
         return RenderShape.MODEL;
     }
 
-    @OnlyIn(Dist.CLIENT)
     @Override
-    public boolean skipRendering(BlockState state, BlockState adjacentBlockState, Direction side) {
+    protected boolean skipRendering(BlockState state, BlockState adjacentBlockState, Direction side) {
         return adjacentBlockState.getBlock() == this ? true : super.skipRendering(state, adjacentBlockState, side);
     }
 
-    public boolean canBeReplaced(BlockPlaceContext p_60630_) {
+    @Override
+    protected boolean canBeReplaced(BlockState p_60535_, BlockPlaceContext p_60630_) {
         return true;
     }
 
     @Override
-    public boolean canBeReplaced(BlockState p_60535_, Fluid p_60536_) {
+    protected boolean canBeReplaced(BlockState p_60535_, Fluid p_60536_) {
         return true;
     }
 
     @Override
-    public void onRemove(BlockState state, Level worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
+    protected void onRemove(BlockState state, Level worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
         if (newState.getBlock() instanceof BaseFireBlock && this.getGasFlammability().getB() > 0F) {
-            worldIn.explode(null, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), this.getGasFlammability().getB(), this.getGasFlammability().getA());
+            worldIn.explode(null, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), this.getGasFlammability().getB(), toExplosionInteraction(this.getGasFlammability().getA()));
         } else if (!newState.isAir()) {
             BlockPos close = BlockPos.findClosestMatch(pos,3,3,B -> worldIn.isEmptyBlock(B) && !(worldIn.getBlockState(B).getBlock() instanceof AbstractGasBlock)).orElse(null);
             if (close != null) {
@@ -96,7 +114,7 @@ public abstract class AbstractGasBlock extends AirBlock implements PitchModulati
     }
 
     @Override
-    public boolean isRandomlyTicking(BlockState state) {
+    protected boolean isRandomlyTicking(BlockState state) {
         return Config.GASES.GAS_MOVEMENT.get() || Config.GASES.GAS_DISSIPATION.get();
     }
 
@@ -121,7 +139,7 @@ public abstract class AbstractGasBlock extends AirBlock implements PitchModulati
     }
 
     @Override
-    public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, Random random) {
+    protected void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {
         if (Config.GASES.GAS_DISSIPATION.get()) {
             if (random.nextFloat() < this.getDissipationChance()) {
                 worldIn.setBlock(pos, Blocks.AIR.defaultBlockState(),3);
@@ -149,23 +167,27 @@ public abstract class AbstractGasBlock extends AirBlock implements PitchModulati
         }
     }
 
-    public void entityInside(BlockState state, Level worldIn, BlockPos pos, Entity entityIn) {
+    @Override
+    protected void entityInside(BlockState state, Level worldIn, BlockPos pos, Entity entityIn) {
         if (entityIn instanceof LivingEntity) {
             LivingEntity ent = (LivingEntity) entityIn;
             boolean undead = ent.isInvertedHealAndHarm() && Config.GASES.GAS_AFFECT_UNDEAD.get();
             boolean creative = (ent instanceof Player && ((Player) ent).isCreative());
-            boolean gasMask = ent.getItemBySlot(EquipmentSlot.HEAD).getItem() == RankineItems.GAS_MASK.get() || EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.GAS_PROTECTION.get(),ent.getItemBySlot(EquipmentSlot.HEAD)) > 0;
+            boolean gasMask = ent.getItemBySlot(EquipmentSlot.HEAD).getItem() == RankineItems.GAS_MASK.get() || RankineEnchantmentHelper.getLevel(ent, RankineEnchantments.GAS_PROTECTION, ent.getItemBySlot(EquipmentSlot.HEAD)) > 0;
             if (!creative) {
                 if (this.isSuffocating() && !gasMask) {
                     ent.setAirSupply(Math.max(ent.getAirSupply() - 3,0));
                     if (ent.getAirSupply() == 0) {
+                        // PORT-TODO(damagesources): RankineDamageSources still uses the removed `new DamageSource(String)`
+                        // constructor; once it is ported to 1.19.4+ data-driven damage types this call may need to become
+                        // a level-based helper (e.g. RankineDamageSources.suffocation(worldIn)).
                         ent.hurt(RankineDamageSources.SUFFOCATION, 2.0F);
                     }
                 }
                 for (MobEffectInstance effect : this.getEffectInstances())
                 {
-                    if (effect.getEffect().isBeneficial() || (!gasMask && !undead)) {
-                        ent.addEffect(effect);
+                    if (effect.getEffect().value().isBeneficial() || (!gasMask && !undead)) {
+                        ent.addEffect(new MobEffectInstance(effect));
                     }
 
                 }
@@ -175,7 +197,8 @@ public abstract class AbstractGasBlock extends AirBlock implements PitchModulati
         super.entityInside(state, worldIn, pos, entityIn);
     }
 
-    public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
+    @Override
+    protected VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
         return Shapes.empty();
     }
 

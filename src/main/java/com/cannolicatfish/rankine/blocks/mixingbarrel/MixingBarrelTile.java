@@ -1,11 +1,14 @@
 package com.cannolicatfish.rankine.blocks.mixingbarrel;
 
 
-import com.cannolicatfish.rankine.blocks.inductionfurnace.InductionFurnaceTile;
+import com.cannolicatfish.rankine.init.RankineBlockEntityTypes;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.recipe.MixingRecipe;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.entity.LivingEntity;
@@ -25,16 +28,17 @@ import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.Component;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
+import net.neoforged.neoforge.items.IItemHandler;
+import net.neoforged.neoforge.items.wrapper.InvWrapper;
+import net.neoforged.neoforge.items.wrapper.RecipeWrapper;
+import net.neoforged.neoforge.items.wrapper.SidedInvWrapper;
 
 import javax.annotation.Nullable;
 import java.util.List;
-
-import static com.cannolicatfish.rankine.init.RankineBlocks.MIXING_BARREL_TILE;
 
 public class MixingBarrelTile extends BlockEntity implements WorldlyContainer, MenuProvider {
 
@@ -43,7 +47,7 @@ public class MixingBarrelTile extends BlockEntity implements WorldlyContainer, M
     private static final int[] SLOTS_DOWN = new int[]{4};
     private static final int[] SLOTS_HORIZONTAL = new int[]{2,3};
     public MixingBarrelTile(BlockPos posIn, BlockState stateIn) {
-        super(MIXING_BARREL_TILE, posIn, stateIn);
+        super(RankineBlockEntityTypes.MIXING_BARREL.get(), posIn, stateIn);
     }
     protected NonNullList<ItemStack> items = NonNullList.withSize(5, ItemStack.EMPTY);
     private int mixTime;
@@ -93,11 +97,11 @@ public class MixingBarrelTile extends BlockEntity implements WorldlyContainer, M
     };
 
     @Override
-    public void load(CompoundTag nbt) {
-        super.load(nbt);
+    protected void loadAdditional(CompoundTag nbt, HolderLookup.Provider provider) {
+        super.loadAdditional(nbt, provider);
         this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
-        ContainerHelper.loadAllItems(nbt,this.items);
-        this.inputTank = this.inputTank.readFromNBT(nbt.getCompound("InputTank"));
+        ContainerHelper.loadAllItems(nbt,this.items, provider);
+        this.inputTank = this.inputTank.readFromNBT(provider, nbt.getCompound("InputTank"));
         this.mixTime = nbt.getInt("MixTime");
         this.mixTimeTotal = nbt.getInt("MixTimeTotal");
         this.redstonePower = nbt.getInt("RedstonePower");
@@ -105,14 +109,14 @@ public class MixingBarrelTile extends BlockEntity implements WorldlyContainer, M
     }
 
     @Override
-    public void saveAdditional(CompoundTag compound) {
-        super.saveAdditional(compound);
-        compound.put("InputTank",this.inputTank.writeToNBT(new CompoundTag()));
+    protected void saveAdditional(CompoundTag compound, HolderLookup.Provider provider) {
+        super.saveAdditional(compound, provider);
+        compound.put("InputTank",this.inputTank.writeToNBT(provider, new CompoundTag()));
         compound.putInt("MixTime", this.mixTime);
         compound.putInt("MixTimeTotal", this.mixTimeTotal);
         compound.putInt("RedstonePower", this.redstonePower);
         compound.putInt("NeedsRefresh", this.needsRefresh);
-        ContainerHelper.saveAllItems(compound, this.items);
+        ContainerHelper.saveAllItems(compound, this.items, provider);
     }
 
     public static void tick(Level level, BlockPos pos, BlockState bs, MixingBarrelTile tile) {
@@ -141,7 +145,7 @@ public class MixingBarrelTile extends BlockEntity implements WorldlyContainer, M
                 tile.needsRefresh = 1;
 
 
-                MixingRecipe irecipe = tile.level.getRecipeManager().getRecipeFor(RankineRecipeTypes.MIXING, tile, tile.level).orElse(null);
+                MixingRecipe irecipe = tile.level.getRecipeManager().getRecipeFor(RankineRecipeTypes.MIXING.get(), new RecipeWrapper(new InvWrapper(tile)), tile.level).map(RecipeHolder::value).orElse(null);
                 if (tile.canMix(irecipe, tile)) {
                     if (tile.mixTime == 0) {
                         tile.mixTimeTotal = tile.getMixTime();
@@ -149,9 +153,9 @@ public class MixingBarrelTile extends BlockEntity implements WorldlyContainer, M
                     tile.mixTime += tile.getRedstonePower();
                     if (tile.mixTime >= tile.mixTimeTotal) {
                         if (!irecipe.getFluid().isEmpty()) {
-                            tile.inputTank.drain(irecipe.getOutputFluidReq(tile), IFluidHandler.FluidAction.EXECUTE);
+                            tile.inputTank.drain(irecipe.getOutputFluidReq(new RecipeWrapper(new InvWrapper(tile))), IFluidHandler.FluidAction.EXECUTE);
                         }
-                        ItemStack smelting = irecipe.getMixingResult(tile,level);
+                        ItemStack smelting = irecipe.getMixingResult(new RecipeWrapper(new InvWrapper(tile)),level);
                         if (tile.items.get(4).getCount() > 0) {
                             tile.items.get(4).grow(smelting.getCount());
                         } else {
@@ -187,9 +191,9 @@ public class MixingBarrelTile extends BlockEntity implements WorldlyContainer, M
     }
 
     public int getMixTime() {
-        MixingRecipe irecipe = this.level.getRecipeManager().getRecipeFor(RankineRecipeTypes.MIXING, this, this.level).orElse(null);
+        MixingRecipe irecipe = this.level.getRecipeManager().getRecipeFor(RankineRecipeTypes.MIXING.get(), new RecipeWrapper(new InvWrapper(this)), this.level).map(RecipeHolder::value).orElse(null);
         if (irecipe != null) {
-            return irecipe.getOutputMixTime(this);
+            return irecipe.getOutputMixTime(new RecipeWrapper(new InvWrapper(this)));
         } else {
             return 3200;
         }
@@ -221,7 +225,7 @@ public class MixingBarrelTile extends BlockEntity implements WorldlyContainer, M
         }
         else
         {
-            ItemStack result = recipeIn.getMixingResult(inv,level);
+            ItemStack result = recipeIn.getMixingResult(new RecipeWrapper(new InvWrapper(inv)),level);
             if(result.isEmpty())
             {
                 return false;
@@ -230,7 +234,7 @@ public class MixingBarrelTile extends BlockEntity implements WorldlyContainer, M
             {
                 ItemStack output = this.items.get(4);
                 if(output.isEmpty()) {
-                    this.mixTimeTotal = recipeIn.getOutputMixTime(inv);
+                    this.mixTimeTotal = recipeIn.getOutputMixTime(new RecipeWrapper(new InvWrapper(inv)));
                     return true;
                 } else {
                     return false;
@@ -239,32 +243,29 @@ public class MixingBarrelTile extends BlockEntity implements WorldlyContainer, M
         }
     }
 
-    net.neoforged.neoforge.common.util.LazyOptional<? extends net.neoforged.neoforge.items.IItemHandler>[] handlers =
-            net.neoforged.neoforge.items.wrapper.SidedInvWrapper.create(this, Direction.UP, Direction.DOWN, Direction.NORTH);
+    private final IItemHandler[] handlers = new IItemHandler[] {
+            new SidedInvWrapper(this, Direction.UP),
+            new SidedInvWrapper(this, Direction.DOWN),
+            new SidedInvWrapper(this, Direction.NORTH)
+    };
 
-    @Override
-    public <T> net.neoforged.neoforge.common.util.LazyOptional<T> getCapability(net.neoforged.neoforge.common.capabilities.Capability<T> capability, @Nullable Direction facing) {
-        if (!this.remove && facing != null && capability == net.neoforged.neoforge.items.CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
-            if (facing == Direction.UP)
-                return handlers[0].cast();
-            else if (facing == Direction.DOWN)
-                return handlers[1].cast();
-            else
-                return handlers[2].cast();
+    // PORT-CAP: MixingBarrelTile -> getItemHandler
+    @Nullable
+    public IItemHandler getItemHandler(@Nullable Direction side) {
+        if (this.remove || side == null) {
+            return null;
         }
-        return super.getCapability(capability, facing);
-    }
-
-    @Override
-    public void setRemoved() {
-        super.setRemoved();
-        for (int x = 0; x < handlers.length; x++)
-            handlers[x].invalidate();
+        if (side == Direction.UP)
+            return handlers[0];
+        else if (side == Direction.DOWN)
+            return handlers[1];
+        else
+            return handlers[2];
     }
 
     @Override
     public Component getDisplayName() {
-        return Component.literal(getType().getRegistryName().getPath());
+        return Component.literal(BuiltInRegistries.BLOCK_ENTITY_TYPE.getKey(this.getType()).getPath());
     }
 
     @Override
@@ -327,7 +328,7 @@ public class MixingBarrelTile extends BlockEntity implements WorldlyContainer, M
     @Override
     public void setItem(int index, ItemStack stack) {
         ItemStack itemstack = this.items.get(index);
-        boolean flag = !stack.isEmpty() && stack.sameItem(itemstack) && ItemStack.tagMatches(stack, itemstack);
+        boolean flag = !stack.isEmpty() && ItemStack.isSameItemSameComponents(stack, itemstack);
         this.items.set(index, stack);
         if (stack.getCount() > this.getMaxStackSize()) {
             stack.setCount(this.getMaxStackSize());

@@ -136,7 +136,8 @@ public class AlloyCustomHelper {
                 for (ItemStack stack : stacks) {
                     Item item = stack.getItem();
                     if (ELEMENT_ITEM_LISTS.containsKey(item)) {
-                        System.out.println(item + " already exists in recipe " + ELEMENT_ITEM_LISTS.get(item).getA().getId() + "!");
+                        // PORT-TODO: recipes no longer know their own id in 1.21.1; report the element name instead.
+                        System.out.println(item + " already exists in element recipe " + ELEMENT_ITEM_LISTS.get(item).getA().getName() + "!");
                     }
                     ELEMENT_ITEM_LISTS.put(item, new Tuple<>(recipe, recipe.getValues().get(x)));
                 }

@@ -1,8 +1,10 @@
 package com.cannolicatfish.rankine.blocks.batterycharger;
 
 import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.RankineContainers;
 import com.cannolicatfish.rankine.init.RankineTags;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
@@ -17,20 +19,22 @@ import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.SlotItemHandler;
 import net.neoforged.neoforge.items.wrapper.InvWrapper;
 
-import static com.cannolicatfish.rankine.init.RankineBlocks.BATTERY_CHARGER_CONTAINER;
-
 public class BatteryChargerContainer extends AbstractContainerMenu {
     private BlockEntity tileEntity;
     private Player playerEntity;
     private IItemHandler playerInventory;
     private final ContainerData data;
 
+    public BatteryChargerContainer(int windowId, Inventory inv, FriendlyByteBuf extraData) {
+        this(windowId, inv.player.level(), extraData.readBlockPos(), inv, inv.player);
+    }
+
     public BatteryChargerContainer(int windowId, Level world, BlockPos pos, Inventory playerInventory, Player player) {
         this(windowId,world,pos,playerInventory,player,new SimpleContainer(6), new SimpleContainerData(2));
 
     }
     public BatteryChargerContainer(int windowId, Level world, BlockPos pos, Inventory playerInventory, Player player, Container furnaceInventoryIn, ContainerData towerData) {
-        super(BATTERY_CHARGER_CONTAINER, windowId);
+        super(RankineContainers.BATTERY_CHARGER_CONTAINER.get(), windowId);
         tileEntity = world.getBlockEntity(pos);
         checkContainerSize(furnaceInventoryIn, 6);
         checkContainerDataCount(towerData, 2);

@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.blocks.gasvent;
 
 import com.cannolicatfish.rankine.blocks.gases.GasBlock;
+import com.cannolicatfish.rankine.init.RankineBlockEntityTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -9,12 +10,10 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.entity.BlockEntity;
 
-import static com.cannolicatfish.rankine.init.RankineBlocks.GAS_VENT_TILE;
-
 public class GasVentTile extends BlockEntity {
 
     public GasVentTile(BlockPos posIn, BlockState stateIn) {
-        super(GAS_VENT_TILE, posIn, stateIn);
+        super(RankineBlockEntityTypes.GAS_VENT.get(), posIn, stateIn);
     }
 
     public static void tick(Level level, BlockPos pos, BlockState bs, GasVentTile tile) {

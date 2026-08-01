@@ -1,7 +1,7 @@
 package com.cannolicatfish.rankine.blocks.gasvent;
 
-import com.cannolicatfish.rankine.blocks.gasvent.GasVentTile;
 import com.cannolicatfish.rankine.init.RankineBlockEntityTypes;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
@@ -10,18 +10,21 @@ import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.DirectionalBlock;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.BlockGetter;
-
-import javax.annotation.Nullable;
 
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class GasVentBlock extends BaseEntityBlock {
+    public static final MapCodec<GasVentBlock> CODEC = simpleCodec(GasVentBlock::new);
+
+    @Override
+    protected MapCodec<GasVentBlock> codec() {
+        return CODEC;
+    }
+
     public GasVentBlock(Properties properties) {
         super(properties);
     }
@@ -35,7 +38,8 @@ public class GasVentBlock extends BaseEntityBlock {
         return this.defaultBlockState().setValue(BlockStateProperties.FACING, context.getNearestLookingDirection().getOpposite());
     }
 
-    public RenderShape getRenderShape(BlockState p_49232_) {
+    @Override
+    protected RenderShape getRenderShape(BlockState p_49232_) {
         return RenderShape.MODEL;
     }
 

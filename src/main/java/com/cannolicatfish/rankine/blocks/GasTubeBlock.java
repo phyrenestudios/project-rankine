@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.blocks;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
@@ -26,9 +27,14 @@ import javax.annotation.Nullable;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class GasTubeBlock extends RotatedPillarBlock implements SimpleWaterloggedBlock {
+    public static final MapCodec<GasTubeBlock> CODEC = simpleCodec(GasTubeBlock::new);
     public static final EnumProperty<Direction.Axis> AXIS = BlockStateProperties.AXIS;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
+    @Override
+    public MapCodec<? extends GasTubeBlock> codec() {
+        return CODEC;
+    }
 
     public GasTubeBlock(Properties builder) {
         super(builder);

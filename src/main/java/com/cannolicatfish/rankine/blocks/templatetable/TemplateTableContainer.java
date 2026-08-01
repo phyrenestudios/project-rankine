@@ -1,11 +1,13 @@
 package com.cannolicatfish.rankine.blocks.templatetable;
 
 import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.RankineContainers;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.items.AlloyTemplateItem;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
 import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.Container;
@@ -14,17 +16,18 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.DyeItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.SlotItemHandler;
 import net.neoforged.neoforge.items.wrapper.InvWrapper;
+import net.neoforged.neoforge.items.wrapper.RecipeWrapper;
 import net.minecraft.world.inventory.Slot;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.cannolicatfish.rankine.init.RankineBlocks.TEMPLATE_TABLE_CONTAINER;
 public class TemplateTableContainer extends AbstractContainerMenu {
 
 
@@ -42,15 +45,19 @@ public class TemplateTableContainer extends AbstractContainerMenu {
     private Player player;
     private final ContainerLevelAccess worldPosCallable;
 
+    public TemplateTableContainer(int windowId, Inventory inv, FriendlyByteBuf extraData) {
+        this(windowId, inv, inv.player);
+    }
+
     public TemplateTableContainer(int id, Inventory playerInventory, Player player) {
         this(id,playerInventory,player, ContainerLevelAccess.NULL);
     }
 
     public TemplateTableContainer(int windowId, Inventory playerInventory, Player player, ContainerLevelAccess wpos) {
-        super(TEMPLATE_TABLE_CONTAINER,windowId);
+        super(RankineContainers.TEMPLATE_TABLE_CONTAINER.get(),windowId);
         this.worldPosCallable = wpos;
         this.player = player;
-        this.world = player.level;
+        this.world = player.level();
 
         this.addSlot(new Slot(inputInventory,0,108,18));
         this.addSlot(new Slot(inputInventory,1,134,18));
@@ -70,7 +77,7 @@ public class TemplateTableContainer extends AbstractContainerMenu {
                 TemplateTableContainer.this.inputInventory.removeItem(7,1);
                 TemplateTableContainer.this.updateRecipeResultSlot();
 
-                stack.getItem().onCraftedBy(stack, player.level, player);
+                stack.getItem().onCraftedBy(stack, player.level(), player);
                 worldPosCallable.execute((p_216954_1_, p_216954_2_) -> {
 
                 });
@@ -188,10 +195,10 @@ public class TemplateTableContainer extends AbstractContainerMenu {
         if (this.inputInventory.getItem(6).getItem() == Items.PAPER &&
                 (this.inputInventory.getItem(7).getItem() instanceof DyeItem))
         {
-            AlloyingRecipe recipeIn = this.world.getRecipeManager().getRecipeFor(RankineRecipeTypes.ALLOYING, this.inputInventory, this.world).orElse(null);
+            AlloyingRecipe recipeIn = this.world.getRecipeManager().getRecipeFor(RankineRecipeTypes.ALLOYING.get(), new RecipeWrapper(new InvWrapper(this.inputInventory)), this.world).map(RecipeHolder::value).orElse(null);
             //calcPercentages();
             if (recipeIn != null) {
-                ItemStack recipeOutput = recipeIn.generateResult(this.world,this.inputInventory, 3);
+                ItemStack recipeOutput = recipeIn.generateResult(this.world,new RecipeWrapper(new InvWrapper(this.inputInventory)), 3);
                 if (!recipeOutput.isEmpty()) {
                     ItemStack st = new ItemStack(RankineItems.ALLOY_TEMPLATE.get());
                     AlloyTemplateItem.addTemplate(world,st, recipeIn, this.inputInventory, (DyeItem) this.inputInventory.getItem(7).getItem());
@@ -229,9 +236,10 @@ public class TemplateTableContainer extends AbstractContainerMenu {
 
     public List<AlloyingRecipe> getAlloyRecipes() {
         Level worldIn = this.world;
-        return world.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.ALLOYING).stream()
+        return world.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.ALLOYING.get()).stream()
+                .map(RecipeHolder::value)
                 .filter(alloyingRecipe -> !alloyingRecipe.getElementList(worldIn).isEmpty())
-                .sorted((o1, o2) -> Boolean.compare(o1.cannotMake(player.getInventory(), worldIn), o2.cannotMake(player.getInventory(), worldIn)))
+                .sorted((o1, o2) -> Boolean.compare(o1.cannotMake(new RecipeWrapper(new InvWrapper(player.getInventory())), worldIn), o2.cannotMake(new RecipeWrapper(new InvWrapper(player.getInventory())), worldIn)))
                 .collect(Collectors.toList());
     }
 

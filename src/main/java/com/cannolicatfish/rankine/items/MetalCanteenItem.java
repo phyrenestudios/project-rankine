@@ -1,6 +1,5 @@
 package com.cannolicatfish.rankine.items;
 
-import net.minecraft.tags.FluidTags;
 import net.neoforged.neoforge.fluids.FluidStack;
 import org.jetbrains.annotations.NotNull;
 

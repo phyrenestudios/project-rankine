@@ -1,6 +1,8 @@
 package com.cannolicatfish.rankine.blocks.evaporationtower;
 
 import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.RankineContainers;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.Container;
@@ -20,8 +22,6 @@ import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.SlotItemHandler;
 import net.neoforged.neoforge.items.wrapper.InvWrapper;
 
-import static com.cannolicatfish.rankine.init.RankineBlocks.EVAPORATION_TOWER_CONTAINER;
-
 public class EvaporationTowerContainer extends AbstractContainerMenu {
     private final Container furnaceInventory;
     private BlockEntity tileEntity;
@@ -29,12 +29,16 @@ public class EvaporationTowerContainer extends AbstractContainerMenu {
     private IItemHandler playerInventory;
     private final ContainerData data;
 
+    public EvaporationTowerContainer(int windowId, Inventory inv, FriendlyByteBuf extraData) {
+        this(windowId, inv.player.level(), extraData.readBlockPos(), inv, inv.player);
+    }
+
     public EvaporationTowerContainer(int windowId, Level world, BlockPos pos, Inventory playerInventory, Player player) {
         this(windowId,world,pos,playerInventory,player,new SimpleContainer(1), new SimpleContainerData(2));
 
     }
     public EvaporationTowerContainer(int windowId, Level world, BlockPos pos, Inventory playerInventory, Player player, Container furnaceInventoryIn, ContainerData towerData) {
-        super(EVAPORATION_TOWER_CONTAINER, windowId);
+        super(RankineContainers.EVAPORATION_TOWER_CONTAINER.get(), windowId);
         tileEntity = world.getBlockEntity(pos);
         checkContainerSize(furnaceInventoryIn, 1);
         checkContainerDataCount(towerData, 2);

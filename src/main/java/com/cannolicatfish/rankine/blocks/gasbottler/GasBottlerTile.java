@@ -2,7 +2,10 @@ package com.cannolicatfish.rankine.blocks.gasbottler;
 
 import com.cannolicatfish.rankine.blocks.gases.GasBlock;
 import com.cannolicatfish.rankine.init.Config;
+import com.cannolicatfish.rankine.init.RankineBlockEntityTypes;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.Inventory;
@@ -21,14 +24,12 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.neoforged.neoforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.items.IItemHandler;
+import net.neoforged.neoforge.items.wrapper.SidedInvWrapper;
 
 import javax.annotation.Nullable;
-
-import static com.cannolicatfish.rankine.init.RankineBlocks.GAS_CONDENSER_TILE;
 
 
 public class GasBottlerTile extends BlockEntity implements WorldlyContainer, MenuProvider {
@@ -70,22 +71,22 @@ public class GasBottlerTile extends BlockEntity implements WorldlyContainer, Men
     };
 
     public GasBottlerTile(BlockPos posIn, BlockState stateIn) {
-        super(GAS_CONDENSER_TILE, posIn, stateIn);
+        super(RankineBlockEntityTypes.GAS_BOTTLER.get(), posIn, stateIn);
     }
 
     @Override
-    public void load(CompoundTag nbt) {
-        super.load(nbt);
+    protected void loadAdditional(CompoundTag nbt, HolderLookup.Provider provider) {
+        super.loadAdditional(nbt, provider);
         this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
-        ContainerHelper.loadAllItems(nbt,this.items);
+        ContainerHelper.loadAllItems(nbt,this.items, provider);
         this.cookTime = nbt.getInt("CookTime");
         this.cookTimeTotal = nbt.getInt("CookTimeTotal");
     }
 
     @Override
-    public void saveAdditional(CompoundTag compound) {
-        super.saveAdditional(compound);
-        ContainerHelper.saveAllItems(compound, this.items);
+    protected void saveAdditional(CompoundTag compound, HolderLookup.Provider provider) {
+        super.saveAdditional(compound, provider);
+        ContainerHelper.saveAllItems(compound, this.items, provider);
         compound.putInt("CookTime", this.cookTime);
         compound.putInt("CookTimeTotal", this.cookTimeTotal);
     }
@@ -96,8 +97,8 @@ public class GasBottlerTile extends BlockEntity implements WorldlyContainer, Men
         if (!worldIn.isClientSide) {
             ItemStack input = tile.items.get(0);
             ItemStack output = tile.items.get(1);
-            if (input.getItem().equals(Items.GLASS_BOTTLE) && worldIn.getBlockState(tile.getBlockPos().relative(BS.getValue(BlockStateProperties.FACING))).getBlock() instanceof GasBlock && ResourceLocation.tryParse(worldIn.getBlockState(tile.getBlockPos().relative(BS.getValue(BlockStateProperties.FACING))).getBlock().getRegistryName().toString().replace("block","bottle")) != null) {
-                Item OUT = ForgeRegistries.ITEMS.getValue(ResourceLocation.tryParse(worldIn.getBlockState(tile.getBlockPos().relative(BS.getValue(BlockStateProperties.FACING))).getBlock().getRegistryName().toString().replace("block","bottle")));
+            if (input.getItem().equals(Items.GLASS_BOTTLE) && worldIn.getBlockState(tile.getBlockPos().relative(BS.getValue(BlockStateProperties.FACING))).getBlock() instanceof GasBlock && ResourceLocation.tryParse(BuiltInRegistries.BLOCK.getKey(worldIn.getBlockState(tile.getBlockPos().relative(BS.getValue(BlockStateProperties.FACING))).getBlock()).toString().replace("block","bottle")) != null) {
+                Item OUT = BuiltInRegistries.ITEM.get(ResourceLocation.tryParse(BuiltInRegistries.BLOCK.getKey(worldIn.getBlockState(tile.getBlockPos().relative(BS.getValue(BlockStateProperties.FACING))).getBlock()).toString().replace("block","bottle")));
                 if ((output.getItem() == OUT && output.getCount() < 64) || output.isEmpty()) {
                     ++tile.cookTime;
                     if (tile.cookTime >= tile.cookTimeTotal) {
@@ -120,32 +121,30 @@ public class GasBottlerTile extends BlockEntity implements WorldlyContainer, Men
 
     }
 
-    net.neoforged.neoforge.common.util.LazyOptional<? extends net.neoforged.neoforge.items.IItemHandler>[] handlers =
-            net.neoforged.neoforge.items.wrapper.SidedInvWrapper.create(this, Direction.UP, Direction.DOWN, Direction.NORTH);
+    private final IItemHandler[] handlers = new IItemHandler[] {
+            new SidedInvWrapper(this, Direction.UP),
+            new SidedInvWrapper(this, Direction.DOWN),
+            new SidedInvWrapper(this, Direction.NORTH)
+    };
 
-    @Override
-    public <T> net.neoforged.neoforge.common.util.LazyOptional<T> getCapability(net.neoforged.neoforge.common.capabilities.Capability<T> capability, @Nullable Direction facing) {
-        if (!this.remove && facing != null && capability == net.neoforged.neoforge.items.CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
-            if (facing == Direction.UP)
-                return handlers[0].cast();
-            else if (facing == Direction.DOWN)
-                return handlers[1].cast();
-            else
-                return handlers[2].cast();
+    // PORT-CAP: GasBottlerTile -> getItemHandler
+    @Nullable
+    public IItemHandler getItemHandler(@Nullable Direction side) {
+        if (this.remove || side == null) {
+            return null;
         }
-        return super.getCapability(capability, facing);
-    }
-
-    @Override
-    public void setRemoved() {
-        super.setRemoved();
-        for (int x = 0; x < handlers.length; x++)
-            handlers[x].invalidate();
+        if (side == Direction.UP) {
+            return handlers[0];
+        } else if (side == Direction.DOWN) {
+            return handlers[1];
+        } else {
+            return handlers[2];
+        }
     }
 
     @Override
     public Component getDisplayName() {
-        return Component.literal(getType().getRegistryName().getPath());
+        return Component.literal(BuiltInRegistries.BLOCK_ENTITY_TYPE.getKey(this.getType()).getPath());
     }
 
     @Override
@@ -207,7 +206,7 @@ public class GasBottlerTile extends BlockEntity implements WorldlyContainer, Men
     @Override
     public void setItem(int index, ItemStack stack) {
         ItemStack itemstack = this.items.get(index);
-        boolean flag = !stack.isEmpty() && stack.sameItem(itemstack) && ItemStack.tagMatches(stack, itemstack);
+        boolean flag = !stack.isEmpty() && ItemStack.isSameItemSameComponents(stack, itemstack);
         this.items.set(index, stack);
         if (stack.getCount() > this.getMaxStackSize()) {
             stack.setCount(this.getMaxStackSize());

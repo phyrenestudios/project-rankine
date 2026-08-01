@@ -25,7 +25,7 @@ public class DryMortarItem extends Item {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
+    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag flagIn) {
         tooltip.add(Component.literal("Drop in water to make mortar").withStyle(ChatFormatting.GRAY));
     }
 
@@ -36,7 +36,7 @@ public class DryMortarItem extends Item {
 
     @Override
     public Entity createEntity(Level world, Entity location, ItemStack itemstack) {
-        DryMortarItemEntity result = new DryMortarItemEntity(location.level,location.getX(),location.getY(),location.getZ(), itemstack);
+        DryMortarItemEntity result = new DryMortarItemEntity(location.level(),location.getX(),location.getY(),location.getZ(), itemstack);
         result.setPickUpDelay(40);
         result.setDeltaMovement(location.getDeltaMovement());
         return result;

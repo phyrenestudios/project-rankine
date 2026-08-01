@@ -11,8 +11,9 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -20,6 +21,7 @@ import net.minecraft.world.item.ItemUtils;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -35,14 +37,12 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
-import java.util.Random;
-
 public abstract class AbstractRankineCauldronBlock extends Block {
     private static final VoxelShape INSIDE = box(2.0D, 4.0D, 2.0D, 14.0D, 16.0D, 14.0D);
     protected static final VoxelShape SHAPE = Shapes.join(Shapes.block(), Shapes.or(box(0.0D, 0.0D, 4.0D, 16.0D, 3.0D, 12.0D), box(4.0D, 0.0D, 0.0D, 12.0D, 3.0D, 16.0D), box(2.0D, 0.0D, 2.0D, 14.0D, 3.0D, 14.0D), INSIDE), BooleanOp.ONLY_FIRST);
 
     public AbstractRankineCauldronBlock() {
-        super(BlockBehaviour.Properties.copy(Blocks.CAULDRON));
+        super(BlockBehaviour.Properties.ofFullCopy(Blocks.CAULDRON));
     }
     /*
     protected boolean isEntityInsideContent(BlockState p_151980_, BlockPos p_151981_, Entity p_151982_) {
@@ -53,38 +53,43 @@ public abstract class AbstractRankineCauldronBlock extends Block {
     }
      */
 
-    public VoxelShape getShape(BlockState p_151964_, BlockGetter p_151965_, BlockPos p_151966_, CollisionContext p_151967_) {
+    @Override
+    protected VoxelShape getShape(BlockState p_151964_, BlockGetter p_151965_, BlockPos p_151966_, CollisionContext p_151967_) {
         return SHAPE;
     }
 
-    public VoxelShape getInteractionShape(BlockState p_151955_, BlockGetter p_151956_, BlockPos p_151957_) {
+    @Override
+    protected VoxelShape getInteractionShape(BlockState p_151955_, BlockGetter p_151956_, BlockPos p_151957_) {
         return INSIDE;
     }
 
-    public boolean hasAnalogOutputSignal(BlockState p_151986_) {
+    @Override
+    protected boolean hasAnalogOutputSignal(BlockState p_151986_) {
         return true;
     }
 
-    public int getAnalogOutputSignal(BlockState p_153502_, Level p_153503_, BlockPos p_153504_) {
+    @Override
+    protected int getAnalogOutputSignal(BlockState p_153502_, Level p_153503_, BlockPos p_153504_) {
         return 4;
     }
 
-    public boolean isPathfindable(BlockState p_151959_, BlockGetter p_151960_, BlockPos p_151961_, PathComputationType p_151962_) {
+    @Override
+    protected boolean isPathfindable(BlockState p_151959_, PathComputationType p_151962_) {
         return false;
     }
 
     @Override
-    public ItemStack getCloneItemStack(BlockState state, HitResult target, BlockGetter level, BlockPos pos, Player player) {
+    public ItemStack getCloneItemStack(BlockState state, HitResult target, LevelReader level, BlockPos pos, Player player) {
         return new ItemStack(Items.CAULDRON);
     }
 
     @Override
-    public boolean isRandomlyTicking(BlockState p_49921_) {
+    protected boolean isRandomlyTicking(BlockState p_49921_) {
         return true;
     }
 
     @Override
-    public void randomTick(BlockState p_60551_, ServerLevel levelIn, BlockPos posIn, Random rand) {
+    protected void randomTick(BlockState p_60551_, ServerLevel levelIn, BlockPos posIn, RandomSource rand) {
         if (isHeated(levelIn, posIn) && this.getOutput() != null) {
             if (this.getOutput() == RankineItems.MAPLE_SYRUP.get()) {
                 levelIn.setBlockAndUpdate(posIn, RankineBlocks.MAPLE_SYRUP_CAULDRON.get().defaultBlockState());
@@ -98,19 +103,19 @@ public abstract class AbstractRankineCauldronBlock extends Block {
     }
 
     @Override
-    public InteractionResult use(BlockState p_151969_, Level levelIn, BlockPos pos, Player playerIn, InteractionHand handIn, BlockHitResult p_151974_) {
-        ItemStack itemstack = playerIn.getItemInHand(handIn);
+    protected ItemInteractionResult useItemOn(ItemStack itemstack, BlockState p_151969_, Level levelIn, BlockPos pos, Player playerIn, InteractionHand handIn, BlockHitResult p_151974_) {
         if (itemstack.is(Items.GLASS_BOTTLE) && p_151969_.is(RankineBlocks.MAPLE_SYRUP_CAULDRON.get())) {
             return fillBottle(levelIn, pos, playerIn, handIn, itemstack, new ItemStack(getBottle()), SoundEvents.BOTTLE_FILL);
         } else if (itemstack.is(Items.BUCKET) && !p_151969_.is(RankineBlocks.MAPLE_SYRUP_CAULDRON.get())) {
             return fillBottle(levelIn, pos, playerIn, handIn, itemstack, new ItemStack(getBottle()), SoundEvents.BUCKET_FILL);
         } else {
-            return InteractionResult.PASS;
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
     }
 
     @OnlyIn(Dist.CLIENT)
-    public void animateTick(BlockState stateIn, Level levelIn, BlockPos posIn, Random rand) {
+    @Override
+    public void animateTick(BlockState stateIn, Level levelIn, BlockPos posIn, RandomSource rand) {
         if (!isHeated(levelIn, posIn)) return;
         double d0 = (double) posIn.getX() + 0.5D;
         double d1 = (double) posIn.getY() + 0.95D;
@@ -138,7 +143,7 @@ public abstract class AbstractRankineCauldronBlock extends Block {
 
     public abstract Fluid getTransformFluid();
 
-    private static InteractionResult fillBottle(Level levelIn, BlockPos posIn, Player playerIn, InteractionHand handIn, ItemStack stackIn, ItemStack bottleOut, SoundEvent soundIn) {
+    private static ItemInteractionResult fillBottle(Level levelIn, BlockPos posIn, Player playerIn, InteractionHand handIn, ItemStack stackIn, ItemStack bottleOut, SoundEvent soundIn) {
         if (!levelIn.isClientSide) {
             playerIn.setItemInHand(handIn, ItemUtils.createFilledResult(stackIn, playerIn, bottleOut));
             playerIn.awardStat(Stats.USE_CAULDRON);
@@ -147,7 +152,7 @@ public abstract class AbstractRankineCauldronBlock extends Block {
             levelIn.playSound((Player)null, playerIn, soundIn, SoundSource.BLOCKS, 1.0F, 1.0F);
         }
 
-        return InteractionResult.sidedSuccess(levelIn.isClientSide);
+        return ItemInteractionResult.sidedSuccess(levelIn.isClientSide);
     }
 
     private static boolean isHeated(Level levelIn, BlockPos posIn) {

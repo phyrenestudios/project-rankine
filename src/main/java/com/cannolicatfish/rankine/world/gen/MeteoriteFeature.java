@@ -6,6 +6,7 @@ import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.mojang.serialization.Codec;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.core.BlockPos;
@@ -13,7 +14,6 @@ import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 
-import java.util.Random;
 
 public class MeteoriteFeature extends Feature<MeteoriteFeatureConfig> {
     public MeteoriteFeature(Codec<MeteoriteFeatureConfig> p_i49915_1_) {
@@ -24,7 +24,7 @@ public class MeteoriteFeature extends Feature<MeteoriteFeatureConfig> {
     public boolean place(FeaturePlaceContext<MeteoriteFeatureConfig> p_159749_) {
         WorldGenLevel reader = p_159749_.level();
         BlockPos pos = p_159749_.origin();
-        Random rand = reader.getRandom();
+        RandomSource rand = p_159749_.random();
         MeteoriteFeatureConfig config = p_159749_.config();
         BlockPos posShift = pos;
         if (!reader.getBlockState(posShift.below()).is(RankineTags.Blocks.METEORITE_REPLACEABLE)) {
@@ -83,7 +83,7 @@ public class MeteoriteFeature extends Feature<MeteoriteFeatureConfig> {
         return true;
     }
 
-    private void buildMeteor(WorldGenLevel reader, Random rand, BlockPos pos, BlockState ORE, BlockState TEKTITE) {
+    private void buildMeteor(WorldGenLevel reader, RandomSource rand, BlockPos pos, BlockState ORE, BlockState TEKTITE) {
         int j = Config.WORLDGEN.METEORITE_SIZE.get() + rand.nextInt(2);
         int k = Config.WORLDGEN.METEORITE_SIZE.get() + rand.nextInt(2);
         int l = Config.WORLDGEN.METEORITE_SIZE.get() + rand.nextInt(2);

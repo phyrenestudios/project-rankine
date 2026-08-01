@@ -6,6 +6,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -20,10 +21,6 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
-
-import java.util.Random;
 
 public class TripleCropsBlock extends CropBlock {
     public static final EnumProperty<TripleBlockSection> SECTION = EnumProperty.create("section", TripleBlockSection.class);
@@ -32,21 +29,22 @@ public class TripleCropsBlock extends CropBlock {
     private static final VoxelShape[] TOP_SHAPE_BY_AGE = new VoxelShape[]{Block.box(0.0D, 0.0D, 0.0D, 0.0D, 0.0D, 0.0D), Block.box(0.0D, 0.0D, 0.0D, 0.0D, 0.0D, 0.0D), Block.box(0.0D, 0.0D, 0.0D, 0.0D, 0.0D, 0.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D)};
 
     public TripleCropsBlock(Properties properties) {
-        super(properties);
+        // 1.21.1: BlockBehaviour#getOffsetType() no longer exists; the XZ offset (previously an override here) is baked into the Properties.
+        this(properties, BlockBehaviour.OffsetType.XZ);
+    }
+
+    protected TripleCropsBlock(Properties properties, BlockBehaviour.OffsetType offsetType) {
+        super(properties.offsetType(offsetType));
         this.registerDefaultState(this.stateDefinition.any().setValue(SECTION, TripleBlockSection.BOTTOM).setValue(AGE, 0));
     }
 
+    @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(AGE, SECTION);
     }
 
     @Override
-    public BlockBehaviour.OffsetType getOffsetType() {
-        return BlockBehaviour.OffsetType.XZ;
-    }
-
-    @Override
-    public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
+    protected VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
         switch (state.getValue(SECTION)) {
             case BOTTOM:
                 return BOTTOM_SHAPE_BY_AGE[state.getValue(this.getAgeProperty())];
@@ -68,7 +66,7 @@ public class TripleCropsBlock extends CropBlock {
     }
 
     @Override
-    public boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
+    protected boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
         switch (state.getValue(SECTION)) {
             default:
             case BOTTOM:
@@ -88,7 +86,7 @@ public class TripleCropsBlock extends CropBlock {
     }
 
     @Override
-    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
+    protected BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
         TripleBlockSection tripleBlockSection = stateIn.getValue(SECTION);
         switch (tripleBlockSection) {
             case BOTTOM:
@@ -105,23 +103,23 @@ public class TripleCropsBlock extends CropBlock {
     }
 
     @Override
-    public boolean isRandomlyTicking(BlockState state) {
+    protected boolean isRandomlyTicking(BlockState state) {
         return !this.isMaxAge(state) && getSection(state).equals(TripleBlockSection.BOTTOM);
     }
 
     @Override
-    public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, Random random) {
+    protected void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {
         if (!worldIn.isAreaLoaded(pos, 1)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light
         if (worldIn.getRawBrightness(pos, 0) >= 9) {
             if ((worldIn.getBlockState(pos.above(1)).is(Blocks.AIR) || worldIn.getBlockState(pos.above(1)).is(this)) && (worldIn.getBlockState(pos.above(2)).is(Blocks.AIR) || worldIn.getBlockState(pos.above(2)).is(this))) {
                 int i = this.getAge(state);
                 if (i < this.getMaxAge()) {
-                    float f = getGrowthSpeed(this, worldIn, pos);
-                    if (net.neoforged.neoforge.common.ForgeHooks.onCropsGrowPre(worldIn, pos, state, random.nextInt((int) (25.0F / f) + 1) == 0)) {
+                    float f = getGrowthSpeed(state, worldIn, pos);
+                    if (net.neoforged.neoforge.common.CommonHooks.canCropGrow(worldIn, pos, state, random.nextInt((int) (25.0F / f) + 1) == 0)) {
                         worldIn.setBlock(pos, this.getStateForAge(i + 1).setValue(SECTION, TripleBlockSection.BOTTOM), 2);
                         worldIn.setBlock(pos.above(1), this.getStateForAge(i + 1).setValue(SECTION, TripleBlockSection.MIDDLE), 2);
                         worldIn.setBlock(pos.above(2), this.getStateForAge(i + 1).setValue(SECTION, TripleBlockSection.TOP), 2);
-                        net.neoforged.neoforge.common.ForgeHooks.onCropsGrowPost(worldIn, pos, state);
+                        net.neoforged.neoforge.common.CommonHooks.fireCropGrowPost(worldIn, pos, state);
                     }
                 }
             }
@@ -155,7 +153,7 @@ public class TripleCropsBlock extends CropBlock {
     }
 
     @Override
-    public boolean isValidBonemealTarget(BlockGetter worldIn, BlockPos pos, BlockState state, boolean isClient) {
+    public boolean isValidBonemealTarget(LevelReader worldIn, BlockPos pos, BlockState state) {
         switch (state.getValue(SECTION)) {
             case BOTTOM:
             case MIDDLE:
@@ -167,13 +165,13 @@ public class TripleCropsBlock extends CropBlock {
     }
 
     @Override
-    public void playerWillDestroy(Level worldIn, BlockPos pos, BlockState state, Player player) {
+    public BlockState playerWillDestroy(Level worldIn, BlockPos pos, BlockState state, Player player) {
         if (!worldIn.isClientSide) {
             if (player.isCreative()) {
                 removeLowerSections(worldIn, pos, state, player);
             }
         }
-        super.playerWillDestroy(worldIn, pos, state, player);
+        return super.playerWillDestroy(worldIn, pos, state, player);
     }
 
     protected static void removeLowerSections(Level world, BlockPos pos, BlockState state, Player player) {
@@ -195,8 +193,8 @@ public class TripleCropsBlock extends CropBlock {
 
     }
 
-    @OnlyIn(Dist.CLIENT)
-    public long getSeed(BlockState state, BlockPos pos) {
+    @Override
+    protected long getSeed(BlockState state, BlockPos pos) {
         return Mth.getSeed(pos.getX(), pos.below(state.getValue(SECTION) == TripleBlockSection.BOTTOM ? 0 : 1).getY(), pos.getZ());
     }
 

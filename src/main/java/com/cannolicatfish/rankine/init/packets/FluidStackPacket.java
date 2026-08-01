@@ -1,43 +1,32 @@
 package com.cannolicatfish.rankine.init.packets;
 
-import net.minecraft.network.FriendlyByteBuf;
+import com.cannolicatfish.rankine.ProjectRankine;
 import net.minecraft.core.BlockPos;
-import net.neoforged.api.distmarker.Dist;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.fluids.FluidStack;
-import net.neoforged.fml.DistExecutor;
-import net.neoforged.neoforge.network.NetworkEvent;
 
-import java.util.function.Supplier;
+/**
+ * Server -> client sync of a machine tank's contents (fusion furnace, mixing barrel, tree tap).
+ * 1.21.1: CustomPacketPayload record; registered in {@link RankinePayloads}.
+ */
+public record FluidStackPacket(FluidStack fluidStack, BlockPos pos, boolean input) implements CustomPacketPayload {
 
-public class FluidStackPacket {
+    public static final CustomPacketPayload.Type<FluidStackPacket> TYPE =
+            new CustomPacketPayload.Type<>(ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID, "fluid_stack"));
 
-    public final FluidStack fluidStack;
-    public final BlockPos pos;
-    public final boolean input;
+    public static final StreamCodec<RegistryFriendlyByteBuf, FluidStackPacket> STREAM_CODEC =
+            StreamCodec.composite(
+                    FluidStack.OPTIONAL_STREAM_CODEC, FluidStackPacket::fluidStack,
+                    BlockPos.STREAM_CODEC, FluidStackPacket::pos,
+                    ByteBufCodecs.BOOL, FluidStackPacket::input,
+                    FluidStackPacket::new);
 
-    public FluidStackPacket(FriendlyByteBuf buffer) {
-        this.fluidStack = buffer.readFluidStack();
-        this.pos = buffer.readBlockPos();
-        this.input = buffer.readBoolean();
-    }
-
-    public FluidStackPacket(FluidStack fluidStackIn, BlockPos pos, boolean input) {
-        this.fluidStack = fluidStackIn;
-        this.pos = pos;
-        this.input = input;
-    }
-
-    public static void encode(FluidStackPacket packet, FriendlyByteBuf buffer) {
-        buffer.writeFluidStack(packet.fluidStack);
-        buffer.writeBlockPos(packet.pos);
-        buffer.writeBoolean(packet.input);
-    }
-
-    public static void handle(FluidStackPacket packet, Supplier<NetworkEvent.Context> context) {
-        NetworkEvent.Context ctx = context.get();
-        ctx.enqueueWork(() ->
-                DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> RankineClientPacketHandler.handlePacket(packet, context))
-        );
-        ctx.setPacketHandled(true);
+    @Override
+    public CustomPacketPayload.Type<FluidStackPacket> type() {
+        return TYPE;
     }
 }

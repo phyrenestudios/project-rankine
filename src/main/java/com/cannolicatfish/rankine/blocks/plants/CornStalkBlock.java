@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.blocks.plants;
 
 import com.cannolicatfish.rankine.blocks.states.TripleBlockSection;
 import com.cannolicatfish.rankine.init.RankineTags;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -23,7 +24,6 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.Level;
-import net.neoforged.neoforge.common.Tags;
 import org.jetbrains.annotations.Nullable;
 
 import net.minecraft.world.level.block.state.BlockBehaviour.OffsetType;
@@ -31,19 +31,27 @@ import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class CornStalkBlock extends BushBlock {
 
+    public static final MapCodec<CornStalkBlock> CODEC = simpleCodec(CornStalkBlock::new);
     public static final EnumProperty<TripleBlockSection> SECTION = EnumProperty.create("section", TripleBlockSection.class);
 
     public CornStalkBlock(Properties properties) {
-        super(properties);
+        // 1.21.1: BlockBehaviour#getOffsetType() no longer exists; the XZ offset (previously an override here) is baked into the Properties.
+        super(properties.offsetType(OffsetType.XZ));
         this.registerDefaultState(this.stateDefinition.any().setValue(SECTION, TripleBlockSection.BOTTOM));
     }
 
+    @Override
+    public MapCodec<CornStalkBlock> codec() {
+        return CODEC;
+    }
+
+    @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(SECTION);
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
+    protected VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
         switch (state.getValue(SECTION)) {
             case BOTTOM:
             case MIDDLE:
@@ -54,7 +62,7 @@ public class CornStalkBlock extends BushBlock {
     }
 
     @Override
-    public boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
+    protected boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
         switch (state.getValue(SECTION)) {
             case BOTTOM:
                 return worldIn.getBlockState(pos.below()).is(BlockTags.DIRT) || worldIn.getBlockState(pos.below()).is(RankineTags.Blocks.FARMLAND);
@@ -71,7 +79,7 @@ public class CornStalkBlock extends BushBlock {
     }
 
     @Override
-    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
+    protected BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
         TripleBlockSection tripleBlockSection = stateIn.getValue(SECTION);
         switch (tripleBlockSection) {
             case BOTTOM:
@@ -97,7 +105,7 @@ public class CornStalkBlock extends BushBlock {
     }
 
     @Override
-    public void playerWillDestroy(Level worldIn, BlockPos pos, BlockState state, Player player) {
+    public BlockState playerWillDestroy(Level worldIn, BlockPos pos, BlockState state, Player player) {
         if (!worldIn.isClientSide) {
             if (player.isCreative()) {
                 removeLowerSections(worldIn, pos, state, player);
@@ -105,7 +113,7 @@ public class CornStalkBlock extends BushBlock {
                 //spawnDrops(state, worldIn, pos, (TileEntity)null, player, player.getHeldItemMainhand());
             }
         }
-        super.playerWillDestroy(worldIn, pos, state, player);
+        return super.playerWillDestroy(worldIn, pos, state, player);
     }
 
     protected static void removeLowerSections(Level world, BlockPos pos, BlockState state, Player player) {
@@ -127,13 +135,8 @@ public class CornStalkBlock extends BushBlock {
         }
     }
 
-
-    public OffsetType getOffsetType() {
-        return OffsetType.XZ;
-    }
-
     @Override
-    public void entityInside(BlockState state, Level worldIn, BlockPos pos, Entity entityIn) {
+    protected void entityInside(BlockState state, Level worldIn, BlockPos pos, Entity entityIn) {
         if (entityIn instanceof LivingEntity) {
             entityIn.makeStuckInBlock(state, new Vec3((double)0.98F, 1.0D, (double)0.98F));
         }

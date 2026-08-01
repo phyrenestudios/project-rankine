@@ -1,18 +1,17 @@
 package com.cannolicatfish.rankine.items.alloys;
 
+import com.cannolicatfish.rankine.enchantment.RankineEnchantmentHelper;
 import com.cannolicatfish.rankine.init.RankineEnchantments;
-import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
-import com.google.common.collect.Sets;
+import com.cannolicatfish.rankine.items.tools.RankineToolMaterials;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.NonNullList;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
@@ -21,30 +20,23 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.UseOnContext;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CampfireBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Material;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.common.Tags;
-import net.neoforged.neoforge.common.TierSortingRegistry;
 
 import javax.annotation.Nullable;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
 
 public class AlloyShovelItem extends ShovelItem implements IAlloyTool {
-    private static final Set<Block> EFFECTIVE_ON = Sets.newHashSet(Blocks.CLAY, Blocks.DIRT, Blocks.COARSE_DIRT, Blocks.PODZOL, Blocks.FARMLAND, Blocks.GRASS_BLOCK, Blocks.GRAVEL, Blocks.MYCELIUM, Blocks.SAND, Blocks.RED_SAND, Blocks.SNOW_BLOCK, Blocks.SNOW, Blocks.SOUL_SAND, Blocks.DIRT_PATH, Blocks.WHITE_CONCRETE_POWDER, Blocks.ORANGE_CONCRETE_POWDER, Blocks.MAGENTA_CONCRETE_POWDER, Blocks.LIGHT_BLUE_CONCRETE_POWDER, Blocks.YELLOW_CONCRETE_POWDER, Blocks.LIME_CONCRETE_POWDER, Blocks.PINK_CONCRETE_POWDER, Blocks.GRAY_CONCRETE_POWDER, Blocks.LIGHT_GRAY_CONCRETE_POWDER, Blocks.CYAN_CONCRETE_POWDER, Blocks.PURPLE_CONCRETE_POWDER, Blocks.BLUE_CONCRETE_POWDER, Blocks.BROWN_CONCRETE_POWDER, Blocks.GREEN_CONCRETE_POWDER, Blocks.RED_CONCRETE_POWDER, Blocks.BLACK_CONCRETE_POWDER, Blocks.SOUL_SOIL);
     private final String defaultComposition;
     private final ResourceLocation defaultAlloyRecipe;
 
     public AlloyShovelItem(Tier tier, float attackDamageIn, float attackSpeedIn, String defaultCompositionIn, @Nullable ResourceLocation defaultAlloyRecipeIn,  Item.Properties builder) {
-        super(tier, attackDamageIn, attackSpeedIn, builder);
+        super(tier, builder.attributes(ShovelItem.createAttributes(tier, attackDamageIn, attackSpeedIn)));
         this.defaultComposition = defaultCompositionIn;
         this.defaultAlloyRecipe = defaultAlloyRecipeIn;
     }
@@ -54,10 +46,15 @@ public class AlloyShovelItem extends ShovelItem implements IAlloyTool {
         return false;
     }
 
+    @Nullable
+    @Override
+    public TagKey<Block> getAlloyMineableTag() {
+        return BlockTags.MINEABLE_WITH_SHOVEL;
+    }
+
     @Override
     public boolean isCorrectToolForDrops(ItemStack stack, BlockState state) {
-        List<Tiers> tiers = Arrays.asList(Tiers.WOOD,Tiers.STONE,Tiers.IRON,Tiers.DIAMOND,Tiers.NETHERITE);
-        return state.is(BlockTags.MINEABLE_WITH_SHOVEL) && TierSortingRegistry.isCorrectTierForDrops(tiers.get(getAlloyHarvestLevel(stack)),state);
+        return state.is(BlockTags.MINEABLE_WITH_SHOVEL) && !state.is(RankineToolMaterials.incorrectBlocksForLevel(getAlloyHarvestLevel(stack)));
     }
 
     @Override
@@ -73,7 +70,10 @@ public class AlloyShovelItem extends ShovelItem implements IAlloyTool {
         return p_41005_.is(BlockTags.MINEABLE_WITH_SHOVEL) ? getAlloyMiningSpeed(p_41004_) : 1.0F;
     }
 
-
+    // PORT-TODO: Material.STONE approximation — Material is gone in 1.21.
+    private static boolean isStoneLike(BlockState state) {
+        return state.is(BlockTags.BASE_STONE_OVERWORLD) || state.is(BlockTags.BASE_STONE_NETHER) || state.is(Tags.Blocks.STONES);
+    }
 
     /**
      * Called when this item is used when targetting a Block
@@ -86,14 +86,12 @@ public class AlloyShovelItem extends ShovelItem implements IAlloyTool {
         Direction e = context.getClickedFace();
         Player playerentity = context.getPlayer();
         if (e == Direction.DOWN) {
-            if (EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ENDOLITHIC.get(),context.getItemInHand()) > 0 && blockstate.getMaterial().equals(Material.STONE) && playerentity != null) {
+            if (RankineEnchantmentHelper.getLevel(world, RankineEnchantments.ENDOLITHIC, context.getItemInHand()) > 0 && isStoneLike(blockstate) && playerentity != null) {
                 for (int x = 2; x <= 32; x++) {
                     BlockPos newPos = blockpos.above(x);
                     if (world.getBlockState(newPos).isAir() && world.getBlockState(newPos.above(1)).isAir() && world.getBlockState(newPos.below(1)).canOcclude()){
                         playerentity.teleportTo(newPos.getX(), Mth.clamp(newPos.getY() + 0.5,0.0D, (double)(world.getHeight() - 1)),newPos.getZ());
-                        context.getItemInHand().hurtAndBreak(calcDurabilityLoss(context.getItemInHand(),context.getLevel(),playerentity,false) * 2, playerentity, (p_220040_1_) -> {
-                            p_220040_1_.broadcastBreakEvent(context.getHand());
-                        });
+                        context.getItemInHand().hurtAndBreak(calcDurabilityLoss(context.getItemInHand(),context.getLevel(),playerentity,false) * 2, playerentity, LivingEntity.getSlotForHand(context.getHand()));
                         SoundEvent soundevent = SoundEvents.CHORUS_FRUIT_TELEPORT;
                         world.playSound((Player)null,blockpos.getX(), blockpos.getY(), blockpos.getZ(), soundevent, SoundSource.PLAYERS, 1.0F, 1.0F);
                         playerentity.playSound(soundevent, 1.0F, 1.0F);
@@ -115,7 +113,7 @@ public class AlloyShovelItem extends ShovelItem implements IAlloyTool {
 
                 CampfireBlock.dowse(playerentity,world, blockpos, blockstate);
                 blockstate2 = blockstate.setValue(CampfireBlock.LIT, Boolean.FALSE);
-            } else if (EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ENDOLITHIC.get(),context.getItemInHand()) > 0 && blockstate.getMaterial().equals(Material.STONE) && playerentity != null) {
+            } else if (RankineEnchantmentHelper.getLevel(world, RankineEnchantments.ENDOLITHIC, context.getItemInHand()) > 0 && isStoneLike(blockstate) && playerentity != null) {
                 for (int x = 2; x <= 32; x++) {
                     BlockPos newPos = blockpos;
                     switch (e.getOpposite()) {
@@ -140,9 +138,7 @@ public class AlloyShovelItem extends ShovelItem implements IAlloyTool {
                     }
                     if (world.getBlockState(newPos).isAir() && world.getBlockState(newPos.above(1)).isAir() && world.getBlockState(newPos.below(1)).canOcclude()){
                         playerentity.teleportTo(newPos.getX(), Mth.clamp(newPos.getY() + 0.5,0.0D, (double)(world.getHeight() - 1)),newPos.getZ());
-                        context.getItemInHand().hurtAndBreak(calcDurabilityLoss(context.getItemInHand(),context.getLevel(),playerentity,false) * 2, playerentity, (p_220040_1_) -> {
-                            p_220040_1_.broadcastBreakEvent(context.getHand());
-                        });
+                        context.getItemInHand().hurtAndBreak(calcDurabilityLoss(context.getItemInHand(),context.getLevel(),playerentity,false) * 2, playerentity, LivingEntity.getSlotForHand(context.getHand()));
                         SoundEvent soundevent = SoundEvents.CHORUS_FRUIT_TELEPORT;
                         world.playSound((Player)null,blockpos.getX(), blockpos.getY(), blockpos.getZ(), soundevent, SoundSource.PLAYERS, 1.0F, 1.0F);
                         playerentity.playSound(soundevent, 1.0F, 1.0F);
@@ -155,9 +151,7 @@ public class AlloyShovelItem extends ShovelItem implements IAlloyTool {
                 if (!world.isClientSide) {
                     world.setBlock(blockpos, blockstate2, 11);
                     if (playerentity != null) {
-                        context.getItemInHand().hurtAndBreak(calcDurabilityLoss(context.getItemInHand(),context.getLevel(),context.getPlayer(),true), playerentity, (p_220040_1_) -> {
-                            p_220040_1_.broadcastBreakEvent(context.getHand());
-                        });
+                        context.getItemInHand().hurtAndBreak(calcDurabilityLoss(context.getItemInHand(),context.getLevel(),context.getPlayer(),true), playerentity, LivingEntity.getSlotForHand(context.getHand()));
                     }
                 }
 
@@ -169,21 +163,23 @@ public class AlloyShovelItem extends ShovelItem implements IAlloyTool {
     }
 
 
+    @Override
     public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        stack.hurtAndBreak(calcDurabilityLoss(stack,attacker.getCommandSenderWorld(),attacker,false), attacker, (entity) -> {
-            entity.broadcastBreakEvent(EquipmentSlot.MAINHAND);
-        });
         return true;
+    }
+
+    @Override
+    public void postHurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+        stack.hurtAndBreak(calcDurabilityLoss(stack,attacker.getCommandSenderWorld(),attacker,false), attacker, EquipmentSlot.MAINHAND);
     }
 
     /**
      * Called when a Block is destroyed using this Item. Return true to trigger the "Use Item" statistic.
      */
+    @Override
     public boolean mineBlock(ItemStack stack, Level worldIn, BlockState state, BlockPos pos, LivingEntity entityLiving) {
         if (!worldIn.isClientSide && state.getDestroySpeed(worldIn, pos) != 0.0F) {
-            stack.hurtAndBreak(calcDurabilityLoss(stack,worldIn,entityLiving,true), entityLiving, (entity) -> {
-                entity.broadcastBreakEvent(EquipmentSlot.MAINHAND);
-            });
+            stack.hurtAndBreak(calcDurabilityLoss(stack,worldIn,entityLiving,true), entityLiving, EquipmentSlot.MAINHAND);
         }
 
         return true;
@@ -196,16 +192,16 @@ public class AlloyShovelItem extends ShovelItem implements IAlloyTool {
     }
 
     @Override
-    public int getItemEnchantability(ItemStack stack) {
+    public int getEnchantmentValue(ItemStack stack) {
         return this.getAlloyEnchantability(stack);
     }
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-        addAlloyInformation(stack,worldIn,tooltip,flagIn);
+    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag flagIn) {
+        addAlloyInformation(stack,context.level(),tooltip,flagIn);
         if (flagIn.isAdvanced()) {
-            addAdvancedAlloyInformation(stack,worldIn,tooltip,flagIn);
+            addAdvancedAlloyInformation(stack,context.level(),tooltip,flagIn);
         }
     }
 
@@ -229,15 +225,9 @@ public class AlloyShovelItem extends ShovelItem implements IAlloyTool {
         super.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
     }
 
-    @Override
-    public void fillItemCategory(CreativeModeTab group, NonNullList<ItemStack> items) {
-        if (this.allowdedIn(group) && this.defaultAlloyRecipe == null) {
-            items.addAll(AlloyCustomHelper.getItemsFromAlloying(this));
-            items.addAll(AlloyCustomHelper.getItemsFromAlloyCrafting(this));
-        } else if (this.allowdedIn(group)) {
-            super.fillItemCategory(group,items);
-        }
-    }
+    // PORT-TODO(init): fillItemCategory is gone — dynamic creative-tab variants
+    // (AlloyCustomHelper.getItemsFromAlloying/getItemsFromAlloyCrafting when defaultAlloyRecipe == null)
+    // must be added in RankineCreativeTabs' displayItems.
 
     @Override
     public String getDefaultComposition() {
@@ -255,8 +245,8 @@ public class AlloyShovelItem extends ShovelItem implements IAlloyTool {
             String s = IAlloyItem.getAlloyComposition(repair);
             String r = IAlloyItem.getAlloyComposition(toRepair);
 
-            String s2 = IAlloyItem.getAlloyRecipe(repair).toString();
-            String r2 = IAlloyItem.getAlloyRecipe(toRepair).toString();
+            String s2 = String.valueOf(IAlloyItem.getAlloyRecipe(repair));
+            String r2 = String.valueOf(IAlloyItem.getAlloyRecipe(toRepair));
             return !s.isEmpty() && s.equals(r) && s2.equals(r2);
         }
         return false;

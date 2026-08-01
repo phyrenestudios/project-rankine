@@ -12,8 +12,9 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.InfestedBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.material.Material;
-import net.neoforged.neoforge.registries.RegistryObject;
+import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
+import net.neoforged.neoforge.registries.DeferredBlock;
 
 import java.util.Arrays;
 import java.util.List;
@@ -21,28 +22,28 @@ import java.util.List;
 public class RankineStone {
 
     private final String registryName;
-    private RegistryObject<RankineStoneBlock> stone;
-    private RegistryObject<RankinePolishedStoneBlock> polished;
-    private RegistryObject<RankineStoneBricksBlock> bricks;
-    private RegistryObject<RankineStoneBricksBlock> mossyBricks;
-    private RegistryObject<RankineSlabBlock> slab;
-    private RegistryObject<RankineSlabBlock> polishedSLab;
-    private RegistryObject<RankineSlabBlock> bricksSlab;
-    private RegistryObject<RankineSlabBlock> mossyBricksSlab;
-    private RegistryObject<RankineStairsBlock> stairs;
-    private RegistryObject<RankineStairsBlock> polishedStairs;
-    private RegistryObject<RankineStairsBlock> bricksStairs;
-    private RegistryObject<RankineStairsBlock> mossyBricksStairs;
-    private RegistryObject<RankineWallBlock> wall;
-    private RegistryObject<RankineWallBlock> polishedWall;
-    private RegistryObject<RankineWallBlock> bricksWall;
-    private RegistryObject<RankineWallBlock> mossyBricksWall;
-    private RegistryObject<RankineStonePressurePlate> pressurePlate;
-    private RegistryObject<RankineStonePressurePlate> bricksPressurePlate;
-    private RegistryObject<RankineStoneButton> button;
-    private RegistryObject<StoneColumnBlock> column;
-    private RegistryObject<CobbleBlock> cobble;
-    private RegistryObject<InfestedBlock> infested;
+    private DeferredBlock<RankineStoneBlock> stone;
+    private DeferredBlock<RankinePolishedStoneBlock> polished;
+    private DeferredBlock<RankineStoneBricksBlock> bricks;
+    private DeferredBlock<RankineStoneBricksBlock> mossyBricks;
+    private DeferredBlock<RankineSlabBlock> slab;
+    private DeferredBlock<RankineSlabBlock> polishedSLab;
+    private DeferredBlock<RankineSlabBlock> bricksSlab;
+    private DeferredBlock<RankineSlabBlock> mossyBricksSlab;
+    private DeferredBlock<RankineStairsBlock> stairs;
+    private DeferredBlock<RankineStairsBlock> polishedStairs;
+    private DeferredBlock<RankineStairsBlock> bricksStairs;
+    private DeferredBlock<RankineStairsBlock> mossyBricksStairs;
+    private DeferredBlock<RankineWallBlock> wall;
+    private DeferredBlock<RankineWallBlock> polishedWall;
+    private DeferredBlock<RankineWallBlock> bricksWall;
+    private DeferredBlock<RankineWallBlock> mossyBricksWall;
+    private DeferredBlock<RankineStonePressurePlate> pressurePlate;
+    private DeferredBlock<RankineStonePressurePlate> bricksPressurePlate;
+    private DeferredBlock<RankineStoneButton> button;
+    private DeferredBlock<StoneColumnBlock> column;
+    private DeferredBlock<CobbleBlock> cobble;
+    private DeferredBlock<InfestedBlock> infested;
 
 
     public RankineStone(String registryName) {
@@ -55,14 +56,14 @@ public class RankineStone {
         BlockBehaviour.Properties stoneProperties;
         switch (stoneCLass) {
             case "sedimentary":
-                stoneProperties = Block.Properties.of(Material.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(1.0F, 4.0F);
+                stoneProperties = Block.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(1.0F, 4.0F);
                 break;
             case "metamorphic":
-                stoneProperties = Block.Properties.of(Material.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(2.0F, 6.0F);
+                stoneProperties = Block.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(2.0F, 6.0F);
                 break;
             case "igneous":
             default:
-                stoneProperties = Block.Properties.of(Material.STONE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(2.0F, 6.0F);
+                stoneProperties = Block.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(2.0F, 6.0F);
         }
 
         RankineStone newStone = new RankineStone(baseName);

@@ -1,10 +1,10 @@
 package com.cannolicatfish.rankine.world.gen;
 
 import com.mojang.serialization.Codec;
+import net.minecraft.util.RandomSource;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Holder;
+import net.minecraft.tags.BiomeTags;
 import net.minecraft.world.level.WorldGenLevel;
-import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.ChunkAccess;
@@ -13,7 +13,6 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
-import java.util.Random;
 
 public class ColumnFeature extends Feature<NoneFeatureConfiguration> {
     public ColumnFeature(Codec<NoneFeatureConfiguration> p_i49915_1_) {
@@ -24,7 +23,7 @@ public class ColumnFeature extends Feature<NoneFeatureConfiguration> {
     public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> p_159749_) {
         WorldGenLevel reader = p_159749_.level();
         BlockPos pos = p_159749_.origin();
-        Random rand = reader.getRandom();
+        RandomSource rand = p_159749_.random();
         for (int X = 0; X < 16; ++ X) {
             for (int Z = 0; Z < 16; ++ Z) {
                 if (rand.nextFloat() < 1.0f) {
@@ -35,7 +34,7 @@ public class ColumnFeature extends Feature<NoneFeatureConfiguration> {
                     BlockPos topPos = new BlockPos(randX, 0, randZ);
                     BlockPos bottomPos;
                     int endY = reader.getHeight(Heightmap.Types.OCEAN_FLOOR_WG, topPos.getX(), topPos.getZ());
-                    if (Biome.getBiomeCategory(Holder.direct(reader.getBiome(topPos).value())) != Biome.BiomeCategory.NETHER && Biome.getBiomeCategory(Holder.direct(reader.getBiome(topPos).value())) != Biome.BiomeCategory.THEEND) {
+                    if (!reader.getBiome(topPos).is(BiomeTags.IS_NETHER) && !reader.getBiome(topPos).is(BiomeTags.IS_END)) {
                         for (int y = endY; y > 1; --y) {
                             topPos = new BlockPos(randX, y, randZ);
                             //if (RankineLists.STONES.contains(reader.getBlockState(topPos).getBlock()) && reader.getBlockState(topPos.below()).isAir()) {

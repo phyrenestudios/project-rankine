@@ -36,7 +36,8 @@ public class SteelSpearEntityModel extends Model {
         return LayerDefinition.create(meshdefinition, 32, 32);
     }
 
-    public void renderToBuffer(PoseStack matrixStackIn, VertexConsumer bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {
-        this.modelRenderer.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
+    @Override
+    public void renderToBuffer(PoseStack matrixStackIn, VertexConsumer bufferIn, int packedLightIn, int packedOverlayIn, int color) {
+        this.modelRenderer.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, color);
     }
 }

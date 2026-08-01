@@ -8,9 +8,8 @@ public class RadiationPoisonEffect extends MobEffect {
         super(typeIn, liquidColorIn);
     }
 
-
     @Override
-    public boolean isDurationEffectTick(int duration, int amplifier) {
+    public boolean shouldApplyEffectTickThisTick(int duration, int amplifier) {
         return false;
     }
 }

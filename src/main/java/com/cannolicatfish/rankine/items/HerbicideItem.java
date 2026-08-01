@@ -60,7 +60,7 @@ public class HerbicideItem extends Item {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
+    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag flagIn) {
             tooltip.add(Component.literal("Kills vegetation").withStyle(ChatFormatting.GRAY));
     }
 

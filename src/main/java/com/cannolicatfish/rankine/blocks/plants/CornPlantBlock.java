@@ -10,7 +10,6 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.phys.BlockHitResult;
@@ -26,19 +25,20 @@ public class CornPlantBlock extends TripleCropsBlock {
         super(properties);
     }
 
+    @Override
     protected ItemLike getBaseSeedId() {
         return RankineItems.CORN_SEEDS.get();
     }
 
     @Override
-    public void entityInside(BlockState state, Level worldIn, BlockPos pos, Entity entityIn) {
+    protected void entityInside(BlockState state, Level worldIn, BlockPos pos, Entity entityIn) {
         if (entityIn instanceof LivingEntity && state.getValue(AGE) > 2) {
             entityIn.makeStuckInBlock(state, new Vec3((double)0.95F, 1.0D, (double)0.95F));
         }
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
+    protected InteractionResult useWithoutItem(BlockState state, Level worldIn, BlockPos pos, Player player, BlockHitResult hit) {
         if (state.getValue(AGE) == 7) {
             if (!worldIn.isClientSide && worldIn.getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS) && !worldIn.restoringBlockSnapshots) { // do not drop items while restoring blockstates, prevents item dupe
                 double d0 = (double) (worldIn.random.nextFloat() * 0.5F) + 0.25D;
@@ -67,6 +67,6 @@ public class CornPlantBlock extends TripleCropsBlock {
             }
         }
 
-        return super.use(state, worldIn, pos, player, handIn, hit);
+        return super.useWithoutItem(state, worldIn, pos, player, hit);
     }
 }

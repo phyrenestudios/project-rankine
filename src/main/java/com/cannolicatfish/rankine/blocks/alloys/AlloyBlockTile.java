@@ -1,30 +1,29 @@
 package com.cannolicatfish.rankine.blocks.alloys;
 
+import com.cannolicatfish.rankine.init.RankineBlockEntityTypes;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.neoforged.neoforge.common.ForgeHooks;
-
-import static com.cannolicatfish.rankine.init.RankineBlocks.ALLOY_BLOCK_TILE;
 
 public class AlloyBlockTile extends BlockEntity {
     private CompoundTag alloyData = new CompoundTag();
     public AlloyBlockTile(BlockPos posIn, BlockState stateIn) {
-        super(ALLOY_BLOCK_TILE, posIn, stateIn);
+        super(RankineBlockEntityTypes.ALLOY_BLOCK.get(), posIn, stateIn);
     }
 
 
     @Override
-    public void saveAdditional(CompoundTag compound) {
-        super.saveAdditional(compound);
+    protected void saveAdditional(CompoundTag compound, HolderLookup.Provider provider) {
+        super.saveAdditional(compound, provider);
         if (this.alloyData != null) compound.put("AlloyData", this.alloyData);
     }
 
     @Override
-    public void load(CompoundTag nbt) {
+    protected void loadAdditional(CompoundTag nbt, HolderLookup.Provider provider) {
+        super.loadAdditional(nbt, provider);
         if (nbt.contains("AlloyData")) this.alloyData = nbt.getCompound("AlloyData");
-        super.load(nbt);
     }
 
     public CompoundTag writeAlloyData(CompoundTag compoundNBT) {

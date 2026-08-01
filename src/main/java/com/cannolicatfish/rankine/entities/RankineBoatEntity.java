@@ -3,7 +3,6 @@ package com.cannolicatfish.rankine.entities;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineEntityTypes;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -15,7 +14,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.Vec3;
-import net.neoforged.neoforge.network.NetworkHooks;
 
 public class RankineBoatEntity extends Boat {
     private static final EntityDataAccessor<Integer> BOAT_TYPE = SynchedEntityData.defineId(RankineBoatEntity.class, EntityDataSerializers.INT);
@@ -33,21 +31,21 @@ public class RankineBoatEntity extends Boat {
         this.zo = z;
     }
 
-    protected void defineSynchedData()
+    @Override
+    protected void defineSynchedData(SynchedEntityData.Builder builder)
     {
-        super.defineSynchedData();
-        this.entityData.define(BOAT_TYPE, RankineBoatEntity.Type.OAK.ordinal());
+        super.defineSynchedData(builder);
+        builder.define(BOAT_TYPE, RankineBoatEntity.Type.OAK.ordinal());
     }
 
-    public Packet<?> getAddEntityPacket()
-    {
-        return NetworkHooks.getEntitySpawningPacket(this);
-    }
+    // 1.21.1: getAddEntityPacket/NetworkHooks override removed — vanilla handles spawn packets.
 
+    @Override
     protected void addAdditionalSaveData(CompoundTag compound) {
         compound.putString("Type", this.getRankineBoatType().getName());
     }
 
+    @Override
     protected void readAdditionalSaveData(CompoundTag compound) {
         if (compound.contains("Type", 8)) {
             this.setRankineBoatType(RankineBoatEntity.Type.getTypeFromString(compound.getString("Type")));
@@ -55,6 +53,7 @@ public class RankineBoatEntity extends Boat {
 
     }
 
+    @Override
     public Item getDropItem() {
         switch(this.getRankineBoatType()) {
             case OAK:

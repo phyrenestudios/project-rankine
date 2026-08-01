@@ -4,46 +4,54 @@ import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineRecipeSerializers;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.recipe.helper.AlloyIngredientHelper;
+import com.cannolicatfish.rankine.recipe.helper.RankineMapCodec;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
+import com.mojang.serialization.MapCodec;
+import net.minecraft.core.Holder;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.NonNullList;
+import net.minecraft.core.Registry;
+import net.minecraft.core.RegistryAccess;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
-import net.minecraft.world.Container;
-import net.minecraft.world.item.Item;
+import net.minecraft.util.GsonHelper;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeInput;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.util.GsonHelper;
-import net.minecraft.core.NonNullList;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.core.Registry;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biome;
-import net.neoforged.neoforge.registries.ForgeRegistries;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Locale;
 
-public class AirDistillationRecipe implements Recipe<Container> {
+public class AirDistillationRecipe implements Recipe<RecipeInput> {
 
     private final List<String> dims;
     private final List<String> biomes;
     private final NonNullList<ItemStack> recipeOutputs;
-    private final ResourceLocation id;
     private final NonNullList<Float> chances;
 
-    public AirDistillationRecipe(ResourceLocation idIn, NonNullList<ItemStack> recipeOutputsIn, NonNullList<Float> chancesIn,
+    public AirDistillationRecipe(NonNullList<ItemStack> recipeOutputsIn, NonNullList<Float> chancesIn,
                                  List<String> dimsIn, List<String> biomesIn) {
-        this.id = idIn;
         this.recipeOutputs = recipeOutputsIn;
         this.chances = chancesIn;
         this.dims = dimsIn;
         this.biomes = biomesIn;
     }
 
+    @Override
     public String getGroup() {
         return "";
     }
@@ -79,16 +87,21 @@ public class AirDistillationRecipe implements Recipe<Container> {
     }
 
     @Override
-    public boolean matches(Container inv, Level worldIn) {
+    public boolean matches(RecipeInput inv, Level worldIn) {
         return false;
     }
 
     @Override
-    public ItemStack assemble(Container inv) {
+    public ItemStack assemble(RecipeInput inv, HolderLookup.Provider provider) {
         return ItemStack.EMPTY;
     }
 
     @Override
+    public ItemStack getResultItem(HolderLookup.Provider provider) {
+        return ItemStack.EMPTY;
+    }
+
+    /** Convenience overload matching the pre-1.21 API. */
     public ItemStack getResultItem() {
         return ItemStack.EMPTY;
     }
@@ -101,33 +114,46 @@ public class AirDistillationRecipe implements Recipe<Container> {
         return this.dims;
     }
 
-    public List<Biome> getBiomeList() {
+    /**
+     * PORT NOTE: biomes are a datapack registry in 1.21.1, so a {@link RegistryAccess}
+     * (e.g. {@code level.registryAccess()}) is now required to resolve them.
+     */
+    public List<Biome> getBiomeList(RegistryAccess registryAccess) {
+        Registry<Biome> reg = registryAccess.registryOrThrow(Registries.BIOME);
         List<Biome> biomeList = new ArrayList<>();
         for (String s : this.getBiomes()) {
             if (s.contains("T#")) {
-                TagKey<Biome> tag = TagKey.create(ForgeRegistries.BIOMES.getRegistryKey(),new ResourceLocation(s.split("T#")[1]));
-                biomeList.addAll(ForgeRegistries.BIOMES.tags().getTag(tag).stream().toList());
-            } else if (s.contains("B#")) {
-                for (Biome b : ForgeRegistries.BIOMES) {
-                    if (b.getRegistryName() != null && b.getRegistryName().equals(new ResourceLocation(s.split("B#")[1]))) {
-                        biomeList.add(b);
-                    }
+                TagKey<Biome> tag = TagKey.create(Registries.BIOME, ResourceLocation.parse(s.split("T#")[1]));
+                for (Holder<Biome> holder : reg.getTagOrEmpty(tag)) {
+                    biomeList.add(holder.value());
                 }
+            } else if (s.contains("B#")) {
+                reg.getOptional(ResourceLocation.parse(s.split("B#")[1])).ifPresent(biomeList::add);
             }
         }
         return biomeList;
     }
 
-    public List<String> getBiomeString() {
+    public List<String> getBiomeString(RegistryAccess registryAccess) {
+        Registry<Biome> reg = registryAccess.registryOrThrow(Registries.BIOME);
         List<String> list = new ArrayList<>();
         for (String s : this.getBiomes()) {
             if (s.contains("T#")) {
-                TagKey<Biome> tag = TagKey.create(ForgeRegistries.BIOMES.getRegistryKey(),new ResourceLocation(s.split("T#")[1]));
-                list.addAll(ForgeRegistries.BIOMES.tags().getTag(tag).stream().map(biome -> biome.getRegistryName().getPath().toUpperCase(Locale.ROOT).replace("_", " ")).toList());
+                TagKey<Biome> tag = TagKey.create(Registries.BIOME, ResourceLocation.parse(s.split("T#")[1]));
+                for (Holder<Biome> holder : reg.getTagOrEmpty(tag)) {
+                    holder.unwrapKey().ifPresent(key -> {
+                        String name = key.location().getPath().toUpperCase(Locale.ROOT).replace("_", " ");
+                        if (!list.contains(name)) {
+                            list.add(name);
+                        }
+                    });
+                }
             } else if (s.contains("B#")) {
-                for (Biome b : ForgeRegistries.BIOMES) {
-                    if (b.getRegistryName() != null && b.getRegistryName().equals(new ResourceLocation(s.split("B#")[1])) && !list.contains(b.getRegistryName().getPath().toUpperCase(Locale.ROOT).replace("_", " "))) {
-                        list.add(b.getRegistryName().getPath().toUpperCase(Locale.ROOT).replace("_", " "));
+                ResourceLocation rl = ResourceLocation.parse(s.split("B#")[1]);
+                if (reg.containsKey(rl)) {
+                    String name = rl.getPath().toUpperCase(Locale.ROOT).replace("_", " ");
+                    if (!list.contains(name)) {
+                        list.add(name);
                     }
                 }
             }
@@ -135,34 +161,44 @@ public class AirDistillationRecipe implements Recipe<Container> {
         return list;
     }
 
-    public boolean matchesDistillationRecipe(ResourceLocation biome, ResourceLocation dim) {
-        if (this.getBiomeList().isEmpty() && (getDims().isEmpty() || getDims().contains(dim.toString()))) {
-            return true;
-        } else {
-            for (Biome b : getBiomeList()) {
-                if (b.getRegistryName() != null && b.getRegistryName().equals(biome) && (getDims().isEmpty() || getDims().contains(dim.toString()))) {
-                    return true;
+    /** Resolves the set of biome ids this recipe applies to. */
+    private List<ResourceLocation> getBiomeIds(RegistryAccess registryAccess) {
+        Registry<Biome> reg = registryAccess.registryOrThrow(Registries.BIOME);
+        List<ResourceLocation> ids = new ArrayList<>();
+        for (String s : this.getBiomes()) {
+            if (s.contains("T#")) {
+                TagKey<Biome> tag = TagKey.create(Registries.BIOME, ResourceLocation.parse(s.split("T#")[1]));
+                for (Holder<Biome> holder : reg.getTagOrEmpty(tag)) {
+                    holder.unwrapKey().ifPresent(key -> ids.add(key.location()));
+                }
+            } else if (s.contains("B#")) {
+                ResourceLocation rl = ResourceLocation.parse(s.split("B#")[1]);
+                if (reg.containsKey(rl)) {
+                    ids.add(rl);
                 }
             }
-            return false;
+        }
+        return ids;
+    }
+
+    public boolean matchesDistillationRecipe(RegistryAccess registryAccess, ResourceLocation biome, ResourceLocation dim) {
+        List<ResourceLocation> biomeIds = getBiomeIds(registryAccess);
+        if (biomeIds.isEmpty() && (getDims().isEmpty() || getDims().contains(dim.toString()))) {
+            return true;
+        } else {
+            return biomeIds.contains(biome) && (getDims().isEmpty() || getDims().contains(dim.toString()));
         }
     }
 
-    public ItemStack getDistillationResult(int level, ResourceLocation biome, ResourceLocation dim) {
-        if (this.getBiomeList().isEmpty() && (getDims().isEmpty() || getDims().contains(dim.toString()))) {
+    public ItemStack getDistillationResult(RegistryAccess registryAccess, int level, ResourceLocation biome, ResourceLocation dim) {
+        if (matchesDistillationRecipe(registryAccess, biome, dim)) {
             return recipeOutputs.get(level-1);
-        } else {
-            for (Biome b : getBiomeList()) {
-                if (b.getRegistryName() != null && b.getRegistryName().equals(biome) && (getDims().isEmpty() || getDims().contains(dim.toString()))) {
-                    return recipeOutputs.get(level-1);
-                }
-            }
-            return ItemStack.EMPTY;
         }
+        return ItemStack.EMPTY;
     }
 
     public ItemStack getDistillationWithChances(Level worldIn, int level, ResourceLocation biome, ResourceLocation dim) {
-        return worldIn.getRandom().nextFloat() < chances.get(level-1) ? getDistillationResult(level, biome, dim) : ItemStack.EMPTY;
+        return worldIn.getRandom().nextFloat() < chances.get(level-1) ? getDistillationResult(worldIn.registryAccess(), level, biome, dim) : ItemStack.EMPTY;
     }
 
     @Override
@@ -176,37 +212,48 @@ public class AirDistillationRecipe implements Recipe<Container> {
     }
 
     @Override
-    public ResourceLocation getId() {
-        return this.id;
-    }
-
-    @Override
     public RecipeSerializer<?> getSerializer() {
         return RankineRecipeSerializers.AIR_DISTILLATION_RECIPE_SERIALIZER.get();
     }
 
     public static ItemStack deserializeItem(JsonObject object) {
         String s = GsonHelper.getAsString(object, "item");
-        Item item = Registry.ITEM.getOptional(ResourceLocation.parse(s)).orElseThrow(() -> {
+        BuiltInRegistries.ITEM.getOptional(ResourceLocation.parse(s)).orElseThrow(() -> {
             return new JsonSyntaxException("Unknown item '" + s + "'");
         });
 
         if (object.has("data")) {
             throw new JsonParseException("Disallowed data tag found");
         } else {
-            int i = GsonHelper.getAsInt(object, "count", 1);
             return AlloyIngredientHelper.getItemStack(object, true);
         }
     }
 
     @Override
     public RecipeType<?> getType() {
-        return RankineRecipeTypes.AIR_DISTILLATION;
+        return RankineRecipeTypes.AIR_DISTILLATION.get();
     }
 
-    public static class Serializer extends net.neoforged.neoforge.registries.ForgeRegistryEntry<RecipeSerializer<?>>  implements RecipeSerializer<AirDistillationRecipe> {
-        private static final ResourceLocation NAME = ResourceLocation.fromNamespaceAndPath("rankine", "air_distillation");
-        public AirDistillationRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
+    public static class Serializer implements RecipeSerializer<AirDistillationRecipe> {
+
+        public static final MapCodec<AirDistillationRecipe> CODEC = RankineMapCodec.of(
+                Serializer::fromJson, Serializer::toJson,
+                RankineMapCodec.withNumbered(RankineMapCodec.fixedKeys("biomes","dimensions"), "output", 10));
+
+        public static final StreamCodec<RegistryFriendlyByteBuf, AirDistillationRecipe> STREAM_CODEC =
+                StreamCodec.of(Serializer::toNetwork, Serializer::fromNetwork);
+
+        @Override
+        public MapCodec<AirDistillationRecipe> codec() {
+            return CODEC;
+        }
+
+        @Override
+        public StreamCodec<RegistryFriendlyByteBuf, AirDistillationRecipe> streamCodec() {
+            return STREAM_CODEC;
+        }
+
+        public static AirDistillationRecipe fromJson(JsonObject json) {
 
             JsonArray b = json.has("biomes") ? GsonHelper.getAsJsonArray(json, "biomes") : new JsonArray();
             List<String> biomes = new ArrayList<>();
@@ -236,14 +283,35 @@ public class AirDistillationRecipe implements Recipe<Container> {
                 }
             }
 
-            return new AirDistillationRecipe(recipeId, stacks, chances, dims, biomes);
+            return new AirDistillationRecipe(stacks, chances, dims, biomes);
         }
 
-        public AirDistillationRecipe fromNetwork(ResourceLocation recipeId, FriendlyByteBuf buffer) {
+        public static void toJson(AirDistillationRecipe recipe, JsonObject json) {
+            if (!recipe.getBiomes().isEmpty()) {
+                JsonArray biomes = new JsonArray();
+                recipe.getBiomes().forEach(biomes::add);
+                json.add("biomes", biomes);
+            }
+            if (!recipe.getDims().isEmpty()) {
+                JsonArray dims = new JsonArray();
+                recipe.getDims().forEach(dims::add);
+                json.add("dimensions", dims);
+            }
+            for (int i = 0; i < recipe.getRecipeOutputs().size(); i++) {
+                ItemStack stack = recipe.getRecipeOutputs().get(i);
+                if (!stack.isEmpty()) {
+                    JsonObject object = AlloyIngredientHelper.itemStackToJson(stack);
+                    object.addProperty("chance", recipe.getChances().get(i));
+                    json.add("output" + (i+1), object);
+                }
+            }
+        }
+
+        public static AirDistillationRecipe fromNetwork(RegistryFriendlyByteBuf buffer) {
 
             NonNullList<ItemStack> stacks = NonNullList.withSize(10, ItemStack.EMPTY);
             for(int k = 0; k < stacks.size(); ++k) {
-                stacks.set(k, buffer.readItem());
+                stacks.set(k, ItemStack.OPTIONAL_STREAM_CODEC.decode(buffer));
             }
 
             NonNullList<Float> chances = NonNullList.withSize(10, 0f);
@@ -268,18 +336,18 @@ public class AirDistillationRecipe implements Recipe<Container> {
             List<String> biomes = Arrays.asList(biomeArray);
 
 
-            return new AirDistillationRecipe(recipeId, stacks, chances,dims,biomes);
+            return new AirDistillationRecipe(stacks, chances,dims,biomes);
         }
 
-        public void toNetwork(FriendlyByteBuf buffer, AirDistillationRecipe recipe) {
+        public static void toNetwork(RegistryFriendlyByteBuf buffer, AirDistillationRecipe recipe) {
 
             int count = 0;
             for(ItemStack stack : recipe.recipeOutputs) {
-                buffer.writeItem(stack);
+                ItemStack.OPTIONAL_STREAM_CODEC.encode(buffer, stack);
                 count++;
             }
             while (count < 10) {
-                buffer.writeItem(ItemStack.EMPTY);
+                ItemStack.OPTIONAL_STREAM_CODEC.encode(buffer, ItemStack.EMPTY);
                 count++;
             }
 
@@ -293,14 +361,14 @@ public class AirDistillationRecipe implements Recipe<Container> {
                 count++;
             }
 
-            buffer.writeInt(recipe.getBiomes().size());
-            for (int i = 0; i < recipe.getBiomes().size(); i++) {
-                buffer.writeUtf(recipe.getBiomes().get(i));
-            }
-
             buffer.writeInt(recipe.getDims().size());
             for (int i = 0; i < recipe.getDims().size(); i++) {
                 buffer.writeUtf(recipe.getDims().get(i));
+            }
+
+            buffer.writeInt(recipe.getBiomes().size());
+            for (int i = 0; i < recipe.getBiomes().size(); i++) {
+                buffer.writeUtf(recipe.getBiomes().get(i));
             }
         }
     }

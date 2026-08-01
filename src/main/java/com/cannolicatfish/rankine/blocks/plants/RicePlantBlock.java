@@ -27,11 +27,13 @@ public class RicePlantBlock extends RankineCropsBlock {
         super(properties,new float[]{0.25f,0.75f,3,0.75f,0.25f},new float[]{0.25f,1,3},new float[]{0.5f,1.5f,4});
     }
 
+    @Override
     protected ItemLike getBaseSeedId() {
         return RankineItems.RICE_SEEDS.get();
     }
 
-    public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
+    @Override
+    protected VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
         return SHAPES[state.getValue(this.getAgeProperty())];
     }
 

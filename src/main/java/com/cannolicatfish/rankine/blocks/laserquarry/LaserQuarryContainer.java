@@ -1,31 +1,52 @@
 package com.cannolicatfish.rankine.blocks.laserquarry;
-
+// PORT-TODO(init): LASER_QUARRY BlockEntityType/MenuType not registered — init agent must add or keep this class dormant
+// PORT-TODO(init): RankineBlocks.LASER_QUARRY block is also unregistered; the class below has been modernized to
+// 1.21.1 NeoForge but stays commented out to match its dormant 1.18 state.
+/*
 import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.RankineContainers;
 import com.cannolicatfish.rankine.items.BatteryItem;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.world.Container;
+import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.inventory.ContainerLevelAccess;
+import net.minecraft.world.inventory.SimpleContainerData;
+import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.SlotItemHandler;
 import net.neoforged.neoforge.items.wrapper.InvWrapper;
-/*
-import static com.cannolicatfish.rankine.init.RankineBlocks.LASER_QUARRY_CONTAINER;
 
-public class LaserQuarryContainer extends Container {
-    private final IInventory furnaceInventory;
-    private TileEntity tileEntity;
-    private PlayerEntity playerEntity;
+public class LaserQuarryContainer extends AbstractContainerMenu {
+    private final Container furnaceInventory;
+    private BlockEntity tileEntity;
+    private Player playerEntity;
     private IItemHandler playerInventory;
-    private final IIntArray data;
+    private final ContainerData data;
 
-    public LaserQuarryContainer(int windowId, World world, BlockPos pos, PlayerInventory playerInventory, PlayerEntity player) {
-        this(windowId,world,pos,playerInventory,player,new Inventory(1), new IntArray(2));
+    public LaserQuarryContainer(int windowId, Inventory inv, FriendlyByteBuf extraData) {
+        this(windowId, inv.player.level(), extraData.readBlockPos(), inv, inv.player);
+    }
+
+    public LaserQuarryContainer(int windowId, Level world, BlockPos pos, Inventory playerInventory, Player player) {
+        this(windowId,world,pos,playerInventory,player,new SimpleContainer(1), new SimpleContainerData(2));
 
     }
-    public LaserQuarryContainer(int windowId, World world, BlockPos pos, PlayerInventory playerInventory, PlayerEntity player, IInventory furnaceInventoryIn, IIntArray towerData) {
-        super(LASER_QUARRY_CONTAINER, windowId);
-        tileEntity = world.getTileEntity(pos);
-        assertInventorySize(furnaceInventoryIn, 1);
-        assertIntArraySize(towerData, 2);
+    public LaserQuarryContainer(int windowId, Level world, BlockPos pos, Inventory playerInventory, Player player, Container furnaceInventoryIn, ContainerData towerData) {
+        // PORT-TODO(init): LASER_QUARRY BlockEntityType/MenuType not registered — init agent must add or keep this class dormant
+        super(RankineContainers.LASER_QUARRY_CONTAINER.get(), windowId);
+        tileEntity = world.getBlockEntity(pos);
+        checkContainerSize(furnaceInventoryIn, 1);
+        checkContainerDataCount(towerData, 2);
         this.playerEntity = player;
         this.data = towerData;
         this.furnaceInventory = furnaceInventoryIn;
@@ -56,40 +77,40 @@ public class LaserQuarryContainer extends Container {
     }
 
     @Override
-    public boolean canInteractWith(PlayerEntity playerIn) {
-        return isWithinUsableDistance(IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos()), playerEntity, RankineBlocks.LASER_QUARRY.get());
+    public boolean stillValid(Player playerIn) {
+        return stillValid(ContainerLevelAccess.create(tileEntity.getLevel(), tileEntity.getBlockPos()), playerEntity, RankineBlocks.LASER_QUARRY.get());
     }
 
     @Override
-    public ItemStack transferStackInSlot(PlayerEntity playerIn, int index) {
+    public ItemStack quickMoveStack(Player playerIn, int index) {
         ItemStack itemstack = ItemStack.EMPTY;
-        Slot slot = this.inventorySlots.get(index);
-        if (slot != null && slot.getHasStack()) {
-            ItemStack stack = slot.getStack();
+        Slot slot = this.slots.get(index);
+        if (slot != null && slot.hasItem()) {
+            ItemStack stack = slot.getItem();
             itemstack = stack.copy();
             if (index == 0) {
-                if (!this.mergeItemStack(stack, 1, 37, true)) {
+                if (!this.moveItemStackTo(stack, 1, 37, true)) {
                     return ItemStack.EMPTY;
                 }
-                slot.onSlotChange(stack, itemstack);
+                slot.onQuickCraft(stack, itemstack);
             } else {
                 if (stack.getItem() instanceof BatteryItem) {
-                    if (!this.mergeItemStack(stack, 0, 1, false)) {
+                    if (!this.moveItemStackTo(stack, 0, 1, false)) {
                         return ItemStack.EMPTY;
                     }
                 } else if (index < 28) {
-                    if (!this.mergeItemStack(stack, 28, 37, false)) {
+                    if (!this.moveItemStackTo(stack, 28, 37, false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if (index < 37 && !this.mergeItemStack(stack, 1, 28, false)) {
+                } else if (index < 37 && !this.moveItemStackTo(stack, 1, 28, false)) {
                     return ItemStack.EMPTY;
                 }
             }
 
             if (stack.isEmpty()) {
-                slot.putStack(ItemStack.EMPTY);
+                slot.set(ItemStack.EMPTY);
             } else {
-                slot.onSlotChanged();
+                slot.setChanged();
             }
 
             if (stack.getCount() == itemstack.getCount()) {
@@ -134,6 +155,4 @@ public class LaserQuarryContainer extends Container {
 
 
 }
-
-
- */
+*/

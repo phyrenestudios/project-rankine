@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.world.gen.mushrooms;
 
 import com.mojang.serialization.Codec;
+import net.minecraft.util.RandomSource;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.WorldGenLevel;
@@ -19,7 +20,7 @@ public class TurkeyTailMushroomFeature extends AbstractWallMushroomFeature {
 
     @Override
     protected List<BlockPos> validDir(WorldGenLevel levelIn, BlockPos pos) {
-        Random rand = levelIn.getRandom();
+        RandomSource rand = levelIn.getRandom();
         for (Direction dir : Direction.values()) {
             boolean flag = true;
             if (dir.getAxis().equals(Direction.Axis.Y)) continue;

@@ -1,14 +1,16 @@
 package com.cannolicatfish.rankine.blocks.crucible;
 
 
+import com.cannolicatfish.rankine.init.RankineBlockEntityTypes;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.recipe.CrucibleRecipe;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
@@ -19,17 +21,20 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.items.IItemHandler;
+import net.neoforged.neoforge.items.wrapper.InvWrapper;
+import net.neoforged.neoforge.items.wrapper.RecipeWrapper;
+import net.neoforged.neoforge.items.wrapper.SidedInvWrapper;
 
 import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.List;
-
-import static com.cannolicatfish.rankine.init.RankineBlocks.CRUCIBLE_TILE;
 
 public class CrucibleTile extends BlockEntity implements WorldlyContainer, MenuProvider {
 
@@ -37,7 +42,7 @@ public class CrucibleTile extends BlockEntity implements WorldlyContainer, MenuP
     private static final int[] SLOTS_DOWN = new int[]{4, 5};
     private static final int[] SLOTS_HORIZONTAL = new int[]{2,3};
     public CrucibleTile(BlockPos posIn, BlockState stateIn) {
-        super(CRUCIBLE_TILE, posIn, stateIn);
+        super(RankineBlockEntityTypes.CRUCIBLE.get(), posIn, stateIn);
     }
     protected NonNullList<ItemStack> items = NonNullList.withSize(6, ItemStack.EMPTY);
     private int cookTime;
@@ -77,22 +82,22 @@ public class CrucibleTile extends BlockEntity implements WorldlyContainer, MenuP
     };
 
     @Override
-    public void load(CompoundTag nbt) {
-        super.load(nbt);
+    protected void loadAdditional(CompoundTag nbt, HolderLookup.Provider provider) {
+        super.loadAdditional(nbt, provider);
         this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
-        ContainerHelper.loadAllItems(nbt,this.items);
+        ContainerHelper.loadAllItems(nbt,this.items, provider);
         this.cookTime = nbt.getInt("CookTime");
         this.cookTimeTotal = nbt.getInt("CookTimeTotal");
         this.color = nbt.getInt("color");
     }
 
     @Override
-    public void saveAdditional(CompoundTag compound) {
-        super.saveAdditional(compound);
+    protected void saveAdditional(CompoundTag compound, HolderLookup.Provider provider) {
+        super.saveAdditional(compound, provider);
         compound.putInt("CookTime", this.cookTime);
         compound.putInt("CookTimeTotal", this.cookTimeTotal);
         compound.putInt("color", this.color);
-        ContainerHelper.saveAllItems(compound, this.items);
+        ContainerHelper.saveAllItems(compound, this.items, provider);
     }
 
     public static void tick(Level level, BlockPos posIn, BlockState bs, CrucibleTile tile) {
@@ -101,13 +106,13 @@ public class CrucibleTile extends BlockEntity implements WorldlyContainer, MenuP
 
         if (!tile.isCooking()) {
             level.setBlock(posIn, bs.setValue(CrucibleBlock.FLUID, false), 3);
-        } else if (tile.getTileData().getInt("color") != tile.color) {
-            tile.getTileData().putInt("color",tile.color);
+        } else if (tile.getPersistentData().getInt("color") != tile.color) {
+            tile.getPersistentData().putInt("color",tile.color);
             level.setBlock(posIn, bs.setValue(CrucibleBlock.FLUID, tile.isCooking()), 3);
         }
 
         if (tile.items.get(0).isEmpty() || tile.items.get(1).isEmpty() || tile.items.get(2).isEmpty() || tile.items.get(3).isEmpty()) return;
-        CrucibleRecipe irecipe = level.getRecipeManager().getRecipeFor(RankineRecipeTypes.CRUCIBLE, tile, level).orElse(null);
+        CrucibleRecipe irecipe = level.getRecipeManager().getRecipeFor(RankineRecipeTypes.CRUCIBLE.get(), new RecipeWrapper(new InvWrapper(tile)), level).map(RecipeHolder::value).orElse(null);
         if (!tile.canSmelt(irecipe, tile)) {
             tile.cookTime = 0;
             return;
@@ -120,7 +125,7 @@ public class CrucibleTile extends BlockEntity implements WorldlyContainer, MenuP
         if (tile.cookTime >= tile.cookTimeTotal) {
             tile.cookTime = 0;
 
-            ItemStack smelting = irecipe.generateResult(tile);
+            ItemStack smelting = irecipe.generateResult(new RecipeWrapper(new InvWrapper(tile)));
             if (tile.items.get(4).getCount() > 0) {
                 tile.items.get(4).grow(smelting.getCount());
             } else {
@@ -153,9 +158,9 @@ public class CrucibleTile extends BlockEntity implements WorldlyContainer, MenuP
     }
 
     public int getCookTime() {
-        CrucibleRecipe irecipe = this.level.getRecipeManager().getRecipeFor(RankineRecipeTypes.CRUCIBLE, this, this.level).orElse(null);
+        CrucibleRecipe irecipe = this.level.getRecipeManager().getRecipeFor(RankineRecipeTypes.CRUCIBLE.get(), new RecipeWrapper(new InvWrapper(this)), this.level).map(RecipeHolder::value).orElse(null);
         if (irecipe != null) {
-            return irecipe.getRecipeCookTime(this);
+            return irecipe.getRecipeCookTime(new RecipeWrapper(new InvWrapper(this)));
         } else {
             return 3200;
         }
@@ -187,51 +192,48 @@ public class CrucibleTile extends BlockEntity implements WorldlyContainer, MenuP
     private boolean canSmelt(@Nullable CrucibleRecipe recipeIn, Container inv) {
         if (recipeIn == null) return false;
 
-        ItemStack resultPrimary = recipeIn.generateResult(inv);
+        ItemStack resultPrimary = recipeIn.generateResult(new RecipeWrapper(new InvWrapper(inv)));
         ItemStack resultSecondary = recipeIn.getSecondaryOutput();
         if (resultPrimary.isEmpty()) return false;
         ItemStack primary = this.items.get(4);
         ItemStack secondary = this.items.get(5);
         if (primary.isEmpty() && (secondary.isEmpty() || resultSecondary.isEmpty())) {
-            this.cookTimeTotal = recipeIn.getRecipeCookTime(inv);
+            this.cookTimeTotal = recipeIn.getRecipeCookTime(new RecipeWrapper(new InvWrapper(inv)));
             return true;
         }
         int res = primary.getCount() + resultPrimary.getCount();
         int res2 = secondary.getCount() + resultSecondary.getCount();
-        if ((primary.isEmpty() || (ItemStack.isSame(primary, resultPrimary) && ItemStack.tagMatches(primary, resultPrimary))) && (secondary.isEmpty() || (ItemStack.isSame(secondary, resultSecondary) && ItemStack.tagMatches(secondary, resultSecondary)))) {
-            this.cookTimeTotal = recipeIn.getRecipeCookTime(inv);
+        if ((primary.isEmpty() || ItemStack.isSameItemSameComponents(primary, resultPrimary)) && (secondary.isEmpty() || ItemStack.isSameItemSameComponents(secondary, resultSecondary))) {
+            this.cookTimeTotal = recipeIn.getRecipeCookTime(new RecipeWrapper(new InvWrapper(inv)));
             return res <= 64 && res2 <= 64 && res <= primary.getMaxStackSize() && res2 <= secondary.getMaxStackSize();
         }
 
         return false;
     }
 
-    net.neoforged.neoforge.common.util.LazyOptional<? extends net.neoforged.neoforge.items.IItemHandler>[] handlers =
-            net.neoforged.neoforge.items.wrapper.SidedInvWrapper.create(this, Direction.UP, Direction.DOWN, Direction.NORTH);
+    private final IItemHandler[] handlers = new IItemHandler[] {
+            new SidedInvWrapper(this, Direction.UP),
+            new SidedInvWrapper(this, Direction.DOWN),
+            new SidedInvWrapper(this, Direction.NORTH)
+    };
 
-    @Override
-    public <T> net.neoforged.neoforge.common.util.LazyOptional<T> getCapability(net.neoforged.neoforge.common.capabilities.Capability<T> capability, @Nullable Direction facing) {
-        if (!this.remove && facing != null && capability == net.neoforged.neoforge.items.CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
-            if (facing == Direction.UP)
-                return handlers[0].cast();
-            else if (facing == Direction.DOWN)
-                return handlers[1].cast();
-            else
-                return handlers[2].cast();
+    // PORT-CAP: CrucibleTile -> getItemHandler
+    @Nullable
+    public IItemHandler getItemHandler(@Nullable Direction side) {
+        if (this.remove || side == null) {
+            return null;
         }
-        return super.getCapability(capability, facing);
-    }
-
-    @Override
-    public void setRemoved() {
-        super.setRemoved();
-        for (int x = 0; x < handlers.length; x++)
-            handlers[x].invalidate();
+        if (side == Direction.UP)
+            return handlers[0];
+        else if (side == Direction.DOWN)
+            return handlers[1];
+        else
+            return handlers[2];
     }
 
     @Override
     public Component getDisplayName() {
-        return Component.literal(getType().getRegistryName().getPath());
+        return Component.literal(BuiltInRegistries.BLOCK_ENTITY_TYPE.getKey(this.getType()).getPath());
     }
 
     @Override
@@ -294,7 +296,7 @@ public class CrucibleTile extends BlockEntity implements WorldlyContainer, MenuP
     @Override
     public void setItem(int index, ItemStack stack) {
         ItemStack itemstack = this.items.get(index);
-        boolean flag = !stack.isEmpty() && stack.sameItem(itemstack) && ItemStack.tagMatches(stack, itemstack);
+        boolean flag = !stack.isEmpty() && ItemStack.isSameItemSameComponents(stack, itemstack);
         this.items.set(index, stack);
         if (stack.getCount() > this.getMaxStackSize()) {
             stack.setCount(this.getMaxStackSize());

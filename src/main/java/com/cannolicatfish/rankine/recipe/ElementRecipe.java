@@ -3,34 +3,36 @@ package com.cannolicatfish.rankine.recipe;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineRecipeSerializers;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
+import com.cannolicatfish.rankine.recipe.helper.RankineMapCodec;
 import com.cannolicatfish.rankine.util.ElementEquation;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.mojang.serialization.MapCodec;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
-import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.GsonHelper;
-import net.minecraft.world.Container;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeInput;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
-import net.neoforged.neoforge.registries.ForgeRegistries;
-import net.neoforged.neoforge.registries.ForgeRegistryEntry;
 
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class ElementRecipe implements Recipe<Container> {
+public class ElementRecipe implements Recipe<RecipeInput> {
 
-    private final ResourceLocation id;
     private final String name;
     private final String symbol;
     private final int num;
@@ -43,9 +45,8 @@ public class ElementRecipe implements Recipe<Container> {
     private final List<String> enchantmentTypes;
     private final List<Float> enchantmentFactors;
 
-    public ElementRecipe(ResourceLocation idIn, String nameIn, String symbolIn, int numIn, int colorIn, float potentialIn, List<String> items, List<Integer> values, List<ElementEquation> statsIn,
+    public ElementRecipe(String nameIn, String symbolIn, int numIn, int colorIn, float potentialIn, List<String> items, List<Integer> values, List<ElementEquation> statsIn,
                          List<String> enchantmentsIn, List<String> enchantmentTypesIn, List<Float> enchantmentFactorsIn) {
-        this.id = idIn;
         this.num = numIn;
         this.color = colorIn;
         this.potential = potentialIn;
@@ -59,18 +60,22 @@ public class ElementRecipe implements Recipe<Container> {
         this.enchantmentFactors = enchantmentFactorsIn;
     }
 
+    private static boolean itemIsInTag(Item item, ResourceLocation tagName) {
+        TagKey<Item> tag = TagKey.create(Registries.ITEM, tagName);
+        return item.builtInRegistryHolder().is(tag);
+    }
+
     @Override
-    public boolean matches(Container inv, Level worldIn) {
+    public boolean matches(RecipeInput inv, Level worldIn) {
         Item reg = inv.getItem(0).getItem();
         if (reg != Items.AIR) {
             for (String s : items) {
                 if (s.contains("T#")) {
-                    TagKey<Item> tag = TagKey.create(ForgeRegistries.ITEMS.getRegistryKey(),new ResourceLocation(s.split("T#")[1]));
-                    if (ForgeRegistries.ITEMS.tags().getTag(tag).contains(reg)){
+                    if (itemIsInTag(reg, ResourceLocation.parse(s.split("T#")[1]))){
                         return true;
                     }
                 } else if (s.contains("I#")) {
-                    Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(s.split("I#")[1]));
+                    Item item = BuiltInRegistries.ITEM.getOptional(ResourceLocation.parse(s.split("I#")[1])).orElse(Items.AIR);
                     if (item != Items.AIR && item == reg) {
                         return true;
                     }
@@ -85,12 +90,13 @@ public class ElementRecipe implements Recipe<Container> {
         return true;
     }
 
+    @Override
     public String getGroup() {
         return "";
     }
 
     @Override
-    public ItemStack assemble(Container inv) {
+    public ItemStack assemble(RecipeInput inv, HolderLookup.Provider provider) {
         return ItemStack.EMPTY;
     }
 
@@ -100,6 +106,11 @@ public class ElementRecipe implements Recipe<Container> {
     }
 
     @Override
+    public ItemStack getResultItem(HolderLookup.Provider provider) {
+        return new ItemStack(RankineItems.ELEMENT.get());
+    }
+
+    /** Convenience overload matching the pre-1.21 API. */
     public ItemStack getResultItem() {
         return new ItemStack(RankineItems.ELEMENT.get());
     }
@@ -111,12 +122,12 @@ public class ElementRecipe implements Recipe<Container> {
         for (String s : getItems()) {
 
             if (s.contains("T#")) {
-                TagKey<Item> tag = TagKey.create(ForgeRegistries.ITEMS.getRegistryKey(),new ResourceLocation(s.split("T#")[1]));
+                TagKey<Item> tag = TagKey.create(Registries.ITEM, ResourceLocation.parse(s.split("T#")[1]));
                 list.set(count,Ingredient.of(tag));
             } else if (s.contains("I#")) {
-                Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(s.split("I#")[1]));
+                Item item = BuiltInRegistries.ITEM.getOptional(ResourceLocation.parse(s.split("I#")[1])).orElse(null);
                 if (item != null) {
-                    list.set(count,Ingredient.of(() -> item));
+                    list.set(count,Ingredient.of(item));
                 }
             }
             count++;
@@ -133,7 +144,7 @@ public class ElementRecipe implements Recipe<Container> {
 
     @Override
     public RecipeType<?> getType() {
-        return RankineRecipeTypes.ELEMENT;
+        return RankineRecipeTypes.ELEMENT.get();
     }
 
     public String getName() {
@@ -259,11 +270,6 @@ public class ElementRecipe implements Recipe<Container> {
     }
 
     @Override
-    public ResourceLocation getId() {
-        return this.id;
-    }
-
-    @Override
     public RecipeSerializer<?> getSerializer() {
         return RankineRecipeSerializers.ELEMENT_RECIPE_SERIALIZER.get();
     }
@@ -284,12 +290,11 @@ public class ElementRecipe implements Recipe<Container> {
         for (int i = 0; i < getItems().size(); i++) {
             String s = getItems().get(i);
             if (s.contains("T#")) {
-                TagKey<Item> tag = TagKey.create(ForgeRegistries.ITEMS.getRegistryKey(),new ResourceLocation(s.split("T#")[1]));
-                if (ForgeRegistries.ITEMS.tags().getTag(tag).contains(reg)){
+                if (itemIsInTag(reg, ResourceLocation.parse(s.split("T#")[1]))){
                     return getValues().get(i);
                 }
             } else if (s.contains("I#")) {
-                Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(s.split("I#")[1]));
+                Item item = BuiltInRegistries.ITEM.getOptional(ResourceLocation.parse(s.split("I#")[1])).orElse(Items.AIR);
                 if (item != Items.AIR && reg == item) {
                     return getValues().get(i);
                 }
@@ -298,11 +303,32 @@ public class ElementRecipe implements Recipe<Container> {
         return 0;
     }
 
-    public static class Serializer extends ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<ElementRecipe> {
-        private static final ResourceLocation NAME = ResourceLocation.fromNamespaceAndPath("rankine", "element");
+    public static class Serializer implements RecipeSerializer<ElementRecipe> {
+
+        private static final String[] STATS = new String[]{"durability","miningspeed","mininglevel","enchantability","damage","attackspeed",
+                "corrosionresist","heatresist","knockbackresist","toughness"};
+
+        public static final MapCodec<ElementRecipe> CODEC = RankineMapCodec.of(
+                Serializer::fromJson, Serializer::toJson,
+                RankineMapCodec.fixedKeys("name","symbol","atomic","color","potential","items","values",
+                        "durability","miningspeed","mininglevel","enchantability","damage","attackspeed",
+                        "corrosionresist","heatresist","knockbackresist","toughness",
+                        "enchantments","enchantmentTypes","enchantmentFactors"));
+
+        public static final StreamCodec<RegistryFriendlyByteBuf, ElementRecipe> STREAM_CODEC =
+                StreamCodec.of(Serializer::toNetwork, Serializer::fromNetwork);
 
         @Override
-        public ElementRecipe fromJson(ResourceLocation elementId, JsonObject json) {
+        public MapCodec<ElementRecipe> codec() {
+            return CODEC;
+        }
+
+        @Override
+        public StreamCodec<RegistryFriendlyByteBuf, ElementRecipe> streamCodec() {
+            return STREAM_CODEC;
+        }
+
+        public static ElementRecipe fromJson(JsonObject json) {
             String n = json.get("name").getAsString().toLowerCase(Locale.ROOT);
             String s = json.get("symbol").getAsString();
             int t = json.get("atomic").getAsInt();
@@ -326,11 +352,9 @@ public class ElementRecipe implements Recipe<Container> {
                 itemList.add(i,it.get(i).getAsString());
                 valueList.add(i,val.get(i).getAsInt());
             }
-            String[] stats = new String[]{"durability","miningspeed","mininglevel","enchantability","damage","attackspeed",
-            "corrosionresist","heatresist","knockbackresist","toughness"};
             List<ElementEquation> equations = new ArrayList<>();
             int index = 0;
-            for (String stat : stats) {
+            for (String stat : STATS) {
                 if (json.has(stat)) {
                     JsonObject object = GsonHelper.getAsJsonObject(json, stat);
                     JsonArray breaks = GsonHelper.getAsJsonArray(object,"breaks");
@@ -373,12 +397,67 @@ public class ElementRecipe implements Recipe<Container> {
                     enchantmentFactors.add(Math.min(1,Math.max(-1,eFactors.get(i).getAsFloat())));
                 }
             }
-            return new ElementRecipe(elementId,n,s,t,c,p,itemList,valueList,equations,enchantments,enchantmentTypes,enchantmentFactors);
+            return new ElementRecipe(n,s,t,c,p,itemList,valueList,equations,enchantments,enchantmentTypes,enchantmentFactors);
         }
 
-        @Nullable
-        @Override
-        public ElementRecipe fromNetwork(ResourceLocation elementId, FriendlyByteBuf buffer) {
+        public static void toJson(ElementRecipe recipe, JsonObject json) {
+            json.addProperty("name", recipe.getName());
+            json.addProperty("symbol", recipe.getSymbol());
+            json.addProperty("atomic", recipe.getAtomicNumber());
+            json.addProperty("color", recipe.getColor());
+            json.addProperty("potential", recipe.getElectrodePotential());
+            JsonArray it = new JsonArray();
+            JsonArray val = new JsonArray();
+            for (int i = 0; i < recipe.getItems().size(); i++) {
+                it.add(recipe.getItems().get(i));
+                val.add(recipe.getValues().get(i));
+            }
+            json.add("items", it);
+            json.add("values", val);
+            for (int j = 0; j < STATS.length; j++) {
+                ElementEquation formula = recipe.getStats().get(j);
+                if (formula.isEmpty()) {
+                    continue;
+                }
+                JsonObject object = new JsonObject();
+                JsonArray breaks = new JsonArray();
+                JsonArray formulas = new JsonArray();
+                JsonArray a = new JsonArray();
+                JsonArray b = new JsonArray();
+                JsonArray modifiers = new JsonArray();
+                JsonArray limit = new JsonArray();
+                for (int i = 0; i < formula.getBreaks().length; i++) {
+                    breaks.add(formula.getBreaks()[i]);
+                    formulas.add(formula.getFormulaTypes()[i].toString().toUpperCase(Locale.ROOT));
+                    a.add(formula.getA()[i]);
+                    b.add(formula.getB()[i]);
+                    modifiers.add(formula.getFormulaModifiers()[i].toString().toUpperCase(Locale.ROOT));
+                    limit.add(formula.getLimit()[i]);
+                }
+                object.add("breaks", breaks);
+                object.add("formulas", formulas);
+                object.add("a", a);
+                object.add("b", b);
+                object.add("modifiers", modifiers);
+                object.add("limit", limit);
+                json.add(STATS[j], object);
+            }
+            if (!recipe.getEnchantments().isEmpty()) {
+                JsonArray e = new JsonArray();
+                JsonArray eTypes = new JsonArray();
+                JsonArray eFactors = new JsonArray();
+                for (int i = 0; i < recipe.getEnchantments().size(); i++) {
+                    e.add(recipe.getEnchantments().get(i));
+                    eTypes.add(recipe.getEnchantmentTypes().get(i));
+                    eFactors.add(recipe.getEnchantmentFactors().get(i));
+                }
+                json.add("enchantments", e);
+                json.add("enchantmentTypes", eTypes);
+                json.add("enchantmentFactors", eFactors);
+            }
+        }
+
+        public static ElementRecipe fromNetwork(RegistryFriendlyByteBuf buffer) {
             List<ElementEquation> equations = new ArrayList<>();
             List<String> itemList = new ArrayList<>();
             List<Integer> valueList = new ArrayList<>();
@@ -429,11 +508,10 @@ public class ElementRecipe implements Recipe<Container> {
                 enchantmentFactors.add(buffer.readFloat());
             }
 
-            return new ElementRecipe(elementId,name,sym,atomic,color,potential,itemList,valueList,equations,enchantments,enchantmentTypes,enchantmentFactors);
+            return new ElementRecipe(name,sym,atomic,color,potential,itemList,valueList,equations,enchantments,enchantmentTypes,enchantmentFactors);
         }
 
-        @Override
-        public void toNetwork(FriendlyByteBuf buffer, ElementRecipe element) {
+        public static void toNetwork(RegistryFriendlyByteBuf buffer, ElementRecipe element) {
             buffer.writeUtf(element.getName());
             buffer.writeUtf(element.getSymbol());
             buffer.writeInt(element.getAtomicNumber());

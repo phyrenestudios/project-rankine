@@ -1,5 +1,8 @@
 package com.cannolicatfish.rankine.items.alloys;
 
+import com.cannolicatfish.rankine.init.RankineDataComponents;
+import com.cannolicatfish.rankine.init.RankineDataComponents.AlloyElement;
+import com.cannolicatfish.rankine.init.RankineDataComponents.AlloyModifierEntry;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
@@ -7,10 +10,7 @@ import com.cannolicatfish.rankine.recipe.helper.AlloyRecipeHelper;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.ListTag;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Component;
 import net.minecraft.ChatFormatting;
 import net.minecraft.world.level.Level;
@@ -22,28 +22,22 @@ import java.util.*;
 public interface IAlloyItem {
 
     default void createAlloyNBT(ItemStack stack, Level worldIn, Map<ElementRecipe,Integer> elementMap, @Nullable ResourceLocation alloyRecipe, @Nullable String nameOverride) {
-        if (stack.getTag() != null && stack.getTag().getBoolean("RegenerateAlloy")) {
-            stack.getTag().remove("RegenerateAlloy");
-        }
+        stack.remove(RankineDataComponents.REGENERATE_ALLOY.get());
 
-        CompoundTag listnbt = new CompoundTag();
-        ListTag elements = new ListTag();
+        List<AlloyElement> elements = new ArrayList<>();
         for (Map.Entry<ElementRecipe, Integer> entry : elementMap.entrySet()) {
-            int perc = entry.getValue();
-            CompoundTag compoundnbt = new CompoundTag();
-            compoundnbt.putString("id", String.valueOf(entry.getKey().getId()));
-            compoundnbt.putShort("percent", (short)perc);
-            elements.add(compoundnbt);
+            elements.add(new AlloyElement(String.valueOf(entry.getKey().getId()), entry.getValue()));
         }
-        listnbt.putString("comp", AlloyRecipeHelper.getDirectComposition(elementMap));
+        stack.set(RankineDataComponents.ALLOY_COMPOSITION.get(), AlloyRecipeHelper.getDirectComposition(elementMap));
         if (alloyRecipe != null) {
-            listnbt.putString("recipe",alloyRecipe.toString());
+            stack.set(RankineDataComponents.ALLOY_RECIPE.get(), alloyRecipe);
+        } else {
+            stack.remove(RankineDataComponents.ALLOY_RECIPE.get());
         }
-        stack.getOrCreateTag().put("StoredAlloy", listnbt);
-        stack.getOrCreateTag().put("Elements",elements);
+        stack.set(RankineDataComponents.ALLOY_ELEMENTS.get(), elements);
 
-        if (nameOverride != null && stack.getTag() != null) {
-            stack.getTag().putString("nameOverride",nameOverride);
+        if (nameOverride != null) {
+            stack.set(RankineDataComponents.NAME_OVERRIDE.get(), nameOverride);
         }
     }
 
@@ -57,63 +51,57 @@ public interface IAlloyItem {
 
     static void createDirectAlloyNBT(ItemStack stack, @Nullable String composition, @Nullable String alloyRecipe, @Nullable String nameOverride,boolean regenerate) {
         if (regenerate) {
-            stack.getOrCreateTag().putBoolean("RegenerateAlloy",true);
+            stack.set(RankineDataComponents.REGENERATE_ALLOY.get(), true);
         }
-        CompoundTag listnbt = new CompoundTag();
         if (composition != null) {
-            listnbt.putString("comp",composition);
+            stack.set(RankineDataComponents.ALLOY_COMPOSITION.get(), composition);
+        } else {
+            stack.remove(RankineDataComponents.ALLOY_COMPOSITION.get());
         }
         if (alloyRecipe != null) {
-            listnbt.putString("recipe",alloyRecipe);
+            stack.set(RankineDataComponents.ALLOY_RECIPE.get(), ResourceLocation.parse(alloyRecipe));
+        } else {
+            stack.remove(RankineDataComponents.ALLOY_RECIPE.get());
         }
-        getAlloyNBT(stack).add(listnbt);
-        stack.getOrCreateTag().put("StoredAlloy",listnbt);
 
         if (nameOverride != null) {
-            stack.getOrCreateTag().putString("nameOverride",nameOverride);
+            stack.set(RankineDataComponents.NAME_OVERRIDE.get(), nameOverride);
         }
     }
 
     static void addColorNBT(ItemStack stack, int color) {
-        stack.getOrCreateTag().putInt("color",color);
+        stack.set(RankineDataComponents.COLOR.get(), color);
     }
 
     static int getColorNBT(ItemStack stack) {
-        if (stack.getTag() != null && stack.getTag().contains("color")) {
-            return stack.getTag().getInt("color");
-        }
-        return 16777215;
-    }
-
-    static ListTag getAlloyNBT(ItemStack stack) {
-        CompoundTag compoundnbt = stack.getTag();
-        return compoundnbt != null ? compoundnbt.getList("StoredAlloy", 10) : new ListTag();
+        return stack.getOrDefault(RankineDataComponents.COLOR.get(), 16777215);
     }
 
     default String getAlloyCompositionString(ItemStack stack) {
-        return stack.getTag() != null ? stack.getTag().getCompound("StoredAlloy").getString("comp") : "";
+        return getAlloyComposition(stack);
     }
 
     default String getAlloyRecipeString(ItemStack stack) {
-        return stack.getTag() != null ? stack.getTag().getCompound("StoredAlloy").getString("recipe") : "";
+        ResourceLocation rs = getAlloyRecipe(stack);
+        return rs != null ? rs.toString() : "";
     }
 
-    static ListTag getElementNBT(ItemStack stack) {
-        CompoundTag compoundnbt = stack.getTag();
-        return compoundnbt != null ? compoundnbt.getList("Elements", 10) : new ListTag();
+    /** Was NBT ListTag "Elements": {id, percent} entries stored by createAlloyNBT. */
+    static List<AlloyElement> getElementNBT(ItemStack stack) {
+        return stack.getOrDefault(RankineDataComponents.ALLOY_ELEMENTS.get(), Collections.emptyList());
     }
 
     default boolean isAlloyInit(ItemStack stack) {
-        return stack.getTag() != null && !stack.getTag().getCompound("StoredAlloy").isEmpty();
+        return stack.has(RankineDataComponents.ALLOY_COMPOSITION.get()) || stack.has(RankineDataComponents.ALLOY_RECIPE.get());
     }
 
     default boolean needsRefresh(ItemStack stack) {
-        return stack.getTag() != null && !stack.getTag().getCompound("StoredAlloy").isEmpty() && stack.getTag().getBoolean("RegenerateAlloy");
+        return this.isAlloyInit(stack) && stack.getOrDefault(RankineDataComponents.REGENERATE_ALLOY.get(), false);
     }
 
     default void setRefresh(ItemStack stack) {
-        if (stack.getTag() != null && !stack.getTag().getCompound("StoredAlloy").isEmpty()) {
-            stack.getTag().putBoolean("RegenerateAlloy",true);
+        if (this.isAlloyInit(stack)) {
+            stack.set(RankineDataComponents.REGENERATE_ALLOY.get(), true);
         }
     }
 
@@ -147,35 +135,24 @@ public interface IAlloyItem {
 
     static String getAlloyComposition(ItemStack stack)
     {
-        if (stack.getTag() != null) {
-            return stack.getTag().getCompound("StoredAlloy").getString("comp");
-        } else {
-            return "";
-        }
+        return stack.getOrDefault(RankineDataComponents.ALLOY_COMPOSITION.get(), "");
     }
 
     static String getNameOverride(ItemStack stack)
     {
-        if (stack.getTag() != null) {
-            return stack.getTag().getString("nameOverride");
-        } else {
-            return "";
-        }
+        return stack.getOrDefault(RankineDataComponents.NAME_OVERRIDE.get(), "");
     }
 
+    @Nullable
     static ResourceLocation getAlloyRecipe(ItemStack stack)
     {
-        if (stack.getTag() != null && !stack.getTag().getCompound("StoredAlloy").getString("recipe").isEmpty()) {
-            return new ResourceLocation(stack.getTag().getCompound("StoredAlloy").getString("recipe"));
-        } else {
-            return null;
-        }
+        return stack.get(RankineDataComponents.ALLOY_RECIPE.get());
     }
 
-    static ListTag getAlloyModifiers(ItemStack stack)
+    /** Was NBT ListTag "AlloyModifiers": {modifierName, value} entries. */
+    static List<AlloyModifierEntry> getAlloyModifiers(ItemStack stack)
     {
-        CompoundTag compoundnbt = stack.getTag();
-        return compoundnbt != null ? compoundnbt.getList("AlloyModifiers", 10) : new ListTag();
+        return stack.getOrDefault(RankineDataComponents.ALLOY_MODIFIERS.get(), Collections.emptyList());
     }
 
     default List<ElementRecipe> getElementRecipes(String c, @Nullable Level worldIn) {
@@ -186,7 +163,7 @@ public interface IAlloyItem {
                 for (String e: comp)
                 {
                     String str = e.replaceAll("[^A-Za-z]+", "");
-                    worldIn.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.ELEMENT).stream().filter(elementRecipe -> elementRecipe.getSymbol().equals(str)).findFirst().ifPresent(list::add);
+                    worldIn.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.ELEMENT.get()).stream().map(net.minecraft.world.item.crafting.RecipeHolder::value).filter(elementRecipe -> elementRecipe.getSymbol().equals(str)).findFirst().ifPresent(list::add);
                 }
                 return list;
             }
@@ -222,18 +199,13 @@ public interface IAlloyItem {
                 elementMap.put(elementRecipes.get(i),percents.get(i));
             }
         }
-        for (Map.Entry<ElementRecipe, Integer> entry : elementMap.entrySet()) {
-            int perc = entry.getValue();
-            CompoundTag compoundnbt = new CompoundTag();
-            compoundnbt.putString("id", String.valueOf(entry.getKey().getId()));
-            compoundnbt.putShort("percent", (short)perc);
-        }
         return elementMap;
     }
 
-    default AlloyingRecipe getAlloyingRecipe(ResourceLocation rs, Level worldIn) {
+    @Nullable
+    default AlloyingRecipe getAlloyingRecipe(@Nullable ResourceLocation rs, Level worldIn) {
         if (rs != null) {
-            Optional<? extends Recipe<?>> opt = worldIn.getRecipeManager().byKey(rs);
+            Optional<? extends Recipe<?>> opt = worldIn.getRecipeManager().byKey(rs).map(net.minecraft.world.item.crafting.RecipeHolder::value);
             if (opt.isPresent() && opt.get() instanceof AlloyingRecipe) {
                 return (AlloyingRecipe) opt.get();
             }
@@ -243,7 +215,7 @@ public interface IAlloyItem {
 
     @Nonnull
     static String getSubtype(ItemStack stack) {
-        return stack.hasTag() ? IAlloyItem.getNameOverride(stack).toLowerCase(Locale.ROOT).replace(" ","_") : "";
+        return IAlloyItem.getNameOverride(stack).toLowerCase(Locale.ROOT).replace(" ","_");
     }
 
     default void addAlloyInformation(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
@@ -255,7 +227,7 @@ public interface IAlloyItem {
             }
 
             if (!IAlloyItem.getAlloyModifiers(stack).isEmpty()) {
-                tooltip.add((Component.literal("Modifier: " + (IAlloyItem.getAlloyModifiers(stack).getCompound(0).getString("modifierName"))).withStyle(ChatFormatting.AQUA)));
+                tooltip.add((Component.literal("Modifier: " + (IAlloyItem.getAlloyModifiers(stack).get(0).name())).withStyle(ChatFormatting.AQUA)));
             }
         }
     }

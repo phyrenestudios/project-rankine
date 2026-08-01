@@ -2,13 +2,16 @@ package com.cannolicatfish.rankine.blocks.beehiveoven;
 
 import com.cannolicatfish.rankine.init.RankineBlockEntityTypes;
 import com.cannolicatfish.rankine.init.RankineItems;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -30,10 +33,15 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
-import java.util.Random;
 
 public class BeehiveOvenPitBlock extends BaseEntityBlock {
+    public static final MapCodec<BeehiveOvenPitBlock> CODEC = simpleCodec(BeehiveOvenPitBlock::new);
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
+
+    @Override
+    protected MapCodec<BeehiveOvenPitBlock> codec() {
+        return CODEC;
+    }
 
     public BeehiveOvenPitBlock(Properties properties) {
         super(properties);
@@ -44,39 +52,39 @@ public class BeehiveOvenPitBlock extends BaseEntityBlock {
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         return this.defaultBlockState().setValue(LIT, false);
     }
-    public RenderShape getRenderShape(BlockState p_49232_) {
+
+    @Override
+    protected RenderShape getRenderShape(BlockState p_49232_) {
         return RenderShape.MODEL;
     }
 
+    @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(LIT);
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult p_225533_6_) {
-        ItemStack itemstack = player.getItemInHand(handIn);
+    protected ItemInteractionResult useItemOn(ItemStack itemstack, BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult p_225533_6_) {
         Item item = itemstack.getItem();
         if (item == Items.FLINT_AND_STEEL || item == RankineItems.SPARK_LIGHTER.get()) {
-            itemstack.hurtAndBreak(1, player, (p_220287_1_) -> {
-                p_220287_1_.broadcastBreakEvent(handIn);
-            });
+            itemstack.hurtAndBreak(1, player, LivingEntity.getSlotForHand(handIn));
             worldIn.setBlockAndUpdate(pos, worldIn.getBlockState(pos).setValue(BlockStateProperties.LIT, Boolean.TRUE));
-            return InteractionResult.sidedSuccess(worldIn.isClientSide);
+            return ItemInteractionResult.sidedSuccess(worldIn.isClientSide);
         } else if (item == Items.FIRE_CHARGE) {
             itemstack.shrink(1);
             worldIn.setBlockAndUpdate(pos, worldIn.getBlockState(pos).setValue(BlockStateProperties.LIT, Boolean.TRUE));
-            return InteractionResult.sidedSuccess(worldIn.isClientSide);
+            return ItemInteractionResult.sidedSuccess(worldIn.isClientSide);
         } else if (player.getMainHandItem().getItem() == Items.BLAZE_POWDER && state.getValue((LIT))) {
             ((BeehiveOvenTile) worldIn.getBlockEntity(pos)).cookingProgress += 300;
             worldIn.playLocalSound((double)((float)pos.getX() + 0.5F), (double)((float)pos.getY() + 0.5F), (double)((float)pos.getZ() + 0.5F), SoundEvents.FIRECHARGE_USE, SoundSource.BLOCKS, 0.5F, 0.7F + 0.6F, false);
-            return InteractionResult.sidedSuccess(worldIn.isClientSide);
+            return ItemInteractionResult.sidedSuccess(worldIn.isClientSide);
         }
 
-        return super.use(state, worldIn, pos, player, handIn, p_225533_6_);
+        return super.useItemOn(itemstack, state, worldIn, pos, player, handIn, p_225533_6_);
     }
 
     public static void spawnSmokeParticles(Level worldIn, BlockPos pos, boolean spawnExtraSmoke) {
-        Random random = worldIn.getRandom();
+        RandomSource random = worldIn.getRandom();
         SimpleParticleType basicparticletype = ParticleTypes.CAMPFIRE_COSY_SMOKE;
         worldIn.addAlwaysVisibleParticle(basicparticletype, true, (double)pos.getX() + 0.5D + random.nextDouble() / 3.0D * (double)(random.nextBoolean() ? 1 : -1), (double)pos.getY() + random.nextDouble() + random.nextDouble(), (double)pos.getZ() + 0.5D + random.nextDouble() / 3.0D * (double)(random.nextBoolean() ? 1 : -1), 0.0D, 0.07D, 0.0D);
         if (spawnExtraSmoke) {
@@ -86,7 +94,7 @@ public class BeehiveOvenPitBlock extends BaseEntityBlock {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, Random rand) {
+    public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, RandomSource rand) {
         if (stateIn.getValue(LIT)) {
             spawnSmokeParticles(worldIn, pos, true);
             if (rand.nextInt(10) == 0) {

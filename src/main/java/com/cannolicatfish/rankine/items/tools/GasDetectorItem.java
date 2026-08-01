@@ -7,6 +7,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.context.UseOnContext;
@@ -20,6 +21,7 @@ public class GasDetectorItem extends Item {
         super(properties);
     }
 
+    @Override
     public InteractionResult useOn(UseOnContext context) {
         Player player = context.getPlayer();
         Level worldIn = context.getLevel();
@@ -27,15 +29,13 @@ public class GasDetectorItem extends Item {
 
         Optional<BlockPos> b = BlockPos.findClosestMatch(pos, Config.TOOLS.ORE_DETECTOR_RANGE.get(), Config.TOOLS.ORE_DETECTOR_RANGE.get(), (p) -> worldIn.getBlockState(p).getBlock() instanceof GasBlock);
         if (player != null && b.isPresent()) {
-            worldIn.playSound(player,pos, SoundEvents.NOTE_BLOCK_BELL, SoundSource.PLAYERS,1.0F, worldIn.getRandom().nextFloat() * 0.4F + 0.8F);
+            worldIn.playSound(player,pos, SoundEvents.NOTE_BLOCK_BELL.value(), SoundSource.PLAYERS,1.0F, worldIn.getRandom().nextFloat() * 0.4F + 0.8F);
 
             if (!worldIn.isClientSide()) {
                 BlockState GAS = worldIn.getBlockState(b.get());
 
                 player.displayClientMessage(Component.translatable("item.rankine.gas_detector.message", Component.translatable(GAS.getBlock().getDescriptionId()).getString(), b.get().getX(), b.get().getY(), b.get().getZ()), false);
-                context.getItemInHand().hurtAndBreak(1, player, (p) -> {
-                    p.broadcastBreakEvent(context.getHand());
-                });
+                context.getItemInHand().hurtAndBreak(1, player, LivingEntity.getSlotForHand(context.getHand()));
             }
         }
         return InteractionResult.SUCCESS;

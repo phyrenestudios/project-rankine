@@ -3,6 +3,7 @@ package com.cannolicatfish.rankine.world.gen.trees;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.mojang.serialization.Codec;
+import net.minecraft.util.RandomSource;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.LevelAccessor;
@@ -15,7 +16,6 @@ import net.minecraft.world.level.levelgen.feature.configurations.TreeConfigurati
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class BlackWalnutTreeFeature extends Feature<TreeConfiguration> {
 
@@ -27,7 +27,7 @@ public class BlackWalnutTreeFeature extends Feature<TreeConfiguration> {
     public boolean place(FeaturePlaceContext<TreeConfiguration> p_159749_) {
         WorldGenLevel reader = p_159749_.level();
         BlockPos pos = p_159749_.origin();
-        Random rand = reader.getRandom();
+        RandomSource rand = p_159749_.random();
         TreeConfiguration config = p_159749_.config();
         int trunkHeight = config.trunkPlacer.getTreeHeight(rand);
         boolean flag = true;
@@ -85,7 +85,7 @@ public class BlackWalnutTreeFeature extends Feature<TreeConfiguration> {
         }
     }
 
-    private void walnutLeaves(WorldGenLevel reader, BlockPos pos, Random rand, TreeConfiguration config) {
+    private void walnutLeaves(WorldGenLevel reader, BlockPos pos, RandomSource rand, TreeConfiguration config) {
         List<BlockPos> leaves = new ArrayList<>();
         for (BlockPos b : BlockPos.betweenClosed(pos.offset(-2,-1,-2),pos.offset(2,3,2))) {
             if (WorldgenUtils.inRadiusCenter(pos,b,2.5)) {
@@ -97,7 +97,7 @@ public class BlackWalnutTreeFeature extends Feature<TreeConfiguration> {
         }
     }
 
-    private void walnutBranch(WorldGenLevel reader, BlockPos pos, Random rand, TreeConfiguration config, int branchHeight, int dir, int tier) {
+    private void walnutBranch(WorldGenLevel reader, BlockPos pos, RandomSource rand, TreeConfiguration config, int branchHeight, int dir, int tier) {
         int topHeight = rand.nextInt(branchHeight)+1;
         int split = rand.nextInt(2)+1;
         BlockPos b = pos;
@@ -123,6 +123,6 @@ public class BlackWalnutTreeFeature extends Feature<TreeConfiguration> {
     }
 
     public static boolean isValidGround(LevelAccessor world, BlockPos pos) {
-        return world.getBlockState(pos).canSustainPlant(world, pos, Direction.UP, RankineBlocks.BLACK_WALNUT.getSapling());
+        return WorldgenUtils.canSustainSapling(world, pos, RankineBlocks.BLACK_WALNUT.getSapling());
     }
 }

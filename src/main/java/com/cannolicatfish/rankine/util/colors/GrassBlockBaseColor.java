@@ -2,18 +2,25 @@ package com.cannolicatfish.rankine.util.colors;
 
 import com.cannolicatfish.rankine.blocks.GrassySoilBlock;
 import com.cannolicatfish.rankine.init.ClientConfig;
+import com.google.common.collect.ImmutableList;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.client.color.block.BlockColor;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.GrassColor;
 import net.minecraft.world.level.BlockAndTintGetter;
-import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.levelgen.LegacyRandomSource;
+import net.minecraft.world.level.levelgen.WorldgenRandom;
+import net.minecraft.world.level.levelgen.synth.PerlinSimplexNoise;
 import net.minecraft.client.renderer.BiomeColors;
 import org.jetbrains.annotations.Nullable;
 
 import java.awt.*;
 
 public class GrassBlockBaseColor implements BlockColor {
+    // PORT-TODO(removed-api): vanilla Biome.BIOME_INFO_NOISE (PerlinSimplexNoise) no longer exists in 1.21.1.
+    // Recreated locally with the same seed/octave vanilla 1.18.2 used, to preserve the original noise output as closely as possible.
+    private static final PerlinSimplexNoise BIOME_INFO_NOISE = new PerlinSimplexNoise(new WorldgenRandom(new LegacyRandomSource(2345L)), ImmutableList.of(0));
+
     @Override
     public int getColor(BlockState state, @Nullable BlockAndTintGetter reader, @Nullable BlockPos pos, int tint) {
         if (ClientConfig.GENERAL.GRASS_TEMP.get()) {
@@ -21,7 +28,7 @@ public class GrassBlockBaseColor implements BlockColor {
                 if (state.getValue(GrassySoilBlock.DEAD)) {
                     return reader != null && pos != null ? colorShift(BiomeColors.getAverageGrassColor(reader, pos), 20, (int) (-3*(Math.floor(pos.getY()/10)))+25, 0) : colorShift(GrassColor.get(0.5D, 1.0D), 20, 5, 0);
                 } else {
-                    double noise = pos != null ? Biome.BIOME_INFO_NOISE.getValue(pos.getX()/20f, pos.getZ()/20f, false) : 0;
+                    double noise = pos != null ? BIOME_INFO_NOISE.getValue(pos.getX()/20f, pos.getZ()/20f, false) : 0;
                     return reader != null && pos != null ? ClientConfig.GENERAL.GRASS_NOISE.get() ? colorShift(BiomeColors.getAverageGrassColor(reader, pos), noise > 0 ? 8 : 0, (int) (-3 * (Math.floor(pos.getY() / 10))) + 20, 0) : colorShift(BiomeColors.getAverageGrassColor(reader, pos),0, (int) (-3 * (Math.floor(pos.getY() / 10f))) + 20, 0) : GrassColor.get(0.5D, 1.0D);
                 }
             } else {

@@ -4,6 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -20,8 +21,6 @@ import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-import java.util.Random;
-
 public class DoubleCropsBlock extends CropBlock {
     public static final EnumProperty<DoubleBlockHalf> SECTION = BlockStateProperties.DOUBLE_BLOCK_HALF;
     private static final VoxelShape[] LOWER_SHAPE_BY_AGE = new VoxelShape[]{Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D), Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D)};
@@ -32,12 +31,13 @@ public class DoubleCropsBlock extends CropBlock {
         this.registerDefaultState(this.stateDefinition.any().setValue(SECTION, DoubleBlockHalf.LOWER).setValue(AGE, 0));
     }
 
+    @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(AGE, SECTION);
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
+    protected VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
         switch (state.getValue(SECTION)) {
             case LOWER:
                 return LOWER_SHAPE_BY_AGE[state.getValue(this.getAgeProperty())];
@@ -57,7 +57,7 @@ public class DoubleCropsBlock extends CropBlock {
     }
 
     @Override
-    public boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
+    protected boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
         if (state.getValue(SECTION) != DoubleBlockHalf.UPPER) {
             if (state.getValue(AGE) == 7) {
                 return worldIn.getBlockState(pos.below()).is(BlockTags.DIRT) || super.canSurvive(state, worldIn, pos);
@@ -71,7 +71,7 @@ public class DoubleCropsBlock extends CropBlock {
     }
 
     @Override
-    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
+    protected BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
         DoubleBlockHalf doubleblockhalf = stateIn.getValue(SECTION);
         if (facing.getAxis() != Direction.Axis.Y || doubleblockhalf == DoubleBlockHalf.LOWER != (facing == Direction.UP) || facingState.is(this) && facingState.getValue(SECTION) != doubleblockhalf) {
             return doubleblockhalf == DoubleBlockHalf.LOWER && facing == Direction.DOWN && !stateIn.canSurvive(worldIn, currentPos) ? Blocks.AIR.defaultBlockState() : super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
@@ -81,22 +81,22 @@ public class DoubleCropsBlock extends CropBlock {
     }
 
     @Override
-    public boolean isRandomlyTicking(BlockState state) {
+    protected boolean isRandomlyTicking(BlockState state) {
         return !this.isMaxAge(state) && getSection(state).equals(DoubleBlockHalf.LOWER);
     }
 
     @Override
-    public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, Random random) {
+    protected void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {
         if (!worldIn.isAreaLoaded(pos, 1)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light
         if (worldIn.getRawBrightness(pos, 0) >= 9) {
             if (worldIn.getBlockState(pos.above()).is(Blocks.AIR) || worldIn.getBlockState(pos.above()).is(this)) {
                 int i = this.getAge(state);
                 if (i < this.getMaxAge()) {
-                    float f = getGrowthSpeed(this, worldIn, pos);
-                    if (net.neoforged.neoforge.common.ForgeHooks.onCropsGrowPre(worldIn, pos, state, random.nextInt((int) (25.0F / f) + 1) == 0)) {
+                    float f = getGrowthSpeed(state, worldIn, pos);
+                    if (net.neoforged.neoforge.common.CommonHooks.canCropGrow(worldIn, pos, state, random.nextInt((int) (25.0F / f) + 1) == 0)) {
                         worldIn.setBlock(pos, this.getStateForAge(i + 1).setValue(SECTION, DoubleBlockHalf.LOWER), 2);
                         worldIn.setBlock(pos.above(), this.getStateForAge(i + 1).setValue(SECTION, DoubleBlockHalf.UPPER), 2);
-                        net.neoforged.neoforge.common.ForgeHooks.onCropsGrowPost(worldIn, pos, state);
+                        net.neoforged.neoforge.common.CommonHooks.fireCropGrowPost(worldIn, pos, state);
                     }
                 }
             }
@@ -123,7 +123,7 @@ public class DoubleCropsBlock extends CropBlock {
     }
 
     @Override
-    public boolean isValidBonemealTarget(BlockGetter worldIn, BlockPos pos, BlockState state, boolean isClient) {
+    public boolean isValidBonemealTarget(LevelReader worldIn, BlockPos pos, BlockState state) {
         switch (state.getValue(SECTION)) {
             case LOWER:
                 return !this.isMaxAge(state) && (worldIn.getBlockState(pos.above()).is(Blocks.AIR) || worldIn.getBlockState(pos.above()).is(this));
@@ -134,13 +134,13 @@ public class DoubleCropsBlock extends CropBlock {
     }
 
     @Override
-    public void playerWillDestroy(Level worldIn, BlockPos pos, BlockState state, Player player) {
+    public BlockState playerWillDestroy(Level worldIn, BlockPos pos, BlockState state, Player player) {
         if (!worldIn.isClientSide) {
             if (player.isCreative()) {
                 removeLowerSections(worldIn, pos, state, player);
             }
         }
-        super.playerWillDestroy(worldIn, pos, state, player);
+        return super.playerWillDestroy(worldIn, pos, state, player);
     }
 
     protected static void removeLowerSections(Level world, BlockPos pos, BlockState state, Player player) {

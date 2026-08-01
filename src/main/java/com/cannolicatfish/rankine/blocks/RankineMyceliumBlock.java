@@ -2,27 +2,35 @@ package com.cannolicatfish.rankine.blocks;
 
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineLists;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.FluidTags;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.lighting.LayerLightEngine;
+import net.minecraft.world.level.lighting.LightEngine;
 import net.minecraft.world.level.material.FluidState;
-import net.minecraft.world.level.material.Material;
-import net.minecraft.world.level.material.MaterialColor;
-import net.neoforged.neoforge.common.IPlantable;
-import net.neoforged.neoforge.common.PlantType;
-
-import java.util.Random;
+import net.minecraft.world.level.material.MapColor;
+import net.neoforged.neoforge.common.util.TriState;
 
 public class RankineMyceliumBlock extends MyceliumBlock {
+    public static final MapCodec<RankineMyceliumBlock> CODEC = MapCodec.unit(RankineMyceliumBlock::new);
+
+    // MyceliumBlock.codec() is not wildcarded (returns the concrete MapCodec<MyceliumBlock>), so this subclass's
+    // codec() must match that exact signature; the cast is safe since generics are erased at runtime.
+    @SuppressWarnings("unchecked")
+    @Override
+    public MapCodec<MyceliumBlock> codec() {
+        return (MapCodec<MyceliumBlock>) (MapCodec<?>) CODEC;
+    }
+
     public RankineMyceliumBlock() {
-        super(BlockBehaviour.Properties.of(Material.GRASS, MaterialColor.COLOR_PURPLE).randomTicks().strength(0.6F).sound(SoundType.GRASS));
+        super(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_PURPLE).randomTicks().strength(0.6F).sound(SoundType.GRASS));
     }
 
     private static boolean isSnowyConditions(BlockState state, LevelReader worldReader, BlockPos pos) {
@@ -33,7 +41,7 @@ public class RankineMyceliumBlock extends MyceliumBlock {
         } else if (blockstate.getFluidState().getAmount() == 8) {
             return false;
         } else {
-            int i = LayerLightEngine.getLightBlockInto(worldReader, state, pos, blockstate, blockpos, Direction.UP, blockstate.getLightBlock(worldReader, blockpos));
+            int i = LightEngine.getLightBlockInto(worldReader, state, pos, blockstate, blockpos, Direction.UP, blockstate.getLightBlock(worldReader, blockpos));
             return i < worldReader.getMaxLightLevel();
         }
     }
@@ -47,7 +55,7 @@ public class RankineMyceliumBlock extends MyceliumBlock {
      * Performs a random tick on a block.
      */
     @Override
-    public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, Random random) {
+    protected void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {
         if (!isSnowyConditions(state, worldIn, pos)) {
             if (!worldIn.isAreaLoaded(pos, 3)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light and spreading
             worldIn.setBlockAndUpdate(pos, RankineLists.SOIL_BLOCKS.get(RankineLists.MYCELIUM_BLOCKS.indexOf(state.getBlock())).defaultBlockState());
@@ -72,19 +80,24 @@ public class RankineMyceliumBlock extends MyceliumBlock {
         }
     }
 
+    // PORT-TODO(RankineMyceliumBlock): Forge's IPlantable/PlantType system is gone. canSustainPlant now takes the
+    // plant's BlockState directly instead of an IPlantable + PlantType query, so the old PLAINS/BEACH PlantType
+    // cross-mod check can't be reproduced 1:1. The sugar-cane-adjacent-to-water special case (real vanilla
+    // mechanic) is preserved; the generic PlantType allowance falls back to TriState.DEFAULT (let the plant
+    // decide via its own canSurvive), which matches vanilla mycelium behavior for all vanilla plants.
     @Override
-    public boolean canSustainPlant(BlockState state, BlockGetter levelIn, BlockPos pos, Direction facing, IPlantable plantable) {
-        if (plantable instanceof SugarCaneBlock) {
+    public TriState canSustainPlant(BlockState state, BlockGetter levelIn, BlockPos pos, Direction facing, BlockState plant) {
+        if (plant.getBlock() instanceof SugarCaneBlock) {
             for(Direction direction : Direction.Plane.HORIZONTAL) {
                 BlockState blockstate1 = levelIn.getBlockState(pos.relative(direction));
                 FluidState fluidstate = levelIn.getFluidState(pos.relative(direction));
                 if (fluidstate.is(FluidTags.WATER) || blockstate1.is(Blocks.FROSTED_ICE)) {
-                    return true;
+                    return TriState.TRUE;
                 }
             }
-            return false;
+            return TriState.FALSE;
         }
-        return plantable.getPlantType(levelIn, pos.relative(facing)).equals(PlantType.PLAINS) || plantable.getPlantType(levelIn, pos.relative(facing)).equals(PlantType.BEACH);
+        return TriState.DEFAULT;
     }
 
 }

@@ -2,11 +2,13 @@ package com.cannolicatfish.rankine.blocks.charcoalpit;
 
 import com.cannolicatfish.rankine.blocks.RankineEightLayerBlock;
 import com.cannolicatfish.rankine.init.Config;
+import com.cannolicatfish.rankine.init.RankineBlockEntityTypes;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.VanillaIntegration;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
@@ -19,8 +21,6 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Stack;
 
-import static com.cannolicatfish.rankine.init.RankineBlocks.CHARCOAL_PIT_TILE;
-
 public class CharcoalPitTile extends BlockEntity {
     int MAX_HEIGHT = Config.MACHINES.CHARCOAL_PIT_HEIGHT.get();
     double RADIUS = Config.MACHINES.CHARCOAL_PIT_RADIUS.get()+0.5;
@@ -28,19 +28,19 @@ public class CharcoalPitTile extends BlockEntity {
     int proccessTime = 0;
 
     public CharcoalPitTile(BlockPos posIn, BlockState stateIn) {
-        super(CHARCOAL_PIT_TILE, posIn, stateIn);
+        super(RankineBlockEntityTypes.CHARCOAL_PIT.get(), posIn, stateIn);
     }
 
     @Override
-    public void load(CompoundTag nbt) {
-        super.load(nbt);
+    protected void loadAdditional(CompoundTag nbt, HolderLookup.Provider provider) {
+        super.loadAdditional(nbt, provider);
         this.proccessTime = nbt.getInt("ProcessTime");
         this.totalTime = nbt.getInt("TotalTime");
     }
 
     @Override
-    public void saveAdditional(CompoundTag compound) {
-        super.saveAdditional(compound);
+    protected void saveAdditional(CompoundTag compound, HolderLookup.Provider provider) {
+        super.saveAdditional(compound, provider);
         compound.putInt("ProcessTime", this.proccessTime);
         compound.putInt("TotalTime", this.totalTime);
     }
@@ -97,7 +97,10 @@ public class CharcoalPitTile extends BlockEntity {
             }
 
             for (int i = 0; i<=k; ++i) {
-                for (BlockPos b : BlockPos.betweenClosed(worldPosition.offset(-tile.RADIUS,i,-tile.RADIUS),worldPosition.offset(tile.RADIUS,i,tile.RADIUS))) {
+                // 1.18 BlockPos#offset(double,double,double) floored each component; reproduced explicitly since 1.21 only has int overloads.
+                for (BlockPos b : BlockPos.betweenClosed(
+                        new BlockPos(Mth.floor(worldPosition.getX() - tile.RADIUS), worldPosition.getY() + i, Mth.floor(worldPosition.getZ() - tile.RADIUS)),
+                        new BlockPos(Mth.floor(worldPosition.getX() + tile.RADIUS), worldPosition.getY() + i, Mth.floor(worldPosition.getZ() + tile.RADIUS)))) {
                     if (validLogs.contains(b.immutable())) {
                         int layerCount = logLayerCount(level,level.getBlockState(b));
                         if (layerCount == 0) continue;

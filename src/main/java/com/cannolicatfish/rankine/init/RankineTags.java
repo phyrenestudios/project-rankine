@@ -1,7 +1,7 @@
 package com.cannolicatfish.rankine.init;
 
 import com.cannolicatfish.rankine.ProjectRankine;
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
@@ -36,7 +36,7 @@ public final class RankineTags {
     }
 
     private static TagKey<Biome> createBiomeTag(String p_207631_) {
-        return TagKey.create(Registry.BIOME_REGISTRY, ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID, p_207631_));
+        return TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID, p_207631_));
     }
 
 
@@ -1188,19 +1188,22 @@ public final class RankineTags {
     }
     //private Blocks() {}
     private static TagKey<Fluid> forgeFluid(String path) {
-        return FluidTags.create(ResourceLocation.fromNamespaceAndPath("forge", path));
+        // NeoForge common tag namespace changed from "forge" to "c" in 1.21.x
+        return FluidTags.create(ResourceLocation.fromNamespaceAndPath("c", path));
     }
     private static TagKey<Fluid> modFluid(String path) {
         return FluidTags.create(ResourceLocation.fromNamespaceAndPath("rankine", path));
     }
     private static TagKey<Block> forgeBlock(String path) {
-        return BlockTags.create(ResourceLocation.fromNamespaceAndPath("forge", path));
+        // NeoForge common tag namespace changed from "forge" to "c" in 1.21.x
+        return BlockTags.create(ResourceLocation.fromNamespaceAndPath("c", path));
     }
     private static TagKey<Block> modBlock(String path) {
         return BlockTags.create(ResourceLocation.fromNamespaceAndPath("rankine", path));
     }
     private static TagKey<Item> forgeItem(String path) {
-        return ItemTags.create(ResourceLocation.fromNamespaceAndPath("forge", path));
+        // NeoForge common tag namespace changed from "forge" to "c" in 1.21.x
+        return ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", path));
     }
     private static TagKey<Item> modItem(String path) {
         return ItemTags.create(ResourceLocation.fromNamespaceAndPath("rankine", path));

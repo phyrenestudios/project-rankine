@@ -1,8 +1,10 @@
 package com.cannolicatfish.rankine.blocks.crucible;
 
 import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.RankineContainers;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.recipe.CrucibleRecipe;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.Container;
@@ -11,6 +13,7 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.inventory.ContainerLevelAccess;
@@ -23,8 +26,6 @@ import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.SlotItemHandler;
 import net.neoforged.neoforge.items.wrapper.InvWrapper;
 
-import static com.cannolicatfish.rankine.init.RankineBlocks.CRUCIBLE_CONTAINER;
-
 public class CrucibleContainer extends AbstractContainerMenu {
     private final Container furnaceInventory;
     private BlockEntity tileEntity;
@@ -33,6 +34,10 @@ public class CrucibleContainer extends AbstractContainerMenu {
     private Level world;
     private final ContainerData data;
 
+    public CrucibleContainer(int windowId, Inventory inv, FriendlyByteBuf extraData) {
+        this(windowId, inv.player.level(), extraData.readBlockPos(), inv, inv.player);
+    }
+
     public CrucibleContainer(int windowId, Level world, BlockPos pos, Inventory playerInventory, Player player) {
         this(windowId,world,pos,playerInventory,player,new SimpleContainer(6),new SimpleContainerData(3));
 
@@ -40,7 +45,7 @@ public class CrucibleContainer extends AbstractContainerMenu {
 
     }
     public CrucibleContainer(int windowId, Level world, BlockPos pos, Inventory playerInventory, Player player, Container furnaceInventoryIn, ContainerData furnaceData) {
-        super(CRUCIBLE_CONTAINER, windowId);
+        super(RankineContainers.CRUCIBLE_CONTAINER.get(), windowId);
         tileEntity = world.getBlockEntity(pos);
         checkContainerSize(furnaceInventoryIn, 6);
         checkContainerDataCount(furnaceData, 3);
@@ -48,7 +53,7 @@ public class CrucibleContainer extends AbstractContainerMenu {
         this.data = furnaceData;
         this.furnaceInventory = furnaceInventoryIn;
         this.playerInventory = new InvWrapper(playerInventory);
-        this.world = playerEntity.level;
+        this.world = playerEntity.level();
 
         this.addSlot(new Slot(furnaceInventory, 0, 53, 23));
         this.addSlot(new Slot(furnaceInventory, 1, 71,16));
@@ -130,8 +135,8 @@ public class CrucibleContainer extends AbstractContainerMenu {
     }
 
     protected boolean hasRecipe(ItemStack stack) {
-        for (CrucibleRecipe recipe : this.world.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.CRUCIBLE)) {
-            for (Ingredient i : recipe.getIngredients()) {
+        for (RecipeHolder<CrucibleRecipe> recipe : this.world.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.CRUCIBLE.get())) {
+            for (Ingredient i : recipe.value().getIngredients()) {
                 if (i.test(stack)) {
                     return true;
                 }

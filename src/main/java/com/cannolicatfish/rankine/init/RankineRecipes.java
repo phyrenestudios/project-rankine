@@ -1,7 +1,6 @@
 package com.cannolicatfish.rankine.init;
 
 import com.cannolicatfish.rankine.ProjectRankine;
-import com.cannolicatfish.rankine.advancements.*;
 import com.cannolicatfish.rankine.entities.CannonballEntity;
 import com.cannolicatfish.rankine.entities.CarcassEntity;
 import com.cannolicatfish.rankine.items.GasBottleItem;
@@ -9,34 +8,35 @@ import com.cannolicatfish.rankine.recipe.ElementRecipe;
 import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
 import com.cannolicatfish.rankine.recipe.helper.AlloyRecipeHelper;
 import net.minecraft.Util;
-import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.BlockSource;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Position;
+import net.minecraft.core.dispenser.BlockSource;
 import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.core.dispenser.DispenseItemBehavior;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.RandomSource;
 import net.minecraft.util.Tuple;
 import net.minecraft.world.Container;
-import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.alchemy.Potions;
-import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.phys.BlockHitResult;
-import net.neoforged.neoforge.common.brewing.BrewingRecipeRegistry;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.brewing.RegisterBrewingRecipesEvent;
 
 import java.util.*;
 
+@EventBusSubscriber(modid = ProjectRankine.MODID)
 public class RankineRecipes {
 
     private static final DispenseItemBehavior gasDispenseBehavior = new DefaultDispenseItemBehavior() {
@@ -52,8 +52,8 @@ public class RankineRecipes {
                 dispensing = bucketitem.getGas();
             }
 
-            BlockPos blockpos = source.getPos().relative(source.getBlockState().getValue(DispenserBlock.FACING));
-            Level world = source.getLevel();
+            BlockPos blockpos = source.pos().relative(source.state().getValue(DispenserBlock.FACING));
+            Level world = source.level();
             if (world.getBlockState(blockpos).isAir()) {
                 world.setBlock(blockpos, dispensing.defaultBlockState(),3);
                 return new ItemStack(Items.GLASS_BOTTLE);
@@ -71,8 +71,8 @@ public class RankineRecipes {
          */
         public ItemStack execute(BlockSource source, ItemStack stack) {
             BucketItem bucketitem = (BucketItem)stack.getItem();
-            BlockPos blockpos = source.getPos().relative(source.getBlockState().getValue(DispenserBlock.FACING));
-            Level world = source.getLevel();
+            BlockPos blockpos = source.pos().relative(source.state().getValue(DispenserBlock.FACING));
+            Level world = source.level();
             if (bucketitem.emptyContents((Player)null, world, blockpos, (BlockHitResult)null)) {
                 bucketitem.checkExtraContent(null, world, stack, blockpos);
                 return new ItemStack(Items.BUCKET);
@@ -87,13 +87,13 @@ public class RankineRecipes {
          * Dispense the specified stack, play the dispense sound and spawn particles.
          */
         public ItemStack execute(BlockSource source, ItemStack stack) {
-            Direction direction = source.getBlockState().getValue(DispenserBlock.FACING);
+            Direction direction = source.state().getValue(DispenserBlock.FACING);
             Position iposition = DispenserBlock.getDispensePosition(source);
             double d0 = iposition.x() + (double) ((float) direction.getStepX() * 0.3F);
             double d1 = iposition.y() + (double) ((float) direction.getStepY() * 0.3F);
             double d2 = iposition.z() + (double) ((float) direction.getStepZ() * 0.3F);
-            Level world = source.getLevel();
-            Random random = world.random;
+            Level world = source.level();
+            RandomSource random = world.random;
             double d3 = random.nextGaussian() * 0.05D + (double) direction.getStepX();
             double d4 = random.nextGaussian() * 0.05D + (double) direction.getStepY();
             double d5 = random.nextGaussian() * 0.05D + (double) direction.getStepZ();
@@ -111,13 +111,13 @@ public class RankineRecipes {
          * Dispense the specified stack, play the dispense sound and spawn particles.
          */
         public ItemStack execute(BlockSource source, ItemStack stack) {
-            Direction direction = source.getBlockState().getValue(DispenserBlock.FACING);
+            Direction direction = source.state().getValue(DispenserBlock.FACING);
             Position iposition = DispenserBlock.getDispensePosition(source);
             double d0 = iposition.x() + (double) ((float) direction.getStepX() * 0.3F);
             double d1 = iposition.y() + (double) ((float) direction.getStepY() * 0.3F);
             double d2 = iposition.z() + (double) ((float) direction.getStepZ() * 0.3F);
-            Level world = source.getLevel();
-            Random random = world.random;
+            Level world = source.level();
+            RandomSource random = world.random;
             double d3 = random.nextGaussian() * 0.05D + (double) direction.getStepX();
             double d4 = random.nextGaussian() * 0.05D + (double) direction.getStepY();
             double d5 = random.nextGaussian() * 0.05D + (double) direction.getStepZ();
@@ -133,29 +133,54 @@ public class RankineRecipes {
          * Play the dispense sound from the specified block.
          */
         protected void playDispenseSound(BlockSource source) {
-            source.getLevel().levelEvent(1018, source.getPos(), 0);
+            source.level().levelEvent(1018, source.pos(), 0);
         }
 
 
-        public static void registerPotionRecipes() {
-        BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.of(RankineItems.MERCURY::get), PotionUtils.setPotion(new ItemStack(Items.POTION), RankinePotions.MERCURY_POISONING.get()));
-        BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.of(RankineItems.SODIUM_CHLORIDE::get,RankineItems.PINK_SALT::get), PotionUtils.setPotion(new ItemStack(Items.POTION), RankinePotions.CONDUCTIVITY.get()));
-        BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.of(RankineItems.AMBER::get), PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.REGENERATION));
-        BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.of(RankineItems.HELIUM_INGOT::get), PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.LEAPING));
-        BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.of(RankineItems.OXYGEN_INGOT::get), PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.WATER_BREATHING));
-        BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.of(RankineItems.ARSENIC::get), PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.POISON));
-        BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.of(RankineItems.LEAD_INGOT::get), PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.WEAKNESS));
-        //BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion()(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.of()(RankineItems.LEAD_INGOT::get), PotionUtils.setPotion()(new ItemStack(Items.POTION), Potions.NIGHT_VISION));
-        //BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion()(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.of()(RankineItems.LEAD_INGOT::get), PotionUtils.setPotion()(new ItemStack(Items.POTION), Potions.FIRE_RESISTANCE));
-        //BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion()(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.of()(RankineItems.LEAD_INGOT::get), PotionUtils.setPotion()(new ItemStack(Items.POTION), Potions.SWIFTNESS));
-        //BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion()(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.of()(RankineItems.LEAD_INGOT::get), PotionUtils.setPotion()(new ItemStack(Items.POTION), Potions.SLOWNESS));
-        //BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion()(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.of()(RankineItems.LEAD_INGOT::get), PotionUtils.setPotion()(new ItemStack(Items.POTION), Potions.SLOW_FALLING));
-        BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.of(RankineItems.SULFUR_SHELF_MUSHROOM::get), PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.HARMING));
-        BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.of(RankineItems.FOUR_LEAF_CLOVER::get), PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.LUCK));
-        BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.of(RankineItems.LIONS_MANE_MUSHROOM::get), PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.STRENGTH));
-        BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.NIGHT_VISION)),Ingredient.of(RankineItems.CALCITE::get), PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.INVISIBILITY));
-        BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD)),Ingredient.of(RankineItems.STINGING_NETTLE::get, RankineItems.WILLOW_BRANCHLET::get), PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.HEALING));
-        }
+    /**
+     * Brewing recipes moved from BrewingRecipeRegistry (GONE in NeoForge 1.21.1) to
+     * RegisterBrewingRecipesEvent (game bus). The old recipes used Ingredient.of(potion stack),
+     * which matched by item only; addMix(basePotion, ingredientItem, resultPotion) preserves the
+     * intended base-potion + reagent -> result behavior.
+     */
+    @SubscribeEvent
+    public static void registerBrewingRecipes(RegisterBrewingRecipesEvent event) {
+        var builder = event.getBuilder();
+        builder.addMix(Potions.AWKWARD, RankineItems.MERCURY.get(), RankinePotions.MERCURY_POISONING);
+        builder.addMix(Potions.AWKWARD, RankineItems.SODIUM_CHLORIDE.get(), RankinePotions.CONDUCTIVITY);
+        builder.addMix(Potions.AWKWARD, RankineItems.PINK_SALT.get(), RankinePotions.CONDUCTIVITY);
+        builder.addMix(Potions.AWKWARD, RankineItems.AMBER.get(), Potions.REGENERATION);
+        builder.addMix(Potions.AWKWARD, RankineItems.HELIUM_INGOT.get(), Potions.LEAPING);
+        builder.addMix(Potions.AWKWARD, RankineItems.OXYGEN_INGOT.get(), Potions.WATER_BREATHING);
+        builder.addMix(Potions.AWKWARD, RankineItems.ARSENIC.get(), Potions.POISON);
+        builder.addMix(Potions.AWKWARD, RankineItems.LEAD_INGOT.get(), Potions.WEAKNESS);
+        builder.addMix(Potions.AWKWARD, RankineItems.SULFUR_SHELF_MUSHROOM.get(), Potions.HARMING);
+        builder.addMix(Potions.AWKWARD, RankineItems.FOUR_LEAF_CLOVER.get(), Potions.LUCK);
+        builder.addMix(Potions.AWKWARD, RankineItems.LIONS_MANE_MUSHROOM.get(), Potions.STRENGTH);
+        builder.addMix(Potions.NIGHT_VISION, RankineItems.CALCITE.get(), Potions.INVISIBILITY);
+        builder.addMix(Potions.AWKWARD, RankineItems.STINGING_NETTLE.get(), Potions.HEALING);
+        builder.addMix(Potions.AWKWARD, RankineItems.WILLOW_BRANCHLET.get(), Potions.HEALING);
+    }
+
+    /**
+     * Kept because ProjectRankine#commonSetup still calls it; brewing registration now happens in
+     * {@link #registerBrewingRecipes(RegisterBrewingRecipesEvent)}.
+     */
+    public static void registerPotionRecipes() {
+        // no-op — see registerBrewingRecipes above
+    }
+
+    public static void registerPredicates() {
+        // PORT-TODO(advancements): ItemPredicate.register is GONE in 1.21.1 — ItemPredicate is a
+        // codec-based record and custom item checks are ItemSubPredicates registered in
+        // Registries.ITEM_SUB_PREDICATE_TYPE. The following 1.18.2 custom predicates need to be
+        // reimplemented as ItemSubPredicate codecs by the advancements/events agent:
+        //   rankine:harvest_level_check        (HarvestLevelPredicate)
+        //   rankine:enchantability_check       (AlloyEnchantabilityPredicate)
+        //   rankine:exact_composition_check    (ExactCompositionPredicate)
+        //   rankine:includes_composition_check (IncludesCompositionPredicate)
+        //   rankine:has_enchantment_check      (HasEnchantmentPredicate)
+    }
 
     public static void registerDispenserBehaviors() {
         for (Item i : RankineLists.GAS_BOTTLES) {
@@ -180,14 +205,6 @@ public class RankineRecipes {
         DispenserBlock.registerBehavior(RankineItems.CARCASS.get(),carcassItemBehavior);
     }
 
-    public static void registerPredicates() {
-        ItemPredicate.register(ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID,"harvest_level_check"), HarvestLevelPredicate::new);
-        ItemPredicate.register(ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID,"enchantability_check"), AlloyEnchantabilityPredicate::new);
-        ItemPredicate.register(ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID,"exact_composition_check"), ExactCompositionPredicate::new);
-        ItemPredicate.register(ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID,"includes_composition_check"), IncludesCompositionPredicate::new);
-        ItemPredicate.register(ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID,"has_enchantment_check"), HasEnchantmentPredicate::new);
-    }
-
     public static String generateAlloyString(Container inv, Level level) {
         Map<ElementRecipe, Integer> currentElements = new HashMap<>();
         for (int i = 0; i < 6; i++) {
@@ -201,7 +218,7 @@ public class RankineRecipes {
                         currentElements.put(entry.getA(), currentElements.get(entry.getA()) + entry.getB() * stack.getCount());
                     }
                 } else {
-                    ElementRecipe recipe = level.getRecipeManager().getRecipeFor(RankineRecipeTypes.ELEMENT, new SimpleContainer(stack), level).orElse(null);
+                    ElementRecipe recipe = level.getRecipeManager().getRecipeFor(RankineRecipeTypes.ELEMENT.get(), new SingleRecipeInput(stack), level).map(RecipeHolder::value).orElse(null);
                     if (recipe != null) {
                         if (!currentElements.containsKey(recipe)) {
                             currentElements.put(recipe, recipe.getMaterialCount(stack.getItem()) * stack.getCount());

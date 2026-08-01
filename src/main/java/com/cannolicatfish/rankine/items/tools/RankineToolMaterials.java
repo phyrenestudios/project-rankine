@@ -1,13 +1,21 @@
 package com.cannolicatfish.rankine.items.tools;
 
 import com.cannolicatfish.rankine.init.RankineItems;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.util.LazyLoadedValue;
+import net.minecraft.world.level.block.Block;
 
 import java.util.function.Supplier;
 
+/**
+ * 1.21: {@link Tier} no longer exposes an int harvest level — it uses an "incorrect blocks for
+ * drops" tag instead. Mapping: 0→INCORRECT_FOR_WOODEN_TOOL, 1→INCORRECT_FOR_STONE_TOOL,
+ * 2→INCORRECT_FOR_IRON_TOOL, 3→INCORRECT_FOR_DIAMOND_TOOL, 4+→INCORRECT_FOR_NETHERITE_TOOL.
+ * The old int level is kept as {@link #getHarvestLevel()} for Rankine logic that still needs it.
+ */
 public enum RankineToolMaterials implements Tier {
     FLINT(1, 81, 3.0F, 1.0F, 8, () -> {
         return Ingredient.of(Items.FLINT);
@@ -70,7 +78,7 @@ public enum RankineToolMaterials implements Tier {
     private final float efficiency;
     private final float attackDamage;
     private final int enchantability;
-    private final LazyLoadedValue<Ingredient> repairMaterial;
+    private final Supplier<Ingredient> repairMaterial;
 
     private RankineToolMaterials(int harvestLevelIn, int maxUsesIn, float efficiencyIn, float attackDamageIn, int enchantabilityIn, Supplier<Ingredient> repairMaterialIn)
     {
@@ -80,29 +88,50 @@ public enum RankineToolMaterials implements Tier {
         this.efficiency = efficiencyIn;
         this.attackDamage = attackDamageIn;
         this.enchantability = enchantabilityIn;
-        this.repairMaterial = new LazyLoadedValue<>(repairMaterialIn);
+        this.repairMaterial = com.google.common.base.Suppliers.memoize(repairMaterialIn::get);
     }
 
+    @Override
     public int getUses() {
         return this.maxUses;
     }
 
+    @Override
     public float getSpeed() {
         return this.efficiency;
     }
 
+    @Override
     public float getAttackDamageBonus() {
         return this.attackDamage;
     }
 
-    public int getLevel() {
+    /** Old harvest-level int (was Tier#getLevel in 1.18.2). */
+    public int getHarvestLevel() {
         return this.harvestLevel;
     }
 
+    @Override
+    public TagKey<Block> getIncorrectBlocksForDrops() {
+        return incorrectBlocksForLevel(this.harvestLevel);
+    }
+
+    public static TagKey<Block> incorrectBlocksForLevel(int harvestLevel) {
+        return switch (harvestLevel) {
+            case 0 -> BlockTags.INCORRECT_FOR_WOODEN_TOOL;
+            case 1 -> BlockTags.INCORRECT_FOR_STONE_TOOL;
+            case 2 -> BlockTags.INCORRECT_FOR_IRON_TOOL;
+            case 3 -> BlockTags.INCORRECT_FOR_DIAMOND_TOOL;
+            default -> BlockTags.INCORRECT_FOR_NETHERITE_TOOL;
+        };
+    }
+
+    @Override
     public int getEnchantmentValue() {
         return this.enchantability;
     }
 
+    @Override
     public Ingredient getRepairIngredient() {
         return this.repairMaterial.get();
     }
