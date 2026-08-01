@@ -89,7 +89,7 @@ public class RankineStone {
         newStone.cobble = RankineBlocks.BLOCKS.register(baseName+"_cobble", CobbleBlock::new);
         newStone.infested = RankineBlocks.BLOCKS.register("infested_"+baseName, () -> new InfestedBlock(newStone.stone.get(), stoneProperties));
 
-        Item.Properties DEF_BUILDING = new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld);
+        Item.Properties DEF_BUILDING = new Item.Properties().stacksTo(64);
         RankineBlocks.ITEMS.register(baseName, () -> new BlockItem(newStone.stone.get(), DEF_BUILDING));
         RankineBlocks.ITEMS.register("polished_"+baseName, () -> new BuildingModeBlockItem(newStone.polished.get(), DEF_BUILDING));
         RankineBlocks.ITEMS.register(baseName+"_bricks", () -> new BuildingModeBlockItem(newStone.bricks.get(), DEF_BUILDING));

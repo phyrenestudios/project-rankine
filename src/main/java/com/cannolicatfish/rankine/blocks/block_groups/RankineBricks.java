@@ -38,7 +38,7 @@ public class RankineBricks {
         newBricks.bricksStairs =  RankineBlocks.BLOCKS.register(baseName+"_stairs", () -> new RankineStairsBlock(BlockBehaviour.Properties.copy(newBricks.bricks.get())));
         newBricks.bricksWall =  RankineBlocks.BLOCKS.register(baseName+"_wall", () -> new RankineWallBlock(BlockBehaviour.Properties.copy(newBricks.bricks.get())));
 
-        Item.Properties DEF_BUILDING = new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld);
+        Item.Properties DEF_BUILDING = new Item.Properties().stacksTo(64);
         RankineBlocks.ITEMS.register(baseName, () -> new BuildingModeBlockItem(newBricks.bricks.get(), DEF_BUILDING));
         RankineBlocks.ITEMS.register(baseName+"_slab", () -> new BlockItem(newBricks.bricksSlab.get(), DEF_BUILDING));
         RankineBlocks.ITEMS.register(baseName+"_stairs", () -> new BlockItem(newBricks.bricksStairs.get(), DEF_BUILDING));

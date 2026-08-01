@@ -3,6 +3,11 @@
 Target: **Minecraft 1.21.1, NeoForge 21.1.248, Java 21, ModDevGradle**. Mappings are official Mojang (unchanged).
 This file is the single source of truth for porting conventions. Follow it exactly so the codebase stays consistent.
 
+> **API REFERENCE**: the complete decompiled Minecraft 1.21.1 + NeoForge 21.1.248 source tree is at
+> `C:\Users\karl\Documents\Projects\mc-1.21.1-sources` (packages `net/minecraft/**`, `net/neoforged/**`).
+> When unsure about ANY signature, grep/read the real source there instead of guessing. This is mandatory
+> for constructors, event names, codec fields, and anything in this guide marked uncertain.
+
 ## Golden rules
 1. Do NOT invent new features or refactor logic. Port behavior 1:1 unless the API forces a redesign (enchantments, damage sources, worldgen registration).
 2. If an API is gone and behavior cannot be preserved, preserve as much as possible and leave a `// PORT-TODO: <what & why>` comment. Grep-able.

@@ -30,7 +30,7 @@ public class RankineDripstone {
         newDripstone.dripstone =  RankineBlocks.BLOCKS.register(baseName+"_block", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, color).sound(SoundType.DRIPSTONE_BLOCK).requiresCorrectToolForDrops().strength(1.5F, 1.0F)));
         newDripstone.pointedDripstone = RankineBlocks.BLOCKS.register("pointed_"+baseName, () -> new RankinePointedDripstoneBlock(BlockBehaviour.Properties.of(Material.STONE, color).noOcclusion().sound(SoundType.POINTED_DRIPSTONE).randomTicks().strength(1.5F, 3.0F).dynamicShape(), newDripstone.dripstone.get()));
 
-        Item.Properties DEF_BUILDING = new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld);
+        Item.Properties DEF_BUILDING = new Item.Properties().stacksTo(64);
         RankineBlocks.ITEMS.register(baseName+"_block", () -> new BlockItem(newDripstone.dripstone.get(), DEF_BUILDING));
         RankineBlocks.ITEMS.register("pointed_"+baseName, () -> new BlockItem(newDripstone.pointedDripstone.get(), DEF_BUILDING));
 

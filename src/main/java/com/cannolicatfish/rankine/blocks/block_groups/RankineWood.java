@@ -98,7 +98,7 @@ public class RankineWood {
             newWood.pottedSapling = RankineBlocks.BLOCKS.register("potted_"+baseName+"_sapling", () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, newWood.sapling, Block.Properties.of(Material.DECORATION).strength(0.0f).noOcclusion()));
         }
         
-        Item.Properties DEF_BUILDING = new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineBiota);
+        Item.Properties DEF_BUILDING = new Item.Properties().stacksTo(64);
         if (newWood.hasLogs) {
              RankineBlocks.ITEMS.register(baseName + "_log", () -> new BlockItem(newWood.log.get(), DEF_BUILDING));
              RankineBlocks.ITEMS.register("stripped_" + baseName + "_log", () -> new BlockItem(newWood.strippedLog.get(), DEF_BUILDING));
@@ -119,9 +119,9 @@ public class RankineWood {
          RankineBlocks.ITEMS.register(baseName+"_trapdoor", () -> new BlockItem(newWood.trapdoor.get(), DEF_BUILDING));
          RankineBlocks.ITEMS.register(baseName+"_pressure_plate", () -> new BlockItem(newWood.pressurePlate.get(), DEF_BUILDING));
          RankineBlocks.ITEMS.register(baseName+"_button", () -> new BlockItem(newWood.button.get(), DEF_BUILDING));
-        newWood.signItem =  RankineBlocks.ITEMS.register(baseName+"_sign", () -> new SignItem(new Item.Properties().stacksTo(16).tab(ProjectRankine.setup.rankineBiota),newWood.sign.get(),newWood.wallSign.get()));
+        newWood.signItem =  RankineBlocks.ITEMS.register(baseName+"_sign", () -> new SignItem(new Item.Properties().stacksTo(16),newWood.sign.get(),newWood.wallSign.get()));
          RankineBlocks.ITEMS.register(baseName+"_bookshelf", () -> new BuildingModeBlockItem(newWood.bookshelf.get(), DEF_BUILDING));
-        newWood.boat =  RankineBlocks.ITEMS.register(baseName+"_boat", () -> new RankineBoatItem(RankineBoatEntity.Type.getTypeFromString(baseName), new Item.Properties().stacksTo(1).tab(ProjectRankine.setup.rankineBiota)));
+        newWood.boat =  RankineBlocks.ITEMS.register(baseName+"_boat", () -> new RankineBoatItem(RankineBoatEntity.Type.getTypeFromString(baseName), new Item.Properties().stacksTo(1)));
         if (newWood.isTree) {
              RankineBlocks.ITEMS.register(baseName + "_leaves", () -> new BlockItem(newWood.leaves.get(), DEF_BUILDING));
              RankineBlocks.ITEMS.register(baseName + "_leaf_litter", () -> new BlockItem(newWood.leafLitter.get(), DEF_BUILDING));

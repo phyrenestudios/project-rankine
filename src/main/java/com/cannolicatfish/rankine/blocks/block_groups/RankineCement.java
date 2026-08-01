@@ -35,7 +35,7 @@ public class RankineCement {
         newCement.cementStairs =  RankineBlocks.BLOCKS.register(baseName+"_stairs", () -> new RankineStairsBlock(BlockBehaviour.Properties.copy(newCement.cement.get())));
         newCement.cementWall =  RankineBlocks.BLOCKS.register(baseName+"_wall", () -> new RankineWallBlock(BlockBehaviour.Properties.copy(newCement.cement.get())));
 
-        Item.Properties DEF_BUILDING = new Item.Properties().stacksTo(64).tab(ProjectRankine.setup.rankineWorld);
+        Item.Properties DEF_BUILDING = new Item.Properties().stacksTo(64);
         RankineBlocks.ITEMS.register(baseName, () -> new BlockItem(newCement.cement.get(), DEF_BUILDING));
         RankineBlocks.ITEMS.register(baseName+"_slab", () -> new BlockItem(newCement.cementSlab.get(), DEF_BUILDING));
         RankineBlocks.ITEMS.register(baseName+"_stairs", () -> new BlockItem(newCement.cementStairs.get(), DEF_BUILDING));
