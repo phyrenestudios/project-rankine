@@ -3,16 +3,18 @@ package com.cannolicatfish.rankine.events.handlers.common;
 import com.cannolicatfish.rankine.blocks.gases.PitchModulating;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
-import net.neoforged.neoforge.event.entity.PlaySoundAtEntityEvent;
+import net.neoforged.neoforge.event.PlayLevelSoundEvent;
 
 public class PlaySoundAtEntityHandler {
 
-    public static void onPlaySound(PlaySoundAtEntityEvent event) {
+    // 1.21.1: PlaySoundAtEntityEvent -> PlayLevelSoundEvent.AtEntity;
+    // getDefaultPitch/setPitch -> getOriginalPitch/setNewPitch.
+    public static void onPlaySound(PlayLevelSoundEvent.AtEntity event) {
         if (event.getEntity() != null) {
-            BlockPos headPosition = new BlockPos(event.getEntity().getEyePosition());
-            if (event.getEntity().getLevel().getBlockState(headPosition).getBlock() instanceof PitchModulating) {
-                float pitchMult = ((PitchModulating) event.getEntity().getLevel().getBlockState(headPosition).getBlock()).getPitchMultiplier();
-                event.setPitch(Mth.clamp(event.getDefaultPitch() * pitchMult,0,2));
+            BlockPos headPosition = BlockPos.containing(event.getEntity().getEyePosition());
+            if (event.getEntity().level().getBlockState(headPosition).getBlock() instanceof PitchModulating pitchModulating) {
+                float pitchMult = pitchModulating.getPitchMultiplier();
+                event.setNewPitch(Mth.clamp(event.getOriginalPitch() * pitchMult,0,2));
             }
         }
     }

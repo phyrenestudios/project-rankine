@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.blocks;
 
-
+import com.mojang.serialization.MapCodec;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
@@ -27,9 +27,15 @@ import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class SodiumVaporLampBlock extends Block implements SimpleWaterloggedBlock {
+    public static final MapCodec<SodiumVaporLampBlock> CODEC = simpleCodec(SodiumVaporLampBlock::new);
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final BooleanProperty HANGING = BlockStateProperties.HANGING;
     public static final DirectionProperty HORIZONTAL_FACING = HorizontalDirectionalBlock.FACING;
+
+    @Override
+    public MapCodec<? extends SodiumVaporLampBlock> codec() {
+        return CODEC;
+    }
 
     public SodiumVaporLampBlock(Properties properties) {
         super(properties);
@@ -37,6 +43,7 @@ public class SodiumVaporLampBlock extends Block implements SimpleWaterloggedBloc
     }
 
     @Nullable
+    @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         FluidState fluidstate = context.getLevel().getFluidState(context.getClickedPos());
         BlockState blockstate = this.defaultBlockState();
@@ -56,6 +63,7 @@ public class SodiumVaporLampBlock extends Block implements SimpleWaterloggedBloc
         return null;
     }
 
+    @Override
     public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
         if (state.getValue(HANGING)) {
             switch (state.getValue(HORIZONTAL_FACING)) {
@@ -82,10 +90,12 @@ public class SodiumVaporLampBlock extends Block implements SimpleWaterloggedBloc
         }
     }
 
+    @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(HORIZONTAL_FACING,HANGING,WATERLOGGED);
     }
 
+    @Override
     public PushReaction getPistonPushReaction(BlockState state) {
         return PushReaction.DESTROY;
     }
@@ -96,6 +106,7 @@ public class SodiumVaporLampBlock extends Block implements SimpleWaterloggedBloc
      * returns its solidified counterpart.
      * Note that this method should ideally consider only the specific face passed in.
      */
+    @Override
     public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
         if (stateIn.getValue(WATERLOGGED)) {
             worldIn.getFluidTicks().willTickThisTick(currentPos, Fluids.WATER);
@@ -103,11 +114,13 @@ public class SodiumVaporLampBlock extends Block implements SimpleWaterloggedBloc
         return super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
     }
 
+    @Override
     public FluidState getFluidState(BlockState state) {
         return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }
 
-    public boolean isPathfindable(BlockState state, BlockGetter worldIn, BlockPos pos, PathComputationType type) {
+    @Override
+    protected boolean isPathfindable(BlockState state, PathComputationType type) {
         return false;
     }
 

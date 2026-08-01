@@ -2,6 +2,8 @@ package com.cannolicatfish.rankine.blocks;
 
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.mojang.serialization.MapCodec;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.core.BlockPos;
@@ -11,22 +13,29 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.server.level.ServerLevel;
 
-import java.util.Random;
-
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class UnagedCheeseBlock extends Block {
+    public static final MapCodec<UnagedCheeseBlock> CODEC = simpleCodec(UnagedCheeseBlock::new);
+
+    @Override
+    public MapCodec<? extends UnagedCheeseBlock> codec() {
+        return CODEC;
+    }
+
     public UnagedCheeseBlock(Properties properties) {
         super(properties);
     }
 
+    @Override
     public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
         return Block.box(1.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D);
     }
 
 
    @SuppressWarnings( "deprecation" )
-    public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, Random rand) {
+    @Override
+    public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource rand) {
        super.tick(state, worldIn, pos, rand);
        Level world = worldIn.getLevel();
         if (rand.nextFloat() < Config.GENERAL.CHEESE_AGE_CHANCE.get() && !worldIn.isClientSide) {

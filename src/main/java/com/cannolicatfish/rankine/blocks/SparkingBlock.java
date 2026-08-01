@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.blocks;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.entity.projectile.Projectile;
@@ -9,6 +10,13 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 
 public class SparkingBlock extends Block {
+    public static final MapCodec<SparkingBlock> CODEC = simpleCodec(SparkingBlock::new);
+
+    @Override
+    public MapCodec<? extends SparkingBlock> codec() {
+        return CODEC;
+    }
+
     public SparkingBlock(Properties properties) {
         super(properties);
     }

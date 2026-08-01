@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.blocks;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.Blocks;
@@ -22,6 +23,16 @@ import java.util.Arrays;
 import java.util.List;
 
 public class StickBlock extends RotatedPillarBlock {
+    // RotatedPillarBlock#codec() is already a concrete (non-abstract) wildcarded override, but it returns
+    // RotatedPillarBlock's own CODEC; without overriding here a codec-driven deserialization would reconstruct
+    // a plain RotatedPillarBlock instead of a StickBlock. Provide our own per the porting guide's pattern 1.
+    public static final MapCodec<StickBlock> CODEC = simpleCodec(StickBlock::new);
+
+    @Override
+    public MapCodec<? extends StickBlock> codec() {
+        return CODEC;
+    }
+
     public StickBlock(Properties properties) {
         super(properties);
     }

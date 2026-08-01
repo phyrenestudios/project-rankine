@@ -135,7 +135,13 @@ public class InductionFurnaceTile extends BlockEntity implements WorldlyContaine
             ItemStack[] inputs = new ItemStack[]{tile.items.get(0), tile.items.get(1), tile.items.get(2), tile.items.get(3), tile.items.get(4), tile.items.get(5)};
             ItemStack battery = tile.items.get(6);
             if ((tile.isBurning() || !battery.isEmpty() && BatteryItem.hasPowerRequired(battery,tile.powerCost) && !Arrays.stream(inputs).allMatch(ItemStack::isEmpty))) {
-                AlloyingRecipe irecipe = tile.level.getRecipeManager().getRecipeFor(RankineRecipeTypes.ALLOYING.get(), new RecipeWrapper(new InvWrapper(tile)), tile.level).map(RecipeHolder::value).orElse(null);
+                // Type 2 selects induction-furnace recipes; the plain matches() cannot distinguish
+                // furnace kinds now that the recipe sees a RecipeWrapper instead of the tile.
+                RecipeWrapper recipeInput = new RecipeWrapper(new InvWrapper(tile));
+                AlloyingRecipe irecipe = tile.level.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.ALLOYING.get()).stream()
+                        .map(RecipeHolder::value)
+                        .filter(r -> r.matches(recipeInput, tile.level, 2))
+                        .findFirst().orElse(null);
                 if (!tile.isBurning() && tile.canSmelt(irecipe, tile)) {
                     tile.burnTime = BatteryItem.hasPowerRequired(battery,tile.powerCost) ? 50 : 0;
                     tile.currentBurnTime = tile.burnTime;

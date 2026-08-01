@@ -1,24 +1,35 @@
 package com.cannolicatfish.rankine.util;
 
 import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
+import net.minecraft.core.Holder;
+import net.minecraft.core.HolderSet;
+import net.minecraft.core.RegistryAccess;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.tags.EnchantmentTags;
 import net.minecraft.tags.TagKey;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.trading.ItemCost;
 import net.minecraft.world.item.trading.MerchantOffer;
-import net.minecraft.tags.Tag;
-import net.minecraft.tags.ItemTags;
-import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.common.BasicItemListing;
-import net.neoforged.neoforge.registries.ForgeRegistries;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+import java.util.Optional;
 
+/**
+ * PORT-NOTE (1.21.1): {@code VillagerTrades.ItemListing#getOffer} now takes a {@link RandomSource}
+ * instead of {@code java.util.Random}, {@code MerchantOffer} takes an {@link ItemCost} for the price,
+ * and tag lookups go through {@link BuiltInRegistries} instead of {@code ForgeRegistries#tags()}.
+ * Prices, max uses, xp and price multipliers are unchanged.
+ */
 public class RankineVillagerTrades {
 
     public static class EnchantedAlloyItemForEmeraldsTrade implements VillagerTrades.ItemListing {
@@ -46,13 +57,19 @@ public class RankineVillagerTrades {
             this.priceMultiplier = priceMultiplier;
         }
 
-        public MerchantOffer getOffer(Entity trader, Random rand) {
+        @Override
+        public MerchantOffer getOffer(Entity trader, RandomSource rand) {
             int i = 5 + rand.nextInt(15);
-            ItemStack itemstack = EnchantmentHelper.enchantItem(rand, new ItemStack(this.sellingStack.getItem()), i, false);
+            // PORT-NOTE: the old `enchantItem(rand, stack, level, false)` (treasure = false) is replaced by the
+            // 1.21.1 form that selects from the `minecraft:on_traded_equipment` enchantment tag, which is what
+            // vanilla's own EnchantedItemForEmeralds listing uses.
+            RegistryAccess registryAccess = trader.level().registryAccess();
+            Optional<HolderSet.Named<Enchantment>> optional = registryAccess.registryOrThrow(Registries.ENCHANTMENT)
+                    .getTag(EnchantmentTags.ON_TRADED_EQUIPMENT);
+            ItemStack itemstack = EnchantmentHelper.enchantItem(rand, new ItemStack(this.sellingStack.getItem()), i, registryAccess, optional);
             IAlloyItem.createDirectAlloyNBT(itemstack,alloyData,alloyRecipe,alloyNameOverride);
             int j = Math.min(this.emeraldCount + i, 64);
-            ItemStack itemstack1 = new ItemStack(Items.EMERALD, j);
-            return new MerchantOffer(itemstack1, itemstack, this.maxUses, this.xpValue, this.priceMultiplier);
+            return new MerchantOffer(new ItemCost(Items.EMERALD, j), itemstack, this.maxUses, this.xpValue, this.priceMultiplier);
         }
     }
 
@@ -68,7 +85,10 @@ public class RankineVillagerTrades {
         }
 
         public RandomItemFromTagForEmeraldsTrade(TagKey<Item> tag, Item fallback, int amount, int emeraldCount, int maxUses, int xpValue, float priceMultiplier) {
-            this.sellingStack = new ItemStack(ForgeRegistries.ITEMS.tags().getTag(tag).getRandomElement(new Random()).orElse(fallback),amount);
+            this.sellingStack = new ItemStack(BuiltInRegistries.ITEM.getTag(tag)
+                    .flatMap(holderSet -> holderSet.getRandomElement(RandomSource.create()))
+                    .map(Holder::value)
+                    .orElse(fallback), amount);
 
             this.emeraldCount = emeraldCount;
             this.maxUses = maxUses;
@@ -76,8 +96,9 @@ public class RankineVillagerTrades {
             this.priceMultiplier = priceMultiplier;
         }
 
-        public MerchantOffer getOffer(Entity trader, Random rand) {
-            return new MerchantOffer(new ItemStack(Items.EMERALD), sellingStack, this.maxUses, this.xpValue, this.priceMultiplier);
+        @Override
+        public MerchantOffer getOffer(Entity trader, RandomSource rand) {
+            return new MerchantOffer(new ItemCost(Items.EMERALD), sellingStack, this.maxUses, this.xpValue, this.priceMultiplier);
         }
     }
 
@@ -85,7 +106,10 @@ public class RankineVillagerTrades {
         List<VillagerTrades.ItemListing> trades = new ArrayList<>();
         if (tag != null) {
 
-            for (Item item : ForgeRegistries.ITEMS.tags().getTag(tag).stream().toList()) {
+            List<Item> tagItems = BuiltInRegistries.ITEM.getTag(tag)
+                    .map(holderSet -> holderSet.stream().map(Holder::value).toList())
+                    .orElse(List.of());
+            for (Item item : tagItems) {
                 trades.add(new BasicItemListing(emeraldCount, new ItemStack(item,amount), maxUses, xpValue, mult));
             }
         } else {

@@ -11,15 +11,14 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.Tiers;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.neoforge.common.TierSortingRegistry;
-import net.neoforged.neoforge.event.world.PistonEvent;
+import net.neoforged.neoforge.event.level.PistonEvent;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class PistonHandler {
@@ -39,11 +38,17 @@ public class PistonHandler {
         miningMap.put(RankineBlocks.NETHERITE_TIER_MINING_HEAD.get(), Tiers.NETHERITE);
     }
 
+    /**
+     * 1.21.1 changes: PistonEvent moved to event.level; getWorld() -> getLevel();
+     * TierSortingRegistry is GONE — "is this tier good enough for drops" is now expressed as
+     * "the block is not in the tier's incorrect-blocks tag" (see SimpleTier/DiggerItem).
+     * getAllRecipesFor returns RecipeHolder wrappers.
+     */
     public static void onPistonExtendPre(PistonEvent.Pre event) {
         if (!event.getPistonMoveType().equals(PistonEvent.PistonMoveType.EXTEND)) return;
         Direction dir = event.getDirection();
         BlockPos facePos = event.getFaceOffsetPos();
-        LevelAccessor levelIn = event.getWorld();
+        LevelAccessor levelIn = event.getLevel();
         BlockState headState = levelIn.getBlockState(facePos);
         if (levelIn.isClientSide() || !levelIn.getLevelData().getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS) || levelIn.getServer() == null) return;
         if (levelIn.getBlockState(facePos.relative(dir,2)).isAir()) return;
@@ -51,17 +56,18 @@ public class PistonHandler {
         if (crushingMap.containsKey(headState.getBlock())) {
             Tier currentTier = crushingMap.get(levelIn.getBlockState(facePos).getBlock());
             BlockState state = levelIn.getBlockState(facePos.relative(dir, 2));
-            if (!TierSortingRegistry.isCorrectTierForDrops(currentTier, state)) return;
+            if (!isCorrectTierForDrops(currentTier, state)) return;
             int power = headState.getValue(MiningHeadBlock.POWER);
             power += Math.floor(4/state.getBlock().defaultDestroyTime()) + (levelIn.getRandom().nextFloat() <= Math.sqrt(4/state.getBlock().defaultDestroyTime() % 1) ? 1 : 0);
             if (power == headState.getValue(MiningHeadBlock.POWER)) return;
             if (power >= 15) {
                 levelIn.destroyBlock(facePos.relative(dir,2), false);
                 power = 0;
-                for (CrushingRecipe recipe : levelIn.getServer().getRecipeManager().getAllRecipesFor(RankineRecipeTypes.CRUSHING)) {
+                for (RecipeHolder<CrushingRecipe> holder : levelIn.getServer().getRecipeManager().getAllRecipesFor(RankineRecipeTypes.CRUSHING.get())) {
+                    CrushingRecipe recipe = holder.value();
                     for (ItemStack s : recipe.getIngredientAsStackList().clone()) {
                         if (s.getItem() == state.getBlock().asItem()) {
-                            List<ItemStack> results = recipe.getResults(currentTier, levelIn.getRandom(), PeriodicTableUtils.getInstance().getCrushingAmountFromTier(currentTier)  + 1);
+                            java.util.List<ItemStack> results = recipe.getResults(currentTier, levelIn.getRandom(), PeriodicTableUtils.getInstance().getCrushingAmountFromTier(currentTier)  + 1);
                             for (ItemStack t : results) {
                                 Block.popResource((ServerLevel) levelIn,facePos.relative(dir,2),t.copy());
                             }
@@ -76,7 +82,7 @@ public class PistonHandler {
         } else if (miningMap.containsKey(headState.getBlock())) {
             Tier currentTier = miningMap.get(levelIn.getBlockState(facePos).getBlock());
             BlockState state = levelIn.getBlockState(facePos.relative(dir, 2));
-            if (!TierSortingRegistry.isCorrectTierForDrops(currentTier, state)) return;
+            if (!isCorrectTierForDrops(currentTier, state)) return;
             int power = headState.getValue(MiningHeadBlock.POWER);
             power += Math.floor(4f/state.getDestroySpeed(levelIn, facePos.relative(dir,2))) + (levelIn.getRandom().nextFloat() <= Math.sqrt(4f/state.getDestroySpeed(levelIn, facePos.relative(dir,2)) % 1) ? 1 : 0);
             if (power == headState.getValue(MiningHeadBlock.POWER)) return;
@@ -88,6 +94,11 @@ public class PistonHandler {
         }
 
 
+    }
+
+    /** Replacement for the removed TierSortingRegistry.isCorrectTierForDrops(tier, state). */
+    private static boolean isCorrectTierForDrops(Tier tier, BlockState state) {
+        return tier != null && !state.is(tier.getIncorrectBlocksForDrops());
     }
 
 }

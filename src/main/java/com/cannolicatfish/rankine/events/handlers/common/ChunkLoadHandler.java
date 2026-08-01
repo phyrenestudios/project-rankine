@@ -1,24 +1,23 @@
 package com.cannolicatfish.rankine.events.handlers.common;
 
-import com.cannolicatfish.rankine.capabilities.ChunkRetrogenProvider;
-import com.cannolicatfish.rankine.capabilities.IChunkRetrogenHandler;
 import com.cannolicatfish.rankine.init.Config;
+import com.cannolicatfish.rankine.init.RankineAttachments;
 import com.cannolicatfish.rankine.util.ReplacementUtils;
 import net.minecraft.world.level.chunk.ChunkAccess;
-import net.minecraft.world.level.chunk.ChunkStatus;
-import net.neoforged.neoforge.common.capabilities.ICapabilityProvider;
-import net.neoforged.neoforge.common.util.LazyOptional;
-import net.neoforged.neoforge.event.world.ChunkEvent;
+import net.minecraft.world.level.chunk.status.ChunkStatus;
+import net.neoforged.neoforge.event.level.ChunkEvent;
 
 public class ChunkLoadHandler {
+    // 1.21.1: the retrogen chunk capability became the RankineAttachments.RETROGEN_DONE attachment.
+    // ChunkAccess implements IAttachmentHolder, so getData/setData replace LazyOptional plumbing.
+    // getStatus() -> getPersistedStatus(); ChunkStatus moved to ...chunk.status.
     public static void retrogenChunk(ChunkEvent.Load event) {
-        if (!event.getWorld().isClientSide() && Config.WORLDGEN.RETRO_GEN.get()) {
+        if (!event.getLevel().isClientSide() && Config.WORLDGEN.RETRO_GEN.get()) {
             ChunkAccess chunkAccess = event.getChunk();
-            if (chunkAccess instanceof ICapabilityProvider && chunkAccess.getStatus().isOrAfter(ChunkStatus.FULL)) {
-                LazyOptional<IChunkRetrogenHandler> capability = ((ICapabilityProvider) chunkAccess).getCapability(ChunkRetrogenProvider.CAPABILITY, null);
-                if (capability.isPresent() && capability.resolve().isPresent() && !capability.resolve().get().getValue()) {
+            if (chunkAccess.getPersistedStatus().isOrAfter(ChunkStatus.FULL)) {
+                if (!chunkAccess.getData(RankineAttachments.RETROGEN_DONE.get())) {
                     ReplacementUtils.performRetrogenReplacement(chunkAccess);
-                    capability.ifPresent(iChunkRetrogenHandler -> iChunkRetrogenHandler.setValue(true));
+                    chunkAccess.setData(RankineAttachments.RETROGEN_DONE.get(), true);
                 }
             }
         }

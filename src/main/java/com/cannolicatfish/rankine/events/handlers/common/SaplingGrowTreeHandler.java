@@ -1,21 +1,14 @@
 package com.cannolicatfish.rankine.events.handlers.common;
 
 import com.cannolicatfish.rankine.init.Config;
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.block.Blocks;
-import net.neoforged.neoforge.event.world.SaplingGrowTreeEvent;
-import net.neoforged.bus.api.Event;
+import net.neoforged.neoforge.event.level.BlockGrowFeatureEvent;
 
 public class SaplingGrowTreeHandler {
-    public static void onSaplingGrow(SaplingGrowTreeEvent event) {
-        if (event.getRand().nextFloat() < 1- Config.GENERAL.SAPLING_GROW.get()) {
-            event.setResult(Event.Result.DENY);
+    // 1.21.1: SaplingGrowTreeEvent -> BlockGrowFeatureEvent; Event.Result.DENY -> setCanceled(true).
+    public static void onSaplingGrow(BlockGrowFeatureEvent event) {
+        if (event.getRandom().nextFloat() < 1 - Config.GENERAL.SAPLING_GROW.get()) {
+            event.setCanceled(true);
         }
-        BlockPos pos = event.getPos();
-        LevelAccessor worldIn = event.getWorld();
-        if (worldIn.getBlockState(pos).is(Blocks.SPRUCE_SAPLING)) {
-
-        }
+        // 1.18.2 had an empty spruce-sapling branch here; nothing to port.
     }
 }

@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.blocks;
 
-import net.minecraft.world.damagesource.DamageSource;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -10,21 +10,26 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 
-import java.util.Arrays;
-import java.util.List;
-
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class RubberBlock extends Block {
+    public static final MapCodec<RubberBlock> CODEC = simpleCodec(RubberBlock::new);
+
+    @Override
+    public MapCodec<? extends RubberBlock> codec() {
+        return CODEC;
+    }
+
     public RubberBlock(Properties properties) {
         super(properties);
     }
 
+    @Override
     public void fallOn(Level worldIn, BlockState bs, BlockPos pos, Entity entityIn, float fallDistance) {
         if (entityIn.isSuppressingBounce()) {
             super.fallOn(worldIn, bs, pos, entityIn, fallDistance);
         } else {
-            entityIn.causeFallDamage(fallDistance, 0.2F, DamageSource.FALL);
+            entityIn.causeFallDamage(fallDistance, 0.2F, entityIn.damageSources().fall());
         }
 
     }
@@ -33,6 +38,7 @@ public class RubberBlock extends Block {
      * Called when an Entity lands on this Block. This method *must* update motionY because the entity will not do that
      * on its own
      */
+    @Override
     public void updateEntityAfterFallOn(BlockGetter worldIn, Entity entityIn) {
         if (entityIn.isSuppressingBounce()) {
             super.updateEntityAfterFallOn(worldIn, entityIn);
@@ -54,6 +60,7 @@ public class RubberBlock extends Block {
     /**
      * Called when the given entity walks on this Block
      */
+    @Override
     public void stepOn(Level worldIn, BlockPos pos, BlockState state, Entity entityIn) {
         double d0 = Math.abs(entityIn.getDeltaMovement().y);
         if (d0 < 0.1D && !entityIn.isSteppingCarefully()) {

@@ -7,11 +7,14 @@ import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
-import net.neoforged.bus.api.Event;
 
 public class EntityInteractHandler {
+    // 1.21.1: getPlayer() -> getEntity(); entity.level field -> level().
+    // PORT-NOTE: the old event.setResult(Event.Result.ALLOW/DENY) calls were inert —
+    // PlayerInteractEvent.EntityInteract has never been a @HasResult event (only cancellation and
+    // cancellationResult are consulted), and Event.Result is gone in NeoForge 21.1. Dropped 1:1.
     public static void breedables(PlayerInteractEvent.EntityInteract event) {
-        Player player = event.getPlayer();
+        Player player = event.getEntity();
         Entity ent = event.getTarget();
         ItemStack itemStack = event.getItemStack();
 
@@ -38,12 +41,11 @@ public class EntityInteractHandler {
 
             if (flag) {
                 int i = entA.getAge();
-                if (!entA.level.isClientSide && i == 0 && entA.canFallInLove()) {
+                if (!entA.level().isClientSide && i == 0 && entA.canFallInLove()) {
                     if (!player.getAbilities().instabuild) {
                         itemStack.shrink(1);
                     }
                     entA.setInLove(player);
-                    event.setResult(Event.Result.ALLOW);
                 }
 
                 if (entA.isBaby()) {
@@ -51,14 +53,7 @@ public class EntityInteractHandler {
                         itemStack.shrink(1);
                     }
                     entA.ageUp((int) ((float) (-i / 20) * 0.1F), true);
-                    event.setResult(Event.Result.ALLOW);
                 }
-
-                if (entA.level.isClientSide) {
-                    event.setResult(Event.Result.ALLOW);
-                }
-            } else {
-                event.setResult(Event.Result.DENY);
             }
 
         }

@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.blocks;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -21,13 +22,20 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import javax.annotation.Nullable;
 
 public class StumpBlock extends Block implements SimpleWaterloggedBlock {
+    public static final MapCodec<StumpBlock> CODEC = simpleCodec(StumpBlock::new);
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
+
+    @Override
+    public MapCodec<? extends StumpBlock> codec() {
+        return CODEC;
+    }
 
     public StumpBlock(Properties properties) {
         super(properties);
         this.registerDefaultState(this.stateDefinition.any().setValue(WATERLOGGED, false));
     }
 
+    @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(WATERLOGGED);
     }
@@ -56,6 +64,7 @@ public class StumpBlock extends Block implements SimpleWaterloggedBlock {
         return super.updateShape(stateIn, facing, facingState, levelIn, currentPos, facingPos);
     }
 
+    @Override
     public FluidState getFluidState(BlockState state) {
         return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }

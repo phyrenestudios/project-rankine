@@ -133,7 +133,13 @@ public class AlloyFurnaceTile extends BlockEntity implements WorldlyContainer, M
             ItemStack[] inputs = new ItemStack[]{tile.items.get(0), tile.items.get(1), tile.items.get(2),tile.items.get(3),tile.items.get(4),tile.items.get(5)};
             ItemStack fuel = tile.items.get(6);
             if ((tile.isBurning() || !fuel.isEmpty() && !Arrays.stream(inputs).allMatch(ItemStack::isEmpty))) {
-                AlloyingRecipe irecipe = level.getRecipeManager().getRecipeFor(RankineRecipeTypes.ALLOYING.get(), new RecipeWrapper(new InvWrapper(tile)), level).map(RecipeHolder::value).orElse(null);
+                // Type 1 selects alloy-furnace recipes; the plain matches() cannot distinguish
+                // furnace kinds now that the recipe sees a RecipeWrapper instead of the tile.
+                RecipeWrapper recipeInput = new RecipeWrapper(new InvWrapper(tile));
+                AlloyingRecipe irecipe = level.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.ALLOYING.get()).stream()
+                        .map(RecipeHolder::value)
+                        .filter(r -> r.matches(recipeInput, level, 1))
+                        .findFirst().orElse(null);
                 if (!tile.isBurning() && tile.canSmelt(irecipe,tile)) {
                     tile.burnTime = fuel.getBurnTime(RecipeType.SMELTING);
                     tile.currentBurnTime = tile.burnTime;

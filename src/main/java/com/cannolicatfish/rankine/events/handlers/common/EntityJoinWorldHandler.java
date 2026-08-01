@@ -19,14 +19,17 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.neoforge.event.entity.EntityJoinWorldEvent;
+import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
 
+/**
+ * 1.21.1: EntityJoinWorldEvent -> EntityJoinLevelEvent; getWorld() -> getLevel().
+ * TemptGoal now takes a Predicate&lt;ItemStack&gt; — Ingredient implements it, so the calls are unchanged.
+ */
 public class EntityJoinWorldHandler {
-    
-    public static void onLightningEvent(EntityJoinWorldEvent event) {
-        if (event.getEntity() instanceof LightningBolt) {
-            LightningBolt entity = (LightningBolt) event.getEntity();
-            Level worldIn = event.getWorld();
+
+    public static void onLightningEvent(EntityJoinLevelEvent event) {
+        if (event.getEntity() instanceof LightningBolt entity) {
+            Level worldIn = event.getLevel();
             BlockPos startPos = entity.blockPosition().below();
             if (!worldIn.isClientSide && Config.GENERAL.LIGHTNING_CONVERSION.get()) {
                 Iterable<BlockPos> positions = BlockPos.withinManhattan(startPos,2,2,2);
@@ -57,7 +60,7 @@ public class EntityJoinWorldHandler {
         }
     }
 
-    public static void onSheepJoinWorld(EntityJoinWorldEvent event) {
+    public static void onSheepJoinWorld(EntityJoinLevelEvent event) {
         Entity entity = event.getEntity();
         if (entity instanceof Sheep ent) {
             ent.goalSelector.removeGoal(new EatBlockGoal(ent));

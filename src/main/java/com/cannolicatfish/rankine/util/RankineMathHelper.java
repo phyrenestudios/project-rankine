@@ -1,8 +1,5 @@
 package com.cannolicatfish.rankine.util;
 
-import java.util.List;
-import java.util.Random;
-
 public class RankineMathHelper {
 
     public static float[] linspace(float min, float max, int steps) {

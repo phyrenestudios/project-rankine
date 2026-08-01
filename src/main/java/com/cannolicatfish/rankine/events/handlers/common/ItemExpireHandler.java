@@ -1,29 +1,30 @@
 package com.cannolicatfish.rankine.events.handlers.common;
 
-import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.recipe.RockGeneratorRecipe;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.SimpleContainer;
-import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.event.entity.item.ItemExpireEvent;
 
 public class ItemExpireHandler {
 
+    // 1.21.1: getEntityItem() -> getEntity(); entity.level field -> level(); recipe lookup returns
+    // Optional<RecipeHolder<R>> and takes a RecipeInput (SingleRecipeInput) instead of a Container.
     public static void onItemPickup(ItemExpireEvent event) {
-        if (event.getEntityItem().isInWater()) {
-            RockGeneratorRecipe recipe = event.getEntityItem().getLevel().getRecipeManager().getRecipeFor(RankineRecipeTypes.ROCK_GENERATOR,new SimpleContainer(event.getEntityItem().getItem()),event.getEntityItem().getLevel()).orElse(null);
+        if (event.getEntity().isInWater()) {
+            Level levelIn = event.getEntity().level();
+            RockGeneratorRecipe recipe = levelIn.getRecipeManager()
+                    .getRecipeFor(RankineRecipeTypes.ROCK_GENERATOR.get(), new SingleRecipeInput(event.getEntity().getItem()), levelIn)
+                    .map(RecipeHolder::value).orElse(null);
             if (recipe != null) {
                 ItemStack output = recipe.getResultItem();
                 if (!output.isEmpty() && output.getItem() instanceof BlockItem blockItem) {
-                    Level levelIn = event.getEntityItem().getLevel();
-                    BlockPos.findClosestMatch(event.getEntityItem().getOnPos(), 1, 4, pos -> (levelIn.getBlockState(pos.below()).isFaceSturdy(levelIn, pos.below(), Direction.UP) && !levelIn.isWaterAt(pos.below()))
+                    BlockPos.findClosestMatch(event.getEntity().getOnPos(), 1, 4, pos -> (levelIn.getBlockState(pos.below()).isFaceSturdy(levelIn, pos.below(), Direction.UP) && !levelIn.isWaterAt(pos.below()))
                             && (levelIn.isWaterAt(pos))).ifPresent(placementPos -> levelIn.setBlock(placementPos, blockItem.getBlock().defaultBlockState(), 3));
                 }
 

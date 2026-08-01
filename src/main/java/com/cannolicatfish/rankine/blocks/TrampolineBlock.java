@@ -2,7 +2,7 @@ package com.cannolicatfish.rankine.blocks;
 
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineBlocks;
-import net.minecraft.world.damagesource.DamageSource;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.entity.Entity;
@@ -21,20 +21,29 @@ import java.util.Stack;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class TrampolineBlock extends Block {
+    public static final MapCodec<TrampolineBlock> CODEC = simpleCodec(TrampolineBlock::new);
+
+    @Override
+    public MapCodec<? extends TrampolineBlock> codec() {
+        return CODEC;
+    }
+
     public TrampolineBlock(Properties properties) {
         super(properties);
     }
 
+    @Override
     public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
         return Block.box(0.0D, 12.0D, 0.0D, 16.0D, 14.0D, 16.0D);
     }
 
 
+    @Override
     public void fallOn(Level worldIn, BlockState state, BlockPos pos, Entity entityIn, float fallDistance) {
         if (entityIn.isSuppressingBounce()) {
             super.fallOn(worldIn, state, pos, entityIn, fallDistance);
         } else {
-            entityIn.causeFallDamage(fallDistance, 0.0f, DamageSource.FALL);
+            entityIn.causeFallDamage(fallDistance, 0.0f, entityIn.damageSources().fall());
         }
 
     }
@@ -43,6 +52,7 @@ public class TrampolineBlock extends Block {
      * Called when an Entity lands on this Block. This method *must* update motionY because the entity will not do that
      * on its own
      */
+    @Override
     public void updateEntityAfterFallOn(BlockGetter worldIn, Entity entityIn) {
         if (entityIn.isSuppressingBounce()) {
             super.updateEntityAfterFallOn(worldIn, entityIn);

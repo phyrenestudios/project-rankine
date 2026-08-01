@@ -2085,16 +2085,7 @@ public class RankineItems {
     public static final DeferredItem<Item> MAPLE_SYRUP = ITEMS.register("maple_syrup", () -> new DrinkItem(new Item.Properties().craftRemainder(Items.GLASS_BOTTLE).food(RankineFoods.MAPLE_SYRUP)));
 
 
-    // PORT-TODO(init): @ObjectHolder is removed in NeoForge 1.21.1 (no reflective post-registration field injection anymore).
-    // The real registration lives in RankineContainers.ELEMENT_INDEXER_CONTAINER (a DeferredHolder<MenuType<?>, MenuType<ElementIndexerContainer>>),
-    // which is NOT bound to a value until the registry RegisterEvent fires (after this class's static init runs), so we
-    // cannot eagerly call .get() here. Re-exposing the holder itself instead of a raw MenuType means the two consumers of
-    // this field must be updated to call .get() at their point of use (both happen well after registration, at menu-open
-    // / screen-registration time, so .get() is safe there):
-    //   - com.cannolicatfish.rankine.items.indexer.ElementIndexerContainer (static import of this field, used in its super(...) call)
-    //   - com.cannolicatfish.rankine.init.ClientProxy line ~98: MenuScreens.register(RankineItems.ELEMENT_INDEXER_CONTAINER, ElementIndexerScreen::new)
-    // Neither file is owned by this pass; flagged here for whoever owns them.
-    public static final net.neoforged.neoforge.registries.DeferredHolder<MenuType<?>, MenuType<ElementIndexerContainer>> ELEMENT_INDEXER_CONTAINER = RankineContainers.ELEMENT_INDEXER_CONTAINER;
+    // The element indexer's MenuType lives in RankineContainers; both consumers reference it there directly.
 
 /*
     public static void itemInit() {

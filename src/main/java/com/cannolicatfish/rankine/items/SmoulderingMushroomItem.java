@@ -6,6 +6,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -39,9 +40,7 @@ public class SmoulderingMushroomItem extends Item {
                 ItemStack itemstack = p_41297_.getItemInHand();
                 if (player instanceof ServerPlayer) {
                     CriteriaTriggers.PLACED_BLOCK.trigger((ServerPlayer)player, blockpos1, itemstack);
-                    itemstack.hurtAndBreak(1, player, (p_41300_) -> {
-                        p_41300_.broadcastBreakEvent(p_41297_.getHand());
-                    });
+                    itemstack.hurtAndBreak(1, player, LivingEntity.getSlotForHand(p_41297_.getHand()));
                     if (level.getRandom().nextFloat() < 0.2) {
                         p_41297_.getItemInHand().shrink(1);
                     }
@@ -56,9 +55,7 @@ public class SmoulderingMushroomItem extends Item {
             level.setBlock(blockpos, blockstate.setValue(BlockStateProperties.LIT, Boolean.TRUE), 11);
             level.gameEvent(player, GameEvent.BLOCK_PLACE, blockpos);
             if (player != null) {
-                p_41297_.getItemInHand().hurtAndBreak(1, player, (p_41303_) -> {
-                    p_41303_.broadcastBreakEvent(p_41297_.getHand());
-                });
+                p_41297_.getItemInHand().hurtAndBreak(1, player, LivingEntity.getSlotForHand(p_41297_.getHand()));
                 if (level.getRandom().nextFloat() < 0.2) {
                     p_41297_.getItemInHand().shrink(1);
                 }

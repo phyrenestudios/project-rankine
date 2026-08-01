@@ -15,7 +15,7 @@ import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.SlotItemHandler;
 import net.neoforged.neoforge.items.wrapper.InvWrapper;
 
-import static com.cannolicatfish.rankine.init.RankineItems.ELEMENT_INDEXER_CONTAINER;
+import static com.cannolicatfish.rankine.init.RankineContainers.ELEMENT_INDEXER_CONTAINER;
 
 public class ElementIndexerContainer extends AbstractContainerMenu {
     private Player playerEntity;
@@ -25,7 +25,7 @@ public class ElementIndexerContainer extends AbstractContainerMenu {
     private Item currentItem;
 
     public ElementIndexerContainer(int windowId, Inventory playerInventory, Player player) {
-        super(ELEMENT_INDEXER_CONTAINER, windowId);
+        super(ELEMENT_INDEXER_CONTAINER.get(), windowId);
         this.playerEntity = player;
         this.playerInventory = new InvWrapper(playerInventory);
         this.handler = new ElementIndexerItem.ElementIndexerIItemHandler();

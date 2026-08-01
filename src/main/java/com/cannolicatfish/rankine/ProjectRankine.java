@@ -42,6 +42,11 @@ public class ProjectRankine {
         RankineFluids.FLUIDS.register(modBus);
         RankineFluids.FLUID_TYPES.register(modBus);
         RankineAttributes.ATTRIBUTES.register(modBus);
+        RankineArmorMaterials.ARMOR_MATERIALS.register(modBus);
+        RankineAttachments.ATTACHMENT_TYPES.register(modBus);
+        RankineCriteriaTriggers.ITEM_SUB_PREDICATE_TYPES.register(modBus);
+        RankineBiomeModifierTypes.BIOME_MODIFIER_SERIALIZERS.register(modBus);
+        RankineWorldgenTypes.PLACEMENT_MODIFIER_TYPES.register(modBus);
 
         modBus.addListener(this::commonSetup);
         modBus.addListener(this::loadComplete);
