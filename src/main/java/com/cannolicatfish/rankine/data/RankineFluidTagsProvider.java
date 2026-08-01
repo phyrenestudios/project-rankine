@@ -5,7 +5,7 @@ import com.cannolicatfish.rankine.init.RankineFluids;
 import com.cannolicatfish.rankine.init.RankineTags;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.FluidTagsProvider;
-import net.minecraftforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 
 public class RankineFluidTagsProvider extends FluidTagsProvider {

@@ -12,9 +12,9 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.client.model.generators.ItemModelBuilder;
-import net.minecraftforge.client.model.generators.ItemModelProvider;
-import net.minecraftforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.client.model.generators.ItemModelBuilder;
+import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 import javax.annotation.Nonnull;
 import java.util.Arrays;
@@ -83,7 +83,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
             buildingModeItem(Wood.getBookshelf().asItem(), ((BuildingModeBlock) Wood.getBookshelf()).getMaxStyles());
             basicItem(Wood.getBoat());
             if (Wood.isTree()) {
-                withExistingParent(Wood.getLeaves().getRegistryName().getPath(), new ResourceLocation("rankine","block/"+Wood.getLeaves().getRegistryName().getPath()+"_age0"));
+                withExistingParent(Wood.getLeaves().getRegistryName().getPath(), ResourceLocation.fromNamespaceAndPath("rankine","block/"+Wood.getLeaves().getRegistryName().getPath()+"_age0"));
                 basicItemAltTexture(Wood.getSapling().asItem(), modLoc("block/" + Wood.getSapling().getRegistryName().getPath()));
                 withExistingParent(Wood.getLeafLitter());
             }
@@ -474,22 +474,22 @@ public class RankineItemModelProvider extends ItemModelProvider {
         for (Block BLK : Stream.of(RankineLists.GLAZED_PORCELAIN_BLOCKS,RankineLists.VANILLA_BRICKS).flatMap(Collection::stream).collect(Collectors.toList())) {
             buildingModeItem(BLK.asItem(), ((BuildingModeBlock) BLK).getMaxStyles());
         }
-        withExistingParent(RankineBlocks.TILLED_SOIL.get().getRegistryName().getPath(), new ResourceLocation("rankine","block/tilled_soil_loam"));
-        withExistingParent(RankineBlocks.STUMP.get().getRegistryName().getPath(), new ResourceLocation("rankine","block/stump0"));
-        withExistingParent(RankineBlocks.MIXING_BARREL.get().getRegistryName().getPath(), new ResourceLocation("rankine","block/mixing_barrel0"));
+        withExistingParent(RankineBlocks.TILLED_SOIL.get().getRegistryName().getPath(), ResourceLocation.fromNamespaceAndPath("rankine","block/tilled_soil_loam"));
+        withExistingParent(RankineBlocks.STUMP.get().getRegistryName().getPath(), ResourceLocation.fromNamespaceAndPath("rankine","block/stump0"));
+        withExistingParent(RankineBlocks.MIXING_BARREL.get().getRegistryName().getPath(), ResourceLocation.fromNamespaceAndPath("rankine","block/mixing_barrel0"));
 
-        withExistingParent(RankineBlocks.ASPHALT.get().getRegistryName().getPath(), new ResourceLocation("rankine","block/asphalt_size4"));
-        withExistingParent(RankineBlocks.RED_ASPHALT.get().getRegistryName().getPath(), new ResourceLocation("rankine","block/red_asphalt_size4"));
-        withExistingParent(RankineBlocks.GRAY_ASPHALT.get().getRegistryName().getPath(), new ResourceLocation("rankine","block/gray_asphalt_size4"));
-        withExistingParent(RankineBlocks.DARK_GRAY_ASPHALT.get().getRegistryName().getPath(), new ResourceLocation("rankine","block/dark_gray_asphalt_size4"));
-        withExistingParent(RankineBlocks.BLUE_ASPHALT.get().getRegistryName().getPath(), new ResourceLocation("rankine","block/blue_asphalt_size4"));
-        withExistingParent(RankineBlocks.GREEN_ASPHALT.get().getRegistryName().getPath(), new ResourceLocation("rankine","block/green_asphalt_size4"));
+        withExistingParent(RankineBlocks.ASPHALT.get().getRegistryName().getPath(), ResourceLocation.fromNamespaceAndPath("rankine","block/asphalt_size4"));
+        withExistingParent(RankineBlocks.RED_ASPHALT.get().getRegistryName().getPath(), ResourceLocation.fromNamespaceAndPath("rankine","block/red_asphalt_size4"));
+        withExistingParent(RankineBlocks.GRAY_ASPHALT.get().getRegistryName().getPath(), ResourceLocation.fromNamespaceAndPath("rankine","block/gray_asphalt_size4"));
+        withExistingParent(RankineBlocks.DARK_GRAY_ASPHALT.get().getRegistryName().getPath(), ResourceLocation.fromNamespaceAndPath("rankine","block/dark_gray_asphalt_size4"));
+        withExistingParent(RankineBlocks.BLUE_ASPHALT.get().getRegistryName().getPath(), ResourceLocation.fromNamespaceAndPath("rankine","block/blue_asphalt_size4"));
+        withExistingParent(RankineBlocks.GREEN_ASPHALT.get().getRegistryName().getPath(), ResourceLocation.fromNamespaceAndPath("rankine","block/green_asphalt_size4"));
 
         for (Block blk : RankineLists.WALL_MUSHROOMS) {
             basicItemAltTexture(blk.asItem(), modLoc("item/" + blk.getRegistryName().getPath()));
         }
         for (Block blk : RankineLists.ALLOY_POLES) {
-            withExistingParent(blk.getRegistryName().getPath(), new ResourceLocation("rankine","block/" + blk.getRegistryName().getPath() + "0"));
+            withExistingParent(blk.getRegistryName().getPath(), ResourceLocation.fromNamespaceAndPath("rankine","block/" + blk.getRegistryName().getPath() + "0"));
         }
         for (Block blk : RankineLists.ALLOY_BARS) {
             basicItemAltTexture(blk.asItem(), modLoc("block/alloy_bars1"));
@@ -606,7 +606,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
         String Path = item.getRegistryName().getPath();
         ItemModelBuilder thing = withExistingParent(Path, RankineBlockStateProvider.getBlockRSL(Path+"1"));
         for (int i = 2; i <= maxModes; i++) {
-            thing.override().predicate(new ResourceLocation("rankine:building_mode"), (float) i).model(getExistingFile(RankineBlockStateProvider.getBlockRSL(Path+i))).end();
+            thing.override().predicate(ResourceLocation.parse("rankine:building_mode"), (float) i).model(getExistingFile(RankineBlockStateProvider.getBlockRSL(Path+i))).end();
         }
     }
     private void buildingModeGeneratedItem(Item item, int maxModes) {
@@ -616,7 +616,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
         getBuilder(Path+"4").parent(getExistingFile(mcLoc("item/generated"))).texture("layer0", "block/metal_ladder4");
         ItemModelBuilder thing = getBuilder(Path).parent(getExistingFile(mcLoc("item/generated"))).texture("layer0", "block/metal_ladder1");
         for (int i = 2; i <= maxModes; i++) {
-            thing.override().predicate(new ResourceLocation("rankine:building_mode"), (float) i).model(getExistingFile(modLoc("item/"+Path+i))).end();
+            thing.override().predicate(ResourceLocation.parse("rankine:building_mode"), (float) i).model(getExistingFile(modLoc("item/"+Path+i))).end();
         }
     }
 
@@ -624,13 +624,13 @@ public class RankineItemModelProvider extends ItemModelProvider {
         String Path = item.getRegistryName().getPath();
         getBuilder(Path).parent(getExistingFile(mcLoc("item/generated"))).texture("layer0", "item/" + Path);
         getBuilder(Path+"_throwing").parent(getExistingFile(modLoc("item/spear_throwing"))).texture("layer0", "item/" + Path);
-        getBuilder(Path).parent(getExistingFile(modLoc("item/spear_in_hand"))).texture("layer0", "item/" + Path).override().predicate(new ResourceLocation("throwing"), 1.0f).model(getExistingFile(modLoc("item/"+Path+"_throwing")));
+        getBuilder(Path).parent(getExistingFile(modLoc("item/spear_in_hand"))).texture("layer0", "item/" + Path).override().predicate(ResourceLocation.parse("throwing"), 1.0f).model(getExistingFile(modLoc("item/"+Path+"_throwing")));
     }
 
     private void filledTagItem(Item item) {
         String Path = item.getRegistryName().getPath();
         getBuilder(Path+"_filled").parent(getExistingFile(mcLoc("item/handheld"))).texture("layer0", "item/" + Path+"_filled");
-        getBuilder(Path).parent(getExistingFile(mcLoc("item/handheld"))).texture("layer0", "item/" + Path).override().predicate(new ResourceLocation("rankine:filled"), 1).model(getExistingFile(modLoc("item/"+Path+"_filled")));
+        getBuilder(Path).parent(getExistingFile(mcLoc("item/handheld"))).texture("layer0", "item/" + Path).override().predicate(ResourceLocation.parse("rankine:filled"), 1).model(getExistingFile(modLoc("item/"+Path+"_filled")));
     }
     
 }

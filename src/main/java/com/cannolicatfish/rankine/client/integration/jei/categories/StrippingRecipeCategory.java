@@ -13,14 +13,14 @@ import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 
 public class StrippingRecipeCategory implements IRecipeCategory<StrippingRecipe> {
 
-    public static ResourceLocation UID = new ResourceLocation(ProjectRankine.MODID, "stripping");
+    public static ResourceLocation UID = ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID, "stripping");
     private final String localizedName;
     private final IDrawable background;
     private final IGuiHelper guiHelper;
@@ -28,7 +28,7 @@ public class StrippingRecipeCategory implements IRecipeCategory<StrippingRecipe>
     public StrippingRecipeCategory(IGuiHelper guiHelper) {
         this.guiHelper = guiHelper;
         localizedName = I18n.get("rankine.jei.stripping");
-        background = guiHelper.drawableBuilder(new ResourceLocation(ProjectRankine.MODID, "textures/gui/stripping_jei.png"), 0, 0, 78, 28)
+        background = guiHelper.drawableBuilder(ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID, "textures/gui/stripping_jei.png"), 0, 0, 78, 28)
                 .addPadding(1, 0, 1, 0)
                 .build();
     }
@@ -45,7 +45,7 @@ public class StrippingRecipeCategory implements IRecipeCategory<StrippingRecipe>
 
     @Override
     public Component getTitle() {
-        return new TextComponent(localizedName);
+        return Component.literal(localizedName);
     }
 
     @Override

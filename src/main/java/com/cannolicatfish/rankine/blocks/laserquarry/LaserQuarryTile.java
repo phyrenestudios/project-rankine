@@ -111,7 +111,7 @@ public class LaserQuarryTile extends TileEntity implements ISidedInventory, ITic
                     for (BlockPos TARGET_POS : BlockPos.getAllInBoxMutable(pos.add(-i,-y,-i), pos.add(i,-y,i))) {
                         Block TARGET_BLOCK = worldIn.getBlockState(TARGET_POS).getBlock();
                         boolean stop = false;
-                        if (TARGET_BLOCK != Blocks.AIR && !TARGET_BLOCK.getTags().contains(new ResourceLocation("rankine:nonquarryable"))) {
+                        if (TARGET_BLOCK != Blocks.AIR && !TARGET_BLOCK.getTags().contains(ResourceLocation.parse("rankine:nonquarryable"))) {
                             for (int height = TARGET_POS.getY(); height <= this.pos.getY(); ++height) {
                                 if (worldIn.getBlockState(new BlockPos(TARGET_POS.getX(), height, TARGET_POS.getZ())) == RankineBlocks.QUARRY_BARRIER.get().getDefaultState()) {
                                     stop = true;
@@ -132,7 +132,7 @@ public class LaserQuarryTile extends TileEntity implements ISidedInventory, ITic
 
                     /*BlockPos TARGET_POS = pos.add(x,-y,z);
                     Block TARGET_BLOCK = worldIn.getBlockState(TARGET_POS).getBlock();
-                    if (TARGET_BLOCK == Blocks.AIR || TARGET_BLOCK.getTags().contains(new ResourceLocation("rankine:nonquarryable")) || TARGET_BLOCK.getTags().contains(new ResourceLocation("forge:ores"))) {
+                    if (TARGET_BLOCK == Blocks.AIR || TARGET_BLOCK.getTags().contains(ResourceLocation.parse("rankine:nonquarryable")) || TARGET_BLOCK.getTags().contains(ResourceLocation.parse("forge:ores"))) {
                         cookTime = cookTimeTotal - 1;
                     } else {
                         worldIn.destroyBlock(TARGET_POS,false);
@@ -181,12 +181,12 @@ public class LaserQuarryTile extends TileEntity implements ISidedInventory, ITic
         return 0;
     }
 
-    net.minecraftforge.common.util.LazyOptional<? extends net.minecraftforge.items.IItemHandler>[] handlers =
-            net.minecraftforge.items.wrapper.SidedInvWrapper.create(this, Direction.UP, Direction.DOWN, Direction.NORTH);
+    net.neoforged.neoforge.common.util.LazyOptional<? extends net.neoforged.neoforge.items.IItemHandler>[] handlers =
+            net.neoforged.neoforge.items.wrapper.SidedInvWrapper.create(this, Direction.UP, Direction.DOWN, Direction.NORTH);
 
     @Override
-    public <T> net.minecraftforge.common.util.LazyOptional<T> getCapability(net.minecraftforge.common.capabilities.Capability<T> capability, @Nullable Direction facing) {
-        if (!this.removed && facing != null && capability == net.minecraftforge.items.CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+    public <T> net.neoforged.neoforge.common.util.LazyOptional<T> getCapability(net.neoforged.neoforge.common.capabilities.Capability<T> capability, @Nullable Direction facing) {
+        if (!this.removed && facing != null && capability == net.neoforged.neoforge.items.CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
             if (facing == Direction.UP)
                 return handlers[0].cast();
             else if (facing == Direction.DOWN)

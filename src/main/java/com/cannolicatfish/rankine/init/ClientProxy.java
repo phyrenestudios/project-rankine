@@ -62,30 +62,30 @@ public class ClientProxy implements IProxy {
     public static void registerItemProperties() {
         for (Item ITEM : Stream.of(RankineLists.WOODEN_TOOLS,RankineLists.STONE_TOOLS, RankineLists.FLINT_TOOLS, RankineLists.BRONZE_TOOLS, RankineLists.ALLOY_TOOLS, RankineLists.PEWTER_TOOLS, RankineLists.INVAR_TOOLS, RankineLists.TITANIUM_ALLOY_TOOLS, RankineLists.NIOBIUM_ALLOY_TOOLS, RankineLists.ZIRCONIUM_ALLOY_TOOLS, RankineLists.STEEL_TOOLS, RankineLists.STAINLESS_STEEL_TOOLS, RankineLists.COBALT_SUPERALLOY_TOOLS, RankineLists.NICKEL_SUPERALLOY_TOOLS, RankineLists.TUNGSTEN_HEAVY_ALLOY_TOOLS, RankineLists.BLACK_GOLD_TOOLS, RankineLists.BLUE_GOLD_TOOLS, RankineLists.GREEN_GOLD_TOOLS, RankineLists.ROSE_GOLD_TOOLS, RankineLists.PURPLE_GOLD_TOOLS, RankineLists.WHITE_GOLD_TOOLS, RankineLists.OSMIRIDIUM_TOOLS, RankineLists.AMALGAM_TOOLS, RankineLists.ENDER_AMALGAM_TOOLS).flatMap(Collection::stream).collect(Collectors.toList())) {
             if (ITEM instanceof SpearItem) {
-                ItemProperties.register(ITEM, new ResourceLocation("throwing"), (stack, world, living, id) ->
+                ItemProperties.register(ITEM, ResourceLocation.parse("throwing"), (stack, world, living, id) ->
                         living != null && living.isUsingItem() && living.getUseItem() == stack ? 1.0F : 0.0F);
             }
         }
 
         for (Block BLK : Stream.of(RankineLists.ALLOY_LADDERS,RankineLists.GLAZED_PORCELAIN_BLOCKS).flatMap(Collection::stream).collect(Collectors.toList())) {
-            ItemProperties.register(BLK.asItem(), new ResourceLocation(ProjectRankine.MODID, "building_mode"), (stack, world, living, id) -> stack.getTag() != null ? (float) ((BuildingModeBlockItem) BLK.asItem()).getBuildingMode(stack) : 1.0F);
+            ItemProperties.register(BLK.asItem(), ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID, "building_mode"), (stack, world, living, id) -> stack.getTag() != null ? (float) ((BuildingModeBlockItem) BLK.asItem()).getBuildingMode(stack) : 1.0F);
         }
 
         for (RankineBricks Bricks : RankineLists.RANKINE_BRICKS) {
-            ItemProperties.register(Bricks.getBricksBlock().asItem(), new ResourceLocation(ProjectRankine.MODID, "building_mode"), (stack, world, living, id) -> stack.getTag() != null ? (float) ((BuildingModeBlockItem) Bricks.getBricksBlock().asItem()).getBuildingMode(stack) : 1.0F);
+            ItemProperties.register(Bricks.getBricksBlock().asItem(), ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID, "building_mode"), (stack, world, living, id) -> stack.getTag() != null ? (float) ((BuildingModeBlockItem) Bricks.getBricksBlock().asItem()).getBuildingMode(stack) : 1.0F);
         }
         for (RankineWood Wood : RankineLists.RANKINE_WOODS) {
-            ItemProperties.register(Wood.getPlanks().asItem(), new ResourceLocation(ProjectRankine.MODID, "building_mode"), (stack, world, living, id) -> stack.getTag() != null ? (float) ((BuildingModeBlockItem) Wood.getPlanks().asItem()).getBuildingMode(stack) : 1.0F);
-            ItemProperties.register(Wood.getBookshelf().asItem(), new ResourceLocation(ProjectRankine.MODID, "building_mode"), (stack, world, living, id) -> stack.getTag() != null ? (float) ((BuildingModeBlockItem) Wood.getBookshelf().asItem()).getBuildingMode(stack) : 1.0F);
+            ItemProperties.register(Wood.getPlanks().asItem(), ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID, "building_mode"), (stack, world, living, id) -> stack.getTag() != null ? (float) ((BuildingModeBlockItem) Wood.getPlanks().asItem()).getBuildingMode(stack) : 1.0F);
+            ItemProperties.register(Wood.getBookshelf().asItem(), ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID, "building_mode"), (stack, world, living, id) -> stack.getTag() != null ? (float) ((BuildingModeBlockItem) Wood.getBookshelf().asItem()).getBuildingMode(stack) : 1.0F);
         }
         for (RankineStone Stone : RankineLists.RANKINE_STONES) {
-            ItemProperties.register(Stone.getPolished().asItem(), new ResourceLocation(ProjectRankine.MODID, "building_mode"), (stack, world, living, id) -> stack.getTag() != null ? (float) ((BuildingModeBlockItem) Stone.getPolished().asItem()).getBuildingMode(stack) : 1.0F);
-            ItemProperties.register(Stone.getBricks().asItem(), new ResourceLocation(ProjectRankine.MODID, "building_mode"), (stack, world, living, id) -> stack.getTag() != null ? (float) ((BuildingModeBlockItem) Stone.getBricks().asItem()).getBuildingMode(stack) : 1.0F);
-            ItemProperties.register(Stone.getMossyBricks().asItem(), new ResourceLocation(ProjectRankine.MODID, "building_mode"), (stack, world, living, id) -> stack.getTag() != null ? (float) ((BuildingModeBlockItem) Stone.getMossyBricks().asItem()).getBuildingMode(stack) : 1.0F);
+            ItemProperties.register(Stone.getPolished().asItem(), ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID, "building_mode"), (stack, world, living, id) -> stack.getTag() != null ? (float) ((BuildingModeBlockItem) Stone.getPolished().asItem()).getBuildingMode(stack) : 1.0F);
+            ItemProperties.register(Stone.getBricks().asItem(), ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID, "building_mode"), (stack, world, living, id) -> stack.getTag() != null ? (float) ((BuildingModeBlockItem) Stone.getBricks().asItem()).getBuildingMode(stack) : 1.0F);
+            ItemProperties.register(Stone.getMossyBricks().asItem(), ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID, "building_mode"), (stack, world, living, id) -> stack.getTag() != null ? (float) ((BuildingModeBlockItem) Stone.getMossyBricks().asItem()).getBuildingMode(stack) : 1.0F);
         }
 
         ItemProperties.register(RankineItems.SHULKER_GAS_VACUUM.get(),
-                new ResourceLocation(ProjectRankine.MODID, "gas_held"), (stack, world, living, id) ->
+                ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID, "gas_held"), (stack, world, living, id) ->
                         stack.getTag() != null && !stack.getTag().getString("gas").isEmpty() ? 1.0F : 0.0F);
 
     }

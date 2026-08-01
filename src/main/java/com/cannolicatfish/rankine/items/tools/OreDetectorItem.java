@@ -2,7 +2,7 @@ package com.cannolicatfish.rankine.items.tools;
 
 import com.cannolicatfish.rankine.init.Config;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -14,8 +14,8 @@ import net.minecraft.world.item.Tiers;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.Tags;
-import net.minecraftforge.common.TierSortingRegistry;
+import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.common.TierSortingRegistry;
 
 import java.util.List;
 import java.util.Locale;
@@ -54,7 +54,7 @@ public class OreDetectorItem extends Item {
                 } else {
                     cons = "None";
                 }
-                player.displayClientMessage(new TranslatableComponent("item.rankine.ore_detector.message", new TranslatableComponent(ORE.getBlock().getDescriptionId()).getString(), cons, b.get().getX(), b.get().getY(), b.get().getZ()), false);
+                player.displayClientMessage(Component.translatable("item.rankine.ore_detector.message", Component.translatable(ORE.getBlock().getDescriptionId()).getString(), cons, b.get().getX(), b.get().getY(), b.get().getZ()), false);
                 context.getItemInHand().hurtAndBreak(1, player, (p) -> {
                     p.broadcastBreakEvent(context.getHand());
                 });

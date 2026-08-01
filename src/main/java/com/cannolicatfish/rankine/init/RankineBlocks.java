@@ -79,11 +79,11 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
-import net.minecraftforge.common.PlantType;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.ObjectHolder;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.common.PlantType;
+import net.neoforged.neoforge.registries.DeferredRegister;
+import net.neoforged.neoforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.registries.ObjectHolder;
+import net.neoforged.neoforge.registries.RegistryObject;
 
 import java.util.function.ToIntFunction;
 
@@ -1557,7 +1557,7 @@ public class RankineBlocks {
 
 
     public static Block getBlock(String name) {
-        Block block = ForgeRegistries.BLOCKS.getValue(new ResourceLocation("rankine", name));
+        Block block = ForgeRegistries.BLOCKS.getValue(ResourceLocation.fromNamespaceAndPath("rankine", name));
         if (block != null) {
             return block;
         } else {

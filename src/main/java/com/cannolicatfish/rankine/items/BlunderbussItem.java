@@ -57,7 +57,7 @@ public class BlunderbussItem extends ProjectileWeaponItem implements Vanishable 
             ItemStack itemstack = playerentity.getProjectile(stack);
 
             int i = this.getUseDuration(stack) - timeLeft;
-            i = net.minecraftforge.event.ForgeEventFactory.onArrowLoose(stack, worldIn, playerentity, i, !itemstack.isEmpty() || flag);
+            i = net.neoforged.neoforge.event.ForgeEventFactory.onArrowLoose(stack, worldIn, playerentity, i, !itemstack.isEmpty() || flag);
             if (i < 0) return;
 
             if (!itemstack.isEmpty() || flag) {
@@ -153,7 +153,7 @@ public class BlunderbussItem extends ProjectileWeaponItem implements Vanishable 
         ItemStack itemstack = playerIn.getItemInHand(handIn);
         boolean flag = !playerIn.getProjectile(itemstack).isEmpty();
 
-        InteractionResultHolder<ItemStack> ret = net.minecraftforge.event.ForgeEventFactory.onArrowNock(itemstack, worldIn, playerIn, handIn, flag);
+        InteractionResultHolder<ItemStack> ret = net.neoforged.neoforge.event.ForgeEventFactory.onArrowNock(itemstack, worldIn, playerIn, handIn, flag);
         if (ret != null) return ret;
 
         if (!playerIn.getAbilities().instabuild && !flag) {

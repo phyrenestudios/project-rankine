@@ -7,16 +7,16 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.ChatFormatting;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.BlockGetter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.world.item.Item.Properties;
-import net.minecraftforge.common.Tags;
+import net.neoforged.neoforge.common.Tags;
 
 public class RockDrillItem extends Item {
 
@@ -38,12 +38,12 @@ public class RockDrillItem extends Item {
         if (!context.getLevel().isClientSide && context.getPlayer() != null) {
             Player player = context.getPlayer();
             if (!stones.isEmpty()) {
-                player.sendMessage(new TextComponent("== STONES LIST ==").withStyle(ChatFormatting.GOLD),player.getUUID());
+                player.sendMessage(Component.literal("== STONES LIST ==").withStyle(ChatFormatting.GOLD),player.getUUID());
                 for (Block s : stones) {
-                    player.sendMessage(new TranslatableComponent(s.getDescriptionId()),player.getUUID());
+                    player.sendMessage(Component.translatable(s.getDescriptionId()),player.getUUID());
                 }
             } else {
-                player.sendMessage(new TextComponent("No stones detected"),player.getUUID());
+                player.sendMessage(Component.literal("No stones detected"),player.getUUID());
             }
             context.getItemInHand().hurtAndBreak(1,player,(p_220040_1_) -> {
                 p_220040_1_.broadcastBreakEvent(context.getHand());

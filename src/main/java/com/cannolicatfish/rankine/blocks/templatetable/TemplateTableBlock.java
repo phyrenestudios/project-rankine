@@ -10,13 +10,13 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.Level;
 
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class TemplateTableBlock extends Block {
-    public static final TranslatableComponent CONTAINER_NAME = new TranslatableComponent("rankine.container.templatetable");
+    public static final TranslatableComponent CONTAINER_NAME = Component.translatable("rankine.container.templatetable");
     public TemplateTableBlock(Properties properties) {
         super(properties);
     }

@@ -14,7 +14,7 @@ import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.Util;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -27,14 +27,14 @@ import java.util.Locale;
 
 public class SluicingRecipeCategory implements IRecipeCategory<SluicingRecipe> {
 
-    public static ResourceLocation UID = new ResourceLocation(ProjectRankine.MODID, "sluicing");
+    public static ResourceLocation UID = ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID, "sluicing");
     private final IDrawable background;
     private final IGuiHelper guiHelper;
     private final IDrawable slotDrawable;
 
     public SluicingRecipeCategory(IGuiHelper guiHelper) {
         this.guiHelper = guiHelper;
-        background = guiHelper.drawableBuilder(new ResourceLocation(ProjectRankine.MODID, "textures/gui/sluicing_jei.png"), 0, 0, 170, 140)
+        background = guiHelper.drawableBuilder(ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID, "textures/gui/sluicing_jei.png"), 0, 0, 170, 140)
                 .addPadding(1, 0, 0, 15)
                 .build();
         slotDrawable = guiHelper.getSlotDrawable();
@@ -52,7 +52,7 @@ public class SluicingRecipeCategory implements IRecipeCategory<SluicingRecipe> {
 
     @Override
     public Component getTitle() {
-        return new TextComponent(I18n.get("rankine.jei.sluicing"));
+        return Component.literal(I18n.get("rankine.jei.sluicing"));
     }
 
     @Override
@@ -87,11 +87,11 @@ public class SluicingRecipeCategory implements IRecipeCategory<SluicingRecipe> {
             int currentI = i;
             Ingredient currentOutput = outputs.get(i);
             if (currentOutput.isEmpty()) {
-                currentOutput = Ingredient.of(new ItemStack(Items.BARRIER).setHoverName(new TextComponent(I18n.get("rankine.jei.tooltip_nothing"))));
+                currentOutput = Ingredient.of(new ItemStack(Items.BARRIER).setHoverName(Component.literal(I18n.get("rankine.jei.tooltip_nothing"))));
             }
             builder.addSlot(RecipeIngredientRole.OUTPUT, x, y).addIngredients(currentOutput)
                     .setBackground(slotDrawable, -1, -1)
-                    .addTooltipCallback((recipeSlotView, tooltip) -> tooltip.add(new TextComponent(I18n.get("rankine.jei.tooltip_chance") + df.format(recipe.getChance(currentI) * 100) + "%")));
+                    .addTooltipCallback((recipeSlotView, tooltip) -> tooltip.add(Component.literal(I18n.get("rankine.jei.tooltip_chance") + df.format(recipe.getChance(currentI) * 100) + "%")));
 
             count++;
         }

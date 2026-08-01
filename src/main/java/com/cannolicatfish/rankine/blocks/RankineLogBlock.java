@@ -5,7 +5,7 @@ import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraftforge.common.extensions.IForgeBlock;
+import net.neoforged.neoforge.common.extensions.IForgeBlock;
 
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 

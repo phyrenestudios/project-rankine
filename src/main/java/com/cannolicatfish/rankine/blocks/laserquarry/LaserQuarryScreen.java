@@ -11,7 +11,7 @@ import net.minecraft.util.text.ITextComponent;
 
 
 public class LaserQuarryScreen extends ContainerScreen<LaserQuarryContainer> {
-    private ResourceLocation GUI = new ResourceLocation(ProjectRankine.MODID, "textures/gui/laser_quarry.png");
+    private ResourceLocation GUI = ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID, "textures/gui/laser_quarry.png");
     public LaserQuarryScreen(LaserQuarryContainer screenContainer, PlayerInventory inv, ITextComponent titleIn) {
         super(screenContainer, inv, titleIn);
     }

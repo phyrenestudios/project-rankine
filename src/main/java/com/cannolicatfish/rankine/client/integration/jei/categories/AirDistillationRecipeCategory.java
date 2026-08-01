@@ -15,7 +15,7 @@ import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 
@@ -24,13 +24,13 @@ import java.util.List;
 
 public class AirDistillationRecipeCategory implements IRecipeCategory<AirDistillationRecipe> {
 
-    public static ResourceLocation UID = new ResourceLocation(ProjectRankine.MODID, "air_distillation");
+    public static ResourceLocation UID = ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID, "air_distillation");
     private final IDrawable background;
     private final String localizedName;
     private final IGuiHelper guiHelper;
     public AirDistillationRecipeCategory(IGuiHelper guiHelper) {
         this.guiHelper = guiHelper;
-        background = guiHelper.drawableBuilder(new ResourceLocation(ProjectRankine.MODID, "textures/gui/air_distillation_jei.png"), 0, 0, 116, 136)
+        background = guiHelper.drawableBuilder(ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID, "textures/gui/air_distillation_jei.png"), 0, 0, 116, 136)
                 .addPadding(0, 0, 0, 0)
                 .build();
         localizedName = I18n.get("rankine.jei.air_distillation");
@@ -48,7 +48,7 @@ public class AirDistillationRecipeCategory implements IRecipeCategory<AirDistill
 
     @Override
     public Component getTitle() {
-        return new TextComponent(localizedName);
+        return Component.literal(localizedName);
     }
 
     @Override
@@ -66,17 +66,17 @@ public class AirDistillationRecipeCategory implements IRecipeCategory<AirDistill
         if (mouseX >= 95 && mouseX <= 110 && mouseY >= 116 && mouseY <= 131) {
             List<Component> components = new ArrayList<>();
             if (recipe.getDims().isEmpty()) {
-                components.add(new TextComponent(I18n.get("rankine.jei.tooltip_dimension_info") + (I18n.get("rankine.jei.tooltip_any"))));
+                components.add(Component.literal(I18n.get("rankine.jei.tooltip_dimension_info") + (I18n.get("rankine.jei.tooltip_any"))));
             } else {
                 if (!recipe.getDims().isEmpty()) {
-                    components.add(new TextComponent(I18n.get("rankine.jei.tooltip_dimension_info") + recipe.getDims().toString()));
+                    components.add(Component.literal(I18n.get("rankine.jei.tooltip_dimension_info") + recipe.getDims().toString()));
                 }
             }
             if (recipe.getBiomes().isEmpty()) {
-                components.add(new TextComponent(I18n.get("rankine.jei.tooltip_biomes_info") + (I18n.get("rankine.jei.tooltip_any"))));
+                components.add(Component.literal(I18n.get("rankine.jei.tooltip_biomes_info") + (I18n.get("rankine.jei.tooltip_any"))));
             } else {
                 if (!recipe.getBiomes().isEmpty()) {
-                    components.add(new TextComponent(I18n.get("rankine.jei.tooltip_biomes_info") + recipe.getBiomes().toString()));
+                    components.add(Component.literal(I18n.get("rankine.jei.tooltip_biomes_info") + recipe.getBiomes().toString()));
                 }
             }
             return components;

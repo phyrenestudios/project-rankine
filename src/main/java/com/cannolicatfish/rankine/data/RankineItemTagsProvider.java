@@ -14,8 +14,8 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.common.Tags;
-import net.minecraftforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;
@@ -120,7 +120,7 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         copy(RankineTags.Blocks.STONES_SHONKINITE, RankineTags.Items.STONES_SHONKINITE);
 
         for (RankineWood Wood : RankineLists.RANKINE_WOODS) {
-            copy(BlockTags.create(new ResourceLocation("rankine", Wood.getBaseName() + "_logs")), ItemTags.create(new ResourceLocation("rankine", Wood.getBaseName() + "_logs")));
+            copy(BlockTags.create(ResourceLocation.fromNamespaceAndPath("rankine", Wood.getBaseName() + "_logs")), ItemTags.create(ResourceLocation.fromNamespaceAndPath("rankine", Wood.getBaseName() + "_logs")));
         }
         copy(BlockTags.LOGS_THAT_BURN, ItemTags.LOGS_THAT_BURN);
         copy(RankineTags.Blocks.STRIPPED_LOGS, RankineTags.Items.STRIPPED_LOGS);
@@ -696,12 +696,12 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         for (Block blk : RankineLists.SHEETMETALS) {
             String name = blk.getRegistryName().getPath();
             String baseName = Arrays.asList(name.split("_sheetmetal")).get(0);
-            tag(ItemTags.create(new ResourceLocation("forge", "sheetmetals/"+baseName))).add(blk.asItem());
+            tag(ItemTags.create(ResourceLocation.fromNamespaceAndPath("forge", "sheetmetals/"+baseName))).add(blk.asItem());
         }
         for (Block blk : RankineLists.ALLOY_SHEETMETALS) {
             String name = blk.getRegistryName().getPath();
             String baseName = Arrays.asList(name.split("_sheetmetal")).get(0);
-            tag(ItemTags.create(new ResourceLocation("forge", "sheetmetals/"+baseName))).add(blk.asItem());
+            tag(ItemTags.create(ResourceLocation.fromNamespaceAndPath("forge", "sheetmetals/"+baseName))).add(blk.asItem());
         }
         copy(RankineTags.Blocks.METAL_BARS, RankineTags.Items.METAL_BARS);
         copy(RankineTags.Blocks.METAL_POLES, RankineTags.Items.METAL_POLES);

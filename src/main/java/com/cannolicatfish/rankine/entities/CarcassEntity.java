@@ -21,8 +21,8 @@ import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 
 import java.util.List;
 
@@ -32,8 +32,8 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.projectile.ItemSupplier;
-import net.minecraftforge.network.NetworkHooks;
-import net.minecraftforge.network.PlayMessages;
+import net.neoforged.neoforge.network.NetworkHooks;
+import net.neoforged.neoforge.network.PlayMessages;
 
 @OnlyIn(
         value = Dist.CLIENT,
@@ -132,10 +132,10 @@ public class CarcassEntity extends Fireball implements ItemSupplier {
     protected void onHitBlock(BlockHitResult result) {
         super.onHitBlock(result);
         if (!this.level.isClientSide) {
-            Explosion.BlockInteraction explosion$mode = net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.level, this.getOwner()) ? Explosion.BlockInteraction.DESTROY : Explosion.BlockInteraction.NONE;
+            Explosion.BlockInteraction explosion$mode = net.neoforged.neoforge.event.ForgeEventFactory.getMobGriefingEvent(this.level, this.getOwner()) ? Explosion.BlockInteraction.DESTROY : Explosion.BlockInteraction.NONE;
             this.level.explode(this, this.getX(), this.getY(), this.getZ(), 0.5F, false, explosion$mode);
             Entity entity = this.getOwner();
-            if (entity == null || !(entity instanceof Mob) || net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.level, this)) {
+            if (entity == null || !(entity instanceof Mob) || net.neoforged.neoforge.event.ForgeEventFactory.getMobGriefingEvent(this.level, this)) {
                 BlockPos blockpos = result.getBlockPos().relative(result.getDirection());
                 if (this.level.isEmptyBlock(blockpos)) {
                     this.level.setBlockAndUpdate(blockpos, BaseFireBlock.getState(this.level, blockpos));

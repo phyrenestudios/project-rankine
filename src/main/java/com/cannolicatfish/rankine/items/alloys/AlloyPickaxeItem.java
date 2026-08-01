@@ -7,7 +7,7 @@ import com.google.common.collect.ImmutableSet;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
@@ -26,12 +26,12 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.Tags;
-import net.minecraftforge.common.TierSortingRegistry;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.tags.ITagManager;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.common.TierSortingRegistry;
+import net.neoforged.neoforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.registries.tags.ITagManager;
 
 import javax.annotation.Nullable;
 import java.util.Arrays;
@@ -70,9 +70,9 @@ public class AlloyPickaxeItem extends PickaxeItem implements IAlloyTool {
     @Override
     public Component getName(ItemStack stack) {
         if (!IAlloyItem.getNameOverride(stack).isEmpty()) {
-            return new TranslatableComponent(this.getDescriptionId(stack),new TranslatableComponent(IAlloyItem.getNameOverride(stack)));
+            return Component.translatable(this.getDescriptionId(stack),Component.translatable(IAlloyItem.getNameOverride(stack)));
         }
-        return new TranslatableComponent(this.getDescriptionId(stack),new TranslatableComponent(generateLangFromRecipe(this.defaultAlloyRecipe)));
+        return Component.translatable(this.getDescriptionId(stack),Component.translatable(generateLangFromRecipe(this.defaultAlloyRecipe)));
     }
 
 
@@ -97,7 +97,7 @@ public class AlloyPickaxeItem extends PickaxeItem implements IAlloyTool {
                     if (oreTag != null && oreTag.location().getPath().split("ores/").length > 1) {
                         String oreMetal = oreTag.location().getPath().split("ores/")[1];
                         ITagManager<Item> tagRegistry = ForgeRegistries.ITEMS.tags();
-                        TagKey<Item> nuggetTag = ItemTags.create(new ResourceLocation("forge:nuggets/"+oreMetal));
+                        TagKey<Item> nuggetTag = ItemTags.create(ResourceLocation.parse("forge:nuggets/"+oreMetal));
                         if (tagRegistry != null && tagRegistry.getTag(nuggetTag).isBound()) {
                             if (worldIn.getRandom().nextFloat() > 1/entityLiving.getAttributes().getValue(Attributes.ATTACK_SPEED)) {
                                 tagRegistry.getTag(nuggetTag).stream().findFirst().ifPresent(nuggetItem -> Block.popResource(worldIn, pos, new ItemStack(nuggetItem,Math.max(0,worldIn.random.nextInt((int) Math.round(entityLiving.getAttributes().getValue(Attributes.ATTACK_DAMAGE)))))));

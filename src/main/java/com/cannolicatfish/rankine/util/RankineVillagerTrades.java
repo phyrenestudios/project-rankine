@@ -12,8 +12,8 @@ import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.tags.Tag;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.common.BasicItemListing;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.common.BasicItemListing;
+import net.neoforged.neoforge.registries.ForgeRegistries;
 
 import java.util.ArrayList;
 import java.util.List;

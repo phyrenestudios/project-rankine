@@ -65,7 +65,7 @@ public class EatGrassGoalModified extends Goal {
         if (this.eatAnimationTick == this.adjustedTickDelay(4)) {
             BlockPos blockpos = this.mob.blockPosition();
             if (IS_TALL_GRASS.test(this.level.getBlockState(blockpos))) {
-                if (net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.level, this.mob)) {
+                if (net.neoforged.neoforge.event.ForgeEventFactory.getMobGriefingEvent(this.level, this.mob)) {
                     this.level.destroyBlock(blockpos, false);
                 }
 
@@ -74,7 +74,7 @@ public class EatGrassGoalModified extends Goal {
             } else {
                 BlockPos blockpos1 = blockpos.below();
                 if (IS_GRASS_BLOCK.test(this.level.getBlockState(blockpos1))) {
-                    if (net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.level, this.mob)) {
+                    if (net.neoforged.neoforge.event.ForgeEventFactory.getMobGriefingEvent(this.level, this.mob)) {
                         this.level.levelEvent(2001, blockpos1, Block.getId(this.level.getBlockState(blockpos1).getBlock().defaultBlockState()));
                         if (RankineLists.GRASS_BLOCKS.contains(this.level.getBlockState(blockpos1).getBlock())) {
                             this.level.setBlock(blockpos1, RankineLists.SOIL_BLOCKS.get(RankineLists.GRASS_BLOCKS.indexOf(this.level.getBlockState(blockpos1).getBlock())).defaultBlockState(), 2);

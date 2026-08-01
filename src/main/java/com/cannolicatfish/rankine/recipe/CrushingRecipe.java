@@ -18,7 +18,7 @@ import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.common.TierSortingRegistry;
+import net.neoforged.neoforge.common.TierSortingRegistry;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -209,7 +209,7 @@ public class CrushingRecipe implements Recipe<Container> {
             return ItemStack.EMPTY;
         }
         String s = GsonHelper.getAsString(object, "item");
-        Item item = Registry.ITEM.getOptional(new ResourceLocation(s)).orElseThrow(() -> {
+        Item item = Registry.ITEM.getOptional(ResourceLocation.parse(s)).orElseThrow(() -> {
             return new JsonSyntaxException("Unknown item '" + s + "'");
         });
 
@@ -221,7 +221,7 @@ public class CrushingRecipe implements Recipe<Container> {
         }
     }
 
-    public static class Serializer extends net.minecraftforge.registries.ForgeRegistryEntry<RecipeSerializer<?>>  implements RecipeSerializer<CrushingRecipe> {
+    public static class Serializer extends net.neoforged.neoforge.registries.ForgeRegistryEntry<RecipeSerializer<?>>  implements RecipeSerializer<CrushingRecipe> {
         public CrushingRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
 
             NonNullList<Ingredient> input = NonNullList.of(Ingredient.EMPTY, Ingredient.fromJson(json.get("input")));

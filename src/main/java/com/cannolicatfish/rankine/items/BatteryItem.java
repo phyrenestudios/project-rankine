@@ -2,7 +2,7 @@ package com.cannolicatfish.rankine.items;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -27,7 +27,7 @@ public class BatteryItem extends Item {
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-        tooltip.add(new TranslatableComponent("rankine.battery.charge",stack.getMaxDamage()-stack.getDamageValue(),stack.getMaxDamage()).withStyle(ChatFormatting.AQUA));
+        tooltip.add(Component.translatable("rankine.battery.charge",stack.getMaxDamage()-stack.getDamageValue(),stack.getMaxDamage()).withStyle(ChatFormatting.AQUA));
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
     }
 

@@ -3,8 +3,8 @@ package com.cannolicatfish.rankine.events.handlers.common;
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.event.world.BlockEvent;
-import net.minecraftforge.eventbus.api.Event;
+import net.neoforged.neoforge.event.world.BlockEvent;
+import net.neoforged.bus.api.Event;
 
 public class CreateFluidSourceHandler {
     public static void noWater(BlockEvent.CreateFluidSourceEvent event) {

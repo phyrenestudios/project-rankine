@@ -15,12 +15,12 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.ChatFormatting;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -41,13 +41,13 @@ public class ElementItem extends Item {
     public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
         if (Config.HARD_MODE.WATER_REACTIVE.get() && waterReactive > 0.0f) {
             if (waterReactive < 2.0f) {
-                tooltip.add(new TextComponent("Warning! Reactive with water!").withStyle(ChatFormatting.GRAY));
+                tooltip.add(Component.literal("Warning! Reactive with water!").withStyle(ChatFormatting.GRAY));
             } else if (waterReactive >= 2.0f) {
-                tooltip.add(new TextComponent("Warning! Highly reactive with water!").withStyle(ChatFormatting.GRAY));
+                tooltip.add(Component.literal("Warning! Highly reactive with water!").withStyle(ChatFormatting.GRAY));
             }
         }
         if (Config.HARD_MODE.RADIOACTIVE.get() && radioactive > 0) {
-            tooltip.add(new TextComponent("Warning: Radioactive! Prolonged exposure is harmful.").withStyle(ChatFormatting.GRAY));
+            tooltip.add(Component.literal("Warning: Radioactive! Prolonged exposure is harmful.").withStyle(ChatFormatting.GRAY));
         }
     }
 

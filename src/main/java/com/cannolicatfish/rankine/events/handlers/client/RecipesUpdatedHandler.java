@@ -10,7 +10,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.RecipeType;
-import net.minecraftforge.client.event.RecipesUpdatedEvent;
+import net.neoforged.neoforge.client.event.RecipesUpdatedEvent;
 
 import java.util.ArrayList;
 import java.util.List;

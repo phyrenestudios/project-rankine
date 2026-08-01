@@ -17,8 +17,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -30,14 +30,14 @@ import java.util.Locale;
 
 public class CrucibleRecipeCategory implements IRecipeCategory<CrucibleRecipe> {
 
-    public static ResourceLocation UID = new ResourceLocation(ProjectRankine.MODID, "crucible");
+    public static ResourceLocation UID = ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID, "crucible");
     private final IDrawable background;
     private final IDrawable slotDrawable;
     private final IGuiHelper guiHelper;
 
     public CrucibleRecipeCategory(IGuiHelper guiHelper) {
         this.guiHelper = guiHelper;
-        background = guiHelper.drawableBuilder(new ResourceLocation(ProjectRankine.MODID, "textures/gui/crucible_jei.png"), 0, 0, 180, 140)
+        background = guiHelper.drawableBuilder(ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID, "textures/gui/crucible_jei.png"), 0, 0, 180, 140)
                 .addPadding(1, 0, 0, 0)
                 .build();
         slotDrawable = guiHelper.getSlotDrawable();
@@ -55,7 +55,7 @@ public class CrucibleRecipeCategory implements IRecipeCategory<CrucibleRecipe> {
 
     @Override
     public Component getTitle() {
-        return new TextComponent(I18n.get("rankine.jei.crucible"));
+        return Component.literal(I18n.get("rankine.jei.crucible"));
     }
 
     @Override
@@ -75,8 +75,8 @@ public class CrucibleRecipeCategory implements IRecipeCategory<CrucibleRecipe> {
             p_234699_0_.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.ROOT));
         });
         Font font = Minecraft.getInstance().font;
-        font.draw(stack,new TranslatableComponent("rankine.jei.tooltip_required"),120, 0, 0x000000);
-        font.draw(stack,new TranslatableComponent("rankine.jei.crucible_tooltip_additional",recipe.getRequired().stream().filter(aBoolean -> aBoolean).count()),1, 96, 0x000000);
+        font.draw(stack,Component.translatable("rankine.jei.tooltip_required"),120, 0, 0x000000);
+        font.draw(stack,Component.translatable("rankine.jei.crucible_tooltip_additional",recipe.getRequired().stream().filter(aBoolean -> aBoolean).count()),1, 96, 0x000000);
     }
 
     @Override

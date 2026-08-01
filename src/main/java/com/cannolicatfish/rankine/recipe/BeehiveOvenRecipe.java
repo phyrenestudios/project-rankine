@@ -15,7 +15,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.registries.ForgeRegistryEntry;
+import net.neoforged.neoforge.registries.ForgeRegistryEntry;
 
 import javax.annotation.Nullable;
 
@@ -99,7 +99,7 @@ public class BeehiveOvenRecipe implements Recipe<Container> {
     public static ItemStack deserializeBlock(JsonObject object) {
         String s = GsonHelper.getAsString(object, "item");
 
-        Block block = Registry.BLOCK.getOptional(new ResourceLocation(s)).orElseThrow(() -> {
+        Block block = Registry.BLOCK.getOptional(ResourceLocation.parse(s)).orElseThrow(() -> {
             return new JsonParseException("Unknown item '" + s + "'");
         });
 
@@ -124,7 +124,7 @@ public class BeehiveOvenRecipe implements Recipe<Container> {
                 result = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "result"));
             } else {
                 String s1 = GsonHelper.getAsString(json, "result");
-                ResourceLocation resourcelocation = new ResourceLocation(s1);
+                ResourceLocation resourcelocation = ResourceLocation.parse(s1);
                 result = new ItemStack(Registry.ITEM.getOptional(resourcelocation).orElseThrow(() -> {
                     return new IllegalStateException("Item: " + s1 + " does not exist");
                 }));

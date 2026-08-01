@@ -21,7 +21,7 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.registries.ForgeRegistryEntry;
+import net.neoforged.neoforge.registries.ForgeRegistryEntry;
 
 import javax.annotation.Nullable;
 import java.util.Locale;
@@ -148,7 +148,7 @@ public class RockGeneratorRecipe implements Recipe<Container> {
     public static ItemStack deserializeBlock(JsonObject object) {
         String s = GsonHelper.getAsString(object, "block");
 
-        Block block = Registry.BLOCK.getOptional(new ResourceLocation(s)).orElseThrow(() -> {
+        Block block = Registry.BLOCK.getOptional(ResourceLocation.parse(s)).orElseThrow(() -> {
             return new JsonParseException("Unknown block '" + s + "'");
         });
 

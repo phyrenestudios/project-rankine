@@ -27,7 +27,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.registries.ForgeRegistries;
 
 public class KnifeItem extends SwordItem {
     private final float attackDamage;
@@ -99,8 +99,8 @@ public class KnifeItem extends SwordItem {
     @Override
     public net.minecraft.world.InteractionResult interactLivingEntity(ItemStack stack, net.minecraft.world.entity.player.Player playerIn, LivingEntity entity, net.minecraft.world.InteractionHand hand) {
         if (entity.level.isClientSide) return net.minecraft.world.InteractionResult.PASS;
-        if (entity instanceof net.minecraftforge.common.IForgeShearable) {
-            net.minecraftforge.common.IForgeShearable target = (net.minecraftforge.common.IForgeShearable)entity;
+        if (entity instanceof net.neoforged.neoforge.common.IForgeShearable) {
+            net.neoforged.neoforge.common.IForgeShearable target = (net.neoforged.neoforge.common.IForgeShearable)entity;
             BlockPos pos = new BlockPos(entity.getX(), entity.getY(), entity.getZ());
             if (target.isShearable(stack, entity.level, pos)) {
                 java.util.List<ItemStack> drops = target.onSheared(playerIn, stack, entity.level, pos,

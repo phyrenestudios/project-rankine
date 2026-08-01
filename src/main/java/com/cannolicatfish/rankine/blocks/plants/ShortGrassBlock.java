@@ -17,7 +17,7 @@ import net.minecraft.world.level.block.BushBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class ShortGrassBlock extends BushBlock implements BonemealableBlock, net.minecraftforge.common.IForgeShearable {
+public class ShortGrassBlock extends BushBlock implements BonemealableBlock, net.neoforged.neoforge.common.IForgeShearable {
     protected static final VoxelShape SHAPE = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 8.0D, 14.0D);
 
     public ShortGrassBlock(BlockBehaviour.Properties properties) {

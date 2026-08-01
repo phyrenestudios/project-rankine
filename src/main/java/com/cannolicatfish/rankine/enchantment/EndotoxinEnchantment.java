@@ -33,7 +33,7 @@ public class EndotoxinEnchantment extends Enchantment {
     public boolean canEnchant(ItemStack stack) {
         ResourceLocation rs = IAlloyItem.getAlloyRecipe(stack);
         if (rs != null) {
-            return rs.equals(new ResourceLocation("rankine:alloying/ender_amalgam_alloying")) && stack.getItem() instanceof AlloyCrowbarItem;
+            return rs.equals(ResourceLocation.parse("rankine:alloying/ender_amalgam_alloying")) && stack.getItem() instanceof AlloyCrowbarItem;
         }
         return RankineEnchantmentTypes.ENDER_AMALGAM_CROWBAR.canEnchant(stack.getItem());
     }
@@ -42,7 +42,7 @@ public class EndotoxinEnchantment extends Enchantment {
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
         ResourceLocation rs = IAlloyItem.getAlloyRecipe(stack);
         if (rs != null) {
-            return rs.equals(new ResourceLocation("rankine:alloying/ender_amalgam_alloying")) && stack.getItem() instanceof AlloyCrowbarItem;
+            return rs.equals(ResourceLocation.parse("rankine:alloying/ender_amalgam_alloying")) && stack.getItem() instanceof AlloyCrowbarItem;
         }
         return false;
     }

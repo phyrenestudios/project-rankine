@@ -13,15 +13,15 @@ import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.material.Fluids;
-import net.minecraftforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.FluidStack;
 
 public class SedimentaryGeneratorRecipeCategory implements IRecipeCategory<RockGeneratorRecipe> {
 
-    public static ResourceLocation UID = new ResourceLocation(ProjectRankine.MODID, "sedimentary");
+    public static ResourceLocation UID = ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID, "sedimentary");
     private final IDrawable background;
     private final String localizedName;
     private final IGuiHelper guiHelper;
@@ -30,7 +30,7 @@ public class SedimentaryGeneratorRecipeCategory implements IRecipeCategory<RockG
     public SedimentaryGeneratorRecipeCategory(IGuiHelper guiHelper) {
         this.guiHelper = guiHelper;
         localizedName = I18n.get("rankine.jei.sedimentary");
-        background = guiHelper.drawableBuilder(new ResourceLocation(ProjectRankine.MODID, "textures/gui/sedimentary_jei.png"), 0, 0, 97, 49)
+        background = guiHelper.drawableBuilder(ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID, "textures/gui/sedimentary_jei.png"), 0, 0, 97, 49)
                 .addPadding(1, 0, 1, 0)
                 .build();
     }
@@ -47,7 +47,7 @@ public class SedimentaryGeneratorRecipeCategory implements IRecipeCategory<RockG
 
     @Override
     public Component getTitle() {
-        return new TextComponent(localizedName);
+        return Component.literal(localizedName);
     }
 
     @Override

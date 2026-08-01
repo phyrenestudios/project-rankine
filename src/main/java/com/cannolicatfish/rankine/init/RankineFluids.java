@@ -1,7 +1,7 @@
 package com.cannolicatfish.rankine.init;
 
 import net.minecraft.world.level.material.FlowingFluid;
-import net.minecraftforge.registries.ObjectHolder;
+import net.neoforged.neoforge.registries.ObjectHolder;
 
 public class RankineFluids {
 

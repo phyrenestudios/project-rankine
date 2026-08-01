@@ -1,0 +1,28 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="MIT License"
+issueTrackerURL="https://github.com/phyrenestudios/project-rankine/issues"
+
+[[mods]]
+modId="rankine"
+version="${file.jarVersion}"
+displayName="Project Rankine"
+logoFile="logo.png"
+authors="CannoliCatfish, tritespartan17"
+description='''
+Project Rankine is a mod which adds a variety of new content including worldgen, a robust alloying system, and other changes to the game
+'''
+
+[[dependencies.rankine]]
+modId="neoforge"
+type="required"
+versionRange="[21.1.0,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.rankine]]
+modId="minecraft"
+type="required"
+versionRange="[1.21.1]"
+ordering="NONE"
+side="BOTH"

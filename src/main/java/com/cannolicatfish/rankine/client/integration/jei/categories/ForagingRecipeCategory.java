@@ -19,7 +19,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -34,22 +34,22 @@ import java.util.Locale;
 
 public class ForagingRecipeCategory implements IRecipeCategory<ForagingRecipe> {
     private final IDrawable background;
-    public static ResourceLocation UID = new ResourceLocation(ProjectRankine.MODID, "foraging");
+    public static ResourceLocation UID = ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID, "foraging");
     private final IGuiHelper guiHelper;
     private final IDrawable slotDrawable;
     private final IDrawable enchantedDrawable;
     public ForagingRecipeCategory(IGuiHelper helper) {
         this.guiHelper = helper;
-        background = guiHelper.drawableBuilder(new ResourceLocation(ProjectRankine.MODID, "textures/gui/foraging_jei.png"), 0, 0, 170, 140)
+        background = guiHelper.drawableBuilder(ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID, "textures/gui/foraging_jei.png"), 0, 0, 170, 140)
                 .addPadding(1, 0, 0, 15)
                 .build();
         slotDrawable = guiHelper.getSlotDrawable();
-        enchantedDrawable = guiHelper.drawableBuilder(new ResourceLocation(ProjectRankine.MODID,"textures/gui/slot_enchanted.png"),0,0,18,18).setTextureSize(18,18).build();
+        enchantedDrawable = guiHelper.drawableBuilder(ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID,"textures/gui/slot_enchanted.png"),0,0,18,18).setTextureSize(18,18).build();
     }
 
     @Override
     public Component getTitle() {
-        return new TextComponent(I18n.get("rankine.jei.foraging"));
+        return Component.literal(I18n.get("rankine.jei.foraging"));
     }
 
     @Override
@@ -84,15 +84,15 @@ public class ForagingRecipeCategory implements IRecipeCategory<ForagingRecipe> {
     public List<Component> getTooltipStrings(ForagingRecipe recipe, IRecipeSlotsView recipeSlotsView, double mouseX, double mouseY) {
         if (mouseX > 103 && mouseX < 120 && mouseY > 24 && mouseY < 41) {
             if (recipe.isAllBiomes()) {
-                return List.of(new TextComponent(I18n.get("rankine.jei.tooltip_biomes_info") + (I18n.get("rankine.jei.tooltip_any"))),
-                        new TextComponent(I18n.get("rankine.jei.tooltip_biomes_tags_info") + (I18n.get("rankine.jei.tooltip_any"))));
+                return List.of(Component.literal(I18n.get("rankine.jei.tooltip_biomes_info") + (I18n.get("rankine.jei.tooltip_any"))),
+                        Component.literal(I18n.get("rankine.jei.tooltip_biomes_tags_info") + (I18n.get("rankine.jei.tooltip_any"))));
             } else {
                 List<Component> components = new ArrayList<>();
                 if (!recipe.getBiomes().isEmpty()) {
-                    components.add(new TextComponent(I18n.get("rankine.jei.tooltip_biomes_info") + recipe.getBiomes().toString()));
+                    components.add(Component.literal(I18n.get("rankine.jei.tooltip_biomes_info") + recipe.getBiomes().toString()));
                 }
                 if (!recipe.getBiomeTags().isEmpty()) {
-                    components.add(new TextComponent(I18n.get("rankine.jei.tooltip_biomes_tags_info") + recipe.getBiomeTags().toString()));
+                    components.add(Component.literal(I18n.get("rankine.jei.tooltip_biomes_tags_info") + recipe.getBiomeTags().toString()));
                 }
                 return components;
             }
@@ -123,18 +123,18 @@ public class ForagingRecipeCategory implements IRecipeCategory<ForagingRecipe> {
             int currentI = i;
             Ingredient currentOutput = outputs.get(i);
             if (currentOutput.isEmpty()) {
-                currentOutput = Ingredient.of(new ItemStack(Items.BARRIER).setHoverName(new TextComponent(I18n.get("rankine.jei.tooltip_nothing"))));
+                currentOutput = Ingredient.of(new ItemStack(Items.BARRIER).setHoverName(Component.literal(I18n.get("rankine.jei.tooltip_nothing"))));
             }
             boolean enchanted = recipe.getEnchantments().get(currentI);
             if (enchanted) {
                 builder.addSlot(RecipeIngredientRole.OUTPUT,x,y).addIngredients(currentOutput)
                         .setBackground(enchantedDrawable, -1, -1)
-                        .addTooltipCallback((recipeSlotView, tooltip) -> tooltip.add(new TextComponent(I18n.get("rankine.jei.tooltip_chance")+df.format(recipe.getChance(currentI)*100)+"%")))
-                        .addTooltipCallback((recipeSlotView, tooltip) -> tooltip.add(new TextComponent(I18n.get("rankine.jei.tooltip_enchantment_required")).withStyle(ChatFormatting.LIGHT_PURPLE)));
+                        .addTooltipCallback((recipeSlotView, tooltip) -> tooltip.add(Component.literal(I18n.get("rankine.jei.tooltip_chance")+df.format(recipe.getChance(currentI)*100)+"%")))
+                        .addTooltipCallback((recipeSlotView, tooltip) -> tooltip.add(Component.literal(I18n.get("rankine.jei.tooltip_enchantment_required")).withStyle(ChatFormatting.LIGHT_PURPLE)));
             } else {
                 builder.addSlot(RecipeIngredientRole.OUTPUT,x,y).addIngredients(currentOutput)
                         .setBackground(slotDrawable, -1, -1)
-                        .addTooltipCallback((recipeSlotView, tooltip) -> tooltip.add(new TextComponent(I18n.get("rankine.jei.tooltip_chance")+df.format(recipe.getChance(currentI)*100)+"%")));
+                        .addTooltipCallback((recipeSlotView, tooltip) -> tooltip.add(Component.literal(I18n.get("rankine.jei.tooltip_chance")+df.format(recipe.getChance(currentI)*100)+"%")));
             }
             ;
             count++;

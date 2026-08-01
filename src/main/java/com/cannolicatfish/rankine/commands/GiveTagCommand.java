@@ -6,13 +6,13 @@ import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.item.ItemArgument;
 import net.minecraft.commands.arguments.item.ItemInput;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.tags.IReverseTag;
+import net.neoforged.neoforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.registries.tags.IReverseTag;
 
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -31,9 +31,9 @@ public class GiveTagCommand {
         ServerPlayer serverplayerentity = source.getPlayerOrException();
         Item item = itemIn.getItem();
 
-        source.sendSuccess(new TranslatableComponent(item.getDescriptionId()), true);
+        source.sendSuccess(Component.translatable(item.getDescriptionId()), true);
         for (TagKey<Item> tag : ForgeRegistries.ITEMS.tags().getReverseTag(item).map(IReverseTag::getTagKeys).orElseGet(Stream::of).collect(Collectors.toList())) {
-            source.sendSuccess(new TextComponent(tag.location().toString()), true);
+            source.sendSuccess(Component.literal(tag.location().toString()), true);
         }
         return 1;
     }

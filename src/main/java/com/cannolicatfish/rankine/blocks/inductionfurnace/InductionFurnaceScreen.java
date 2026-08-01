@@ -12,7 +12,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.chat.Component;
 
 public class InductionFurnaceScreen extends AbstractContainerScreen<InductionFurnaceContainer> {
-    private ResourceLocation GUI = new ResourceLocation(ProjectRankine.MODID, "textures/gui/induction_furnace.png");
+    private ResourceLocation GUI = ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID, "textures/gui/induction_furnace.png");
     public InductionFurnaceScreen(InductionFurnaceContainer container, Inventory inv, Component name) {
         super(container, inv, name);
     }

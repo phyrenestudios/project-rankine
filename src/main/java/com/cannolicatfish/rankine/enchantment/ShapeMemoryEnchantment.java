@@ -30,7 +30,7 @@ public class ShapeMemoryEnchantment extends Enchantment {
     public boolean canEnchant(ItemStack stack) {
         ResourceLocation rs = IAlloyItem.getAlloyRecipe(stack);
         if (rs != null) {
-            return rs.equals(new ResourceLocation("rankine:alloying/nitinol_alloying")) && stack.getItem() instanceof IAlloyTool;
+            return rs.equals(ResourceLocation.parse("rankine:alloying/nitinol_alloying")) && stack.getItem() instanceof IAlloyTool;
         }
         return false;
     }
@@ -39,7 +39,7 @@ public class ShapeMemoryEnchantment extends Enchantment {
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
         ResourceLocation rs = IAlloyItem.getAlloyRecipe(stack);
         if (rs != null) {
-            return rs.equals(new ResourceLocation("rankine:alloying/nitinol_alloying")) && stack.getItem() instanceof IAlloyTool;
+            return rs.equals(ResourceLocation.parse("rankine:alloying/nitinol_alloying")) && stack.getItem() instanceof IAlloyTool;
         }
         return false;
     }

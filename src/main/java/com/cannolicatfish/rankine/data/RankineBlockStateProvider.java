@@ -28,8 +28,8 @@ import net.minecraft.world.level.block.state.properties.AttachFace;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
-import net.minecraftforge.client.model.generators.*;
-import net.minecraftforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.client.model.generators.*;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 import javax.annotation.Nonnull;
 import java.util.Arrays;
@@ -60,24 +60,24 @@ public class RankineBlockStateProvider extends BlockStateProvider {
             fancyPolishedBlock(Stone.getPolished());
             fancyStoneBricksBlock(Stone.getBricks());
             fancyMossyStoneBricksBlock(Stone.getMossyBricks());
-            slabBlock(Stone.getSlab(), new ResourceLocation("rankine", "block/"+Stone.getBaseName()), new ResourceLocation("rankine", "block/"+Stone.getBaseName()));
-            slabBlock(Stone.getPolishedSlab(), new ResourceLocation("rankine", "block/polished_"+Stone.getBaseName()+"1"), new ResourceLocation("rankine", "block/polished_"+Stone.getBaseName()));
-            slabBlock(Stone.getBricksSlab(), new ResourceLocation("rankine", "block/"+Stone.getBaseName()+"_bricks1"), new ResourceLocation("rankine", "block/"+Stone.getBaseName()+"_bricks"));
-            slabBlock(Stone.getMossyBricksSlab(), new ResourceLocation("rankine", "block/mossy_"+Stone.getBaseName()+"_bricks1"), new ResourceLocation("rankine", "block/mossy_"+Stone.getBaseName()+"_bricks"));
-            stairsBlock(Stone.getStairs(), new ResourceLocation("rankine", "block/"+Stone.getBaseName()));
-            stairsBlock(Stone.getPolishedStairs(), new ResourceLocation("rankine", "block/polished_"+Stone.getBaseName()));
-            stairsBlock(Stone.getBricksStairs(), new ResourceLocation("rankine", "block/"+Stone.getBaseName()+"_bricks"));
-            stairsBlock(Stone.getMossyBricksStairs(), new ResourceLocation("rankine", "block/mossy_"+Stone.getBaseName()+"_bricks"));
-            wallBlock(Stone.getWall(), new ResourceLocation("rankine", "block/"+Stone.getBaseName()));
-            wallBlock(Stone.getPolishedWall(), new ResourceLocation("rankine", "block/polished_"+Stone.getBaseName()));
-            wallBlock(Stone.getBricksWall(), new ResourceLocation("rankine", "block/"+Stone.getBaseName()+"_bricks"));
-            wallBlock(Stone.getMossyBricksWall(), new ResourceLocation("rankine", "block/mossy_"+Stone.getBaseName()+"_bricks"));
-            pressurePlateBlock(Stone.getPressurePlate(), new ResourceLocation("rankine", "block/"+Stone.getBaseName()));
-            pressurePlateBlock(Stone.getBricksPressurePlate(), new ResourceLocation("rankine", "block/"+Stone.getBaseName()+"_bricks"));
-            buttonBlock(Stone.getButton(), new ResourceLocation("rankine", "block/"+Stone.getBaseName()));
+            slabBlock(Stone.getSlab(), ResourceLocation.fromNamespaceAndPath("rankine", "block/"+Stone.getBaseName()), ResourceLocation.fromNamespaceAndPath("rankine", "block/"+Stone.getBaseName()));
+            slabBlock(Stone.getPolishedSlab(), ResourceLocation.fromNamespaceAndPath("rankine", "block/polished_"+Stone.getBaseName()+"1"), ResourceLocation.fromNamespaceAndPath("rankine", "block/polished_"+Stone.getBaseName()));
+            slabBlock(Stone.getBricksSlab(), ResourceLocation.fromNamespaceAndPath("rankine", "block/"+Stone.getBaseName()+"_bricks1"), ResourceLocation.fromNamespaceAndPath("rankine", "block/"+Stone.getBaseName()+"_bricks"));
+            slabBlock(Stone.getMossyBricksSlab(), ResourceLocation.fromNamespaceAndPath("rankine", "block/mossy_"+Stone.getBaseName()+"_bricks1"), ResourceLocation.fromNamespaceAndPath("rankine", "block/mossy_"+Stone.getBaseName()+"_bricks"));
+            stairsBlock(Stone.getStairs(), ResourceLocation.fromNamespaceAndPath("rankine", "block/"+Stone.getBaseName()));
+            stairsBlock(Stone.getPolishedStairs(), ResourceLocation.fromNamespaceAndPath("rankine", "block/polished_"+Stone.getBaseName()));
+            stairsBlock(Stone.getBricksStairs(), ResourceLocation.fromNamespaceAndPath("rankine", "block/"+Stone.getBaseName()+"_bricks"));
+            stairsBlock(Stone.getMossyBricksStairs(), ResourceLocation.fromNamespaceAndPath("rankine", "block/mossy_"+Stone.getBaseName()+"_bricks"));
+            wallBlock(Stone.getWall(), ResourceLocation.fromNamespaceAndPath("rankine", "block/"+Stone.getBaseName()));
+            wallBlock(Stone.getPolishedWall(), ResourceLocation.fromNamespaceAndPath("rankine", "block/polished_"+Stone.getBaseName()));
+            wallBlock(Stone.getBricksWall(), ResourceLocation.fromNamespaceAndPath("rankine", "block/"+Stone.getBaseName()+"_bricks"));
+            wallBlock(Stone.getMossyBricksWall(), ResourceLocation.fromNamespaceAndPath("rankine", "block/mossy_"+Stone.getBaseName()+"_bricks"));
+            pressurePlateBlock(Stone.getPressurePlate(), ResourceLocation.fromNamespaceAndPath("rankine", "block/"+Stone.getBaseName()));
+            pressurePlateBlock(Stone.getBricksPressurePlate(), ResourceLocation.fromNamespaceAndPath("rankine", "block/"+Stone.getBaseName()+"_bricks"));
+            buttonBlock(Stone.getButton(), ResourceLocation.fromNamespaceAndPath("rankine", "block/"+Stone.getBaseName()));
             cobble(Stone.getCobble());
-            columnBlock(Stone.getColumn(), new ResourceLocation("rankine", "block/"+Stone.getBaseName()));
-            simpleBlock(Stone.getInfested(),models().withExistingParent(Stone.getInfested().getRegistryName().getPath(), new ResourceLocation("rankine", "block/"+Stone.getBaseName())));
+            columnBlock(Stone.getColumn(), ResourceLocation.fromNamespaceAndPath("rankine", "block/"+Stone.getBaseName()));
+            simpleBlock(Stone.getInfested(),models().withExistingParent(Stone.getInfested().getRegistryName().getPath(), ResourceLocation.fromNamespaceAndPath("rankine", "block/"+Stone.getBaseName())));
         }
 
         for (RankineWood Wood : RankineLists.RANKINE_WOODS) {
@@ -93,7 +93,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
             stairsBlock(Wood.getStairs(), getBlockRSL(Wood.getPlanks()));
             fenceBlock(Wood.getFence(), getBlockRSL(Wood.getPlanks()));
             fenceGateBlock(Wood.getFenceGate(), getBlockRSL(Wood.getPlanks()));
-            doorBlock(Wood.getDoor(), new ResourceLocation("rankine","block/"+Wood.getDoor().getRegistryName().getPath()+"_bottom"), new ResourceLocation("rankine","block/"+Wood.getDoor().getRegistryName().getPath()+"_top"));
+            doorBlock(Wood.getDoor(), ResourceLocation.fromNamespaceAndPath("rankine","block/"+Wood.getDoor().getRegistryName().getPath()+"_bottom"), ResourceLocation.fromNamespaceAndPath("rankine","block/"+Wood.getDoor().getRegistryName().getPath()+"_top"));
             trapdoorBlock(Wood.getTrapdoor(), getBlockRSL(Wood.getTrapdoor()), true);
             pressurePlateBlock(Wood.getPressurePlate(), getBlockRSL(Wood.getPlanks()));
             buttonBlock(Wood.getButton(), getBlockRSL(Wood.getPlanks()));
@@ -219,7 +219,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         for (Block blk : Stream.of(RankineLists.VANILLA_BRICKS_PRESSURE_PLATES).flatMap(Collection::stream).collect(Collectors.toList())) {
             String name = blk.getRegistryName().getPath();
             String baseStone = Arrays.asList(name.split("_pressure_plate")).get(0);
-            pressurePlateBlock((RankineStonePressurePlate) blk, new ResourceLocation("rankine", "block/" + baseStone));
+            pressurePlateBlock((RankineStonePressurePlate) blk, ResourceLocation.fromNamespaceAndPath("rankine", "block/" + baseStone));
         }
 
         sixSideCrossBlock(RankineBlocks.LOCUST_SPINE.get());
@@ -262,13 +262,13 @@ public class RankineBlockStateProvider extends BlockStateProvider {
                      MOIST = models().withExistingParent(RankineBlocks.TILLED_SOIL.get().getRegistryName().getPath()+"_"+TYPE.getSerializedName()+"_moist", mcLoc("block/template_farmland")).texture("dirt", getBlockRSL(TYPE.getSerializedName())).texture("top", getBlockRSL(TYPE.getSerializedName()+"_farmland_moist"));
                     break;
                 case SOUL_SOIL:
-                    DRY = models().withExistingParent(RankineBlocks.TILLED_SOIL.get().getRegistryName().getPath()+"_"+TYPE.getSerializedName(), mcLoc("block/template_farmland")).texture("dirt", new ResourceLocation("minecraft", "block/"+TYPE.getSerializedName())).texture("top", getBlockRSL(TYPE.getSerializedName()+"_farmland"));
-                    MOIST = models().withExistingParent(RankineBlocks.TILLED_SOIL.get().getRegistryName().getPath()+"_"+TYPE.getSerializedName()+"_moist", mcLoc("block/template_farmland")).texture("dirt", new ResourceLocation("minecraft", "block/"+TYPE.getSerializedName())).texture("top", getBlockRSL(TYPE.getSerializedName()+"_farmland_moist"));
+                    DRY = models().withExistingParent(RankineBlocks.TILLED_SOIL.get().getRegistryName().getPath()+"_"+TYPE.getSerializedName(), mcLoc("block/template_farmland")).texture("dirt", ResourceLocation.fromNamespaceAndPath("minecraft", "block/"+TYPE.getSerializedName())).texture("top", getBlockRSL(TYPE.getSerializedName()+"_farmland"));
+                    MOIST = models().withExistingParent(RankineBlocks.TILLED_SOIL.get().getRegistryName().getPath()+"_"+TYPE.getSerializedName()+"_moist", mcLoc("block/template_farmland")).texture("dirt", ResourceLocation.fromNamespaceAndPath("minecraft", "block/"+TYPE.getSerializedName())).texture("top", getBlockRSL(TYPE.getSerializedName()+"_farmland_moist"));
                     break;
                 case DIRT:
                 default:
-                    DRY = models().withExistingParent(RankineBlocks.TILLED_SOIL.get().getRegistryName().getPath()+"_"+TYPE.getSerializedName(), mcLoc("block/template_farmland")).texture("dirt", new ResourceLocation("minecraft", "block/"+TYPE.getSerializedName())).texture("top", new ResourceLocation("minecraft:block/farmland"));
-                    MOIST = models().withExistingParent(RankineBlocks.TILLED_SOIL.get().getRegistryName().getPath()+"_"+TYPE.getSerializedName()+"_moist", mcLoc("block/template_farmland")).texture("dirt", new ResourceLocation("minecraft", "block/"+TYPE.getSerializedName())).texture("top", new ResourceLocation("minecraft:block/farmland_moist"));
+                    DRY = models().withExistingParent(RankineBlocks.TILLED_SOIL.get().getRegistryName().getPath()+"_"+TYPE.getSerializedName(), mcLoc("block/template_farmland")).texture("dirt", ResourceLocation.fromNamespaceAndPath("minecraft", "block/"+TYPE.getSerializedName())).texture("top", ResourceLocation.parse("minecraft:block/farmland"));
+                    MOIST = models().withExistingParent(RankineBlocks.TILLED_SOIL.get().getRegistryName().getPath()+"_"+TYPE.getSerializedName()+"_moist", mcLoc("block/template_farmland")).texture("dirt", ResourceLocation.fromNamespaceAndPath("minecraft", "block/"+TYPE.getSerializedName())).texture("top", ResourceLocation.parse("minecraft:block/farmland_moist"));
                     break;
             }
 
@@ -303,7 +303,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
 
         for (Block BLOCK : RankineLists.EIGHT_LAYER_BLOCKS) {
             String NAME = BLOCK.getRegistryName().getPath();
-            ResourceLocation texture = new ResourceLocation("rankine","block/"+NAME);
+            ResourceLocation texture = ResourceLocation.fromNamespaceAndPath("rankine","block/"+NAME);
             getVariantBuilder(BLOCK).forAllStates(state -> {
                 int i = state.getValue(RankineEightLayerBlock.LAYERS);
                 return ConfiguredModel.builder()
@@ -323,14 +323,14 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         /*
         for (Block BLOCK : RankineLists.STONE_PILLARS) {
             String NAME = BLOCK.getRegistryName().getPath();
-            ResourceLocation texture = new ResourceLocation("rankine","block/"+NAME);
+            ResourceLocation texture = ResourceLocation.fromNamespaceAndPath("rankine","block/"+NAME);
             getVariantBuilder(BLOCK).forAllStatesExcept(state -> {
                 int i = state.get(PillarBlock.SIZE);
                 return ConfiguredModel.builder()
                         .modelFile(models().withExistingParent(NAME+(i),mcLoc("block/block"))
                                 .texture("particle", texture)
                                 .texture("side", texture)
-                                .texture("end", new ResourceLocation("rankine","block/"+NAME+"_end"))
+                                .texture("end", ResourceLocation.fromNamespaceAndPath("rankine","block/"+NAME+"_end"))
                                 .element().from(8-i,0,8-i).to(8+i,16,8+i)
                                 .face(Direction.NORTH).uvs(8-i,0, 8+i, 16).texture("#side").end()
                                 .face(Direction.EAST).uvs(8-i, 0, 8+i, 16).texture("#side").end()
@@ -403,11 +403,11 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         }
         for (Block blk : RankineLists.METAL_DOORS) {
             String name = blk.getRegistryName().getPath();
-            doorBlock((RankineMetalDoor) blk, new ResourceLocation("rankine","block/"+name+"_bottom"), new ResourceLocation("rankine","block/"+name+"_top"));
+            doorBlock((RankineMetalDoor) blk, ResourceLocation.fromNamespaceAndPath("rankine","block/"+name+"_bottom"), ResourceLocation.fromNamespaceAndPath("rankine","block/"+name+"_top"));
         }
         for (Block blk : RankineLists.METAL_TRAPDOORS) {
             String name = blk.getRegistryName().getPath();
-            trapdoorBlock((RankineMetalTrapdoor) blk, new ResourceLocation("rankine","block/"+name), true);
+            trapdoorBlock((RankineMetalTrapdoor) blk, ResourceLocation.fromNamespaceAndPath("rankine","block/"+name), true);
         }
 
         for (Block blk : RankineLists.HOLLOW_LOGS) {
@@ -473,12 +473,12 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         for (Block PATH : RankineLists.PATH_BLOCKS) {
             String regName = PATH.getRegistryName().getPath();
             Block SOIL = RankineLists.SOIL_BLOCKS.get(RankineLists.PATH_BLOCKS.indexOf(PATH));
-            ResourceLocation TOP = new ResourceLocation("rankine","block/"+regName+"_top");
-            ResourceLocation SIDE = new ResourceLocation("rankine","block/"+regName+"_side");
-            ResourceLocation BOTTOM = new ResourceLocation("rankine","block/"+SOIL.getRegistryName().getPath());
-            pathBlock(PATH, new ResourceLocation("minecraft","block/dirt_path_top"), SIDE, BOTTOM);
+            ResourceLocation TOP = ResourceLocation.fromNamespaceAndPath("rankine","block/"+regName+"_top");
+            ResourceLocation SIDE = ResourceLocation.fromNamespaceAndPath("rankine","block/"+regName+"_side");
+            ResourceLocation BOTTOM = ResourceLocation.fromNamespaceAndPath("rankine","block/"+SOIL.getRegistryName().getPath());
+            pathBlock(PATH, ResourceLocation.fromNamespaceAndPath("minecraft","block/dirt_path_top"), SIDE, BOTTOM);
         }
-        pathBlock(RankineBlocks.MYCELIUM_PATH.get(), new ResourceLocation("rankine","block/mycelium_path_top"), new ResourceLocation("rankine","block/mycelium_path_side"), new ResourceLocation("minecraft","block/dirt"));
+        pathBlock(RankineBlocks.MYCELIUM_PATH.get(), ResourceLocation.fromNamespaceAndPath("rankine","block/mycelium_path_top"), ResourceLocation.fromNamespaceAndPath("rankine","block/mycelium_path_side"), ResourceLocation.fromNamespaceAndPath("minecraft","block/dirt"));
 
 
         for (Block blk : RankineLists.ALLOY_PEDESTALS) {
@@ -513,7 +513,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         }
         for (Block blk : RankineLists.FIBER_MAT) {
             Block fiberBlock = RankineLists.FIBER_BLOCK.get(RankineLists.FIBER_MAT.indexOf(blk));
-            fiberMatBlock((FiberMatBlock) blk, new ResourceLocation("rankine","block/"+fiberBlock.getRegistryName().getPath()));
+            fiberMatBlock((FiberMatBlock) blk, ResourceLocation.fromNamespaceAndPath("rankine","block/"+fiberBlock.getRegistryName().getPath()));
         }
         for (Block blk : RankineLists.FLUID_BLOCKS) {
             fluidBlock(blk);
@@ -638,7 +638,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         simpleBlock(RankineBlocks.MATERIAL_TESTING_TABLE.get(), models().orientable(RankineBlocks.MATERIAL_TESTING_TABLE.get().getRegistryName().getPath(), getBlockRSL("material_testing_table_side"), getBlockRSL("material_testing_table_front"), getBlockRSL("material_testing_table_top")));
         simpleBlock(RankineBlocks.EVAPORATION_TOWER.get(), models().cubeBottomTop(RankineBlocks.EVAPORATION_TOWER.get().getRegistryName().getPath(), getBlockRSL("evaporation_tower_side"), getBlockRSL("evaporation_tower_bottom"), getBlockRSL("evaporation_tower_top")));
         onOffBlock(RankineBlocks.CHARCOAL_PIT.get(), models().cubeBottomTop(RankineBlocks.CHARCOAL_PIT.get().getRegistryName().getPath(), getBlockRSL("charcoal_pit_side"), getBlockRSL("charcoal_pit_top"), getBlockRSL("charcoal_pit_top")), models().cubeBottomTop(RankineBlocks.CHARCOAL_PIT.get().getRegistryName().getPath()+"_on", getBlockRSL("charcoal_pit_side"), getBlockRSL("charcoal_pit_top_on"), getBlockRSL("charcoal_pit_top_on")));
-        onOffBlock(RankineBlocks.BEEHIVE_OVEN_PIT.get(), models().cubeTop(RankineBlocks.BEEHIVE_OVEN_PIT.get().getRegistryName().getPath(), new ResourceLocation("rankine", "block/refractory_bricks"), new ResourceLocation("rankine", "block/beehive_oven")), models().cubeTop(RankineBlocks.BEEHIVE_OVEN_PIT.get().getRegistryName().getPath()+"_on", new ResourceLocation("rankine", "block/refractory_bricks"), new ResourceLocation("rankine", "block/beehive_oven_on")));
+        onOffBlock(RankineBlocks.BEEHIVE_OVEN_PIT.get(), models().cubeTop(RankineBlocks.BEEHIVE_OVEN_PIT.get().getRegistryName().getPath(), ResourceLocation.fromNamespaceAndPath("rankine", "block/refractory_bricks"), ResourceLocation.fromNamespaceAndPath("rankine", "block/beehive_oven")), models().cubeTop(RankineBlocks.BEEHIVE_OVEN_PIT.get().getRegistryName().getPath()+"_on", ResourceLocation.fromNamespaceAndPath("rankine", "block/refractory_bricks"), ResourceLocation.fromNamespaceAndPath("rankine", "block/beehive_oven_on")));
         onOffBlock(RankineBlocks.ALLOY_FURNACE.get(), models().cubeBottomTop(RankineBlocks.ALLOY_FURNACE.get().getRegistryName().getPath(), getBlockRSL("alloy_furnace_front"), getBlockRSL("refractory_bricks"), getBlockRSL("alloy_furnace_top")), models().cubeBottomTop(RankineBlocks.ALLOY_FURNACE.get().getRegistryName().getPath()+"_on", getBlockRSL("alloy_furnace_front_on"), getBlockRSL("refractory_bricks"), getBlockRSL("alloy_furnace_top")));
         rotateableMachineBlock(RankineBlocks.INDUCTION_FURNACE.get(), models().orientable(RankineBlocks.INDUCTION_FURNACE.get().getRegistryName().getPath(), getBlockRSL("induction_furnace_side"), getBlockRSL("induction_furnace_front"), getBlockRSL("induction_furnace_top")), models().orientable(RankineBlocks.INDUCTION_FURNACE.get().getRegistryName().getPath()+"_on", getBlockRSL("induction_furnace_side"), getBlockRSL("induction_furnace_front"), getBlockRSL("induction_furnace_top_on")));
         rotateableMachineBlock(RankineBlocks.FUSION_FURNACE.get(), models().orientable(RankineBlocks.FUSION_FURNACE.get().getRegistryName().getPath(), getBlockRSL("fusion_furnace_side"), getBlockRSL("fusion_furnace_front"), getBlockRSL("fusion_furnace_top")), models().orientable(RankineBlocks.FUSION_FURNACE.get().getRegistryName().getPath()+"_on", getBlockRSL("fusion_furnace_side"), getBlockRSL("fusion_furnace_front_on"), getBlockRSL("fusion_furnace_top")));
@@ -715,10 +715,10 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         return getBlockRSL(blk.getRegistryName().getPath());
     }
     public static ResourceLocation getBlockRSL(String textureName) {
-        return new ResourceLocation("rankine","block/"+textureName);
+        return ResourceLocation.fromNamespaceAndPath("rankine","block/"+textureName);
     }
     public static ResourceLocation getBlockRSL(String namespace, String textureName) {
-        return new ResourceLocation(namespace,"block/"+textureName);
+        return ResourceLocation.fromNamespaceAndPath(namespace,"block/"+textureName);
     }
 
 
@@ -992,8 +992,8 @@ public class RankineBlockStateProvider extends BlockStateProvider {
     }
     public void onOffBlock(Block block) {
         String name = block.getRegistryName().getPath();
-        ModelFile off = models().withExistingParent(name, mcLoc("block/cube_all")).texture("all", new ResourceLocation("rankine", "block/" + name));
-        ModelFile on = models().withExistingParent(name+"_on", mcLoc("block/cube_all")).texture("all", new ResourceLocation("rankine", "block/" + name + "_on"));
+        ModelFile off = models().withExistingParent(name, mcLoc("block/cube_all")).texture("all", ResourceLocation.fromNamespaceAndPath("rankine", "block/" + name));
+        ModelFile on = models().withExistingParent(name+"_on", mcLoc("block/cube_all")).texture("all", ResourceLocation.fromNamespaceAndPath("rankine", "block/" + name + "_on"));
         getVariantBuilder(block)
                 .partialState().with(BlockStateProperties.LIT, false).modelForState().modelFile(off).addModel()
                 .partialState().with(BlockStateProperties.LIT, true).modelForState().modelFile(on).addModel();
@@ -1006,8 +1006,8 @@ public class RankineBlockStateProvider extends BlockStateProvider {
     public void grassySoilBlock(Block grass, Block soil) {
         String grassyName = grass.getRegistryName().getPath();
         String soilName = soil.getRegistryName().getPath();
-        ModelFile grassy = models().withExistingParent(grassyName, modLoc("block/template_grassy_soil")).texture("soil", new ResourceLocation("rankine", "block/" + soilName)).texture("grassy_soil_top", getBlockRSL("minecraft","grass_block_top")).texture("grassy_soil_side", new ResourceLocation("rankine", "block/" + grassyName + "_side")).texture("grassy_soil_side_overlay", new ResourceLocation("rankine", "block/" + grassyName + "_side_overlay"));
-        ModelFile snowy = models().withExistingParent(grassyName+"_snow", mcLoc("block/cube_bottom_top")).texture("top", getBlockRSL("minecraft","grass_block_top")).texture("bottom", new ResourceLocation("rankine", "block/" + soilName)).texture("side", new ResourceLocation("rankine", "block/"+grassyName+"_snow"));
+        ModelFile grassy = models().withExistingParent(grassyName, modLoc("block/template_grassy_soil")).texture("soil", ResourceLocation.fromNamespaceAndPath("rankine", "block/" + soilName)).texture("grassy_soil_top", getBlockRSL("minecraft","grass_block_top")).texture("grassy_soil_side", ResourceLocation.fromNamespaceAndPath("rankine", "block/" + grassyName + "_side")).texture("grassy_soil_side_overlay", ResourceLocation.fromNamespaceAndPath("rankine", "block/" + grassyName + "_side_overlay"));
+        ModelFile snowy = models().withExistingParent(grassyName+"_snow", mcLoc("block/cube_bottom_top")).texture("top", getBlockRSL("minecraft","grass_block_top")).texture("bottom", ResourceLocation.fromNamespaceAndPath("rankine", "block/" + soilName)).texture("side", ResourceLocation.fromNamespaceAndPath("rankine", "block/"+grassyName+"_snow"));
         getVariantBuilder(grass)
                 .partialState().with(GrassBlock.SNOWY, false).with(GrassySoilBlock.DEAD,true).modelForState().modelFile(grassy).rotationY(0).nextModel().modelFile(grassy).rotationY(90).nextModel().modelFile(grassy).rotationY(180).nextModel().modelFile(grassy).rotationY(270).addModel()
                 .partialState().with(GrassBlock.SNOWY, false).with(GrassySoilBlock.DEAD,false).modelForState().modelFile(grassy).rotationY(0).nextModel().modelFile(grassy).rotationY(90).nextModel().modelFile(grassy).rotationY(180).nextModel().modelFile(grassy).rotationY(270).addModel()
@@ -1588,15 +1588,15 @@ public class RankineBlockStateProvider extends BlockStateProvider {
 
     public void slabBlock(Block BLK, boolean special) {
         String regName = BLK.getRegistryName().getPath();
-        slabBlock((RankineSlabBlock) BLK, new ResourceLocation("rankine","block/"+regName.replace("_slab",special ? "1" : "")), new ResourceLocation("rankine","block/"+regName.replace("_slab","")));
+        slabBlock((RankineSlabBlock) BLK, ResourceLocation.fromNamespaceAndPath("rankine","block/"+regName.replace("_slab",special ? "1" : "")), ResourceLocation.fromNamespaceAndPath("rankine","block/"+regName.replace("_slab","")));
     }
     public void stairsBlock(Block BLK, boolean special) {
         String regName = BLK.getRegistryName().getPath();
-        stairsBlock((RankineStairsBlock) BLK, new ResourceLocation("rankine","block/"+regName.replace("_stairs","")));
+        stairsBlock((RankineStairsBlock) BLK, ResourceLocation.fromNamespaceAndPath("rankine","block/"+regName.replace("_stairs","")));
     }
     public void wallBlock(Block BLK, boolean special) {
         String regName = BLK.getRegistryName().getPath();
-        wallBlock((RankineWallBlock) BLK, new ResourceLocation("rankine","block/"+regName.replace("_wall","")));
+        wallBlock((RankineWallBlock) BLK, ResourceLocation.fromNamespaceAndPath("rankine","block/"+regName.replace("_wall","")));
     }
     
 }

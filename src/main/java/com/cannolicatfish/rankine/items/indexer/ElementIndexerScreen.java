@@ -15,8 +15,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.Util;
 import net.minecraft.util.Mth;
 import net.minecraft.network.chat.Component;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import org.lwjgl.opengl.GL11;
 
 import java.text.DecimalFormat;
@@ -29,7 +29,7 @@ public class ElementIndexerScreen extends AbstractContainerScreen<ElementIndexer
     private int currentScroll = 100;
     private ElementRecipe element = null;
     private static final PeriodicTableUtils utils = new PeriodicTableUtils();
-    private ResourceLocation GUI = new ResourceLocation(ProjectRankine.MODID, "textures/gui/element_indexer.png");
+    private ResourceLocation GUI = ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID, "textures/gui/element_indexer.png");
     public ElementIndexerScreen(ElementIndexerContainer screenContainer, Inventory inv, Component titleIn) {
         super(screenContainer, inv, titleIn);
         this.imageWidth = 176;

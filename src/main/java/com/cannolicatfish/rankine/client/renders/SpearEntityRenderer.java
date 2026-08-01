@@ -13,22 +13,22 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import com.mojang.math.Vector3f;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class SpearEntityRenderer extends EntityRenderer<SpearEntity> {
     public static final SpearEntityRenderer.SpearRenderFactory instance = new SpearEntityRenderer.SpearRenderFactory();
-    public static final ResourceLocation FLINT_SPEAR = new ResourceLocation("rankine:textures/entity/flint_spear.png");
-    public static final ResourceLocation BRONZE_SPEAR = new ResourceLocation("rankine:textures/entity/bronze_spear.png");
-    public static final ResourceLocation IRON_SPEAR = new ResourceLocation("rankine:textures/entity/iron_spear.png");
-    public static final ResourceLocation STEEL_SPEAR = new ResourceLocation("rankine:textures/entity/steel_spear.png");
-    public static final ResourceLocation ROSE_GOLD_SPEAR = new ResourceLocation("rankine:textures/entity/rose_gold_spear.png");
-    public static final ResourceLocation WHITE_GOLD_SPEAR = new ResourceLocation("rankine:textures/entity/white_gold_spear.png");
-    public static final ResourceLocation GREEN_GOLD_SPEAR = new ResourceLocation("rankine:textures/entity/green_gold_spear.png");
-    public static final ResourceLocation BLUE_GOLD_SPEAR = new ResourceLocation("rankine:textures/entity/blue_gold_spear.png");
-    public static final ResourceLocation PURPLE_GOLD_SPEAR = new ResourceLocation("rankine:textures/entity/purple_gold_spear.png");
-    public static final ResourceLocation AMALGAM_SPEAR = new ResourceLocation("rankine:textures/entity/amalgam_spear.png");
+    public static final ResourceLocation FLINT_SPEAR = ResourceLocation.parse("rankine:textures/entity/flint_spear.png");
+    public static final ResourceLocation BRONZE_SPEAR = ResourceLocation.parse("rankine:textures/entity/bronze_spear.png");
+    public static final ResourceLocation IRON_SPEAR = ResourceLocation.parse("rankine:textures/entity/iron_spear.png");
+    public static final ResourceLocation STEEL_SPEAR = ResourceLocation.parse("rankine:textures/entity/steel_spear.png");
+    public static final ResourceLocation ROSE_GOLD_SPEAR = ResourceLocation.parse("rankine:textures/entity/rose_gold_spear.png");
+    public static final ResourceLocation WHITE_GOLD_SPEAR = ResourceLocation.parse("rankine:textures/entity/white_gold_spear.png");
+    public static final ResourceLocation GREEN_GOLD_SPEAR = ResourceLocation.parse("rankine:textures/entity/green_gold_spear.png");
+    public static final ResourceLocation BLUE_GOLD_SPEAR = ResourceLocation.parse("rankine:textures/entity/blue_gold_spear.png");
+    public static final ResourceLocation PURPLE_GOLD_SPEAR = ResourceLocation.parse("rankine:textures/entity/purple_gold_spear.png");
+    public static final ResourceLocation AMALGAM_SPEAR = ResourceLocation.parse("rankine:textures/entity/amalgam_spear.png");
 
     private final SpearEntityModel spearModel;
 
@@ -51,7 +51,7 @@ public class SpearEntityRenderer extends EntityRenderer<SpearEntity> {
 
     @Override
     public ResourceLocation getTextureLocation(SpearEntity entity) {
-        return entity.type == null ? new ResourceLocation("rankine:textures/entity/flint_spear.png") : entity.type;
+        return entity.type == null ? ResourceLocation.parse("rankine:textures/entity/flint_spear.png") : entity.type;
 
     }
 

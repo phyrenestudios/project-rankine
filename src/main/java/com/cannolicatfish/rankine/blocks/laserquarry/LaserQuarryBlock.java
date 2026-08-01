@@ -12,7 +12,7 @@ import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.network.NetworkHooks;
+import net.neoforged.fml.network.NetworkHooks;
 
 import javax.annotation.Nullable;
 

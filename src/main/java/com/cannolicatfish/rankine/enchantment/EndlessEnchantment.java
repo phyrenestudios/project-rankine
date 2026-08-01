@@ -32,7 +32,7 @@ public class EndlessEnchantment extends Enchantment {
     public boolean canEnchant(ItemStack stack) {
         ResourceLocation rs = IAlloyItem.getAlloyRecipe(stack);
         if (rs != null) {
-            return rs.equals(new ResourceLocation("rankine:alloying/ender_amalgam_alloying")) && stack.getItem() instanceof AlloyPickaxeItem;
+            return rs.equals(ResourceLocation.parse("rankine:alloying/ender_amalgam_alloying")) && stack.getItem() instanceof AlloyPickaxeItem;
         }
         return RankineEnchantmentTypes.ENDER_AMALGAM_PICKAXE.canEnchant(stack.getItem());
     }
@@ -41,7 +41,7 @@ public class EndlessEnchantment extends Enchantment {
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
         ResourceLocation rs = IAlloyItem.getAlloyRecipe(stack);
         if (rs != null) {
-            return rs.equals(new ResourceLocation("rankine:alloying/ender_amalgam_alloying")) && stack.getItem() instanceof AlloyPickaxeItem;
+            return rs.equals(ResourceLocation.parse("rankine:alloying/ender_amalgam_alloying")) && stack.getItem() instanceof AlloyPickaxeItem;
         }
         return false;
     }

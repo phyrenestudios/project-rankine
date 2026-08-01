@@ -18,17 +18,17 @@ import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraftforge.fluids.FluidUtil;
+import net.neoforged.neoforge.fluids.FluidUtil;
 
 import java.util.List;
 
 public class FusionFurnaceRecipeCategory implements IRecipeCategory<FusionFurnaceRecipe> {
 
-    public static ResourceLocation UID = new ResourceLocation(ProjectRankine.MODID, "fusion_furnace");
+    public static ResourceLocation UID = ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID, "fusion_furnace");
     private final IDrawable background;
     private final String localizedName;
     private final IDrawable overlay;
@@ -38,18 +38,18 @@ public class FusionFurnaceRecipeCategory implements IRecipeCategory<FusionFurnac
     private final LoadingCache<Integer, IDrawableAnimated> cachedArrows;
     public FusionFurnaceRecipeCategory(IGuiHelper guiHelper) {
         this.guiHelper = guiHelper;
-        background = guiHelper.drawableBuilder(new ResourceLocation(ProjectRankine.MODID, "textures/gui/fusion_furnace_jei.png"), 0, 0, 172,86)
+        background = guiHelper.drawableBuilder(ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID, "textures/gui/fusion_furnace_jei.png"), 0, 0, 172,86)
                 .addPadding(0, 0, 0, 0)
                 .build();
         localizedName = I18n.get("rankine.jei.fusion_furnace");
-        overlay = guiHelper.createDrawable(new ResourceLocation(ProjectRankine.MODID, "textures/gui/fusion_furnace_jei.png"),
+        overlay = guiHelper.createDrawable(ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID, "textures/gui/fusion_furnace_jei.png"),
                 0, 15, 175, 80);
         this.cachedFlames = CacheBuilder.newBuilder()
                 .maximumSize(25)
                 .build(new CacheLoader<>() {
                     @Override
                     public IDrawableAnimated load(Integer burnTime) {
-                        return guiHelper.drawableBuilder(new ResourceLocation(ProjectRankine.MODID, "textures/gui/cauldron_drying_jei.png"), 232, 0, 14, 14)
+                        return guiHelper.drawableBuilder(ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID, "textures/gui/cauldron_drying_jei.png"), 232, 0, 14, 14)
                                 .buildAnimated(burnTime, IDrawableAnimated.StartDirection.TOP, true);
                     }
                 });
@@ -58,7 +58,7 @@ public class FusionFurnaceRecipeCategory implements IRecipeCategory<FusionFurnac
                 .build(new CacheLoader<>() {
                     @Override
                     public IDrawableAnimated load(Integer cookTime) {
-                        return guiHelper.drawableBuilder(new ResourceLocation(ProjectRankine.MODID, "textures/gui/cauldron_drying_jei.png"), 232, 14, 24, 17)
+                        return guiHelper.drawableBuilder(ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID, "textures/gui/cauldron_drying_jei.png"), 232, 14, 24, 17)
                                 .buildAnimated(cookTime, IDrawableAnimated.StartDirection.LEFT, false);
                     }
                 });
@@ -76,7 +76,7 @@ public class FusionFurnaceRecipeCategory implements IRecipeCategory<FusionFurnac
 
     @Override
     public Component getTitle() {
-        return new TextComponent(localizedName);
+        return Component.literal(localizedName);
     }
 
     @Override

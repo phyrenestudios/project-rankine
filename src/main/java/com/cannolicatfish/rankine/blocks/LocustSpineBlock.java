@@ -21,8 +21,8 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
@@ -103,7 +103,7 @@ public class LocustSpineBlock extends Block {
 
     @SuppressWarnings("deprecation")
     public boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
-        return worldIn.getBlockState(pos.relative(state.getValue(FACING).getOpposite())).is(BlockTags.create(new ResourceLocation("rankine:honey_locust_logs")));
+        return worldIn.getBlockState(pos.relative(state.getValue(FACING).getOpposite())).is(BlockTags.create(ResourceLocation.parse("rankine:honey_locust_logs")));
     }
 
     @Nonnull

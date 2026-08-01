@@ -5,7 +5,7 @@ import com.cannolicatfish.rankine.init.RankineEntityTypes;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.EntityTypeTagsProvider;
 import net.minecraft.tags.EntityTypeTags;
-import net.minecraftforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
 
 public class RankineEntityTypeTagsProvider extends EntityTypeTagsProvider {

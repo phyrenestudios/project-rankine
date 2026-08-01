@@ -6,7 +6,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
-import net.minecraftforge.client.event.FOVModifierEvent;
+import net.neoforged.neoforge.client.event.FOVModifierEvent;
 
 public class FOVModifierHandler {
     public static void fovUpdate(FOVModifierEvent event) {

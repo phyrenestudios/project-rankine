@@ -12,8 +12,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.common.Tags;
-import net.minecraftforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -124,9 +124,9 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
 
         for (RankineWood Wood : RankineLists.RANKINE_WOODS) {
             if (Wood.hasLogs()) {
-                tag(BlockTags.create(new ResourceLocation("rankine", Wood.getBaseName() + "_logs"))).add(Wood.getLog(), Wood.getStrippedLog(), Wood.getWood(), Wood.getStrippedWood());
+                tag(BlockTags.create(ResourceLocation.fromNamespaceAndPath("rankine", Wood.getBaseName() + "_logs"))).add(Wood.getLog(), Wood.getStrippedLog(), Wood.getWood(), Wood.getStrippedWood());
                 if (!Wood.getBaseName().equals("charred") && !Wood.getBaseName().equals("petrified_chorus")) {
-                    tag(BlockTags.LOGS_THAT_BURN).addTag(BlockTags.create(new ResourceLocation("rankine", Wood.getBaseName() + "_logs")));
+                    tag(BlockTags.LOGS_THAT_BURN).addTag(BlockTags.create(ResourceLocation.fromNamespaceAndPath("rankine", Wood.getBaseName() + "_logs")));
                     tag(RankineTags.Blocks.TREE_LOGS).add(Wood.getHollowLog());
                     tag(RankineTags.Blocks.STRIPPED_LOGS).add(Wood.getStrippedLog());
                     tag(RankineTags.Blocks.STRIPPED_WOOD).add(Wood.getStrippedWood());
@@ -366,14 +366,14 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
         for (Block blk : RankineLists.SHEETMETALS) {
             String name = blk.getRegistryName().getPath();
             String baseName = Arrays.asList(name.split("_sheetmetal")).get(0);
-            tag(BlockTags.create(new ResourceLocation("forge", "sheetmetals/"+baseName))).add(blk);
-            tag(RankineTags.Blocks.SHEETMETAL).addTag(BlockTags.create(new ResourceLocation("forge", "sheetmetals/"+baseName)));
+            tag(BlockTags.create(ResourceLocation.fromNamespaceAndPath("forge", "sheetmetals/"+baseName))).add(blk);
+            tag(RankineTags.Blocks.SHEETMETAL).addTag(BlockTags.create(ResourceLocation.fromNamespaceAndPath("forge", "sheetmetals/"+baseName)));
         }
         for (Block blk : RankineLists.ALLOY_SHEETMETALS) {
             String name = blk.getRegistryName().getPath();
             String baseName = Arrays.asList(name.split("_sheetmetal")).get(0);
-            tag(BlockTags.create(new ResourceLocation("forge", "sheetmetals/"+baseName))).add(blk);
-            tag(RankineTags.Blocks.SHEETMETAL).addTag(BlockTags.create(new ResourceLocation("forge", "sheetmetals/"+baseName)));
+            tag(BlockTags.create(ResourceLocation.fromNamespaceAndPath("forge", "sheetmetals/"+baseName))).add(blk);
+            tag(RankineTags.Blocks.SHEETMETAL).addTag(BlockTags.create(ResourceLocation.fromNamespaceAndPath("forge", "sheetmetals/"+baseName)));
         }
 
         tag(Tags.Blocks.STORAGE_BLOCKS_COAL).add(RankineBlocks.LIGNITE_BLOCK.get(),RankineBlocks.SUBBITUMINOUS_COAL_BLOCK.get(),RankineBlocks.BITUMINOUS_COAL_BLOCK.get(),RankineBlocks.ANTHRACITE_COAL_BLOCK.get());
@@ -614,7 +614,7 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
 
         tag(BlockTags.BAMBOO_PLANTABLE_ON).addTags(BlockTags.DIRT,Tags.Blocks.GRAVEL,Tags.Blocks.SAND).add(RankineBlocks.SILT.get(),RankineBlocks.DESERT_SAND.get());
         tag(BlockTags.ENDERMAN_HOLDABLE).addTags(BlockTags.DIRT,Tags.Blocks.GRAVEL,Tags.Blocks.SAND).add(RankineBlocks.SILT.get(),RankineBlocks.DESERT_SAND.get(),RankineBlocks.KAOLIN.get(),RankineBlocks.FIRE_CLAY.get());
-        tag(BlockTags.DRAGON_IMMUNE).addTags(BlockTags.create(new ResourceLocation("rankine:petrified_chorus_logs")),BlockTags.create(new ResourceLocation("rankine:charred_logs"))).add(RankineBlocks.SNOWFLAKE_OBSIDIAN.get(), RankineBlocks.BLOOD_OBSIDIAN.get());
+        tag(BlockTags.DRAGON_IMMUNE).addTags(BlockTags.create(ResourceLocation.parse("rankine:petrified_chorus_logs")),BlockTags.create(ResourceLocation.parse("rankine:charred_logs"))).add(RankineBlocks.SNOWFLAKE_OBSIDIAN.get(), RankineBlocks.BLOOD_OBSIDIAN.get());
         tag(Tags.Blocks.GLASS).add(RankineBlocks.LIGHTNING_GLASS.get(),RankineBlocks.RED_LIGHTNING_GLASS.get(),RankineBlocks.SOUL_LIGHTNING_GLASS.get(),RankineBlocks.BLACK_LIGHTNING_GLASS.get(),RankineBlocks.WHITE_LIGHTNING_GLASS.get());
         tag(RankineTags.Blocks.NUGGET_STONES).addTags(RankineTags.Blocks.TUFF,RankineTags.Blocks.BASE_STONE_END,BlockTags.BASE_STONE_NETHER,BlockTags.BASE_STONE_OVERWORLD);
         tag(RankineTags.Blocks.MAGNET_BANNED).addTags(Tags.Blocks.CHESTS,BlockTags.SHULKER_BOXES).add(Blocks.BARRIER,Blocks.END_PORTAL,Blocks.END_PORTAL_FRAME,Blocks.BEDROCK,Blocks.NETHER_PORTAL,Blocks.WATER,Blocks.LAVA,Blocks.REDSTONE_WIRE);
@@ -664,10 +664,10 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
         tag(BlockTags.FOXES_SPAWNABLE_ON).addTag(RankineTags.Blocks.GRASS_BLOCKS).addTag(RankineTags.Blocks.PODZOL).addTag(RankineTags.Blocks.COARSE_DIRT);
         tag(BlockTags.WOLVES_SPAWNABLE_ON).addTag(RankineTags.Blocks.GRASS_BLOCKS);
 
-        tag(BlockTags.create(new ResourceLocation("twilight_forest", "portal/decoration"))).add(RankineBlocks.STINGING_NETTLE.get()).addTag(RankineTags.Blocks.LEAF_LITTERS);
-        tag(BlockTags.create(new ResourceLocation("twilight_forest", "portal/edge"))).add(RankineBlocks.FULGURITE.get(),RankineBlocks.TILLED_SOIL.get());
+        tag(BlockTags.create(ResourceLocation.fromNamespaceAndPath("twilight_forest", "portal/decoration"))).add(RankineBlocks.STINGING_NETTLE.get()).addTag(RankineTags.Blocks.LEAF_LITTERS);
+        tag(BlockTags.create(ResourceLocation.fromNamespaceAndPath("twilight_forest", "portal/edge"))).add(RankineBlocks.FULGURITE.get(),RankineBlocks.TILLED_SOIL.get());
         for (Block blk : Stream.of(RankineLists.GRASS_BLOCKS,RankineLists.PODZOL_BLOCKS,RankineLists.MYCELIUM_BLOCKS,RankineLists.MUD_BLOCKS,RankineLists.COARSE_SOIL_BLOCKS).flatMap(Collection::stream).collect(Collectors.toList())) {
-            tag(BlockTags.create(new ResourceLocation("twilight_forest", "portal/edge"))).add(blk);
+            tag(BlockTags.create(ResourceLocation.fromNamespaceAndPath("twilight_forest", "portal/edge"))).add(blk);
         }
     }
 

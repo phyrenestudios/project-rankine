@@ -8,13 +8,13 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.Level;
 
 import net.minecraft.world.item.Item.Properties;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.TierSortingRegistry;
+import net.neoforged.neoforge.common.TierSortingRegistry;
 
 import java.util.List;
 import java.util.Locale;
@@ -47,7 +47,7 @@ public class HardnessTesterItem extends Item {
             } else {
                 cons = "None";
             }
-            player.sendMessage(new TextComponent("Harvest Level: " + cons),player.getUUID());
+            player.sendMessage(Component.literal("Harvest Level: " + cons),player.getUUID());
         }
 
 

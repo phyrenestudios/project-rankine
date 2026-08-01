@@ -4,8 +4,8 @@ import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineItems;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.common.BasicItemListing;
-import net.minecraftforge.event.village.WandererTradesEvent;
+import net.neoforged.neoforge.common.BasicItemListing;
+import net.neoforged.neoforge.event.village.WandererTradesEvent;
 
 public class WandererTradesHandler {
     public static void addWandererTrades(WandererTradesEvent event) {

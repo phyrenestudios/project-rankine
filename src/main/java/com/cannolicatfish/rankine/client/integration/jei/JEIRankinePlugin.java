@@ -23,7 +23,7 @@ import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.registration.*;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -65,7 +65,7 @@ public class JEIRankinePlugin implements IModPlugin {
     @Nonnull
     @Override
     public ResourceLocation getPluginUid() {
-        return new ResourceLocation(ProjectRankine.MODID, "jei_plugin");
+        return ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID, "jei_plugin");
     }
 
     @Override
@@ -124,7 +124,7 @@ public class JEIRankinePlugin implements IModPlugin {
         registry.addRecipes(BATTERY,getSortedBatteryRecipes(rankineJEIRecipes.getBatteryRecipes()));
         registry.addRecipes(CAULDRON_DRYING,rankineJEIRecipes.getCauldronRecipes());
 
-        registry.addIngredientInfo(new ItemStack(RankineItems.FRUIT_JAM.get()),VanillaTypes.ITEM_STACK,new TranslatableComponent("rankine.jei.info_fruit_jam"));
+        registry.addIngredientInfo(new ItemStack(RankineItems.FRUIT_JAM.get()),VanillaTypes.ITEM_STACK,Component.translatable("rankine.jei.info_fruit_jam"));
         /*registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getAlloyFurnaceRecipes()), AlloyingRecipeCategory.UID);
         registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getInductionFurnaceRecipes()), InductionAlloyingRecipeCategory.UID);
         registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getIntrusiveGeneratorRecipes()), IntrusiveGeneratorRecipeCategory.UID);
@@ -133,14 +133,14 @@ public class JEIRankinePlugin implements IModPlugin {
         registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getMetamorphicGeneratorRecipes()), MetamorphicGeneratorRecipeCategory.UID);
         registry.addRecipes(getSortedRecipes(rankineJEIRecipes.getVolcanicGeneratorRecipes()), VolcanicGeneratorRecipeCategory.UID);*/
 
-        /*registry.addIngredientInfo(new ItemStack(RankineItems.DRY_RUBBER.get()), VanillaTypes.ITEM_STACK,new TranslatableComponent("rankine.jei.info_dry_rubber"));
-        registry.addIngredientInfo(new ItemStack(RankineItems.AMBER.get()), VanillaTypes.ITEM_STACK,new TranslatableComponent("rankine.jei.info_amber"));
+        /*registry.addIngredientInfo(new ItemStack(RankineItems.DRY_RUBBER.get()), VanillaTypes.ITEM_STACK,Component.translatable("rankine.jei.info_dry_rubber"));
+        registry.addIngredientInfo(new ItemStack(RankineItems.AMBER.get()), VanillaTypes.ITEM_STACK,Component.translatable("rankine.jei.info_amber"));
 
-        registry.addIngredientInfo(new FluidStack(RankineFluids.SAP,1000), ForgeTypes.FLUID_STACK,new TranslatableComponent("rankine.jei.info_sap"));
-        registry.addIngredientInfo(new FluidStack(RankineFluids.MAPLE_SAP,1000), ForgeTypes.FLUID_STACK,new TranslatableComponent("rankine.jei.info_maple_sap"));
-        registry.addIngredientInfo(new FluidStack(RankineFluids.LATEX,1000), ForgeTypes.FLUID_STACK,new TranslatableComponent("rankine.jei.info_latex"));
-        registry.addIngredientInfo(new FluidStack(RankineFluids.RESIN,1000), ForgeTypes.FLUID_STACK,new TranslatableComponent("rankine.jei.info_resin"));
-        registry.addIngredientInfo(new FluidStack(RankineFluids.JUGLONE,1000), ForgeTypes.FLUID_STACK,new TranslatableComponent("rankine.jei.info_juglone"));*/
+        registry.addIngredientInfo(new FluidStack(RankineFluids.SAP,1000), ForgeTypes.FLUID_STACK,Component.translatable("rankine.jei.info_sap"));
+        registry.addIngredientInfo(new FluidStack(RankineFluids.MAPLE_SAP,1000), ForgeTypes.FLUID_STACK,Component.translatable("rankine.jei.info_maple_sap"));
+        registry.addIngredientInfo(new FluidStack(RankineFluids.LATEX,1000), ForgeTypes.FLUID_STACK,Component.translatable("rankine.jei.info_latex"));
+        registry.addIngredientInfo(new FluidStack(RankineFluids.RESIN,1000), ForgeTypes.FLUID_STACK,Component.translatable("rankine.jei.info_resin"));
+        registry.addIngredientInfo(new FluidStack(RankineFluids.JUGLONE,1000), ForgeTypes.FLUID_STACK,Component.translatable("rankine.jei.info_juglone"));*/
     }
 
     @Override

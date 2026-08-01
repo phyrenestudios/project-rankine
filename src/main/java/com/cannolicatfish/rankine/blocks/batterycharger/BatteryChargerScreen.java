@@ -11,7 +11,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
 public class BatteryChargerScreen extends AbstractContainerScreen<BatteryChargerContainer>{
-    private ResourceLocation GUI = new ResourceLocation(ProjectRankine.MODID, "textures/gui/battery_charger.png");
+    private ResourceLocation GUI = ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID, "textures/gui/battery_charger.png");
     public BatteryChargerScreen(BatteryChargerContainer screenContainer, Inventory inv, Component titleIn) {
         super(screenContainer, inv, titleIn);
     }

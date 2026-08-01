@@ -25,7 +25,7 @@ import net.minecraft.world.level.storage.loot.predicates.BonusLevelTableConditio
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.registries.ForgeRegistries;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -176,7 +176,7 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
             lootTables.put(blk, createBlockLootTable(blk));
         }
         for (Block blk : RankineLists.LANTERNS) {
-            lootTables.put(blk, createBlockLootTable(Blocks.LANTERN, ForgeRegistries.ITEMS.getValue(new ResourceLocation(ProjectRankine.MODID, blk.getRegistryName().getPath().replace("lantern","nugget")))));
+            lootTables.put(blk, createBlockLootTable(Blocks.LANTERN, ForgeRegistries.ITEMS.getValue(ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID, blk.getRegistryName().getPath().replace("lantern","nugget")))));
         }
         for (Block blk : RankineLists.ASPHALT_BLOCKS) {
             lootTables.put(blk, createBlockLootTable(RankineBlocks.ASPHALT.get()));

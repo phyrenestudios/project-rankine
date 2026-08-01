@@ -9,10 +9,10 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.common.BasicItemListing;
-import net.minecraftforge.common.Tags;
-import net.minecraftforge.event.village.VillagerTradesEvent;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.common.BasicItemListing;
+import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.event.village.VillagerTradesEvent;
+import net.neoforged.neoforge.registries.ForgeRegistries;
 
 import java.util.List;
 

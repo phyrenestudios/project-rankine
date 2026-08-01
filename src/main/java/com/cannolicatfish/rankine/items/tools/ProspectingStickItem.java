@@ -5,7 +5,7 @@ import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.init.VanillaIntegration;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -19,8 +19,8 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.Tags;
-import net.minecraftforge.common.TierSortingRegistry;
+import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.common.TierSortingRegistry;
 
 import java.util.List;
 import java.util.Locale;
@@ -45,7 +45,7 @@ public class ProspectingStickItem extends Item {
                 for (int i = 1; i < pos.getY(); ++i) {
                     Block target = worldIn.getBlockState(pos.below(i)).getBlock();
                     if (VanillaIntegration.oreNuggetMap.containsKey(target) && player != null && !worldIn.isClientSide()) {
-                        player.displayClientMessage(new TranslatableComponent("item.rankine.prospecting_stick_cobbles.message", new TranslatableComponent(target.getDescriptionId()).getString()), true);
+                        player.displayClientMessage(Component.translatable("item.rankine.prospecting_stick_cobbles.message", Component.translatable(target.getDescriptionId()).getString()), true);
                         if (this.canBeDepleted() && !worldIn.isClientSide()) {
                             context.getItemInHand().hurtAndBreak(1, player, (p_219998_1_) -> {
                                 p_219998_1_.broadcastBreakEvent(context.getHand());
@@ -83,7 +83,7 @@ public class ProspectingStickItem extends Item {
                             } else {
                                 cons = "None";
                             }
-                            player.displayClientMessage(new TranslatableComponent("item.rankine.prospecting_stick.message", new TranslatableComponent(ORE.getBlock().getDescriptionId()), cons), true);
+                            player.displayClientMessage(Component.translatable("item.rankine.prospecting_stick.message", Component.translatable(ORE.getBlock().getDescriptionId()), cons), true);
                             context.getItemInHand().hurtAndBreak(1, player, (p) -> {
                                 p.broadcastBreakEvent(context.getHand());
                             });

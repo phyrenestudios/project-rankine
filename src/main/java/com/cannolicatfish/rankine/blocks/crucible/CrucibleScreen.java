@@ -13,7 +13,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.chat.Component;
 
 public class CrucibleScreen extends AbstractContainerScreen<CrucibleContainer> {
-    private ResourceLocation GUI = new ResourceLocation(ProjectRankine.MODID, "textures/gui/crucible.png");
+    private ResourceLocation GUI = ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID, "textures/gui/crucible.png");
     public CrucibleScreen(CrucibleContainer container, Inventory inv, Component name) {
         super(container, inv, name);
     }

@@ -134,7 +134,7 @@ public class SluicingRecipe implements Recipe<Container> {
 
     public static ItemStack deserializeItem(JsonObject object) {
         String s = GsonHelper.getAsString(object, "item");
-        Item item = Registry.ITEM.getOptional(new ResourceLocation(s)).orElseThrow(() -> {
+        Item item = Registry.ITEM.getOptional(ResourceLocation.parse(s)).orElseThrow(() -> {
             return new JsonSyntaxException("Unknown item '" + s + "'");
         });
 
@@ -151,8 +151,8 @@ public class SluicingRecipe implements Recipe<Container> {
         return RankineRecipeTypes.SLUICING;
     }
 
-    public static class Serializer extends net.minecraftforge.registries.ForgeRegistryEntry<RecipeSerializer<?>>  implements RecipeSerializer<SluicingRecipe> {
-        private static final ResourceLocation NAME = new ResourceLocation("rankine", "sluicing");
+    public static class Serializer extends net.neoforged.neoforge.registries.ForgeRegistryEntry<RecipeSerializer<?>>  implements RecipeSerializer<SluicingRecipe> {
+        private static final ResourceLocation NAME = ResourceLocation.fromNamespaceAndPath("rankine", "sluicing");
         public SluicingRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
             Ingredient ingredient = Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "input"));
             Ingredient it = Ingredient.fromJson(GsonHelper.getAsJsonObject(json, "tool"));

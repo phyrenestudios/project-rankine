@@ -19,11 +19,11 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.chat.Component;
 import net.minecraft.ChatFormatting;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -38,7 +38,7 @@ public class BlazingTotemItem extends Item {
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
-        tooltip.add(new TranslatableComponent("item.rankine.totem_of_blazing.tooltip").withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
+        tooltip.add(Component.translatable("item.rankine.totem_of_blazing.tooltip").withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
     }
 
     @Override
@@ -75,7 +75,7 @@ public class BlazingTotemItem extends Item {
                     MobEffectInstance lavaSave = new MobEffectInstance(MobEffects.FIRE_RESISTANCE,500);
                     MobEffectInstance regen = new MobEffectInstance(MobEffects.REGENERATION,100,3);
                     if (AlexMobs.isInstalled()){
-                        MobEffect lavaVision = ForgeRegistries.MOB_EFFECTS.getValue(new ResourceLocation("alexsmobs:lava_vision"));
+                        MobEffect lavaVision = ForgeRegistries.MOB_EFFECTS.getValue(ResourceLocation.parse("alexsmobs:lava_vision"));
                         if (lavaVision != null) {
                             MobEffectInstance lavaVisionEffect = new MobEffectInstance(lavaVision,500);
                             living.addEffect(lavaVisionEffect);

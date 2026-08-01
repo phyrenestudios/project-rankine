@@ -29,7 +29,7 @@ public class AntiquatedEnchantment extends Enchantment {
     public boolean canEnchant(ItemStack stack) {
         ResourceLocation rs = IAlloyItem.getAlloyRecipe(stack);
         if (rs != null) {
-            return rs.equals(new ResourceLocation("rankine:alloying/pewter_alloying")) && stack.getItem() instanceof IAlloyTool;
+            return rs.equals(ResourceLocation.parse("rankine:alloying/pewter_alloying")) && stack.getItem() instanceof IAlloyTool;
         }
         return RankineEnchantmentTypes.PEWTER.canEnchant(stack.getItem());
     }
@@ -38,7 +38,7 @@ public class AntiquatedEnchantment extends Enchantment {
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
         ResourceLocation rs = IAlloyItem.getAlloyRecipe(stack);
         if (rs != null) {
-            return rs.equals(new ResourceLocation("rankine:alloying/pewter_alloying")) && stack.getItem() instanceof IAlloyTool;
+            return rs.equals(ResourceLocation.parse("rankine:alloying/pewter_alloying")) && stack.getItem() instanceof IAlloyTool;
         }
         return false;
     }

@@ -7,13 +7,13 @@ import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.helpers.IGuiHelper;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 
 public class InductionAlloyingRecipeCategory extends AlloyingRecipeCategory {
 
-    public static ResourceLocation UID = new ResourceLocation(ProjectRankine.MODID, "induction_alloying");
+    public static ResourceLocation UID = ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID, "induction_alloying");
     private final IGuiHelper guiHelper;
     public InductionAlloyingRecipeCategory(IGuiHelper guiHelper) {
         super(guiHelper);
@@ -28,7 +28,7 @@ public class InductionAlloyingRecipeCategory extends AlloyingRecipeCategory {
 
     @Override
     public Component getTitle() {
-        return new TextComponent(I18n.get("rankine.jei.induction_alloying"));
+        return Component.literal(I18n.get("rankine.jei.induction_alloying"));
     }
 
     @Override

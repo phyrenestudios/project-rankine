@@ -45,15 +45,15 @@ public class RankineCropsBlock extends CropBlock {
                 float s = this.calcTotalCropScore(p_52293_,p_52294_);
                 if (s >= 1) {
                     for (int a = 0; a < s; a++) {
-                        if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(p_52293_, p_52294_, p_52292_, p_52295_.nextInt((int)(25.0F / f) + 1) == 0)) {
+                        if (net.neoforged.neoforge.common.ForgeHooks.onCropsGrowPre(p_52293_, p_52294_, p_52292_, p_52295_.nextInt((int)(25.0F / f) + 1) == 0)) {
                             p_52293_.setBlock(p_52294_, this.getStateForAge(i + 1), 2);
-                            net.minecraftforge.common.ForgeHooks.onCropsGrowPost(p_52293_, p_52294_, p_52292_);
+                            net.neoforged.neoforge.common.ForgeHooks.onCropsGrowPost(p_52293_, p_52294_, p_52292_);
                         }
                     }
                 } else if ((1 - s) >= p_52295_.nextFloat()) {
-                    if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(p_52293_, p_52294_, p_52292_, p_52295_.nextInt((int)(25.0F / f) + 1) == 0)) {
+                    if (net.neoforged.neoforge.common.ForgeHooks.onCropsGrowPre(p_52293_, p_52294_, p_52292_, p_52295_.nextInt((int)(25.0F / f) + 1) == 0)) {
                         p_52293_.setBlock(p_52294_, this.getStateForAge(i + 1), 2);
-                        net.minecraftforge.common.ForgeHooks.onCropsGrowPost(p_52293_, p_52294_, p_52292_);
+                        net.neoforged.neoforge.common.ForgeHooks.onCropsGrowPost(p_52293_, p_52294_, p_52292_);
                     }
                 }
 

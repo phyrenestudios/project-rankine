@@ -32,7 +32,7 @@ public class EndplayEnchantment extends Enchantment {
     public boolean canEnchant(ItemStack stack) {
         ResourceLocation rs = IAlloyItem.getAlloyRecipe(stack);
         if (rs != null) {
-            return rs.equals(new ResourceLocation("rankine:alloying/ender_amalgam_alloying")) && stack.getItem() instanceof AlloyBlunderbussItem;
+            return rs.equals(ResourceLocation.parse("rankine:alloying/ender_amalgam_alloying")) && stack.getItem() instanceof AlloyBlunderbussItem;
         }
         return RankineEnchantmentTypes.ENDER_AMALGAM_BLUNDERBUSS.canEnchant(stack.getItem());
     }
@@ -41,7 +41,7 @@ public class EndplayEnchantment extends Enchantment {
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
         ResourceLocation rs = IAlloyItem.getAlloyRecipe(stack);
         if (rs != null) {
-            return rs.equals(new ResourceLocation("rankine:alloying/ender_amalgam_alloying")) && stack.getItem() instanceof AlloyBlunderbussItem;
+            return rs.equals(ResourceLocation.parse("rankine:alloying/ender_amalgam_alloying")) && stack.getItem() instanceof AlloyBlunderbussItem;
         }
         return false;
     }

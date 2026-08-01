@@ -33,7 +33,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
+import net.neoforged.neoforge.common.brewing.BrewingRecipeRegistry;
 
 import java.util.*;
 
@@ -181,11 +181,11 @@ public class RankineRecipes {
     }
 
     public static void registerPredicates() {
-        ItemPredicate.register(new ResourceLocation(ProjectRankine.MODID,"harvest_level_check"), HarvestLevelPredicate::new);
-        ItemPredicate.register(new ResourceLocation(ProjectRankine.MODID,"enchantability_check"), AlloyEnchantabilityPredicate::new);
-        ItemPredicate.register(new ResourceLocation(ProjectRankine.MODID,"exact_composition_check"), ExactCompositionPredicate::new);
-        ItemPredicate.register(new ResourceLocation(ProjectRankine.MODID,"includes_composition_check"), IncludesCompositionPredicate::new);
-        ItemPredicate.register(new ResourceLocation(ProjectRankine.MODID,"has_enchantment_check"), HasEnchantmentPredicate::new);
+        ItemPredicate.register(ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID,"harvest_level_check"), HarvestLevelPredicate::new);
+        ItemPredicate.register(ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID,"enchantability_check"), AlloyEnchantabilityPredicate::new);
+        ItemPredicate.register(ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID,"exact_composition_check"), ExactCompositionPredicate::new);
+        ItemPredicate.register(ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID,"includes_composition_check"), IncludesCompositionPredicate::new);
+        ItemPredicate.register(ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID,"has_enchantment_check"), HasEnchantmentPredicate::new);
     }
 
     public static String generateAlloyString(Container inv, Level level) {

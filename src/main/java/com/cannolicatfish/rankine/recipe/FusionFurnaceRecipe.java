@@ -21,8 +21,8 @@ import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.capability.templates.FluidTank;
+import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
 
 import java.util.Arrays;
 import java.util.List;
@@ -162,7 +162,7 @@ public class FusionFurnaceRecipe implements Recipe<Container> {
 
     public static ItemStack deserializeItem(JsonObject object) {
         String s = GsonHelper.getAsString(object, "item");
-        Item item = Registry.ITEM.getOptional(new ResourceLocation(s)).orElseThrow(() -> {
+        Item item = Registry.ITEM.getOptional(ResourceLocation.parse(s)).orElseThrow(() -> {
             return new JsonSyntaxException("Unknown item '" + s + "'");
         });
 
@@ -182,8 +182,8 @@ public class FusionFurnaceRecipe implements Recipe<Container> {
         return fluidIn;
     }
 
-    public static class Serializer extends net.minecraftforge.registries.ForgeRegistryEntry<RecipeSerializer<?>>  implements RecipeSerializer<FusionFurnaceRecipe> {
-        private static final ResourceLocation NAME = new ResourceLocation("rankine", "fusion_furnace");
+    public static class Serializer extends net.neoforged.neoforge.registries.ForgeRegistryEntry<RecipeSerializer<?>>  implements RecipeSerializer<FusionFurnaceRecipe> {
+        private static final ResourceLocation NAME = ResourceLocation.fromNamespaceAndPath("rankine", "fusion_furnace");
         public FusionFurnaceRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
             int w = json.has("cookTime") ? json.get("cookTime").getAsInt() : 400;
             FluidStack fIn = json.has("fluidInput") ? FluidHelper.getFluidStack(GsonHelper.getAsJsonObject(json, "fluidInput")) : FluidStack.EMPTY;

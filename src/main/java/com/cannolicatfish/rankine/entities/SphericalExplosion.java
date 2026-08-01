@@ -90,7 +90,7 @@ public class SphericalExplosion extends Explosion {
         int j2 = Mth.floor(getPosition().z - (double)f2 - 1.0D);
         int j1 = Mth.floor(getPosition().z + (double)f2 + 1.0D);
         List<Entity> list = this.level.getEntities(getSourceMob(), new AABB((double)k1, (double)i2, (double)j2, (double)l1, (double)i1, (double)j1));
-        net.minecraftforge.event.ForgeEventFactory.onExplosionDetonate(this.level, this, list, f2);
+        net.neoforged.neoforge.event.ForgeEventFactory.onExplosionDetonate(this.level, this, list, f2);
         Vec3 vec3 = new Vec3(getPosition().x, getPosition().y, getPosition().z);
 
         for (Entity entity : list) {

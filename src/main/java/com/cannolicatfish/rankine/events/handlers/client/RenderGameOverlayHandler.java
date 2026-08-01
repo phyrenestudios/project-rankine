@@ -17,7 +17,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.neoforged.neoforge.client.event.RenderGameOverlayEvent;
 
 public class RenderGameOverlayHandler {
     public static void renderOverlay(RenderGameOverlayEvent event) {
@@ -33,7 +33,7 @@ public class RenderGameOverlayHandler {
                     RenderSystem.defaultBlendFunc();
                     RenderSystem.setShader(GameRenderer::getPositionTexShader);
                     RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 0.05F);
-                    RenderSystem.setShaderTexture(0, new ResourceLocation("rankine:textures/misc/parry_overlay.png"));
+                    RenderSystem.setShaderTexture(0, ResourceLocation.parse("rankine:textures/misc/parry_overlay.png"));
                     Tesselator tesselator = Tesselator.getInstance();
                     BufferBuilder bufferbuilder = tesselator.getBuilder();
                     bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);

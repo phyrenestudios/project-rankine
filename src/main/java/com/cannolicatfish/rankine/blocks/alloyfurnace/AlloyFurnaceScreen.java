@@ -14,7 +14,7 @@ import net.minecraft.network.chat.Component;
 import javax.annotation.Nullable;
 
 public class AlloyFurnaceScreen extends AbstractContainerScreen<AlloyFurnaceContainer> {
-    private ResourceLocation GUI = new ResourceLocation(ProjectRankine.MODID, "textures/gui/alloy_furnace.png");
+    private ResourceLocation GUI = ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID, "textures/gui/alloy_furnace.png");
     public AlloyFurnaceScreen(AlloyFurnaceContainer container, Inventory inv, Component name) {
         super(container, inv, name);
     }

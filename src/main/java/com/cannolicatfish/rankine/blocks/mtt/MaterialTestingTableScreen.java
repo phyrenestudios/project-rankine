@@ -20,8 +20,8 @@ import net.minecraft.stats.StatType;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.Util;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.Level;
 
 
@@ -32,7 +32,7 @@ import java.util.*;
 import java.util.stream.Stream;
 
 public class MaterialTestingTableScreen extends AbstractContainerScreen<MaterialTestingTableContainer> {
-    private ResourceLocation GUI = new ResourceLocation(ProjectRankine.MODID, "textures/gui/mtb.png");
+    private ResourceLocation GUI = ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID, "textures/gui/mtb.png");
     private final int textureXSize;
     private final int textureYSize;
     private ElementRecipe element = null;
@@ -85,7 +85,7 @@ public class MaterialTestingTableScreen extends AbstractContainerScreen<Material
             int stat = this.menu.getToolItem(worldIn);
             if (stat >= 0 && stat <= 9) {
                 String statStr = StatType.values()[stat].toString();
-                drawString(matrixStack,Minecraft.getInstance().font,new TranslatableComponent("block.rankine.material_testing_bench."+ statStr.toLowerCase(Locale.ROOT) +".test"),12,32,0xffffff);
+                drawString(matrixStack,Minecraft.getInstance().font,Component.translatable("block.rankine.material_testing_bench."+ statStr.toLowerCase(Locale.ROOT) +".test"),12,32,0xffffff);
                 int ymod = 0;
 
                 List<TextComponent> strings = checkStatRange(element,StatType.values()[stat]);
@@ -98,7 +98,7 @@ public class MaterialTestingTableScreen extends AbstractContainerScreen<Material
                 drawString(matrixStack,Minecraft.getInstance().font,element.getName().toUpperCase(Locale.ROOT) + " (" + element.getSymbol() + ")",32,10,0xffffff);
                 //drawString(matrixStack,Minecraft.getInstance().fontRenderer,new TranslationTextComponent("element."+ element.getId() +".preview"),32,20,0xffffff);
             } else if (stat == 10) {
-                drawString(matrixStack,Minecraft.getInstance().font,new TranslatableComponent("block.rankine.material_testing_bench.enchantments.test"),12,32,0xffffff);
+                drawString(matrixStack,Minecraft.getInstance().font,Component.translatable("block.rankine.material_testing_bench.enchantments.test"),12,32,0xffffff);
                 int ymod = 0;
                 List<TextComponent> strings = listEnchantments(element);
                 for (TextComponent s : strings) {
@@ -107,7 +107,7 @@ public class MaterialTestingTableScreen extends AbstractContainerScreen<Material
                     ymod += 12;
                 }
             } else if (stat == 11) {
-                drawString(matrixStack,Minecraft.getInstance().font,new TranslatableComponent("block.rankine.material_testing_bench.exam.test"),12,32,0xffffff);
+                drawString(matrixStack,Minecraft.getInstance().font,Component.translatable("block.rankine.material_testing_bench.exam.test"),12,32,0xffffff);
                 int ymod = 0;
                 List<TextComponent> strings = listFacts(element);
                 for (TextComponent s : strings) {
@@ -125,7 +125,7 @@ public class MaterialTestingTableScreen extends AbstractContainerScreen<Material
             int stat = this.menu.getToolItem(worldIn);
             if (stat >= 0 && stat <= 9) {
                 String statStr = StatType.values()[stat].toString();
-                drawString(matrixStack,Minecraft.getInstance().font,new TranslatableComponent("block.rankine.material_testing_bench."+ statStr.toLowerCase(Locale.ROOT) +".test"),12,32,0xffffff);
+                drawString(matrixStack,Minecraft.getInstance().font,Component.translatable("block.rankine.material_testing_bench."+ statStr.toLowerCase(Locale.ROOT) +".test"),12,32,0xffffff);
                 int ymod = 0;
                 ItemStack stack = this.menu.getSlotItem(worldIn);
                 List<TextComponent> strings = checkAlloyDetails(stack,alloy,StatType.values()[stat],worldIn);
@@ -135,7 +135,7 @@ public class MaterialTestingTableScreen extends AbstractContainerScreen<Material
                     ymod += 12;
                 }
 
-                drawString(matrixStack,Minecraft.getInstance().font,new TranslatableComponent(stack.getDescriptionId()).getString().toUpperCase(Locale.ROOT),32,10,0xffffff);
+                drawString(matrixStack,Minecraft.getInstance().font,Component.translatable(stack.getDescriptionId()).getString().toUpperCase(Locale.ROOT),32,10,0xffffff);
                 //drawString(matrixStack,Minecraft.getInstance().fontRenderer,new TranslationTextComponent("alloy."+ alloy.getId() +".preview"),32,20,0xffffff);
             }
         }
@@ -165,7 +165,7 @@ public class MaterialTestingTableScreen extends AbstractContainerScreen<Material
                     } else {
                         additional = String.valueOf(s);
                     }
-                    dets.add(new TextComponent(new TranslatableComponent("block.rankine.material_testing_bench."+stat.toString().toLowerCase(Locale.ROOT)).getString() + ": " + e.getName().toUpperCase(Locale.ROOT) + " (" + amount + "%) = " + additional));
+                    dets.add(Component.literal(Component.translatable("block.rankine.material_testing_bench."+stat.toString().toLowerCase(Locale.ROOT)).getString() + ": " + e.getName().toUpperCase(Locale.ROOT) + " (" + amount + "%) = " + additional));
                 }
             }
         }
@@ -179,7 +179,7 @@ public class MaterialTestingTableScreen extends AbstractContainerScreen<Material
         } else {
             additional = String.valueOf(s);
         }
-        dets.add(new TextComponent(new TranslatableComponent("block.rankine.material_testing_bench."+stat.toString().toLowerCase(Locale.ROOT)).getString() + ": BONUS = " + additional));
+        dets.add(Component.literal(Component.translatable("block.rankine.material_testing_bench."+stat.toString().toLowerCase(Locale.ROOT)).getString() + ": BONUS = " + additional));
         return dets;
     }
 
@@ -197,18 +197,18 @@ public class MaterialTestingTableScreen extends AbstractContainerScreen<Material
         List<TextComponent> outDur = new ArrayList<>();
         if (dur.size() > 1) {
             for (int d = 1; d < dur.size(); d++) {
-                outDur.add(new TextComponent(new TranslatableComponent("block.rankine.material_testing_bench."+stat.toString().toLowerCase(Locale.ROOT)).getString() + ": " + eqTypes[d - 1] + ", " + (bounds[d-1] + 1) + "% - " + bounds[d] + "%"));
+                outDur.add(Component.literal(Component.translatable("block.rankine.material_testing_bench."+stat.toString().toLowerCase(Locale.ROOT)).getString() + ": " + eqTypes[d - 1] + ", " + (bounds[d-1] + 1) + "% - " + bounds[d] + "%"));
                 if (stat.equals(StatType.CORROSION_RESISTANCE) || stat.equals(StatType.HEAT_RESISTANCE) || stat.equals(StatType.KNOCKBACK_RESISTANCE) || stat.equals(StatType.TOUGHNESS)) {
-                    outDur.add(new TextComponent(dur.get(d-1)*100 + "%" + " -> " + dur.get(d)*100 + "%"));
+                    outDur.add(Component.literal(dur.get(d-1)*100 + "%" + " -> " + dur.get(d)*100 + "%"));
                 } else if (stat.equals(StatType.DURABILITY) || stat.equals(StatType.HARVEST_LEVEL) || stat.equals(StatType.ENCHANTABILITY)) {
-                    outDur.add(new TextComponent(Math.round(dur.get(d-1)) + " -> " + Math.round(dur.get(d))));
+                    outDur.add(Component.literal(Math.round(dur.get(d-1)) + " -> " + Math.round(dur.get(d))));
                 } else {
-                    outDur.add(new TextComponent(dur.get(d-1) + " -> " + dur.get(d)));
+                    outDur.add(Component.literal(dur.get(d-1) + " -> " + dur.get(d)));
                 }
 
             }
         } else {
-            outDur.add(new TextComponent(new TranslatableComponent("block.rankine.material_testing_bench."+ stat.toString().toLowerCase(Locale.ROOT) +".error").getString()));
+            outDur.add(Component.literal(Component.translatable("block.rankine.material_testing_bench."+ stat.toString().toLowerCase(Locale.ROOT) +".error").getString()));
         }
 
         // Durability: {eqType}, {i0}% - {i1}%,
@@ -223,10 +223,10 @@ public class MaterialTestingTableScreen extends AbstractContainerScreen<Material
         List<TextComponent> outDur = new ArrayList<>();
         if (enchantments.size() >= 1) {
             for (int d = 0; d < enchantments.size(); d++) {
-                outDur.add(new TextComponent(enchantmentTypes.get(d) + ": " + enchantments.get(d) + " (Reqs: "+Math.round(100*enchantmentFactors.get(d))+"%)"));
+                outDur.add(Component.literal(enchantmentTypes.get(d) + ": " + enchantments.get(d) + " (Reqs: "+Math.round(100*enchantmentFactors.get(d))+"%)"));
             }
         } else {
-            outDur.add(new TextComponent(new TranslatableComponent("block.rankine.material_testing_bench.enchantments.error").getString()));
+            outDur.add(Component.literal(Component.translatable("block.rankine.material_testing_bench.enchantments.error").getString()));
         }
         return outDur;
     }
@@ -235,9 +235,9 @@ public class MaterialTestingTableScreen extends AbstractContainerScreen<Material
         ResourceLocation s = element.getId();
 
         List<TextComponent> outDur = new ArrayList<>();
-        outDur.add(new TextComponent(new TranslatableComponent("element."+ s +".desc0").getString()));
-        outDur.add(new TextComponent(new TranslatableComponent("element."+ s +".desc1").getString()));
-        outDur.add(new TextComponent(new TranslatableComponent("element."+ s+".desc2").getString()));
+        outDur.add(Component.literal(Component.translatable("element."+ s +".desc0").getString()));
+        outDur.add(Component.literal(Component.translatable("element."+ s +".desc1").getString()));
+        outDur.add(Component.literal(Component.translatable("element."+ s+".desc2").getString()));
         return outDur;
     }
 

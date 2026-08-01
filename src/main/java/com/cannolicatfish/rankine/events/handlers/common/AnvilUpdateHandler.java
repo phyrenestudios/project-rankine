@@ -6,7 +6,7 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraftforge.event.AnvilUpdateEvent;
+import net.neoforged.neoforge.event.AnvilUpdateEvent;
 
 public class AnvilUpdateHandler {
     public static void specialEnchants(AnvilUpdateEvent event) {

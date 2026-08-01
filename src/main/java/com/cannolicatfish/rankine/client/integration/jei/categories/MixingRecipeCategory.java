@@ -20,8 +20,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -35,7 +35,7 @@ import java.util.Locale;
 
 public class MixingRecipeCategory implements IRecipeCategory<MixingRecipe> {
 
-    public static ResourceLocation UID = new ResourceLocation(ProjectRankine.MODID, "mixing");
+    public static ResourceLocation UID = ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID, "mixing");
     private final IDrawable background;
     private final IDrawable slotDrawable;
     private final IGuiHelper guiHelper;
@@ -44,7 +44,7 @@ public class MixingRecipeCategory implements IRecipeCategory<MixingRecipe> {
 
     public MixingRecipeCategory(IGuiHelper guiHelper) {
         this.guiHelper = guiHelper;
-        background = guiHelper.drawableBuilder(new ResourceLocation(ProjectRankine.MODID, "textures/gui/mixing_jei.png"), 0, 0, 180, 140)
+        background = guiHelper.drawableBuilder(ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID, "textures/gui/mixing_jei.png"), 0, 0, 180, 140)
                 .addPadding(1, 0, 0, 0)
                 .build();
         slotDrawable = guiHelper.getSlotDrawable();
@@ -63,7 +63,7 @@ public class MixingRecipeCategory implements IRecipeCategory<MixingRecipe> {
 
     @Override
     public Component getTitle() {
-        return new TextComponent(I18n.get("rankine.jei.mixing"));
+        return Component.literal(I18n.get("rankine.jei.mixing"));
     }
 
     @Override
@@ -98,9 +98,9 @@ public class MixingRecipeCategory implements IRecipeCategory<MixingRecipe> {
                 p_234699_0_.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.ROOT));
             });
             List<Component> components = new ArrayList<>();
-            components.add(new TranslatableComponent("rankine.jei.tooltip_mixing_time",recipe.getOutputMixTime(1)));
-            components.add(new TranslatableComponent("rankine.jei.tooltip_total_mixing_time",recipe.getOutputMixTime(totalCount)));
-            components.add(new TranslatableComponent("rankine.jei.tooltip_total_button_lever",df.format(recipe.getOutputMixTime(totalCount)/15)));
+            components.add(Component.translatable("rankine.jei.tooltip_mixing_time",recipe.getOutputMixTime(1)));
+            components.add(Component.translatable("rankine.jei.tooltip_total_mixing_time",recipe.getOutputMixTime(totalCount)));
+            components.add(Component.translatable("rankine.jei.tooltip_total_button_lever",df.format(recipe.getOutputMixTime(totalCount)/15)));
 
             return components;
         }
@@ -116,10 +116,10 @@ public class MixingRecipeCategory implements IRecipeCategory<MixingRecipe> {
         });
         Font font = Minecraft.getInstance().font;
 
-        font.draw(stack,new TranslatableComponent("rankine.jei.tooltip_required"),120, 0, 0x000000);
-        font.draw(stack,new TranslatableComponent("rankine.jei.tooltip_additional"),1, 96, 0x000000);
-        font.draw(stack,new TranslatableComponent("rankine.jei.tooltip_total_ingredients",totalCount),1, 75, totalCount < (int) reqs.stream().filter(aBoolean -> aBoolean).count() ? 0xFF5555 : 0x000000);
-        font.draw(stack,new TranslatableComponent("rankine.jei.tooltip_total_output",Math.round(totalCount*recipe.getMatScale())),1, 84, Math.round(totalCount*recipe.getMatScale()) > 64 || Math.round(totalCount*recipe.getMatScale()) < 1 ? 0xFF5555 : 0x000000);
+        font.draw(stack,Component.translatable("rankine.jei.tooltip_required"),120, 0, 0x000000);
+        font.draw(stack,Component.translatable("rankine.jei.tooltip_additional"),1, 96, 0x000000);
+        font.draw(stack,Component.translatable("rankine.jei.tooltip_total_ingredients",totalCount),1, 75, totalCount < (int) reqs.stream().filter(aBoolean -> aBoolean).count() ? 0xFF5555 : 0x000000);
+        font.draw(stack,Component.translatable("rankine.jei.tooltip_total_output",Math.round(totalCount*recipe.getMatScale())),1, 84, Math.round(totalCount*recipe.getMatScale()) > 64 || Math.round(totalCount*recipe.getMatScale()) < 1 ? 0xFF5555 : 0x000000);
         int count = 0;
         for (int i = 0; i < reqs.size(); i++) {
             if (reqs.get(i)) {
@@ -164,8 +164,8 @@ public class MixingRecipeCategory implements IRecipeCategory<MixingRecipe> {
                 builder.addSlot(RecipeIngredientRole.INPUT, x, y).addIngredients(ingredients.get(i))
                         .setBackground(slotDrawable, -1, -1)
                         .addTooltipCallback(((recipeSlotView, tooltip) -> tooltip
-                                .add(new TextComponent(Math.round(min * 100) + "%")
-                                        .append(new TextComponent("-" + Math.round(max * 100) + "%"))
+                                .add(Component.literal(Math.round(min * 100) + "%")
+                                        .append(Component.literal("-" + Math.round(max * 100) + "%"))
                                         .withStyle(ChatFormatting.GOLD))));
                 rcount++;
             } else {
@@ -174,8 +174,8 @@ public class MixingRecipeCategory implements IRecipeCategory<MixingRecipe> {
                     int y = nrcount <= 9 ? 106 : 124;
                     builder.addSlot(RecipeIngredientRole.INPUT,x,y).addIngredients(ingredients.get(i))
                             .addTooltipCallback(((recipeSlotView, tooltip) -> tooltip
-                                    .add(new TextComponent( Math.round(min * 100) + "%")
-                                            .append(new TextComponent("-" + Math.round(max * 100) + "%"))
+                                    .add(Component.literal( Math.round(min * 100) + "%")
+                                            .append(Component.literal("-" + Math.round(max * 100) + "%"))
                                             .withStyle(ChatFormatting.GOLD))));
                     nrcount++;
                 }

@@ -6,9 +6,9 @@ import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.util.ReplacementUtils;
 import net.minecraft.world.level.chunk.ChunkAccess;
 import net.minecraft.world.level.chunk.ChunkStatus;
-import net.minecraftforge.common.capabilities.ICapabilityProvider;
-import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.event.world.ChunkEvent;
+import net.neoforged.neoforge.common.capabilities.ICapabilityProvider;
+import net.neoforged.neoforge.common.util.LazyOptional;
+import net.neoforged.neoforge.event.world.ChunkEvent;
 
 public class ChunkLoadHandler {
     public static void retrogenChunk(ChunkEvent.Load event) {

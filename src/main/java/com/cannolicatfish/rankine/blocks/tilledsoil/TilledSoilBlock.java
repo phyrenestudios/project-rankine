@@ -26,8 +26,8 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.common.IPlantable;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.common.IPlantable;
+import net.neoforged.neoforge.registries.ForgeRegistries;
 
 import java.util.Random;
 
@@ -110,7 +110,7 @@ public class TilledSoilBlock extends Block {
     }
 
     public void fallOn(Level worldIn, BlockState state, BlockPos pos, Entity entityIn, float fallDistance) {
-        if (!worldIn.isClientSide && net.minecraftforge.common.ForgeHooks.onFarmlandTrample(worldIn, pos, Blocks.DIRT.defaultBlockState(), fallDistance, entityIn)) { // Forge: Move logic to Entity#canTrample
+        if (!worldIn.isClientSide && net.neoforged.neoforge.common.ForgeHooks.onFarmlandTrample(worldIn, pos, Blocks.DIRT.defaultBlockState(), fallDistance, entityIn)) { // Forge: Move logic to Entity#canTrample
             turnToDirt(state, worldIn, pos);
         }
         super.fallOn(worldIn, state, pos, entityIn, fallDistance);
@@ -131,7 +131,7 @@ public class TilledSoilBlock extends Block {
     private boolean hasCrops(BlockGetter worldIn, BlockPos pos) {
         BlockState plant = worldIn.getBlockState(pos.above());
         BlockState state = worldIn.getBlockState(pos);
-        return plant.getBlock() instanceof net.minecraftforge.common.IPlantable && state.canSustainPlant(worldIn, pos, Direction.UP, (net.minecraftforge.common.IPlantable)plant.getBlock());
+        return plant.getBlock() instanceof net.neoforged.neoforge.common.IPlantable && state.canSustainPlant(worldIn, pos, Direction.UP, (net.neoforged.neoforge.common.IPlantable)plant.getBlock());
     }
 
     private static boolean hasWater(LevelReader worldIn, BlockPos pos) {
@@ -140,7 +140,7 @@ public class TilledSoilBlock extends Block {
                 return true;
             }
         }
-        return net.minecraftforge.common.FarmlandWaterManager.hasBlockWaterTicket(worldIn, pos);
+        return net.neoforged.neoforge.common.FarmlandWaterManager.hasBlockWaterTicket(worldIn, pos);
     }
 
     public boolean isPathfindable(BlockState state, BlockGetter worldIn, BlockPos pos, PathComputationType type) {

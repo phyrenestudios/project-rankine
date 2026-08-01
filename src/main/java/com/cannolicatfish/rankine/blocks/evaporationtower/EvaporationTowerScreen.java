@@ -14,7 +14,7 @@ import net.minecraft.network.chat.Component;
 import java.awt.*;
 
 public class EvaporationTowerScreen extends AbstractContainerScreen<EvaporationTowerContainer>{
-    private ResourceLocation GUI = new ResourceLocation(ProjectRankine.MODID, "textures/gui/evaporation_tower.png");
+    private ResourceLocation GUI = ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID, "textures/gui/evaporation_tower.png");
     public EvaporationTowerScreen(EvaporationTowerContainer screenContainer, Inventory inv, Component titleIn) {
         super(screenContainer, inv, titleIn);
     }

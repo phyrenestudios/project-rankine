@@ -12,7 +12,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.chat.Component;
 
 public class GasBottlerScreen extends AbstractContainerScreen<GasBottlerContainer>{
-    private ResourceLocation GUI = new ResourceLocation(ProjectRankine.MODID, "textures/gui/gas_condenser.png");
+    private ResourceLocation GUI = ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID, "textures/gui/gas_condenser.png");
     public GasBottlerScreen(GasBottlerContainer screenContainer, Inventory inv, Component titleIn) {
         super(screenContainer, inv, titleIn);
     }

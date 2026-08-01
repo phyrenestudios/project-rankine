@@ -13,15 +13,15 @@ import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.material.Fluids;
-import net.minecraftforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.FluidStack;
 
 public class MetamorphicGeneratorRecipeCategory implements IRecipeCategory<RockGeneratorRecipe> {
 
-    public static ResourceLocation UID = new ResourceLocation(ProjectRankine.MODID, "metamorphic");
+    public static ResourceLocation UID = ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID, "metamorphic");
     private final String localizedName;
     private final IDrawable background;
     private final IGuiHelper guiHelper;
@@ -29,7 +29,7 @@ public class MetamorphicGeneratorRecipeCategory implements IRecipeCategory<RockG
     public MetamorphicGeneratorRecipeCategory(IGuiHelper guiHelper) {
         this.guiHelper = guiHelper;
         localizedName = I18n.get("rankine.jei.metamorphic");
-        background = guiHelper.drawableBuilder(new ResourceLocation(ProjectRankine.MODID, "textures/gui/metamorphic_jei.png"), 0, 0, 102, 64)
+        background = guiHelper.drawableBuilder(ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID, "textures/gui/metamorphic_jei.png"), 0, 0, 102, 64)
                 .addPadding(1, 0, 1, 0)
                 .build();
     }
@@ -46,7 +46,7 @@ public class MetamorphicGeneratorRecipeCategory implements IRecipeCategory<RockG
 
     @Override
     public Component getTitle() {
-        return new TextComponent(localizedName);
+        return Component.literal(localizedName);
     }
 
     @Override

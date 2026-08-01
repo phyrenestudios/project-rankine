@@ -9,11 +9,11 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.registries.ForgeRegistries;
 
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
@@ -34,9 +34,9 @@ public class ShulkerGasVacuumItem extends Item {
     public Component getName(ItemStack stack) {
         if (stack.getTag() != null){
             String s = stack.getTag().getString("gas");
-            Block b = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(s));
+            Block b = ForgeRegistries.BLOCKS.getValue(ResourceLocation.parse(s));
             if (!s.isEmpty() && b instanceof GasBlock) {
-                return new TextComponent(new TranslatableComponent(this.getDescriptionId(stack)).getString() + " (" + new TranslatableComponent(b.getDescriptionId()).getString() + ") ");
+                return Component.literal(Component.translatable(this.getDescriptionId(stack)).getString() + " (" + Component.translatable(b.getDescriptionId()).getString() + ") ");
             }
         }
         return super.getName(stack);

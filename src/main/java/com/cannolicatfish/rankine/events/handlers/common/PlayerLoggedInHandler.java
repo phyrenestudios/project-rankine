@@ -8,7 +8,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import vazkii.patchouli.api.PatchouliAPI;
 
 public class PlayerLoggedInHandler {
@@ -36,7 +36,7 @@ public class PlayerLoggedInHandler {
 
             if (!persistent.contains(NBT_KEY)) {
                 persistent.putBoolean(NBT_KEY, true);
-                event.getPlayer().getInventory().add(PatchouliAPI.get().getBookStack(new ResourceLocation("rankine:rankine_journal")));
+                event.getPlayer().getInventory().add(PatchouliAPI.get().getBookStack(ResourceLocation.parse("rankine:rankine_journal")));
             }
         }
     }

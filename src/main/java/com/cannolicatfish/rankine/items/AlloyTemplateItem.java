@@ -25,13 +25,13 @@ import net.minecraft.tags.Tag;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.ChatFormatting;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
 import java.util.*;
@@ -55,9 +55,9 @@ public class AlloyTemplateItem extends Item {
                         nameOverride = generateLangFromRecipe(((IAlloyItem) output).getDefaultRecipe());
                     }
                 }
-                String translate = new TranslatableComponent(output.getDescriptionId(),new TranslatableComponent(nameOverride).getString()).getString();
-                String template = new TranslatableComponent(this.getDescriptionId(stack)).getString();
-                return new TextComponent( stackSize + "x " + translate + " " + template);
+                String translate = Component.translatable(output.getDescriptionId(),Component.translatable(nameOverride).getString()).getString();
+                String template = Component.translatable(this.getDescriptionId(stack)).getString();
+                return Component.literal( stackSize + "x " + translate + " " + template);
             } else {
                 return super.getName(stack);
             }
@@ -106,8 +106,8 @@ public class AlloyTemplateItem extends Item {
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
         if (isTemplateInit(stack)) {
-            tooltip.add(new TextComponent("Composition: " + getAlloyComp(stack)).withStyle(ChatFormatting.GRAY));
-            tooltip.add(new TextComponent("Requires:").withStyle(ChatFormatting.DARK_GREEN));
+            tooltip.add(Component.literal("Composition: " + getAlloyComp(stack)).withStyle(ChatFormatting.GRAY));
+            tooltip.add(Component.literal("Requires:").withStyle(ChatFormatting.DARK_GREEN));
             ListTag inputs = getStoredTemplate(stack);
             for (int i = 0; i < inputs.size(); i++) {
                 CompoundTag nbt = inputs.getCompound(i);
@@ -116,7 +116,7 @@ public class AlloyTemplateItem extends Item {
                 if (ing.contains("#")) {
                     ing = ing.split("#")[1];
                 }
-                tooltip.add(new TextComponent(ingAmount + "x " + ing).withStyle(ChatFormatting.GRAY));
+                tooltip.add(Component.literal(ingAmount + "x " + ing).withStyle(ChatFormatting.GRAY));
                 if (Screen.hasShiftDown() && worldIn != null) {
                     ResourceLocation id = new ResourceLocation(nbt.getString("element"));
                     int amount = nbt.getShort("elementAmount");
@@ -128,20 +128,20 @@ public class AlloyTemplateItem extends Item {
                             elementName = elementName.substring(0,1).toUpperCase(Locale.ROOT) + elementName.substring(1);
                         }
                         String display = elementName + " (" + element.getSymbol() + ")";
-                        tooltip.add(new TextComponent("    " +amount + "x " + display).withStyle(ChatFormatting.GRAY));
+                        tooltip.add(Component.literal("    " +amount + "x " + display).withStyle(ChatFormatting.GRAY));
                     }
 
                 }
             }
 
-            tooltip.add(new TextComponent( ""));
-            tooltip.add(new TextComponent( "Made in:").withStyle(ChatFormatting.DARK_GREEN));
+            tooltip.add(Component.literal( ""));
+            tooltip.add(Component.literal( "Made in:").withStyle(ChatFormatting.DARK_GREEN));
             int tier = getAlloyTier(stack);
             if ((tier & 1) != 0) {
-                tooltip.add(new TranslatableComponent(RankineBlocks.ALLOY_FURNACE.get().getDescriptionId()).withStyle(ChatFormatting.GRAY));
+                tooltip.add(Component.translatable(RankineBlocks.ALLOY_FURNACE.get().getDescriptionId()).withStyle(ChatFormatting.GRAY));
             }
             if ((tier & 2) != 0) {
-                tooltip.add(new TranslatableComponent(RankineBlocks.INDUCTION_FURNACE.get().getDescriptionId()).withStyle(ChatFormatting.GRAY));
+                tooltip.add(Component.translatable(RankineBlocks.INDUCTION_FURNACE.get().getDescriptionId()).withStyle(ChatFormatting.GRAY));
             }
         }
     }
@@ -204,7 +204,7 @@ public class AlloyTemplateItem extends Item {
         if (isTemplateInit(stack)) {
             String rs = getOutput(stack);
             int amt = getStackSize(stack);
-            Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(rs));
+            Item item = ForgeRegistries.ITEMS.getValue(ResourceLocation.parse(rs));
             if (item != null && item != Items.AIR) {
                 ItemStack out = new ItemStack(item,amt);
                 if (item instanceof IAlloyItem)
@@ -222,7 +222,7 @@ public class AlloyTemplateItem extends Item {
                     }
                     String recipe = getAlloyRecipe(stack);
                     String alloyName = !getAlloyName(stack).isEmpty() ? getAlloyName(stack) : null;
-                    ResourceLocation alloyingRecipe = !recipe.isEmpty() ? new ResourceLocation(recipe) : null;
+                    ResourceLocation alloyingRecipe = !recipe.isEmpty() ? ResourceLocation.parse(recipe) : null;
                     ((IAlloyItem) item).createAlloyNBT(out,worldIn,getAlloyComp(stack),alloyingRecipe,alloyName);
                 }
                 return out;

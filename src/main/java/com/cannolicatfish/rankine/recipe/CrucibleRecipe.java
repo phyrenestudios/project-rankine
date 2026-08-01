@@ -296,7 +296,7 @@ public class CrucibleRecipe implements Recipe<Container> {
 
     public static ItemStack deserializeItem(JsonObject object) {
         String s = GsonHelper.getAsString(object, "item");
-        Item item = Registry.ITEM.getOptional(new ResourceLocation(s)).orElseThrow(() -> {
+        Item item = Registry.ITEM.getOptional(ResourceLocation.parse(s)).orElseThrow(() -> {
             return new JsonSyntaxException("Unknown item '" + s + "'");
         });
 
@@ -313,8 +313,8 @@ public class CrucibleRecipe implements Recipe<Container> {
         return RankineRecipeTypes.CRUCIBLE;
     }
 
-    public static class Serializer extends net.minecraftforge.registries.ForgeRegistryEntry<RecipeSerializer<?>>  implements RecipeSerializer<CrucibleRecipe> {
-        private static final ResourceLocation NAME = new ResourceLocation("rankine", "crucible");
+    public static class Serializer extends net.neoforged.neoforge.registries.ForgeRegistryEntry<RecipeSerializer<?>>  implements RecipeSerializer<CrucibleRecipe> {
+        private static final ResourceLocation NAME = ResourceLocation.fromNamespaceAndPath("rankine", "crucible");
         public CrucibleRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
             int c = json.get("cookTime").getAsInt();
             int t = json.get("total").getAsInt();

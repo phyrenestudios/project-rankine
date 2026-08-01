@@ -2,14 +2,15 @@ package com.cannolicatfish.rankine.init;
 
 import com.cannolicatfish.rankine.compatibility.TwilightForest;
 import net.minecraft.world.level.biome.Biome;
-import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.fml.common.Mod;
+import net.neoforged.neoforge.common.ModConfigSpec;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.common.EventBusSubscriber;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
-@Mod.EventBusSubscriber
+@EventBusSubscriber
 public class Config {
 
     static Predicate<Object> ELEMENT_VALIDATOR = o -> o instanceof String;
@@ -17,12 +18,12 @@ public class Config {
 
     public static class BlockProperties {
 
-        public final ForgeConfigSpec.DoubleValue POLISHED_HARDNESS_MULT;
-        public final ForgeConfigSpec.DoubleValue POLISHED_RESISTANCE_MULT;
-        public final ForgeConfigSpec.DoubleValue BRICKS_HARDNESS_MULT;
-        public final ForgeConfigSpec.DoubleValue BRICKS_RESISTANCE_MULT;
+        public final ModConfigSpec.DoubleValue POLISHED_HARDNESS_MULT;
+        public final ModConfigSpec.DoubleValue POLISHED_RESISTANCE_MULT;
+        public final ModConfigSpec.DoubleValue BRICKS_HARDNESS_MULT;
+        public final ModConfigSpec.DoubleValue BRICKS_RESISTANCE_MULT;
 
-        public BlockProperties(ForgeConfigSpec.Builder b) {
+        public BlockProperties(ModConfigSpec.Builder b) {
             b.comment("Block Properties").push("blockProperties");
             BRICKS_HARDNESS_MULT = b.comment("A multiplier to determine how much higher the bricks variant hardness is than the stone.")
                     .defineInRange("bricksHardnessMultiplier", 1.5D, 0.0D, 20.0D);
@@ -37,62 +38,62 @@ public class Config {
     }
 
     public static class Tools {
-        public final ForgeConfigSpec.BooleanValue DISABLE_WOODEN_HAMMER;
-        public final ForgeConfigSpec.BooleanValue DISABLE_STONE_HAMMER;
-        public final ForgeConfigSpec.BooleanValue DISABLE_WOODEN_SWORD;
-        public final ForgeConfigSpec.BooleanValue DISABLE_WOODEN_AXE;
-        public final ForgeConfigSpec.BooleanValue DISABLE_WOODEN_SHOVEL;
-        public final ForgeConfigSpec.BooleanValue DISABLE_WOODEN_PICKAXE;
-        public final ForgeConfigSpec.BooleanValue DISABLE_WOODEN_HOE;
-        public final ForgeConfigSpec.BooleanValue DISABLE_STONE_SWORD;
-        public final ForgeConfigSpec.BooleanValue DISABLE_STONE_AXE;
-        public final ForgeConfigSpec.BooleanValue DISABLE_STONE_SHOVEL;
-        public final ForgeConfigSpec.BooleanValue DISABLE_STONE_PICKAXE;
-        public final ForgeConfigSpec.BooleanValue DISABLE_STONE_HOE;
-        public final ForgeConfigSpec.BooleanValue DISABLE_IRON_SWORD;
-        public final ForgeConfigSpec.BooleanValue DISABLE_IRON_AXE;
-        public final ForgeConfigSpec.BooleanValue DISABLE_IRON_SHOVEL;
-        public final ForgeConfigSpec.BooleanValue DISABLE_IRON_PICKAXE;
-        public final ForgeConfigSpec.BooleanValue DISABLE_IRON_HOE;
-        public final ForgeConfigSpec.BooleanValue DISABLE_GOLDEN_SWORD;
-        public final ForgeConfigSpec.BooleanValue DISABLE_GOLDEN_AXE;
-        public final ForgeConfigSpec.BooleanValue DISABLE_GOLDEN_SHOVEL;
-        public final ForgeConfigSpec.BooleanValue DISABLE_GOLDEN_PICKAXE;
-        public final ForgeConfigSpec.BooleanValue DISABLE_GOLDEN_HOE;
-        public final ForgeConfigSpec.BooleanValue DISABLE_DIAMOND_SWORD;
-        public final ForgeConfigSpec.BooleanValue DISABLE_DIAMOND_AXE;
-        public final ForgeConfigSpec.BooleanValue DISABLE_DIAMOND_SHOVEL;
-        public final ForgeConfigSpec.BooleanValue DISABLE_DIAMOND_PICKAXE;
-        public final ForgeConfigSpec.BooleanValue DISABLE_DIAMOND_HOE;
-        public final ForgeConfigSpec.BooleanValue DISABLE_NETHERITE_SWORD;
-        public final ForgeConfigSpec.BooleanValue DISABLE_NETHERITE_AXE;
-        public final ForgeConfigSpec.BooleanValue DISABLE_NETHERITE_SHOVEL;
-        public final ForgeConfigSpec.BooleanValue DISABLE_NETHERITE_PICKAXE;
-        public final ForgeConfigSpec.BooleanValue DISABLE_NETHERITE_HOE;
+        public final ModConfigSpec.BooleanValue DISABLE_WOODEN_HAMMER;
+        public final ModConfigSpec.BooleanValue DISABLE_STONE_HAMMER;
+        public final ModConfigSpec.BooleanValue DISABLE_WOODEN_SWORD;
+        public final ModConfigSpec.BooleanValue DISABLE_WOODEN_AXE;
+        public final ModConfigSpec.BooleanValue DISABLE_WOODEN_SHOVEL;
+        public final ModConfigSpec.BooleanValue DISABLE_WOODEN_PICKAXE;
+        public final ModConfigSpec.BooleanValue DISABLE_WOODEN_HOE;
+        public final ModConfigSpec.BooleanValue DISABLE_STONE_SWORD;
+        public final ModConfigSpec.BooleanValue DISABLE_STONE_AXE;
+        public final ModConfigSpec.BooleanValue DISABLE_STONE_SHOVEL;
+        public final ModConfigSpec.BooleanValue DISABLE_STONE_PICKAXE;
+        public final ModConfigSpec.BooleanValue DISABLE_STONE_HOE;
+        public final ModConfigSpec.BooleanValue DISABLE_IRON_SWORD;
+        public final ModConfigSpec.BooleanValue DISABLE_IRON_AXE;
+        public final ModConfigSpec.BooleanValue DISABLE_IRON_SHOVEL;
+        public final ModConfigSpec.BooleanValue DISABLE_IRON_PICKAXE;
+        public final ModConfigSpec.BooleanValue DISABLE_IRON_HOE;
+        public final ModConfigSpec.BooleanValue DISABLE_GOLDEN_SWORD;
+        public final ModConfigSpec.BooleanValue DISABLE_GOLDEN_AXE;
+        public final ModConfigSpec.BooleanValue DISABLE_GOLDEN_SHOVEL;
+        public final ModConfigSpec.BooleanValue DISABLE_GOLDEN_PICKAXE;
+        public final ModConfigSpec.BooleanValue DISABLE_GOLDEN_HOE;
+        public final ModConfigSpec.BooleanValue DISABLE_DIAMOND_SWORD;
+        public final ModConfigSpec.BooleanValue DISABLE_DIAMOND_AXE;
+        public final ModConfigSpec.BooleanValue DISABLE_DIAMOND_SHOVEL;
+        public final ModConfigSpec.BooleanValue DISABLE_DIAMOND_PICKAXE;
+        public final ModConfigSpec.BooleanValue DISABLE_DIAMOND_HOE;
+        public final ModConfigSpec.BooleanValue DISABLE_NETHERITE_SWORD;
+        public final ModConfigSpec.BooleanValue DISABLE_NETHERITE_AXE;
+        public final ModConfigSpec.BooleanValue DISABLE_NETHERITE_SHOVEL;
+        public final ModConfigSpec.BooleanValue DISABLE_NETHERITE_PICKAXE;
+        public final ModConfigSpec.BooleanValue DISABLE_NETHERITE_HOE;
 
-        public final ForgeConfigSpec.BooleanValue DISABLE_COMPASS;
-        public final ForgeConfigSpec.BooleanValue DISABLE_CLOCK;
-        public final ForgeConfigSpec.BooleanValue DISABLE_ALTIMETER;
-        public final ForgeConfigSpec.BooleanValue DISABLE_THERMOMETER;
-        public final ForgeConfigSpec.BooleanValue DISABLE_PHOTOMETER;
-        public final ForgeConfigSpec.BooleanValue DISABLE_SPEEDOMETER;
-        public final ForgeConfigSpec.BooleanValue DISABLE_BIOMETER;
-        public final ForgeConfigSpec.BooleanValue DISABLE_MAGNETOMETER;
+        public final ModConfigSpec.BooleanValue DISABLE_COMPASS;
+        public final ModConfigSpec.BooleanValue DISABLE_CLOCK;
+        public final ModConfigSpec.BooleanValue DISABLE_ALTIMETER;
+        public final ModConfigSpec.BooleanValue DISABLE_THERMOMETER;
+        public final ModConfigSpec.BooleanValue DISABLE_PHOTOMETER;
+        public final ModConfigSpec.BooleanValue DISABLE_SPEEDOMETER;
+        public final ModConfigSpec.BooleanValue DISABLE_BIOMETER;
+        public final ModConfigSpec.BooleanValue DISABLE_MAGNETOMETER;
 
 
-        public final ForgeConfigSpec.IntValue PROSPECTING_STICK_RANGE;
-        public final ForgeConfigSpec.IntValue MAGNETOMETER_RANGE;
-        public final ForgeConfigSpec.IntValue ORE_DETECTOR_RANGE;
-        public final ForgeConfigSpec.BooleanValue ROCK_DRILL;
-        public final ForgeConfigSpec.DoubleValue SAMPLE_CHANCE;
+        public final ModConfigSpec.IntValue PROSPECTING_STICK_RANGE;
+        public final ModConfigSpec.IntValue MAGNETOMETER_RANGE;
+        public final ModConfigSpec.IntValue ORE_DETECTOR_RANGE;
+        public final ModConfigSpec.BooleanValue ROCK_DRILL;
+        public final ModConfigSpec.DoubleValue SAMPLE_CHANCE;
 
-        public final ForgeConfigSpec.BooleanValue ALLOY_PICKAXE_BONUS;
-        public final ForgeConfigSpec.BooleanValue ALLOY_AXE_BONUS;
-        public final ForgeConfigSpec.BooleanValue ALLOY_HOE_BONUS;
-        public final ForgeConfigSpec.BooleanValue ALLOY_SWORD_BONUS;
-        public final ForgeConfigSpec.BooleanValue ALLOY_SHOVEL_BONUS;
+        public final ModConfigSpec.BooleanValue ALLOY_PICKAXE_BONUS;
+        public final ModConfigSpec.BooleanValue ALLOY_AXE_BONUS;
+        public final ModConfigSpec.BooleanValue ALLOY_HOE_BONUS;
+        public final ModConfigSpec.BooleanValue ALLOY_SWORD_BONUS;
+        public final ModConfigSpec.BooleanValue ALLOY_SHOVEL_BONUS;
 
-        public Tools(ForgeConfigSpec.Builder b) {
+        public Tools(ModConfigSpec.Builder b) {
             b.comment("Settings for tools").push("tools");
 
             b.comment("Rankine Tools").push("rankineTools");
@@ -220,76 +221,76 @@ public class Config {
 
 
     public static class General {
-        public final ForgeConfigSpec.BooleanValue MOVEMENT_MODIFIERS;
-        public final ForgeConfigSpec.BooleanValue MOVEMENT_MODIFIERS_FOV;
-        public final ForgeConfigSpec.DoubleValue MOVEMENT_SAND;
-        public final ForgeConfigSpec.DoubleValue MOVEMENT_GRASS_PATH;
-        public final ForgeConfigSpec.DoubleValue MOVEMENT_BRICKS;
-        public final ForgeConfigSpec.DoubleValue MOVEMENT_ROMAN_CONCRETE;
-        public final ForgeConfigSpec.DoubleValue MOVEMENT_DIRT;
-        public final ForgeConfigSpec.DoubleValue MOVEMENT_POLISHED_STONE;
-        public final ForgeConfigSpec.DoubleValue MOVEMENT_WOODEN;
-        public final ForgeConfigSpec.DoubleValue MOVEMENT_CONCRETE;
-        public final ForgeConfigSpec.DoubleValue MOVEMENT_SNOW;
-        public final ForgeConfigSpec.DoubleValue MOVEMENT_MUD;
+        public final ModConfigSpec.BooleanValue MOVEMENT_MODIFIERS;
+        public final ModConfigSpec.BooleanValue MOVEMENT_MODIFIERS_FOV;
+        public final ModConfigSpec.DoubleValue MOVEMENT_SAND;
+        public final ModConfigSpec.DoubleValue MOVEMENT_GRASS_PATH;
+        public final ModConfigSpec.DoubleValue MOVEMENT_BRICKS;
+        public final ModConfigSpec.DoubleValue MOVEMENT_ROMAN_CONCRETE;
+        public final ModConfigSpec.DoubleValue MOVEMENT_DIRT;
+        public final ModConfigSpec.DoubleValue MOVEMENT_POLISHED_STONE;
+        public final ModConfigSpec.DoubleValue MOVEMENT_WOODEN;
+        public final ModConfigSpec.DoubleValue MOVEMENT_CONCRETE;
+        public final ModConfigSpec.DoubleValue MOVEMENT_SNOW;
+        public final ModConfigSpec.DoubleValue MOVEMENT_MUD;
 
-        public final ForgeConfigSpec.BooleanValue SLUICING_COOLDOWN;
-        public final ForgeConfigSpec.BooleanValue CROWBAR_FROM_ABOVE;
-        public final ForgeConfigSpec.BooleanValue PLAYER_PRYING_ENCHANTMENT;
+        public final ModConfigSpec.BooleanValue SLUICING_COOLDOWN;
+        public final ModConfigSpec.BooleanValue CROWBAR_FROM_ABOVE;
+        public final ModConfigSpec.BooleanValue PLAYER_PRYING_ENCHANTMENT;
 
-        public final ForgeConfigSpec.DoubleValue NUGGET_CHANCE;
-        public final ForgeConfigSpec.IntValue NUGGET_DISTANCE;
+        public final ModConfigSpec.DoubleValue NUGGET_CHANCE;
+        public final ModConfigSpec.IntValue NUGGET_DISTANCE;
 
-        public final ForgeConfigSpec.IntValue MUSHROOM_HOLLOW_LOG_RATE;
-        public final ForgeConfigSpec.BooleanValue MUSHROOM_SPREAD;
-
-
-        public final ForgeConfigSpec.IntValue MAX_TREE;
-        public final ForgeConfigSpec.BooleanValue TREE_CHOPPING;
-        public final ForgeConfigSpec.DoubleValue TREE_CHOP_SPEED;
-        public final ForgeConfigSpec.DoubleValue LEAF_LITTER_GEN;
-        public final ForgeConfigSpec.DoubleValue LEAF_LITTER_GEN_TREES;
-        public final ForgeConfigSpec.DoubleValue SAPLING_GROW;
-
-        public final ForgeConfigSpec.IntValue PATH_CREATION_TIME;
-        public final ForgeConfigSpec.BooleanValue PATH_CREATION;
-        public final ForgeConfigSpec.BooleanValue PUMICE_SOAP;
-        public final ForgeConfigSpec.BooleanValue FLINT_FIRE;
-        public final ForgeConfigSpec.BooleanValue STUMP_CREATION;
-        public final ForgeConfigSpec.BooleanValue STRIPPABLES_STICKS;
-        public final ForgeConfigSpec.DoubleValue FLINT_FIRE_CHANCE;
-        public final ForgeConfigSpec.DoubleValue FLINT_DROP_CHANCE;
-        public final ForgeConfigSpec.DoubleValue GRASS_GROW_CHANCE;
-        public final ForgeConfigSpec.DoubleValue PODZOL_GROW_CHANCE;
-        public final ForgeConfigSpec.IntValue LEAF_LITTER_GROWTH;
-        public final ForgeConfigSpec.BooleanValue MANDATORY_AXE;
-        public final ForgeConfigSpec.BooleanValue REFRESH_ALLOYS;
-        public final ForgeConfigSpec.BooleanValue STARTING_BOOK;
-        public final ForgeConfigSpec.BooleanValue DISABLE_WATER;
-        public final ForgeConfigSpec.ConfigValue<List<? extends String>> FUEL_VALUES_LIST;
-        public final ForgeConfigSpec.BooleanValue LIGHTNING_CONVERSION;
-        public final ForgeConfigSpec.BooleanValue PENDANT_CURSE;
-        public final ForgeConfigSpec.BooleanValue VILLAGER_TRADES;
-        public final ForgeConfigSpec.BooleanValue WANDERING_TRADE_SPECIAL;
-        public final ForgeConfigSpec.DoubleValue ROCK_GENERATOR_REMOVAL_CHANCE;
-        public final ForgeConfigSpec.DoubleValue GLOWSTONE_GAS_CHANCE;
-        public final ForgeConfigSpec.BooleanValue IGNEOUS_COBBLE_GEN;
-        public final ForgeConfigSpec.BooleanValue METAMORPHIC_STONE_GEN;
-        public final ForgeConfigSpec.DoubleValue GLOBAL_BREAK_EXHAUSTION;
-        public final ForgeConfigSpec.DoubleValue CHEESE_AGE_CHANCE;
-        public final ForgeConfigSpec.DoubleValue ICE_BREAK;
-        public final ForgeConfigSpec.DoubleValue GEODE_CHANCE;
-        public final ForgeConfigSpec.DoubleValue FUMAROLE_DEPOSIT_RATE;
-        public final ForgeConfigSpec.IntValue HERBICIDE_RANGE;
-        public final ForgeConfigSpec.IntValue ICEMELT_RANGE;
-        public final ForgeConfigSpec.IntValue TRAMPOLINE_SIZE;
-        public final ForgeConfigSpec.IntValue FIRE_EXTINGUISHER_RANGE;
-        public final ForgeConfigSpec.IntValue FORCE_BREAK;
-
-        public final ForgeConfigSpec.DoubleValue TOTEM_PROMISING_CHANCE;
+        public final ModConfigSpec.IntValue MUSHROOM_HOLLOW_LOG_RATE;
+        public final ModConfigSpec.BooleanValue MUSHROOM_SPREAD;
 
 
-        public General(ForgeConfigSpec.Builder b) {
+        public final ModConfigSpec.IntValue MAX_TREE;
+        public final ModConfigSpec.BooleanValue TREE_CHOPPING;
+        public final ModConfigSpec.DoubleValue TREE_CHOP_SPEED;
+        public final ModConfigSpec.DoubleValue LEAF_LITTER_GEN;
+        public final ModConfigSpec.DoubleValue LEAF_LITTER_GEN_TREES;
+        public final ModConfigSpec.DoubleValue SAPLING_GROW;
+
+        public final ModConfigSpec.IntValue PATH_CREATION_TIME;
+        public final ModConfigSpec.BooleanValue PATH_CREATION;
+        public final ModConfigSpec.BooleanValue PUMICE_SOAP;
+        public final ModConfigSpec.BooleanValue FLINT_FIRE;
+        public final ModConfigSpec.BooleanValue STUMP_CREATION;
+        public final ModConfigSpec.BooleanValue STRIPPABLES_STICKS;
+        public final ModConfigSpec.DoubleValue FLINT_FIRE_CHANCE;
+        public final ModConfigSpec.DoubleValue FLINT_DROP_CHANCE;
+        public final ModConfigSpec.DoubleValue GRASS_GROW_CHANCE;
+        public final ModConfigSpec.DoubleValue PODZOL_GROW_CHANCE;
+        public final ModConfigSpec.IntValue LEAF_LITTER_GROWTH;
+        public final ModConfigSpec.BooleanValue MANDATORY_AXE;
+        public final ModConfigSpec.BooleanValue REFRESH_ALLOYS;
+        public final ModConfigSpec.BooleanValue STARTING_BOOK;
+        public final ModConfigSpec.BooleanValue DISABLE_WATER;
+        public final ModConfigSpec.ConfigValue<List<? extends String>> FUEL_VALUES_LIST;
+        public final ModConfigSpec.BooleanValue LIGHTNING_CONVERSION;
+        public final ModConfigSpec.BooleanValue PENDANT_CURSE;
+        public final ModConfigSpec.BooleanValue VILLAGER_TRADES;
+        public final ModConfigSpec.BooleanValue WANDERING_TRADE_SPECIAL;
+        public final ModConfigSpec.DoubleValue ROCK_GENERATOR_REMOVAL_CHANCE;
+        public final ModConfigSpec.DoubleValue GLOWSTONE_GAS_CHANCE;
+        public final ModConfigSpec.BooleanValue IGNEOUS_COBBLE_GEN;
+        public final ModConfigSpec.BooleanValue METAMORPHIC_STONE_GEN;
+        public final ModConfigSpec.DoubleValue GLOBAL_BREAK_EXHAUSTION;
+        public final ModConfigSpec.DoubleValue CHEESE_AGE_CHANCE;
+        public final ModConfigSpec.DoubleValue ICE_BREAK;
+        public final ModConfigSpec.DoubleValue GEODE_CHANCE;
+        public final ModConfigSpec.DoubleValue FUMAROLE_DEPOSIT_RATE;
+        public final ModConfigSpec.IntValue HERBICIDE_RANGE;
+        public final ModConfigSpec.IntValue ICEMELT_RANGE;
+        public final ModConfigSpec.IntValue TRAMPOLINE_SIZE;
+        public final ModConfigSpec.IntValue FIRE_EXTINGUISHER_RANGE;
+        public final ModConfigSpec.IntValue FORCE_BREAK;
+
+        public final ModConfigSpec.DoubleValue TOTEM_PROMISING_CHANCE;
+
+
+        public General(ModConfigSpec.Builder b) {
             b.comment("Settings for general mechanics").push("general");
 
                 b.comment("Miscellaneous").push("misc");
@@ -436,27 +437,27 @@ public class Config {
     }
 
     public static class Alloys {
-        public final ForgeConfigSpec.IntValue ALLOY_MODIFIERS_MAX;
+        public final ModConfigSpec.IntValue ALLOY_MODIFIERS_MAX;
 
-        public final ForgeConfigSpec.BooleanValue ALLOY_CORROSION;
-        public final ForgeConfigSpec.IntValue ALLOY_CORROSION_AMT;
-        public final ForgeConfigSpec.BooleanValue ALLOY_HEAT;
-        public final ForgeConfigSpec.IntValue ALLOY_HEAT_AMT;
-        public final ForgeConfigSpec.BooleanValue ALLOY_TOUGHNESS;
-        public final ForgeConfigSpec.DoubleValue ALLOY_WEAR_MINING_AMT;
-        public final ForgeConfigSpec.DoubleValue ALLOY_WEAR_DAMAGE_AMT;
+        public final ModConfigSpec.BooleanValue ALLOY_CORROSION;
+        public final ModConfigSpec.IntValue ALLOY_CORROSION_AMT;
+        public final ModConfigSpec.BooleanValue ALLOY_HEAT;
+        public final ModConfigSpec.IntValue ALLOY_HEAT_AMT;
+        public final ModConfigSpec.BooleanValue ALLOY_TOUGHNESS;
+        public final ModConfigSpec.DoubleValue ALLOY_WEAR_MINING_AMT;
+        public final ModConfigSpec.DoubleValue ALLOY_WEAR_DAMAGE_AMT;
 
-        public final ForgeConfigSpec.IntValue ALLOY_BONUS_DURABILITY;
-        public final ForgeConfigSpec.DoubleValue ALLOY_BONUS_MINING_SPEED;
-        public final ForgeConfigSpec.IntValue ALLOY_BONUS_HL;
-        public final ForgeConfigSpec.IntValue ALLOY_BONUS_ENCHANTABILITY;
-        public final ForgeConfigSpec.DoubleValue ALLOY_BONUS_DAMAGE;
-        public final ForgeConfigSpec.DoubleValue ALLOY_BONUS_ATTACK_SPEED;
-        public final ForgeConfigSpec.DoubleValue ALLOY_BONUS_CORR_RESIST;
-        public final ForgeConfigSpec.DoubleValue ALLOY_BONUS_HEAT_RESIST;
-        public final ForgeConfigSpec.DoubleValue ALLOY_BONUS_TOUGHNESS;
+        public final ModConfigSpec.IntValue ALLOY_BONUS_DURABILITY;
+        public final ModConfigSpec.DoubleValue ALLOY_BONUS_MINING_SPEED;
+        public final ModConfigSpec.IntValue ALLOY_BONUS_HL;
+        public final ModConfigSpec.IntValue ALLOY_BONUS_ENCHANTABILITY;
+        public final ModConfigSpec.DoubleValue ALLOY_BONUS_DAMAGE;
+        public final ModConfigSpec.DoubleValue ALLOY_BONUS_ATTACK_SPEED;
+        public final ModConfigSpec.DoubleValue ALLOY_BONUS_CORR_RESIST;
+        public final ModConfigSpec.DoubleValue ALLOY_BONUS_HEAT_RESIST;
+        public final ModConfigSpec.DoubleValue ALLOY_BONUS_TOUGHNESS;
 
-        public Alloys(ForgeConfigSpec.Builder b) {
+        public Alloys(ModConfigSpec.Builder b) {
             b.comment("Settings for alloys and alloy tools").push("alloys");
                 ALLOY_MODIFIERS_MAX = b.comment("Sets the maximum number of unique modifiers that can be applied at the smithing table.")
                         .defineInRange("alloyModifiersMax", 1, 0, 5);
@@ -501,23 +502,23 @@ public class Config {
 
     public static class Machines {
 
-        public final ForgeConfigSpec.IntValue GROUND_TAP_SPEED;
-        public final ForgeConfigSpec.IntValue CHARCOAL_PIT_SPEED;
-        public final ForgeConfigSpec.IntValue CHARCOAL_PIT_RADIUS;
-        public final ForgeConfigSpec.IntValue CHARCOAL_PIT_HEIGHT;
-        public final ForgeConfigSpec.IntValue FLOOD_GATE_RANGE;
-        public final ForgeConfigSpec.IntValue ELECTROMAGNET_RANGE;
-        public final ForgeConfigSpec.IntValue MAGNET_RANGE;
-        public final ForgeConfigSpec.BooleanValue ELECTROMAGNET_MATERIAL_REQ;
-        public final ForgeConfigSpec.BooleanValue EVAPORATION_TOWER_MAINTENANCE;
-        public final ForgeConfigSpec.IntValue GAS_BOTTLER_SPEED;
+        public final ModConfigSpec.IntValue GROUND_TAP_SPEED;
+        public final ModConfigSpec.IntValue CHARCOAL_PIT_SPEED;
+        public final ModConfigSpec.IntValue CHARCOAL_PIT_RADIUS;
+        public final ModConfigSpec.IntValue CHARCOAL_PIT_HEIGHT;
+        public final ModConfigSpec.IntValue FLOOD_GATE_RANGE;
+        public final ModConfigSpec.IntValue ELECTROMAGNET_RANGE;
+        public final ModConfigSpec.IntValue MAGNET_RANGE;
+        public final ModConfigSpec.BooleanValue ELECTROMAGNET_MATERIAL_REQ;
+        public final ModConfigSpec.BooleanValue EVAPORATION_TOWER_MAINTENANCE;
+        public final ModConfigSpec.IntValue GAS_BOTTLER_SPEED;
 
-        public final ForgeConfigSpec.IntValue FUSION_FURNACE_POWER;
-        public final ForgeConfigSpec.IntValue INDUCTION_FURNACE_POWER;
-        public final ForgeConfigSpec.IntValue AIR_DISTILLATION_SPEED;
+        public final ModConfigSpec.IntValue FUSION_FURNACE_POWER;
+        public final ModConfigSpec.IntValue INDUCTION_FURNACE_POWER;
+        public final ModConfigSpec.IntValue AIR_DISTILLATION_SPEED;
 
 
-        public Machines(ForgeConfigSpec.Builder b) {
+        public Machines(ModConfigSpec.Builder b) {
             b.comment("Settings for machines").push("machines");
                 AIR_DISTILLATION_SPEED = b.comment("Processing speed of the air distillation tower")
                         .defineInRange("airDistillationSpeed", 100, 10, Integer.MAX_VALUE);
@@ -550,13 +551,13 @@ public class Config {
     }
 
     public static class Gases {
-        public final ForgeConfigSpec.BooleanValue GAS_MOVEMENT;
-        public final ForgeConfigSpec.BooleanValue ENABLE_GAS_VENTS;
-        public final ForgeConfigSpec.BooleanValue GAS_AFFECT_UNDEAD;
-        public final ForgeConfigSpec.BooleanValue GAS_DISSIPATION;
+        public final ModConfigSpec.BooleanValue GAS_MOVEMENT;
+        public final ModConfigSpec.BooleanValue ENABLE_GAS_VENTS;
+        public final ModConfigSpec.BooleanValue GAS_AFFECT_UNDEAD;
+        public final ModConfigSpec.BooleanValue GAS_DISSIPATION;
 
 
-        public Gases(ForgeConfigSpec.Builder b) {
+        public Gases(ModConfigSpec.Builder b) {
             b.comment("Settings for Gases.").push("gases");
             GAS_MOVEMENT = b.comment("If enabled, gases will move on random tick and dissipate at or above y-level 95 (EXPERIMENTAL).")
                     .define("gasMovement", true);
@@ -572,11 +573,11 @@ public class Config {
     }
 
     public static class HardMode {
-        public final ForgeConfigSpec.BooleanValue WATER_REACTIVE;
-        public final ForgeConfigSpec.BooleanValue RADIOACTIVE;
+        public final ModConfigSpec.BooleanValue WATER_REACTIVE;
+        public final ModConfigSpec.BooleanValue RADIOACTIVE;
 
 
-        public HardMode(ForgeConfigSpec.Builder b) {
+        public HardMode(ModConfigSpec.Builder b) {
             b.comment("Settings for Hard Mode mechanics (HIGHLY EXPERIMENTAL).").push("hardMode");
             WATER_REACTIVE = b.comment("If enabled, certain elements will react with water. Generally creates an explosion.")
                     .define("elementWaterReactive", false);
@@ -587,49 +588,49 @@ public class Config {
     }
 
     public static class Worldgen {
-        public final ForgeConfigSpec.IntValue BEDROCK_LAYERS;
-        public final ForgeConfigSpec.BooleanValue DISABLE_VANILLA_FEATURES;
-        public final ForgeConfigSpec.BooleanValue RANKINE_FLORA;
-        public final ForgeConfigSpec.BooleanValue RANKINE_TREES;
-        public final ForgeConfigSpec.BooleanValue MUSHROOMS;
-        public final ForgeConfigSpec.BooleanValue FALLEN_LOGS;
-        public final ForgeConfigSpec.BooleanValue COBBLES_GEN;
-        public final ForgeConfigSpec.IntValue FUMAROLE_GEN;
-        public final ForgeConfigSpec.BooleanValue FIRE_CLAY_GEN;
-        public final ForgeConfigSpec.BooleanValue WHITE_SAND_GEN;
-        public final ForgeConfigSpec.BooleanValue BLACK_SAND_GEN;
-        public final ForgeConfigSpec.BooleanValue RETRO_GEN;
-        public final ForgeConfigSpec.BooleanValue SOIL_GEN;
-        public final ForgeConfigSpec.BooleanValue ANTIMATTER_GEN;
-        public final ForgeConfigSpec.BooleanValue REPLACE_VANILLA_ORES;
-        public final ForgeConfigSpec.BooleanValue END_METEORITE_GEN;
-        public final ForgeConfigSpec.BooleanValue METEORITE_GEN;
-        public final ForgeConfigSpec.DoubleValue END_METEORITE_CHANCE;
-        public final ForgeConfigSpec.DoubleValue BIG_METEORITE_CHANCE;
-        public final ForgeConfigSpec.IntValue METEORITE_SIZE;
-        public final ForgeConfigSpec.IntValue METEORITE_CHANCE;
-        public final ForgeConfigSpec.IntValue NETHERRACK_LAYER_THICKNESS;
-        public final ForgeConfigSpec.IntValue SOUL_SANDSTONE_LAYER_THICKNESS;
+        public final ModConfigSpec.IntValue BEDROCK_LAYERS;
+        public final ModConfigSpec.BooleanValue DISABLE_VANILLA_FEATURES;
+        public final ModConfigSpec.BooleanValue RANKINE_FLORA;
+        public final ModConfigSpec.BooleanValue RANKINE_TREES;
+        public final ModConfigSpec.BooleanValue MUSHROOMS;
+        public final ModConfigSpec.BooleanValue FALLEN_LOGS;
+        public final ModConfigSpec.BooleanValue COBBLES_GEN;
+        public final ModConfigSpec.IntValue FUMAROLE_GEN;
+        public final ModConfigSpec.BooleanValue FIRE_CLAY_GEN;
+        public final ModConfigSpec.BooleanValue WHITE_SAND_GEN;
+        public final ModConfigSpec.BooleanValue BLACK_SAND_GEN;
+        public final ModConfigSpec.BooleanValue RETRO_GEN;
+        public final ModConfigSpec.BooleanValue SOIL_GEN;
+        public final ModConfigSpec.BooleanValue ANTIMATTER_GEN;
+        public final ModConfigSpec.BooleanValue REPLACE_VANILLA_ORES;
+        public final ModConfigSpec.BooleanValue END_METEORITE_GEN;
+        public final ModConfigSpec.BooleanValue METEORITE_GEN;
+        public final ModConfigSpec.DoubleValue END_METEORITE_CHANCE;
+        public final ModConfigSpec.DoubleValue BIG_METEORITE_CHANCE;
+        public final ModConfigSpec.IntValue METEORITE_SIZE;
+        public final ModConfigSpec.IntValue METEORITE_CHANCE;
+        public final ModConfigSpec.IntValue NETHERRACK_LAYER_THICKNESS;
+        public final ModConfigSpec.IntValue SOUL_SANDSTONE_LAYER_THICKNESS;
 
-        //public final ForgeConfigSpec.BooleanValue COLUMN_GEN;
-        //public final ForgeConfigSpec.DoubleValue COLUMN_CHANCE;
-        //public final ForgeConfigSpec.DoubleValue COLUMN_FREQUENCY;
-        public final ForgeConfigSpec.IntValue LAYER_GEN;
-        public final ForgeConfigSpec.DoubleValue LAYER_BEND;
-        public final ForgeConfigSpec.IntValue LAYER_THICKNESS;
-        public final ForgeConfigSpec.IntValue NOISE_SCALE;
-        public final ForgeConfigSpec.IntValue SOIL_NOISE_SCALE;
+        //public final ModConfigSpec.BooleanValue COLUMN_GEN;
+        //public final ModConfigSpec.DoubleValue COLUMN_CHANCE;
+        //public final ModConfigSpec.DoubleValue COLUMN_FREQUENCY;
+        public final ModConfigSpec.IntValue LAYER_GEN;
+        public final ModConfigSpec.DoubleValue LAYER_BEND;
+        public final ModConfigSpec.IntValue LAYER_THICKNESS;
+        public final ModConfigSpec.IntValue NOISE_SCALE;
+        public final ModConfigSpec.IntValue SOIL_NOISE_SCALE;
 
-        public final ForgeConfigSpec.BooleanValue INTRUSION_GEN;
-        public final ForgeConfigSpec.IntValue OVERWORLD_INTRUSION_RADIUS;
-        public final ForgeConfigSpec.DoubleValue OVERWORLD_INTRUSION_SHRINK;
-        public final ForgeConfigSpec.DoubleValue OVERWORLD_INTRUSION_SHIFT;
-        public final ForgeConfigSpec.DoubleValue INTRUSION_CINNABAR_ORE;
-        public final ForgeConfigSpec.IntValue NETHER_INTRUSION_RADIUS;
-        public final ForgeConfigSpec.DoubleValue NETHER_INTRUSION_SHRINK;
-        public final ForgeConfigSpec.DoubleValue NETHER_INTRUSION_SHIFT;
+        public final ModConfigSpec.BooleanValue INTRUSION_GEN;
+        public final ModConfigSpec.IntValue OVERWORLD_INTRUSION_RADIUS;
+        public final ModConfigSpec.DoubleValue OVERWORLD_INTRUSION_SHRINK;
+        public final ModConfigSpec.DoubleValue OVERWORLD_INTRUSION_SHIFT;
+        public final ModConfigSpec.DoubleValue INTRUSION_CINNABAR_ORE;
+        public final ModConfigSpec.IntValue NETHER_INTRUSION_RADIUS;
+        public final ModConfigSpec.DoubleValue NETHER_INTRUSION_SHRINK;
+        public final ModConfigSpec.DoubleValue NETHER_INTRUSION_SHIFT;
 
-        public Worldgen(ForgeConfigSpec.Builder b) {
+        public Worldgen(ModConfigSpec.Builder b) {
             b.comment("Here are miscellaneous worldgen options.").push("worldgen");
             BEDROCK_LAYERS = b.comment("The number of flat bedrock layers to generate. Set to 0 to disable.")
                     .defineInRange("flatBedrockLayers", 0, 0, 5);
@@ -730,13 +731,13 @@ public class Config {
     }
 
     public static class BiomeGen {
-        public final ForgeConfigSpec.ConfigValue<List<? extends List<Object>>> BIOME_SETTINGS;
+        public final ModConfigSpec.ConfigValue<List<? extends List<Object>>> BIOME_SETTINGS;
         private static final List<List<Object>> biomeSettings = new ArrayList<>();
 
-        public final ForgeConfigSpec.ConfigValue<List<? extends List<Object>>> ORE_SETTINGS;
+        public final ModConfigSpec.ConfigValue<List<? extends List<Object>>> ORE_SETTINGS;
         private static final List<List<Object>> oreSettings = new ArrayList<>();
 
-        public BiomeGen(ForgeConfigSpec.Builder b) {
+        public BiomeGen(ModConfigSpec.Builder b) {
             if (TwilightForest.isInstalled()) {
                 biomeSettings.add(List.of("twilightforest:oak_savannah",
                         List.of("rankine:silty_loam_grass_block","rankine:silty_loam","rankine:silty_clay_loam","rankine:sandy_loam_grass_block","rankine:sandy_loam","rankine:sandy_clay_loam"),
@@ -1299,7 +1300,7 @@ public class Config {
         }
     }
 
-    public static final ForgeConfigSpec COMMON_CONFIG;
+    public static final ModConfigSpec COMMON_CONFIG;
     public static final General GENERAL;
     public static final Tools TOOLS;
     public static final Machines MACHINES;
@@ -1311,7 +1312,7 @@ public class Config {
     public static final BlockProperties BLOCK_PROPERTIES;
 
     static {
-        ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
+        ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
         GENERAL = new General(BUILDER);
         TOOLS = new Tools(BUILDER);
         MACHINES = new Machines(BUILDER);

@@ -23,7 +23,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.Registry;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biome;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.registries.ForgeRegistries;
 
 import java.util.*;
 
@@ -187,7 +187,7 @@ public class AirDistillationRecipe implements Recipe<Container> {
 
     public static ItemStack deserializeItem(JsonObject object) {
         String s = GsonHelper.getAsString(object, "item");
-        Item item = Registry.ITEM.getOptional(new ResourceLocation(s)).orElseThrow(() -> {
+        Item item = Registry.ITEM.getOptional(ResourceLocation.parse(s)).orElseThrow(() -> {
             return new JsonSyntaxException("Unknown item '" + s + "'");
         });
 
@@ -204,8 +204,8 @@ public class AirDistillationRecipe implements Recipe<Container> {
         return RankineRecipeTypes.AIR_DISTILLATION;
     }
 
-    public static class Serializer extends net.minecraftforge.registries.ForgeRegistryEntry<RecipeSerializer<?>>  implements RecipeSerializer<AirDistillationRecipe> {
-        private static final ResourceLocation NAME = new ResourceLocation("rankine", "air_distillation");
+    public static class Serializer extends net.neoforged.neoforge.registries.ForgeRegistryEntry<RecipeSerializer<?>>  implements RecipeSerializer<AirDistillationRecipe> {
+        private static final ResourceLocation NAME = ResourceLocation.fromNamespaceAndPath("rankine", "air_distillation");
         public AirDistillationRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
 
             JsonArray b = json.has("biomes") ? GsonHelper.getAsJsonArray(json, "biomes") : new JsonArray();

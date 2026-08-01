@@ -32,7 +32,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.common.PlantType;
+import net.neoforged.neoforge.common.PlantType;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;
@@ -79,9 +79,9 @@ public class RankinePlantBlock extends BushBlock implements BonemealableBlock {
 
     public void randomTick(BlockState p_57286_, ServerLevel p_57287_, BlockPos p_57288_, Random p_57289_) {
         int i = p_57286_.getValue(AGE);
-        if (i < 3 && p_57287_.getRawBrightness(p_57288_.above(), 0) >= 9 && net.minecraftforge.common.ForgeHooks.onCropsGrowPre(p_57287_, p_57288_, p_57286_,p_57289_.nextInt(5) == 0)) {
+        if (i < 3 && p_57287_.getRawBrightness(p_57288_.above(), 0) >= 9 && net.neoforged.neoforge.common.ForgeHooks.onCropsGrowPre(p_57287_, p_57288_, p_57286_,p_57289_.nextInt(5) == 0)) {
             p_57287_.setBlock(p_57288_, p_57286_.setValue(AGE, i + 1), 2);
-            net.minecraftforge.common.ForgeHooks.onCropsGrowPost(p_57287_, p_57288_, p_57286_);
+            net.neoforged.neoforge.common.ForgeHooks.onCropsGrowPost(p_57287_, p_57288_, p_57286_);
         }
 
     }

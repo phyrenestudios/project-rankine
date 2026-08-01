@@ -15,8 +15,8 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.neoforged.neoforge.common.ModConfigSpec;
+import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -69,7 +69,7 @@ public class BreakSpeedHandler {
         if (heldItem instanceof HammerItem) { event.setNewSpeed(0f); }
         if (heldItem instanceof CrowbarItem) { event.setNewSpeed(0f); }
 
-        ForgeConfigSpec.BooleanValue configSpec = VanillaIntegration.DISABLED_ITEMS.get(event.getPlayer().getMainHandItem().getItem());
+        ModConfigSpec.BooleanValue configSpec = VanillaIntegration.DISABLED_ITEMS.get(event.getPlayer().getMainHandItem().getItem());
         if (configSpec != null && configSpec.get()) {
             event.setNewSpeed(0f);
         }

@@ -9,7 +9,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraftforge.common.Tags;
+import net.neoforged.neoforge.common.Tags;
 
 import java.util.Random;
 
@@ -32,7 +32,7 @@ public class AsparagusRootBlock extends Block implements BonemealableBlock {
                 worldIn.setBlockAndUpdate(pos, Blocks.DIRT.defaultBlockState());
             } else if (worldIn.getRawBrightness(pos.above(), 0) >= 9) {
                 this.performBonemeal(worldIn, random, pos, state);
-                net.minecraftforge.common.ForgeHooks.onCropsGrowPost(worldIn, pos, state);
+                net.neoforged.neoforge.common.ForgeHooks.onCropsGrowPost(worldIn, pos, state);
             }
         }
     }

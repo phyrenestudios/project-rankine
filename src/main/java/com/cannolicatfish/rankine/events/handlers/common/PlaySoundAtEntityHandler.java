@@ -3,7 +3,7 @@ package com.cannolicatfish.rankine.events.handlers.common;
 import com.cannolicatfish.rankine.blocks.gases.PitchModulating;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
-import net.minecraftforge.event.entity.PlaySoundAtEntityEvent;
+import net.neoforged.neoforge.event.entity.PlaySoundAtEntityEvent;
 
 public class PlaySoundAtEntityHandler {
 

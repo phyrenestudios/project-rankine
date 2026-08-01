@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Optional;
 
 import net.minecraft.world.item.Item.Properties;
-import net.minecraftforge.common.Tags;
+import net.neoforged.neoforge.common.Tags;
 
 public class PIAItem extends Item {
     public PIAItem(Properties properties) {

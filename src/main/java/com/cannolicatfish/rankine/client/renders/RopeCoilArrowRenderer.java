@@ -13,8 +13,8 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class RopeCoilArrowRenderer extends EntityRenderer<RopeCoilArrowEntity> {
@@ -75,7 +75,7 @@ public class RopeCoilArrowRenderer extends EntityRenderer<RopeCoilArrowEntity> {
 
     @Override
     public ResourceLocation getTextureLocation(RopeCoilArrowEntity entity) {
-        return new ResourceLocation("rankine:textures/entity/thorium_arrow.png");
+        return ResourceLocation.parse("rankine:textures/entity/thorium_arrow.png");
     }
 
     public void drawVertex(Matrix4f matrix, Matrix3f normals, VertexConsumer vertexBuilder, int offsetX, int offsetY, int offsetZ, float textureX, float textureY, int p_229039_9_, int p_229039_10_, int p_229039_11_, int packedLightIn) {

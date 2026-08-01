@@ -1,8 +1,8 @@
 package com.cannolicatfish.rankine.blocks.dac;
 
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 

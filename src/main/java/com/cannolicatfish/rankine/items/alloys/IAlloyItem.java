@@ -11,7 +11,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.ChatFormatting;
 import net.minecraft.world.level.Level;
 
@@ -249,22 +249,22 @@ public interface IAlloyItem {
     default void addAlloyInformation(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
         if (this.isAlloyInit(stack)) {
             if (IAlloyItem.getAlloyComposition(stack).isEmpty()) {
-                tooltip.add((new TextComponent("Any Composition").withStyle(ChatFormatting.GOLD)));
+                tooltip.add((Component.literal("Any Composition").withStyle(ChatFormatting.GOLD)));
             } else {
-                tooltip.add((new TextComponent("Composition: " + IAlloyItem.getAlloyComposition(stack)).withStyle(ChatFormatting.GOLD)));
+                tooltip.add((Component.literal("Composition: " + IAlloyItem.getAlloyComposition(stack)).withStyle(ChatFormatting.GOLD)));
             }
 
             if (!IAlloyItem.getAlloyModifiers(stack).isEmpty()) {
-                tooltip.add((new TextComponent("Modifier: " + (IAlloyItem.getAlloyModifiers(stack).getCompound(0).getString("modifierName"))).withStyle(ChatFormatting.AQUA)));
+                tooltip.add((Component.literal("Modifier: " + (IAlloyItem.getAlloyModifiers(stack).getCompound(0).getString("modifierName"))).withStyle(ChatFormatting.AQUA)));
             }
         }
     }
 
     default void addAdvancedAlloyInformation(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
         if (IAlloyItem.getAlloyRecipe(stack) != null) {
-            tooltip.add((new TextComponent("Recipe: " + (IAlloyItem.getAlloyRecipe(stack))).withStyle(ChatFormatting.LIGHT_PURPLE)));
+            tooltip.add((Component.literal("Recipe: " + (IAlloyItem.getAlloyRecipe(stack))).withStyle(ChatFormatting.LIGHT_PURPLE)));
         } else {
-            tooltip.add((new TextComponent("No Recipe Defined").withStyle(ChatFormatting.LIGHT_PURPLE)));
+            tooltip.add((Component.literal("No Recipe Defined").withStyle(ChatFormatting.LIGHT_PURPLE)));
         }
     }
 

@@ -10,7 +10,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.TagParser;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -20,7 +20,7 @@ public class AlloyIngredientHelper {
 
     public static Ingredient deserialize(@Nullable JsonElement json, @Nullable String alloyComp, @Nullable String alloyRecipe, @Nullable String name) {
         if (json != null && !json.isJsonNull()) {
-            Ingredient ret = net.minecraftforge.common.crafting.CraftingHelper.getIngredient(json);
+            Ingredient ret = net.neoforged.neoforge.common.crafting.CraftingHelper.getIngredient(json);
             if (alloyRecipe != null)
             {
                 List<ItemStack> stacks = new ArrayList<>();
@@ -40,7 +40,7 @@ public class AlloyIngredientHelper {
 
     public static Ingredient deserialize(@Nullable JsonElement json, @Nullable String alloyComp, @Nullable String alloyRecipe, @Nullable String name, int color) {
         if (json != null && !json.isJsonNull()) {
-            Ingredient ret = net.minecraftforge.common.crafting.CraftingHelper.getIngredient(json);
+            Ingredient ret = net.neoforged.neoforge.common.crafting.CraftingHelper.getIngredient(json);
             if (alloyComp != null || alloyRecipe != null || name != null || color != 16777215)
             {
                 List<ItemStack> stacks = new ArrayList<>();
@@ -70,7 +70,7 @@ public class AlloyIngredientHelper {
     {
         String itemName = GsonHelper.getAsString(json, "item");
 
-        Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(itemName));
+        Item item = ForgeRegistries.ITEMS.getValue(ResourceLocation.parse(itemName));
 
         if (item == null)
             throw new JsonSyntaxException("Unknown item '" + itemName + "'");

@@ -17,7 +17,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 
@@ -27,7 +27,7 @@ import java.util.Locale;
 
 public class ElementRecipeCategory implements IRecipeCategory<ElementRecipe> {
 
-    public static ResourceLocation UID = new ResourceLocation(ProjectRankine.MODID, "element");
+    public static ResourceLocation UID = ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID, "element");
     private final IDrawable background;
     private final String localizedName;
 
@@ -36,7 +36,7 @@ public class ElementRecipeCategory implements IRecipeCategory<ElementRecipe> {
     public ElementRecipeCategory(IGuiHelper guiHelper) {
         localizedName = I18n.get("rankine.jei.element");
         this.guiHelper = guiHelper;
-        background = guiHelper.drawableBuilder(new ResourceLocation(ProjectRankine.MODID, "textures/gui/element_jei.png"), 0, 0, 116, 112)
+        background = guiHelper.drawableBuilder(ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID, "textures/gui/element_jei.png"), 0, 0, 116, 112)
                 .addPadding(0, 0, 0, 0)
                 .build();
     }
@@ -53,7 +53,7 @@ public class ElementRecipeCategory implements IRecipeCategory<ElementRecipe> {
 
     @Override
     public Component getTitle() {
-        return new TextComponent(localizedName);
+        return Component.literal(localizedName);
     }
 
     @Override
@@ -91,7 +91,7 @@ public class ElementRecipeCategory implements IRecipeCategory<ElementRecipe> {
             int floor = Math.floorDiv(i,7);
             int val = recipe.getValues().get(i);
             builder.addSlot(RecipeIngredientRole.OUTPUT,(i - (6*floor)) * 18 + 4, 76 + (16*floor)).addIngredients(recipe.getIngredients().get(i))
-                    .addTooltipCallback((recipeSlotView, tooltip) -> tooltip.add(new TextComponent(I18n.get("rankine.jei.tooltip_material_info") + df.format(val))));
+                    .addTooltipCallback((recipeSlotView, tooltip) -> tooltip.add(Component.literal(I18n.get("rankine.jei.tooltip_material_info") + df.format(val))));
         }
         IRecipeCategory.super.setRecipe(builder, recipe, focuses);
     }

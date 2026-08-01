@@ -36,7 +36,7 @@ public final class RankineTags {
     }
 
     private static TagKey<Biome> createBiomeTag(String p_207631_) {
-        return TagKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(ProjectRankine.MODID, p_207631_));
+        return TagKey.create(Registry.BIOME_REGISTRY, ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID, p_207631_));
     }
 
 
@@ -1188,22 +1188,22 @@ public final class RankineTags {
     }
     //private Blocks() {}
     private static TagKey<Fluid> forgeFluid(String path) {
-        return FluidTags.create(new ResourceLocation("forge", path));
+        return FluidTags.create(ResourceLocation.fromNamespaceAndPath("forge", path));
     }
     private static TagKey<Fluid> modFluid(String path) {
-        return FluidTags.create(new ResourceLocation("rankine", path));
+        return FluidTags.create(ResourceLocation.fromNamespaceAndPath("rankine", path));
     }
     private static TagKey<Block> forgeBlock(String path) {
-        return BlockTags.create(new ResourceLocation("forge", path));
+        return BlockTags.create(ResourceLocation.fromNamespaceAndPath("forge", path));
     }
     private static TagKey<Block> modBlock(String path) {
-        return BlockTags.create(new ResourceLocation("rankine", path));
+        return BlockTags.create(ResourceLocation.fromNamespaceAndPath("rankine", path));
     }
     private static TagKey<Item> forgeItem(String path) {
-        return ItemTags.create(new ResourceLocation("forge", path));
+        return ItemTags.create(ResourceLocation.fromNamespaceAndPath("forge", path));
     }
     private static TagKey<Item> modItem(String path) {
-        return ItemTags.create(new ResourceLocation("rankine", path));
+        return ItemTags.create(ResourceLocation.fromNamespaceAndPath("rankine", path));
     }
 
 

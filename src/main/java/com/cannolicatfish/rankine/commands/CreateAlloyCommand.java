@@ -25,7 +25,7 @@ import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
 
 import java.util.Collection;
 import java.util.Optional;
@@ -47,10 +47,10 @@ public class CreateAlloyCommand {
             return p_198496_0_.hasPermission(2);
         }).then(Commands.argument("targets", EntityArgument.players()).then(Commands.argument("item", ItemArgument.item()).executes((p_198492_0_) -> {
             Item in = ItemArgument.getItem(p_198492_0_, "item").getItem();
-            return giveItem(p_198492_0_.getSource(), ItemArgument.getItem(p_198492_0_, "item"),in instanceof IAlloyItem ? ((IAlloyItem) in).getDefaultComposition() : "", in instanceof IAlloyItem ? ((IAlloyItem) in).getDefaultRecipe() : new ResourceLocation(""), EntityArgument.getPlayers(p_198492_0_, "targets"), 1, null,16777215);
+            return giveItem(p_198492_0_.getSource(), ItemArgument.getItem(p_198492_0_, "item"),in instanceof IAlloyItem ? ((IAlloyItem) in).getDefaultComposition() : "", in instanceof IAlloyItem ? ((IAlloyItem) in).getDefaultRecipe() : ResourceLocation.parse(""), EntityArgument.getPlayers(p_198492_0_, "targets"), 1, null,16777215);
         }).then(Commands.argument("composition", StringArgumentType.string()).executes((p_198493_0_) -> {
             Item in = ItemArgument.getItem(p_198493_0_, "item").getItem();
-            return giveItem(p_198493_0_.getSource(), ItemArgument.getItem(p_198493_0_, "item"), StringArgumentType.getString(p_198493_0_, "composition"), in instanceof IAlloyItem ? ((IAlloyItem) in).getDefaultRecipe() : new ResourceLocation(""),  EntityArgument.getPlayers(p_198493_0_, "targets"), 1, null,16777215);
+            return giveItem(p_198493_0_.getSource(), ItemArgument.getItem(p_198493_0_, "item"), StringArgumentType.getString(p_198493_0_, "composition"), in instanceof IAlloyItem ? ((IAlloyItem) in).getDefaultRecipe() : ResourceLocation.parse(""),  EntityArgument.getPlayers(p_198493_0_, "targets"), 1, null,16777215);
         }).then(Commands.argument("recipe", ResourceLocationArgument.id()).suggests(ALLOY_RECIPE_SUGGESTER).executes((p_198494_0_) -> {
             return giveItem(p_198494_0_.getSource(), ItemArgument.getItem(p_198494_0_, "item"), StringArgumentType.getString(p_198494_0_, "composition"), ResourceLocationArgument.getId(p_198494_0_, "recipe"), EntityArgument.getPlayers(p_198494_0_, "targets"), 1, null,16777215);
         }).then(Commands.argument("count", IntegerArgumentType.integer(1)).executes((p_198495_0_) -> {
@@ -72,8 +72,8 @@ public class CreateAlloyCommand {
                 ItemStack itemstack = itemIn.createItemStack(j, false);
                 if (itemstack.getItem() instanceof IAlloyItem) {
                     AlloyingRecipe alloy = null;
-                    if (!recipe.equals(new ResourceLocation("")) || color != 16777215) {
-                        if (!recipe.equals(new ResourceLocation(""))) {
+                    if (!recipe.equals(ResourceLocation.parse("")) || color != 16777215) {
+                        if (!recipe.equals(ResourceLocation.parse(""))) {
                             Optional<? extends Recipe<?>> r = serverplayerentity.getCommandSenderWorld().getRecipeManager().byKey(recipe);
                             if (r.isPresent() && r.get() instanceof AlloyingRecipe) {
                                 alloy = (AlloyingRecipe) r.get();
@@ -127,9 +127,9 @@ public class CreateAlloyCommand {
         }
 
         if (targets.size() == 1) {
-            source.sendSuccess(new TranslatableComponent("commands.give.success.single", count, itemIn.createItemStack(count, false).getDisplayName(), targets.iterator().next().getDisplayName()), true);
+            source.sendSuccess(Component.translatable("commands.give.success.single", count, itemIn.createItemStack(count, false).getDisplayName(), targets.iterator().next().getDisplayName()), true);
         } else {
-            source.sendSuccess(new TranslatableComponent("commands.give.success.single", count, itemIn.createItemStack(count, false).getDisplayName(), targets.size()), true);
+            source.sendSuccess(Component.translatable("commands.give.success.single", count, itemIn.createItemStack(count, false).getDisplayName(), targets.size()), true);
         }
 
         return targets.size();

@@ -25,8 +25,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.resources.ResourceLocation;
@@ -38,7 +38,7 @@ import java.util.List;
 
 public class BeehiveOvenRecipeCategory implements IRecipeCategory<BeehiveOvenRecipe> {
 
-    public static ResourceLocation UID = new ResourceLocation(ProjectRankine.MODID, "beehive_oven");
+    public static ResourceLocation UID = ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID, "beehive_oven");
     private final IGuiHelper guiHelper;
     private final IDrawable background;
     private final String localizedName;
@@ -51,7 +51,7 @@ public class BeehiveOvenRecipeCategory implements IRecipeCategory<BeehiveOvenRec
 
     public BeehiveOvenRecipeCategory(IGuiHelper guiHelper) {
         this.guiHelper = guiHelper;
-        background = guiHelper.drawableBuilder(new ResourceLocation(ProjectRankine.MODID, "textures/gui/beeoven_jei.png"), 0,0,116, 64)
+        background = guiHelper.drawableBuilder(ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID, "textures/gui/beeoven_jei.png"), 0,0,116, 64)
                 .build();
         localizedName = I18n.get("rankine.jei.beeoven");
         this.cachedFlames = CacheBuilder.newBuilder()
@@ -59,7 +59,7 @@ public class BeehiveOvenRecipeCategory implements IRecipeCategory<BeehiveOvenRec
                 .build(new CacheLoader<>() {
                     @Override
                     public IDrawableAnimated load(Integer burnTime) {
-                        return guiHelper.drawableBuilder(new ResourceLocation(ProjectRankine.MODID, "textures/gui/beeoven_jei.png"), 232, 0, 14, 14)
+                        return guiHelper.drawableBuilder(ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID, "textures/gui/beeoven_jei.png"), 232, 0, 14, 14)
                                 .buildAnimated(burnTime, IDrawableAnimated.StartDirection.TOP, true);
                     }
                 });
@@ -68,13 +68,13 @@ public class BeehiveOvenRecipeCategory implements IRecipeCategory<BeehiveOvenRec
                 .build(new CacheLoader<>() {
                     @Override
                     public IDrawableAnimated load(Integer cookTime) {
-                        return guiHelper.drawableBuilder(new ResourceLocation(ProjectRankine.MODID, "textures/gui/beeoven_jei.png"), 232, 14, 24, 17)
+                        return guiHelper.drawableBuilder(ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID, "textures/gui/beeoven_jei.png"), 232, 14, 24, 17)
                                 .buildAnimated(cookTime, IDrawableAnimated.StartDirection.LEFT, false);
                     }
                 });
-        firstTierBeehiveOven = guiHelper.drawableBuilder(new ResourceLocation(ProjectRankine.MODID,"textures/gui/beeoven_jei.png"),201,31,55,17).build();
-        secondTierBeehiveOven = guiHelper.drawableBuilder(new ResourceLocation(ProjectRankine.MODID,"textures/gui/beeoven_jei.png"),201,48,55,17).build();
-        thirdTierBeehiveOven = guiHelper.drawableBuilder(new ResourceLocation(ProjectRankine.MODID,"textures/gui/beeoven_jei.png"),201,65,55,17).build();
+        firstTierBeehiveOven = guiHelper.drawableBuilder(ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID,"textures/gui/beeoven_jei.png"),201,31,55,17).build();
+        secondTierBeehiveOven = guiHelper.drawableBuilder(ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID,"textures/gui/beeoven_jei.png"),201,48,55,17).build();
+        thirdTierBeehiveOven = guiHelper.drawableBuilder(ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID,"textures/gui/beeoven_jei.png"),201,65,55,17).build();
         this.multiplier = 1f;
     }
 
@@ -92,7 +92,7 @@ public class BeehiveOvenRecipeCategory implements IRecipeCategory<BeehiveOvenRec
         if (minCookTime > 0 && maxCookTime > 0) {
             int minCookTimeSeconds = Math.round((minCookTime / 20f) * multiplier);
             int maxCookTimeSeconds = Math.round((maxCookTime / 20f) * multiplier);
-            TextComponent timeString = new TextComponent(new TranslatableComponent("gui.jei.category.smelting.time.seconds", minCookTimeSeconds).getString() + " - " + new TranslatableComponent("gui.jei.category.smelting.time.seconds", maxCookTimeSeconds).getString());
+            TextComponent timeString = Component.literal(Component.translatable("gui.jei.category.smelting.time.seconds", minCookTimeSeconds).getString() + " - " + Component.translatable("gui.jei.category.smelting.time.seconds", maxCookTimeSeconds).getString());
             Minecraft minecraft = Minecraft.getInstance();
             Font fontRenderer = minecraft.font;
             int stringWidth = fontRenderer.width(timeString);
@@ -114,7 +114,7 @@ public class BeehiveOvenRecipeCategory implements IRecipeCategory<BeehiveOvenRec
 
     @Override
     public @NotNull Component getTitle() {
-        return new TextComponent(localizedName);
+        return Component.literal(localizedName);
     }
 
     @Override

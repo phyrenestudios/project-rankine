@@ -1,6 +1,6 @@
 package com.cannolicatfish.rankine.compatibility;
 
-import net.minecraftforge.fml.ModList;
+import net.neoforged.fml.ModList;
 
 public class Create {
     public static boolean isInstalled() {

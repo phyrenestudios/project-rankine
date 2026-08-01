@@ -24,7 +24,7 @@ import net.minecraft.world.level.Level;
 import java.util.Map;
 import java.util.Set;
 
-public class AlloyCraftingRecipe implements CraftingRecipe, net.minecraftforge.common.crafting.IShapedRecipe<CraftingContainer> {
+public class AlloyCraftingRecipe implements CraftingRecipe, net.neoforged.neoforge.common.crafting.IShapedRecipe<CraftingContainer> {
     static int MAX_WIDTH = 3;
     static int MAX_HEIGHT = 3;
     /**
@@ -90,7 +90,7 @@ public class AlloyCraftingRecipe implements CraftingRecipe, net.minecraftforge.c
         if (this.localName.isEmpty()) {
             return "";
         } else if (!this.inheritRecipe.isEmpty()){
-            ResourceLocation rs = new ResourceLocation(this.inheritRecipe);
+            ResourceLocation rs = ResourceLocation.parse(this.inheritRecipe);
             String[] s = rs.getPath().split("/");
             return "item." + rs.getNamespace() + "." + s[s.length-1];
         } else if (this.localName.equals("def")){
@@ -436,7 +436,7 @@ public class AlloyCraftingRecipe implements CraftingRecipe, net.minecraftforge.c
 
     public static ItemStack deserializeItem(JsonObject object) {
         String s = GsonHelper.getAsString(object, "item");
-        Item item = Registry.ITEM.getOptional(new ResourceLocation(s)).orElseThrow(() -> {
+        Item item = Registry.ITEM.getOptional(ResourceLocation.parse(s)).orElseThrow(() -> {
             return new JsonSyntaxException("Unknown item '" + s + "'");
         });
 
@@ -448,8 +448,8 @@ public class AlloyCraftingRecipe implements CraftingRecipe, net.minecraftforge.c
         }
     }
 
-    public static class Serializer extends net.minecraftforge.registries.ForgeRegistryEntry<RecipeSerializer<?>>  implements RecipeSerializer<AlloyCraftingRecipe> {
-        private static final ResourceLocation NAME = new ResourceLocation("rankine", "alloy_crafting");
+    public static class Serializer extends net.neoforged.neoforge.registries.ForgeRegistryEntry<RecipeSerializer<?>>  implements RecipeSerializer<AlloyCraftingRecipe> {
+        private static final ResourceLocation NAME = ResourceLocation.fromNamespaceAndPath("rankine", "alloy_crafting");
         public AlloyCraftingRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
             String s = GsonHelper.getAsString(json, "group", "");
             int c;

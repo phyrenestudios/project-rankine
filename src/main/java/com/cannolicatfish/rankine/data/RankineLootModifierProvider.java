@@ -2,7 +2,7 @@ package com.cannolicatfish.rankine.data;
 
 import com.cannolicatfish.rankine.ProjectRankine;
 import net.minecraft.data.DataGenerator;
-import net.minecraftforge.common.data.GlobalLootModifierProvider;
+import net.neoforged.neoforge.common.data.GlobalLootModifierProvider;
 
 public class RankineLootModifierProvider extends GlobalLootModifierProvider {
     public RankineLootModifierProvider(DataGenerator dataGeneratorIn) {

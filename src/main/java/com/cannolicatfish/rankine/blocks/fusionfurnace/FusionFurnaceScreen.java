@@ -13,19 +13,19 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraftforge.client.ForgeHooksClient;
-import net.minecraftforge.fluids.FluidAttributes;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.IFluidTank;
-import net.minecraftforge.fluids.capability.templates.FluidTank;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Component;
+import net.neoforged.neoforge.client.ForgeHooksClient;
+import net.neoforged.neoforge.fluids.FluidAttributes;
+import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.IFluidTank;
+import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
 
 import java.awt.*;
 import java.util.Arrays;
 
 public class FusionFurnaceScreen extends AbstractContainerScreen<FusionFurnaceContainer> {
-    private ResourceLocation GUI = new ResourceLocation(ProjectRankine.MODID, "textures/gui/fusion_furnace.png");
+    private ResourceLocation GUI = ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID, "textures/gui/fusion_furnace.png");
     public FusionFurnaceScreen(FusionFurnaceContainer container, Inventory inv, Component name) {
         super(container, inv, name);
     }
@@ -37,11 +37,11 @@ public class FusionFurnaceScreen extends AbstractContainerScreen<FusionFurnaceCo
         this.renderTooltip(matrixStack, mouseX, mouseY);
         if (mouseX >= this.leftPos+4 && mouseX <= this.leftPos+19 && mouseY >= this.topPos+12 && mouseY <= this.topPos+75 && !this.menu.getInputTank().isEmpty()) {
             FluidStack fluidStack = this.menu.getInputTank().getFluid();
-            this.renderTooltip(matrixStack, Arrays.asList(new TranslatableComponent(fluidStack.getTranslationKey()),new TextComponent(fluidStack.getAmount()+"mb")), java.util.Optional.empty(), mouseX, mouseY, (this.font));
+            this.renderTooltip(matrixStack, Arrays.asList(Component.translatable(fluidStack.getTranslationKey()),Component.literal(fluidStack.getAmount()+"mb")), java.util.Optional.empty(), mouseX, mouseY, (this.font));
         }
         else if (mouseX >= this.leftPos+156 && mouseX <= this.leftPos+171 && mouseY >= this.topPos+12 && mouseY <= this.topPos+75 && !this.menu.getOutputTank().isEmpty()) {
             FluidStack fluidStack = this.menu.getOutputTank().getFluid();
-            this.renderTooltip(matrixStack, Arrays.asList(new TranslatableComponent(fluidStack.getTranslationKey()),new TextComponent(fluidStack.getAmount()+"mb")),java.util.Optional.empty(), mouseX, mouseY, (this.font));
+            this.renderTooltip(matrixStack, Arrays.asList(Component.translatable(fluidStack.getTranslationKey()),Component.literal(fluidStack.getAmount()+"mb")),java.util.Optional.empty(), mouseX, mouseY, (this.font));
         }
     }
 

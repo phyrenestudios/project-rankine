@@ -17,8 +17,8 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.vehicle.Boat;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 
 import java.util.Map;
 import java.util.stream.Stream;
@@ -26,35 +26,35 @@ import java.util.stream.Stream;
 @OnlyIn(Dist.CLIENT)
 public class RankineBoatRenderer extends EntityRenderer<RankineBoatEntity> {
     private static final ResourceLocation[] BOAT_TEXTURES = new ResourceLocation[]{
-            new ResourceLocation("textures/entity/boat/oak.png"),
-            new ResourceLocation("textures/entity/boat/spruce.png"),
-            new ResourceLocation("textures/entity/boat/birch.png"),
-            new ResourceLocation("textures/entity/boat/jungle.png"),
-            new ResourceLocation("textures/entity/boat/acacia.png"),
-            new ResourceLocation("textures/entity/boat/dark_oak.png"),
-            new ResourceLocation("rankine:textures/entity/boat/cedar.png"),
-            new ResourceLocation("rankine:textures/entity/boat/balsam_fir.png"),
-            new ResourceLocation("rankine:textures/entity/boat/eastern_hemlock.png"),
-            new ResourceLocation("rankine:textures/entity/boat/western_hemlock.png"),
-            new ResourceLocation("rankine:textures/entity/boat/pinyon_pine.png"),
-            new ResourceLocation("rankine:textures/entity/boat/juniper.png"),
-            new ResourceLocation("rankine:textures/entity/boat/black_birch.png"),
-            new ResourceLocation("rankine:textures/entity/boat/yellow_birch.png"),
-            new ResourceLocation("rankine:textures/entity/boat/red_birch.png"),
-            new ResourceLocation("rankine:textures/entity/boat/magnolia.png"),
-            new ResourceLocation("rankine:textures/entity/boat/maple.png"),
-            new ResourceLocation("rankine:textures/entity/boat/black_walnut.png"),
-            new ResourceLocation("rankine:textures/entity/boat/coconut_palm.png"),
-            new ResourceLocation("rankine:textures/entity/boat/cork_oak.png"),
-            new ResourceLocation("rankine:textures/entity/boat/sharinga.png"),
-            new ResourceLocation("rankine:textures/entity/boat/cinnamon.png"),
-            new ResourceLocation("rankine:textures/entity/boat/honey_locust.png"),
-            new ResourceLocation("rankine:textures/entity/boat/weeping_willow.png"),
-            new ResourceLocation("rankine:textures/entity/boat/erythrina.png"),
-            new ResourceLocation("rankine:textures/entity/boat/petrified_chorus.png"),
-            new ResourceLocation("rankine:textures/entity/boat/charred.png"),
-            new ResourceLocation("rankine:textures/entity/boat/bamboo.png"),
-            new ResourceLocation("rankine:textures/entity/boat/bamboo_culms.png")
+            ResourceLocation.parse("textures/entity/boat/oak.png"),
+            ResourceLocation.parse("textures/entity/boat/spruce.png"),
+            ResourceLocation.parse("textures/entity/boat/birch.png"),
+            ResourceLocation.parse("textures/entity/boat/jungle.png"),
+            ResourceLocation.parse("textures/entity/boat/acacia.png"),
+            ResourceLocation.parse("textures/entity/boat/dark_oak.png"),
+            ResourceLocation.parse("rankine:textures/entity/boat/cedar.png"),
+            ResourceLocation.parse("rankine:textures/entity/boat/balsam_fir.png"),
+            ResourceLocation.parse("rankine:textures/entity/boat/eastern_hemlock.png"),
+            ResourceLocation.parse("rankine:textures/entity/boat/western_hemlock.png"),
+            ResourceLocation.parse("rankine:textures/entity/boat/pinyon_pine.png"),
+            ResourceLocation.parse("rankine:textures/entity/boat/juniper.png"),
+            ResourceLocation.parse("rankine:textures/entity/boat/black_birch.png"),
+            ResourceLocation.parse("rankine:textures/entity/boat/yellow_birch.png"),
+            ResourceLocation.parse("rankine:textures/entity/boat/red_birch.png"),
+            ResourceLocation.parse("rankine:textures/entity/boat/magnolia.png"),
+            ResourceLocation.parse("rankine:textures/entity/boat/maple.png"),
+            ResourceLocation.parse("rankine:textures/entity/boat/black_walnut.png"),
+            ResourceLocation.parse("rankine:textures/entity/boat/coconut_palm.png"),
+            ResourceLocation.parse("rankine:textures/entity/boat/cork_oak.png"),
+            ResourceLocation.parse("rankine:textures/entity/boat/sharinga.png"),
+            ResourceLocation.parse("rankine:textures/entity/boat/cinnamon.png"),
+            ResourceLocation.parse("rankine:textures/entity/boat/honey_locust.png"),
+            ResourceLocation.parse("rankine:textures/entity/boat/weeping_willow.png"),
+            ResourceLocation.parse("rankine:textures/entity/boat/erythrina.png"),
+            ResourceLocation.parse("rankine:textures/entity/boat/petrified_chorus.png"),
+            ResourceLocation.parse("rankine:textures/entity/boat/charred.png"),
+            ResourceLocation.parse("rankine:textures/entity/boat/bamboo.png"),
+            ResourceLocation.parse("rankine:textures/entity/boat/bamboo_culms.png")
 
     };
     private final Map<Boat.Type, Pair<ResourceLocation, BoatModel>> boatResources;

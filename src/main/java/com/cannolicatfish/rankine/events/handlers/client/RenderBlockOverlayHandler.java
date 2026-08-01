@@ -5,7 +5,7 @@ import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.Matrix4f;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.client.event.RenderBlockOverlayEvent;
+import net.neoforged.neoforge.client.event.RenderBlockOverlayEvent;
 
 public class RenderBlockOverlayHandler {
     public static void renderOverlayBlockEvent(RenderBlockOverlayEvent event) {

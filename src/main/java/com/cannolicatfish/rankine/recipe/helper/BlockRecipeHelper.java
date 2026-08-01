@@ -7,8 +7,8 @@ import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.registries.ForgeRegistries;
 
 public class BlockRecipeHelper {
 
@@ -17,7 +17,7 @@ public class BlockRecipeHelper {
     {
         String itemName = GsonHelper.getAsString(json, "block");
 
-        Block block = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(itemName));
+        Block block = ForgeRegistries.BLOCKS.getValue(ResourceLocation.parse(itemName));
 
         if (block == null)
             throw new JsonSyntaxException("Unknown block '" + itemName + "'");
@@ -29,7 +29,7 @@ public class BlockRecipeHelper {
     {
         String itemName = GsonHelper.getAsString(json, "block");
 
-        Fluid fluid = ForgeRegistries.FLUIDS.getValue(new ResourceLocation(itemName));
+        Fluid fluid = ForgeRegistries.FLUIDS.getValue(ResourceLocation.parse(itemName));
 
         if (fluid == null)
             throw new JsonSyntaxException("Unknown fluid '" + itemName + "'");

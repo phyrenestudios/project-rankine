@@ -20,8 +20,8 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 
 import java.util.Random;
 
@@ -117,11 +117,11 @@ public class TripleCropsBlock extends CropBlock {
                 int i = this.getAge(state);
                 if (i < this.getMaxAge()) {
                     float f = getGrowthSpeed(this, worldIn, pos);
-                    if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, pos, state, random.nextInt((int) (25.0F / f) + 1) == 0)) {
+                    if (net.neoforged.neoforge.common.ForgeHooks.onCropsGrowPre(worldIn, pos, state, random.nextInt((int) (25.0F / f) + 1) == 0)) {
                         worldIn.setBlock(pos, this.getStateForAge(i + 1).setValue(SECTION, TripleBlockSection.BOTTOM), 2);
                         worldIn.setBlock(pos.above(1), this.getStateForAge(i + 1).setValue(SECTION, TripleBlockSection.MIDDLE), 2);
                         worldIn.setBlock(pos.above(2), this.getStateForAge(i + 1).setValue(SECTION, TripleBlockSection.TOP), 2);
-                        net.minecraftforge.common.ForgeHooks.onCropsGrowPost(worldIn, pos, state);
+                        net.neoforged.neoforge.common.ForgeHooks.onCropsGrowPost(worldIn, pos, state);
                     }
                 }
             }

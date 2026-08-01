@@ -24,8 +24,8 @@ import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.registries.ForgeRegistries;
 
 import java.util.UUID;
 
@@ -99,7 +99,7 @@ public class FluidHelper {
     public static void travel(Vec3 travelVector, LivingEntity ent, boolean inLiquid) {
         if (ent.isEffectiveAi() || ent.isControlledByLocalInstance()) {
             double d0 = 0.08D;
-            AttributeInstance gravity = ent.getAttribute(net.minecraftforge.common.ForgeMod.ENTITY_GRAVITY.get());
+            AttributeInstance gravity = ent.getAttribute(net.neoforged.neoforge.common.ForgeMod.ENTITY_GRAVITY.get());
             boolean flag = ent.getDeltaMovement().y <= 0.0D;
             if (flag && ent.hasEffect(MobEffects.SLOW_FALLING)) {
                 if (!gravity.hasModifier(SLOW_FALLING)) gravity.addTransientModifier(SLOW_FALLING);
@@ -163,7 +163,7 @@ public class FluidHelper {
 
     public static FluidStack getFluidStack(JsonObject json) {
         String fluidName = GsonHelper.getAsString(json, "fluid");
-        Fluid fluid = ForgeRegistries.FLUIDS.getValue(new ResourceLocation(fluidName));
+        Fluid fluid = ForgeRegistries.FLUIDS.getValue(ResourceLocation.parse(fluidName));
         if (fluid == null) {
             throw new JsonSyntaxException("Unknown fluid '" + fluidName + "'");
         }

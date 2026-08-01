@@ -589,7 +589,7 @@ public class AlloyingRecipe implements Recipe<Container> {
 
     public static ItemStack deserializeItem(JsonObject object) {
         String s = GsonHelper.getAsString(object, "item");
-        Item item = Registry.ITEM.getOptional(new ResourceLocation(s)).orElseThrow(() -> {
+        Item item = Registry.ITEM.getOptional(ResourceLocation.parse(s)).orElseThrow(() -> {
             return new JsonSyntaxException("Unknown item '" + s + "'");
         });
 
@@ -606,8 +606,8 @@ public class AlloyingRecipe implements Recipe<Container> {
         return RankineRecipeTypes.ALLOYING;
     }
 
-    public static class Serializer extends net.minecraftforge.registries.ForgeRegistryEntry<RecipeSerializer<?>>  implements RecipeSerializer<AlloyingRecipe> {
-        private static final ResourceLocation NAME = new ResourceLocation("rankine", "alloying");
+    public static class Serializer extends net.neoforged.neoforge.registries.ForgeRegistryEntry<RecipeSerializer<?>>  implements RecipeSerializer<AlloyingRecipe> {
+        private static final ResourceLocation NAME = ResourceLocation.fromNamespaceAndPath("rankine", "alloying");
         public AlloyingRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
             int reqcount = 0;
             int t = json.get("total").getAsInt();
@@ -630,10 +630,10 @@ public class AlloyingRecipe implements Recipe<Container> {
             boolean force = json.has("forceNBT") && json.get("forceNBT").getAsBoolean();
 
             String s1 = GsonHelper.getAsString(json, "result");
-            ResourceLocation resourcelocation = new ResourceLocation(s1);
+            ResourceLocation resourcelocation = ResourceLocation.parse(s1);
             ItemStack stack = new ItemStack(Registry.ITEM.getOptional(resourcelocation).orElseThrow(() -> new IllegalStateException("Item: " + s1 + " does not exist")));
 
-            NonNullList<ResourceLocation> elements = NonNullList.withSize(t, new ResourceLocation(""));
+            NonNullList<ResourceLocation> elements = NonNullList.withSize(t, ResourceLocation.parse(""));
             NonNullList<Float> mins = NonNullList.withSize(t, 0f);
             NonNullList<Float> maxes = NonNullList.withSize(t, 0f);
             NonNullList<Boolean> reqs = NonNullList.withSize(t, false);
@@ -702,7 +702,7 @@ public class AlloyingRecipe implements Recipe<Container> {
             int y = buffer.readInt();
             List<Float> bonusStats = new ArrayList<>();
 
-            NonNullList<ResourceLocation> elements = NonNullList.withSize(t, new ResourceLocation(""));
+            NonNullList<ResourceLocation> elements = NonNullList.withSize(t, ResourceLocation.parse(""));
 
             for(int k = 0; k < elements.size(); ++k) {
                 elements.set(k, new ResourceLocation(buffer.readUtf()));

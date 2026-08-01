@@ -35,11 +35,11 @@ public class BalloonRenderer extends EntityRenderer<BalloonEntity> {
                 BlockRenderDispatcher blockrenderdispatcher = Minecraft.getInstance().getBlockRenderer();
                 for (net.minecraft.client.renderer.RenderType type : net.minecraft.client.renderer.RenderType.chunkBufferLayers()) {
                     if (ItemBlockRenderTypes.canRenderInLayer(blockstate, type)) {
-                        net.minecraftforge.client.ForgeHooksClient.setRenderType(type);
+                        net.neoforged.neoforge.client.ForgeHooksClient.setRenderType(type);
                         blockrenderdispatcher.getModelRenderer().tesselateBlock(level, blockrenderdispatcher.getBlockModel(blockstate), blockstate, blockpos, p_114637_, p_114638_.getBuffer(type), false, new Random(), blockstate.getSeed(p_114634_.getStartPos()), OverlayTexture.NO_OVERLAY);
                     }
                 }
-                net.minecraftforge.client.ForgeHooksClient.setRenderType(null);
+                net.neoforged.neoforge.client.ForgeHooksClient.setRenderType(null);
                 p_114637_.popPose();
                 super.render(p_114634_, p_114635_, p_114636_, p_114637_, p_114638_, p_114639_);
             }

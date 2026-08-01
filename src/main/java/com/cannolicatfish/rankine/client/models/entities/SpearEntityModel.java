@@ -11,12 +11,12 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.model.Model;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class SpearEntityModel extends Model {
-    public static final ResourceLocation TEXTURE_LOCATION = new ResourceLocation("rankine:textures/entity/iron_spear.png");
+    public static final ResourceLocation TEXTURE_LOCATION = ResourceLocation.parse("rankine:textures/entity/iron_spear.png");
     private final ModelPart modelRenderer;
 
     public SpearEntityModel(ModelPart p_171016_) {

@@ -93,10 +93,10 @@ public class DoubleCropsBlock extends CropBlock {
                 int i = this.getAge(state);
                 if (i < this.getMaxAge()) {
                     float f = getGrowthSpeed(this, worldIn, pos);
-                    if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, pos, state, random.nextInt((int) (25.0F / f) + 1) == 0)) {
+                    if (net.neoforged.neoforge.common.ForgeHooks.onCropsGrowPre(worldIn, pos, state, random.nextInt((int) (25.0F / f) + 1) == 0)) {
                         worldIn.setBlock(pos, this.getStateForAge(i + 1).setValue(SECTION, DoubleBlockHalf.LOWER), 2);
                         worldIn.setBlock(pos.above(), this.getStateForAge(i + 1).setValue(SECTION, DoubleBlockHalf.UPPER), 2);
-                        net.minecraftforge.common.ForgeHooks.onCropsGrowPost(worldIn, pos, state);
+                        net.neoforged.neoforge.common.ForgeHooks.onCropsGrowPost(worldIn, pos, state);
                     }
                 }
             }
