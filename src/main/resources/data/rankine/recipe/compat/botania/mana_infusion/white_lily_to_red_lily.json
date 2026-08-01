@@ -1,0 +1,21 @@
+{
+  "type": "botania:mana_infusion",
+  "input": {
+    "item": "rankine:white_lily"
+  },
+  "mana": 400,
+  "output": {
+    "item": "rankine:red_lily"
+  },
+  "neoforge:conditions": [
+    {
+      "values": [
+        {
+          "modid": "botania",
+          "type": "neoforge:mod_loaded"
+        }
+      ],
+      "type": "neoforge:and"
+    }
+  ]
+}

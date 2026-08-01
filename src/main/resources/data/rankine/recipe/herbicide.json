@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rankine:juglone_bucket"
+    },
+    {
+      "tag": "c:salt"
+    },
+    {
+      "tag": "c:salt"
+    },
+    {
+      "tag": "c:sulfur"
+    }
+  ],
+  "result": {
+    "count": 8,
+    "id": "rankine:herbicide"
+  }
+}

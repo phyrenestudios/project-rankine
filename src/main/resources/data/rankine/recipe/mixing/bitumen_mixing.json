@@ -1,0 +1,51 @@
+{
+  "type": "rankine:mixing",
+  "mixTime": 100,
+  "ingredientTotal": 7,
+  "matScale": 2,
+  "fluidInput": {
+    "fluid": "rankine:latex",
+    "amount": 50
+  },
+  "input1": {
+    "item": "minecraft:sugar",
+    "required": true,
+    "min": 0.2,
+    "max": 0.3
+  },
+  "input2": {
+    "item": "rankine:alkali_cellulose",
+    "required": true,
+    "min": 0.2,
+    "max": 0.3
+  },
+  "input3": {
+    "item": "rankine:pulp",
+    "required": true,
+    "min": 0.2,
+    "max": 0.3
+  },
+  "input4": {
+    "tag": "c:crops/rice",
+    "min": 0,
+    "max": 0.2
+  },
+  "input5": {
+    "tag": "c:crops/corn",
+    "min": 0,
+    "max": 0.2
+  },
+  "input6": {
+    "tag": "c:crops/potato",
+    "min": 0,
+    "max": 0.2
+  },
+  "input7": {
+    "tag": "c:flour",
+    "min": 0,
+    "max": 0.2
+  },
+  "result": {
+    "item": "rankine:bitumen"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "type": "rankine:mixing",
+  "mixTime": 20,
+  "ingredientTotal": 5,
+  "matScale": 1,
+  "fluidInput": {
+    "fluid": "minecraft:water",
+    "amount": 50
+  },
+  "input1": {
+    "tag": "c:gems/quartz",
+    "required": true,
+    "min": 0.05,
+    "max": 0.2
+  },
+  "input2": {
+    "item": "rankine:muscovite",
+    "required": true,
+    "min": 0.05,
+    "max": 0.2
+  },
+  "input3": {
+    "item": "minecraft:clay_ball",
+    "required": false,
+    "min": 0.6,
+    "max": 0.9
+  },
+  "input4": {
+    "item": "rankine:kaolinite",
+    "required": false,
+    "min": 0.6,
+    "max": 0.9
+  },
+  "input5": {
+    "item": "rankine:halloysite",
+    "required": false,
+    "min": 0.6,
+    "max": 0.9
+  },
+  "result": {
+    "item": "rankine:fire_clay_ball"
+  }
+}

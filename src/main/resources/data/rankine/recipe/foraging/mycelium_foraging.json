@@ -1,0 +1,15 @@
+{
+  "type": "rankine:foraging",
+  "input": {
+    "tag": "c:mycelium"
+  },
+  "outputs": [
+    {
+      "weight": 19
+    },
+    {
+      "tag": "c:mushrooms",
+      "weight": 1
+    }
+  ]
+}

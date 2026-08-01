@@ -1,0 +1,32 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "rankine:balsam_fir_wood"
+    }
+  ],
+  "tool": {
+    "type": "farmersdelight:tool_action",
+    "action": "axe_strip"
+  },
+  "result": [
+    {
+      "item": "rankine:stripped_balsam_fir_wood"
+    },
+    {
+      "item": "rankine:inner_bark"
+    }
+  ],
+  "sound": "minecraft:item.axe.strip",
+  "neoforge:conditions": [
+    {
+      "values": [
+        {
+          "modid": "farmersdelight",
+          "type": "neoforge:mod_loaded"
+        }
+      ],
+      "type": "neoforge:and"
+    }
+  ]
+}

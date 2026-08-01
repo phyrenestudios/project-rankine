@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "dzd",
+    "rsr",
+    "dbd"
+  ],
+  "key": {
+    "r": {
+      "item": "minecraft:redstone"
+    },
+    "d": {
+      "tag": "c:ingots/steel"
+    },
+    "z": {
+      "tag": "c:ingots/sodium"
+    },
+    "b": {
+      "tag": "c:sulfur"
+    },
+    "s": {
+      "item": "rankine:beta_alumina_solid_electrolyte"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "rankine:sodium_sulfur_battery"
+  }
+}

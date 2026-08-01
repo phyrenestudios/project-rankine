@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "gig",
+    "ara",
+    "ctl"
+  ],
+  "key": {
+    "i": {
+      "item": "rankine:indium_tin_oxide"
+    },
+    "r": {
+      "item": "rankine:greenockite"
+    },
+    "a": {
+      "tag": "c:antimony"
+    },
+    "g": {
+      "tag": "c:glass"
+    },
+    "c": {
+      "tag": "c:ingots/cadmium"
+    },
+    "t": {
+      "tag": "c:tellurium"
+    },
+    "l": {
+      "tag": "c:ingots/aluminum"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "rankine:cadmium_telluride_cell"
+  }
+}

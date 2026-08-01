@@ -1,0 +1,51 @@
+{
+  "type": "rankine:crushing",
+  "maxRolls": 4,
+  "input": {
+    "item": "create:crimsite"
+  },
+  "guaranteed": [
+    {
+      "item": "minecraft:quartz"
+    }
+  ],
+  "outputs": [
+    {
+      "weight": 80,
+      "remove": false
+    },
+    {
+      "item": "create:crushed_raw_iron",
+      "weight": 12,
+      "tier": "minecraft:stone",
+      "remove": true
+    },
+    {
+      "item": "minecraft:iron_nugget",
+      "weight": 6,
+      "tier": "minecraft:stone",
+      "remove": false
+    },
+    {
+      "item": "rankine:cinnabar",
+      "weight": 2,
+      "tier": "minecraft:iron",
+      "remove": true
+    }
+  ],
+  "neoforge:conditions": [
+    {
+      "values": [
+        {
+          "item": "create:crimsite",
+          "type": "neoforge:item_exists"
+        },
+        {
+          "item": "create:crushed_raw_iron",
+          "type": "neoforge:item_exists"
+        }
+      ],
+      "type": "neoforge:and"
+    }
+  ]
+}

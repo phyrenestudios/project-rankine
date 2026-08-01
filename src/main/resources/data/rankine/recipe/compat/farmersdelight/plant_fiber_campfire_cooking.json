@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:campfire_cooking",
+  "ingredient": {
+    "item": "rankine:plant_fiber"
+  },
+  "result": {
+    "id": "farmersdelight:straw"
+  },
+  "experience": 0.35,
+  "cookingtime": 600,
+  "neoforge:conditions": [
+    {
+      "values": [
+        {
+          "item": "farmersdelight:straw",
+          "type": "neoforge:item_exists"
+        }
+      ],
+      "type": "neoforge:and"
+    }
+  ]
+}

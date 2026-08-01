@@ -1,0 +1,26 @@
+{
+  "type": "rankine:alloy_crafting",
+  "inherit": true,
+  "langName": "item.rankine.cupronickel_alloying",
+  "inheritRecipe": "rankine:alloying/cupronickel_alloying",
+  "color": 11946807,
+  "pattern": [
+    " I ",
+    "ISI",
+    " I "
+  ],
+  "key": {
+    "I": {
+      "item": "rankine:cupronickel_ingot",
+      "alloyRecipe": "rankine:alloying/cupronickel_alloying",
+      "name": "item.rankine.cupronickel_alloying"
+    },
+    "S": {
+      "tag": "c:solder"
+    }
+  },
+  "result": {
+    "item": "rankine:alloy_wire",
+    "count": 8
+  }
+}

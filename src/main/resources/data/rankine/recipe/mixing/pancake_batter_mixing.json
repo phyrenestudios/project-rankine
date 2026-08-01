@@ -1,0 +1,37 @@
+{
+  "type": "rankine:mixing",
+  "mixTime": 40,
+  "ingredientTotal": 4,
+  "matScale": 0.25,
+  "fluidInput": {
+    "fluid": "minecraft:milk",
+    "amount": 50
+  },
+  "input1": {
+    "item": "minecraft:sugar",
+    "required": true,
+    "min": 0.2,
+    "max": 0.4
+  },
+  "input2": {
+    "tag": "c:flour",
+    "required": true,
+    "min": 0.2,
+    "max": 0.4
+  },
+  "input3": {
+    "tag": "c:eggs",
+    "required": true,
+    "min": 0.2,
+    "max": 0.4
+  },
+  "input4": {
+    "tag": "c:salt",
+    "required": true,
+    "min": 0.2,
+    "max": 0.4
+  },
+  "result": {
+    "item": "rankine:pancake_batter"
+  }
+}

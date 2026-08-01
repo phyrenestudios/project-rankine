@@ -1,0 +1,41 @@
+{
+  "type": "rankine:mixing",
+  "mixTime": 20,
+  "ingredientTotal": 5,
+  "matScale": 0.5,
+  "fluidInput": {
+    "fluid": "minecraft:water",
+    "amount": 50
+  },
+  "input1": {
+    "tag": "c:flour",
+    "required": true,
+    "min": 0.2,
+    "max": 0.4
+  },
+  "input2": {
+    "item": "minecraft:sugar",
+    "required": true,
+    "min": 0.2,
+    "max": 0.4
+  },
+  "input3": {
+    "tag": "c:salt",
+    "required": true,
+    "min": 0.2,
+    "max": 0.4
+  },
+  "input4": {
+    "tag": "c:nuts",
+    "min": 0.2,
+    "max": 0.4
+  },
+  "input5": {
+    "tag": "c:berries",
+    "min": 0.2,
+    "max": 0.4
+  },
+  "result": {
+    "item": "rankine:dough"
+  }
+}

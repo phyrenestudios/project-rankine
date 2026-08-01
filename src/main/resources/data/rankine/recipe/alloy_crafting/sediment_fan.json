@@ -1,0 +1,26 @@
+{
+  "type": "rankine:alloy_crafting",
+  "pattern": [
+    "cac",
+    "aGa",
+    "cac"
+  ],
+  "key": {
+    "G": {
+      "item": "rankine:alloy_gear",
+      "alloyRecipe": "rankine:alloying/cupronickel_alloying",
+      "langName": "item.rankine.cupronickel_alloying",
+      "color": 11946807
+    },
+    "a": {
+      "tag": "c:ingots/brass"
+    },
+    "c": {
+      "item": "rankine:cupronickel_sheetmetal"
+    }
+  },
+  "result": {
+    "item": "rankine:sediment_fan",
+    "count": 1
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "type": "botania:mana_infusion",
+  "input": {
+    "item": "rankine:purple_morning_glory"
+  },
+  "mana": 400,
+  "output": {
+    "item": "rankine:black_morning_glory"
+  },
+  "neoforge:conditions": [
+    {
+      "values": [
+        {
+          "modid": "botania",
+          "type": "neoforge:mod_loaded"
+        }
+      ],
+      "type": "neoforge:and"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "cgc",
+    "hpn",
+    "rar"
+  ],
+  "key": {
+    "c": {
+      "tag": "c:ingots/copper"
+    },
+    "g": {
+      "tag": "c:ingots/gallium"
+    },
+    "a": {
+      "tag": "c:arsenic"
+    },
+    "p": {
+      "tag": "c:phosphorus"
+    },
+    "h": {
+      "tag": "c:ingots/helium"
+    },
+    "n": {
+      "tag": "c:ingots/nitrogen"
+    },
+    "r": {
+      "item": "rankine:rare_earth_electromagnet"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "rankine:penning_trap"
+  }
+}

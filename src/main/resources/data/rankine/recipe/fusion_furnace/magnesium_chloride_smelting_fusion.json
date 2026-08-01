@@ -1,0 +1,23 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "item": "rankine:magnesium_chloride"
+  },
+  "input2": {
+    "tag": "c:salt"
+  },
+  "result1": {
+    "item": "rankine:magnesium_ingot",
+    "count": 1
+  },
+  "fluidInput": {
+    "fluid": "minecraft:water"
+  },
+  "gasInput": {
+    "item": "minecraft:glass_bottle"
+  },
+  "gasOutput": {
+    "item": "rankine:chlorine_gas_bottle"
+  }
+}

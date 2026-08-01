@@ -1,0 +1,89 @@
+{
+  "type": "rankine:crucible",
+  "result": {
+    "item": "minecraft:redstone"
+  },
+  "secondary": {
+    "item": "rankine:slag"
+  },
+  "cookTime": 800,
+  "color": 15081480,
+  "required": [
+    true,
+    true,
+    true,
+    true
+  ],
+  "total": 14,
+  "input1": {
+    "item": "rankine:cinnabar",
+    "countMod": 5,
+    "group": 0
+  },
+  "input2": {
+    "tag": "c:gems/quartz",
+    "group": 1
+  },
+  "input3": {
+    "tag": "c:nuggets/silicon",
+    "group": 1,
+    "countMod": 1,
+    "cookMod": -300
+  },
+  "input4": {
+    "tag": "c:nuggets/germanium",
+    "group": 1,
+    "countMod": 2
+  },
+  "input5": {
+    "tag": "c:nuggets/copper",
+    "group": 2
+  },
+  "input6": {
+    "tag": "c:nuggets/aluminum",
+    "group": 2,
+    "countMod": 1,
+    "cookMod": -200
+  },
+  "input7": {
+    "tag": "c:nuggets/gallium",
+    "group": 2,
+    "countMod": 2
+  },
+  "input8": {
+    "tag": "c:nuggets/indium",
+    "group": 2,
+    "countMod": 2
+  },
+  "input9": {
+    "tag": "c:nuggets/thallium",
+    "group": 2,
+    "countMod": 3
+  },
+  "input10": {
+    "tag": "c:nuggets/antimony",
+    "group": 3,
+    "cookMod": -200
+  },
+  "input11": {
+    "tag": "c:nuggets/arsenic",
+    "group": 3,
+    "countMod": 1
+  },
+  "input12": {
+    "tag": "c:nuggets/selenium",
+    "group": 3,
+    "countMod": 2
+  },
+  "input13": {
+    "tag": "c:nuggets/tellurium",
+    "group": 3,
+    "countMod": 2
+  },
+  "input14": {
+    "tag": "c:nuggets/uranium",
+    "group": 3,
+    "countMod": 3,
+    "cookMod": -600
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "rankine:fire_clay"
+    }
+  ],
+  "tool": {
+    "type": "farmersdelight:tool_action",
+    "action": "shovel_dig"
+  },
+  "result": [
+    {
+      "item": "rankine:fire_clay_ball",
+      "count": 4
+    }
+  ],
+  "neoforge:conditions": [
+    {
+      "values": [
+        {
+          "modid": "farmersdelight",
+          "type": "neoforge:mod_loaded"
+        }
+      ],
+      "type": "neoforge:and"
+    }
+  ]
+}

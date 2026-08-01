@@ -1,0 +1,36 @@
+{
+  "type": "farmersdelight:cooking",
+  "recipe_book_tab": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:pumpkin"
+    },
+    {
+      "tag": "c:coconut"
+    },
+    {
+      "tag": "c:tofu"
+    },
+    {
+      "tag": "c:maple_syrup"
+    }
+  ],
+  "result": {
+    "item": "rankine:tofu_curry"
+  },
+  "container": {
+    "item": "minecraft:bowl"
+  },
+  "cookingtime": 200,
+  "neoforge:conditions": [
+    {
+      "values": [
+        {
+          "type": "neoforge:mod_loaded",
+          "modid": "farmersdelight"
+        }
+      ],
+      "type": "neoforge:and"
+    }
+  ]
+}

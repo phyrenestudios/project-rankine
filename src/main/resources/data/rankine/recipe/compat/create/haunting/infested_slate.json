@@ -1,0 +1,24 @@
+{
+  "type": "create:haunting",
+  "ingredients": [
+    {
+      "item": "rankine:slate"
+    }
+  ],
+  "results": [
+    {
+      "item": "rankine:infested_slate"
+    }
+  ],
+  "neoforge:conditions": [
+    {
+      "values": [
+        {
+          "modid": "create",
+          "type": "neoforge:mod_loaded"
+        }
+      ],
+      "type": "neoforge:and"
+    }
+  ]
+}

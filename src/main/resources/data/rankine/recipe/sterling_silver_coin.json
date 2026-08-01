@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rankine:sterling_silver_ingot"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "id": "rankine:coin"
+  }
+}

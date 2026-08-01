@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "cic",
+    "gwm",
+    "sas"
+  ],
+  "key": {
+    "a": {
+      "item": "rankine:alumina"
+    },
+    "c": {
+      "tag": "c:ingots/copper"
+    },
+    "i": {
+      "tag": "c:ingots/stainless_steel"
+    },
+    "s": {
+      "tag": "c:silicon"
+    },
+    "g": {
+      "tag": "c:germanium"
+    },
+    "m": {
+      "tag": "c:ingots/molybdenum"
+    },
+    "w": {
+      "tag": "c:ingots/tungsten"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "rankine:silicon_germanium_thermocouple"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "dmd",
+    "rgr",
+    "dzd"
+  ],
+  "key": {
+    "r": {
+      "item": "minecraft:redstone"
+    },
+    "d": {
+      "tag": "c:rubber"
+    },
+    "m": {
+      "tag": "c:ingots/silver"
+    },
+    "z": {
+      "tag": "c:ingots/zinc"
+    },
+    "g": {
+      "item": "rankine:graphite_electrode"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "rankine:silver_zinc_battery"
+  }
+}

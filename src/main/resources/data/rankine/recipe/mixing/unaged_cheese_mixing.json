@@ -1,0 +1,34 @@
+{
+  "type": "rankine:mixing",
+  "mixTime": 20,
+  "ingredientTotal": 4,
+  "matScale": 0.25,
+  "fluidInput": {
+    "fluid": "minecraft:milk",
+    "amount": 100
+  },
+  "input1": {
+    "tag": "c:salt",
+    "required": true,
+    "min": 0.4,
+    "max": 0.8
+  },
+  "input2": {
+    "item": "rankine:calcium_chloride",
+    "min": 0.1,
+    "max": 0.3
+  },
+  "input3": {
+    "item": "rankine:stinging_nettle",
+    "min": 0.2,
+    "max": 0.4
+  },
+  "input4": {
+    "tag": "c:berries",
+    "min": 0.2,
+    "max": 0.4
+  },
+  "result": {
+    "item": "rankine:unaged_cheese"
+  }
+}

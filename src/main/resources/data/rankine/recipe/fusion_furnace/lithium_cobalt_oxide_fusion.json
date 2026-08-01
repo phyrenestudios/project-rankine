@@ -1,0 +1,22 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "tag": "c:ingots/lithium"
+  },
+  "input2": {
+    "tag": "c:ingots/cobalt"
+  },
+  "result1": {
+    "item": "rankine:lithium_cobalt_oxide"
+  },
+  "fluidInput": {
+    "fluid": "minecraft:water"
+  },
+  "gasInput": {
+    "item": "rankine:carbon_dioxide_gas_bottle"
+  },
+  "gasOutput": {
+    "item": "minecraft:glass_bottle"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "dld",
+    "rsr",
+    "dld"
+  ],
+  "key": {
+    "r": {
+      "item": "minecraft:redstone"
+    },
+    "d": {
+      "tag": "c:ingots/duralumin"
+    },
+    "l": {
+      "tag": "c:ingots/lead"
+    },
+    "s": {
+      "item": "rankine:sulfuric_acid_bucket"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "rankine:lead_acid_battery"
+  }
+}

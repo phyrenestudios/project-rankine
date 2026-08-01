@@ -1,0 +1,21 @@
+{
+  "type": "rankine:rock_generator",
+  "genType": "sedimentary",
+  "input1": {
+    "item": "byg:purple_sand"
+  },
+  "result": {
+    "block": "byg:purple_sandstone"
+  },
+  "neoforge:conditions": [
+    {
+      "values": [
+        {
+          "item": "byg:purple_sandstone",
+          "type": "neoforge:item_exists"
+        }
+      ],
+      "type": "neoforge:and"
+    }
+  ]
+}

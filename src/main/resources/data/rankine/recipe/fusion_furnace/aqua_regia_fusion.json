@@ -1,0 +1,19 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "tag": "c:saltpeter"
+  },
+  "fluidInput": {
+    "fluid": "rankine:sulfuric_acid"
+  },
+  "gasInput": {
+    "item": "rankine:hydrogen_chloride_gas_bottle"
+  },
+  "fluidOutput": {
+    "fluid": "rankine:aqua_regia"
+  },
+  "gasOutput": {
+    "item": "minecraft:glass_bottle"
+  }
+}

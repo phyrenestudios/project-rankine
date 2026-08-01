@@ -1,0 +1,31 @@
+{
+  "type": "rankine:mixing",
+  "mixTime": 20,
+  "ingredientTotal": 3,
+  "matScale": 1.5,
+  "fluidInput": {
+    "fluid": "minecraft:water",
+    "amount": 10
+  },
+  "input1": {
+    "tag": "c:dyes/purple",
+    "required": true,
+    "min": 0.05,
+    "max": 0.15
+  },
+  "input2": {
+    "item": "rankine:cement_mix",
+    "required": true,
+    "min": 0.65,
+    "max": 0.8
+  },
+  "input3": {
+    "tag": "c:gravel",
+    "required": true,
+    "min": 0.1,
+    "max": 0.2
+  },
+  "result": {
+    "item": "rankine:purple_cement"
+  }
+}

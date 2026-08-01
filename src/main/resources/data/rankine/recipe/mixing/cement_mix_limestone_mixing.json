@@ -1,0 +1,46 @@
+{
+  "type": "rankine:mixing",
+  "mixTime": 10,
+  "ingredientTotal": 6,
+  "matScale": 1,
+  "fluidInput": {
+    "fluid": "minecraft:water",
+    "amount": 50
+  },
+  "input1": {
+    "tag": "rankine:construction_sand",
+    "required": true,
+    "min": 0.2,
+    "max": 0.4
+  },
+  "input2": {
+    "tag": "c:clay_balls",
+    "required": true,
+    "min": 0.2,
+    "max": 0.4
+  },
+  "input3": {
+    "tag": "c:stones/limestone",
+    "required": true,
+    "min": 0.2,
+    "max": 0.4
+  },
+  "input4": {
+    "tag": "c:ash",
+    "min": 0,
+    "max": 0.4
+  },
+  "input5": {
+    "item": "minecraft:flint",
+    "min": 0,
+    "max": 0.2
+  },
+  "input6": {
+    "tag": "minecraft:dirt",
+    "min": 0,
+    "max": 0.1
+  },
+  "result": {
+    "item": "rankine:cement_mix"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "type": "rankine:rock_generator",
+  "genType": "intrusive_igneous",
+  "input1": {
+    "item": "create:rose_quartz_block"
+  },
+  "input2": {
+    "tag": "c:storage_blocks/iron"
+  },
+  "result": {
+    "block": "create:crimsite"
+  },
+  "neoforge:conditions": [
+    {
+      "values": [
+        {
+          "item": "create:crimsite",
+          "type": "neoforge:item_exists"
+        }
+      ],
+      "type": "neoforge:and"
+    }
+  ]
+}

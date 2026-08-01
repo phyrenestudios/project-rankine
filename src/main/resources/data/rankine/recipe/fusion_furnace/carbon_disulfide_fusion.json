@@ -1,0 +1,13 @@
+{
+  "type": "rankine:fusion_furnace",
+  "cookTime": 400,
+  "input1": {
+    "tag": "c:coal_coke"
+  },
+  "input2": {
+    "tag": "c:sulfur"
+  },
+  "fluidOutput": {
+    "fluid": "rankine:carbon_disulfide"
+  }
+}

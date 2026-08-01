@@ -1,0 +1,22 @@
+{
+  "type": "rankine:treetapping",
+  "tapTime": 80,
+  "input": {
+    "item": "byg:aspen_log"
+  },
+  "result": {
+    "fluid": "rankine:sap",
+    "amount": 10
+  },
+  "neoforge:conditions": [
+    {
+      "values": [
+        {
+          "item": "byg:aspen_log",
+          "type": "neoforge:item_exists"
+        }
+      ],
+      "type": "neoforge:and"
+    }
+  ]
+}

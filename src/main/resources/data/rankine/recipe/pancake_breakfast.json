@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "MMM",
+    "BBB",
+    "CCC"
+  ],
+  "key": {
+    "M": {
+      "item": "rankine:maple_syrup"
+    },
+    "B": {
+      "tag": "c:berries"
+    },
+    "C": {
+      "item": "rankine:pancake"
+    }
+  },
+  "result": {
+    "id": "rankine:pancake_breakfast"
+  }
+}

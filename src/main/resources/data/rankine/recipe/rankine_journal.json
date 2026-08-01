@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:paper"
+    },
+    {
+      "item": "rankine:rope"
+    }
+  ],
+  "result": {
+    "nbt": {
+      "patchouli:book": "rankine:rankine_journal"
+    },
+    "id": "patchouli:guide_book"
+  }
+}

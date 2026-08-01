@@ -1,0 +1,26 @@
+{
+  "type": "botania:mana_infusion",
+  "catalyst": {
+    "type": "block",
+    "block": "botania:conjuration_catalyst"
+  },
+  "input": {
+    "item": "rankine:maple_leaves"
+  },
+  "mana": 2000,
+  "output": {
+    "count": 2,
+    "item": "rankine:maple_leaves"
+  },
+  "neoforge:conditions": [
+    {
+      "values": [
+        {
+          "modid": "botania",
+          "type": "neoforge:mod_loaded"
+        }
+      ],
+      "type": "neoforge:and"
+    }
+  ]
+}

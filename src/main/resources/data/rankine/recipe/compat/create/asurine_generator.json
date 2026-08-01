@@ -1,0 +1,24 @@
+{
+  "type": "rankine:rock_generator",
+  "genType": "intrusive_igneous",
+  "input1": {
+    "item": "create:rose_quartz_block"
+  },
+  "input2": {
+    "tag": "c:storage_blocks/zinc"
+  },
+  "result": {
+    "block": "create:asurine"
+  },
+  "neoforge:conditions": [
+    {
+      "values": [
+        {
+          "item": "create:asurine",
+          "type": "neoforge:item_exists"
+        }
+      ],
+      "type": "neoforge:and"
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "type": "rankine:evaporation",
+  "processTime": 12000,
+  "biomes": {
+    "biomeTags": [
+      "minecraft:is_river",
+      "c:is_swamp"
+    ]
+  },
+  "input": {
+    "fluid": "minecraft:water"
+  },
+  "outputs": [
+    {
+      "item": "minecraft:sand",
+      "weight": 30
+    },
+    {
+      "item": "rankine:silt",
+      "weight": 50
+    },
+    {
+      "item": "minecraft:clay_ball",
+      "weight": 20
+    },
+    {
+      "item": "rankine:alluvium",
+      "weight": 6
+    },
+    {
+      "item": "rankine:slag",
+      "weight": 6
+    },
+    {
+      "item": "rankine:borax",
+      "weight": 4
+    },
+    {
+      "item": "rankine:thenardite",
+      "weight": 4
+    },
+    {
+      "item": "rankine:trona",
+      "weight": 4
+    },
+    {
+      "item": "rankine:cadmium_nugget",
+      "weight": 1
+    },
+    {
+      "item": "rankine:chromium_nugget",
+      "weight": 1
+    },
+    {
+      "item": "rankine:mercury_nugget",
+      "weight": 1
+    },
+    {
+      "item": "minecraft:gold_nugget",
+      "weight": 1
+    },
+    {
+      "item": "rankine:copper_nugget",
+      "weight": 2
+    }
+  ]
+}

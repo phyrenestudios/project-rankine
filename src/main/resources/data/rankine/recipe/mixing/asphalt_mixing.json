@@ -1,0 +1,31 @@
+{
+  "type": "rankine:mixing",
+  "mixTime": 100,
+  "ingredientTotal": 3,
+  "matScale": 2,
+  "fluidInput": {
+    "fluid": "minecraft:water",
+    "amount": 50
+  },
+  "input1": {
+    "tag": "c:gravel",
+    "required": true,
+    "min": 0.4,
+    "max": 0.6
+  },
+  "input2": {
+    "tag": "c:sand",
+    "required": true,
+    "min": 0.2,
+    "max": 0.3
+  },
+  "input3": {
+    "item": "rankine:bitumen",
+    "required": true,
+    "min": 0.1,
+    "max": 0.2
+  },
+  "result": {
+    "item": "rankine:asphalt"
+  }
+}

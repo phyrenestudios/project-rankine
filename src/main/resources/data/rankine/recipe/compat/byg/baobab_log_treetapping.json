@@ -1,0 +1,22 @@
+{
+  "type": "rankine:treetapping",
+  "tapTime": 200,
+  "input": {
+    "item": "byg:baobab_log"
+  },
+  "result": {
+    "fluid": "minecraft:water",
+    "amount": 200
+  },
+  "neoforge:conditions": [
+    {
+      "values": [
+        {
+          "item": "byg:baobab_log",
+          "type": "neoforge:item_exists"
+        }
+      ],
+      "type": "neoforge:and"
+    }
+  ]
+}

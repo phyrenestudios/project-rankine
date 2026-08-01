@@ -1,0 +1,53 @@
+{
+  "type": "rankine:evaporation",
+  "processTime": 12000,
+  "biomes": {
+    "biomeTags": [
+      "minecraft:is_taiga",
+      "minecraft:is_forest",
+      "c:is_plains",
+      "minecraft:is_jungle",
+      "minecraft:is_hill",
+      "minecraft:is_mountain",
+      "c:is_mushroom",
+      "c:is_savanna"
+    ]
+  },
+  "input": {
+    "fluid": "minecraft:water"
+  },
+  "outputs": [
+    {
+      "item": "minecraft:coarse_dirt",
+      "weight": 40
+    },
+    {
+      "item": "rankine:silt",
+      "weight": 40
+    },
+    {
+      "item": "rankine:calcite",
+      "weight": 10
+    },
+    {
+      "item": "rankine:pink_salt",
+      "weight": 5
+    },
+    {
+      "item": "rankine:lead_nugget",
+      "weight": 1
+    },
+    {
+      "item": "minecraft:iron_nugget",
+      "weight": 1
+    },
+    {
+      "item": "rankine:bismuth_nugget",
+      "weight": 1
+    },
+    {
+      "item": "rankine:zinc_nugget",
+      "weight": 1
+    }
+  ]
+}
