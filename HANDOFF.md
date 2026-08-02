@@ -1,0 +1,150 @@
+# Project Rankine — Forge 1.18.2 → NeoForge 1.21.1 port: HANDOFF
+
+**Read this first, then `PORTING_GUIDE.md`, then `.porting/reports/*.md`.**
+
+Repo: `C:\Users\karl\Documents\Projects\project-rankine`, branch **`1.21.1-neoforge`**
+(based on `origin/1.18.X` = stable v1.3.8, **not** the repo's default `1.19.X`, which is an
+unfinished WIP port and was deliberately ignored).
+
+Target: Minecraft 1.21.1 / NeoForge 21.1.248 / Java 21 / ModDevGradle 2.0.143.
+
+---
+
+## Current state: 3 of 5 gates green
+
+| Gate | Command | Status |
+|---|---|---|
+| 1. build | `./gradlew build -x test` | **PASS** |
+| 2. unit tests | `./gradlew test` | **PASS** — 19 tests, 0 failures |
+| 3. datagen | `./gradlew runData` | **PASS** — 3m12s, 35,662 JSONs |
+| 4. gametest | `./gradlew runGameTestServer` | **NOT YET RUN** ← next step |
+| 5. server smoke | `./gradlew runServer` | **NOT YET RUN** |
+
+All work is committed; working tree is clean at `af3f20350`.
+Everything compiles: **0 errors** across ~680 source files (was 4,833 at the start of the loop).
+
+### Immediate next step
+```bash
+cd /c/Users/karl/Documents/Projects/project-rankine && ./gradlew runGameTestServer --console=plain > .porting/logs/gametest.log 2>&1
+```
+Then gate 5. There is a gate runner at `.porting/verify.sh` (`bash .porting/verify.sh gametest`),
+but it has NOT been exercised end-to-end — run the gradle commands directly if it misbehaves.
+The server gate needs `run/server/eula.txt` containing `eula=true` (verify.sh writes it).
+
+---
+
+## CRITICAL environment gotchas (all already fixed in-repo — do not regress)
+
+1. **Gradle daemon must run on a JDK, not a JRE.** NeoForm's decompile/recompile calls
+   `javax.tools.JavaCompiler` in-process and dies with "compiler is null" on a JRE.
+   `gradle.properties` sets `org.gradle.java.home=C:/Users/karl/.gradle/jdks/eclipse_adoptium-21-amd64-windows.2`.
+   Update that path if the auto-provisioned JDK disappears.
+2. **Builds are SLOW (3–15 min) and look hung.** `src/generated/resources` (36k files) is on the
+   resource path, so `:processResources` + Gradle input snapshotting hashes ~92k files one
+   `open()` at a time. A thread dump showed `DirectorySnapshotter → DefaultFileHasher →
+   FileInputStream.open0` — it is progressing, not deadlocked.
+   - **Do not judge liveness by log output or file mtimes** — neither changes during snapshotting.
+     Check accumulated CPU of the java process instead (`Get-Process java | Select Id,CPU`).
+   - `org.gradle.caching` and `org.gradle.parallel` are **off** on purpose (pure overhead here).
+   - **Suggested to Karl, NOT applied (his call, it is a security setting):** a Windows Defender
+     exclusion for the repo + `~/.gradle` would cut build times a lot:
+     `Add-MpPreference -ExclusionPath 'C:\Users\karl\Documents\Projects\project-rankine','C:\Users\karl\.gradle'`
+   - One earlier run genuinely wedged; if CPU is flat for 5+ min, `./gradlew --stop`, kill stray
+     java PIDs, and re-run.
+3. **Gradle incremental compilation emits stale phantom errors** (symbols reported missing that are
+   plainly declared). If an error looks impossible, re-run with `--rerun-tasks` before chasing it.
+   This wasted real time once — 136 bogus errors vanished on a clean recompile.
+4. **javac caps at 100 errors by default.** `-Xmaxerrs 3000` is set in build.gradle; without it the
+   true error count was hidden (200 reported vs 4,833 actual).
+5. **Datagen needs `src/generated/resources` as BOTH `--existing` and `--output`** (providers parent
+   models to previously generated ones). This is wired in build.gradle; dropping it breaks runData.
+
+---
+
+## Reference material
+
+- **Decompiled MC 1.21.1 + NeoForge sources: `C:\Users\karl\Documents\Projects\mc-1.21.1-sources`**
+  (~49MB, `net/minecraft/**` + `net/neoforged/**`). Grep these for real signatures — the single
+  most valuable asset in this port. Never guess an API.
+- `PORTING_GUIDE.md` — conventions every agent followed (package renames, registry/codec/capability
+  patterns, data components, enchantments, worldgen).
+- `.porting/reports/*.md` — per-area agent reports with cross-package contracts and behavior deltas:
+  `A1-init-giant`, `A2-init-misc`, `B2-machines`, `C-items`, `D-recipes`, `E-enchantments`,
+  `G-events`, `datagen`, `JEI`, `rendertype-spec`.
+- `.porting/RELAUNCH_PLAN.md` — orchestration history; `.porting/agent-prompts.md` — the agent prompts.
+- `.porting/logs/` — gate logs (gitignored).
+
+---
+
+## Bug classes this port hit (watch for more of these in gates 4–5)
+
+These were all invisible to the compiler and found only by running things:
+
+1. **Config read at registry time now throws.** NeoForge fires registry events *before* configs load,
+   and never loads configs during datagen. Fixed in 6 places (static Block.Properties, 10
+   AttributeModifiers, Block/Item field initializers, and `isRandomlyTicking` — which runs while the
+   block state cache is built). If a new "Cannot get config value before config is loaded" appears,
+   this is the pattern.
+2. **BlockState property maps are identity-keyed in 1.21** (`Reference2ObjectArrayMap`; 1.18 used an
+   equals-based `ImmutableMap`). Two separate-but-equal `Property` instances no longer interoperate.
+   `CornStalkBlock` declared its own `section` property while `CornPlantBlock`/datagen applied
+   `TripleCropsBlock.SECTION` — would have thrown when corn grew. All duplicate property
+   declarations were audited; corn was the only cross-class case.
+3. **Empty `@EventBusSubscriber` classes now hard-error** (was silently ignored).
+4. **`ItemTagsProvider.copy` validates the source block tag exists.** Forge auto-created an empty
+   builder. Five cases fixed by declaring the empty item tag directly (matching 1.18 output byte-for-byte).
+5. **Ambiguous `X::new`** — `DeferredRegister.Blocks/Items` have both `Function<ResourceLocation,B>`
+   and `Supplier<B>` overloads. Always write `() -> new X()`. Hit twice (literal and computed names).
+
+---
+
+## Known behavior deltas to mention when reporting to Karl
+
+Accepted and documented in-code + in CHANGELOG.md:
+- Chunk retrogen state moved from a Forge capability to a NeoForge attachment and is **not migrated**
+  → pre-existing chunks run the retrogen replacement pass once more.
+- Invigorating Totem repairs at half its old rate (the old rate came from a 1.18 double-tick bug).
+- Tofu/Cooked Tofu/Tuna/Cooked Tuna lose the "is meat" flag (API removed).
+- Rankine leaves are now waterloggable (vanilla LeavesBlock forces the property).
+- Electromagnet's "is metal" gate approximated via `SoundType.METAL` (misses netherite/anvil).
+  Clean fix would be a `rankine:magnet_attractable` block tag.
+- Off-hand right-clicks no longer reach a few block fallbacks (vanilla `use()` split).
+- Advancement custom item predicates are now `ItemSubPredicate`s; their JSON shape changed.
+- Recipe-unlock advancements grouped under `recipes/misc`; **recipe ids themselves unchanged**.
+- Cannonball/Enderball post-attack enchantment effects: only victim-side fires (source is ownerless).
+
+Pre-existing 1.18 bugs fixed in passing: alloy template colour (written/read under different keys),
+alloy knockback resistance (float written, int read), double-firing player tick handlers, a block
+overlay handler that never fired, Ender Amalgam Shovel's category matching the spear.
+
+---
+
+## Test assets
+
+- `src/test/java/.../ElementEquationTest.java` (14 tests) — alloy stat curves, pure math.
+- `src/test/java/.../WeightedCollectionTest.java` (5 tests) — seeded drop weighting.
+- `src/main/java/.../gametest/RankineRegistryTests.java` — registry/datapack integrity: block+item
+  counts, block↔item wiring, recipe types loading real recipes, enchantments parsing, damage types,
+  fluids having FluidTypes, loot tables existing per block, creative tabs, data components.
+- `src/main/java/.../gametest/RankineMachineTests.java` — **highest-value runtime coverage**: every
+  machine exposes an `IItemHandler` capability on some side with >0 slots (the capability rework
+  touched all 10 machines), every block entity places/ticks/saves without throwing, BE types bound
+  to blocks.
+- `src/main/resources/data/rankine/structure/empty.nbt` — hand-built 5×5×5 empty GameTest template
+  (tests use `@GameTest(template = "empty")`). Unverified until gate 4 runs.
+
+The GameTests are deliberately registry-driven rather than asserting specific machine recipes, so
+they stay valid as details change.
+
+---
+
+## If gate 4 or 5 fails
+
+Expect runtime-only issues of the classes listed above. Useful moves:
+- `grep -aE "Caused by: java\.lang" .porting/logs/gametest.log | head`
+- Rankine frames: `grep -aoE "com\.cannolicatfish[A-Za-z0-9_.$]*\([A-Za-z]*\.java:[0-9]*\)" <log> | sort -u`
+- Crash reports land in `run/gametestserver/crash-reports/` or `run/server/crash-reports/`.
+- `PORT-TODO(` markers remain in-source for anything deliberately deferred: `grep -rn "PORT-TODO(" src/main/java | wc -l`
+
+After gates pass: Karl does a quick manual dev-client pass (`./gradlew runClient`). CHANGELOG.md
+already has the 1.21.1-1.4.0 entry written.
