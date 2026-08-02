@@ -1,0 +1,7 @@
+{
+  "type": "rankine:config_gated_add_features",
+  "biomes": "minecraft:grove",
+  "features": "rankine:snowy_short_balsam_fir_tree",
+  "gate": "trees",
+  "step": "vegetal_decoration"
+}

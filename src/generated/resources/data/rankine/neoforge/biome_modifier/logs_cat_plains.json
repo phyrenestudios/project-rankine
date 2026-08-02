@@ -1,0 +1,7 @@
+{
+  "type": "rankine:config_gated_add_features",
+  "biomes": "#c:is_plains",
+  "features": "rankine:honey_locust_fallen_log",
+  "gate": "fallen_logs",
+  "step": "vegetal_decoration"
+}

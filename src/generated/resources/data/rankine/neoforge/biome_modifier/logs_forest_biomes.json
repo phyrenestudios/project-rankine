@@ -1,0 +1,13 @@
+{
+  "type": "rankine:config_gated_add_features",
+  "biomes": [
+    "minecraft:forest",
+    "minecraft:flower_forest"
+  ],
+  "features": [
+    "rankine:maple_fallen_log",
+    "rankine:oak_fallen_log"
+  ],
+  "gate": "fallen_logs",
+  "step": "vegetal_decoration"
+}

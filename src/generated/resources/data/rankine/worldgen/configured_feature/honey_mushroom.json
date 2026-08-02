@@ -1,0 +1,11 @@
+{
+  "type": "rankine:honey_feature",
+  "config": {
+    "state_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "rankine:honey_mushroom_block"
+      }
+    }
+  }
+}

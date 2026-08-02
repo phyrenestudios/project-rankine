@@ -1,0 +1,7 @@
+{
+  "type": "rankine:config_gated_add_features",
+  "biomes": "minecraft:beach",
+  "features": "rankine:coconut_palm_tree",
+  "gate": "trees",
+  "step": "vegetal_decoration"
+}

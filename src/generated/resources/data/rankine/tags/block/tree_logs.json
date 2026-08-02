@@ -1,0 +1,32 @@
+{
+  "values": [
+    "rankine:hollow_cedar_log",
+    "rankine:hollow_balsam_fir_log",
+    "rankine:hollow_eastern_hemlock_log",
+    "rankine:hollow_western_hemlock_log",
+    "rankine:hollow_pinyon_pine_log",
+    "rankine:hollow_juniper_log",
+    "rankine:hollow_black_birch_log",
+    "rankine:hollow_yellow_birch_log",
+    "rankine:hollow_red_birch_log",
+    "rankine:hollow_maple_log",
+    "rankine:hollow_magnolia_log",
+    "rankine:hollow_black_walnut_log",
+    "rankine:hollow_coconut_palm_log",
+    "rankine:hollow_cork_oak_log",
+    "rankine:hollow_sharinga_log",
+    "rankine:hollow_cinnamon_log",
+    "rankine:hollow_honey_locust_log",
+    "rankine:hollow_weeping_willow_log",
+    "rankine:hollow_erythrina_log",
+    "rankine:hollow_oak_log",
+    "rankine:hollow_birch_log",
+    "rankine:hollow_spruce_log",
+    "rankine:hollow_jungle_log",
+    "rankine:hollow_acacia_log",
+    "rankine:hollow_dark_oak_log",
+    "rankine:hollow_warped_stem",
+    "rankine:hollow_crimson_stem",
+    "#minecraft:logs"
+  ]
+}

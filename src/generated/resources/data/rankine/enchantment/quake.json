@@ -1,0 +1,21 @@
+{
+  "anvil_cost": 2,
+  "description": {
+    "translate": "enchantment.rankine.quake"
+  },
+  "exclusive_set": "#rankine:exclusive_set/quake",
+  "max_cost": {
+    "base": 61,
+    "per_level_above_first": 10
+  },
+  "max_level": 3,
+  "min_cost": {
+    "base": 1,
+    "per_level_above_first": 10
+  },
+  "slots": [
+    "mainhand"
+  ],
+  "supported_items": "#rankine:enchantable/mining",
+  "weight": 5
+}

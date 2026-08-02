@@ -1,0 +1,9 @@
+{
+  "values": [
+    "#minecraft:dirt",
+    "#c:gravels",
+    "#c:sands",
+    "rankine:silt",
+    "rankine:desert_sand"
+  ]
+}

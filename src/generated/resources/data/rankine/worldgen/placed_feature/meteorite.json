@@ -1,0 +1,19 @@
+{
+  "feature": "rankine:meteorite",
+  "placement": [
+    {
+      "type": "minecraft:in_square"
+    },
+    {
+      "type": "minecraft:heightmap",
+      "heightmap": "WORLD_SURFACE_WG"
+    },
+    {
+      "type": "rankine:config_rarity_filter",
+      "gate": "meteorite"
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

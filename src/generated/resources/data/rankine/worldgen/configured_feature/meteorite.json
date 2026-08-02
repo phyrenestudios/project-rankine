@@ -1,0 +1,9 @@
+{
+  "type": "rankine:meteorite",
+  "config": {
+    "start_radius": 1,
+    "state": {
+      "Name": "rankine:meteorite"
+    }
+  }
+}

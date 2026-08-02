@@ -1,0 +1,20 @@
+{
+  "anvil_cost": 4,
+  "description": {
+    "translate": "enchantment.rankine.excavate"
+  },
+  "max_cost": {
+    "base": 86,
+    "per_level_above_first": 10
+  },
+  "max_level": 3,
+  "min_cost": {
+    "base": 1,
+    "per_level_above_first": 30
+  },
+  "slots": [
+    "mainhand"
+  ],
+  "supported_items": "#rankine:enchantable/hammer",
+  "weight": 2
+}

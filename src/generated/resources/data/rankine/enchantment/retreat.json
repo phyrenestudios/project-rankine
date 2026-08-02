@@ -1,0 +1,21 @@
+{
+  "anvil_cost": 8,
+  "description": {
+    "translate": "enchantment.rankine.retreat"
+  },
+  "exclusive_set": "#rankine:exclusive_set/stance",
+  "max_cost": {
+    "base": 61,
+    "per_level_above_first": 10
+  },
+  "max_level": 1,
+  "min_cost": {
+    "base": 15,
+    "per_level_above_first": 0
+  },
+  "slots": [
+    "hand"
+  ],
+  "supported_items": "#rankine:enchantable/knife",
+  "weight": 1
+}

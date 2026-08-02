@@ -1,0 +1,10 @@
+{
+  "type": "rankine:config_gated_add_features",
+  "biomes": "#minecraft:is_jungle",
+  "features": [
+    "rankine:patch_morning_glories",
+    "rankine:patch_jungle_plants"
+  ],
+  "gate": "flora",
+  "step": "vegetal_decoration"
+}

@@ -1,0 +1,10 @@
+{
+  "type": "rankine:config_gated_add_features",
+  "biomes": "#minecraft:is_jungle",
+  "features": [
+    "rankine:sharinga_tree",
+    "rankine:cinnamon_tree"
+  ],
+  "gate": "trees",
+  "step": "vegetal_decoration"
+}

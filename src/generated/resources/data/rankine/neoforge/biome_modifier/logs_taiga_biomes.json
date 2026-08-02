@@ -1,0 +1,10 @@
+{
+  "type": "rankine:config_gated_add_features",
+  "biomes": [
+    "minecraft:taiga",
+    "minecraft:snowy_taiga"
+  ],
+  "features": "rankine:eastern_hemlock_fallen_log",
+  "gate": "fallen_logs",
+  "step": "vegetal_decoration"
+}

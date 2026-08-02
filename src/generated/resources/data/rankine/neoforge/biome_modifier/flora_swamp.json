@@ -1,0 +1,7 @@
+{
+  "type": "rankine:config_gated_add_features",
+  "biomes": "#c:is_swamp",
+  "features": "rankine:patch_swamp_plants",
+  "gate": "flora",
+  "step": "vegetal_decoration"
+}

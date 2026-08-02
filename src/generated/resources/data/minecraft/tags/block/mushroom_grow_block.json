@@ -1,0 +1,24 @@
+{
+  "values": [
+    "rankine:humus_mycelium",
+    "rankine:loam_mycelium",
+    "rankine:silty_clay_mycelium",
+    "rankine:sandy_clay_mycelium",
+    "rankine:silty_loam_mycelium",
+    "rankine:clay_loam_mycelium",
+    "rankine:sandy_loam_mycelium",
+    "rankine:loamy_sand_mycelium",
+    "rankine:sandy_clay_loam_mycelium",
+    "rankine:silty_clay_loam_mycelium",
+    "rankine:humus_podzol",
+    "rankine:loam_podzol",
+    "rankine:silty_clay_podzol",
+    "rankine:sandy_clay_podzol",
+    "rankine:silty_loam_podzol",
+    "rankine:clay_loam_podzol",
+    "rankine:sandy_loam_podzol",
+    "rankine:loamy_sand_podzol",
+    "rankine:sandy_clay_loam_podzol",
+    "rankine:silty_clay_loam_podzol"
+  ]
+}

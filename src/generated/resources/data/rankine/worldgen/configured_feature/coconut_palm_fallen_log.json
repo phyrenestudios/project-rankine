@@ -1,0 +1,16 @@
+{
+  "type": "rankine:fallen_log",
+  "config": {
+    "to_place": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "rankine:hollow_coconut_palm_log",
+        "Properties": {
+          "axis": "x",
+          "mossy": "false",
+          "waterlogged": "false"
+        }
+      }
+    }
+  }
+}

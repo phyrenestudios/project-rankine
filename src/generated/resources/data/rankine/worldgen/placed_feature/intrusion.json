@@ -1,0 +1,8 @@
+{
+  "feature": "rankine:intrusion",
+  "placement": [
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "type": "rankine:config_gated_add_features",
+  "biomes": "#minecraft:is_taiga",
+  "features": [
+    "rankine:cedar_fallen_log",
+    "rankine:spruce_fallen_log"
+  ],
+  "gate": "fallen_logs",
+  "step": "vegetal_decoration"
+}

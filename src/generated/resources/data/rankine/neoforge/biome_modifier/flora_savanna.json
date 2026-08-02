@@ -1,0 +1,10 @@
+{
+  "type": "rankine:config_gated_add_features",
+  "biomes": "#minecraft:is_savanna",
+  "features": [
+    "rankine:patch_savanna_flowers",
+    "rankine:patch_savanna_plants"
+  ],
+  "gate": "flora",
+  "step": "vegetal_decoration"
+}

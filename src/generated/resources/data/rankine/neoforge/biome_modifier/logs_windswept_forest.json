@@ -1,0 +1,10 @@
+{
+  "type": "rankine:config_gated_add_features",
+  "biomes": "minecraft:windswept_forest",
+  "features": [
+    "rankine:balsam_fir_fallen_log",
+    "rankine:red_birch_fallen_log"
+  ],
+  "gate": "fallen_logs",
+  "step": "vegetal_decoration"
+}

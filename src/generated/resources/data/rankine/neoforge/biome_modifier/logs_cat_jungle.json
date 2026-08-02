@@ -1,0 +1,11 @@
+{
+  "type": "rankine:config_gated_add_features",
+  "biomes": "#minecraft:is_jungle",
+  "features": [
+    "rankine:sharinga_fallen_log",
+    "rankine:cinnamon_fallen_log",
+    "rankine:jungle_fallen_log"
+  ],
+  "gate": "fallen_logs",
+  "step": "vegetal_decoration"
+}

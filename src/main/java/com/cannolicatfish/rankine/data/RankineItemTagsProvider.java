@@ -214,13 +214,24 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         copy(RankineTags.Blocks.STONES_SHONKINITE, RankineTags.Items.STONES_SHONKINITE);
 
         for (RankineWood Wood : RankineLists.RANKINE_WOODS) {
-            copy(BlockTags.create(ResourceLocation.fromNamespaceAndPath("rankine", Wood.getBaseName() + "_logs")), ItemTags.create(ResourceLocation.fromNamespaceAndPath("rankine", Wood.getBaseName() + "_logs")));
+            ResourceLocation logsTag = ResourceLocation.fromNamespaceAndPath("rankine", Wood.getBaseName() + "_logs");
+            // The block provider only builds <wood>_logs for woods that have logs; copying from a tag
+            // it never built throws in 1.21. Woods without logs produced an empty item tag in 1.18.2,
+            // so emit that directly to keep the generated output identical.
+            if (Wood.hasLogs()) {
+                copy(BlockTags.create(logsTag), ItemTags.create(logsTag));
+            } else {
+                tag(ItemTags.create(logsTag));
+            }
         }
         copy(BlockTags.LOGS_THAT_BURN, ItemTags.LOGS_THAT_BURN);
         copy(RankineTags.Blocks.STRIPPED_LOGS, RankineTags.Items.STRIPPED_LOGS);
         copy(RankineTags.Blocks.STRIPPED_WOOD, RankineTags.Items.STRIPPED_WOOD);
         copy(BlockTags.LOGS_THAT_BURN, ItemTags.LOGS_THAT_BURN);
-        copy(BlockTags.LOGS, ItemTags.LOGS);
+        // Source block tag is never built by RankineBlockTagsProvider. Forge's 1.18.2 provider
+        // auto-created an empty builder, so this emitted an empty item tag; 1.21 validates the
+        // source instead. Declare the empty item tag directly to keep the generated output identical.
+        tag(ItemTags.LOGS);
 
 
         copy(Tags.Blocks.STORAGE_BLOCKS_COAL, Tags.Items.STORAGE_BLOCKS_COAL);
@@ -256,7 +267,10 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         copy(RankineTags.Blocks.STORAGE_BLOCKS_MANGANESE, RankineTags.Items.STORAGE_BLOCKS_MANGANESE);
         copy(RankineTags.Blocks.STORAGE_BLOCKS_COBALT, RankineTags.Items.STORAGE_BLOCKS_COBALT);
         copy(RankineTags.Blocks.STORAGE_BLOCKS_NICKEL, RankineTags.Items.STORAGE_BLOCKS_NICKEL);
-        copy(RankineTags.Blocks.STORAGE_BLOCKS_COPPER, RankineTags.Items.STORAGE_BLOCKS_COPPER);
+        // Source block tag is never built by RankineBlockTagsProvider. Forge's 1.18.2 provider
+        // auto-created an empty builder, so this emitted an empty item tag; 1.21 validates the
+        // source instead. Declare the empty item tag directly to keep the generated output identical.
+        tag(RankineTags.Items.STORAGE_BLOCKS_COPPER);
         copy(RankineTags.Blocks.STORAGE_BLOCKS_ZINC, RankineTags.Items.STORAGE_BLOCKS_ZINC);
         copy(RankineTags.Blocks.STORAGE_BLOCKS_GALLIUM, RankineTags.Items.STORAGE_BLOCKS_GALLIUM);
         copy(RankineTags.Blocks.STORAGE_BLOCKS_GERMANIUM, RankineTags.Items.STORAGE_BLOCKS_GERMANIUM);
@@ -786,7 +800,10 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         copy(RankineTags.Blocks.BRICKS_STAIRS, RankineTags.Items.BRICKS_STAIRS);
         copy(RankineTags.Blocks.BRICKS_WALL, RankineTags.Items.BRICKS_WALLS);
         copy(RankineTags.Blocks.SHEETMETAL, RankineTags.Items.SHEETMETAL);
-        copy(RankineTags.Blocks.SHEETMETAL_SALBS, RankineTags.Items.SHEETMETAL_SALBS);
+        // No block tag backs this one — 1.18.2 also generated only an empty item tag, and Forge
+        // silently tolerated copying from a block tag that was never built. 1.21 validates the
+        // source tag exists, so declare the (still empty) item tag directly to keep output identical.
+        tag(RankineTags.Items.SHEETMETAL_SALBS);
         for (Block blk : RankineLists.SHEETMETALS) {
             String name = RankineDataUtils.rl(blk).getPath();
             String baseName = Arrays.asList(name.split("_sheetmetal")).get(0);
@@ -991,7 +1008,10 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         copy(Tags.Blocks.SANDS, Tags.Items.SANDS);
         copy(Tags.Blocks.GLASS_BLOCKS, Tags.Items.GLASS_BLOCKS);
         copy(Tags.Blocks.COBBLESTONES_NORMAL, Tags.Items.COBBLESTONES_NORMAL);
-        copy(Tags.Blocks.COBBLESTONES, Tags.Items.COBBLESTONES);
+        // Source block tag is never built by RankineBlockTagsProvider. Forge's 1.18.2 provider
+        // auto-created an empty builder, so this emitted an empty item tag; 1.21 validates the
+        // source instead. Declare the empty item tag directly to keep the generated output identical.
+        tag(Tags.Items.COBBLESTONES);
         //copy(BlockTags.CAMPFIRES, RankineTags.Items.CAMPFIRES);
         tag(RankineTags.Items.CAMPFIRES).add(Items.CAMPFIRE,Items.SOUL_CAMPFIRE);
         tag(RankineTags.Items.CANNONBALLS).add(Items.FIRE_CHARGE,RankineItems.CANNONBALL.get(),RankineItems.CARCASS.get(),RankineItems.ENDERBALL.get());

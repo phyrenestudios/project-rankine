@@ -1,0 +1,26 @@
+{
+  "values": [
+    "#c:obsidians",
+    "#c:tuff",
+    "#minecraft:leaves",
+    "#minecraft:logs",
+    "#rankine:construction_sand",
+    "#c:clay",
+    "#minecraft:dirt",
+    "#c:gravels",
+    "#c:stones",
+    "#minecraft:base_stone_overworld",
+    "#minecraft:base_stone_nether",
+    "#c:base_stone_end",
+    "#minecraft:terracotta",
+    "minecraft:soul_sand",
+    "minecraft:soul_soil",
+    "minecraft:lava",
+    "minecraft:water",
+    "minecraft:bubble_column",
+    "minecraft:kelp",
+    "minecraft:snow_block",
+    "minecraft:snow",
+    "rankine:laterite"
+  ]
+}

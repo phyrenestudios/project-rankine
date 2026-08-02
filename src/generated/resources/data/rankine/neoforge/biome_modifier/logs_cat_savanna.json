@@ -1,0 +1,12 @@
+{
+  "type": "rankine:config_gated_add_features",
+  "biomes": "#minecraft:is_savanna",
+  "features": [
+    "rankine:cork_oak_fallen_log",
+    "rankine:juniper_fallen_log",
+    "rankine:pinyon_pine_fallen_log",
+    "rankine:acacia_fallen_log"
+  ],
+  "gate": "fallen_logs",
+  "step": "vegetal_decoration"
+}

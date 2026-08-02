@@ -1,0 +1,11 @@
+{
+  "type": "rankine:config_gated_add_features",
+  "biomes": "minecraft:windswept_forest",
+  "features": [
+    "rankine:balsam_fir_tree",
+    "rankine:short_balsam_fir_tree",
+    "rankine:red_birch_tree"
+  ],
+  "gate": "trees",
+  "step": "vegetal_decoration"
+}

@@ -1,0 +1,7 @@
+{
+  "type": "rankine:config_gated_add_features",
+  "biomes": "#c:is_overworld",
+  "features": "rankine:meteorite",
+  "gate": "meteorite",
+  "step": "local_modifications"
+}

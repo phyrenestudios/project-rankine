@@ -1,0 +1,11 @@
+{
+  "type": "rankine:config_gated_add_features",
+  "biomes": "#minecraft:is_savanna",
+  "features": [
+    "rankine:juniper_tree",
+    "rankine:pinyon_pine_tree",
+    "rankine:cork_oak_tree"
+  ],
+  "gate": "trees",
+  "step": "vegetal_decoration"
+}

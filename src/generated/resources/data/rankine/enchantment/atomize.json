@@ -1,0 +1,21 @@
+{
+  "anvil_cost": 2,
+  "description": {
+    "translate": "enchantment.rankine.atomize"
+  },
+  "exclusive_set": "#rankine:exclusive_set/atomize",
+  "max_cost": {
+    "base": 61,
+    "per_level_above_first": 10
+  },
+  "max_level": 1,
+  "min_cost": {
+    "base": 25,
+    "per_level_above_first": 0
+  },
+  "slots": [
+    "mainhand"
+  ],
+  "supported_items": "#rankine:enchantable/hammer",
+  "weight": 5
+}

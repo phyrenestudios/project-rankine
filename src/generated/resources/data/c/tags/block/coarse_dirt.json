@@ -1,0 +1,14 @@
+{
+  "values": [
+    "rankine:coarse_humus",
+    "rankine:coarse_loam",
+    "rankine:coarse_silty_clay",
+    "rankine:coarse_sandy_clay",
+    "rankine:coarse_silty_loam",
+    "rankine:coarse_clay_loam",
+    "rankine:coarse_sandy_loam",
+    "rankine:coarse_loamy_sand",
+    "rankine:coarse_sandy_clay_loam",
+    "rankine:coarse_silty_clay_loam"
+  ]
+}

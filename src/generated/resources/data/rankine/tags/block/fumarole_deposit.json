@@ -1,0 +1,14 @@
+{
+  "values": [
+    "#c:tuff",
+    "#c:stones",
+    "#minecraft:dirt",
+    "#c:sands",
+    "#minecraft:base_stone_overworld",
+    "#minecraft:base_stone_nether",
+    "#c:base_stone_end",
+    "#minecraft:terracotta",
+    "minecraft:soul_sand",
+    "minecraft:soul_soil"
+  ]
+}

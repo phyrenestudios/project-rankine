@@ -1,0 +1,12 @@
+{
+  "feature": "rankine:fumarole",
+  "placement": [
+    {
+      "type": "rankine:config_rarity_filter",
+      "gate": "fumarole"
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

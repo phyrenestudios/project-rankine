@@ -1,0 +1,10 @@
+{
+  "type": "rankine:config_gated_add_features",
+  "biomes": "#minecraft:is_river",
+  "features": [
+    "rankine:black_birch_tree",
+    "rankine:magnolia_tree"
+  ],
+  "gate": "trees",
+  "step": "vegetal_decoration"
+}

@@ -1,0 +1,8 @@
+{
+  "feature": "rankine:antimatter_blob",
+  "placement": [
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

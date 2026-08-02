@@ -1,0 +1,10 @@
+{
+  "type": "rankine:config_gated_add_features",
+  "biomes": "#minecraft:is_forest",
+  "features": [
+    "rankine:patch_lilies",
+    "rankine:patch_forest_plants"
+  ],
+  "gate": "flora",
+  "step": "vegetal_decoration"
+}

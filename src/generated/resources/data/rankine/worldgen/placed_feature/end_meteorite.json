@@ -1,0 +1,8 @@
+{
+  "feature": "rankine:end_meteorite",
+  "placement": [
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

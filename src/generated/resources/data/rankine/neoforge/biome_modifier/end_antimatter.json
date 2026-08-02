@@ -1,0 +1,12 @@
+{
+  "type": "rankine:config_gated_add_features",
+  "biomes": [
+    "minecraft:end_highlands",
+    "minecraft:end_midlands",
+    "minecraft:end_barrens",
+    "minecraft:small_end_islands"
+  ],
+  "features": "rankine:antimatter_blob",
+  "gate": "antimatter",
+  "step": "underground_decoration"
+}

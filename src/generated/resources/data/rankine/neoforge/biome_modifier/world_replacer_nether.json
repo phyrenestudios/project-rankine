@@ -1,0 +1,7 @@
+{
+  "type": "rankine:config_gated_add_features",
+  "biomes": "#minecraft:is_nether",
+  "features": "rankine:world_replacer",
+  "gate": "layer_gen",
+  "step": "underground_decoration"
+}

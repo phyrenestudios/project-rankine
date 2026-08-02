@@ -1,0 +1,12 @@
+{
+  "type": "rankine:config_gated_add_features",
+  "biomes": [
+    "minecraft:end_highlands",
+    "minecraft:end_midlands",
+    "minecraft:end_barrens",
+    "minecraft:small_end_islands"
+  ],
+  "features": "rankine:petrified_chorus_tree",
+  "gate": "end_meteorite_trees",
+  "step": "vegetal_decoration"
+}

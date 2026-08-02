@@ -1,0 +1,10 @@
+{
+  "type": "rankine:config_gated_add_features",
+  "biomes": "minecraft:dark_forest",
+  "features": [
+    "rankine:black_walnut_fallen_log",
+    "rankine:dark_oak_fallen_log"
+  ],
+  "gate": "fallen_logs",
+  "step": "vegetal_decoration"
+}
