@@ -9,9 +9,11 @@
     }
   ],
   "result": {
-    "nbt": {
-      "patchouli:book": "rankine:rankine_journal"
-    },
-    "id": "patchouli:guide_book"
+    "id": "patchouli:guide_book",
+    "components": {
+      "minecraft:custom_data": {
+        "patchouli:book": "rankine:rankine_journal"
+      }
+    }
   }
 }

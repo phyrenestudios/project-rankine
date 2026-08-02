@@ -21,6 +21,11 @@ All notable changes to the mod, Project Rankine, will be kept in this file.
 - **Networking** moved to the payload system; **chunk retrogen state** moved from a capability to an attachment.
 - Custom **recipes** now use Codec-based serializers. Existing recipe JSON keeps working — field names and recipe
   ids are unchanged.
+- The `minecraft:milk` fluid is now requested explicitly at mod construction. Forge registered it unconditionally;
+  NeoForge only registers it if a mod opts in, and the Unaged Cheese and Pancake Batter mixing recipes both take
+  milk as their fluid input.
+- The Rankine Journal recipe carries its Patchouli book id as a `custom_data` component. 1.21 removed the `nbt`
+  field from recipe results, so the id would otherwise have been dropped and the crafted book would open blank.
 
 ### FIXES (pre-existing bugs found during the port)
 - Alloy templates always displayed white; the stored color was written under one key and read under another

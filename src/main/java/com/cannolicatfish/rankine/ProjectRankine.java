@@ -10,6 +10,7 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLLoadCompleteEvent;
+import net.neoforged.neoforge.common.NeoForgeMod;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -19,6 +20,12 @@ public class ProjectRankine {
     public static final Logger LOGGER = LogManager.getLogger();
 
     public ProjectRankine(IEventBus modBus, ModContainer container) {
+        // Forge 1.18 registered the minecraft:milk fluid unconditionally; NeoForge only registers it
+        // if a mod opts in from its constructor. rankine:mixing/{unaged_cheese,pancake_batter}_mixing
+        // both take milk as their fluid input and fail to parse ("Unknown fluid 'minecraft:milk'")
+        // without this call.
+        NeoForgeMod.enableMilkFluid();
+
         container.registerConfig(ModConfig.Type.COMMON, Config.COMMON_CONFIG, "rankine-common.toml");
         container.registerConfig(ModConfig.Type.CLIENT, ClientConfig.CLIENT_CONFIG, "rankine-client.toml");
 

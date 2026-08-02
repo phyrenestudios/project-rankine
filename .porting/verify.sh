@@ -56,30 +56,64 @@ fi
 # registry/datapack failures that only surface on a real world load.
 if run_gate server; then
   echo "== gate: server smoke =="
-  mkdir -p run/server
-  echo "eula=true" > run/server/eula.txt
-  # server.properties: flat world + no spawn chunks keeps the boot fast and deterministic
-  cat > run/server/server.properties <<'EOF'
-level-type=minecraft\:flat
+  # ModDevGradle points every run config (client/server/data/gameTestServer) at the
+  # same game directory: run/. There is no run/server/ — writing the eula there
+  # leaves the real run/eula.txt at false and the server refuses to boot.
+  mkdir -p run
+  echo "eula=true" > run/eula.txt
+  # A normal (not flat) world is the point of this gate: it exercises Rankine's
+  # biome modifiers, ore features and the retrogen attachment during spawn-chunk
+  # generation. Small view/simulation distance and a high watchdog keep it bounded.
+  cat > run/server.properties <<'EOF'
+level-name=smokeworld
+level-type=minecraft\:normal
 online-mode=false
 max-tick-time=600000
 view-distance=4
+simulation-distance=4
 EOF
   ( ./gradlew runServer --console=plain > "$LOGS/server.log" 2>&1 ) &
   GRADLE_PID=$!
   ok=0
   for _ in $(seq 1 180); do
-    if grep -qE 'Done \([0-9.]+s\)! For help' "$LOGS/server.log"; then ok=1; break; fi
-    if grep -qE 'Failed to start the minecraft server|A problem occurred|FAILURE: Build failed' "$LOGS/server.log"; then break; fi
+    if grep -qaE 'Done \([0-9.]+s\)! For help' "$LOGS/server.log"; then ok=1; break; fi
+    if grep -qaE 'Failed to start the minecraft server|A problem occurred|FAILURE: Build failed' "$LOGS/server.log"; then break; fi
     if ! kill -0 "$GRADLE_PID" 2>/dev/null; then break; fi
     sleep 5
   done
+
+  # Stopping the server is awkward and both obvious approaches fail:
+  #   - ModDevGradle does not wire stdin into the run task, so piping "stop" into
+  #     ./gradlew never reaches the server console. (Verified: the server ignored it
+  #     and kept idling until it was killed.)
+  #   - The server JVM is forked by the Gradle *daemon*, not by this script, so it is
+  #     not a descendant of $GRADLE_PID and survives killing that.
+  # Kill it by command line instead. Note you cannot match on the program args
+  # (--nogui and friends): MDG passes those in an @argfile, so they never appear on
+  # the command line. Match the argfile path itself, which is unique per run config.
+  # -clike (case-SENSITIVE) matters: -like would also match a concurrently running
+  # gameTestServerRunProgramArgs.txt and kill gate 4 out from under itself.
+  powershell.exe -NoProfile -Command \
+    'Get-CimInstance Win32_Process | Where-Object { $_.Name -eq "java.exe" -and $_.CommandLine -clike "*\serverRunProgramArgs.txt*" } | ForEach-Object { Stop-Process -Id $_.ProcessId -Force }' \
+    >/dev/null 2>&1
   kill "$GRADLE_PID" 2>/dev/null
   wait "$GRADLE_PID" 2>/dev/null
-  # Any crash report written during boot is a failure even if "Done" appeared.
-  if [[ "$ok" == "1" ]] && ! ls run/server/crash-reports/* >/dev/null 2>&1; then
-    pass "server smoke (reached Done)"
+
+  # Gradle always reports BUILD FAILED here because we killed the JVM it was waiting
+  # on. That is expected and is NOT part of the verdict.
+  #
+  # The verdict is: reached "Done", wrote no crash report, and loaded every recipe.
+  # Recipe parse errors are the highest-signal thing this gate catches -- they are
+  # logged, not thrown, so the server boots "successfully" with content missing.
+  # (This is how the minecraft:milk fluid regression was found.) The journal recipe
+  # is the one accepted failure: its result is a Patchouli item and Patchouli is not
+  # in the dev runtime. 1.18.2 logged the same error for the same reason.
+  bad_recipes=$(grep -a "Parsing error loading recipe" "$LOGS/server.log" \
+                | grep -av "rankine:rankine_journal" || true)
+  if [[ "$ok" == "1" && -z "$bad_recipes" ]] && ! ls run/crash-reports/* >/dev/null 2>&1; then
+    pass "server smoke (reached Done, all recipes loaded)"
   else
+    [[ -n "$bad_recipes" ]] && { echo "  recipes failed to load:"; echo "$bad_recipes"; }
     tail -40 "$LOGS/server.log"; fail "server smoke" "$LOGS/server.log"
   fi
 fi

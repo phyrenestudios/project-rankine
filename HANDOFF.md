@@ -17,23 +17,40 @@ Target: Minecraft 1.21.1 / NeoForge 21.1.248 / Java 21 / ModDevGradle 2.0.143.
 | 1. build | `./gradlew build -x test` | **PASS** |
 | 2. unit tests | `./gradlew test` | **PASS** — 19 tests, 0 failures |
 | 3. datagen | `./gradlew runData` | **PASS** — 3m12s, 35,662 JSONs |
-| 4. gametest | `./gradlew runGameTestServer` | 1st run: server booted, ran all tests, **5 failed → all triaged and fixed**. **RERUN WAS IN FLIGHT** when this was written — check the log first. |
-| 5. server smoke | `./gradlew runServer` | **NOT YET RUN** |
+| 4. gametest | `./gradlew runGameTestServer` | **PASS** — rerun finished clean: "All 16 required tests passed", BUILD SUCCESSFUL in 2m26s |
+| 5. server smoke | `./gradlew runServer` | **PASS** — booted a fresh normal-terrain world to `Done (6.461s)`, idled 6 min, no crash reports, no ERROR after boot. **Found 2 load-time content bugs — see below.** |
 
 All work is committed; working tree clean at `30ca7b9d7`.
 Everything compiles: **0 errors** across ~680 source files (was 4,833 at the start of the loop).
 
 ### Immediate next step
-1. Check whether the in-flight gate 4 rerun finished:
-   `grep -aE "BUILD SUCCESSFUL|BUILD FAILED|required tests" .porting/logs/gametest.log | tail -3`
-   If no BUILD line and no java process is running, just re-run it:
-   ```bash
-   cd /c/Users/karl/Documents/Projects/project-rankine && ./gradlew runGameTestServer --console=plain > .porting/logs/gametest.log 2>&1
-   ```
-2. Then gate 5 (`runServer`). It needs `run/server/eula.txt` with `eula=true`.
-   `.porting/verify.sh` writes that and drives all gates, but has NOT been exercised end-to-end —
-   prefer the raw gradle commands if it misbehaves.
-3. Then hand back to Karl for a manual dev-client pass (`./gradlew runClient`).
+
+**All 5 gates are green. The port is ready for Karl's manual dev-client pass (`./gradlew runClient`).**
+
+Gate 5 found two bugs that no earlier gate could see, because a Minecraft server *logs* bad
+datapack content and boots anyway — it does not fail. Both are fixed:
+
+1. **`minecraft:milk` was not registered** → `rankine:mixing/unaged_cheese_mixing` and
+   `rankine:mixing/pancake_batter_mixing` failed to parse ("Unknown fluid 'minecraft:milk'"),
+   i.e. cheese and pancake batter were **uncraftable**. Forge 1.18 registered the milk fluid
+   unconditionally; NeoForge only registers it if a mod calls `NeoForgeMod.enableMilkFluid()`
+   from its constructor. Added to `ProjectRankine`. **This is a new instance of the "Forge did it
+   for you, NeoForge makes you ask" class — worth checking any other Forge-provided extra.**
+2. **`rankine_journal`'s recipe result used the `nbt` field**, which 1.21's ItemStack codec
+   (`id` / `count` / `components`) does not have. It is not an error — the codec silently ignores
+   the unknown field — so the crafted Patchouli book would have opened blank. Now written as
+   `components: {minecraft:custom_data: {...}}`, matching what `compatibility/Patchouli.java`
+   builds in code. **Unverified against a real Patchouli install** (not in the dev runtime);
+   worth a look if Karl ever runs with Patchouli.
+
+Note `rankine:rankine_journal` still logs a parse error in dev — its result item is
+`patchouli:guide_book` and Patchouli is not in the dev runtime. **1.18.2 logged the same error for
+the same reason**; neither version guards the recipe with a mod-loaded condition. Adding a
+`neoforge:conditions` guard would silence it, but changes nothing functionally (the recipe is
+absent either way), so it was left alone.
+
+`.porting/verify.sh` gate 5 has been corrected against the real run and now also fails on any
+recipe parse error except the journal — that check is what would have caught the milk bug.
 
 ---
 
@@ -73,6 +90,23 @@ Everything compiles: **0 errors** across ~680 source files (was 4,833 at the sta
    true error count was hidden (200 reported vs 4,833 actual).
 5. **Datagen needs `src/generated/resources` as BOTH `--existing` and `--output`** (providers parent
    models to previously generated ones). This is wired in build.gradle; dropping it breaks runData.
+6. **`runServer` runs in `run/`, not `run/server/`.** ModDevGradle points every run config
+   (client / server / data / gameTestServer) at the same game directory. The eula therefore goes in
+   `run/eula.txt`; an earlier version of verify.sh wrote `run/server/eula.txt`, which the server
+   never reads, so it would have refused to boot. Crash reports land in `run/crash-reports/`.
+7. **You cannot stop a `runServer` cleanly, and both obvious ways fail.** MDG does not wire stdin
+   into the run task, so piping `stop` into `./gradlew` never reaches the server console (verified —
+   the server ignored it and kept idling). And the server JVM is forked by the *Gradle daemon*, so
+   it is not a child of your `gradlew` process and survives killing that. Kill it by command line —
+   but **not** by matching `--nogui` or any other program argument: MDG passes those in an
+   `@argfile`, so they never appear on the command line at all. Match the argfile path, which is
+   unique per run config. `-clike` (case-**sensitive**) is deliberate — plain `-like` would also
+   match `gameTestServerRunProgramArgs.txt` and kill a concurrent gate 4:
+   ```bash
+   powershell.exe -NoProfile -Command 'Get-CimInstance Win32_Process | Where-Object { $_.Name -eq "java.exe" -and $_.CommandLine -clike "*\serverRunProgramArgs.txt*" } | ForEach-Object { Stop-Process -Id $_.ProcessId -Force }'
+   ```
+   Gradle then reports **BUILD FAILED** — that is just the killed JVM's exit code, not a gate
+   failure. Judge gate 5 by the log, never by Gradle's verdict.
 
 ---
 
