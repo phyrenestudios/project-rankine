@@ -78,7 +78,12 @@ public class RankineBlockEntityTypes {
                     .build(null));
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<AlloyBlockTile>> ALLOY_BLOCK = BLOCK_ENTITY_TYPES.register("alloy_block",
-            () -> BlockEntityType.Builder.of(AlloyBlockTile::new, RankineBlocks.ALLOY_BLOCK.get())
+            // Every AlloyBlock creates an AlloyBlockTile, but 1.18.2 only listed the generic
+            // rankine:alloy_block here. That mismatch was merely logged as a warning back then;
+            // 1.21 throws IllegalStateException from LevelChunk when a block entity's type does not
+            // accept the state, so placing e.g. a steel_block would fail. Bind all of them.
+            () -> BlockEntityType.Builder.of(AlloyBlockTile::new,
+                            RankineLists.ALLOY_BLOCKS.toArray(new net.minecraft.world.level.block.Block[0]))
                     .build(null));
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<TilledSoilTile>> TILLED_SOIL = BLOCK_ENTITY_TYPES.register("tilled_soil",

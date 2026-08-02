@@ -31,11 +31,16 @@ import java.util.List;
 @PrefixGameTestTemplate(false)
 public class RankineMachineTests {
 
-    /** Machines whose item handler must be reachable through the capability system. */
+    /**
+     * Machines whose item handler must be reachable through the capability system.
+     * Pedestals are deliberately absent: there is no "rankine:pedestal" block — they are
+     * registered per alloy (rose_gold_pedestal, ...), and are covered by the sweep in
+     * {@link #blockEntitiesTickWithoutCrashing} instead.
+     */
     private static final List<String> ITEM_HANDLER_MACHINES = List.of(
             "alloy_furnace", "induction_furnace", "battery_charger", "crucible",
             "evaporation_tower", "fusion_furnace", "gas_bottler", "mixing_barrel",
-            "material_testing_table", "pedestal");
+            "material_testing_table");
 
     private static Block block(String path) {
         return BuiltInRegistries.BLOCK.get(ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID, path));
@@ -69,16 +74,15 @@ public class RankineMachineTests {
             boolean anySide = false;
             for (Direction side : Direction.values()) {
                 IItemHandler handler = helper.getLevel().getCapability(Capabilities.ItemHandler.BLOCK, absolute, side);
-                if (handler != null) {
+                // A sided handler may legitimately expose 0 slots on faces with no accessible
+                // slots (that is how the 1.18.2 sided wrappers behaved too), so only require
+                // that at least one face gives a usable handler.
+                if (handler != null && handler.getSlots() > 0) {
                     anySide = true;
-                    // A handler that reports no slots is as useless as a missing one.
-                    if (handler.getSlots() <= 0) {
-                        problems.add(path + " (handler on " + side + " has 0 slots)");
-                    }
                 }
             }
             if (!anySide) {
-                problems.add(path + " (no IItemHandler on any side)");
+                problems.add(path + " (no usable IItemHandler on any side)");
             }
             helper.setBlock(pos, net.minecraft.world.level.block.Blocks.AIR);
         }
