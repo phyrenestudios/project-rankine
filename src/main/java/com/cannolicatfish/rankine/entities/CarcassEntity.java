@@ -3,6 +3,7 @@ package com.cannolicatfish.rankine.entities;
 import com.cannolicatfish.rankine.init.RankineEntityTypes;
 import com.cannolicatfish.rankine.init.RankineItems;
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -14,6 +15,7 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.projectile.Fireball;
 import net.minecraft.world.entity.projectile.ItemSupplier;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseFireBlock;
 import net.minecraft.world.phys.BlockHitResult;
@@ -64,11 +66,15 @@ public class CarcassEntity extends Fireball implements ItemSupplier {
                 Entity entity1 = this.getOwner();
                 int i = entity.getRemainingFireTicks();
                 entity.igniteForSeconds(5);
-                boolean flag = entity.hurt(this.damageSources().fireball(this, entity1), 5.0F);
+                DamageSource damagesource = this.damageSources().fireball(this, entity1);
+                boolean flag = entity.hurt(damagesource, 5.0F);
                 if (!flag) {
                     entity.setRemainingFireTicks(i);
-                } else if (entity1 instanceof LivingEntity) {
-                    this.doEnchantDamageEffects((LivingEntity)entity1, entity);
+                } else if (entity1 instanceof LivingEntity && this.level() instanceof ServerLevel serverlevel) {
+                    // PORT-NOTE: Entity#doEnchantDamageEffects is gone in 1.21.1; EnchantmentHelper.doPostAttackEffects
+                    // is the replacement and reads the attacker off the DamageSource (which already carries the owner
+                    // here), so this is a full-parity swap. Same shape as vanilla SmallFireball.
+                    EnchantmentHelper.doPostAttackEffects(serverlevel, entity, damagesource);
                 }
             }
         }

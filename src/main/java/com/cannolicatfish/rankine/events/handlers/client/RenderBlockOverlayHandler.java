@@ -8,6 +8,8 @@ import com.mojang.blaze3d.vertex.Tesselator;
 import com.mojang.blaze3d.vertex.VertexFormat;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.client.renderer.LightTexture;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.client.event.RenderBlockScreenEffectEvent;
@@ -30,7 +32,10 @@ public class RenderBlockOverlayHandler {
             ResourceLocation texture = ResourceLocation.fromNamespaceAndPath("rankine", "textures/block/" + blockId.getPath() + "_overlay.png");
             RenderSystem.setShader(GameRenderer::getPositionTexColorShader);
             RenderSystem.setShaderTexture(0, texture);
-            float f = minecraftIn.player.getBrightness();
+            // PORT-NOTE: Entity#getBrightness() is gone. Vanilla ScreenEffectRenderer#renderFluid now computes the
+            // same value inline from the eye-position light level, so this mirrors it exactly.
+            BlockPos eyePos = BlockPos.containing(minecraftIn.player.getX(), minecraftIn.player.getEyeY(), minecraftIn.player.getZ());
+            float f = LightTexture.getBrightness(minecraftIn.player.level().dimensionType(), minecraftIn.player.level().getMaxLocalRawBrightness(eyePos));
             RenderSystem.enableBlend();
             RenderSystem.defaultBlendFunc();
             float f7 = -minecraftIn.player.getYRot() / 64.0F;

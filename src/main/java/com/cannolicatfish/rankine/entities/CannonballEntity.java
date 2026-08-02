@@ -8,6 +8,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -15,6 +16,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractHurtingProjectile;
 import net.minecraft.world.entity.projectile.ItemSupplier;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
@@ -93,9 +95,16 @@ public class CannonballEntity extends AbstractHurtingProjectile implements ItemS
         if (!this.level().isClientSide) {
             Entity entity = result.getEntity();
             Entity entity1 = this.getOwner();
-            boolean flag = entity.hurt(RankineDamageSources.source(this.level(), RankineDamageSources.CANNONBALL), 10.0F);
-            if (flag && entity1 instanceof LivingEntity) {
-                this.doEnchantDamageEffects((LivingEntity)entity1, entity);
+            DamageSource damagesource = RankineDamageSources.source(this.level(), RankineDamageSources.CANNONBALL);
+            boolean flag = entity.hurt(damagesource, 10.0F);
+            if (flag && entity1 instanceof LivingEntity && this.level() instanceof ServerLevel serverlevel) {
+            // PORT-NOTE: Entity#doEnchantDamageEffects is gone in 1.21.1; EnchantmentHelper.doPostAttackEffects
+            // is the replacement. It derives the attacker (and its weapon) from the DamageSource instead of
+            // taking it as an argument.
+                // BEHAVIOUR DELTA: rankine:cannonball is an ownerless damage source (as it was in 1.18.2),
+                // so only the victim-side post-attack effects fire; the attacker-weapon side is skipped
+                // because 1.21.1 reads the attacker off the DamageSource.
+                EnchantmentHelper.doPostAttackEffects(serverlevel, entity, damagesource);
             }
             Vec3 vector3d = this.getDeltaMovement().multiply(1.0D, 0.0D, 1.0D).normalize().scale((double)1.6D);
             if (vector3d.lengthSqr() > 0.0D) {

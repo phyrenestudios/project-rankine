@@ -112,7 +112,11 @@ public class FusionFurnaceRecipeCategory implements IRecipeCategory<FusionFurnac
         builder.addSlot(RecipeIngredientRole.OUTPUT,108,14).addItemStack(recipe.getResult1());
         builder.addSlot(RecipeIngredientRole.OUTPUT,108,40).addItemStack(recipe.getResult2());
 
-        builder.addSlot(RecipeIngredientRole.CATALYST,53,43).addIngredients(Ingredient.merge(List.of(Ingredient.of(RankineTags.Items.BATTERIES),Ingredient.of(RankineTags.Items.RTG))));
+        // Ingredient.merge is gone in 1.21; adding both to one slot makes JEI cycle them,
+        // which displays the same "battery or RTG" catalyst set.
+        builder.addSlot(RecipeIngredientRole.CATALYST,53,43)
+                .addIngredients(Ingredient.of(RankineTags.Items.BATTERIES))
+                .addIngredients(Ingredient.of(RankineTags.Items.RTG));
 
 
 

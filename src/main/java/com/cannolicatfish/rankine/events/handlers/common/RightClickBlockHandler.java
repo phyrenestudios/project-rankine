@@ -208,17 +208,17 @@ public class RightClickBlockHandler {
                 if (targetBS.hasProperty(CropBlock.AGE) && targetBS.getValue(DoubleCropsBlock.AGE) == 7) {
                     if (targetBS.getValue(DoubleCropsBlock.SECTION) == DoubleBlockHalf.LOWER) {
                         worldIn.destroyBlock(pos,true);
-                        if (targetBS.getBlock().canSurvive(b.defaultBlockState().setValue(CropBlock.AGE, 0),worldIn,pos)) {
+                        if (b.defaultBlockState().setValue(CropBlock.AGE, 0).canSurvive(worldIn,pos)) {
                             worldIn.setBlockAndUpdate(pos, b.defaultBlockState().setValue(CropBlock.AGE, 0));
                         }
                     } else if (targetBS.getValue(DoubleCropsBlock.SECTION) == DoubleBlockHalf.UPPER) {
                         worldIn.destroyBlock(pos.below(),true);
-                        if (targetBS.getBlock().canSurvive(b.defaultBlockState().setValue(CropBlock.AGE, 0),worldIn,pos.below())) {
+                        if (b.defaultBlockState().setValue(CropBlock.AGE, 0).canSurvive(worldIn,pos.below())) {
                             worldIn.setBlockAndUpdate(pos.below(), b.defaultBlockState().setValue(CropBlock.AGE, 0));
                         }
                     }
                     if (RankineEnchantmentHelper.getLevel(worldIn, RankineEnchantments.ENDOSPORE, stack) > 0 && worldIn.getRandom().nextFloat() < (0.2f + Math.min(player.getLuck()/20f,0.3))) {
-                        Optional<BlockPos> bp = BlockPos.findClosestMatch(pos,3,3, blockPos ->!blockPos.equals(pos) && worldIn.isEmptyBlock(blockPos) && targetBS.getBlock().canSurvive(b.defaultBlockState().setValue(CropBlock.AGE, 0),worldIn,blockPos));
+                        Optional<BlockPos> bp = BlockPos.findClosestMatch(pos,3,3, blockPos ->!blockPos.equals(pos) && worldIn.isEmptyBlock(blockPos) && b.defaultBlockState().setValue(CropBlock.AGE, 0).canSurvive(worldIn,blockPos));
                         bp.ifPresent(blockPos -> worldIn.setBlockAndUpdate(blockPos, b.defaultBlockState().setValue(CropBlock.AGE, CropBlock.AGE.getPossibleValues().stream().max(Integer::compareTo).orElse(0))));
                     }
                 }
@@ -226,22 +226,22 @@ public class RightClickBlockHandler {
                 if (targetBS.hasProperty(CropBlock.AGE) && targetBS.getValue(DoubleCropsBlock.AGE) == 7) {
                     if (targetBS.getValue(TripleCropsBlock.SECTION) == TripleBlockSection.BOTTOM) {
                         worldIn.destroyBlock(pos,true);
-                        if (targetBS.getBlock().canSurvive(b.defaultBlockState().setValue(CropBlock.AGE, 0),worldIn,pos)) {
+                        if (b.defaultBlockState().setValue(CropBlock.AGE, 0).canSurvive(worldIn,pos)) {
                             worldIn.setBlockAndUpdate(pos, b.defaultBlockState().setValue(CropBlock.AGE, 0));
                         }
                     } else if (targetBS.getValue(TripleCropsBlock.SECTION) == TripleBlockSection.MIDDLE) {
                         worldIn.destroyBlock(pos.below(),true);
-                        if (targetBS.getBlock().canSurvive(b.defaultBlockState().setValue(CropBlock.AGE, 0),worldIn,pos.below())) {
+                        if (b.defaultBlockState().setValue(CropBlock.AGE, 0).canSurvive(worldIn,pos.below())) {
                             worldIn.setBlockAndUpdate(pos.below(), b.defaultBlockState().setValue(CropBlock.AGE, 0));
                         }
                     } else if (targetBS.getValue(TripleCropsBlock.SECTION) == TripleBlockSection.TOP) {
                         worldIn.destroyBlock(pos.below(2),true);
-                        if (targetBS.getBlock().canSurvive(b.defaultBlockState().setValue(CropBlock.AGE, 0),worldIn,pos.below(2))) {
+                        if (b.defaultBlockState().setValue(CropBlock.AGE, 0).canSurvive(worldIn,pos.below(2))) {
                             worldIn.setBlockAndUpdate(pos.below(2), b.defaultBlockState().setValue(CropBlock.AGE, 0));
                         }
                     }
                     if (RankineEnchantmentHelper.getLevel(worldIn, RankineEnchantments.ENDOSPORE, stack) > 0 && worldIn.getRandom().nextFloat() < (0.2f + Math.min(player.getLuck()/20f,0.3))) {
-                        Optional<BlockPos> bp = BlockPos.findClosestMatch(pos,3,3, blockPos -> !blockPos.equals(pos) && worldIn.isEmptyBlock(blockPos) && targetBS.getBlock().canSurvive(b.defaultBlockState().setValue(CropBlock.AGE, 0),worldIn,blockPos));
+                        Optional<BlockPos> bp = BlockPos.findClosestMatch(pos,3,3, blockPos -> !blockPos.equals(pos) && worldIn.isEmptyBlock(blockPos) && b.defaultBlockState().setValue(CropBlock.AGE, 0).canSurvive(worldIn,blockPos));
                         bp.ifPresent(blockPos -> worldIn.setBlockAndUpdate(blockPos, b.defaultBlockState().setValue(CropBlock.AGE, CropBlock.AGE.getPossibleValues().stream().max(Integer::compareTo).orElse(0))));
                     }
                 }
@@ -249,11 +249,11 @@ public class RightClickBlockHandler {
 
                 if (targetBS.hasProperty(CropBlock.AGE) && targetBS.getValue(CropBlock.AGE) == 7) {
                     worldIn.destroyBlock(pos,true);
-                    if (targetBS.getBlock().canSurvive(b.defaultBlockState().setValue(CropBlock.AGE, 0),worldIn,pos)) {
+                    if (b.defaultBlockState().setValue(CropBlock.AGE, 0).canSurvive(worldIn,pos)) {
                         worldIn.setBlockAndUpdate(pos,b.defaultBlockState().setValue(CropBlock.AGE, 0));
                     }
                     if (RankineEnchantmentHelper.getLevel(worldIn, RankineEnchantments.ENDOSPORE, stack) > 0 && worldIn.getRandom().nextFloat() < (0.2f + Math.min(player.getLuck()/20f,0.3))) {
-                        Optional<BlockPos> bp = BlockPos.findClosestMatch(pos,3,3,blockPos -> !blockPos.equals(pos) && worldIn.isEmptyBlock(blockPos) && targetBS.getBlock().canSurvive(b.defaultBlockState().setValue(CropBlock.AGE, 0),worldIn,blockPos));
+                        Optional<BlockPos> bp = BlockPos.findClosestMatch(pos,3,3,blockPos -> !blockPos.equals(pos) && worldIn.isEmptyBlock(blockPos) && b.defaultBlockState().setValue(CropBlock.AGE, 0).canSurvive(worldIn,blockPos));
                         bp.ifPresent(blockPos -> worldIn.setBlockAndUpdate(blockPos, b.defaultBlockState().setValue(CropBlock.AGE, CropBlock.AGE.getPossibleValues().stream().max(Integer::compareTo).orElse(0))));
                     }
                 }
@@ -329,7 +329,10 @@ public class RightClickBlockHandler {
                         player.getCooldowns().addCooldown(stack.getItem(), recipe.getCooldownTicks());
                     }
 
-                    if (stack.getItem().canBeDepleted()) {
+                    // PORT-NOTE: Item#canBeDepleted() is gone; ItemStack#isDamageableItem() is the
+                    // 1.21.1 equivalent (it additionally skips UNBREAKABLE stacks, which hurtAndBreak
+                    // would have no-opped on anyway).
+                    if (stack.isDamageableItem()) {
                         player.getMainHandItem().hurtAndBreak(1, player, EquipmentSlot.MAINHAND);
                     }
                 }

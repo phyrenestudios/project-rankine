@@ -146,7 +146,7 @@ public class RankineBlockLootTables extends net.minecraft.data.loot.BlockLootSub
                 } else if (blk instanceof LeafLitterBlock) {
                     lootTables.put(blk, withShears(blk));
                 } else if (blk instanceof FlowerPotBlock) {
-                    lootTables.put(blk, droppingAndFlowerPot(((FlowerPotBlock)blk).getContent()));
+                    lootTables.put(blk, droppingAndFlowerPot(((FlowerPotBlock)blk).getPotted()));
                 } else if (blk instanceof HollowLogBlock) {
                     lootTables.put(blk, droppingWithSilkTouchOrRandomly(blk, Items.STICK, UniformGenerator.between(2.0F, 6.0F)));
                 } else if (blk != null) {
@@ -436,6 +436,10 @@ public class RankineBlockLootTables extends net.minecraft.data.loot.BlockLootSub
 
     protected LootPool.Builder withSurvivesExplosion(ItemLike item, LootPool.Builder pool) {
         return IMMUNE_TO_EXPLOSIONS.contains(item.asItem()) ? pool : pool.when(ExplosionCondition.survivesExplosion());
+    }
+
+    protected AlternativesEntry.Builder withSurvivesExplosion(ItemLike item, AlternativesEntry.Builder entry) {
+        return IMMUNE_TO_EXPLOSIONS.contains(item.asItem()) ? entry : entry.when(ExplosionCondition.survivesExplosion());
     }
 
     protected LootTable.Builder dropping(ItemLike item) {
