@@ -9,6 +9,6 @@ public class NonAlloyItemColor implements ItemColor {
     @Override
     public int getColor(ItemStack stack, int tintIndex) {
         BlockState blockstate = ((BlockItem)stack.getItem()).getBlock().defaultBlockState();
-        return new NonAlloyBlockColor().getColor(blockstate, null, null, 0);
+        return ItemTint.opaque(new NonAlloyBlockColor().getColor(blockstate, null, null, 0));
     }
 }

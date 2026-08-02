@@ -8,8 +8,8 @@ public class SGVDItemColor implements ItemColor {
     @Override
     public int getColor(ItemStack stack, int tintIndex) {
         if (stack.getItem() instanceof ShulkerGasVacuumItem && tintIndex == 0) {
-            return ShulkerGasVacuumItem.getColor(stack);
+            return ItemTint.opaque(ShulkerGasVacuumItem.getColor(stack));
         }
-        return 16777215;
+        return ItemTint.opaque(16777215);
     }
 }

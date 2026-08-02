@@ -147,6 +147,14 @@ These were all invisible to the compiler and found only by running things:
    builder. Five cases fixed by declaring the empty item tag directly (matching 1.18 output byte-for-byte).
 5. **Ambiguous `X::new`** — `DeferredRegister.Blocks/Items` have both `Function<ResourceLocation,B>`
    and `Supplier<B>` overloads. Always write `() -> new X()`. Hit twice (literal and computed names).
+6. **Item tints are ARGB in 1.21; they were RGB in 1.18 — a zero alpha byte renders NOTHING.**
+   `ItemRenderer#renderQuadList` now does `FastColor.ARGB32.alpha(i)` and passes it as the quad's
+   alpha. Every plain `0xRRGGBB` tint therefore has alpha 0 and the item is drawn fully transparent:
+   present in the inventory, correct data components, no sprite. Found only by looking at a creative
+   tab — **no gate catches this**, since gates 1–5 are all headless. Fixed centrally by
+   `util/colors/ItemTint#opaque`. **Block tints are still RGB**, so the same colour class looks right
+   on a placed block and invisible as an item — that asymmetry is what makes it confusing to spot.
+   Vanilla's convention is the tell: its "no tint" constant is `-1` (`0xFFFFFFFF`), not `0xFFFFFF`.
 
 ---
 

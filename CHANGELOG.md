@@ -27,6 +27,19 @@ All notable changes to the mod, Project Rankine, will be kept in this file.
 - The Rankine Journal recipe carries its Patchouli book id as a `custom_data` component. 1.21 removed the `nbt`
   field from recipe results, so the id would otherwise have been dropped and the crafted book would open blank.
 
+### FIXES (found while testing the port)
+- **Every tinted Rankine item rendered invisible.** 1.18.2's item renderer used only the RGB channels
+  of an `ItemColor` and always drew items opaque; 1.21 reads the value as ARGB and passes its alpha
+  through to the quad. Rankine's tints are all plain `0xRRGGBB` — alloy colours, biome-derived grass
+  and leaf colours, and the `16777215` fallback — so their alpha byte was zero and nothing was drawn.
+  Affected alloy tools, gears, ingots, plates, armour, arrows, templates, the Shulker Gas Vacuum, and
+  the tinted grass/leaf/sheetmetal block items. Placed blocks were never affected, because block
+  tints are still treated as RGB.
+- Antiquated and Shape Memory are once again restricted to pewter and nitinol tools respectively.
+  1.18.2 enforced this in the enchantment classes; 1.21 applicability is an item tag, which cannot
+  see a per-stack alloy, so the check now runs through NeoForge's `supportsEnchantment` and
+  `isPrimaryItemFor` item extensions. Automatic alloy enchantments are unaffected.
+
 ### FIXES (pre-existing bugs found during the port)
 - Alloy templates always displayed white; the stored color was written under one key and read under another
 - Alloy knockback resistance was written as a float and read as an int, so it was always zero

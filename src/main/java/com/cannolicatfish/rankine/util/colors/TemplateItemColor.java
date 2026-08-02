@@ -8,8 +8,8 @@ public class TemplateItemColor implements ItemColor {
     @Override
     public int getColor(ItemStack stack, int tintIndex) {
         if (stack.getItem() instanceof AlloyTemplateItem) {
-            return AlloyTemplateItem.getColor(stack);
+            return ItemTint.opaque(AlloyTemplateItem.getColor(stack));
         }
-        return 16777215;
+        return ItemTint.opaque(16777215);
     }
 }

@@ -8,6 +8,6 @@ public class AlloyItemColor implements ItemColor {
     @Override
     public int getColor(ItemStack stack, int tintIndex) {
         Integer color = stack.get(RankineDataComponents.COLOR.get());
-        return color != null ? color : 16777215;
+        return ItemTint.opaque(color != null ? color : 16777215);
     }
 }

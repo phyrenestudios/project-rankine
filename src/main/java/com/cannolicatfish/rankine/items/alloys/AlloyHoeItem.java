@@ -1,4 +1,6 @@
 package com.cannolicatfish.rankine.items.alloys;
+import net.minecraft.core.Holder;
+import net.minecraft.world.item.ItemStack;
 
 import com.cannolicatfish.rankine.init.RankineEnchantments;
 import com.cannolicatfish.rankine.items.tools.RankineToolMaterials;
@@ -131,7 +133,7 @@ public class AlloyHoeItem extends HoeItem implements IAlloyTool {
         super.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
     }
 
-    // PORT-TODO(init): fillItemCategory is gone — dynamic creative-tab variants
+    // PORT-TODO(init): fillItemCategory is gone â€” dynamic creative-tab variants
     // (AlloyCustomHelper.getItemsFromAlloying/getItemsFromAlloyCrafting when defaultAlloyRecipe == null)
     // must be added in RankineCreativeTabs' displayItems.
 
@@ -156,5 +158,17 @@ public class AlloyHoeItem extends HoeItem implements IAlloyTool {
             return !s.isEmpty() && s.equals(r) && s2.equals(r2);
         }
         return false;
+    }
+
+    // 1.18.2 restricted these two enchantments to a single alloy via canEnchant /
+    // canApplyAtEnchantingTable. See IAlloyTool#alloyGateAllows for why that moved here.
+    @Override
+    public boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment) {
+        return IAlloyTool.alloyGateAllows(stack, enchantment, false, super.supportsEnchantment(stack, enchantment));
+    }
+
+    @Override
+    public boolean isPrimaryItemFor(ItemStack stack, Holder<Enchantment> enchantment) {
+        return IAlloyTool.alloyGateAllows(stack, enchantment, true, super.isPrimaryItemFor(stack, enchantment));
     }
 }

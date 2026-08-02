@@ -10,6 +10,6 @@ public class GrassItemBaseColor implements ItemColor {
     @Override
     public int getColor(ItemStack stack, int color) {
         BlockState blockstate = ((BlockItem)stack.getItem()).getBlock().defaultBlockState();
-        return new GrassBlockBaseColor().getColor(blockstate, null, null, color);
+        return ItemTint.opaque(new GrassBlockBaseColor().getColor(blockstate, null, null, color));
     }
 }

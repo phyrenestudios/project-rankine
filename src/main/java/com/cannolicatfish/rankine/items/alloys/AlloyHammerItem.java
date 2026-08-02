@@ -1,4 +1,7 @@
 package com.cannolicatfish.rankine.items.alloys;
+import net.minecraft.core.Holder;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantment;
 
 import com.cannolicatfish.rankine.enchantment.RankineEnchantmentHelper;
 import com.cannolicatfish.rankine.init.RankineEnchantments;
@@ -65,7 +68,7 @@ public class AlloyHammerItem extends HammerItem implements IAlloyTool {
     public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         // PORT-NOTE: the per-enchantment helper methods are gone (enchantments are data-driven registry entries
         // now); levels are looked up by ResourceKey through the level registry. Note the 1.18.2 code read the
-        // LIGHTNING_ASPECT level (not Daze) for the slowness duration inside the Daze branch — preserved as-is.
+        // LIGHTNING_ASPECT level (not Daze) for the slowness duration inside the Daze branch â€” preserved as-is.
         int lightningLevel = RankineEnchantmentHelper.getLevel(attacker, RankineEnchantments.LIGHTNING_ASPECT, stack);
         if (target.getCommandSenderWorld().isRainingAt(target.blockPosition()) && lightningLevel > 0) {
             LightningBolt ent = new LightningBolt(EntityType.LIGHTNING_BOLT,attacker.level());
@@ -178,7 +181,7 @@ public class AlloyHammerItem extends HammerItem implements IAlloyTool {
         super.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
     }
 
-    // PORT-TODO(init): fillItemCategory is gone — dynamic creative-tab variants
+    // PORT-TODO(init): fillItemCategory is gone â€” dynamic creative-tab variants
     // (AlloyCustomHelper.getItemsFromAlloying/getItemsFromAlloyCrafting when defaultAlloyRecipe == null)
     // must be added in RankineCreativeTabs' displayItems.
 
@@ -224,5 +227,17 @@ public class AlloyHammerItem extends HammerItem implements IAlloyTool {
             return !s.isEmpty() && s.equals(r) && s2.equals(r2);
         }
         return false;
+    }
+
+    // 1.18.2 restricted these two enchantments to a single alloy via canEnchant /
+    // canApplyAtEnchantingTable. See IAlloyTool#alloyGateAllows for why that moved here.
+    @Override
+    public boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment) {
+        return IAlloyTool.alloyGateAllows(stack, enchantment, false, super.supportsEnchantment(stack, enchantment));
+    }
+
+    @Override
+    public boolean isPrimaryItemFor(ItemStack stack, Holder<Enchantment> enchantment) {
+        return IAlloyTool.alloyGateAllows(stack, enchantment, true, super.isPrimaryItemFor(stack, enchantment));
     }
 }
