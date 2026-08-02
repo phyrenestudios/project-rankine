@@ -23,7 +23,6 @@ import net.neoforged.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 import java.util.List;
-import java.util.Random;
 
 import net.minecraft.world.item.Item.Properties;
 

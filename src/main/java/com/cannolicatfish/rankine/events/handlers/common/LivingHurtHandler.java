@@ -1,13 +1,15 @@
 package com.cannolicatfish.rankine.events.handlers.common;
 
+import com.cannolicatfish.rankine.enchantment.RankineEnchantmentHelper;
 import com.cannolicatfish.rankine.init.RankineEnchantments;
 import com.cannolicatfish.rankine.items.alloys.AlloyArmorItem;
 import com.cannolicatfish.rankine.items.tools.KnifeItem;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.Mth;
-import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -15,33 +17,52 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
-import net.neoforged.neoforge.event.entity.living.LivingHurtEvent;
+import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 
 import java.util.List;
 
+/**
+ * 1.21.1 event mapping: LivingHurtEvent -> LivingIncomingDamageEvent.
+ * Both fire pre-armor and both are cancelable, so parry/immunity semantics are preserved exactly.
+ * getEntityLiving() -> getEntity(); DamageSource identity comparisons -> DamageSource#is(ResourceKey);
+ * isBypassArmor()/isProjectile() -> DamageTypeTags checks;
+ * hurtAndBreak + broadcastBreakEvent collapsed into hurtAndBreak(amount, entity, slot).
+ */
 public class LivingHurtHandler {
-    public static void onParryEvent(LivingHurtEvent event) {
-        if (event.getEntityLiving() instanceof Player) {
-            Player player = (Player) event.getEntityLiving();
+
+    /**
+     * 1.21.1 removed EquipmentSlot.byTypeAndIndex — this reproduces the old
+     * {@code byTypeAndIndex(Type.ARMOR, i)} mapping over Inventory#armor (0=feet .. 3=head).
+     */
+    static EquipmentSlot armorSlot(int index) {
+        return switch (index) {
+            case 1 -> EquipmentSlot.LEGS;
+            case 2 -> EquipmentSlot.CHEST;
+            case 3 -> EquipmentSlot.HEAD;
+            default -> EquipmentSlot.FEET;
+        };
+    }
+
+    public static void onParryEvent(LivingIncomingDamageEvent event) {
+        if (event.getEntity() instanceof Player player) {
+            Level level = player.level();
             ItemStack stack = player.getOffhandItem().getItem() instanceof KnifeItem ? player.getOffhandItem() : ItemStack.EMPTY;
             if (!stack.isEmpty()) {
-                int i = stack.getItem().getUseDuration(stack) - player.getUseItemRemainingTicks();
-                if (i < (10 + EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.PREPARATION.get(),stack))) {
+                int i = stack.getUseDuration(player) - player.getUseItemRemainingTicks();
+                if (i < (10 + RankineEnchantmentHelper.getLevel(level, RankineEnchantments.PREPARATION, stack))) {
 
 
-                    if (!event.getSource().isBypassArmor()) {
+                    if (!event.getSource().is(DamageTypeTags.BYPASSES_ARMOR)) {
                         player.playSound(SoundEvents.EXPERIENCE_ORB_PICKUP,1.0f, 1.0f);
-                        if (event.getSource().getEntity() instanceof LivingEntity && EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.RETALIATE.get(),stack) >= 1) {
-                            LivingEntity ent = (LivingEntity) event.getSource().getEntity();
+                        if (event.getSource().getEntity() instanceof LivingEntity ent && RankineEnchantmentHelper.getLevel(level, RankineEnchantments.RETALIATE, stack) >= 1) {
                             ent.hurt(event.getSource(),event.getAmount());
-                        } else if (EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.RETREAT.get(),stack) >= 1) {
+                        } else if (RankineEnchantmentHelper.getLevel(level, RankineEnchantments.RETREAT, stack) >= 1) {
                             player.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY,60));
                         }
-                        if (EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ENDGAME.get(),stack) > 0) {
-                            List<LivingEntity> list = player.level.getEntitiesOfClass(LivingEntity.class, new AABB(player.blockPosition()).inflate(5, 5, 5), (e) -> (e instanceof Mob || e instanceof Player) && !e.equals(player));
+                        if (RankineEnchantmentHelper.getLevel(level, RankineEnchantments.ENDGAME, stack) > 0) {
+                            List<LivingEntity> list = level.getEntitiesOfClass(LivingEntity.class, new AABB(player.blockPosition()).inflate(5, 5, 5), (e) -> (e instanceof Mob || e instanceof Player) && !e.equals(player));
                             for (LivingEntity entity : list) {
                                 ItemStack offhand = player.getOffhandItem();
                                 ItemStack mainhand = player.getMainHandItem();
@@ -55,7 +76,7 @@ public class LivingHurtHandler {
 
                             for(int j = 0; j < 16; ++j) {
                                 double d3 = player.getX() + (player.getRandom().nextDouble() - 0.5D) * 16.0D;
-                                double d4 = Mth.clamp(player.getY() + (double)(player.getRandom().nextInt(16) - 8), 0.0D, (double)(player.level.getHeight() - 1));
+                                double d4 = Mth.clamp(player.getY() + (double)(player.getRandom().nextInt(16) - 8), 0.0D, (double)(level.getHeight() - 1));
                                 double d5 = player.getZ() + (player.getRandom().nextDouble() - 0.5D) * 16.0D;
                                 if (player.isPassenger()) {
                                     player.stopRiding();
@@ -63,15 +84,13 @@ public class LivingHurtHandler {
 
                                 if (player.randomTeleport(d3, d4, d5, true)) {
                                     SoundEvent soundevent = SoundEvents.CHORUS_FRUIT_TELEPORT;
-                                    player.level.playSound((Player)null, d0, d1, d2, soundevent, SoundSource.PLAYERS, 1.0F, 1.0F);
+                                    level.playSound((Player)null, d0, d1, d2, soundevent, SoundSource.PLAYERS, 1.0F, 1.0F);
                                     player.playSound(soundevent, 1.0F, 1.0F);
                                     break;
                                 }
                             }
                         }
-                        stack.hurtAndBreak(1, player, (p_220045_0_) -> {
-                            p_220045_0_.broadcastBreakEvent(EquipmentSlot.MAINHAND);
-                        });
+                        stack.hurtAndBreak(1, player, EquipmentSlot.MAINHAND);
 
                         event.setCanceled(true);
                     }
@@ -79,15 +98,14 @@ public class LivingHurtHandler {
             }
         }
     }
-    public static void onLivingHurt(LivingHurtEvent event) {
-        if (event.getEntityLiving() instanceof Player) {
-            Player player = (Player) event.getEntityLiving();
+    public static void onLivingHurt(LivingIncomingDamageEvent event) {
+        if (event.getEntity() instanceof Player player) {
             Level worldIn = player.getCommandSenderWorld();
             for (int i = 0; i < player.getInventory().armor.size(); ++i) {
                 ItemStack s = player.getInventory().armor.get(i);
                 int curSlot = i;
 
-                if (event.getSource().isProjectile() && EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ENDOBIOTIC.get(),s) > 0) {
+                if (event.getSource().is(DamageTypeTags.IS_PROJECTILE) && RankineEnchantmentHelper.getLevel(worldIn, RankineEnchantments.ENDOBIOTIC, s) > 0) {
                     if (!worldIn.isClientSide) {
                         double d0 = player.getX();
                         double d1 = player.getY();
@@ -95,9 +113,8 @@ public class LivingHurtHandler {
                         if (s.getItem() instanceof AlloyArmorItem armor) {
                             if ((worldIn.getRandom().nextFloat() > armor.getCorrResist(s) && player.isInWaterOrRain())) {
 
-                                s.hurtAndBreak(1 + EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ENDOBIOTIC.get(),s)*3,player,(entity) -> {
-                                    entity.broadcastBreakEvent(EquipmentSlot.byTypeAndIndex(EquipmentSlot.Type.ARMOR, curSlot));
-                                });
+                                s.hurtAndBreak(1 + RankineEnchantmentHelper.getLevel(worldIn, RankineEnchantments.ENDOBIOTIC, s)*3, player,
+                                        armorSlot(curSlot));
                             }
                         }
 
@@ -122,17 +139,18 @@ public class LivingHurtHandler {
                 }
 
                 if (s.getItem() instanceof AlloyArmorItem armor) {
-                    if (EquipmentSlot.byTypeAndIndex(EquipmentSlot.Type.ARMOR, curSlot).equals(EquipmentSlot.FEET)) {
-                        if (event.getSource().equals(DamageSource.HOT_FLOOR) && armor.getHeatResist(s) >= 1) {
+                    EquipmentSlot slot = armorSlot(curSlot);
+                    if (slot.equals(EquipmentSlot.FEET)) {
+                        if (event.getSource().is(DamageTypes.HOT_FLOOR) && armor.getHeatResist(s) >= 1) {
                             event.setCanceled(true);
-                        } else if (event.getSource().equals(DamageSource.STALAGMITE) && armor.getToughness(s) >= 0.4f) {
+                        } else if (event.getSource().is(DamageTypes.STALAGMITE) && armor.getToughness(s) >= 0.4f) {
                             event.setCanceled(true);
                         }
-                    } else if (EquipmentSlot.byTypeAndIndex(EquipmentSlot.Type.ARMOR, curSlot).equals(EquipmentSlot.LEGS) && event.getSource().equals(DamageSource.SWEET_BERRY_BUSH) && armor.getToughness(s) >= 0.2f) {
+                    } else if (slot.equals(EquipmentSlot.LEGS) && event.getSource().is(DamageTypes.SWEET_BERRY_BUSH) && armor.getToughness(s) >= 0.2f) {
                         event.setCanceled(true);
-                    } else if (EquipmentSlot.byTypeAndIndex(EquipmentSlot.Type.ARMOR, curSlot).equals(EquipmentSlot.CHEST) && event.getSource().equals(DamageSource.CACTUS) && armor.getToughness(s) >= 0.2f) {
+                    } else if (slot.equals(EquipmentSlot.CHEST) && event.getSource().is(DamageTypes.CACTUS) && armor.getToughness(s) >= 0.2f) {
                         event.setCanceled(true);
-                    } else if (EquipmentSlot.byTypeAndIndex(EquipmentSlot.Type.ARMOR, curSlot).equals(EquipmentSlot.HEAD) && (event.getSource().equals(DamageSource.FALLING_STALACTITE) || event.getSource().equals(DamageSource.FALLING_BLOCK)) && armor.getToughness(s) >= 0.4f) {
+                    } else if (slot.equals(EquipmentSlot.HEAD) && (event.getSource().is(DamageTypes.FALLING_STALACTITE) || event.getSource().is(DamageTypes.FALLING_BLOCK)) && armor.getToughness(s) >= 0.4f) {
                         event.setCanceled(true);
                     }
 

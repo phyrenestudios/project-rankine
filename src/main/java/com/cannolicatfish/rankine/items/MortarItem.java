@@ -15,10 +15,10 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.neoforged.neoforge.registries.ForgeRegistries;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.util.RandomSource;
 
 import java.util.Objects;
-import java.util.Random;
 
 public class MortarItem extends Item {
     public MortarItem(Properties properties) {
@@ -31,11 +31,11 @@ public class MortarItem extends Item {
         BlockPos pos = context.getClickedPos();
         BlockState state = worldIn.getBlockState(pos);
         Block block = state.getBlock();
-        ResourceLocation rs = block.getRegistryName();
+        ResourceLocation rs = BuiltInRegistries.BLOCK.getKey(block);
             if (rs != null) {
-                ResourceLocation rs2 = new ResourceLocation(rs.getNamespace(), rs.getPath()+"_bricks");
-                if (ForgeRegistries.BLOCKS.containsKey(rs2) && !worldIn.isClientSide()) {
-                    worldIn.setBlock(pos, Objects.requireNonNull(ForgeRegistries.BLOCKS.getValue(rs2)).defaultBlockState(), 2);
+                ResourceLocation rs2 = ResourceLocation.fromNamespaceAndPath(rs.getNamespace(), rs.getPath()+"_bricks");
+                if (BuiltInRegistries.BLOCK.containsKey(rs2) && !worldIn.isClientSide()) {
+                    worldIn.setBlock(pos, Objects.requireNonNull(BuiltInRegistries.BLOCK.get(rs2)).defaultBlockState(), 2);
                     spawnParticles(worldIn, pos, 0);
                     context.getItemInHand().shrink(1);
                     return InteractionResult.SUCCESS;
@@ -99,7 +99,7 @@ public class MortarItem extends Item {
                 }
 
                 worldIn.addParticle(ParticleTypes.WHITE_ASH, (double)posIn.getX() + 0.5D, (double)posIn.getY() + 0.5D, (double)posIn.getZ() + 0.5D, 0.0D, 0.0D, 0.0D);
-                Random random = worldIn.getRandom();
+                RandomSource random = worldIn.getRandom();
                 for(int i = 0; i < data; ++i) {
                     double d2 = random.nextGaussian() * 0.02D;
                     double d3 = random.nextGaussian() * 0.02D;
@@ -108,7 +108,7 @@ public class MortarItem extends Item {
                     double d6 = (double)posIn.getX() + d5 + random.nextDouble() * d0 * 2.0D;
                     double d7 = (double)posIn.getY() + random.nextDouble() * d1;
                     double d8 = (double)posIn.getZ() + d5 + random.nextDouble() * d0 * 2.0D;
-                    if (!worldIn.getBlockState((new BlockPos(d6, d7, d8)).below()).isAir()) {
+                    if (!worldIn.getBlockState(BlockPos.containing(d6, d7, d8).below()).isAir()) {
                         worldIn.addParticle(ParticleTypes.WHITE_ASH, d6, d7, d8, d2, d3, d4);
                     }
                 }

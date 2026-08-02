@@ -13,7 +13,6 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.Level;
-import net.neoforged.neoforge.network.NetworkHooks;
 import net.neoforged.neoforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
@@ -33,7 +32,7 @@ public class ElementIndexerItem extends Item {
     public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn) {
         if (!worldIn.isClientSide)
         {
-            NetworkHooks.openGui((ServerPlayer) playerIn,INSTANCE);
+            ((ServerPlayer) playerIn).openMenu(INSTANCE);
         }
 
         return super.use(worldIn, playerIn, handIn);

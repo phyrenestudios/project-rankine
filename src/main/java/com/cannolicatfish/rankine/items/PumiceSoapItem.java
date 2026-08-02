@@ -15,11 +15,11 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.common.Tags;
-import net.neoforged.neoforge.registries.ForgeRegistries;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.util.RandomSource;
 
 import net.minecraft.world.item.Item.Properties;
 
-import java.util.Random;
 
 public class PumiceSoapItem extends Item {
     public PumiceSoapItem(Properties properties) {
@@ -32,11 +32,11 @@ public class PumiceSoapItem extends Item {
 
         Level worldIn = context.getLevel();
         Block block = worldIn.getBlockState(context.getClickedPos()).getBlock();
-        ResourceLocation rs = block.getRegistryName();
+        ResourceLocation rs = BuiltInRegistries.BLOCK.getKey(block);
         if (rs != null) {
             if(rs.getPath().contains("mossy_")) {
-                ResourceLocation rs2 = new ResourceLocation(rs.getNamespace(),rs.getPath().split("mossy_")[1]);
-                Block bl = ForgeRegistries.BLOCKS.getValue(rs2);
+                ResourceLocation rs2 = ResourceLocation.fromNamespaceAndPath(rs.getNamespace(),rs.getPath().split("mossy_")[1]);
+                Block bl = BuiltInRegistries.BLOCK.get(rs2);
                 if (bl != null && bl != Blocks.AIR) {
                     worldIn.setBlock(context.getClickedPos(),bl.defaultBlockState(),2);
                     spawnSoapParticles(worldIn,context.getClickedPos(),0);
@@ -44,8 +44,8 @@ public class PumiceSoapItem extends Item {
                     return InteractionResult.SUCCESS;
                 }
             } else if(rs.getPath().contains("cracked_")) {
-                ResourceLocation rs2 = new ResourceLocation(rs.getNamespace(),rs.getPath().split("cracked_")[1]);
-                Block bl = ForgeRegistries.BLOCKS.getValue(rs2);
+                ResourceLocation rs2 = ResourceLocation.fromNamespaceAndPath(rs.getNamespace(),rs.getPath().split("cracked_")[1]);
+                Block bl = BuiltInRegistries.BLOCK.get(rs2);
                 if (bl != null && bl != Blocks.AIR)
                 {
                     worldIn.setBlock(context.getClickedPos(),bl.defaultBlockState(),2);
@@ -53,9 +53,9 @@ public class PumiceSoapItem extends Item {
                     context.getItemInHand().shrink(1);
                     return InteractionResult.SUCCESS;
                 }
-            } else if (worldIn.getBlockState(context.getClickedPos()).is(Tags.Blocks.STONE) && !rs.getPath().contains("polished_")) {
-                ResourceLocation rs2 = new ResourceLocation(rs.getNamespace(),"polished_" + rs.getPath());
-                Block bl = ForgeRegistries.BLOCKS.getValue(rs2);
+            } else if (worldIn.getBlockState(context.getClickedPos()).is(Tags.Blocks.STONES) && !rs.getPath().contains("polished_")) {
+                ResourceLocation rs2 = ResourceLocation.fromNamespaceAndPath(rs.getNamespace(),"polished_" + rs.getPath());
+                Block bl = BuiltInRegistries.BLOCK.get(rs2);
                 if (bl != null && bl != Blocks.AIR) {
                     worldIn.setBlock(context.getClickedPos(),bl.defaultBlockState(),2);
                     spawnSoapParticles(worldIn,context.getClickedPos(),0);
@@ -92,7 +92,7 @@ public class PumiceSoapItem extends Item {
                 }
 
                 worldIn.addParticle(ParticleTypes.HAPPY_VILLAGER, (double)posIn.getX() + 0.5D, (double)posIn.getY() + 0.5D, (double)posIn.getZ() + 0.5D, 0.0D, 0.0D, 0.0D);
-                Random random = worldIn.getRandom();
+                RandomSource random = worldIn.getRandom();
                 for(int i = 0; i < data; ++i) {
                     double d2 = random.nextGaussian() * 0.02D;
                     double d3 = random.nextGaussian() * 0.02D;
@@ -101,7 +101,7 @@ public class PumiceSoapItem extends Item {
                     double d6 = (double)posIn.getX() + d5 + random.nextDouble() * d0 * 2.0D;
                     double d7 = (double)posIn.getY() + random.nextDouble() * d1;
                     double d8 = (double)posIn.getZ() + d5 + random.nextDouble() * d0 * 2.0D;
-                    if (!worldIn.getBlockState((new BlockPos(d6, d7, d8)).below()).isAir()) {
+                    if (!worldIn.getBlockState(BlockPos.containing(d6, d7, d8).below()).isAir()) {
                         worldIn.addParticle(ParticleTypes.HAPPY_VILLAGER, d6, d7, d8, d2, d3, d4);
                     }
                 }

@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.blocks;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.Blocks;
@@ -11,7 +12,7 @@ import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.core.BlockPos;
@@ -25,12 +26,19 @@ import javax.annotation.Nullable;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class UnamedExplosiveBlock extends Block {
+    public static final MapCodec<UnamedExplosiveBlock> CODEC = simpleCodec(UnamedExplosiveBlock::new);
+
+    @Override
+    public MapCodec<? extends UnamedExplosiveBlock> codec() {
+        return CODEC;
+    }
+
     public UnamedExplosiveBlock(Properties properties) {
         super(properties);
     }
 
     @Override
-    public void onCaughtFire(BlockState state, Level world, BlockPos pos, @Nullable net.minecraft.core.Direction face, @Nullable LivingEntity igniter) {
+    public void onCaughtFire(BlockState state, Level world, BlockPos pos, @Nullable Direction face, @Nullable LivingEntity igniter) {
         world.explode(igniter, pos.getX(), pos.getY() + 1, pos.getZ(), 6F, Explosion.BlockInteraction.BREAK);
         world.explode(igniter, pos.getX()+6, pos.getY() + 1, pos.getZ()+6, 6F, Explosion.BlockInteraction.BREAK);
         world.explode(igniter, pos.getX()-6, pos.getY() + 1, pos.getZ()+6, 6F, Explosion.BlockInteraction.BREAK);
@@ -58,25 +66,22 @@ public class UnamedExplosiveBlock extends Block {
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult p_225533_6_) {
-        ItemStack itemstack = player.getItemInHand(handIn);
+    protected ItemInteractionResult useItemOn(ItemStack itemstack, BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult p_225533_6_) {
         Item item = itemstack.getItem();
         if (item != Items.FLINT_AND_STEEL && item != Items.FIRE_CHARGE) {
-            return super.use(state, worldIn, pos, player, handIn, p_225533_6_);
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         } else {
             onCaughtFire(state, worldIn, pos, p_225533_6_.getDirection(), player);
             worldIn.setBlock(pos, Blocks.AIR.defaultBlockState(), 11);
             if (!player.isCreative()) {
                 if (item == Items.FLINT_AND_STEEL) {
-                    itemstack.hurtAndBreak(1, player, (p_220287_1_) -> {
-                        p_220287_1_.broadcastBreakEvent(handIn);
-                    });
+                    itemstack.hurtAndBreak(1, player, LivingEntity.getSlotForHand(handIn));
                 } else {
                     itemstack.shrink(1);
                 }
             }
 
-            return InteractionResult.SUCCESS;
+            return ItemInteractionResult.SUCCESS;
         }
     }
 
@@ -93,6 +98,7 @@ public class UnamedExplosiveBlock extends Block {
 
     }
 
+    @Override
     public void wasExploded(Level worldIn, BlockPos pos, Explosion explosionIn) {
         if (!worldIn.isClientSide) {
             onCaughtFire(worldIn.getBlockState(pos), worldIn, pos, null,null);

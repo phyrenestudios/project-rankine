@@ -41,7 +41,8 @@ public class EndMeteoriteFeature extends Feature<NoneFeatureConfiguration> {
             double d1 = 1/((double) I1);
             double d2 = 1/((double) I2);
             double d3 = 1/((double) I3);
-            double radius = Math.max(I1,Math.max(I2,I3));
+            // PORT-NOTE: BlockPos.offset(double,double,double) is gone in 1.21; radius is integral anyway.
+            int radius = Math.max(I1,Math.max(I2,I3));
             double size = rand.nextDouble();
             boolean frozen = rand.nextBoolean();
             BlockState BLOCK = Arrays.asList(RankineBlocks.METEORITE.get().defaultBlockState(),RankineBlocks.ENSTATITE_CHONDRITE.get().defaultBlockState()).get(rand.nextInt(2));

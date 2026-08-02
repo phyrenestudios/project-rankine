@@ -2,20 +2,30 @@ package com.cannolicatfish.rankine.events.handlers.common;
 
 import com.cannolicatfish.rankine.init.*;
 import com.cannolicatfish.rankine.util.RankineVillagerTrades;
+import net.minecraft.core.Holder;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.trading.ItemCost;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.BasicItemListing;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.event.village.VillagerTradesEvent;
-import net.neoforged.neoforge.registries.ForgeRegistries;
 
+import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 1.21.1: MerchantOffer's "cost" side is now an {@link ItemCost} (item + count + component
+ * predicate) instead of a raw ItemStack — every {@code new MerchantOffer(costStack, resultStack, ...)}
+ * becomes {@code new MerchantOffer(new ItemCost(item, count), resultStack, ...)}.
+ * Forge tag lookups (ForgeRegistries.BLOCKS.tags()) become BuiltInRegistries tag lookups, and the
+ * c: tag names changed (stone -> stones).
+ */
 public class VillagerTradesHandler {
     public static void addVillagerTrades(VillagerTradesEvent event) {
         List<VillagerTrades.ItemListing> level1 = event.getTrades().get(1);
@@ -26,11 +36,11 @@ public class VillagerTradesHandler {
 
         if (event.getType() == RankineVillagerProfessions.METALLURGIST.get()) {
             level1.add(new BasicItemListing(1, new ItemStack(RankineItems.ALLOY_TEMPLATE.get()),12,1,0.05f));
-            level1.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.TIN_INGOT.get(), 8), new ItemStack(Items.EMERALD),12,2,0.05f));
-            level1.add((entity,rand) -> new MerchantOffer(new ItemStack(Items.COPPER_INGOT, 4), new ItemStack(Items.EMERALD),12,2,0.05f));
+            level1.add((entity,rand) -> new MerchantOffer(new ItemCost(RankineItems.TIN_INGOT.get(), 8), new ItemStack(Items.EMERALD),12,2,0.05f));
+            level1.add((entity,rand) -> new MerchantOffer(new ItemCost(Items.COPPER_INGOT, 4), new ItemStack(Items.EMERALD),12,2,0.05f));
             level2.add(new BasicItemListing(1, new ItemStack(RankineItems.ZINC_INGOT.get(), 2),12,10,0.05f));
-            level2.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.METEORIC_IRON.get(), 4), new ItemStack(Items.EMERALD),12,10,0.05f));
-            level2.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.COIN.get(), 16), new ItemStack(Items.EMERALD),12,10,0.05f));
+            level2.add((entity,rand) -> new MerchantOffer(new ItemCost(RankineItems.METEORIC_IRON.get(), 4), new ItemStack(Items.EMERALD),12,10,0.05f));
+            level2.add((entity,rand) -> new MerchantOffer(new ItemCost(RankineItems.COIN.get(), 16), new ItemStack(Items.EMERALD),12,10,0.05f));
             level3.add(new BasicItemListing(1, new ItemStack(RankineItems.MANGANESE_INGOT.get(), 2),12,10,0.05f));
             level3.add(new BasicItemListing(1, new ItemStack(RankineItems.MOLYBDENUM_INGOT.get(), 2),12,10,0.05f));
             level3.add(new BasicItemListing(1, new ItemStack(RankineItems.VANADIUM_INGOT.get(), 2),12,10,0.05f));
@@ -45,17 +55,17 @@ public class VillagerTradesHandler {
             level1.add(new BasicItemListing(1, new ItemStack(RankineItems.HARDNESS_TESTER.get()),12,1,0.05f));
             level2.add(new BasicItemListing(1, new ItemStack(RankineItems.CHALCOPYRITE.get()),12,5,0.05f));
             level2.add(new BasicItemListing(1, new ItemStack(RankineItems.BORAX.get()),12,5,0.05f));
-            level2.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.MUSCOVITE.get(), 4), new ItemStack(Items.EMERALD),12,10,0.05f));
-            level2.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.AMPHIBOLE.get(), 4), new ItemStack(Items.EMERALD),12,10,0.05f));
-            level2.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.PLAGIOCLASE_FELDSPAR.get(), 4), new ItemStack(Items.EMERALD),12,10,0.05f));
+            level2.add((entity,rand) -> new MerchantOffer(new ItemCost(RankineItems.MUSCOVITE.get(), 4), new ItemStack(Items.EMERALD),12,10,0.05f));
+            level2.add((entity,rand) -> new MerchantOffer(new ItemCost(RankineItems.AMPHIBOLE.get(), 4), new ItemStack(Items.EMERALD),12,10,0.05f));
+            level2.add((entity,rand) -> new MerchantOffer(new ItemCost(RankineItems.PLAGIOCLASE_FELDSPAR.get(), 4), new ItemStack(Items.EMERALD),12,10,0.05f));
             level3.add(new RankineVillagerTrades.EnchantedAlloyItemForEmeraldsTrade(RankineItems.INVAR_HAMMER.get(),"90Fe-10Ni","rankine:invar_alloying","item.rankine.invar_alloying",8,3,10,0.2f));
             level3.add(new BasicItemListing(1, new ItemStack(RankineItems.ZIRCON.get()),12,15,0.05f));
             level3.add(new BasicItemListing(1, new ItemStack(RankineItems.BAUXITE.get()),12,15,0.05f));
             level3.add(new BasicItemListing(1, new ItemStack(RankineItems.MAGNESITE.get()),12,15,0.05f));
             level4.add(new BasicItemListing(1, new ItemStack(RankineItems.VANADINITE.get()),12,15,0.05f));
             level4.add(new BasicItemListing(1, new ItemStack(RankineItems.PETALITE.get()),12,15,0.05f));
-            level4.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.OLIVINE.get(), 4), new ItemStack(Items.EMERALD),12,20,0.05f));
-            level4.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.PYROXENE.get(), 4), new ItemStack(Items.EMERALD),12,20,0.05f));
+            level4.add((entity,rand) -> new MerchantOffer(new ItemCost(RankineItems.OLIVINE.get(), 4), new ItemStack(Items.EMERALD),12,20,0.05f));
+            level4.add((entity,rand) -> new MerchantOffer(new ItemCost(RankineItems.PYROXENE.get(), 4), new ItemStack(Items.EMERALD),12,20,0.05f));
             level5.add(new BasicItemListing(1, new ItemStack(RankineItems.WOLFRAMITE.get()),12,30,0.05f));
             level5.add(new BasicItemListing(1, new ItemStack(RankineItems.COBALTITE.get()),12,30,0.05f));
             level5.add(new RankineVillagerTrades.EnchantedAlloyItemForEmeraldsTrade(RankineItems.STEEL_HAMMER.get(),"76Fe-15Cr-4V-4W-1C","rankine:alloying/damascus_steel_alloying","item.rankine.damascus_steel_alloying",15,3,30,0.2f));
@@ -90,36 +100,39 @@ public class VillagerTradesHandler {
             level5.add(new BasicItemListing(10, new ItemStack(Items.WITHER_ROSE),12,30,0.05f));
 
         } else if (event.getType() == RankineVillagerProfessions.GEM_CUTTER.get()) {
-            level1.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.AQUAMARINE.get(), 1), new ItemStack(Items.EMERALD, 2),12,20,0.05f));
-            level1.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.OPAL.get(), 1), new ItemStack(Items.EMERALD, 2),12,20,0.05f));
-            level1.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.GARNET.get(), 1), new ItemStack(Items.EMERALD, 2),12,20,0.05f));
-            level1.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.RUBY.get(), 1), new ItemStack(Items.EMERALD, 2),12,20,0.05f));
-            level1.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.SAPPHIRE.get(), 1), new ItemStack(Items.EMERALD, 2),12,20,0.05f));
-            level1.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.PERIDOT.get(), 1), new ItemStack(Items.EMERALD, 2),12,20,0.05f));
-            level1.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.TOPAZ.get(), 1), new ItemStack(Items.EMERALD, 2),12,20,0.05f));
-            level2.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.PEARL.get(), 1), new ItemStack(Items.EMERALD, 2),12,20,0.05f));
-            level2.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.TOURMALINE.get(), 1), new ItemStack(Items.EMERALD, 2),12,20,0.05f));
-            level2.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.TIGER_IRON.get(), 1), new ItemStack(Items.EMERALD, 2),12,20,0.05f));
-            level2.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.LABRADORITE.get(), 1), new ItemStack(Items.EMERALD, 2),12,20,0.05f));
-            level2.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.RHODONITE.get(), 1), new ItemStack(Items.EMERALD, 3),12,20,0.05f));
-            level2.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.RHODOCHROSITE.get(), 1), new ItemStack(Items.EMERALD, 3),12,20,0.05f));
-            level2.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.CHROME_ENSTATITE.get(), 1), new ItemStack(Items.EMERALD, 3),12,20,0.05f));
-            level2.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.FLUORITE.get(), 3), new ItemStack(Items.EMERALD, 2),12,20,0.05f));
+            level1.add((entity,rand) -> new MerchantOffer(new ItemCost(RankineItems.AQUAMARINE.get(), 1), new ItemStack(Items.EMERALD, 2),12,20,0.05f));
+            level1.add((entity,rand) -> new MerchantOffer(new ItemCost(RankineItems.OPAL.get(), 1), new ItemStack(Items.EMERALD, 2),12,20,0.05f));
+            level1.add((entity,rand) -> new MerchantOffer(new ItemCost(RankineItems.GARNET.get(), 1), new ItemStack(Items.EMERALD, 2),12,20,0.05f));
+            level1.add((entity,rand) -> new MerchantOffer(new ItemCost(RankineItems.RUBY.get(), 1), new ItemStack(Items.EMERALD, 2),12,20,0.05f));
+            level1.add((entity,rand) -> new MerchantOffer(new ItemCost(RankineItems.SAPPHIRE.get(), 1), new ItemStack(Items.EMERALD, 2),12,20,0.05f));
+            level1.add((entity,rand) -> new MerchantOffer(new ItemCost(RankineItems.PERIDOT.get(), 1), new ItemStack(Items.EMERALD, 2),12,20,0.05f));
+            level1.add((entity,rand) -> new MerchantOffer(new ItemCost(RankineItems.TOPAZ.get(), 1), new ItemStack(Items.EMERALD, 2),12,20,0.05f));
+            level2.add((entity,rand) -> new MerchantOffer(new ItemCost(RankineItems.PEARL.get(), 1), new ItemStack(Items.EMERALD, 2),12,20,0.05f));
+            level2.add((entity,rand) -> new MerchantOffer(new ItemCost(RankineItems.TOURMALINE.get(), 1), new ItemStack(Items.EMERALD, 2),12,20,0.05f));
+            level2.add((entity,rand) -> new MerchantOffer(new ItemCost(RankineItems.TIGER_IRON.get(), 1), new ItemStack(Items.EMERALD, 2),12,20,0.05f));
+            level2.add((entity,rand) -> new MerchantOffer(new ItemCost(RankineItems.LABRADORITE.get(), 1), new ItemStack(Items.EMERALD, 2),12,20,0.05f));
+            level2.add((entity,rand) -> new MerchantOffer(new ItemCost(RankineItems.RHODONITE.get(), 1), new ItemStack(Items.EMERALD, 3),12,20,0.05f));
+            level2.add((entity,rand) -> new MerchantOffer(new ItemCost(RankineItems.RHODOCHROSITE.get(), 1), new ItemStack(Items.EMERALD, 3),12,20,0.05f));
+            level2.add((entity,rand) -> new MerchantOffer(new ItemCost(RankineItems.CHROME_ENSTATITE.get(), 1), new ItemStack(Items.EMERALD, 3),12,20,0.05f));
+            level2.add((entity,rand) -> new MerchantOffer(new ItemCost(RankineItems.FLUORITE.get(), 3), new ItemStack(Items.EMERALD, 2),12,20,0.05f));
             level4.addAll(RankineVillagerTrades.returnTagTrades(Tags.Items.GEMS,RankineItems.OPAL.get(),1,12,16,10,0.05f));
-            level5.add((entity,rand) -> new MerchantOffer(new ItemStack(RankineItems.LONSDALEITE_DIAMOND.get(), 1), new ItemStack(Items.EMERALD, 6),12,20,0.05f));
+            level5.add((entity,rand) -> new MerchantOffer(new ItemCost(RankineItems.LONSDALEITE_DIAMOND.get(), 1), new ItemStack(Items.EMERALD, 6),12,20,0.05f));
             level5.add(new BasicItemListing(20, new ItemStack(RankineItems.LONSDALEITE_DIAMOND.get(), 1),12,50,0.05f));
-            level5.add((entity,rand) -> new MerchantOffer(new ItemStack(Items.NETHER_STAR, 1), new ItemStack(Items.EMERALD, 64),12,50,0.05f));
+            level5.add((entity,rand) -> new MerchantOffer(new ItemCost(Items.NETHER_STAR, 1), new ItemStack(Items.EMERALD, 64),12,50,0.05f));
 
         } else if (event.getType() == RankineVillagerProfessions.ROCK_COLLECTOR.get()) {
-            level1.addAll(RankineVillagerTrades.returnTagTrades(Tags.Items.STONE, RankineBlocks.ANORTHOSITE.getStone().asItem(),16,1,16,10,0.05f));
-            List<Block> rocks = ForgeRegistries.BLOCKS.tags().getTag(Tags.Blocks.STONE).stream().toList();
+            level1.addAll(RankineVillagerTrades.returnTagTrades(Tags.Items.STONES, RankineBlocks.ANORTHOSITE.getStone().asItem(),16,1,16,10,0.05f));
+            List<Block> rocks = new ArrayList<>();
+            for (Holder<Block> holder : BuiltInRegistries.BLOCK.getTagOrEmpty(Tags.Blocks.STONES)) {
+                rocks.add(holder.value());
+            }
             if (!rocks.isEmpty()) {
                 for (Block rock : rocks) {
-                    level2.add((entity, rand) -> new MerchantOffer(new ItemStack(rock.asItem(), 24), new ItemStack(Items.EMERALD, 1), 16, 10, 0.05f));
+                    level2.add((entity, rand) -> new MerchantOffer(new ItemCost(rock.asItem(), 24), new ItemStack(Items.EMERALD, 1), 16, 10, 0.05f));
                 }
             } else {
-                level2.add((entity, rand) -> new MerchantOffer(new ItemStack(Items.SANDSTONE, 24), new ItemStack(Items.EMERALD, 1), 16, 10, 0.05f));
-                level2.add((entity, rand) -> new MerchantOffer(new ItemStack(Items.RED_SANDSTONE, 12), new ItemStack(Items.EMERALD, 1), 16, 10, 0.05f));
+                level2.add((entity, rand) -> new MerchantOffer(new ItemCost(Items.SANDSTONE, 24), new ItemStack(Items.EMERALD, 1), 16, 10, 0.05f));
+                level2.add((entity, rand) -> new MerchantOffer(new ItemCost(Items.RED_SANDSTONE, 12), new ItemStack(Items.EMERALD, 1), 16, 10, 0.05f));
             }
             level3.add(new BasicItemListing(1, new ItemStack(Items.OBSIDIAN, 1),12,10,0.05f));
             level3.add(new BasicItemListing(1, new ItemStack(Items.NETHERRACK, 8),12,10,0.05f));

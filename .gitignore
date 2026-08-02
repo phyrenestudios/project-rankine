@@ -9,3 +9,6 @@
 *.zip
 src/generated/resources/.cache/cache
 /src/generated/resources/.cache/
+
+# port verification logs
+/.porting/logs/

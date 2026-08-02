@@ -1,19 +1,16 @@
 package com.cannolicatfish.rankine.items;
 
 import com.cannolicatfish.rankine.blocks.gases.GasBlock;
-import com.cannolicatfish.rankine.init.RankineItems;
+import com.cannolicatfish.rankine.init.RankineDataComponents;
 import com.cannolicatfish.rankine.init.RankineSoundEvents;
-import com.cannolicatfish.rankine.util.GasUtilsEnum;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.block.AirBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
-import net.neoforged.neoforge.registries.ForgeRegistries;
 
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
@@ -30,12 +27,18 @@ public class ShulkerGasVacuumItem extends Item {
         super(properties);
     }
 
+    /** was NBT "gas" (absent or "" meant empty) */
+    private static String getGas(ItemStack stack) {
+        return stack.getOrDefault(RankineDataComponents.GAS.get(), "");
+    }
+
     @Override
     public Component getName(ItemStack stack) {
-        if (stack.getTag() != null){
-            String s = stack.getTag().getString("gas");
-            Block b = ForgeRegistries.BLOCKS.getValue(ResourceLocation.parse(s));
-            if (!s.isEmpty() && b instanceof GasBlock) {
+        String s = getGas(stack);
+        if (!s.isEmpty()) {
+            ResourceLocation rl = ResourceLocation.tryParse(s);
+            Block b = rl != null ? BuiltInRegistries.BLOCK.get(rl) : null;
+            if (b instanceof GasBlock) {
                 return Component.literal(Component.translatable(this.getDescriptionId(stack)).getString() + " (" + Component.translatable(b.getDescriptionId()).getString() + ") ");
             }
         }
@@ -48,13 +51,15 @@ public class ShulkerGasVacuumItem extends Item {
         BlockPos pos = context.getClickedPos();
         Direction opp = context.getClickedFace();
         ItemStack stack = context.getItemInHand();
-        if (context.getPlayer() != null && (stack.getTag() != null && !stack.getTag().getString("gas").isEmpty())) {
-            Block b = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(stack.getTag().getString("gas")));
+        if (context.getPlayer() != null && !getGas(stack).isEmpty()) {
+            ResourceLocation rl = ResourceLocation.tryParse(getGas(stack));
+            Block b = rl != null ? BuiltInRegistries.BLOCK.get(rl) : null;
             if (b instanceof GasBlock && context.getLevel().getBlockState(pos.relative(opp)).getBlock() instanceof AirBlock) {
                 if (!worldIn.isClientSide) {
                     worldIn.setBlock(pos.relative(opp),b.defaultBlockState(),3);
-                    stack.getTag().putString("gas","");
-                    stack.getTag().putInt("color",0);
+                    // was: putString("gas","") + putInt("color",0) — both are now cleared outright
+                    stack.remove(RankineDataComponents.GAS.get());
+                    stack.remove(RankineDataComponents.COLOR.get());
                 }
                 context.getPlayer().playSound(RankineSoundEvents.SHULKER_GAS_VACUUM_RELEASE.get(),1.0F, 1.0F);
                 return InteractionResult.SUCCESS;
@@ -71,14 +76,15 @@ public class ShulkerGasVacuumItem extends Item {
         Block bl = worldIn.getBlockState(pos).getBlock();
         ItemStack stack = playerIn.getItemInHand(handIn);
         InteractionHand other = handIn == InteractionHand.MAIN_HAND ? InteractionHand.OFF_HAND : InteractionHand.MAIN_HAND;
-        if (bl instanceof GasBlock && bl.getRegistryName() != null && (stack.getTag() == null || stack.getTag().getString("gas").isEmpty())) {
+        ResourceLocation blockId = BuiltInRegistries.BLOCK.getKey(bl);
+        if (bl instanceof GasBlock && blockId != null && getGas(stack).isEmpty()) {
             if (!worldIn.isClientSide) {
                 if (playerIn.getItemInHand(other).getItem() == Items.GLASS_BOTTLE) {
                     playerIn.getItemInHand(other).shrink(1);
                     playerIn.getInventory().add(new ItemStack(((GasBlock) bl).getGasBottle()));
                 } else {
-                    stack.getOrCreateTag().putString("gas",bl.getRegistryName().toString());
-                    stack.getTag().putInt("color",((GasBlock) bl).getColor());
+                    stack.set(RankineDataComponents.GAS.get(), blockId.toString());
+                    stack.set(RankineDataComponents.COLOR.get(), ((GasBlock) bl).getColor());
                 }
                 worldIn.setBlock(pos, Blocks.AIR.defaultBlockState(),3);
             }
@@ -89,9 +95,11 @@ public class ShulkerGasVacuumItem extends Item {
         return super.use(worldIn, playerIn, handIn);
     }
 
+    /** was NBT "color" (absent or 0 -> white) */
     public static int getColor(ItemStack stack) {
-        if (stack.getTag() != null && stack.getTag().getInt("color") != 0) {
-            return stack.getTag().getInt("color");
+        int color = stack.getOrDefault(RankineDataComponents.COLOR.get(), 0);
+        if (color != 0) {
+            return color;
         }
         return 16777215;
     }

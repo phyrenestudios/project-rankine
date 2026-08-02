@@ -73,6 +73,11 @@ test {
     useJUnitPlatform()
 }
 
+// javac stops reporting after 100 errors by default, which hides the tail of a large port.
+tasks.withType(JavaCompile).configureEach {
+    options.compilerArgs << '-Xmaxerrs' << '3000'
+}
+
 jar {
     manifest {
         attributes([

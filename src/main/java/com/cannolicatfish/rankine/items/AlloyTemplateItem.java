@@ -26,6 +26,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeInput;
+import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.chat.Component;
 import net.minecraft.ChatFormatting;
@@ -54,6 +55,15 @@ public class AlloyTemplateItem extends Item {
         @Override
         public int size() {
             return this.stacks.size();
+        }
+
+        /** 1:1 index-preserving view of a machine {@link Container}. */
+        static StackRecipeInput of(Container inv) {
+            List<ItemStack> stacks = new ArrayList<>(inv.getContainerSize());
+            for (int i = 0; i < inv.getContainerSize(); i++) {
+                stacks.add(inv.getItem(i));
+            }
+            return new StackRecipeInput(stacks);
         }
     }
 
@@ -166,7 +176,7 @@ public class AlloyTemplateItem extends Item {
     }
 
     public static void addTemplate(Level worldIn, ItemStack stack, AlloyingRecipe recipe, Container inv, DyeItem dye) {
-        ItemStack output = recipe.generateResult(worldIn,inv,3);
+        ItemStack output = recipe.generateResult(worldIn,StackRecipeInput.of(inv),3);
 
         assembleTemplateData(stack,worldIn,inv,0,6);
         String nbt = IAlloyItem.getAlloyComposition(output);
@@ -186,7 +196,7 @@ public class AlloyTemplateItem extends Item {
 
     public static void assembleTemplateData(ItemStack stack, Level worldIn, Container inv, int startIndex, int endIndex)
     {
-        List<ElementRecipe> elementRecipes = new ArrayList<>();
+        List<ResourceLocation> elementIds = new ArrayList<>();
         List<String> ingredients = new ArrayList<>();
         List<Integer> elementAmounts = new ArrayList<>();
         List<Integer> amounts = new ArrayList<>();
@@ -198,19 +208,21 @@ public class AlloyTemplateItem extends Item {
                 continue;
             }
 
-            StackRecipeInput temp = new StackRecipeInput(List.of(invStackInSlot));
-            ElementRecipe elem = worldIn.getRecipeManager().getRecipeFor(RankineRecipeTypes.ELEMENT.get(), temp, worldIn).map(RecipeHolder::value).orElse(null);
-            if (elem != null) {
+            SingleRecipeInput temp = new SingleRecipeInput(invStackInSlot);
+            // 1.21: the recipe id lives on the RecipeHolder (ElementRecipe#getId is gone).
+            RecipeHolder<ElementRecipe> holder = worldIn.getRecipeManager().getRecipeFor(RankineRecipeTypes.ELEMENT.get(), temp, worldIn).orElse(null);
+            if (holder != null) {
+                ElementRecipe elem = holder.value();
                 ingredients.add(elem.getIngredientFromCount(elem.getMaterialCount(invStackInSlot.getItem())));
                 amounts.add(invStackInSlot.getCount());
-                elementRecipes.add(elem);
+                elementIds.add(holder.id());
                 elementAmounts.add(elem.getMaterialCount(invStackInSlot.getItem()) * invStackInSlot.getCount());
             }
         }
         List<TemplateEntry> elements = new ArrayList<>();
         for (int i = 0; i < ingredients.size(); i++) {
             elements.add(new TemplateEntry(ingredients.get(i), amounts.get(i).shortValue(),
-                    String.valueOf(elementRecipes.get(i).getId()), elementAmounts.get(i).shortValue()));
+                    String.valueOf(elementIds.get(i)), elementAmounts.get(i).shortValue()));
         }
         // was NBT list "StoredTemplate"
         stack.set(RankineDataComponents.TEMPLATE_ENTRIES.get(), elements);

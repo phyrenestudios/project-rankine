@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.blocks;
 
 import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -13,11 +14,19 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class WillowBranchletBlock extends GrowingPlantBodyBlock {
+    public static final MapCodec<WillowBranchletBlock> CODEC = simpleCodec(WillowBranchletBlock::new);
     public static final VoxelShape SHAPE = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 16.0D, 15.0D);
+
+    @Override
+    protected MapCodec<? extends WillowBranchletBlock> codec() {
+        return CODEC;
+    }
 
     public WillowBranchletBlock(BlockBehaviour.Properties properties) {
         super(properties, Direction.DOWN, SHAPE, false);
     }
+
+    @Override
     protected GrowingPlantHeadBlock getHeadBlock() {
         return (GrowingPlantHeadBlock) RankineBlocks.WILLOW_BRANCHLET.get();
     }

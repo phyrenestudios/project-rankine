@@ -1,13 +1,14 @@
 package com.cannolicatfish.rankine.items.totems;
 
-import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.init.Config;
 import net.minecraft.ChatFormatting;
-import net.minecraft.core.NonNullList;
-import net.minecraft.network.chat.Component;
+import net.minecraft.core.Holder;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.EnchantmentTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
@@ -16,44 +17,39 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.item.enchantment.ItemEnchantments;
 import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
-import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 public class InfusingTotemItem extends Item {
     public InfusingTotemItem(Properties properties) {
         super(properties);
     }
 
+    @Override
     @OnlyIn(Dist.CLIENT)
-    public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
-        super.appendHoverText(stack, worldIn, tooltip, flagIn);
+    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag flagIn) {
+        super.appendHoverText(stack, context, tooltip, flagIn);
         tooltip.add(Component.translatable("item.rankine.totem_of_infusing.tooltip").withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
     }
 
     @Override
     public void onCraftedBy(ItemStack stack, Level worldIn, Player playerIn) {
         if (Config.GENERAL.PENDANT_CURSE.get()) {
-            stack.enchant(Enchantments.VANISHING_CURSE,1);
+            worldIn.registryAccess().registry(Registries.ENCHANTMENT)
+                    .flatMap(reg -> reg.getHolder(Enchantments.VANISHING_CURSE))
+                    .ifPresent(holder -> stack.enchant(holder, 1));
         }
         super.onCraftedBy(stack, worldIn, playerIn);
     }
 
-    @Override
-    public void fillItemCategory(CreativeModeTab group, NonNullList<ItemStack> items) {
-        if ((group == CreativeModeTab.TAB_SEARCH || group == ProjectRankine.setup.rankineTools) && Config.GENERAL.PENDANT_CURSE.get()) {
-            ItemStack stack = new ItemStack(this);
-            stack.enchant(Enchantments.VANISHING_CURSE,1);
-            items.add(stack);
-        } else {
-            super.fillItemCategory(group, items);
-        }
-    }
+    // PORT-TODO(init): fillItemCategory is gone — when Config.GENERAL.PENDANT_CURSE is enabled the
+    // creative-tab entry for this item must be a stack pre-enchanted with minecraft:vanishing_curse
+    // (add it in RankineCreativeTabs' displayItems).
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn) {
@@ -62,18 +58,23 @@ public class InfusingTotemItem extends Item {
 
         InteractionHand oppHand = InteractionHand.values()[(handIn.ordinal() + 1) % InteractionHand.values().length];
         ItemStack oppHandStack = playerIn.getItemInHand(oppHand);
-        Map<Enchantment, Integer> map = EnchantmentHelper.getEnchantments(stack).entrySet().stream().filter(enchantmentIntegerEntry -> !enchantmentIntegerEntry.getKey().isCurse())
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+        ItemEnchantments own = EnchantmentHelper.getEnchantmentsForCrafting(stack);
+        List<Holder<Enchantment>> ownNonCurses = new ArrayList<>();
+        for (Holder<Enchantment> holder : own.keySet()) {
+            if (!holder.is(EnchantmentTags.CURSE)) ownNonCurses.add(holder);
+        }
 
-        if (oppHandStack.isEnchanted() && map.size() != 0) return InteractionResultHolder.pass(stack);
+        if (oppHandStack.isEnchanted() && !ownNonCurses.isEmpty()) return InteractionResultHolder.pass(stack);
 
-        Map<Enchantment, Integer> output = EnchantmentHelper.getEnchantments(oppHandStack).entrySet().stream().filter(enchantmentIntegerEntry -> !enchantmentIntegerEntry.getKey().isCurse())
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-        Enchantment[] en = output.keySet().toArray(new Enchantment[0]);
-        if (en.length <= 0) return InteractionResultHolder.pass(stack);
-        int index = en.length == 1 ? 0 : worldIn.getRandom().nextInt(en.length - 1);
-        Enchantment key = en[index];
-        stack.enchant(key, output.get(key));
+        ItemEnchantments oppEnchantments = EnchantmentHelper.getEnchantmentsForCrafting(oppHandStack);
+        List<Holder<Enchantment>> en = new ArrayList<>();
+        for (Holder<Enchantment> holder : oppEnchantments.keySet()) {
+            if (!holder.is(EnchantmentTags.CURSE)) en.add(holder);
+        }
+        if (en.isEmpty()) return InteractionResultHolder.pass(stack);
+        int index = en.size() == 1 ? 0 : worldIn.getRandom().nextInt(en.size() - 1);
+        Holder<Enchantment> key = en.get(index);
+        stack.enchant(key, oppEnchantments.getLevel(key));
 
         ItemStack oppNew = removeEnchantments(oppHandStack, oppHandStack.getDamageValue(), oppHandStack.getCount());
         int slot = playerIn.getInventory().findSlotMatchingItem(oppHandStack);
@@ -89,41 +90,43 @@ public class InfusingTotemItem extends Item {
     public boolean isFoil(ItemStack stack) {
         return false;
     }
+
     @Override
-    public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
+    public boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment) {
         return true;
     }
+
     @Override
     public boolean isBookEnchantable(ItemStack stack, ItemStack book) {
         return false;
     }
 
+    /** Mirrors GrindstoneMenu#removeNonCursesFrom — keeps curses, clears everything else. */
     private ItemStack removeEnchantments(ItemStack stack, int damage, int count) {
         ItemStack itemstack = stack.copy();
-        itemstack.removeTagKey("Enchantments");
-        itemstack.removeTagKey("StoredEnchantments");
+        ItemEnchantments remaining = EnchantmentHelper.updateEnchantments(itemstack,
+                mutable -> mutable.removeIf(holder -> !holder.is(EnchantmentTags.CURSE)));
+        itemstack.remove(DataComponents.STORED_ENCHANTMENTS);
         if (damage > 0) {
             itemstack.setDamageValue(damage);
         } else {
-            itemstack.removeTagKey("Damage");
+            itemstack.remove(DataComponents.DAMAGE);
         }
 
         itemstack.setCount(count);
-        Map<Enchantment, Integer> map = EnchantmentHelper.getEnchantments(stack).entrySet().stream().filter((p_217012_0_) -> {
-            return p_217012_0_.getKey().isCurse();
-        }).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-        EnchantmentHelper.setEnchantments(map, itemstack);
-        itemstack.setRepairCost(0);
-        if (itemstack.getItem() == Items.ENCHANTED_BOOK && map.size() == 0) {
-            itemstack = new ItemStack(Items.BOOK);
-            if (stack.hasCustomHoverName()) {
-                itemstack.setHoverName(stack.getHoverName());
+        if (itemstack.is(Items.ENCHANTED_BOOK) && remaining.isEmpty()) {
+            ItemStack book = itemstack.transmuteCopy(Items.BOOK);
+            if (stack.has(DataComponents.CUSTOM_NAME)) {
+                book.set(DataComponents.CUSTOM_NAME, stack.getHoverName());
             }
+            itemstack = book;
         }
 
-        for(int i = 0; i < map.size(); ++i) {
-            itemstack.setRepairCost(AnvilMenu.calculateIncreasedRepairCost(itemstack.getBaseRepairCost()));
+        int repairCost = 0;
+        for(int i = 0; i < remaining.size(); ++i) {
+            repairCost = AnvilMenu.calculateIncreasedRepairCost(repairCost);
         }
+        itemstack.set(DataComponents.REPAIR_COST, repairCost);
 
         return itemstack;
     }

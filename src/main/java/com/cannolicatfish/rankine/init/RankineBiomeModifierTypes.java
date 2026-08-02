@@ -14,9 +14,8 @@ import net.neoforged.neoforge.registries.NeoForgeRegistries;
  * Codec types for Rankine's custom biome modifiers. Needed because the 1.18.2 BiomeLoadingEvent
  * logic was config-conditional, which static {@code neoforge:add_features} JSON cannot express.
  * <p>
- * PORT-TODO(main): register {@code RankineBiomeModifierTypes.BIOME_MODIFIER_SERIALIZERS} on the mod
- * bus in the ProjectRankine constructor:
- * {@code RankineBiomeModifierTypes.BIOME_MODIFIER_SERIALIZERS.register(modBus);}
+ * PORT-NOTE(main): {@code BIOME_MODIFIER_SERIALIZERS.register(modBus)} is already wired in the
+ * ProjectRankine constructor — keep it there, the modifiers below will not deserialize without it.
  */
 public class RankineBiomeModifierTypes {
     public static final DeferredRegister<MapCodec<? extends BiomeModifier>> BIOME_MODIFIER_SERIALIZERS =

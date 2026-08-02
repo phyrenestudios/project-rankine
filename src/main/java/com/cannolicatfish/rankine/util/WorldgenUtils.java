@@ -300,6 +300,12 @@ public class WorldgenUtils {
         return levelIn.getSeaLevel() + Math.max(0, Math.round((surface-levelIn.getSeaLevel()) * (1 - levelIn.getBiome(posIn).value().getModifiedClimateSettings().downfall())));
     }
 
+    /**
+     * PORT-NOTE: the {@code center} branch used {@code b.offset(0.5,0.5,0.5)};
+     * {@code BlockPos.offset(double,double,double)} no longer exists in 1.21, and the old call
+     * truncated back to the same integer position, so both branches are now identical.
+     * The {@code center} parameter is kept for call-site compatibility.
+     */
     public static boolean inArea(BlockPos b, double radius, boolean center, BlockPos... targets) {
         for (BlockPos target : targets) {
             if (center) {

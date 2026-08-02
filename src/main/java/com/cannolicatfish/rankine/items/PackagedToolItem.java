@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.items;
 
+import com.cannolicatfish.rankine.init.RankineDataComponents;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
@@ -14,6 +15,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -21,7 +23,7 @@ import net.neoforged.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Locale;
-import java.util.Random;
+import net.minecraft.util.RandomSource;
 import java.util.stream.Collectors;
 
 public class PackagedToolItem extends Item {
@@ -31,14 +33,14 @@ public class PackagedToolItem extends Item {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
+    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag flagIn) {
         tooltip.add((Component.translatable("item.rankine.packaged_tool_desc")).withStyle(ChatFormatting.RED));
-        super.appendHoverText(stack, worldIn, tooltip, flagIn);
+        super.appendHoverText(stack, context, tooltip, flagIn);
     }
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn) {
-        if (!playerIn.level.isClientSide) {
+        if (!playerIn.level().isClientSide) {
             playerIn.addItem(genRandomTool(playerIn.getItemInHand(handIn),worldIn));
             playerIn.getItemInHand(handIn).shrink(1);
 
@@ -49,8 +51,9 @@ public class PackagedToolItem extends Item {
 
     public ItemStack genRandomTool(ItemStack stack, Level worldIn){
         ItemStack ret;
-        if (stack.hasTag() && !stack.getTag().getString("forceTool").isEmpty()) {
-            String s = stack.getTag().getString("forceTool");
+        String forced = stack.getOrDefault(RankineDataComponents.FORCE_TOOL.get(), "");
+        if (!forced.isEmpty()) {
+            String s = forced;
             switch (s.toUpperCase(Locale.ROOT)) {
                 case "AXE":
                     ret = new ItemStack(RankineItems.ALLOY_AXE.get());
@@ -85,7 +88,7 @@ public class PackagedToolItem extends Item {
                     break;
             }
         } else {
-            Random random = worldIn.getRandom();
+            RandomSource random = worldIn.getRandom();
 
             switch(random.nextInt(10))
             {
@@ -123,7 +126,7 @@ public class PackagedToolItem extends Item {
             }
         }
 
-        List<AlloyingRecipe> recipes = worldIn.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.ALLOYING);
+        List<AlloyingRecipe> recipes = worldIn.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.ALLOYING.get()).stream().map(RecipeHolder::value).collect(Collectors.toList());
         List<AlloyingRecipe> newRecipes = recipes.stream().filter(alloyingRecipe -> !alloyingRecipe.getElementList(worldIn).isEmpty()).collect(Collectors.toList());
         AlloyingRecipe alloy = newRecipes.get(worldIn.getRandom().nextInt(recipes.size()));
         //System.out.println(alloy.getId());
@@ -133,7 +136,7 @@ public class PackagedToolItem extends Item {
         String comp = alloy.generateRandomResult(worldIn);
         ((IAlloyItem) ret.getItem()).createAlloyNBT(ret, worldIn, comp, alloy.getId(), !alloy.getLocalName().isEmpty() ? alloy.getLocalName() : null);
         if (alloy.getColor() != 16777215) {
-            ret.getOrCreateTag().putInt("color",alloy.getColor());
+            IAlloyItem.addColorNBT(ret, alloy.getColor());
         }
         if (ret.getItem() instanceof IAlloyTieredItem) {
             IAlloyTieredItem tieredItem = ((IAlloyTieredItem) ret.getItem());

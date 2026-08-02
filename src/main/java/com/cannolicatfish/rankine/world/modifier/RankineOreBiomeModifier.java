@@ -23,7 +23,6 @@ import net.neoforged.neoforge.common.world.BiomeGenerationSettingsBuilder;
 import net.neoforged.neoforge.common.world.BiomeModifier;
 import net.neoforged.neoforge.common.world.ModifiableBiomeInfo;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 

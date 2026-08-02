@@ -104,22 +104,22 @@ public class RankineBlocks {
     public static final DeferredBlock<Block> GRANITE_BRICKS_SLAB = BLOCKS.register("granite_bricks_slab", () -> new RankineSlabBlock(BlockBehaviour.Properties.ofFullCopy(GRANITE_BRICKS.get())));
     public static final DeferredBlock<Block> GRANITE_BRICKS_STAIRS = BLOCKS.register("granite_bricks_stairs", () -> new RankineStairsBlock(BlockBehaviour.Properties.ofFullCopy(GRANITE_BRICKS.get())));
     public static final DeferredBlock<Block> GRANITE_BRICKS_WALL = BLOCKS.register("granite_bricks_wall", () -> new RankineWallBlock(BlockBehaviour.Properties.ofFullCopy(GRANITE_BRICKS.get())));
-    public static final DeferredBlock<Block> GRANITE_BRICKS_PRESSURE_PLATE = BLOCKS.register("granite_bricks_pressure_plate", RankineStonePressurePlate::new);
+    public static final DeferredBlock<Block> GRANITE_BRICKS_PRESSURE_PLATE = BLOCKS.register("granite_bricks_pressure_plate", () -> new RankineStonePressurePlate());
     public static final DeferredBlock<Block> DIORITE_BRICKS = BLOCKS.register("diorite_bricks", () -> new RankineStoneBricksBlock(IGNEOUS_STONE_BRICKS));
     public static final DeferredBlock<Block> DIORITE_BRICKS_SLAB = BLOCKS.register("diorite_bricks_slab", () -> new RankineSlabBlock(BlockBehaviour.Properties.ofFullCopy(DIORITE_BRICKS.get())));
     public static final DeferredBlock<Block> DIORITE_BRICKS_STAIRS = BLOCKS.register("diorite_bricks_stairs", () -> new RankineStairsBlock(BlockBehaviour.Properties.ofFullCopy(DIORITE_BRICKS.get())));
     public static final DeferredBlock<Block> DIORITE_BRICKS_WALL = BLOCKS.register("diorite_bricks_wall", () -> new RankineWallBlock(BlockBehaviour.Properties.ofFullCopy(DIORITE_BRICKS.get())));
-    public static final DeferredBlock<Block> DIORITE_BRICKS_PRESSURE_PLATE = BLOCKS.register("diorite_bricks_pressure_plate", RankineStonePressurePlate::new);
+    public static final DeferredBlock<Block> DIORITE_BRICKS_PRESSURE_PLATE = BLOCKS.register("diorite_bricks_pressure_plate", () -> new RankineStonePressurePlate());
     public static final DeferredBlock<Block> ANDESITE_BRICKS = BLOCKS.register("andesite_bricks", () -> new RankineStoneBricksBlock(IGNEOUS_STONE_BRICKS));
     public static final DeferredBlock<Block> ANDESITE_BRICKS_SLAB = BLOCKS.register("andesite_bricks_slab", () -> new RankineSlabBlock(BlockBehaviour.Properties.ofFullCopy(ANDESITE_BRICKS.get())));
     public static final DeferredBlock<Block> ANDESITE_BRICKS_STAIRS = BLOCKS.register("andesite_bricks_stairs", () -> new RankineStairsBlock(BlockBehaviour.Properties.ofFullCopy(ANDESITE_BRICKS.get())));
     public static final DeferredBlock<Block> ANDESITE_BRICKS_WALL = BLOCKS.register("andesite_bricks_wall", () -> new RankineWallBlock(BlockBehaviour.Properties.ofFullCopy(ANDESITE_BRICKS.get())));
-    public static final DeferredBlock<Block> ANDESITE_BRICKS_PRESSURE_PLATE = BLOCKS.register("andesite_bricks_pressure_plate", RankineStonePressurePlate::new);
+    public static final DeferredBlock<Block> ANDESITE_BRICKS_PRESSURE_PLATE = BLOCKS.register("andesite_bricks_pressure_plate", () -> new RankineStonePressurePlate());
     public static final DeferredBlock<Block> BASALT_BRICKS = BLOCKS.register("basalt_bricks", () -> new RankineStoneBricksBlock(IGNEOUS_STONE_BRICKS));
     public static final DeferredBlock<Block> BASALT_BRICKS_SLAB = BLOCKS.register("basalt_bricks_slab", () -> new RankineSlabBlock(BlockBehaviour.Properties.ofFullCopy(BASALT_BRICKS.get())));
     public static final DeferredBlock<Block> BASALT_BRICKS_STAIRS = BLOCKS.register("basalt_bricks_stairs", () -> new RankineStairsBlock(BlockBehaviour.Properties.ofFullCopy(BASALT_BRICKS.get())));
     public static final DeferredBlock<Block> BASALT_BRICKS_WALL = BLOCKS.register("basalt_bricks_wall", () -> new RankineWallBlock(BlockBehaviour.Properties.ofFullCopy(BASALT_BRICKS.get())));
-    public static final DeferredBlock<Block> BASALT_BRICKS_PRESSURE_PLATE = BLOCKS.register("basalt_bricks_pressure_plate", RankineStonePressurePlate::new);
+    public static final DeferredBlock<Block> BASALT_BRICKS_PRESSURE_PLATE = BLOCKS.register("basalt_bricks_pressure_plate", () -> new RankineStonePressurePlate());
 
 
     //STONES
@@ -437,16 +437,16 @@ public class RankineBlocks {
     public static final DeferredBlock<Block> SILT = BLOCKS.register("silt", () -> new RankineSandBlock(11770483, Block.Properties.of().mapColor(MapColor.DIRT).sound(SoundType.SAND).strength(0.5F)));
     public static final DeferredBlock<Block> PERMAFROST = BLOCKS.register("permafrost", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.DIRT).strength(1.5F).sound(SoundType.GRAVEL)));
 
-    public static final DeferredBlock<Block> HUMUS = BLOCKS.register("humus", SoilBlock::new);
-    public static final DeferredBlock<Block> LOAM = BLOCKS.register("loam", SoilBlock::new);
-    public static final DeferredBlock<Block> SILTY_LOAM = BLOCKS.register("silty_loam", SoilBlock::new);
-    public static final DeferredBlock<Block> LOAMY_SAND = BLOCKS.register("loamy_sand", SoilBlock::new);
-    public static final DeferredBlock<Block> SANDY_LOAM = BLOCKS.register("sandy_loam", SoilBlock::new);
-    public static final DeferredBlock<Block> CLAY_LOAM = BLOCKS.register("clay_loam", SoilBlock::new);
-    public static final DeferredBlock<Block> SANDY_CLAY_LOAM = BLOCKS.register("sandy_clay_loam", SoilBlock::new);
-    public static final DeferredBlock<Block> SILTY_CLAY_LOAM = BLOCKS.register("silty_clay_loam", SoilBlock::new);
-    public static final DeferredBlock<Block> SANDY_CLAY = BLOCKS.register("sandy_clay", SoilBlock::new);
-    public static final DeferredBlock<Block> SILTY_CLAY = BLOCKS.register("silty_clay", SoilBlock::new);
+    public static final DeferredBlock<Block> HUMUS = BLOCKS.register("humus", () -> new SoilBlock());
+    public static final DeferredBlock<Block> LOAM = BLOCKS.register("loam", () -> new SoilBlock());
+    public static final DeferredBlock<Block> SILTY_LOAM = BLOCKS.register("silty_loam", () -> new SoilBlock());
+    public static final DeferredBlock<Block> LOAMY_SAND = BLOCKS.register("loamy_sand", () -> new SoilBlock());
+    public static final DeferredBlock<Block> SANDY_LOAM = BLOCKS.register("sandy_loam", () -> new SoilBlock());
+    public static final DeferredBlock<Block> CLAY_LOAM = BLOCKS.register("clay_loam", () -> new SoilBlock());
+    public static final DeferredBlock<Block> SANDY_CLAY_LOAM = BLOCKS.register("sandy_clay_loam", () -> new SoilBlock());
+    public static final DeferredBlock<Block> SILTY_CLAY_LOAM = BLOCKS.register("silty_clay_loam", () -> new SoilBlock());
+    public static final DeferredBlock<Block> SANDY_CLAY = BLOCKS.register("sandy_clay", () -> new SoilBlock());
+    public static final DeferredBlock<Block> SILTY_CLAY = BLOCKS.register("silty_clay", () -> new SoilBlock());
     public static final DeferredBlock<Block> COARSE_HUMUS = BLOCKS.register("coarse_humus", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.DIRT).strength(0.5F).sound(SoundType.GRAVEL)));
     public static final DeferredBlock<Block> COARSE_LOAM = BLOCKS.register("coarse_loam", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.DIRT).strength(0.5F).sound(SoundType.GRAVEL)));
     public static final DeferredBlock<Block> COARSE_SILTY_LOAM = BLOCKS.register("coarse_silty_loam", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.DIRT).strength(0.5F).sound(SoundType.GRAVEL)));
@@ -457,56 +457,56 @@ public class RankineBlocks {
     public static final DeferredBlock<Block> COARSE_SILTY_CLAY_LOAM = BLOCKS.register("coarse_silty_clay_loam", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.DIRT).strength(0.5F).sound(SoundType.GRAVEL)));
     public static final DeferredBlock<Block> COARSE_SANDY_CLAY = BLOCKS.register("coarse_sandy_clay", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.DIRT).strength(0.5F).sound(SoundType.GRAVEL)));
     public static final DeferredBlock<Block> COARSE_SILTY_CLAY = BLOCKS.register("coarse_silty_clay", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.DIRT).strength(0.5F).sound(SoundType.GRAVEL)));
-    public static final DeferredBlock<Block> HUMUS_MUD = BLOCKS.register("humus_mud", MudBlock::new);
-    public static final DeferredBlock<Block> LOAM_MUD = BLOCKS.register("loam_mud", MudBlock::new);
-    public static final DeferredBlock<Block> SILTY_LOAM_MUD = BLOCKS.register("silty_loam_mud", MudBlock::new);
-    public static final DeferredBlock<Block> LOAMY_SAND_MUD = BLOCKS.register("loamy_sand_mud", MudBlock::new);
-    public static final DeferredBlock<Block> SANDY_LOAM_MUD = BLOCKS.register("sandy_loam_mud", MudBlock::new);
-    public static final DeferredBlock<Block> CLAY_LOAM_MUD = BLOCKS.register("clay_loam_mud", MudBlock::new);
-    public static final DeferredBlock<Block> SANDY_CLAY_LOAM_MUD = BLOCKS.register("sandy_clay_loam_mud", MudBlock::new);
-    public static final DeferredBlock<Block> SILTY_CLAY_LOAM_MUD = BLOCKS.register("silty_clay_loam_mud", MudBlock::new);
-    public static final DeferredBlock<Block> SANDY_CLAY_MUD = BLOCKS.register("sandy_clay_mud", MudBlock::new);
-    public static final DeferredBlock<Block> SILTY_CLAY_MUD = BLOCKS.register("silty_clay_mud", MudBlock::new);
-    public static final DeferredBlock<Block> HUMUS_GRASS_PATH = BLOCKS.register("humus_grass_path", GrassySoilPathBlock::new);
-    public static final DeferredBlock<Block> LOAM_GRASS_PATH = BLOCKS.register("loam_grass_path", GrassySoilPathBlock::new);
-    public static final DeferredBlock<Block> SILTY_LOAM_GRASS_PATH = BLOCKS.register("silty_loam_grass_path", GrassySoilPathBlock::new);
-    public static final DeferredBlock<Block> LOAMY_SAND_GRASS_PATH = BLOCKS.register("loamy_sand_grass_path", GrassySoilPathBlock::new);
-    public static final DeferredBlock<Block> SANDY_LOAM_GRASS_PATH = BLOCKS.register("sandy_loam_grass_path", GrassySoilPathBlock::new);
-    public static final DeferredBlock<Block> CLAY_LOAM_GRASS_PATH = BLOCKS.register("clay_loam_grass_path", GrassySoilPathBlock::new);
-    public static final DeferredBlock<Block> SANDY_CLAY_LOAM_GRASS_PATH = BLOCKS.register("sandy_clay_loam_grass_path", GrassySoilPathBlock::new);
-    public static final DeferredBlock<Block> SILTY_CLAY_LOAM_GRASS_PATH = BLOCKS.register("silty_clay_loam_grass_path", GrassySoilPathBlock::new);
-    public static final DeferredBlock<Block> SANDY_CLAY_GRASS_PATH = BLOCKS.register("sandy_clay_grass_path", GrassySoilPathBlock::new);
-    public static final DeferredBlock<Block> SILTY_CLAY_GRASS_PATH = BLOCKS.register("silty_clay_grass_path", GrassySoilPathBlock::new);
-    public static final DeferredBlock<Block> HUMUS_GRASS_BLOCK = BLOCKS.register("humus_grass_block", GrassySoilBlock::new);
-    public static final DeferredBlock<Block> LOAM_GRASS_BLOCK = BLOCKS.register("loam_grass_block", GrassySoilBlock::new);
-    public static final DeferredBlock<Block> SILTY_LOAM_GRASS_BLOCK = BLOCKS.register("silty_loam_grass_block", GrassySoilBlock::new);
-    public static final DeferredBlock<Block> LOAMY_SAND_GRASS_BLOCK = BLOCKS.register("loamy_sand_grass_block", GrassySoilBlock::new);
-    public static final DeferredBlock<Block> SANDY_LOAM_GRASS_BLOCK = BLOCKS.register("sandy_loam_grass_block", GrassySoilBlock::new);
-    public static final DeferredBlock<Block> CLAY_LOAM_GRASS_BLOCK = BLOCKS.register("clay_loam_grass_block", GrassySoilBlock::new);
-    public static final DeferredBlock<Block> SANDY_CLAY_LOAM_GRASS_BLOCK = BLOCKS.register("sandy_clay_loam_grass_block", GrassySoilBlock::new);
-    public static final DeferredBlock<Block> SILTY_CLAY_LOAM_GRASS_BLOCK = BLOCKS.register("silty_clay_loam_grass_block", GrassySoilBlock::new);
-    public static final DeferredBlock<Block> SANDY_CLAY_GRASS_BLOCK = BLOCKS.register("sandy_clay_grass_block", GrassySoilBlock::new);
-    public static final DeferredBlock<Block> SILTY_CLAY_GRASS_BLOCK = BLOCKS.register("silty_clay_grass_block", GrassySoilBlock::new);
-    public static final DeferredBlock<Block> HUMUS_PODZOL = BLOCKS.register("humus_podzol", RankinePodzolBlock::new);
-    public static final DeferredBlock<Block> LOAM_PODZOL = BLOCKS.register("loam_podzol", RankinePodzolBlock::new);
-    public static final DeferredBlock<Block> SILTY_LOAM_PODZOL = BLOCKS.register("silty_loam_podzol", RankinePodzolBlock::new);
-    public static final DeferredBlock<Block> LOAMY_SAND_PODZOL = BLOCKS.register("loamy_sand_podzol", RankinePodzolBlock::new);
-    public static final DeferredBlock<Block> SANDY_LOAM_PODZOL = BLOCKS.register("sandy_loam_podzol", RankinePodzolBlock::new);
-    public static final DeferredBlock<Block> CLAY_LOAM_PODZOL = BLOCKS.register("clay_loam_podzol", RankinePodzolBlock::new);
-    public static final DeferredBlock<Block> SANDY_CLAY_LOAM_PODZOL = BLOCKS.register("sandy_clay_loam_podzol", RankinePodzolBlock::new);
-    public static final DeferredBlock<Block> SILTY_CLAY_LOAM_PODZOL = BLOCKS.register("silty_clay_loam_podzol", RankinePodzolBlock::new);
-    public static final DeferredBlock<Block> SANDY_CLAY_PODZOL = BLOCKS.register("sandy_clay_podzol", RankinePodzolBlock::new);
-    public static final DeferredBlock<Block> SILTY_CLAY_PODZOL = BLOCKS.register("silty_clay_podzol", RankinePodzolBlock::new);
-    public static final DeferredBlock<Block> HUMUS_MYCELIUM = BLOCKS.register("humus_mycelium", RankineMyceliumBlock::new);
-    public static final DeferredBlock<Block> LOAM_MYCELIUM = BLOCKS.register("loam_mycelium", RankineMyceliumBlock::new);
-    public static final DeferredBlock<Block> SILTY_LOAM_MYCELIUM = BLOCKS.register("silty_loam_mycelium", RankineMyceliumBlock::new);
-    public static final DeferredBlock<Block> LOAMY_SAND_MYCELIUM = BLOCKS.register("loamy_sand_mycelium", RankineMyceliumBlock::new);
-    public static final DeferredBlock<Block> SANDY_LOAM_MYCELIUM = BLOCKS.register("sandy_loam_mycelium", RankineMyceliumBlock::new);
-    public static final DeferredBlock<Block> CLAY_LOAM_MYCELIUM = BLOCKS.register("clay_loam_mycelium", RankineMyceliumBlock::new);
-    public static final DeferredBlock<Block> SANDY_CLAY_LOAM_MYCELIUM = BLOCKS.register("sandy_clay_loam_mycelium", RankineMyceliumBlock::new);
-    public static final DeferredBlock<Block> SILTY_CLAY_LOAM_MYCELIUM = BLOCKS.register("silty_clay_loam_mycelium", RankineMyceliumBlock::new);
-    public static final DeferredBlock<Block> SANDY_CLAY_MYCELIUM = BLOCKS.register("sandy_clay_mycelium", RankineMyceliumBlock::new);
-    public static final DeferredBlock<Block> SILTY_CLAY_MYCELIUM = BLOCKS.register("silty_clay_mycelium", RankineMyceliumBlock::new);
+    public static final DeferredBlock<Block> HUMUS_MUD = BLOCKS.register("humus_mud", () -> new MudBlock());
+    public static final DeferredBlock<Block> LOAM_MUD = BLOCKS.register("loam_mud", () -> new MudBlock());
+    public static final DeferredBlock<Block> SILTY_LOAM_MUD = BLOCKS.register("silty_loam_mud", () -> new MudBlock());
+    public static final DeferredBlock<Block> LOAMY_SAND_MUD = BLOCKS.register("loamy_sand_mud", () -> new MudBlock());
+    public static final DeferredBlock<Block> SANDY_LOAM_MUD = BLOCKS.register("sandy_loam_mud", () -> new MudBlock());
+    public static final DeferredBlock<Block> CLAY_LOAM_MUD = BLOCKS.register("clay_loam_mud", () -> new MudBlock());
+    public static final DeferredBlock<Block> SANDY_CLAY_LOAM_MUD = BLOCKS.register("sandy_clay_loam_mud", () -> new MudBlock());
+    public static final DeferredBlock<Block> SILTY_CLAY_LOAM_MUD = BLOCKS.register("silty_clay_loam_mud", () -> new MudBlock());
+    public static final DeferredBlock<Block> SANDY_CLAY_MUD = BLOCKS.register("sandy_clay_mud", () -> new MudBlock());
+    public static final DeferredBlock<Block> SILTY_CLAY_MUD = BLOCKS.register("silty_clay_mud", () -> new MudBlock());
+    public static final DeferredBlock<Block> HUMUS_GRASS_PATH = BLOCKS.register("humus_grass_path", () -> new GrassySoilPathBlock());
+    public static final DeferredBlock<Block> LOAM_GRASS_PATH = BLOCKS.register("loam_grass_path", () -> new GrassySoilPathBlock());
+    public static final DeferredBlock<Block> SILTY_LOAM_GRASS_PATH = BLOCKS.register("silty_loam_grass_path", () -> new GrassySoilPathBlock());
+    public static final DeferredBlock<Block> LOAMY_SAND_GRASS_PATH = BLOCKS.register("loamy_sand_grass_path", () -> new GrassySoilPathBlock());
+    public static final DeferredBlock<Block> SANDY_LOAM_GRASS_PATH = BLOCKS.register("sandy_loam_grass_path", () -> new GrassySoilPathBlock());
+    public static final DeferredBlock<Block> CLAY_LOAM_GRASS_PATH = BLOCKS.register("clay_loam_grass_path", () -> new GrassySoilPathBlock());
+    public static final DeferredBlock<Block> SANDY_CLAY_LOAM_GRASS_PATH = BLOCKS.register("sandy_clay_loam_grass_path", () -> new GrassySoilPathBlock());
+    public static final DeferredBlock<Block> SILTY_CLAY_LOAM_GRASS_PATH = BLOCKS.register("silty_clay_loam_grass_path", () -> new GrassySoilPathBlock());
+    public static final DeferredBlock<Block> SANDY_CLAY_GRASS_PATH = BLOCKS.register("sandy_clay_grass_path", () -> new GrassySoilPathBlock());
+    public static final DeferredBlock<Block> SILTY_CLAY_GRASS_PATH = BLOCKS.register("silty_clay_grass_path", () -> new GrassySoilPathBlock());
+    public static final DeferredBlock<Block> HUMUS_GRASS_BLOCK = BLOCKS.register("humus_grass_block", () -> new GrassySoilBlock());
+    public static final DeferredBlock<Block> LOAM_GRASS_BLOCK = BLOCKS.register("loam_grass_block", () -> new GrassySoilBlock());
+    public static final DeferredBlock<Block> SILTY_LOAM_GRASS_BLOCK = BLOCKS.register("silty_loam_grass_block", () -> new GrassySoilBlock());
+    public static final DeferredBlock<Block> LOAMY_SAND_GRASS_BLOCK = BLOCKS.register("loamy_sand_grass_block", () -> new GrassySoilBlock());
+    public static final DeferredBlock<Block> SANDY_LOAM_GRASS_BLOCK = BLOCKS.register("sandy_loam_grass_block", () -> new GrassySoilBlock());
+    public static final DeferredBlock<Block> CLAY_LOAM_GRASS_BLOCK = BLOCKS.register("clay_loam_grass_block", () -> new GrassySoilBlock());
+    public static final DeferredBlock<Block> SANDY_CLAY_LOAM_GRASS_BLOCK = BLOCKS.register("sandy_clay_loam_grass_block", () -> new GrassySoilBlock());
+    public static final DeferredBlock<Block> SILTY_CLAY_LOAM_GRASS_BLOCK = BLOCKS.register("silty_clay_loam_grass_block", () -> new GrassySoilBlock());
+    public static final DeferredBlock<Block> SANDY_CLAY_GRASS_BLOCK = BLOCKS.register("sandy_clay_grass_block", () -> new GrassySoilBlock());
+    public static final DeferredBlock<Block> SILTY_CLAY_GRASS_BLOCK = BLOCKS.register("silty_clay_grass_block", () -> new GrassySoilBlock());
+    public static final DeferredBlock<Block> HUMUS_PODZOL = BLOCKS.register("humus_podzol", () -> new RankinePodzolBlock());
+    public static final DeferredBlock<Block> LOAM_PODZOL = BLOCKS.register("loam_podzol", () -> new RankinePodzolBlock());
+    public static final DeferredBlock<Block> SILTY_LOAM_PODZOL = BLOCKS.register("silty_loam_podzol", () -> new RankinePodzolBlock());
+    public static final DeferredBlock<Block> LOAMY_SAND_PODZOL = BLOCKS.register("loamy_sand_podzol", () -> new RankinePodzolBlock());
+    public static final DeferredBlock<Block> SANDY_LOAM_PODZOL = BLOCKS.register("sandy_loam_podzol", () -> new RankinePodzolBlock());
+    public static final DeferredBlock<Block> CLAY_LOAM_PODZOL = BLOCKS.register("clay_loam_podzol", () -> new RankinePodzolBlock());
+    public static final DeferredBlock<Block> SANDY_CLAY_LOAM_PODZOL = BLOCKS.register("sandy_clay_loam_podzol", () -> new RankinePodzolBlock());
+    public static final DeferredBlock<Block> SILTY_CLAY_LOAM_PODZOL = BLOCKS.register("silty_clay_loam_podzol", () -> new RankinePodzolBlock());
+    public static final DeferredBlock<Block> SANDY_CLAY_PODZOL = BLOCKS.register("sandy_clay_podzol", () -> new RankinePodzolBlock());
+    public static final DeferredBlock<Block> SILTY_CLAY_PODZOL = BLOCKS.register("silty_clay_podzol", () -> new RankinePodzolBlock());
+    public static final DeferredBlock<Block> HUMUS_MYCELIUM = BLOCKS.register("humus_mycelium", () -> new RankineMyceliumBlock());
+    public static final DeferredBlock<Block> LOAM_MYCELIUM = BLOCKS.register("loam_mycelium", () -> new RankineMyceliumBlock());
+    public static final DeferredBlock<Block> SILTY_LOAM_MYCELIUM = BLOCKS.register("silty_loam_mycelium", () -> new RankineMyceliumBlock());
+    public static final DeferredBlock<Block> LOAMY_SAND_MYCELIUM = BLOCKS.register("loamy_sand_mycelium", () -> new RankineMyceliumBlock());
+    public static final DeferredBlock<Block> SANDY_LOAM_MYCELIUM = BLOCKS.register("sandy_loam_mycelium", () -> new RankineMyceliumBlock());
+    public static final DeferredBlock<Block> CLAY_LOAM_MYCELIUM = BLOCKS.register("clay_loam_mycelium", () -> new RankineMyceliumBlock());
+    public static final DeferredBlock<Block> SANDY_CLAY_LOAM_MYCELIUM = BLOCKS.register("sandy_clay_loam_mycelium", () -> new RankineMyceliumBlock());
+    public static final DeferredBlock<Block> SILTY_CLAY_LOAM_MYCELIUM = BLOCKS.register("silty_clay_loam_mycelium", () -> new RankineMyceliumBlock());
+    public static final DeferredBlock<Block> SANDY_CLAY_MYCELIUM = BLOCKS.register("sandy_clay_mycelium", () -> new RankineMyceliumBlock());
+    public static final DeferredBlock<Block> SILTY_CLAY_MYCELIUM = BLOCKS.register("silty_clay_mycelium", () -> new RankineMyceliumBlock());
 
 
     public static final DeferredBlock<Block> MYCELIUM_PATH = BLOCKS.register("mycelium_path", () -> new DirtPathBlock(Block.Properties.of().mapColor(MapColor.DIRT).sound(SoundType.GRAVEL).strength(0.5F)));
@@ -554,7 +554,7 @@ public class RankineBlocks {
     public static final DeferredBlock<Block> KIMBERLITIC_TUFF = BLOCKS.register("kimberlitic_tuff", () -> new Block(Block.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).sound(SoundType.STONE).strength(2.0F, 2.0F)));
     public static final DeferredBlock<Block> KOMATIITIC_TUFF = BLOCKS.register("komatiitic_tuff", () -> new Block(Block.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).sound(SoundType.STONE).strength(2.0F, 2.0F)));
 
-    public static final DeferredBlock<Block> SLATE_STEPPING_STONES = BLOCKS.register("slate_stepping_stones", SteppingStonesBlock::new);
+    public static final DeferredBlock<Block> SLATE_STEPPING_STONES = BLOCKS.register("slate_stepping_stones", () -> new SteppingStonesBlock());
 
 
 
@@ -591,65 +591,65 @@ public class RankineBlocks {
     public static final DeferredBlock<Block> CHECKERED_MARBLE_STAIRS = BLOCKS.register("checkered_marble_stairs", () -> new RankineStairsBlock(Block.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(2)));
     public static final DeferredBlock<Block> CHECKERED_MARBLE_WALL = BLOCKS.register("checkered_marble_wall", () -> new RankineWallBlock(Block.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).sound(SoundType.STONE).strength(1.5F, 6.0F)));
 
-    public static final DeferredBlock<Block> ASPHALT = BLOCKS.register("asphalt", BaseAsphaltBlock::new);
-    public static final DeferredBlock<Block> ASPHALT_YL = BLOCKS.register("asphalt_yellow_line", BaseAsphaltBlock::new);
-    public static final DeferredBlock<Block> ASPHALT_YDL = BLOCKS.register("asphalt_yellow_dashed_line", BaseAsphaltBlock::new);
-    public static final DeferredBlock<Block> ASPHALT_YDBL = BLOCKS.register("asphalt_yellow_double_line", BaseAsphaltBlock::new);
-    public static final DeferredBlock<Block> ASPHALT_DDBL = BLOCKS.register("asphalt_yellow_dashed_double_line", BaseAsphaltBlock::new);
-    public static final DeferredBlock<Block> ASPHALT_WL = BLOCKS.register("asphalt_white_line", BaseAsphaltBlock::new);
-    public static final DeferredBlock<Block> ASPHALT_WDL = BLOCKS.register("asphalt_white_dashed_line", BaseAsphaltBlock::new);
-    public static final DeferredBlock<Block> ASPHALT_CW = BLOCKS.register("asphalt_crosswalk", BaseAsphaltBlock::new);
-    public static final DeferredBlock<Block> ASPHALT_S = BLOCKS.register("asphalt_solid", BaseAsphaltBlock::new);
+    public static final DeferredBlock<Block> ASPHALT = BLOCKS.register("asphalt", () -> new BaseAsphaltBlock());
+    public static final DeferredBlock<Block> ASPHALT_YL = BLOCKS.register("asphalt_yellow_line", () -> new BaseAsphaltBlock());
+    public static final DeferredBlock<Block> ASPHALT_YDL = BLOCKS.register("asphalt_yellow_dashed_line", () -> new BaseAsphaltBlock());
+    public static final DeferredBlock<Block> ASPHALT_YDBL = BLOCKS.register("asphalt_yellow_double_line", () -> new BaseAsphaltBlock());
+    public static final DeferredBlock<Block> ASPHALT_DDBL = BLOCKS.register("asphalt_yellow_dashed_double_line", () -> new BaseAsphaltBlock());
+    public static final DeferredBlock<Block> ASPHALT_WL = BLOCKS.register("asphalt_white_line", () -> new BaseAsphaltBlock());
+    public static final DeferredBlock<Block> ASPHALT_WDL = BLOCKS.register("asphalt_white_dashed_line", () -> new BaseAsphaltBlock());
+    public static final DeferredBlock<Block> ASPHALT_CW = BLOCKS.register("asphalt_crosswalk", () -> new BaseAsphaltBlock());
+    public static final DeferredBlock<Block> ASPHALT_S = BLOCKS.register("asphalt_solid", () -> new BaseAsphaltBlock());
 
-    public static final DeferredBlock<Block> RED_ASPHALT = BLOCKS.register("red_asphalt", RedAsphaltBlock::new);
-    public static final DeferredBlock<Block> RED_ASPHALT_YL = BLOCKS.register("red_asphalt_yellow_line", RedAsphaltBlock::new);
-    public static final DeferredBlock<Block> RED_ASPHALT_YDL = BLOCKS.register("red_asphalt_yellow_dashed_line", RedAsphaltBlock::new);
-    public static final DeferredBlock<Block> RED_ASPHALT_YDBL = BLOCKS.register("red_asphalt_yellow_double_line", RedAsphaltBlock::new);
-    public static final DeferredBlock<Block> RED_ASPHALT_DDBL = BLOCKS.register("red_asphalt_yellow_dashed_double_line", RedAsphaltBlock::new);
-    public static final DeferredBlock<Block> RED_ASPHALT_WL = BLOCKS.register("red_asphalt_white_line", RedAsphaltBlock::new);
-    public static final DeferredBlock<Block> RED_ASPHALT_WDL = BLOCKS.register("red_asphalt_white_dashed_line", RedAsphaltBlock::new);
-    public static final DeferredBlock<Block> RED_ASPHALT_CW = BLOCKS.register("red_asphalt_crosswalk", RedAsphaltBlock::new);
-    public static final DeferredBlock<Block> RED_ASPHALT_S = BLOCKS.register("red_asphalt_solid", RedAsphaltBlock::new);
+    public static final DeferredBlock<Block> RED_ASPHALT = BLOCKS.register("red_asphalt", () -> new RedAsphaltBlock());
+    public static final DeferredBlock<Block> RED_ASPHALT_YL = BLOCKS.register("red_asphalt_yellow_line", () -> new RedAsphaltBlock());
+    public static final DeferredBlock<Block> RED_ASPHALT_YDL = BLOCKS.register("red_asphalt_yellow_dashed_line", () -> new RedAsphaltBlock());
+    public static final DeferredBlock<Block> RED_ASPHALT_YDBL = BLOCKS.register("red_asphalt_yellow_double_line", () -> new RedAsphaltBlock());
+    public static final DeferredBlock<Block> RED_ASPHALT_DDBL = BLOCKS.register("red_asphalt_yellow_dashed_double_line", () -> new RedAsphaltBlock());
+    public static final DeferredBlock<Block> RED_ASPHALT_WL = BLOCKS.register("red_asphalt_white_line", () -> new RedAsphaltBlock());
+    public static final DeferredBlock<Block> RED_ASPHALT_WDL = BLOCKS.register("red_asphalt_white_dashed_line", () -> new RedAsphaltBlock());
+    public static final DeferredBlock<Block> RED_ASPHALT_CW = BLOCKS.register("red_asphalt_crosswalk", () -> new RedAsphaltBlock());
+    public static final DeferredBlock<Block> RED_ASPHALT_S = BLOCKS.register("red_asphalt_solid", () -> new RedAsphaltBlock());
 
-    public static final DeferredBlock<Block> GRAY_ASPHALT = BLOCKS.register("gray_asphalt", GrayAsphaltBlock::new);
-    public static final DeferredBlock<Block> GRAY_ASPHALT_YL = BLOCKS.register("gray_asphalt_yellow_line", GrayAsphaltBlock::new);
-    public static final DeferredBlock<Block> GRAY_ASPHALT_YDL = BLOCKS.register("gray_asphalt_yellow_dashed_line", GrayAsphaltBlock::new);
-    public static final DeferredBlock<Block> GRAY_ASPHALT_YDBL = BLOCKS.register("gray_asphalt_yellow_double_line", GrayAsphaltBlock::new);
-    public static final DeferredBlock<Block> GRAY_ASPHALT_DDBL = BLOCKS.register("gray_asphalt_yellow_dashed_double_line", GrayAsphaltBlock::new);
-    public static final DeferredBlock<Block> GRAY_ASPHALT_WL = BLOCKS.register("gray_asphalt_white_line", GrayAsphaltBlock::new);
-    public static final DeferredBlock<Block> GRAY_ASPHALT_WDL = BLOCKS.register("gray_asphalt_white_dashed_line", GrayAsphaltBlock::new);
-    public static final DeferredBlock<Block> GRAY_ASPHALT_CW = BLOCKS.register("gray_asphalt_crosswalk", GrayAsphaltBlock::new);
-    public static final DeferredBlock<Block> GRAY_ASPHALT_S = BLOCKS.register("gray_asphalt_solid", GrayAsphaltBlock::new);
+    public static final DeferredBlock<Block> GRAY_ASPHALT = BLOCKS.register("gray_asphalt", () -> new GrayAsphaltBlock());
+    public static final DeferredBlock<Block> GRAY_ASPHALT_YL = BLOCKS.register("gray_asphalt_yellow_line", () -> new GrayAsphaltBlock());
+    public static final DeferredBlock<Block> GRAY_ASPHALT_YDL = BLOCKS.register("gray_asphalt_yellow_dashed_line", () -> new GrayAsphaltBlock());
+    public static final DeferredBlock<Block> GRAY_ASPHALT_YDBL = BLOCKS.register("gray_asphalt_yellow_double_line", () -> new GrayAsphaltBlock());
+    public static final DeferredBlock<Block> GRAY_ASPHALT_DDBL = BLOCKS.register("gray_asphalt_yellow_dashed_double_line", () -> new GrayAsphaltBlock());
+    public static final DeferredBlock<Block> GRAY_ASPHALT_WL = BLOCKS.register("gray_asphalt_white_line", () -> new GrayAsphaltBlock());
+    public static final DeferredBlock<Block> GRAY_ASPHALT_WDL = BLOCKS.register("gray_asphalt_white_dashed_line", () -> new GrayAsphaltBlock());
+    public static final DeferredBlock<Block> GRAY_ASPHALT_CW = BLOCKS.register("gray_asphalt_crosswalk", () -> new GrayAsphaltBlock());
+    public static final DeferredBlock<Block> GRAY_ASPHALT_S = BLOCKS.register("gray_asphalt_solid", () -> new GrayAsphaltBlock());
 
-    public static final DeferredBlock<Block> DARK_GRAY_ASPHALT = BLOCKS.register("dark_gray_asphalt", DarkGrayAsphaltBlock::new);
-    public static final DeferredBlock<Block> DARK_GRAY_ASPHALT_YL = BLOCKS.register("dark_gray_asphalt_yellow_line", DarkGrayAsphaltBlock::new);
-    public static final DeferredBlock<Block> DARK_GRAY_ASPHALT_YDL = BLOCKS.register("dark_gray_asphalt_yellow_dashed_line", DarkGrayAsphaltBlock::new);
-    public static final DeferredBlock<Block> DARK_GRAY_ASPHALT_YDBL = BLOCKS.register("dark_gray_asphalt_yellow_double_line", DarkGrayAsphaltBlock::new);
-    public static final DeferredBlock<Block> DARK_GRAY_ASPHALT_DDBL = BLOCKS.register("dark_gray_asphalt_yellow_dashed_double_line", DarkGrayAsphaltBlock::new);
-    public static final DeferredBlock<Block> DARK_GRAY_ASPHALT_WL = BLOCKS.register("dark_gray_asphalt_white_line", DarkGrayAsphaltBlock::new);
-    public static final DeferredBlock<Block> DARK_GRAY_ASPHALT_WDL = BLOCKS.register("dark_gray_asphalt_white_dashed_line", DarkGrayAsphaltBlock::new);
-    public static final DeferredBlock<Block> DARK_GRAY_ASPHALT_CW = BLOCKS.register("dark_gray_asphalt_crosswalk", DarkGrayAsphaltBlock::new);
-    public static final DeferredBlock<Block> DARK_GRAY_ASPHALT_S = BLOCKS.register("dark_gray_asphalt_solid", DarkGrayAsphaltBlock::new);
+    public static final DeferredBlock<Block> DARK_GRAY_ASPHALT = BLOCKS.register("dark_gray_asphalt", () -> new DarkGrayAsphaltBlock());
+    public static final DeferredBlock<Block> DARK_GRAY_ASPHALT_YL = BLOCKS.register("dark_gray_asphalt_yellow_line", () -> new DarkGrayAsphaltBlock());
+    public static final DeferredBlock<Block> DARK_GRAY_ASPHALT_YDL = BLOCKS.register("dark_gray_asphalt_yellow_dashed_line", () -> new DarkGrayAsphaltBlock());
+    public static final DeferredBlock<Block> DARK_GRAY_ASPHALT_YDBL = BLOCKS.register("dark_gray_asphalt_yellow_double_line", () -> new DarkGrayAsphaltBlock());
+    public static final DeferredBlock<Block> DARK_GRAY_ASPHALT_DDBL = BLOCKS.register("dark_gray_asphalt_yellow_dashed_double_line", () -> new DarkGrayAsphaltBlock());
+    public static final DeferredBlock<Block> DARK_GRAY_ASPHALT_WL = BLOCKS.register("dark_gray_asphalt_white_line", () -> new DarkGrayAsphaltBlock());
+    public static final DeferredBlock<Block> DARK_GRAY_ASPHALT_WDL = BLOCKS.register("dark_gray_asphalt_white_dashed_line", () -> new DarkGrayAsphaltBlock());
+    public static final DeferredBlock<Block> DARK_GRAY_ASPHALT_CW = BLOCKS.register("dark_gray_asphalt_crosswalk", () -> new DarkGrayAsphaltBlock());
+    public static final DeferredBlock<Block> DARK_GRAY_ASPHALT_S = BLOCKS.register("dark_gray_asphalt_solid", () -> new DarkGrayAsphaltBlock());
 
-    public static final DeferredBlock<Block> GREEN_ASPHALT = BLOCKS.register("green_asphalt", GreenAsphaltBlock::new);
-    public static final DeferredBlock<Block> GREEN_ASPHALT_YL = BLOCKS.register("green_asphalt_yellow_line", GreenAsphaltBlock::new);
-    public static final DeferredBlock<Block> GREEN_ASPHALT_YDL = BLOCKS.register("green_asphalt_yellow_dashed_line", GreenAsphaltBlock::new);
-    public static final DeferredBlock<Block> GREEN_ASPHALT_YDBL = BLOCKS.register("green_asphalt_yellow_double_line", GreenAsphaltBlock::new);
-    public static final DeferredBlock<Block> GREEN_ASPHALT_DDBL = BLOCKS.register("green_asphalt_yellow_dashed_double_line", GreenAsphaltBlock::new);
-    public static final DeferredBlock<Block> GREEN_ASPHALT_WL = BLOCKS.register("green_asphalt_white_line", GreenAsphaltBlock::new);
-    public static final DeferredBlock<Block> GREEN_ASPHALT_WDL = BLOCKS.register("green_asphalt_white_dashed_line", GreenAsphaltBlock::new);
-    public static final DeferredBlock<Block> GREEN_ASPHALT_CW = BLOCKS.register("green_asphalt_crosswalk", GreenAsphaltBlock::new);
-    public static final DeferredBlock<Block> GREEN_ASPHALT_S = BLOCKS.register("green_asphalt_solid", GreenAsphaltBlock::new);
+    public static final DeferredBlock<Block> GREEN_ASPHALT = BLOCKS.register("green_asphalt", () -> new GreenAsphaltBlock());
+    public static final DeferredBlock<Block> GREEN_ASPHALT_YL = BLOCKS.register("green_asphalt_yellow_line", () -> new GreenAsphaltBlock());
+    public static final DeferredBlock<Block> GREEN_ASPHALT_YDL = BLOCKS.register("green_asphalt_yellow_dashed_line", () -> new GreenAsphaltBlock());
+    public static final DeferredBlock<Block> GREEN_ASPHALT_YDBL = BLOCKS.register("green_asphalt_yellow_double_line", () -> new GreenAsphaltBlock());
+    public static final DeferredBlock<Block> GREEN_ASPHALT_DDBL = BLOCKS.register("green_asphalt_yellow_dashed_double_line", () -> new GreenAsphaltBlock());
+    public static final DeferredBlock<Block> GREEN_ASPHALT_WL = BLOCKS.register("green_asphalt_white_line", () -> new GreenAsphaltBlock());
+    public static final DeferredBlock<Block> GREEN_ASPHALT_WDL = BLOCKS.register("green_asphalt_white_dashed_line", () -> new GreenAsphaltBlock());
+    public static final DeferredBlock<Block> GREEN_ASPHALT_CW = BLOCKS.register("green_asphalt_crosswalk", () -> new GreenAsphaltBlock());
+    public static final DeferredBlock<Block> GREEN_ASPHALT_S = BLOCKS.register("green_asphalt_solid", () -> new GreenAsphaltBlock());
 
-    public static final DeferredBlock<Block> BLUE_ASPHALT = BLOCKS.register("blue_asphalt", BlueAsphaltBlock::new);
-    public static final DeferredBlock<Block> BLUE_ASPHALT_YL = BLOCKS.register("blue_asphalt_yellow_line", BlueAsphaltBlock::new);
-    public static final DeferredBlock<Block> BLUE_ASPHALT_YDL = BLOCKS.register("blue_asphalt_yellow_dashed_line", BlueAsphaltBlock::new);
-    public static final DeferredBlock<Block> BLUE_ASPHALT_YDBL = BLOCKS.register("blue_asphalt_yellow_double_line", BlueAsphaltBlock::new);
-    public static final DeferredBlock<Block> BLUE_ASPHALT_DDBL = BLOCKS.register("blue_asphalt_yellow_dashed_double_line", BlueAsphaltBlock::new);
-    public static final DeferredBlock<Block> BLUE_ASPHALT_WL = BLOCKS.register("blue_asphalt_white_line", BlueAsphaltBlock::new);
-    public static final DeferredBlock<Block> BLUE_ASPHALT_WDL = BLOCKS.register("blue_asphalt_white_dashed_line", BlueAsphaltBlock::new);
-    public static final DeferredBlock<Block> BLUE_ASPHALT_CW = BLOCKS.register("blue_asphalt_crosswalk", BlueAsphaltBlock::new);
-    public static final DeferredBlock<Block> BLUE_ASPHALT_S = BLOCKS.register("blue_asphalt_solid", BlueAsphaltBlock::new);
+    public static final DeferredBlock<Block> BLUE_ASPHALT = BLOCKS.register("blue_asphalt", () -> new BlueAsphaltBlock());
+    public static final DeferredBlock<Block> BLUE_ASPHALT_YL = BLOCKS.register("blue_asphalt_yellow_line", () -> new BlueAsphaltBlock());
+    public static final DeferredBlock<Block> BLUE_ASPHALT_YDL = BLOCKS.register("blue_asphalt_yellow_dashed_line", () -> new BlueAsphaltBlock());
+    public static final DeferredBlock<Block> BLUE_ASPHALT_YDBL = BLOCKS.register("blue_asphalt_yellow_double_line", () -> new BlueAsphaltBlock());
+    public static final DeferredBlock<Block> BLUE_ASPHALT_DDBL = BLOCKS.register("blue_asphalt_yellow_dashed_double_line", () -> new BlueAsphaltBlock());
+    public static final DeferredBlock<Block> BLUE_ASPHALT_WL = BLOCKS.register("blue_asphalt_white_line", () -> new BlueAsphaltBlock());
+    public static final DeferredBlock<Block> BLUE_ASPHALT_WDL = BLOCKS.register("blue_asphalt_white_dashed_line", () -> new BlueAsphaltBlock());
+    public static final DeferredBlock<Block> BLUE_ASPHALT_CW = BLOCKS.register("blue_asphalt_crosswalk", () -> new BlueAsphaltBlock());
+    public static final DeferredBlock<Block> BLUE_ASPHALT_S = BLOCKS.register("blue_asphalt_solid", () -> new BlueAsphaltBlock());
 
 
     public static final DeferredBlock<Block> STICK_BLOCK = BLOCKS.register("stick_block", () -> new StickBlock(Block.Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BASS).ignitedByLava().sound(SoundType.WOOD).strength(1.2F)));
@@ -680,35 +680,35 @@ public class RankineBlocks {
 
 
 
-    public static final DeferredBlock<Block> HOLLOW_OAK_LOG = BLOCKS.register("hollow_oak_log", HollowLogBlock::new);
-    public static final DeferredBlock<Block> HOLLOW_SPRUCE_LOG = BLOCKS.register("hollow_spruce_log", HollowLogBlock::new);
-    public static final DeferredBlock<Block> HOLLOW_BIRCH_LOG = BLOCKS.register("hollow_birch_log", HollowLogBlock::new);
-    public static final DeferredBlock<Block> HOLLOW_JUNGLE_LOG = BLOCKS.register("hollow_jungle_log", HollowLogBlock::new);
-    public static final DeferredBlock<Block> HOLLOW_ACACIA_LOG = BLOCKS.register("hollow_acacia_log", HollowLogBlock::new);
-    public static final DeferredBlock<Block> HOLLOW_DARK_OAK_LOG = BLOCKS.register("hollow_dark_oak_log", HollowLogBlock::new);
-    public static final DeferredBlock<Block> HOLLOW_WARPED_STEM = BLOCKS.register("hollow_warped_stem", HollowLogBlock::new);
-    public static final DeferredBlock<Block> HOLLOW_CRIMSON_STEM = BLOCKS.register("hollow_crimson_stem", HollowLogBlock::new);
+    public static final DeferredBlock<Block> HOLLOW_OAK_LOG = BLOCKS.register("hollow_oak_log", () -> new HollowLogBlock());
+    public static final DeferredBlock<Block> HOLLOW_SPRUCE_LOG = BLOCKS.register("hollow_spruce_log", () -> new HollowLogBlock());
+    public static final DeferredBlock<Block> HOLLOW_BIRCH_LOG = BLOCKS.register("hollow_birch_log", () -> new HollowLogBlock());
+    public static final DeferredBlock<Block> HOLLOW_JUNGLE_LOG = BLOCKS.register("hollow_jungle_log", () -> new HollowLogBlock());
+    public static final DeferredBlock<Block> HOLLOW_ACACIA_LOG = BLOCKS.register("hollow_acacia_log", () -> new HollowLogBlock());
+    public static final DeferredBlock<Block> HOLLOW_DARK_OAK_LOG = BLOCKS.register("hollow_dark_oak_log", () -> new HollowLogBlock());
+    public static final DeferredBlock<Block> HOLLOW_WARPED_STEM = BLOCKS.register("hollow_warped_stem", () -> new HollowLogBlock());
+    public static final DeferredBlock<Block> HOLLOW_CRIMSON_STEM = BLOCKS.register("hollow_crimson_stem", () -> new HollowLogBlock());
 
-    public static final DeferredBlock<Block> OAK_LEAF_LITTER = BLOCKS.register("oak_leaf_litter", LeafLitterBlock::new);
-    public static final DeferredBlock<Block> SPRUCE_LEAF_LITTER = BLOCKS.register("spruce_leaf_litter", LeafLitterBlock::new);
-    public static final DeferredBlock<Block> BIRCH_LEAF_LITTER = BLOCKS.register("birch_leaf_litter", LeafLitterBlock::new);
-    public static final DeferredBlock<Block> JUNGLE_LEAF_LITTER = BLOCKS.register("jungle_leaf_litter", LeafLitterBlock::new);
-    public static final DeferredBlock<Block> ACACIA_LEAF_LITTER = BLOCKS.register("acacia_leaf_litter", LeafLitterBlock::new);
-    public static final DeferredBlock<Block> DARK_OAK_LEAF_LITTER = BLOCKS.register("dark_oak_leaf_litter", LeafLitterBlock::new);
+    public static final DeferredBlock<Block> OAK_LEAF_LITTER = BLOCKS.register("oak_leaf_litter", () -> new LeafLitterBlock());
+    public static final DeferredBlock<Block> SPRUCE_LEAF_LITTER = BLOCKS.register("spruce_leaf_litter", () -> new LeafLitterBlock());
+    public static final DeferredBlock<Block> BIRCH_LEAF_LITTER = BLOCKS.register("birch_leaf_litter", () -> new LeafLitterBlock());
+    public static final DeferredBlock<Block> JUNGLE_LEAF_LITTER = BLOCKS.register("jungle_leaf_litter", () -> new LeafLitterBlock());
+    public static final DeferredBlock<Block> ACACIA_LEAF_LITTER = BLOCKS.register("acacia_leaf_litter", () -> new LeafLitterBlock());
+    public static final DeferredBlock<Block> DARK_OAK_LEAF_LITTER = BLOCKS.register("dark_oak_leaf_litter", () -> new LeafLitterBlock());
 
 
 
     public static final DeferredBlock<Block> STUMP = BLOCKS.register("stump", () -> new StumpBlock(Block.Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BASS).ignitedByLava().sound(SoundType.WOOD).requiresCorrectToolForDrops().strength(30.0F, 9.0F)));
 
 
-    public static final DeferredBlock<Block> BRASS_DOOR = BLOCKS.register("brass_door", RankineMetalDoor::new);
-    public static final DeferredBlock<Block> BRONZE_DOOR = BLOCKS.register("bronze_door", RankineMetalDoor::new);
-    public static final DeferredBlock<Block> CUPRONICKEL_DOOR = BLOCKS.register("cupronickel_door", RankineMetalDoor::new);
-    public static final DeferredBlock<Block> STEEL_DOOR = BLOCKS.register("steel_door", RankineMetalDoor::new);
-    public static final DeferredBlock<Block> BRASS_TRAPDOOR = BLOCKS.register("brass_trapdoor", RankineMetalTrapdoor::new);
-    public static final DeferredBlock<Block> BRONZE_TRAPDOOR = BLOCKS.register("bronze_trapdoor", RankineMetalTrapdoor::new);
-    public static final DeferredBlock<Block> STEEL_TRAPDOOR = BLOCKS.register("steel_trapdoor", RankineMetalTrapdoor::new);
-    public static final DeferredBlock<Block> CUPRONICKEL_TRAPDOOR = BLOCKS.register("cupronickel_trapdoor", RankineMetalTrapdoor::new);
+    public static final DeferredBlock<Block> BRASS_DOOR = BLOCKS.register("brass_door", () -> new RankineMetalDoor());
+    public static final DeferredBlock<Block> BRONZE_DOOR = BLOCKS.register("bronze_door", () -> new RankineMetalDoor());
+    public static final DeferredBlock<Block> CUPRONICKEL_DOOR = BLOCKS.register("cupronickel_door", () -> new RankineMetalDoor());
+    public static final DeferredBlock<Block> STEEL_DOOR = BLOCKS.register("steel_door", () -> new RankineMetalDoor());
+    public static final DeferredBlock<Block> BRASS_TRAPDOOR = BLOCKS.register("brass_trapdoor", () -> new RankineMetalTrapdoor());
+    public static final DeferredBlock<Block> BRONZE_TRAPDOOR = BLOCKS.register("bronze_trapdoor", () -> new RankineMetalTrapdoor());
+    public static final DeferredBlock<Block> STEEL_TRAPDOOR = BLOCKS.register("steel_trapdoor", () -> new RankineMetalTrapdoor());
+    public static final DeferredBlock<Block> CUPRONICKEL_TRAPDOOR = BLOCKS.register("cupronickel_trapdoor", () -> new RankineMetalTrapdoor());
 
     public static final DeferredBlock<Block> ORANGE_LILY = BLOCKS.register("orange_lily", () -> new TallFlowerBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).pushReaction(PushReaction.DESTROY).replaceable().noCollission().instabreak().sound(SoundType.GRASS)));
     public static final DeferredBlock<Block> RED_LILY = BLOCKS.register("red_lily", () -> new TallFlowerBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).pushReaction(PushReaction.DESTROY).replaceable().noCollission().instabreak().sound(SoundType.GRASS)));
@@ -745,16 +745,16 @@ public class RankineBlocks {
     public static final DeferredBlock<Block> TURKEY_TAIL_MUSHROOM_BLOCK = BLOCKS.register("turkey_tail_mushroom_block", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.DIRT).instrument(NoteBlockInstrument.BASS).ignitedByLava().strength(0.2F).sound(SoundType.WOOD)));
     public static final DeferredBlock<Block> CINNABAR_POLYPORE_MUSHROOM_BLOCK = BLOCKS.register("cinnabar_polypore_mushroom_block", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.DIRT).instrument(NoteBlockInstrument.BASS).ignitedByLava().strength(0.2F).sound(SoundType.WOOD)));
 
-    public static final DeferredBlock<Block> WOOD_TIER_MINING_HEAD = BLOCKS.register("wood_tier_mining_head", MiningHeadBlock::new);
-    public static final DeferredBlock<Block> STONE_TIER_MINING_HEAD = BLOCKS.register("stone_tier_mining_head", MiningHeadBlock::new);
-    public static final DeferredBlock<Block> IRON_TIER_MINING_HEAD = BLOCKS.register("iron_tier_mining_head", MiningHeadBlock::new);
-    public static final DeferredBlock<Block> DIAMOND_TIER_MINING_HEAD = BLOCKS.register("diamond_tier_mining_head", MiningHeadBlock::new);
-    public static final DeferredBlock<Block> NETHERITE_TIER_MINING_HEAD = BLOCKS.register("netherite_tier_mining_head", MiningHeadBlock::new);
-    public static final DeferredBlock<Block> WOOD_TIER_CRUSHING_HEAD = BLOCKS.register("wood_tier_crushing_head", CrushingHeadBlock::new);
-    public static final DeferredBlock<Block> STONE_TIER_CRUSHING_HEAD = BLOCKS.register("stone_tier_crushing_head", CrushingHeadBlock::new);
-    public static final DeferredBlock<Block> IRON_TIER_CRUSHING_HEAD = BLOCKS.register("iron_tier_crushing_head", CrushingHeadBlock::new);
-    public static final DeferredBlock<Block> DIAMOND_TIER_CRUSHING_HEAD = BLOCKS.register("diamond_tier_crushing_head", CrushingHeadBlock::new);
-    public static final DeferredBlock<Block> NETHERITE_TIER_CRUSHING_HEAD = BLOCKS.register("netherite_tier_crushing_head", CrushingHeadBlock::new);
+    public static final DeferredBlock<Block> WOOD_TIER_MINING_HEAD = BLOCKS.register("wood_tier_mining_head", () -> new MiningHeadBlock());
+    public static final DeferredBlock<Block> STONE_TIER_MINING_HEAD = BLOCKS.register("stone_tier_mining_head", () -> new MiningHeadBlock());
+    public static final DeferredBlock<Block> IRON_TIER_MINING_HEAD = BLOCKS.register("iron_tier_mining_head", () -> new MiningHeadBlock());
+    public static final DeferredBlock<Block> DIAMOND_TIER_MINING_HEAD = BLOCKS.register("diamond_tier_mining_head", () -> new MiningHeadBlock());
+    public static final DeferredBlock<Block> NETHERITE_TIER_MINING_HEAD = BLOCKS.register("netherite_tier_mining_head", () -> new MiningHeadBlock());
+    public static final DeferredBlock<Block> WOOD_TIER_CRUSHING_HEAD = BLOCKS.register("wood_tier_crushing_head", () -> new CrushingHeadBlock());
+    public static final DeferredBlock<Block> STONE_TIER_CRUSHING_HEAD = BLOCKS.register("stone_tier_crushing_head", () -> new CrushingHeadBlock());
+    public static final DeferredBlock<Block> IRON_TIER_CRUSHING_HEAD = BLOCKS.register("iron_tier_crushing_head", () -> new CrushingHeadBlock());
+    public static final DeferredBlock<Block> DIAMOND_TIER_CRUSHING_HEAD = BLOCKS.register("diamond_tier_crushing_head", () -> new CrushingHeadBlock());
+    public static final DeferredBlock<Block> NETHERITE_TIER_CRUSHING_HEAD = BLOCKS.register("netherite_tier_crushing_head", () -> new CrushingHeadBlock());
 
 
 
@@ -798,41 +798,41 @@ public class RankineBlocks {
     public static final DeferredBlock<Block> ALLOY_BLOCK = BLOCKS.register("alloy_block", () -> new AlloyBlock(DEF_METAL_BLOCK));
 
     
-    public static final DeferredBlock<Block> ROSE_GOLD_PEDESTAL = BLOCKS.register("rose_gold_pedestal", PedestalBlock::new);
-    public static final DeferredBlock<Block> WHITE_GOLD_PEDESTAL = BLOCKS.register("white_gold_pedestal", PedestalBlock::new);
-    public static final DeferredBlock<Block> GREEN_GOLD_PEDESTAL = BLOCKS.register("green_gold_pedestal", PedestalBlock::new);
-    public static final DeferredBlock<Block> BLUE_GOLD_PEDESTAL = BLOCKS.register("blue_gold_pedestal", PedestalBlock::new);
-    public static final DeferredBlock<Block> PURPLE_GOLD_PEDESTAL = BLOCKS.register("purple_gold_pedestal", PedestalBlock::new);
-    public static final DeferredBlock<Block> BLACK_GOLD_PEDESTAL = BLOCKS.register("black_gold_pedestal", PedestalBlock::new);
-    public static final DeferredBlock<Block> PEWTER_PEDESTAL = BLOCKS.register("pewter_pedestal", PedestalBlock::new);
-    public static final DeferredBlock<Block> BRONZE_PEDESTAL = BLOCKS.register("bronze_pedestal", PedestalBlock::new);
-    public static final DeferredBlock<Block> BRASS_PEDESTAL = BLOCKS.register("brass_pedestal", PedestalBlock::new);
-    public static final DeferredBlock<Block> CAST_IRON_PEDESTAL = BLOCKS.register("cast_iron_pedestal", PedestalBlock::new);
-    public static final DeferredBlock<Block> INVAR_PEDESTAL = BLOCKS.register("invar_pedestal", PedestalBlock::new);
-    public static final DeferredBlock<Block> CUPRONICKEL_PEDESTAL = BLOCKS.register("cupronickel_pedestal", PedestalBlock::new);
-    public static final DeferredBlock<Block> DURALUMIN_PEDESTAL = BLOCKS.register("duralumin_pedestal", PedestalBlock::new);
-    public static final DeferredBlock<Block> MAGNESIUM_ALLOY_PEDESTAL = BLOCKS.register("magnesium_alloy_pedestal", PedestalBlock::new);
-    public static final DeferredBlock<Block> STERLING_SILVER_PEDESTAL = BLOCKS.register("sterling_silver_pedestal", PedestalBlock::new);
-    public static final DeferredBlock<Block> NICKEL_SILVER_PEDESTAL = BLOCKS.register("nickel_silver_pedestal", PedestalBlock::new);
-    public static final DeferredBlock<Block> TITANIUM_ALLOY_PEDESTAL = BLOCKS.register("titanium_alloy_pedestal", PedestalBlock::new);
-    public static final DeferredBlock<Block> NITINOL_PEDESTAL = BLOCKS.register("nitinol_pedestal", PedestalBlock::new);
-    public static final DeferredBlock<Block> ALNICO_PEDESTAL = BLOCKS.register("alnico_pedestal", PedestalBlock::new);
-    public static final DeferredBlock<Block> STEEL_PEDESTAL = BLOCKS.register("steel_pedestal", PedestalBlock::new);
-    public static final DeferredBlock<Block> STAINLESS_STEEL_PEDESTAL = BLOCKS.register("stainless_steel_pedestal", PedestalBlock::new);
-    public static final DeferredBlock<Block> NICKEL_SUPERALLOY_PEDESTAL = BLOCKS.register("nickel_superalloy_pedestal", PedestalBlock::new);
-    public static final DeferredBlock<Block> TUNGSTEN_HEAVY_ALLOY_PEDESTAL = BLOCKS.register("tungsten_heavy_alloy_pedestal", PedestalBlock::new);
-    public static final DeferredBlock<Block> COBALT_SUPERALLOY_PEDESTAL = BLOCKS.register("cobalt_superalloy_pedestal", PedestalBlock::new);
-    public static final DeferredBlock<Block> NIOBIUM_ALLOY_PEDESTAL = BLOCKS.register("niobium_alloy_pedestal", PedestalBlock::new);
-    public static final DeferredBlock<Block> ZIRCONIUM_ALLOY_PEDESTAL = BLOCKS.register("zirconium_alloy_pedestal", PedestalBlock::new);
-    public static final DeferredBlock<Block> ROSE_METAL_PEDESTAL = BLOCKS.register("rose_metal_pedestal", PedestalBlock::new);
-    public static final DeferredBlock<Block> MISCHMETAL_PEDESTAL = BLOCKS.register("mischmetal_pedestal", PedestalBlock::new);
-    public static final DeferredBlock<Block> FERROCERIUM_PEDESTAL = BLOCKS.register("ferrocerium_pedestal", PedestalBlock::new);
-    public static final DeferredBlock<Block> GALINSTAN_PEDESTAL = BLOCKS.register("galinstan_pedestal", PedestalBlock::new);
-    public static final DeferredBlock<Block> OSMIRIDIUM_PEDESTAL = BLOCKS.register("osmiridium_pedestal", PedestalBlock::new);
-    public static final DeferredBlock<Block> SODIUM_POTASSIUM_ALLOY_PEDESTAL = BLOCKS.register("sodium_potassium_alloy_pedestal", PedestalBlock::new);
-    public static final DeferredBlock<Block> NEPTUNIUM_ALLOY_PEDESTAL = BLOCKS.register("neptunium_alloy_pedestal", PedestalBlock::new);
-    public static final DeferredBlock<Block> AMALGAM_PEDESTAL = BLOCKS.register("amalgam_pedestal", PedestalBlock::new);
-    public static final DeferredBlock<Block> ENDER_AMALGAM_PEDESTAL = BLOCKS.register("ender_amalgam_pedestal", PedestalBlock::new);
+    public static final DeferredBlock<Block> ROSE_GOLD_PEDESTAL = BLOCKS.register("rose_gold_pedestal", () -> new PedestalBlock());
+    public static final DeferredBlock<Block> WHITE_GOLD_PEDESTAL = BLOCKS.register("white_gold_pedestal", () -> new PedestalBlock());
+    public static final DeferredBlock<Block> GREEN_GOLD_PEDESTAL = BLOCKS.register("green_gold_pedestal", () -> new PedestalBlock());
+    public static final DeferredBlock<Block> BLUE_GOLD_PEDESTAL = BLOCKS.register("blue_gold_pedestal", () -> new PedestalBlock());
+    public static final DeferredBlock<Block> PURPLE_GOLD_PEDESTAL = BLOCKS.register("purple_gold_pedestal", () -> new PedestalBlock());
+    public static final DeferredBlock<Block> BLACK_GOLD_PEDESTAL = BLOCKS.register("black_gold_pedestal", () -> new PedestalBlock());
+    public static final DeferredBlock<Block> PEWTER_PEDESTAL = BLOCKS.register("pewter_pedestal", () -> new PedestalBlock());
+    public static final DeferredBlock<Block> BRONZE_PEDESTAL = BLOCKS.register("bronze_pedestal", () -> new PedestalBlock());
+    public static final DeferredBlock<Block> BRASS_PEDESTAL = BLOCKS.register("brass_pedestal", () -> new PedestalBlock());
+    public static final DeferredBlock<Block> CAST_IRON_PEDESTAL = BLOCKS.register("cast_iron_pedestal", () -> new PedestalBlock());
+    public static final DeferredBlock<Block> INVAR_PEDESTAL = BLOCKS.register("invar_pedestal", () -> new PedestalBlock());
+    public static final DeferredBlock<Block> CUPRONICKEL_PEDESTAL = BLOCKS.register("cupronickel_pedestal", () -> new PedestalBlock());
+    public static final DeferredBlock<Block> DURALUMIN_PEDESTAL = BLOCKS.register("duralumin_pedestal", () -> new PedestalBlock());
+    public static final DeferredBlock<Block> MAGNESIUM_ALLOY_PEDESTAL = BLOCKS.register("magnesium_alloy_pedestal", () -> new PedestalBlock());
+    public static final DeferredBlock<Block> STERLING_SILVER_PEDESTAL = BLOCKS.register("sterling_silver_pedestal", () -> new PedestalBlock());
+    public static final DeferredBlock<Block> NICKEL_SILVER_PEDESTAL = BLOCKS.register("nickel_silver_pedestal", () -> new PedestalBlock());
+    public static final DeferredBlock<Block> TITANIUM_ALLOY_PEDESTAL = BLOCKS.register("titanium_alloy_pedestal", () -> new PedestalBlock());
+    public static final DeferredBlock<Block> NITINOL_PEDESTAL = BLOCKS.register("nitinol_pedestal", () -> new PedestalBlock());
+    public static final DeferredBlock<Block> ALNICO_PEDESTAL = BLOCKS.register("alnico_pedestal", () -> new PedestalBlock());
+    public static final DeferredBlock<Block> STEEL_PEDESTAL = BLOCKS.register("steel_pedestal", () -> new PedestalBlock());
+    public static final DeferredBlock<Block> STAINLESS_STEEL_PEDESTAL = BLOCKS.register("stainless_steel_pedestal", () -> new PedestalBlock());
+    public static final DeferredBlock<Block> NICKEL_SUPERALLOY_PEDESTAL = BLOCKS.register("nickel_superalloy_pedestal", () -> new PedestalBlock());
+    public static final DeferredBlock<Block> TUNGSTEN_HEAVY_ALLOY_PEDESTAL = BLOCKS.register("tungsten_heavy_alloy_pedestal", () -> new PedestalBlock());
+    public static final DeferredBlock<Block> COBALT_SUPERALLOY_PEDESTAL = BLOCKS.register("cobalt_superalloy_pedestal", () -> new PedestalBlock());
+    public static final DeferredBlock<Block> NIOBIUM_ALLOY_PEDESTAL = BLOCKS.register("niobium_alloy_pedestal", () -> new PedestalBlock());
+    public static final DeferredBlock<Block> ZIRCONIUM_ALLOY_PEDESTAL = BLOCKS.register("zirconium_alloy_pedestal", () -> new PedestalBlock());
+    public static final DeferredBlock<Block> ROSE_METAL_PEDESTAL = BLOCKS.register("rose_metal_pedestal", () -> new PedestalBlock());
+    public static final DeferredBlock<Block> MISCHMETAL_PEDESTAL = BLOCKS.register("mischmetal_pedestal", () -> new PedestalBlock());
+    public static final DeferredBlock<Block> FERROCERIUM_PEDESTAL = BLOCKS.register("ferrocerium_pedestal", () -> new PedestalBlock());
+    public static final DeferredBlock<Block> GALINSTAN_PEDESTAL = BLOCKS.register("galinstan_pedestal", () -> new PedestalBlock());
+    public static final DeferredBlock<Block> OSMIRIDIUM_PEDESTAL = BLOCKS.register("osmiridium_pedestal", () -> new PedestalBlock());
+    public static final DeferredBlock<Block> SODIUM_POTASSIUM_ALLOY_PEDESTAL = BLOCKS.register("sodium_potassium_alloy_pedestal", () -> new PedestalBlock());
+    public static final DeferredBlock<Block> NEPTUNIUM_ALLOY_PEDESTAL = BLOCKS.register("neptunium_alloy_pedestal", () -> new PedestalBlock());
+    public static final DeferredBlock<Block> AMALGAM_PEDESTAL = BLOCKS.register("amalgam_pedestal", () -> new PedestalBlock());
+    public static final DeferredBlock<Block> ENDER_AMALGAM_PEDESTAL = BLOCKS.register("ender_amalgam_pedestal", () -> new PedestalBlock());
 
 
     public static final DeferredBlock<Block> ROSE_GOLD_SHEETMETAL = BLOCKS.register("rose_gold_sheetmetal", () -> new SheetmetalBlock(16756647));
@@ -1205,12 +1205,12 @@ public class RankineBlocks {
     public static final DeferredBlock<Block> BLASTING_POWDER = BLOCKS.register("blasting_powder", () -> new BlastingPowderBlock(Block.Properties.of().mapColor(MapColor.SAND).sound(SoundType.SAND).strength(1)));
     public static final DeferredBlock<Block> GWIHABAITE_CRYSTAL = BLOCKS.register("gwihabaite_crystal", () -> new GwihabaiteBlock(DEF_ORE));
 
-    public static final DeferredBlock<Block> SAP_CAULDRON = BLOCKS.register("sap_cauldron", SapCauldronBlock::new);
-    public static final DeferredBlock<Block> MAPLE_SAP_CAULDRON = BLOCKS.register("maple_sap_cauldron", MapleSapCauldronBlock::new);
-    public static final DeferredBlock<Block> MAPLE_SYRUP_CAULDRON = BLOCKS.register("maple_syrup_cauldron", MapleSyrupCauldronBlock::new);
-    public static final DeferredBlock<Block> LATEX_CAULDRON = BLOCKS.register("latex_cauldron", LatexCauldronBlock::new);
-    public static final DeferredBlock<Block> RESIN_CAULDRON = BLOCKS.register("resin_cauldron", ResinCauldronBlock::new);
-    public static final DeferredBlock<Block> JUGLONE_CAULDRON = BLOCKS.register("juglone_cauldron", JugloneCauldronBlock::new);
+    public static final DeferredBlock<Block> SAP_CAULDRON = BLOCKS.register("sap_cauldron", () -> new SapCauldronBlock());
+    public static final DeferredBlock<Block> MAPLE_SAP_CAULDRON = BLOCKS.register("maple_sap_cauldron", () -> new MapleSapCauldronBlock());
+    public static final DeferredBlock<Block> MAPLE_SYRUP_CAULDRON = BLOCKS.register("maple_syrup_cauldron", () -> new MapleSyrupCauldronBlock());
+    public static final DeferredBlock<Block> LATEX_CAULDRON = BLOCKS.register("latex_cauldron", () -> new LatexCauldronBlock());
+    public static final DeferredBlock<Block> RESIN_CAULDRON = BLOCKS.register("resin_cauldron", () -> new ResinCauldronBlock());
+    public static final DeferredBlock<Block> JUGLONE_CAULDRON = BLOCKS.register("juglone_cauldron", () -> new JugloneCauldronBlock());
 
     public static final DeferredBlock<Block> BEEHIVE_OVEN_PIT = BLOCKS.register("beehive_oven_pit", () -> new BeehiveOvenPitBlock(Block.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(2.0F)));
     public static final DeferredBlock<Block> MIXING_BARREL = BLOCKS.register("mixing_barrel", () -> new MixingBarrelBlock(Block.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(2.0F).noOcclusion()));

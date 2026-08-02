@@ -1,8 +1,10 @@
 package com.cannolicatfish.rankine.blocks;
 
 import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.GrowingPlantHeadBlock;
@@ -10,23 +12,30 @@ import net.minecraft.world.level.block.NetherVines;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-import java.util.Random;
-
 public class WillowBranchletTopBlock extends GrowingPlantHeadBlock {
+    public static final MapCodec<WillowBranchletTopBlock> CODEC = simpleCodec(WillowBranchletTopBlock::new);
     protected static final VoxelShape SHAPE = Block.box(1.0D, 8.0D, 1.0D, 15.0D, 16.0D, 15.0D);
+
+    @Override
+    protected MapCodec<? extends WillowBranchletTopBlock> codec() {
+        return CODEC;
+    }
 
     public WillowBranchletTopBlock(Properties p_i241194_1_) {
         super(p_i241194_1_, Direction.DOWN, SHAPE, false, 0.1D);
     }
 
-    protected int getBlocksToGrowWhenBonemealed(Random p_230332_1_) {
+    @Override
+    protected int getBlocksToGrowWhenBonemealed(RandomSource p_230332_1_) {
         return NetherVines.getBlocksToGrowWhenBonemealed(p_230332_1_);
     }
 
+    @Override
     protected Block getBodyBlock() {
         return RankineBlocks.WILLOW_BRANCHLET_PLANT.get();
     }
 
+    @Override
     protected boolean canGrowInto(BlockState p_230334_1_) {
         return NetherVines.isValidGrowthState(p_230334_1_);
     }

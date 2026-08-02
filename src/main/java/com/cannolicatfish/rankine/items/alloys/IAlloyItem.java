@@ -26,7 +26,7 @@ public interface IAlloyItem {
 
         List<AlloyElement> elements = new ArrayList<>();
         for (Map.Entry<ElementRecipe, Integer> entry : elementMap.entrySet()) {
-            elements.add(new AlloyElement(String.valueOf(entry.getKey().getId()), entry.getValue()));
+            elements.add(new AlloyElement(String.valueOf(getElementRecipeId(worldIn, entry.getKey())), entry.getValue()));
         }
         stack.set(RankineDataComponents.ALLOY_COMPOSITION.get(), AlloyRecipeHelper.getDirectComposition(elementMap));
         if (alloyRecipe != null) {
@@ -39,6 +39,24 @@ public interface IAlloyItem {
         if (nameOverride != null) {
             stack.set(RankineDataComponents.NAME_OVERRIDE.get(), nameOverride);
         }
+    }
+
+    /**
+     * 1.21 recipes no longer carry their own id (it lives on the {@link net.minecraft.world.item.crafting.RecipeHolder}),
+     * so the element id stored in the ALLOY_ELEMENTS component is resolved by looking the recipe
+     * instance back up in the recipe manager. Replaces the old {@code ElementRecipe#getId()}.
+     */
+    @Nullable
+    static ResourceLocation getElementRecipeId(@Nullable Level worldIn, ElementRecipe recipe) {
+        if (worldIn == null) {
+            return null;
+        }
+        for (net.minecraft.world.item.crafting.RecipeHolder<ElementRecipe> holder : worldIn.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.ELEMENT.get())) {
+            if (holder.value() == recipe) {
+                return holder.id();
+            }
+        }
+        return null;
     }
 
     default void createAlloyNBT(ItemStack stack, Level worldIn, String composition, @Nullable ResourceLocation alloyRecipe, @Nullable String nameOverride) {
