@@ -47,7 +47,10 @@ public class FumaroleBlock extends Block {
 
     @Override
     public boolean isRandomlyTicking(BlockState state) {
-        return Config.GASES.ENABLE_GAS_VENTS.get();
+        // Must not read config here: this is queried while the block's state cache is built,
+        // during the registry events, which run before configs load. randomTick() already
+        // checks ENABLE_GAS_VENTS, so always opting in is behaviour-preserving.
+        return true;
     }
 
     @Override

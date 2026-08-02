@@ -9,6 +9,7 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.fml.event.config.ModConfigEvent;
 import net.neoforged.neoforge.event.entity.EntityAttributeModificationEvent;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -20,21 +21,31 @@ public class RankineAttributes {
     // attributes have a home; ProjectRankine registers it on the mod bus.
     public static final DeferredRegister<Attribute> ATTRIBUTES = DeferredRegister.create(Registries.ATTRIBUTE, ProjectRankine.MODID);
 
-    public static final AttributeModifier GRASS_PATH_MS = new AttributeModifier(rl("grass_path_ms"), Config.GENERAL.MOVEMENT_GRASS_PATH.get(), AttributeModifier.Operation.ADD_VALUE);
-    public static final AttributeModifier SAND_MS = new AttributeModifier(rl("sand_ms"), Config.GENERAL.MOVEMENT_SAND.get(), AttributeModifier.Operation.ADD_VALUE);
-    public static final AttributeModifier BRICKS_MS = new AttributeModifier(rl("bricks_ms"), Config.GENERAL.MOVEMENT_BRICKS.get(), AttributeModifier.Operation.ADD_VALUE);
-    public static final AttributeModifier ROMAN_CONCRETE_MS = new AttributeModifier(rl("roman_concrete_ms"), Config.GENERAL.MOVEMENT_ROMAN_CONCRETE.get(), AttributeModifier.Operation.ADD_VALUE);
-    public static final AttributeModifier DIRT_MS = new AttributeModifier(rl("dirt_ms"), Config.GENERAL.MOVEMENT_DIRT.get(), AttributeModifier.Operation.ADD_VALUE);
-    public static final AttributeModifier POLISHED_STONE_MS = new AttributeModifier(rl("polished_stone_ms"), Config.GENERAL.MOVEMENT_POLISHED_STONE.get(), AttributeModifier.Operation.ADD_VALUE);
-    public static final AttributeModifier WOODEN_MS = new AttributeModifier(rl("wooden_ms"), Config.GENERAL.MOVEMENT_WOODEN.get(), AttributeModifier.Operation.ADD_VALUE);
-    public static final AttributeModifier CONCRETE_MS = new AttributeModifier(rl("concrete_ms"), Config.GENERAL.MOVEMENT_CONCRETE.get(), AttributeModifier.Operation.ADD_VALUE);
-    public static final AttributeModifier SNOW_MS = new AttributeModifier(rl("snow_ms"), Config.GENERAL.MOVEMENT_SNOW.get(), AttributeModifier.Operation.ADD_VALUE);
+    // ------------------------------------------------------------------
+    // Config-driven movement modifiers.
+    //
+    // These cannot be built at class-init: NeoForge constructs mods and fires the registry
+    // events BEFORE configs load (and never loads configs during datagen), so reading a
+    // ModConfigSpec value here throws "Cannot get config value before config is loaded".
+    // They start at the config defaults and are rebuilt once the config is available, so the
+    // fields are never null and always sane. Call sites keep using them as plain fields.
+    // ------------------------------------------------------------------
+
+    public static AttributeModifier GRASS_PATH_MS = movement("grass_path_ms", 0.00D);
+    public static AttributeModifier SAND_MS = movement("sand_ms", -0.02D);
+    public static AttributeModifier BRICKS_MS = movement("bricks_ms", 0.02D);
+    public static AttributeModifier ROMAN_CONCRETE_MS = movement("roman_concrete_ms", 0.07D);
+    public static AttributeModifier DIRT_MS = movement("dirt_ms", -0.01D);
+    public static AttributeModifier POLISHED_STONE_MS = movement("polished_stone_ms", 0.00D);
+    public static AttributeModifier WOODEN_MS = movement("wooden_ms", 0.00D);
+    public static AttributeModifier CONCRETE_MS = movement("concrete_ms", 0.02D);
+    public static AttributeModifier SNOW_MS = movement("snow_ms", -0.02D);
     public static final AttributeModifier DUNE_WALKER = new AttributeModifier(rl("dune_walker"), 0.05, AttributeModifier.Operation.ADD_VALUE);
     public static final AttributeModifier SNOW_DRIFTER = new AttributeModifier(rl("snowshoes"), 0.05, AttributeModifier.Operation.ADD_VALUE);
     public static final AttributeModifier SPEED_SKATER = new AttributeModifier(rl("speed_skater"), 0.1, AttributeModifier.Operation.ADD_VALUE);
     public static final AttributeModifier SWIFTNESS_TOTEM = new AttributeModifier(rl("speed_pendant_ms"), 0.075, AttributeModifier.Operation.ADD_VALUE);
     public static final AttributeModifier ENDURING_TOTEM = new AttributeModifier(rl("health_pendant_ms"), 10.0, AttributeModifier.Operation.ADD_VALUE);
-    public static final AttributeModifier MUD_MS = new AttributeModifier(rl("mud_ms"), Config.GENERAL.MOVEMENT_MUD.get(), AttributeModifier.Operation.ADD_VALUE);
+    public static AttributeModifier MUD_MS = movement("mud_ms", -0.03D);
     public static final AttributeModifier SWIFT_SWIMMER = new AttributeModifier(rl("swift_swimmer"), 2.5, AttributeModifier.Operation.ADD_VALUE);
     public static final AttributeModifier AQUA_LENSE = new AttributeModifier(rl("aqua_lense"), 1.0, AttributeModifier.Operation.ADD_VALUE);
     public static final AttributeModifier STEP = new AttributeModifier(rl("step_boost"), 1.0D, AttributeModifier.Operation.ADD_VALUE);
@@ -61,6 +72,41 @@ public class RankineAttributes {
 
     private static ResourceLocation rl(String path) {
         return ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID, path);
+    }
+
+    private static AttributeModifier movement(String path, double value) {
+        return new AttributeModifier(rl(path), value, AttributeModifier.Operation.ADD_VALUE);
+    }
+
+    /**
+     * Rebuilds the config-driven movement modifiers. Runs once configs are available and again
+     * whenever they are reloaded, so edits to the config take effect without a restart.
+     */
+    private static void refreshFromConfig() {
+        GRASS_PATH_MS = movement("grass_path_ms", Config.GENERAL.MOVEMENT_GRASS_PATH.get());
+        SAND_MS = movement("sand_ms", Config.GENERAL.MOVEMENT_SAND.get());
+        BRICKS_MS = movement("bricks_ms", Config.GENERAL.MOVEMENT_BRICKS.get());
+        ROMAN_CONCRETE_MS = movement("roman_concrete_ms", Config.GENERAL.MOVEMENT_ROMAN_CONCRETE.get());
+        DIRT_MS = movement("dirt_ms", Config.GENERAL.MOVEMENT_DIRT.get());
+        POLISHED_STONE_MS = movement("polished_stone_ms", Config.GENERAL.MOVEMENT_POLISHED_STONE.get());
+        WOODEN_MS = movement("wooden_ms", Config.GENERAL.MOVEMENT_WOODEN.get());
+        CONCRETE_MS = movement("concrete_ms", Config.GENERAL.MOVEMENT_CONCRETE.get());
+        SNOW_MS = movement("snow_ms", Config.GENERAL.MOVEMENT_SNOW.get());
+        MUD_MS = movement("mud_ms", Config.GENERAL.MOVEMENT_MUD.get());
+    }
+
+    @SubscribeEvent
+    public static void onConfigLoaded(ModConfigEvent.Loading event) {
+        if (event.getConfig().getSpec() == Config.COMMON_CONFIG) {
+            refreshFromConfig();
+        }
+    }
+
+    @SubscribeEvent
+    public static void onConfigReloaded(ModConfigEvent.Reloading event) {
+        if (event.getConfig().getSpec() == Config.COMMON_CONFIG) {
+            refreshFromConfig();
+        }
     }
 
     @SubscribeEvent

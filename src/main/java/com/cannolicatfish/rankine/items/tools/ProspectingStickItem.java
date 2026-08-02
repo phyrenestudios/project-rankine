@@ -21,7 +21,12 @@ import net.neoforged.neoforge.common.Tags;
 
 public class ProspectingStickItem extends Item {
 
-    private final int range = Config.TOOLS.PROSPECTING_STICK_RANGE.get();
+    // Read lazily: Item instances are created during the registry events, which NeoForge
+    // fires BEFORE configs load (and configs never load during datagen), so this cannot
+    // be a field initializer.
+    private int range() {
+        return Config.TOOLS.PROSPECTING_STICK_RANGE.get();
+    }
     public ProspectingStickItem(Properties properties) {
         super(properties);
     }
@@ -54,7 +59,7 @@ public class ProspectingStickItem extends Item {
         }
 
         if (worldIn.getRandom().nextFloat() < Config.TOOLS.SAMPLE_CHANCE.get()) {
-            for (int x = 0; x <= range; x++) {
+            for (int x = 0; x <= range(); x++) {
                 if (reader.getBlockState(pos.relative(searchDir, x)).is(Tags.Blocks.ORES)) {
                     BlockState ORE = reader.getBlockState(pos.relative(searchDir, x));
                     if (player != null) {

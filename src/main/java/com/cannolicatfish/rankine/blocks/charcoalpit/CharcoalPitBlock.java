@@ -39,7 +39,12 @@ import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 public class CharcoalPitBlock extends BaseEntityBlock {
     public static final MapCodec<CharcoalPitBlock> CODEC = simpleCodec(CharcoalPitBlock::new);
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
-    int MAX_HEIGHT = Config.MACHINES.CHARCOAL_PIT_HEIGHT.get();
+    // Read lazily: Block instances are created during the registry events, which NeoForge
+    // fires BEFORE configs load (and configs never load during datagen), so this cannot
+    // be a field initializer.
+    private int maxHeight() {
+        return Config.MACHINES.CHARCOAL_PIT_HEIGHT.get();
+    }
 
     @Override
     protected MapCodec<CharcoalPitBlock> codec() {
@@ -79,7 +84,8 @@ public class CharcoalPitBlock extends BaseEntityBlock {
             flag = true;
         }
         if (flag) {
-            for (int i = -MAX_HEIGHT; i <= MAX_HEIGHT; ++i) {
+            int maxHeight = maxHeight();
+            for (int i = -maxHeight; i <= maxHeight; ++i) {
                 if (worldIn.getBlockState(pos.above(i)).is(RankineBlocks.CHARCOAL_PIT.get())) {
                     worldIn.setBlock(pos.above(i), RankineBlocks.CHARCOAL_PIT.get().defaultBlockState().setValue(BlockStateProperties.LIT, Boolean.TRUE), 3);
                 }

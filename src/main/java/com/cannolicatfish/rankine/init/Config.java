@@ -3,13 +3,11 @@ package com.cannolicatfish.rankine.init;
 import com.cannolicatfish.rankine.compatibility.TwilightForest;
 import net.neoforged.neoforge.common.ModConfigSpec;
 import net.neoforged.fml.common.Mod;
-import net.neoforged.fml.common.EventBusSubscriber;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
-@EventBusSubscriber
 public class Config {
 
     static Predicate<Object> ELEMENT_VALIDATOR = o -> o instanceof String;

@@ -114,7 +114,11 @@ public abstract class AbstractGasBlock extends AirBlock implements PitchModulati
 
     @Override
     protected boolean isRandomlyTicking(BlockState state) {
-        return Config.GASES.GAS_MOVEMENT.get() || Config.GASES.GAS_DISSIPATION.get();
+        // Must not read config here: this is queried while the block's state cache is built,
+        // during the registry events, which run before configs load. randomTick() already
+        // checks GAS_MOVEMENT and GAS_DISSIPATION, so always opting in is behaviour-preserving —
+        // the tick simply does nothing when both are disabled.
+        return true;
     }
 
     public float getDensity() {

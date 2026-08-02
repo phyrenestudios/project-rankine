@@ -98,7 +98,10 @@ public class RankineBlocks {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(ProjectRankine.MODID);
 
     //Base Properties
-    public static Block.Properties IGNEOUS_STONE_BRICKS = Block.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(2.0F * Config.BLOCK_PROPERTIES.BRICKS_HARDNESS_MULT.get().floatValue(), 6.0F * Config.BLOCK_PROPERTIES.BRICKS_RESISTANCE_MULT.get().floatValue());
+    // NOTE: config values cannot be read here — registry events run before configs load
+    // (and never load during datagen). The brick hardness/resistance multipliers are applied
+    // at runtime in RankineStoneBricksBlock instead.
+    public static Block.Properties IGNEOUS_STONE_BRICKS = Block.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(2.0F, 6.0F);
 
     public static Block.Properties DEF_STONE = Block.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(1.5F, 6.0F);
     public static Block.Properties DEF_ORE = Block.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(4.5F, 3.0F);
