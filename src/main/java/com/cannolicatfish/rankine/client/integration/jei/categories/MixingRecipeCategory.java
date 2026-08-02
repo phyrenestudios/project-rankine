@@ -1,26 +1,26 @@
 package com.cannolicatfish.rankine.client.integration.jei.categories;
 
 import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.client.integration.jei.JEIRankinePlugin;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.recipe.MixingRecipe;
 import com.mojang.blaze3d.platform.InputConstants;
-import com.mojang.blaze3d.vertex.PoseStack;
 import mezz.jei.api.constants.VanillaTypes;
-import mezz.jei.api.forge.ForgeTypes;
+import mezz.jei.api.neoforge.NeoForgeTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
+import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.resources.language.I18n;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
@@ -50,15 +50,9 @@ public class MixingRecipeCategory implements IRecipeCategory<MixingRecipe> {
         slotDrawable = guiHelper.getSlotDrawable();
     }
 
-    @SuppressWarnings("removal")
     @Override
-    public ResourceLocation getUid() {
-        return UID;
-    }
-    @SuppressWarnings("removal")
-    @Override
-    public Class<? extends MixingRecipe> getRecipeClass() {
-        return MixingRecipe.class;
+    public RecipeType<MixingRecipe> getRecipeType() {
+        return JEIRankinePlugin.MIXING;
     }
 
     @Override
@@ -107,7 +101,7 @@ public class MixingRecipeCategory implements IRecipeCategory<MixingRecipe> {
         return IRecipeCategory.super.getTooltipStrings(recipe, recipeSlotsView, mouseX, mouseY);
     }
     @Override
-    public void draw(MixingRecipe recipe, IRecipeSlotsView recipeSlotsView, PoseStack stack, double mouseX, double mouseY) {
+    public void draw(MixingRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
         List<Boolean> reqs = recipe.getRequired();
         List<Float> mins = recipe.getMins();
         List<Float> maxes = recipe.getMaxes();
@@ -116,22 +110,22 @@ public class MixingRecipeCategory implements IRecipeCategory<MixingRecipe> {
         });
         Font font = Minecraft.getInstance().font;
 
-        font.draw(stack,Component.translatable("rankine.jei.tooltip_required"),120, 0, 0x000000);
-        font.draw(stack,Component.translatable("rankine.jei.tooltip_additional"),1, 96, 0x000000);
-        font.draw(stack,Component.translatable("rankine.jei.tooltip_total_ingredients",totalCount),1, 75, totalCount < (int) reqs.stream().filter(aBoolean -> aBoolean).count() ? 0xFF5555 : 0x000000);
-        font.draw(stack,Component.translatable("rankine.jei.tooltip_total_output",Math.round(totalCount*recipe.getMatScale())),1, 84, Math.round(totalCount*recipe.getMatScale()) > 64 || Math.round(totalCount*recipe.getMatScale()) < 1 ? 0xFF5555 : 0x000000);
+        guiGraphics.drawString(font,Component.translatable("rankine.jei.tooltip_required"),120, 0, 0x000000);
+        guiGraphics.drawString(font,Component.translatable("rankine.jei.tooltip_additional"),1, 96, 0x000000);
+        guiGraphics.drawString(font,Component.translatable("rankine.jei.tooltip_total_ingredients",totalCount),1, 75, totalCount < (int) reqs.stream().filter(aBoolean -> aBoolean).count() ? 0xFF5555 : 0x000000);
+        guiGraphics.drawString(font,Component.translatable("rankine.jei.tooltip_total_output",Math.round(totalCount*recipe.getMatScale())),1, 84, Math.round(totalCount*recipe.getMatScale()) > 64 || Math.round(totalCount*recipe.getMatScale()) < 1 ? 0xFF5555 : 0x000000);
         int count = 0;
         for (int i = 0; i < reqs.size(); i++) {
             if (reqs.get(i)) {
                 String s = df.format(mins.get(i)*100) + "-" + df.format(maxes.get(i)*100)+"%";
-                font.draw(stack,s,130, 16 + count * 18, 0x000000);
+                guiGraphics.drawString(font,s,130, 16 + count * 18, 0x000000);
                 count++;
             }
         }
         String mixTime = String.valueOf(recipe.getOutputMixTime(totalCount));
-        font.draw(stack,mixTime,69 - font.width(mixTime) / 2.0F, 52, 0xAA0000);
-        font.draw(stack,df.format(recipe.getOutputFluidReq(totalCount).getAmount())+"mb",130, 16 + count * 18, recipe.getOutputFluidReq(totalCount).getAmount() > 8000 ? 0xFF5555 : 0x000000);
-        IRecipeCategory.super.draw(recipe, recipeSlotsView, stack, mouseX, mouseY);
+        guiGraphics.drawString(font,mixTime,69 - font.width(mixTime) / 2.0F, 52, 0xAA0000,true);
+        guiGraphics.drawString(font,df.format(recipe.getOutputFluidReq(totalCount).getAmount())+"mb",130, 16 + count * 18, recipe.getOutputFluidReq(totalCount).getAmount() > 8000 ? 0xFF5555 : 0x000000);
+        IRecipeCategory.super.draw(recipe, recipeSlotsView, guiGraphics, mouseX, mouseY);
     }
 
     @Override
@@ -189,7 +183,7 @@ public class MixingRecipeCategory implements IRecipeCategory<MixingRecipe> {
             int x = 110;
             int y = 12 + rcount * 18;
 
-            builder.addSlot(RecipeIngredientRole.INPUT,x,y).addIngredients(ForgeTypes.FLUID_STACK,List.of(recipe.getFluidFilled())).setBackground(slotDrawable, -1, -1);
+            builder.addSlot(RecipeIngredientRole.INPUT,x,y).addIngredients(NeoForgeTypes.FLUID_STACK,List.of(recipe.getFluidFilled())).setBackground(slotDrawable, -1, -1);
         }
 
 

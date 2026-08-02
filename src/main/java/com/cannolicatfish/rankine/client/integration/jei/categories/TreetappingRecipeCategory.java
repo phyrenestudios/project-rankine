@@ -1,14 +1,14 @@
 package com.cannolicatfish.rankine.client.integration.jei.categories;
 
 import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.client.integration.jei.JEIRankinePlugin;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.recipe.TreetappingRecipe;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
-import com.mojang.blaze3d.vertex.PoseStack;
 import mezz.jei.api.constants.VanillaTypes;
-import mezz.jei.api.forge.ForgeTypes;
+import mezz.jei.api.neoforge.NeoForgeTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.gui.drawable.IDrawableAnimated;
@@ -16,11 +16,12 @@ import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
+import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.resources.language.I18n;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
@@ -52,15 +53,9 @@ public class TreetappingRecipeCategory implements IRecipeCategory<TreetappingRec
                     }
                 });
     }
-    @SuppressWarnings("removal")
     @Override
-    public ResourceLocation getUid() {
-        return UID;
-    }
-    @SuppressWarnings("removal")
-    @Override
-    public Class<? extends TreetappingRecipe> getRecipeClass() {
-        return TreetappingRecipe.class;
+    public RecipeType<TreetappingRecipe> getRecipeType() {
+        return JEIRankinePlugin.TREETAPPING;
     }
 
     @Override
@@ -86,14 +81,14 @@ public class TreetappingRecipeCategory implements IRecipeCategory<TreetappingRec
         return this.cachedArrows.getUnchecked(cookTime);
     }
     @Override
-    public void draw(TreetappingRecipe recipe, IRecipeSlotsView recipeSlotsView, PoseStack stack, double mouseX, double mouseY) {
+    public void draw(TreetappingRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
         if (recipe.getTapTime() > 0) {
             Font font = Minecraft.getInstance().font;
-            font.draw(stack, Math.round(recipe.getTapTime()/20f)+"s", 59, 29, 0x7E7E7E);
+            guiGraphics.drawString(font, Math.round(recipe.getTapTime()/20f)+"s", 59, 29, 0x7E7E7E);
         }
         IDrawableAnimated arrow = getArrow(recipe);
-        arrow.draw(stack, 27, 10);
-        IRecipeCategory.super.draw(recipe, recipeSlotsView, stack, mouseX, mouseY);
+        arrow.draw(guiGraphics, 27, 10);
+        IRecipeCategory.super.draw(recipe, recipeSlotsView, guiGraphics, mouseX, mouseY);
     }
 
     @Override
@@ -108,10 +103,8 @@ public class TreetappingRecipeCategory implements IRecipeCategory<TreetappingRec
     public void setRecipe(IRecipeLayoutBuilder builder, TreetappingRecipe recipe, IFocusGroup focuses) {
         builder.addSlot(RecipeIngredientRole.INPUT,2,10).addIngredients(recipe.getIngredient());
         builder.addSlot(RecipeIngredientRole.CATALYST,23,0).addItemStack(RankineItems.TREE_TAP.get().getDefaultInstance());
-        builder.addSlot(RecipeIngredientRole.OUTPUT,60,10).addIngredient(ForgeTypes.FLUID_STACK,recipe.getFilledResult()).addTooltipCallback(((recipeSlotView, tooltip) -> tooltip
+        builder.addSlot(RecipeIngredientRole.OUTPUT,60,10).addIngredient(NeoForgeTypes.FLUID_STACK,recipe.getFilledResult()).addTooltipCallback(((recipeSlotView, tooltip) -> tooltip
                 .add(Component.literal(recipe.getResult().getAmount()+"mb"))));
-
-        IRecipeCategory.super.setRecipe(builder, recipe, focuses);
     }
 }
 

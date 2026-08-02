@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.data.builders;
 
-import com.cannolicatfish.rankine.init.RankineRecipeSerializers;
+import com.cannolicatfish.rankine.recipe.AlloyCraftingRecipe;
+import com.cannolicatfish.rankine.recipe.helper.AlloyIngredientHelper;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
@@ -8,36 +9,40 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import net.minecraft.advancements.Advancement;
+import net.minecraft.advancements.AdvancementRequirements;
 import net.minecraft.advancements.AdvancementRewards;
-import net.minecraft.advancements.CriterionTriggerInstance;
-import net.minecraft.advancements.RequirementsStrategy;
+import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
-import net.minecraft.core.Registry;
-import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
-import javax.annotation.Nullable;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.function.Consumer;
 
+/**
+ * Datagen builder for {@code rankine:alloy_crafting} recipes.
+ *
+ * <p>PORT NOTE (1.21.1): {@code FinishedRecipe} is gone — {@link RecipeOutput} takes a real
+ * {@code Recipe} instance. The builder still assembles the historical JSON layout (that is the
+ * format the serializer's codec reads back) and then hands it to
+ * {@link AlloyCraftingRecipe.Serializer#fromJson(JsonObject)} to obtain the recipe object, so the
+ * ingredient/alloy-component baking stays identical to the runtime load path.
+ */
 public class AlloyCraftingRecipeBuilder {
-    private static final Logger LOGGER = LogManager.getLogger();
     private final Item result;
     private final int count;
     private final boolean inherit;
     private final String inheritRecipe;
     private final List<String> pattern = Lists.newArrayList();
     private final Map<Character, AlloyIngredient> key = Maps.newLinkedHashMap();
-    private final Advancement.Builder advancementBuilder = Advancement.Builder.advancement();
+    private final Map<String, Criterion<?>> criteria = new LinkedHashMap<>();
     private String group;
     private final String langName;
     private final int color;
@@ -51,22 +56,16 @@ public class AlloyCraftingRecipeBuilder {
         this.color = colorIn;
     }
 
-    /**
-     * Creates a new builder for a shaped recipe.
-     */
     public static AlloyCraftingRecipeBuilder shapedRecipe(ItemLike resultIn) {
         return shapedRecipe(resultIn, 1);
     }
 
-    /**
-     * Creates a new builder for a shaped recipe.
-     */
     public static AlloyCraftingRecipeBuilder shapedRecipe(ItemLike resultIn, int countIn) {
-        return shapedRecipe(resultIn, countIn, false, "","", 16777215);
+        return shapedRecipe(resultIn, countIn, false, "", "", 16777215);
     }
 
     public static AlloyCraftingRecipeBuilder shapedRecipe(ItemLike resultIn, int countIn, boolean inheritIn) {
-        return new AlloyCraftingRecipeBuilder(resultIn, countIn, inheritIn, "","", 16777215);
+        return new AlloyCraftingRecipeBuilder(resultIn, countIn, inheritIn, "", "", 16777215);
     }
 
     public static AlloyCraftingRecipeBuilder shapedRecipe(ItemLike resultIn, int countIn, boolean inheritIn, String inheritRecipe) {
@@ -81,37 +80,26 @@ public class AlloyCraftingRecipeBuilder {
         return new AlloyCraftingRecipeBuilder(resultIn, countIn, inheritIn, inheritRecipe, langNameIn, color);
     }
 
-    /**
-     * Adds a key to the recipe pattern.
-     */
     public AlloyCraftingRecipeBuilder key(Character symbol, TagKey<Item> tagIn) {
         return this.key(symbol, Ingredient.of(tagIn));
     }
 
-    /**
-     * Adds a key to the recipe pattern.
-     */
     public AlloyCraftingRecipeBuilder key(Character symbol, ItemLike itemIn) {
         return this.key(symbol, Ingredient.of(itemIn));
     }
 
-    public AlloyCraftingRecipeBuilder alloyKey(Character symbol, TagKey<Item> tagIn, String compositionReqsIn, ResourceLocation alloyRecipeIn,String langNameIn,int colorIn) {
-        return this.key(symbol, new AlloyIngredient(Ingredient.of(tagIn),compositionReqsIn,alloyRecipeIn,langNameIn,colorIn));
+    public AlloyCraftingRecipeBuilder alloyKey(Character symbol, TagKey<Item> tagIn, String compositionReqsIn, ResourceLocation alloyRecipeIn, String langNameIn, int colorIn) {
+        return this.key(symbol, new AlloyIngredient(Ingredient.of(tagIn), compositionReqsIn, alloyRecipeIn, langNameIn, colorIn));
     }
 
-    public AlloyCraftingRecipeBuilder alloyKey(Character symbol, ItemLike itemIn, String compositionReqsIn, ResourceLocation alloyRecipeIn,String langNameIn,int colorIn) {
-        return this.key(symbol, new AlloyIngredient(Ingredient.of(itemIn),compositionReqsIn,alloyRecipeIn,langNameIn,colorIn));
+    public AlloyCraftingRecipeBuilder alloyKey(Character symbol, ItemLike itemIn, String compositionReqsIn, ResourceLocation alloyRecipeIn, String langNameIn, int colorIn) {
+        return this.key(symbol, new AlloyIngredient(Ingredient.of(itemIn), compositionReqsIn, alloyRecipeIn, langNameIn, colorIn));
     }
 
     public AlloyCraftingRecipeBuilder directAlloyKey(Character symbol, AlloyIngredient alloyIngredientIn) {
         return this.key(symbol, alloyIngredientIn);
     }
 
-
-
-    /**
-     * Adds a key to the recipe pattern.
-     */
     public AlloyCraftingRecipeBuilder key(Character symbol, AlloyIngredient ingredientIn) {
         if (this.key.containsKey(symbol)) {
             throw new IllegalArgumentException("Symbol '" + symbol + "' is already defined!");
@@ -129,14 +117,11 @@ public class AlloyCraftingRecipeBuilder {
         } else if (symbol == ' ') {
             throw new IllegalArgumentException("Symbol ' ' (whitespace) is reserved and cannot be defined");
         } else {
-            this.key.put(symbol, new AlloyIngredient(ingredientIn,null,null,null,16777215));
+            this.key.put(symbol, new AlloyIngredient(ingredientIn, null, null, null, 16777215));
             return this;
         }
     }
 
-    /**
-     * Adds a new entry to the patterns for this recipe.
-     */
     public AlloyCraftingRecipeBuilder patternLine(String patternIn) {
         if (!this.pattern.isEmpty() && patternIn.length() != this.pattern.get(0).length()) {
             throw new IllegalArgumentException("Pattern must be the same width on every line!");
@@ -146,11 +131,8 @@ public class AlloyCraftingRecipeBuilder {
         }
     }
 
-    /**
-     * Adds a criterion needed to unlock the recipe.
-     */
-    public AlloyCraftingRecipeBuilder addCriterion(String name, CriterionTriggerInstance criterionIn) {
-        this.advancementBuilder.addCriterion(name, criterionIn);
+    public AlloyCraftingRecipeBuilder addCriterion(String name, Criterion<?> criterionIn) {
+        this.criteria.put(name, criterionIn);
         return this;
     }
 
@@ -159,160 +141,118 @@ public class AlloyCraftingRecipeBuilder {
         return this;
     }
 
-    public void build(Consumer<FinishedRecipe> consumerIn) {
-        this.build(consumerIn, Registry.ITEM.getKey(this.result));
+    public Item getResult() {
+        return this.result;
     }
 
-    public void build(Consumer<FinishedRecipe> consumerIn, String save) {
-        ResourceLocation resourcelocation = Registry.ITEM.getKey(this.result);
-        if ((ResourceLocation.parse(save)).equals(resourcelocation)) {
+    public void build(RecipeOutput output) {
+        this.build(output, BuiltInRegistries.ITEM.getKey(this.result));
+    }
+
+    public void build(RecipeOutput output, String save) {
+        ResourceLocation resourcelocation = BuiltInRegistries.ITEM.getKey(this.result);
+        ResourceLocation id = ResourceLocation.parse(save);
+        if (id.equals(resourcelocation)) {
             throw new IllegalStateException("Shaped Recipe " + save + " should remove its 'save' argument");
         } else {
-            this.build(consumerIn, ResourceLocation.parse(save));
+            this.build(output, id);
         }
     }
 
-
-    public void build(Consumer<FinishedRecipe> consumerIn, ResourceLocation id) {
+    public void build(RecipeOutput output, ResourceLocation id) {
         this.validate(id);
-        this.advancementBuilder.parent(ResourceLocation.parse("recipes/root")).addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(id)).rewards(AdvancementRewards.Builder.recipe(id)).requirements(RequirementsStrategy.OR);
-        consumerIn.accept(new AlloyCraftingRecipeBuilder.Result(id, this.result, this.count, this.inherit,this.inheritRecipe,this.group == null ? "" : this.group, this.pattern, this.key, this.advancementBuilder, ResourceLocation.parse(id.getNamespace(), "recipes/" + this.result.getItemCategory().getRecipeFolderName() + "/" + id.getPath()),this.langName,this.color));
+
+        Advancement.Builder advancement = output.advancement()
+                .addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(id))
+                .rewards(AdvancementRewards.Builder.recipe(id))
+                .requirements(AdvancementRequirements.Strategy.OR);
+        this.criteria.forEach(advancement::addCriterion);
+
+        AlloyCraftingRecipe recipe = AlloyCraftingRecipe.Serializer.fromJson(this.toJson());
+        recipe.bindId(id);
+        output.accept(id, recipe, advancement.build(id.withPrefix("recipes/misc/")));
     }
 
-    /**
-     * Makes sure that this recipe is valid and obtainable.
-     */
+    /** The historical 1.18.2 JSON layout, which is exactly what the serializer's codec reads. */
+    private JsonObject toJson() {
+        JsonObject json = new JsonObject();
+        if (this.group != null && !this.group.isEmpty()) {
+            json.addProperty("group", this.group);
+        }
+
+        json.addProperty("inherit", this.inherit);
+        if (this.color != 16777215) {
+            json.addProperty("color", this.color);
+        }
+        if (this.langName != null && !this.langName.isEmpty()) {
+            json.addProperty("langName", this.langName);
+        }
+        if (this.inheritRecipe != null && !this.inheritRecipe.isEmpty()) {
+            json.addProperty("inheritRecipe", this.inheritRecipe);
+        }
+
+        JsonArray jsonarray = new JsonArray();
+        for (String s : this.pattern) {
+            jsonarray.add(s);
+        }
+        json.add("pattern", jsonarray);
+
+        JsonObject keys = new JsonObject();
+        for (Map.Entry<Character, AlloyIngredient> entry : this.key.entrySet()) {
+            keys.add(String.valueOf(entry.getKey()),
+                    alloySerializer(AlloyIngredientHelper.ingredientToJson(entry.getValue().getIngredient()), entry.getValue()));
+        }
+        json.add("key", keys);
+
+        JsonObject resultJson = new JsonObject();
+        resultJson.addProperty("item", BuiltInRegistries.ITEM.getKey(this.result).toString());
+        if (this.count > 1) {
+            resultJson.addProperty("count", this.count);
+        }
+        json.add("result", resultJson);
+        return json;
+    }
+
+    private JsonElement alloySerializer(JsonElement element, AlloyIngredient ingredient) {
+        if (!(element instanceof JsonObject object)) {
+            return element;
+        }
+        if (ingredient.getCompositonReqs() != null && !ingredient.getCompositonReqs().isEmpty()) {
+            object.addProperty("alloyComp", ingredient.getCompositonReqs());
+        }
+        if (ingredient.getAlloyRecipe() != null) {
+            object.addProperty("alloyRecipe", ingredient.getAlloyRecipe().toString());
+        }
+        if (ingredient.getLangName() != null && !ingredient.getLangName().isEmpty()) {
+            object.addProperty("langName", ingredient.getLangName());
+        }
+        if (ingredient.getColor() != 16777215) {
+            object.addProperty("color", ingredient.getColor());
+        }
+        return object;
+    }
+
     private void validate(ResourceLocation id) {
         if (this.pattern.isEmpty()) {
             throw new IllegalStateException("No pattern is defined for shaped recipe " + id + "!");
-        } else {
-            Set<Character> set = Sets.newHashSet(this.key.keySet());
-            set.remove(' ');
+        }
+        Set<Character> set = Sets.newHashSet(this.key.keySet());
+        set.remove(' ');
 
-            for(String s : this.pattern) {
-                for(int i = 0; i < s.length(); ++i) {
-                    char c0 = s.charAt(i);
-                    if (!this.key.containsKey(c0) && c0 != ' ') {
-                        throw new IllegalStateException("Pattern in recipe " + id + " uses undefined symbol '" + c0 + "'");
-                    }
-
-                    set.remove(c0);
+        for (String s : this.pattern) {
+            for (int i = 0; i < s.length(); ++i) {
+                char c0 = s.charAt(i);
+                if (!this.key.containsKey(c0) && c0 != ' ') {
+                    throw new IllegalStateException("Pattern in recipe " + id + " uses undefined symbol '" + c0 + "'");
                 }
-            }
-
-            if (!set.isEmpty()) {
-                throw new IllegalStateException("Ingredients are defined but not used in pattern for recipe " + id);
-            } else if (this.advancementBuilder.getCriteria().isEmpty()) {
-                throw new IllegalStateException("No way of obtaining recipe " + id);
+                set.remove(c0);
             }
         }
-    }
 
-    public class Result implements FinishedRecipe {
-        private final ResourceLocation id;
-        private final Item result;
-        private final int count;
-        private final boolean inherit;
-        private final String inheritRecipe;
-        private final String group;
-        private final List<String> pattern;
-        private final String langName;
-        private final int color;
-        private final Map<Character, AlloyIngredient> key;
-        private final Advancement.Builder advancementBuilder;
-        private final ResourceLocation advancementId;
-
-        public Result(ResourceLocation idIn, Item resultIn, int countIn, boolean inheritIn, String inheritRecipeIn, String groupIn, List<String> patternIn, Map<Character, AlloyIngredient> keyIn, Advancement.Builder advancementBuilderIn, ResourceLocation advancementIdIn, String langNameIn, int colorIn) {
-            this.id = idIn;
-            this.result = resultIn;
-            this.count = countIn;
-            this.inherit = inheritIn;
-            this.inheritRecipe = inheritRecipeIn;
-            this.group = groupIn;
-            this.pattern = patternIn;
-            this.key = keyIn;
-            this.advancementBuilder = advancementBuilderIn;
-            this.advancementId = advancementIdIn;
-            this.langName = langNameIn;
-            this.color = colorIn;
-        }
-
-        public void serializeRecipeData(JsonObject json) {
-            if (!this.group.isEmpty()) {
-                json.addProperty("group", this.group);
-            }
-
-            json.addProperty("inherit", this.inherit);
-            if (color != 16777215) {
-                json.addProperty("color",this.color);
-            }
-            if(!this.langName.isEmpty()) {
-                json.addProperty("langName", this.langName);
-            }
-
-            if(!this.inheritRecipe.isEmpty()) {
-                json.addProperty("inheritRecipe", this.inheritRecipe);
-            }
-            JsonArray jsonarray = new JsonArray();
-
-            for(String s : this.pattern) {
-                jsonarray.add(s);
-            }
-
-            json.add("pattern", jsonarray);
-            JsonObject jsonobject = new JsonObject();
-
-            for(Map.Entry<Character, AlloyIngredient> entry : this.key.entrySet()) {
-                jsonobject.add(String.valueOf(entry.getKey()), alloySerializer(entry.getValue().getIngredient().toJson(),entry.getValue()));
-            }
-
-            json.add("key", jsonobject);
-            JsonObject jsonobject1 = new JsonObject();
-            jsonobject1.addProperty("item", Registry.ITEM.getKey(this.result).toString());
-            if (this.count > 1) {
-                jsonobject1.addProperty("count", this.count);
-            }
-
-            json.add("result", jsonobject1);
-        }
-
-        private JsonElement alloySerializer(JsonElement array, AlloyIngredient ingredient) {
-            if (ingredient.getAlloyRecipe() != null) {
-                ((JsonObject) array).addProperty("alloyRecipe",ingredient.getAlloyRecipe().toString());
-            }
-            if (ingredient.getLangName() != null && !ingredient.getLangName().isEmpty()) {
-                ((JsonObject) array).addProperty("langName",ingredient.getLangName());
-            }
-            if (ingredient.getColor() != 16777215) {
-                ((JsonObject) array).addProperty("color",ingredient.getColor());
-            }
-            return array;
-        }
-
-        public RecipeSerializer<?> getType() {
-            return RankineRecipeSerializers.ALLOY_CRAFTING_RECIPE_SERIALIZER.get();
-        }
-
-        /**
-         * Gets the ID for the recipe.
-         */
-        public ResourceLocation getId() {
-            return this.id;
-        }
-
-        /**
-         * Gets the JSON for the advancement that unlocks this recipe. Null if there is no advancement.
-         */
-        @Nullable
-        public JsonObject serializeAdvancement() {
-            return this.advancementBuilder.serializeToJson();
-        }
-
-
-        @Nullable
-        public ResourceLocation getAdvancementId() {
-            return this.advancementId;
+        if (!set.isEmpty()) {
+            throw new IllegalStateException("Ingredients are defined but not used in pattern for recipe " + id);
+        } else if (this.criteria.isEmpty()) {
+            throw new IllegalStateException("No way of obtaining recipe " + id);
         }
     }
 }
-

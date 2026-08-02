@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.client.integration.jei.categories;
 
 import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.client.integration.jei.JEIRankinePlugin;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.recipe.SluicingRecipe;
@@ -10,6 +11,7 @@ import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
+import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.Util;
 import net.minecraft.client.resources.language.I18n;
@@ -39,15 +41,9 @@ public class SluicingRecipeCategory implements IRecipeCategory<SluicingRecipe> {
                 .build();
         slotDrawable = guiHelper.getSlotDrawable();
     }
-    @SuppressWarnings("removal")
     @Override
-    public ResourceLocation getUid() {
-        return UID;
-    }
-    @SuppressWarnings("removal")
-    @Override
-    public Class<? extends SluicingRecipe> getRecipeClass() {
-        return SluicingRecipe.class;
+    public RecipeType<SluicingRecipe> getRecipeType() {
+        return JEIRankinePlugin.SLUICING;
     }
 
     @Override

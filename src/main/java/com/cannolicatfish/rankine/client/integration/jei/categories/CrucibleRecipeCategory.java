@@ -1,9 +1,9 @@
 package com.cannolicatfish.rankine.client.integration.jei.categories;
 
 import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.client.integration.jei.JEIRankinePlugin;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.recipe.CrucibleRecipe;
-import com.mojang.blaze3d.vertex.PoseStack;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
@@ -11,13 +11,13 @@ import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
+import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.Util;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.resources.language.I18n;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
@@ -42,15 +42,9 @@ public class CrucibleRecipeCategory implements IRecipeCategory<CrucibleRecipe> {
                 .build();
         slotDrawable = guiHelper.getSlotDrawable();
     }
-    @SuppressWarnings("removal")
     @Override
-    public ResourceLocation getUid() {
-        return UID;
-    }
-    @SuppressWarnings("removal")
-    @Override
-    public Class<? extends CrucibleRecipe> getRecipeClass() {
-        return CrucibleRecipe.class;
+    public RecipeType<CrucibleRecipe> getRecipeType() {
+        return JEIRankinePlugin.CRUCIBLE;
     }
 
     @Override
@@ -69,14 +63,14 @@ public class CrucibleRecipeCategory implements IRecipeCategory<CrucibleRecipe> {
     }
 
     @Override
-    public void draw(CrucibleRecipe recipe, IRecipeSlotsView recipeSlotsView, PoseStack stack, double mouseX, double mouseY) {
+    public void draw(CrucibleRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
         List<Boolean> reqs = recipe.getRequired();
         DecimalFormat df = Util.make(new DecimalFormat("##.##"), (p_234699_0_) -> {
             p_234699_0_.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.ROOT));
         });
         Font font = Minecraft.getInstance().font;
-        font.draw(stack,Component.translatable("rankine.jei.tooltip_required"),120, 0, 0x000000);
-        font.draw(stack,Component.translatable("rankine.jei.crucible_tooltip_additional",recipe.getRequired().stream().filter(aBoolean -> aBoolean).count()),1, 96, 0x000000);
+        guiGraphics.drawString(font,Component.translatable("rankine.jei.tooltip_required"),120, 0, 0x000000);
+        guiGraphics.drawString(font,Component.translatable("rankine.jei.crucible_tooltip_additional",recipe.getRequired().stream().filter(aBoolean -> aBoolean).count()),1, 96, 0x000000);
     }
 
     @Override

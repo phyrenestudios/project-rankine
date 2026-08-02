@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.client.integration.jei.categories;
 
 import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.client.integration.jei.JEIRankinePlugin;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.recipe.FusionFurnaceRecipe;
@@ -8,16 +9,16 @@ import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import mezz.jei.api.constants.VanillaTypes;
-import mezz.jei.api.forge.ForgeTypes;
+import mezz.jei.api.neoforge.NeoForgeTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.gui.drawable.IDrawableAnimated;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
+import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.client.resources.language.I18n;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
@@ -63,15 +64,9 @@ public class FusionFurnaceRecipeCategory implements IRecipeCategory<FusionFurnac
                     }
                 });
     }
-    @SuppressWarnings("removal")
     @Override
-    public ResourceLocation getUid() {
-        return UID;
-    }
-    @SuppressWarnings("removal")
-    @Override
-    public Class<? extends FusionFurnaceRecipe> getRecipeClass() {
-        return FusionFurnaceRecipe.class;
+    public RecipeType<FusionFurnaceRecipe> getRecipeType() {
+        return JEIRankinePlugin.FUSION_FURNACE;
     }
 
     @Override
@@ -92,14 +87,14 @@ public class FusionFurnaceRecipeCategory implements IRecipeCategory<FusionFurnac
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, FusionFurnaceRecipe recipe, IFocusGroup focuses) {
         if (!recipe.getFluidIn().isEmpty()) {
-            builder.addSlot(RecipeIngredientRole.INPUT,2,2).addIngredient(ForgeTypes.FLUID_STACK, recipe.getFluidIn()).setFluidRenderer(64000,true,16,64);
+            builder.addSlot(RecipeIngredientRole.INPUT,2,2).addIngredient(NeoForgeTypes.FLUID_STACK, recipe.getFluidIn()).setFluidRenderer(64000,true,16,64);
             ItemStack bucket = FluidUtil.getFilledBucket(recipe.getFluidIn());
             if (bucket != ItemStack.EMPTY) {
                 builder.addSlot(RecipeIngredientRole.INPUT,2,68).addItemStack(bucket);
             }
         }
         if (!recipe.getFluidOut().isEmpty()) {
-            builder.addSlot(RecipeIngredientRole.OUTPUT,154,2).addIngredient(ForgeTypes.FLUID_STACK, recipe.getFluidOut()).setFluidRenderer(64000,true,16,64);
+            builder.addSlot(RecipeIngredientRole.OUTPUT,154,2).addIngredient(NeoForgeTypes.FLUID_STACK, recipe.getFluidOut()).setFluidRenderer(64000,true,16,64);
             ItemStack bucket = FluidUtil.getFilledBucket(recipe.getFluidOut());
             if (bucket != ItemStack.EMPTY) {
                 builder.addSlot(RecipeIngredientRole.OUTPUT,154,68).addItemStack(bucket);

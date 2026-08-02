@@ -86,7 +86,7 @@ public class CauldronDryingRecipeCategory implements IRecipeCategory<IRankineCau
 
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, IRankineCauldronRecipe recipe, IFocusGroup focuses) {
-        builder.addSlot(RecipeIngredientRole.INPUT,40,5).addIngredient(ForgeTypes.FLUID_STACK, recipe.getInputFluid());
+        builder.addSlot(RecipeIngredientRole.INPUT,40,5).addIngredient(NeoForgeTypes.FLUID_STACK, recipe.getInputFluid());
         builder.addSlot(RecipeIngredientRole.INPUT,44,48).addItemStack(recipe.getFluidHolderItem());
         builder.addSlot(RecipeIngredientRole.CATALYST,62,32).addItemStack(new ItemStack(Items.CAULDRON));
         builder.addSlot(RecipeIngredientRole.OUTPUT,6,30).addItemStack(recipe.getHolderOutputItem());
@@ -94,7 +94,7 @@ public class CauldronDryingRecipeCategory implements IRecipeCategory<IRankineCau
             builder.addSlot(RecipeIngredientRole.OUTPUT,117,30).addItemStack(recipe.getOutputItem());
         }
         if (recipe.getOutputFluid() != null) {
-            builder.addSlot(RecipeIngredientRole.OUTPUT,117,30).addIngredient(ForgeTypes.FLUID_STACK, recipe.getOutputFluid());
+            builder.addSlot(RecipeIngredientRole.OUTPUT,117,30).addIngredient(NeoForgeTypes.FLUID_STACK, recipe.getOutputFluid());
         }
     }
 

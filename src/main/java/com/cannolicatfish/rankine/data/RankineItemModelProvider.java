@@ -8,7 +8,7 @@ import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineLists;
 import com.cannolicatfish.rankine.items.alloys.AlloyCrowbarItem;
 import com.cannolicatfish.rankine.items.tools.SpearItem;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -24,8 +24,8 @@ import java.util.stream.Stream;
 
 public class RankineItemModelProvider extends ItemModelProvider {
 
-    public RankineItemModelProvider(DataGenerator generator, ExistingFileHelper existingFileHelper) {
-        super(generator, ProjectRankine.MODID, existingFileHelper);
+    public RankineItemModelProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
+        super(output, ProjectRankine.MODID, existingFileHelper);
     }
 
     @Nonnull

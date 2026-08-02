@@ -1,10 +1,10 @@
 package com.cannolicatfish.rankine.client.integration.jei.categories;
 
 import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.client.integration.jei.JEIRankinePlugin;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineLists;
 import com.cannolicatfish.rankine.recipe.CrushingRecipe;
-import com.mojang.blaze3d.vertex.PoseStack;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.builder.IRecipeSlotBuilder;
@@ -13,20 +13,20 @@ import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
+import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.core.NonNullList;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Tuple;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.neoforged.neoforge.common.TierSortingRegistry;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -74,25 +74,18 @@ public class CrushingRecipeCategory implements IRecipeCategory<CrushingRecipe> {
         return guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK,new ItemStack(RankineItems.STONE_HAMMER.get()));
     }
 
-    @SuppressWarnings("removal")
     @Override
-    public ResourceLocation getUid() {
-        return UID;
-    }
-
-    @SuppressWarnings("removal")
-    @Override
-    public Class<? extends CrushingRecipe> getRecipeClass() {
-        return CrushingRecipe.class;
+    public RecipeType<CrushingRecipe> getRecipeType() {
+        return JEIRankinePlugin.CRUSHING;
     }
 
     @Override
-    public void draw(CrushingRecipe recipe, IRecipeSlotsView recipeSlotsView, PoseStack stack, double mouseX, double mouseY) {
+    public void draw(CrushingRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
         Font font = Minecraft.getInstance().font;
         int index = recipe.getRecipeOutputs().indexOf(ItemStack.EMPTY);
-        font.draw(stack,Component.literal("<=" + recipe.getMaxRolls()).withStyle(ChatFormatting.DARK_AQUA),100,32,0xFF0000);
+        guiGraphics.drawString(font,Component.literal("<=" + recipe.getMaxRolls()).withStyle(ChatFormatting.DARK_AQUA),100,32,0xFF0000);
 
-        IRecipeCategory.super.draw(recipe, recipeSlotsView, stack, mouseX, mouseY);
+        IRecipeCategory.super.draw(recipe, recipeSlotsView, guiGraphics, mouseX, mouseY);
     }
 
     @Override
@@ -164,7 +157,9 @@ public class CrushingRecipeCategory implements IRecipeCategory<CrushingRecipe> {
     }
 
     private Tuple<ChatFormatting,IDrawable> colorForTier(Tier tier) {
-        ResourceLocation tierLoc = TierSortingRegistry.getName(tier);
+        // PORT-TODO(jei): TierSortingRegistry was removed in NeoForge 1.21; CrushingRecipe now maintains
+        // its own tier name lookup (see CrushingRecipe.registerTier/nameOfTier) as the replacement.
+        ResourceLocation tierLoc = CrushingRecipe.nameOfTier(tier);
         if (tierLoc != null) {
             switch (tierLoc.getPath().toUpperCase(Locale.ROOT)) {
                 case "WOOD":

@@ -1625,11 +1625,11 @@ public class RankineItems {
     public static final DeferredItem<Item> ASH = ITEMS.register("ash", () -> new BlockItem(RankineBlocks.ASH.get(),new Item.Properties().stacksTo(64)));
     public static final DeferredItem<Item> BONE_ASH = ITEMS.register("bone_ash", () -> new BlockItem(RankineBlocks.BONE_ASH.get(),new Item.Properties().stacksTo(64)));
     public static final DeferredItem<Item> POZZOLANA = ITEMS.register("pozzolana", () -> new BlockItem(RankineBlocks.POZZOLANA.get(),new Item.Properties().stacksTo(64)));
-    public static final DeferredItem<Item> MAPLE_SAP_BUCKET = ITEMS.register("maple_sap_bucket", () -> new RankineBucketItem(() -> RankineFluids.MAPLE_SAP, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
-    public static final DeferredItem<Item> SAP_BUCKET = ITEMS.register("sap_bucket",  () -> new RankineBucketItem(() -> RankineFluids.SAP, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
-    public static final DeferredItem<Item> RESIN_BUCKET = ITEMS.register("resin_bucket",  () -> new RankineBucketItem(() -> RankineFluids.RESIN, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
-    public static final DeferredItem<Item> LATEX_BUCKET = ITEMS.register("latex_bucket", () -> new RankineBucketItem(() -> RankineFluids.LATEX, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
-    public static final DeferredItem<Item> JUGLONE_BUCKET = ITEMS.register("juglone_bucket", () -> new RankineBucketItem(() -> RankineFluids.JUGLONE, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
+    public static final DeferredItem<Item> MAPLE_SAP_BUCKET = ITEMS.register("maple_sap_bucket", () -> new RankineBucketItem(() -> RankineFluids.MAPLE_SAP.get(), new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
+    public static final DeferredItem<Item> SAP_BUCKET = ITEMS.register("sap_bucket",  () -> new RankineBucketItem(() -> RankineFluids.SAP.get(), new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
+    public static final DeferredItem<Item> RESIN_BUCKET = ITEMS.register("resin_bucket",  () -> new RankineBucketItem(() -> RankineFluids.RESIN.get(), new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
+    public static final DeferredItem<Item> LATEX_BUCKET = ITEMS.register("latex_bucket", () -> new RankineBucketItem(() -> RankineFluids.LATEX.get(), new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
+    public static final DeferredItem<Item> JUGLONE_BUCKET = ITEMS.register("juglone_bucket", () -> new RankineBucketItem(() -> RankineFluids.JUGLONE.get(), new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
     public static final DeferredItem<Item> SADDLE_TREE = ITEMS.register("saddle_tree", () -> new Item(new Item.Properties().stacksTo(64)));
     public static final DeferredItem<Item> CANNONBALL = ITEMS.register("cannonball", () -> new CannonballItem(new Item.Properties().stacksTo(64)));
     public static final DeferredItem<Item> CARCASS = ITEMS.register("carcass", () -> new CannonballItem(new Item.Properties().stacksTo(64)));

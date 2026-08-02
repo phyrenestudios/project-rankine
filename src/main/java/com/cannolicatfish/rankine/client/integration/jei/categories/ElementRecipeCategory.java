@@ -1,9 +1,9 @@
 package com.cannolicatfish.rankine.client.integration.jei.categories;
 
 import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.client.integration.jei.JEIRankinePlugin;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.recipe.ElementRecipe;
-import com.mojang.blaze3d.vertex.PoseStack;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
@@ -11,12 +11,13 @@ import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
+import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.Util;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.resources.language.I18n;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
@@ -40,15 +41,9 @@ public class ElementRecipeCategory implements IRecipeCategory<ElementRecipe> {
                 .addPadding(0, 0, 0, 0)
                 .build();
     }
-    @SuppressWarnings("removal")
     @Override
-    public ResourceLocation getUid() {
-        return UID;
-    }
-    @SuppressWarnings("removal")
-    @Override
-    public Class<? extends ElementRecipe> getRecipeClass() {
-        return ElementRecipe.class;
+    public RecipeType<ElementRecipe> getRecipeType() {
+        return JEIRankinePlugin.ELEMENT;
     }
 
     @Override
@@ -67,7 +62,7 @@ public class ElementRecipeCategory implements IRecipeCategory<ElementRecipe> {
     }
 
     @Override
-    public void draw(ElementRecipe recipe, IRecipeSlotsView recipeSlotsView, PoseStack ms, double mouseX, double mouseY) {
+    public void draw(ElementRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
         Font font = Minecraft.getInstance().font;
         String name = recipe.getName().toUpperCase(Locale.ROOT);
         DecimalFormat df = Util.make(new DecimalFormat("##.##"), (p_234699_0_) -> {
@@ -75,11 +70,11 @@ public class ElementRecipeCategory implements IRecipeCategory<ElementRecipe> {
         });
 
         if (recipe.getAtomicNumber() >= 0) {
-            font.draw(ms,String.valueOf(recipe.getAtomicNumber()),48, 4,0x000000);
+            guiGraphics.drawString(font,String.valueOf(recipe.getAtomicNumber()),48, 4,0x000000);
         }
-        font.draw(ms,String.valueOf(recipe.getSymbol()),48, 14,0x000000);
-        font.draw(ms,name,(float)(58 - font.width(name) / 2),40,0x000000);
-        font.draw(ms,"Items:",(float)(58 - font.width("Items:") / 2),66,0x000000);
+        guiGraphics.drawString(font,String.valueOf(recipe.getSymbol()),48, 14,0x000000);
+        guiGraphics.drawString(font,name,(float)(58 - font.width(name) / 2),40,0x000000,true);
+        guiGraphics.drawString(font,"Items:",(float)(58 - font.width("Items:") / 2),66,0x000000,true);
     }
 
     @Override
@@ -93,7 +88,6 @@ public class ElementRecipeCategory implements IRecipeCategory<ElementRecipe> {
             builder.addSlot(RecipeIngredientRole.OUTPUT,(i - (6*floor)) * 18 + 4, 76 + (16*floor)).addIngredients(recipe.getIngredients().get(i))
                     .addTooltipCallback((recipeSlotView, tooltip) -> tooltip.add(Component.literal(I18n.get("rankine.jei.tooltip_material_info") + df.format(val))));
         }
-        IRecipeCategory.super.setRecipe(builder, recipe, focuses);
     }
 
 }

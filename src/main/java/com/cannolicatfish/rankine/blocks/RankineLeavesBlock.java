@@ -27,11 +27,11 @@ import net.minecraft.world.level.material.PushReaction;
 // PORT-NOTE: Material.LEAVES -> .mapColor(MapColor.PLANT).ignitedByLava().pushReaction(PushReaction.DESTROY).
 //
 // PORT-TODO(RankineLeavesBlock): vanilla LeavesBlock gained a WATERLOGGED property in 1.19+, and its constructor
-// unconditionally calls registerDefaultState(...setValue(WATERLOGGED, false)) — so WATERLOGGED MUST be declared in
+// unconditionally calls registerDefaultState(...setValue(WATERLOGGED, false)), so WATERLOGGED MUST be declared in
 // createBlockStateDefinition or the block crashes at construction. That means Rankine leaves are now waterloggable
-// where they were not in 1.18.2. The water-tick scheduling and getFluidState below mirror vanilla LeavesBlock so
-// the new state behaves correctly. Blockstate/model datagen for leaves lives outside blocks/ (RankineBlockStateProvider)
-// and may need to account for the extra property.
+// where they were not in 1.18.2. updateShape below schedules the water tick exactly as vanilla LeavesBlock does
+// (getFluidState is inherited unchanged). Blockstate/model datagen for leaves lives outside blocks/
+// (RankineBlockStateProvider) and may need to account for the extra property.
 public class RankineLeavesBlock extends LeavesBlock {
     public static final MapCodec<RankineLeavesBlock> CODEC = MapCodec.unit(RankineLeavesBlock::new);
     public static final IntegerProperty AGE = BlockStateProperties.AGE_2;

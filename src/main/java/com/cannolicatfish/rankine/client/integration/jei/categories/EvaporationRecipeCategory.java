@@ -1,23 +1,24 @@
 package com.cannolicatfish.rankine.client.integration.jei.categories;
 
 import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.client.integration.jei.JEIRankinePlugin;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.recipe.EvaporationRecipe;
-import com.mojang.blaze3d.vertex.PoseStack;
 import mezz.jei.api.constants.VanillaTypes;
-import mezz.jei.api.forge.ForgeTypes;
+import mezz.jei.api.neoforge.NeoForgeTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
+import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.Util;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.resources.language.I18n;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
@@ -51,15 +52,9 @@ public class EvaporationRecipeCategory implements IRecipeCategory<EvaporationRec
         return Component.literal(I18n.get("rankine.jei.evaporation"));
     }
 
-    @SuppressWarnings("removal")
     @Override
-    public ResourceLocation getUid() {
-        return UID;
-    }
-
-    @Override
-    public Class<? extends EvaporationRecipe> getRecipeClass() {
-        return EvaporationRecipe.class;
+    public RecipeType<EvaporationRecipe> getRecipeType() {
+        return JEIRankinePlugin.EVAPORATION;
     }
 
     @Override
@@ -73,9 +68,9 @@ public class EvaporationRecipeCategory implements IRecipeCategory<EvaporationRec
     }
 
     @Override
-    public void draw(EvaporationRecipe recipe, IRecipeSlotsView recipeSlotsView, PoseStack stack, double mouseX, double mouseY) {
+    public void draw(EvaporationRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
         Font font = Minecraft.getInstance().font;
-        IRecipeCategory.super.draw(recipe, recipeSlotsView, stack, mouseX, mouseY);
+        IRecipeCategory.super.draw(recipe, recipeSlotsView, guiGraphics, mouseX, mouseY);
     }
 
     @Override
@@ -105,7 +100,7 @@ public class EvaporationRecipeCategory implements IRecipeCategory<EvaporationRec
         DecimalFormat df = Util.make(new DecimalFormat("##.##"), (p_234699_0_) -> {
             p_234699_0_.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.ROOT));
         });
-        builder.addSlot(RecipeIngredientRole.INPUT,57,20).addIngredient(ForgeTypes.FLUID_STACK, new FluidStack(recipe.getFluid().getFluid(),1000));
+        builder.addSlot(RecipeIngredientRole.INPUT,57,20).addIngredient(NeoForgeTypes.FLUID_STACK, new FluidStack(recipe.getFluid().getFluid(),1000));
 
         int count = 1;
         int ycount = 1;

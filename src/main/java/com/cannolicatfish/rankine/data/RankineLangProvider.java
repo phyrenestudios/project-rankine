@@ -5,7 +5,7 @@ import com.cannolicatfish.rankine.blocks.block_groups.*;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineLists;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SignBlock;
@@ -18,8 +18,8 @@ import java.util.stream.Stream;
 
 public class RankineLangProvider extends LanguageProvider {
     private final String locale;
-    public RankineLangProvider(DataGenerator gen, String locale) {
-        super(gen, ProjectRankine.MODID, locale);
+    public RankineLangProvider(PackOutput output, String locale) {
+        super(output, ProjectRankine.MODID, locale);
         this.locale = locale;
     }
 

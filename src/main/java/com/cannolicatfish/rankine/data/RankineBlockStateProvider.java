@@ -21,7 +21,7 @@ import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineLists;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import net.minecraft.core.Direction;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.AttachFace;
@@ -41,8 +41,8 @@ import java.util.stream.Stream;
 public class RankineBlockStateProvider extends BlockStateProvider {
 
 
-    public RankineBlockStateProvider(DataGenerator generator, ExistingFileHelper existingFileHelper) {
-        super(generator, ProjectRankine.MODID, existingFileHelper);
+    public RankineBlockStateProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
+        super(output, ProjectRankine.MODID, existingFileHelper);
     }
 
     @Nonnull
@@ -709,6 +709,112 @@ public class RankineBlockStateProvider extends BlockStateProvider {
             axisBlock((RotatedPillarBlock) BALE, getBlockRSL(RankineDataUtils.rl(BALE).getPath()+"_side"),getBlockRSL(RankineDataUtils.rl(BALE).getPath()+"_top"));
         }
 
+        applyRenderTypes();
+    }
+
+    // ------------------------------------------------------------------------------------------
+    // Render types
+    //
+    // PORT NOTE: ItemBlockRenderTypes.setRenderLayer is gone in 1.21.1 - the render type now lives
+    // in the block model JSON. This reproduces the 1.18.2 ClientProxy assignment list (see the
+    // former PORT-TODO(datagen-rendertype) note in client/ClientSetup) by tagging every model this
+    // provider generated for the listed blocks.
+    // ------------------------------------------------------------------------------------------
+
+    private final java.util.Set<ResourceLocation> renderTyped = new java.util.HashSet<>();
+
+    private void applyRenderTypes() {
+        java.util.List<Block> cutout = new java.util.ArrayList<>();
+        java.util.List<Block> cutoutMipped = new java.util.ArrayList<>();
+        java.util.List<Block> translucent = new java.util.ArrayList<>();
+
+        for (RankineStone Stone : RankineLists.RANKINE_STONES) {
+            cutout.add(Stone.getBricks());
+            cutout.add(Stone.getMossyBricks());
+            cutout.add(Stone.getBricksSlab());
+            cutout.add(Stone.getMossyBricksSlab());
+            cutout.add(Stone.getBricksStairs());
+            cutout.add(Stone.getMossyBricksStairs());
+            cutout.add(Stone.getBricksWall());
+            cutout.add(Stone.getMossyBricksWall());
+            cutout.add(Stone.getBricksPressurePlate());
+        }
+        for (RankineWood Wood : RankineLists.RANKINE_WOODS) {
+            cutout.add(Wood.getTrapdoor());
+            cutout.add(Wood.getDoor());
+            cutout.add(Wood.getHollowLog());
+            cutout.add(Wood.getSapling());
+            cutout.add(Wood.getLeaves());
+            cutout.add(Wood.getLeafLitter());
+            cutoutMipped.add(Wood.getPottedSapling());
+        }
+        for (RankineDripstone Dripstone : RankineLists.RANKINE_DRIPSTONES) {
+            cutout.add(Dripstone.getPointedDripstone());
+        }
+        cutout.addAll(Stream.of(
+                RankineLists.LEAF_LITTERS, RankineLists.MINING_HEADS, RankineLists.METAL_DOORS,
+                RankineLists.METAL_TRAPDOORS, RankineLists.ALLOY_LADDERS, RankineLists.ALLOY_POLES,
+                RankineLists.ALLOY_BARS, RankineLists.HOLLOW_LOGS, RankineLists.GLAZED_PORCELAIN_BLOCKS,
+                RankineLists.VANILLA_BRICKS, RankineLists.NATIVE_ORES, RankineLists.CRUSHING_ORES,
+                RankineLists.SPECIAL_ORES, RankineLists.ASPHALT_BLOCKS, RankineLists.RED_ASPHALT_BLOCKS,
+                RankineLists.GRAY_ASPHALT_BLOCKS, RankineLists.DARK_GRAY_ASPHALT_BLOCKS,
+                RankineLists.BLUE_ASPHALT_BLOCKS, RankineLists.GREEN_ASPHALT_BLOCKS
+        ).flatMap(Collection::stream).collect(Collectors.toList()));
+        cutout.addAll(Arrays.asList(
+                RankineBlocks.FLOOD_GATE.get(), RankineBlocks.ORNAMENT.get(), RankineBlocks.LEAD_GLASS.get(),
+                RankineBlocks.BOROSILICATE_GLASS.get(), RankineBlocks.CVD_GLASS.get(),
+                RankineBlocks.REACTION_CHAMBER_CELL.get(), RankineBlocks.WILLOW_BRANCHLET.get(),
+                RankineBlocks.WILLOW_BRANCHLET_PLANT.get(), RankineBlocks.TREE_TAP.get(),
+                RankineBlocks.TAP_LINE.get(), RankineBlocks.TRAMPOLINE.get()));
+
+        cutoutMipped.addAll(Stream.of(
+                RankineLists.GRASS_BLOCKS, RankineLists.CROPS_SINGLE, RankineLists.CROPS_DOUBLE,
+                RankineLists.CROPS_TRIPLE, RankineLists.BUSH_PLANTS, RankineLists.DOUBLE_BUSH_PLANTS,
+                RankineLists.TALL_FLOWERS, RankineLists.LANTERNS
+        ).flatMap(Collection::stream).collect(Collectors.toList()));
+        cutoutMipped.addAll(Arrays.asList(
+                RankineBlocks.CAST_IRON_SUPPORT.get(), RankineBlocks.CAST_IRON_SUPPORT_SLAB.get(),
+                RankineBlocks.CAST_IRON_SUPPORT_STAIRS.get(), RankineBlocks.COB.get(),
+                RankineBlocks.CORN_STALK.get(), RankineBlocks.SHORT_GRASS.get(),
+                RankineBlocks.LOCUST_SPINE.get(), RankineBlocks.GWIHABAITE_CRYSTAL.get(),
+                RankineBlocks.STINGING_NETTLE.get(), RankineBlocks.RED_CLOVER.get(),
+                RankineBlocks.CRIMSON_CLOVER.get(), RankineBlocks.WHITE_CLOVER.get(),
+                RankineBlocks.YELLOW_CLOVER.get(), RankineBlocks.CALCIUM_SILICATE_BLOCK.get()));
+
+        translucent.addAll(RankineLists.GAS_BLOCKS);
+        translucent.addAll(RankineLists.LIGHTNING_GLASSES);
+        translucent.addAll(RankineLists.ELEMENT_BLOCKS);
+        translucent.addAll(Arrays.asList(
+                RankineBlocks.SODIUM_CHLORIDE_BLOCK.get(), RankineBlocks.PINK_SALT_BLOCK.get(),
+                RankineBlocks.ICE_BRICKS.get(), RankineBlocks.ICE_BRICKS_SLAB.get(),
+                RankineBlocks.ICE_BRICKS_STAIRS.get(), RankineBlocks.ICE_BRICKS_WALL.get(),
+                RankineBlocks.ANTIMATTER.get(), RankineBlocks.BLACK_TEKTITE.get(),
+                RankineBlocks.GREEN_TEKTITE.get(), RankineBlocks.GRAY_TEKTITE.get(),
+                RankineBlocks.BROWN_TEKTITE.get(), RankineBlocks.MUSCOVITE_BLOCK.get(),
+                RankineBlocks.BIOTITE_BLOCK.get()));
+
+        // most specific paths first so e.g. "x_bricks" claims its models before "x" would
+        renderType(translucent, "translucent");
+        renderType(cutout, "cutout");
+        renderType(cutoutMipped, "cutout_mipped");
+    }
+
+    private void renderType(java.util.List<Block> blocks, String type) {
+        java.util.List<String> paths = blocks.stream()
+                .filter(java.util.Objects::nonNull)
+                .map(b -> "block/" + RankineDataUtils.rl(b).getPath())
+                .distinct()
+                .sorted(java.util.Comparator.comparingInt(String::length).reversed())
+                .collect(Collectors.toList());
+        for (String base : paths) {
+            models().generatedModels.forEach((loc, builder) -> {
+                if (!loc.getNamespace().equals(ProjectRankine.MODID)) return;
+                String path = loc.getPath();
+                if (!(path.equals(base) || path.startsWith(base + "_"))) return;
+                if (!renderTyped.add(loc)) return;
+                builder.renderType(type);
+            });
+        }
     }
 
     public static ResourceLocation getBlockRSL(Block blk) {
