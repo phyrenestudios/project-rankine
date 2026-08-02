@@ -17,8 +17,11 @@ Target: Minecraft 1.21.1 / NeoForge 21.1.248 / Java 21 / ModDevGradle 2.0.143.
 | 1. build | `./gradlew build -x test` | **PASS** |
 | 2. unit tests | `./gradlew test` | **PASS** — 19 tests, 0 failures |
 | 3. datagen | `./gradlew runData` | **PASS** — 3m12s, 35,662 JSONs |
-| 4. gametest | `./gradlew runGameTestServer` | **PASS** — rerun finished clean: "All 16 required tests passed", BUILD SUCCESSFUL in 2m26s |
-| 5. server smoke | `./gradlew runServer` | **PASS** — booted a fresh normal-terrain world to `Done (6.461s)`, idled 6 min, no crash reports, no ERROR after boot. **Found 2 load-time content bugs — see below.** |
+| 4. gametest | `./gradlew runGameTestServer` | **PASS** — "All 16 required tests passed". Re-run after the gate 5 fixes below, since those change registry contents: still green, 26s. |
+| 5. server smoke | `./gradlew runServer` | **PASS** — booted a fresh normal-terrain world to `Done (6.461s)`, idled 6 min, no crash reports, no ERROR after boot. **Found 2 load-time content bugs — see below.** Re-run after the fixes: both recipes now load, `Done (4.718s)`. |
+
+Gates 4 and 5 were both re-run *after* the final commit, so the table describes `408ded349`,
+not an earlier state.
 
 All work is committed; working tree clean at `30ca7b9d7`.
 Everything compiles: **0 errors** across ~680 source files (was 4,833 at the start of the loop).
