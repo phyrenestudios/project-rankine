@@ -129,10 +129,13 @@ public class CreateAlloyCommand {
             }
         }
 
+        // sendSuccess now takes a Supplier, so the checked CommandSyntaxException from
+        // createItemStack cannot escape the lambda — build the display stack up front.
+        ItemStack displayStack = itemIn.createItemStack(count, false);
         if (targets.size() == 1) {
-            source.sendSuccess(() -> Component.translatable("commands.give.success.single", count, itemIn.createItemStack(count, false).getDisplayName(), targets.iterator().next().getDisplayName()), true);
+            source.sendSuccess(() -> Component.translatable("commands.give.success.single", count, displayStack.getDisplayName(), targets.iterator().next().getDisplayName()), true);
         } else {
-            source.sendSuccess(() -> Component.translatable("commands.give.success.single", count, itemIn.createItemStack(count, false).getDisplayName(), targets.size()), true);
+            source.sendSuccess(() -> Component.translatable("commands.give.success.single", count, displayStack.getDisplayName(), targets.size()), true);
         }
 
         return targets.size();

@@ -18,6 +18,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractHurtingProjectile;
+import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.entity.projectile.SmallFireball;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -25,6 +26,7 @@ import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
+import javax.annotation.Nullable;
 import java.util.function.Predicate;
 
 public class BlunderbussItem extends ProjectileWeaponItem {
@@ -50,6 +52,17 @@ public class BlunderbussItem extends ProjectileWeaponItem {
     @Override
     public int getDefaultProjectileRange() {
         return 15;
+    }
+
+    /**
+     * PORT-NOTE: ProjectileWeaponItem#shootProjectile is new and abstract in 1.21.1 (it backs the shared
+     * {@code shoot(...)} helper). The blunderbuss fires from its own releaseUsing below and never routes
+     * through {@code shoot(...)}, so this is only here to satisfy the contract; it mirrors BowItem's
+     * implementation so any future or third-party caller behaves sensibly.
+     */
+    @Override
+    protected void shootProjectile(LivingEntity shooter, Projectile projectile, int index, float velocity, float inaccuracy, float angle, @Nullable LivingEntity target) {
+        projectile.shootFromRotation(shooter, shooter.getXRot(), shooter.getYRot() + angle, 0.0F, velocity, inaccuracy);
     }
 
     @Override
@@ -92,7 +105,9 @@ public class BlunderbussItem extends ProjectileWeaponItem {
                         } else if (itemstack.getItem() == RankineItems.CARCASS.get()) {
                             cannonball = new CarcassEntity(worldIn, playerentity,-d2, -d3, -d4);
                         } else if (itemstack.getItem() == Items.FIRE_CHARGE) {
-                            cannonball = new SmallFireball(worldIn, playerentity,-d2, -d3, -d4);
+                            // PORT-NOTE: SmallFireball's (Level, LivingEntity, double, double, double) ctor
+                            // now takes the acceleration as a single Vec3.
+                            cannonball = new SmallFireball(worldIn, playerentity, new Vec3(-d2, -d3, -d4));
                         } else if (itemstack.getItem() == RankineItems.ENDERBALL.get()) {
                             cannonball = new EnderballEntity(worldIn, playerentity,-d2*2, -d3*2, -d4*2);
                         }else {

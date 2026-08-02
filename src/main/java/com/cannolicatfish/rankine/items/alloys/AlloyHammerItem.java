@@ -63,22 +63,26 @@ public class AlloyHammerItem extends HammerItem implements IAlloyTool {
 
     @Override
     public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        if (target.getCommandSenderWorld().isRainingAt(target.blockPosition()) && RankineEnchantmentHelper.getLightningAspectEnchantment(stack) > 0) {
+        // PORT-NOTE: the per-enchantment helper methods are gone (enchantments are data-driven registry entries
+        // now); levels are looked up by ResourceKey through the level registry. Note the 1.18.2 code read the
+        // LIGHTNING_ASPECT level (not Daze) for the slowness duration inside the Daze branch — preserved as-is.
+        int lightningLevel = RankineEnchantmentHelper.getLevel(attacker, RankineEnchantments.LIGHTNING_ASPECT, stack);
+        if (target.getCommandSenderWorld().isRainingAt(target.blockPosition()) && lightningLevel > 0) {
             LightningBolt ent = new LightningBolt(EntityType.LIGHTNING_BOLT,attacker.level());
             //ent.moveTo(Vector3d.atBottomCenterOf(new BlockPos(target.getPosX(),target.getPosY(),target.getPosZ())));
             ent.setPos(target.getX(),target.getY(),target.getZ());
             ((ServerLevel)target.getCommandSenderWorld()).addFreshEntity(ent);
         }
-        if (RankineEnchantmentHelper.getDazeEnchantment(stack) > 0) {
+        if (RankineEnchantmentHelper.getLevel(attacker, RankineEnchantments.DAZE, stack) > 0) {
             if (attacker instanceof Player) {
                 Player player = (Player) attacker;
                 if (player.getAttackStrengthScale(0) >= (1f)) {
-                    target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN,RankineEnchantmentHelper.getLightningAspectEnchantment(stack)*20, 2));
+                    target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN,lightningLevel*20, 2));
                 } else {
-                    target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN,RankineEnchantmentHelper.getLightningAspectEnchantment(stack)*20, 1));
+                    target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN,lightningLevel*20, 1));
                 }
             } else {
-                target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN,RankineEnchantmentHelper.getLightningAspectEnchantment(stack)*20, 1));
+                target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN,lightningLevel*20, 1));
             }
 
         }

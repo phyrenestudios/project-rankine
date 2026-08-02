@@ -83,11 +83,11 @@ public class RankineStone {
         newStone.polishedWall = RankineBlocks.BLOCKS.register("polished_"+baseName+"_wall", () -> new RankineWallBlock(stoneProperties));
         newStone.bricksWall = RankineBlocks.BLOCKS.register(baseName+"_bricks"+"_wall", () -> new RankineWallBlock(stoneProperties));
         newStone.mossyBricksWall = RankineBlocks.BLOCKS.register("mossy_"+baseName+"_bricks"+"_wall", () -> new RankineWallBlock(stoneProperties));
-        newStone.pressurePlate = RankineBlocks.BLOCKS.register(baseName+"_pressure_plate", RankineStonePressurePlate::new);
-        newStone.bricksPressurePlate = RankineBlocks.BLOCKS.register(baseName+"_bricks"+"_pressure_plate", RankineStonePressurePlate::new);
-        newStone.button = RankineBlocks.BLOCKS.register(baseName+"_button", RankineStoneButton::new);
+        newStone.pressurePlate = RankineBlocks.BLOCKS.register(baseName+"_pressure_plate", () -> new RankineStonePressurePlate());
+        newStone.bricksPressurePlate = RankineBlocks.BLOCKS.register(baseName+"_bricks"+"_pressure_plate", () -> new RankineStonePressurePlate());
+        newStone.button = RankineBlocks.BLOCKS.register(baseName+"_button", () -> new RankineStoneButton());
         newStone.column = RankineBlocks.BLOCKS.register(baseName+"_column", () -> new StoneColumnBlock(stoneProperties));
-        newStone.cobble = RankineBlocks.BLOCKS.register(baseName+"_cobble", CobbleBlock::new);
+        newStone.cobble = RankineBlocks.BLOCKS.register(baseName+"_cobble", () -> new CobbleBlock());
         newStone.infested = RankineBlocks.BLOCKS.register("infested_"+baseName, () -> new InfestedBlock(newStone.stone.get(), stoneProperties));
 
         Item.Properties DEF_BUILDING = new Item.Properties().stacksTo(64);

@@ -76,7 +76,7 @@ public class RankineWood {
             newWood.strippedLog = RankineBlocks.BLOCKS.register("stripped_" + baseName + "_log", () -> new RankineLogBlock(woodProps));
             newWood.wood = RankineBlocks.BLOCKS.register(baseName + "_wood", () -> new RankineLogBlock(woodProps));
             newWood.strippedWood = RankineBlocks.BLOCKS.register("stripped_" + baseName + "_wood", () -> new RankineLogBlock(woodProps));
-            newWood.hollowLog = RankineBlocks.BLOCKS.register("hollow_" + baseName + "_log", HollowLogBlock::new);
+            newWood.hollowLog = RankineBlocks.BLOCKS.register("hollow_" + baseName + "_log", () -> new HollowLogBlock());
         }
         if (newWood.getBaseName().equals("bamboo_culms")) {
             newWood.planks = RankineBlocks.BLOCKS.register(baseName, () -> new RankinePlanksBlock(woodProps));
@@ -87,16 +87,16 @@ public class RankineWood {
         newWood.stairs = RankineBlocks.BLOCKS.register(baseName+"_stairs", () -> new RankineWoodenStairsBlock(woodProps));
         newWood.fence = RankineBlocks.BLOCKS.register(baseName+"_fence", () -> new RankineWoodenFence(woodProps));
         newWood.fenceGate = RankineBlocks.BLOCKS.register(baseName+"_fence_gate", () -> new RankineWoodenFenceGate(woodProps));
-        newWood.door = RankineBlocks.BLOCKS.register(baseName+"_door", RankineWoodenDoor::new);
-        newWood.trapdoor = RankineBlocks.BLOCKS.register(baseName+"_trapdoor", RankineWoodenTrapDoor::new);
-        newWood.pressurePlate = RankineBlocks.BLOCKS.register(baseName+"_pressure_plate", RankineWoodenPressurePlate::new);
-        newWood.button = RankineBlocks.BLOCKS.register(baseName+"_button", RankineWoodenButton::new);
+        newWood.door = RankineBlocks.BLOCKS.register(baseName+"_door", () -> new RankineWoodenDoor());
+        newWood.trapdoor = RankineBlocks.BLOCKS.register(baseName+"_trapdoor", () -> new RankineWoodenTrapDoor());
+        newWood.pressurePlate = RankineBlocks.BLOCKS.register(baseName+"_pressure_plate", () -> new RankineWoodenPressurePlate());
+        newWood.button = RankineBlocks.BLOCKS.register(baseName+"_button", () -> new RankineWoodenButton());
         newWood.sign = RankineBlocks.BLOCKS.register(baseName+"_sign", () -> new RankineSignBlock(newWood.woodType));
         newWood.wallSign = RankineBlocks.BLOCKS.register(baseName+"_wall_sign", () -> new RankineWallSignBlock(newWood.woodType));
-        newWood.bookshelf = RankineBlocks.BLOCKS.register(baseName+"_bookshelf", RankineBookshelvesBlock::new);
+        newWood.bookshelf = RankineBlocks.BLOCKS.register(baseName+"_bookshelf", () -> new RankineBookshelvesBlock());
         if (newWood.isTree) {
-            newWood.leaves = RankineBlocks.BLOCKS.register(baseName + "_leaves", RankineLeavesBlock::new);
-            newWood.leafLitter = RankineBlocks.BLOCKS.register(baseName + "_leaf_litter", LeafLitterBlock::new);
+            newWood.leaves = RankineBlocks.BLOCKS.register(baseName + "_leaves", () -> new RankineLeavesBlock());
+            newWood.leafLitter = RankineBlocks.BLOCKS.register(baseName + "_leaf_litter", () -> new LeafLitterBlock());
             newWood.sapling = RankineBlocks.BLOCKS.register(baseName + "_sapling", () -> new RankineSaplingBlock(treeGrower, Block.Properties.of().mapColor(MapColor.PLANT).pushReaction(PushReaction.DESTROY).noCollission().randomTicks().strength(0).sound(SoundType.GRASS), saplingType));
             newWood.pottedSapling = RankineBlocks.BLOCKS.register("potted_"+baseName+"_sapling", () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, newWood.sapling, Block.Properties.of().pushReaction(PushReaction.DESTROY).strength(0.0f).noOcclusion()));
         }

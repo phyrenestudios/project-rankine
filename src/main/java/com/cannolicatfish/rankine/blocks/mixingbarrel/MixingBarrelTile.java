@@ -201,6 +201,11 @@ public class MixingBarrelTile extends BlockEntity implements WorldlyContainer, M
      * the item slots), which cannot see the tank — so the fluid requirement is enforced here instead.
      * Every mixing-recipe lookup in this class MUST go through this method rather than calling
      * {@code getRecipeFor} directly, or fluid-gated mixing recipes would run without their fluid.
+     * <p>
+     * The scan is done manually over {@code getAllRecipesFor} (same underlying order RecipeManager's own
+     * {@code getRecipeFor} streams in) rather than {@code getRecipeFor(...)} + a post-filter, so that a
+     * recipe failing only the fluid check does not shadow a later recipe that would have matched — which
+     * is what the combined 1.18.2 {@code matches} did.
      */
     @Nullable
     private MixingRecipe getMatchingRecipe() {
@@ -208,11 +213,13 @@ public class MixingBarrelTile extends BlockEntity implements WorldlyContainer, M
             return null;
         }
         RecipeWrapper wrapper = new RecipeWrapper(new InvWrapper(this));
-        MixingRecipe irecipe = this.level.getRecipeManager().getRecipeFor(RankineRecipeTypes.MIXING.get(), wrapper, this.level).map(RecipeHolder::value).orElse(null);
-        if (irecipe == null || !hasRequiredFluid(irecipe, wrapper)) {
-            return null;
+        for (RecipeHolder<MixingRecipe> holder : this.level.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.MIXING.get())) {
+            MixingRecipe irecipe = holder.value();
+            if (irecipe.matches(wrapper, this.level) && hasRequiredFluid(irecipe, wrapper)) {
+                return irecipe;
+            }
         }
-        return irecipe;
+        return null;
     }
 
     /**

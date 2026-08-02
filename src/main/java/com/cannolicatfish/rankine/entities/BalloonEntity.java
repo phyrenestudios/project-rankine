@@ -68,6 +68,8 @@ public class BalloonEntity extends Entity {
             ++this.time;
             if (!this.isNoGravity()) {
                 this.setDeltaMovement(new Vec3(0.0D, yMovement, 0.0D));
+                // PORT-NOTE: the AABB(BlockPos, BlockPos) constructor is gone; encapsulatingFullBlocks is the
+                // 1.21.1 equivalent (same corner-to-corner box spanning both whole blocks).
                 List<LivingEntity> entitiesOnBlock = this.level().getEntitiesOfClass(LivingEntity.class, AABB.encapsulatingFullBlocks(this.blockPosition(), this.blockPosition().above()).expandTowards(1, 1, 1), (e) -> e instanceof Mob || e instanceof Player);
                 for (LivingEntity i : entitiesOnBlock) {
                     i.setDeltaMovement(new Vec3(i.getDeltaMovement().x(), yMovement, i.getDeltaMovement().z()));
