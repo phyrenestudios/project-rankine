@@ -67,7 +67,9 @@ public class DistillationTowerTile extends BlockEntity {
     private AirDistillationRecipe getRecipe(Level worldIn, ResourceLocation biome, ResourceLocation dim) {
         for (RecipeHolder<AirDistillationRecipe> holder : worldIn.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.AIR_DISTILLATION.get())) {
             AirDistillationRecipe recipe = holder.value();
-            if (recipe.matchesDistillationRecipe(biome, dim)){
+            // PORT-NOTE: biomes are a datapack registry in 1.21.1, so the recipe needs a RegistryAccess to
+            // resolve its biome entries — hence the extra leading argument.
+            if (recipe.matchesDistillationRecipe(worldIn.registryAccess(), biome, dim)){
                 return recipe;
             }
         }

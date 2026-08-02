@@ -27,7 +27,9 @@ public class PedestalRenderer implements BlockEntityRenderer<PedestalTile> {
     // the same 1.18.2 bounding box now lives on the renderer via IBlockEntityRendererExtension.
     @Override
     public AABB getRenderBoundingBox(PedestalTile blockEntity) {
-        return new AABB(blockEntity.getBlockPos(), blockEntity.getBlockPos().above(2));
+        // PORT-NOTE: the AABB(BlockPos, BlockPos) constructor is gone; encapsulatingFullBlocks is the 1.21.1
+        // equivalent (same corner-to-corner box spanning both whole blocks).
+        return AABB.encapsulatingFullBlocks(blockEntity.getBlockPos(), blockEntity.getBlockPos().above(2));
     }
 
     @Override

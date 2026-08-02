@@ -11,6 +11,13 @@ import javax.annotation.Nullable;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class FiberBlock extends HorizontalDirectionalBlock {
+    // HorizontalDirectionalBlock#codec() is abstract in 1.21.1, so the MapCodec below is mandatory.
+    public static final com.mojang.serialization.MapCodec<FiberBlock> CODEC = simpleCodec(FiberBlock::new);
+
+    @Override
+    public com.mojang.serialization.MapCodec<? extends FiberBlock> codec() {
+        return CODEC;
+    }
 
     public FiberBlock(Properties properties) {
         super(properties);

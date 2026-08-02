@@ -5,7 +5,7 @@ import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
-import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class RankineSparkyLanternBlock extends RankineLanternBlock {
     ParticleOptions particle;
@@ -16,7 +16,7 @@ public class RankineSparkyLanternBlock extends RankineLanternBlock {
     }
 
     @Override
-    public void animateTick(BlockState p_49888_, Level p_49889_, BlockPos p_49890_, Random rand) {
+    public void animateTick(BlockState p_49888_, Level p_49889_, BlockPos p_49890_, RandomSource rand) {
         double d0 = (double)p_49890_.getX() + rand.nextDouble();
         double d1 = (double)p_49890_.getY() + (rand.nextDouble()*0.8D);
         double d2 = (double)p_49890_.getZ() + rand.nextDouble();

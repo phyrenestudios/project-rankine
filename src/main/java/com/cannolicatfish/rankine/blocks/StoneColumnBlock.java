@@ -35,11 +35,20 @@ import net.neoforged.api.distmarker.OnlyIn;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.Random;
+import net.minecraft.util.RandomSource;
+import com.mojang.serialization.MapCodec;
 
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class StoneColumnBlock extends FallingBlock implements SimpleWaterloggedBlock {
+    // FallingBlock#codec() is abstract in 1.21.1, so the MapCodec below is mandatory.
+    public static final MapCodec<StoneColumnBlock> CODEC = simpleCodec(StoneColumnBlock::new);
+
+    @Override
+    public MapCodec<? extends StoneColumnBlock> codec() {
+        return CODEC;
+    }
+
     public static final IntegerProperty SIZE = IntegerProperty.create("size",1,7);
     //public static final IntegerProperty STABILITY = IntegerProperty.create("stability",0,24);
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
@@ -96,7 +105,7 @@ public class StoneColumnBlock extends FallingBlock implements SimpleWaterloggedB
     }
 
     @Override
-    public void tick(BlockState state, ServerLevel worldIn, BlockPos pos, Random rand) {
+    protected void tick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource rand) {
         //if (!isValidPosition(state,worldIn,pos) && pos.getY() >= 0) {
         //    spawnFallingBlock(worldIn,pos);
         //}
@@ -151,7 +160,7 @@ public class StoneColumnBlock extends FallingBlock implements SimpleWaterloggedB
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, Random rand) {
+    public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, RandomSource rand) {
         if (rand.nextInt(30) == 0) {
             BlockPos blockpos = pos.below();
             if (worldIn.isEmptyBlock(blockpos) || isFree(worldIn.getBlockState(blockpos))) {

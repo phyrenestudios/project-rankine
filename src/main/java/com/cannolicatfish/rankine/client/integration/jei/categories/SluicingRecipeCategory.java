@@ -82,7 +82,7 @@ public class SluicingRecipeCategory implements IRecipeCategory<SluicingRecipe> {
             int currentI = i;
             Ingredient currentOutput = outputs.get(i);
             if (currentOutput.isEmpty()) {
-                currentOutput = Ingredient.of(new ItemStack(Items.BARRIER).setHoverName(Component.literal(I18n.get("rankine.jei.tooltip_nothing"))));
+                currentOutput = Ingredient.of(nameStack(new ItemStack(Items.BARRIER), Component.literal(I18n.get("rankine.jei.tooltip_nothing"))));
             }
             builder.addSlot(RecipeIngredientRole.OUTPUT, x, y).addIngredients(currentOutput)
                     .setBackground(slotDrawable, -1, -1)
@@ -90,5 +90,11 @@ public class SluicingRecipeCategory implements IRecipeCategory<SluicingRecipe> {
 
             count++;
         }
+    }
+
+    /** ItemStack#setHoverName was removed in 1.20.5; custom names are a data component. */
+    private static ItemStack nameStack(ItemStack stack, net.minecraft.network.chat.Component name) {
+        stack.set(net.minecraft.core.component.DataComponents.CUSTOM_NAME, name);
+        return stack;
     }
 }

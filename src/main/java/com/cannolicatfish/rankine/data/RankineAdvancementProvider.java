@@ -40,11 +40,6 @@ public class RankineAdvancementProvider extends AdvancementProvider {
         super(output, registries, existingFileHelper, List.of(new RankineAdvancements()));
     }
 
-    @Override
-    public String getName() {
-        return "Project Rankine - Advancements";
-    }
-
     /**
      * 1.21.1: advancements are produced by {@link AdvancementProvider.AdvancementGenerator}s and
      * saved as {@code AdvancementHolder}s. Enchantment references are datapack holders now, so the

@@ -9,6 +9,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.RecipeInput;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.entity.LivingEntity;
@@ -30,6 +31,7 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.network.chat.Component;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
 import net.neoforged.neoforge.items.IItemHandler;
@@ -137,7 +139,9 @@ public class MixingBarrelTile extends BlockEntity implements WorldlyContainer, M
                 } else {
                     level.setBlock(tile.worldPosition, RankineBlocks.MIXING_BARREL.get().defaultBlockState().setValue(MixingBarrelBlock.ANGLE,angle+1),3);
                 }
-                List<LivingEntity> entitiesOnBlock = level.getEntitiesOfClass(LivingEntity.class, new AABB(tile.worldPosition, tile.worldPosition.above()).expandTowards(1, 1, 1), (e) -> e instanceof Mob || e instanceof Player);
+                // PORT-NOTE: the AABB(BlockPos, BlockPos) constructor is gone; encapsulatingFullBlocks is the
+                // 1.21.1 equivalent (same corner-to-corner box spanning both whole blocks).
+                List<LivingEntity> entitiesOnBlock = level.getEntitiesOfClass(LivingEntity.class, AABB.encapsulatingFullBlocks(tile.worldPosition, tile.worldPosition.above()).expandTowards(1, 1, 1), (e) -> e instanceof Mob || e instanceof Player);
                 for (LivingEntity i : entitiesOnBlock) {
                     i.absMoveTo(i.getX(),i.getY()+2,i.getZ(),i.getYHeadRot() + 22.5F,i.getRotationVector().y);
                 }
@@ -145,7 +149,7 @@ public class MixingBarrelTile extends BlockEntity implements WorldlyContainer, M
                 tile.needsRefresh = 1;
 
 
-                MixingRecipe irecipe = tile.level.getRecipeManager().getRecipeFor(RankineRecipeTypes.MIXING.get(), new RecipeWrapper(new InvWrapper(tile)), tile.level).map(RecipeHolder::value).orElse(null);
+                MixingRecipe irecipe = tile.getMatchingRecipe();
                 if (tile.canMix(irecipe, tile)) {
                     if (tile.mixTime == 0) {
                         tile.mixTimeTotal = tile.getMixTime();
@@ -190,8 +194,41 @@ public class MixingBarrelTile extends BlockEntity implements WorldlyContainer, M
         return inputTank;
     }
 
+    /**
+     * PORT-NOTE (behaviour requirement): in 1.18.2 {@code MixingRecipe#matches} received this block entity
+     * directly as the {@code Container} and additionally verified that the barrel's input tank held the
+     * recipe's required fluid. In 1.21 the recipe only sees a {@link RecipeInput} (a RecipeWrapper around
+     * the item slots), which cannot see the tank — so the fluid requirement is enforced here instead.
+     * Every mixing-recipe lookup in this class MUST go through this method rather than calling
+     * {@code getRecipeFor} directly, or fluid-gated mixing recipes would run without their fluid.
+     */
+    @Nullable
+    private MixingRecipe getMatchingRecipe() {
+        if (this.level == null) {
+            return null;
+        }
+        RecipeWrapper wrapper = new RecipeWrapper(new InvWrapper(this));
+        MixingRecipe irecipe = this.level.getRecipeManager().getRecipeFor(RankineRecipeTypes.MIXING.get(), wrapper, this.level).map(RecipeHolder::value).orElse(null);
+        if (irecipe == null || !hasRequiredFluid(irecipe, wrapper)) {
+            return null;
+        }
+        return irecipe;
+    }
+
+    /**
+     * Replicates the old {@code inputTank.getFluid().containsFluid(recipe.getOutputFluidReq(inv))} check
+     * (FluidStack#containsFluid is deprecated for removal in NeoForge): same fluid, same components, and at
+     * least the required amount. A recipe with no fluid input therefore still requires an empty tank, which
+     * is exactly what 1.18.2 did.
+     */
+    private boolean hasRequiredFluid(MixingRecipe recipeIn, RecipeInput input) {
+        FluidStack required = recipeIn.getOutputFluidReq(input);
+        FluidStack held = this.inputTank.getFluid();
+        return FluidStack.isSameFluidSameComponents(held, required) && held.getAmount() >= required.getAmount();
+    }
+
     public int getMixTime() {
-        MixingRecipe irecipe = this.level.getRecipeManager().getRecipeFor(RankineRecipeTypes.MIXING.get(), new RecipeWrapper(new InvWrapper(this)), this.level).map(RecipeHolder::value).orElse(null);
+        MixingRecipe irecipe = this.getMatchingRecipe();
         if (irecipe != null) {
             return irecipe.getOutputMixTime(new RecipeWrapper(new InvWrapper(this)));
         } else {

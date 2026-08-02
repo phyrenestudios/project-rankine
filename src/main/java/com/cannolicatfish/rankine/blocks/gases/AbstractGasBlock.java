@@ -63,9 +63,8 @@ public abstract class AbstractGasBlock extends AirBlock implements PitchModulati
     /**
      * 1.21.1 Level.explode takes Level.ExplosionInteraction instead of Explosion.BlockInteraction
      * (whose NONE constant is gone; values are now KEEP/DESTROY/DESTROY_WITH_DECAY/TRIGGER_BLOCK).
-     * PORT-TODO(util): GasUtilsEnum still supplies Tuple<Explosion.BlockInteraction,Float> using the removed
-     * BlockInteraction.NONE — its owner should switch those constants to Explosion.BlockInteraction.KEEP
-     * (the 1.18 NONE equivalent); this mapper then preserves the old "no block damage" behavior.
+     * GasUtilsEnum supplies Tuple&lt;Explosion.BlockInteraction,Float&gt; and now uses KEEP where 1.18.2 used
+     * NONE, so this mapper preserves the old "no block damage" behavior.
      */
     private static Level.ExplosionInteraction toExplosionInteraction(Explosion.BlockInteraction blockInteraction) {
         switch (blockInteraction) {
@@ -178,10 +177,9 @@ public abstract class AbstractGasBlock extends AirBlock implements PitchModulati
                 if (this.isSuffocating() && !gasMask) {
                     ent.setAirSupply(Math.max(ent.getAirSupply() - 3,0));
                     if (ent.getAirSupply() == 0) {
-                        // PORT-TODO(damagesources): RankineDamageSources still uses the removed `new DamageSource(String)`
-                        // constructor; once it is ported to 1.19.4+ data-driven damage types this call may need to become
-                        // a level-based helper (e.g. RankineDamageSources.suffocation(worldIn)).
-                        ent.hurt(RankineDamageSources.SUFFOCATION, 2.0F);
+                        // PORT-NOTE: damage types are data-driven in 1.21.1; RankineDamageSources.SUFFOCATION is a
+                        // ResourceKey<DamageType> that has to be resolved against the level's registry access.
+                        ent.hurt(RankineDamageSources.source(worldIn, RankineDamageSources.SUFFOCATION), 2.0F);
                     }
                 }
                 for (MobEffectInstance effect : this.getEffectInstances())

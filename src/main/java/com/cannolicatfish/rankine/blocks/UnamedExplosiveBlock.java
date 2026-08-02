@@ -39,11 +39,14 @@ public class UnamedExplosiveBlock extends Block {
 
     @Override
     public void onCaughtFire(BlockState state, Level world, BlockPos pos, @Nullable Direction face, @Nullable LivingEntity igniter) {
-        world.explode(igniter, pos.getX(), pos.getY() + 1, pos.getZ(), 6F, Explosion.BlockInteraction.BREAK);
-        world.explode(igniter, pos.getX()+6, pos.getY() + 1, pos.getZ()+6, 6F, Explosion.BlockInteraction.BREAK);
-        world.explode(igniter, pos.getX()-6, pos.getY() + 1, pos.getZ()+6, 6F, Explosion.BlockInteraction.BREAK);
-        world.explode(igniter, pos.getX()+6, pos.getY() + 1, pos.getZ()-6, 6F, Explosion.BlockInteraction.BREAK);
-        world.explode(igniter, pos.getX()-6, pos.getY() + 1, pos.getZ()-6, 6F, Explosion.BlockInteraction.BREAK);
+        // PORT-NOTE: Level.ExplosionInteraction.BLOCK is gone; Level#explode now takes a Level.ExplosionInteraction.
+        // BLOCK resolves to DESTROY_WITH_DECAY/DESTROY per the block-explosion-drop-decay gamerule, i.e. the old
+        // BREAK behaviour (blocks destroyed, drops preserved).
+        world.explode(igniter, pos.getX(), pos.getY() + 1, pos.getZ(), 6F, Level.ExplosionInteraction.BLOCK);
+        world.explode(igniter, pos.getX()+6, pos.getY() + 1, pos.getZ()+6, 6F, Level.ExplosionInteraction.BLOCK);
+        world.explode(igniter, pos.getX()-6, pos.getY() + 1, pos.getZ()+6, 6F, Level.ExplosionInteraction.BLOCK);
+        world.explode(igniter, pos.getX()+6, pos.getY() + 1, pos.getZ()-6, 6F, Level.ExplosionInteraction.BLOCK);
+        world.explode(igniter, pos.getX()-6, pos.getY() + 1, pos.getZ()-6, 6F, Level.ExplosionInteraction.BLOCK);
         world.removeBlock(pos, false);
 
     }

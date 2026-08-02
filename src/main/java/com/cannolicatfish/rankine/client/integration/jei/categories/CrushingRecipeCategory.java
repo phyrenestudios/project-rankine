@@ -135,7 +135,7 @@ public class CrushingRecipeCategory implements IRecipeCategory<CrushingRecipe> {
             int y = 56 + (ycount*18);
             ItemStack currentOutput = outputs.get(i);
             if (currentOutput.isEmpty()) {
-                currentOutput = new ItemStack(Items.BARRIER).setHoverName(Component.literal(I18n.get("rankine.jei.tooltip_nothing")));
+                currentOutput = nameStack(new ItemStack(Items.BARRIER), Component.literal(I18n.get("rankine.jei.tooltip_nothing")));
             }
             int currentI = i;
             boolean limited = recipe.getRecipeConstants().get(currentI);
@@ -177,5 +177,11 @@ public class CrushingRecipeCategory implements IRecipeCategory<CrushingRecipe> {
             }
         }
         return new Tuple<>(ChatFormatting.WHITE,slotDrawable);
+    }
+
+    /** ItemStack#setHoverName was removed in 1.20.5; custom names are a data component. */
+    private static ItemStack nameStack(ItemStack stack, net.minecraft.network.chat.Component name) {
+        stack.set(net.minecraft.core.component.DataComponents.CUSTOM_NAME, name);
+        return stack;
     }
 }

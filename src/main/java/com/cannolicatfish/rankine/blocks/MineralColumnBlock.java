@@ -8,11 +8,19 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.server.level.ServerLevel;
 
-import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class MineralColumnBlock extends StoneColumnBlock implements SimpleWaterloggedBlock {
+    // Its own codec so the block report/datagen round-trips to MineralColumnBlock rather than the StoneColumnBlock parent.
+    public static final com.mojang.serialization.MapCodec<MineralColumnBlock> CODEC = simpleCodec(MineralColumnBlock::new);
+
+    @Override
+    public com.mojang.serialization.MapCodec<? extends MineralColumnBlock> codec() {
+        return CODEC;
+    }
+
     //public static final IntegerProperty STABILITY = IntegerProperty.create("stability",0,24);
 
     public MineralColumnBlock(Properties properties) {
@@ -25,7 +33,7 @@ public class MineralColumnBlock extends StoneColumnBlock implements SimpleWaterl
     }
 
     @Override
-    public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, Random random) {
+    protected void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {
         if (!worldIn.isClientSide && (worldIn.getBlockState(pos.above(1)).is(RankineTags.Blocks.STONES_LIMESTONE) || worldIn.getBlockState(pos.above(1)).is(RankineTags.Blocks.STONES_DOLOMITE)) && worldIn.getBlockState(pos.above(2)).is(Blocks.WATER)) {
             grow(worldIn,pos);
             //worldIn.setBlockState(pos,state.with(SIZE,Math.min(7,state.get(SIZE)+1)));
@@ -35,7 +43,7 @@ public class MineralColumnBlock extends StoneColumnBlock implements SimpleWaterl
     }
 
     private void grow(Level worldIn, BlockPos pos) {
-        Random rand = worldIn.getRandom();
+        RandomSource rand = worldIn.getRandom();
         int i = 0;
         while (worldIn.getBlockState(pos.below(i)).is(this)) {
             ++i;

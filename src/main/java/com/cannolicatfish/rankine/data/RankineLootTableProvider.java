@@ -23,9 +23,4 @@ public class RankineLootTableProvider extends LootTableProvider {
                 List.of(new SubProviderEntry(RankineBlockLootTables::new, LootContextParamSets.BLOCK)),
                 registries);
     }
-
-    @Override
-    public String getName() {
-        return "Project Rankine - LootTables";
-    }
 }

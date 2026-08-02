@@ -4,7 +4,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -18,7 +17,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
-import net.minecraft.world.level.pathfinder.BlockPathTypes;
+import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.api.distmarker.Dist;
@@ -127,14 +126,18 @@ public class LocustSpineBlock extends Block {
     }
 
     @Override
-    public void entityInside(BlockState state, Level worldIn, BlockPos pos, Entity entityIn) {
-        entityIn.hurt(DamageSource.CACTUS, 0.5F);
+    protected void entityInside(BlockState state, Level worldIn, BlockPos pos, Entity entityIn) {
+        // PORT-NOTE: the DamageSource constants are gone (damage types are data-driven); the cactus damage type
+        // is reached through the level's DamageSources registry, exactly as vanilla CactusBlock now does.
+        entityIn.hurt(worldIn.damageSources().cactus(), 0.5F);
     }
 
+    // PORT-NOTE: Forge's getAiPathNodeType -> NeoForge IBlockExtension#getBlockPathType, and BlockPathTypes was
+    // renamed to PathType. Vanilla merged DANGER_CACTUS into DANGER_OTHER (identical 8.0F malus).
     @Nullable
     @Override
-    public BlockPathTypes getAiPathNodeType(BlockState state, BlockGetter level, BlockPos pos, @Nullable Mob entity) {
-        return BlockPathTypes.DANGER_CACTUS;
+    public PathType getBlockPathType(BlockState state, BlockGetter level, BlockPos pos, @Nullable Mob entity) {
+        return PathType.DANGER_OTHER;
     }
 
     @Override

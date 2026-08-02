@@ -1,6 +1,9 @@
 package com.cannolicatfish.rankine.blocks;
 
 import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -16,6 +19,20 @@ import org.jetbrains.annotations.Nullable;
 import java.util.HashMap;
 
 public class HeatingElementBlock extends DirectionalBlock {
+    // DirectionalBlock#codec() is abstract in 1.21.1. The ctor carries an extra `radius` field on top of the
+    // properties, so this needs a RecordCodecBuilder rather than simpleCodec.
+    public static final MapCodec<HeatingElementBlock> CODEC = RecordCodecBuilder.mapCodec(instance ->
+            instance.group(
+                    Codec.INT.fieldOf("radius").forGetter(b -> b.radius),
+                    propertiesCodec()
+            ).apply(instance, HeatingElementBlock::new)
+    );
+
+    @Override
+    public MapCodec<? extends HeatingElementBlock> codec() {
+        return CODEC;
+    }
+
     static HashMap<Block, Block> MeltMap = new HashMap<>();
     static {
         MeltMap.put(Blocks.SNOW, Blocks.AIR);
@@ -48,7 +65,7 @@ public class HeatingElementBlock extends DirectionalBlock {
     }
 
     @Override
-    public void neighborChanged(BlockState p_60509_, Level levelIn, BlockPos posIn, Block p_60512_, BlockPos p_60513_, boolean p_60514_) {
+    protected void neighborChanged(BlockState p_60509_, Level levelIn, BlockPos posIn, Block p_60512_, BlockPos p_60513_, boolean p_60514_) {
         if (!levelIn.isClientSide() && levelIn.hasNeighborSignal(posIn)) {
             Block blk;
             for (BlockPos b : BlockPos.betweenClosed(posIn.offset(-radius,-radius,-radius), posIn.offset(radius,radius,radius))) {

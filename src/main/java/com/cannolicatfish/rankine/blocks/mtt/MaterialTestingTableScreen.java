@@ -218,7 +218,9 @@ public class MaterialTestingTableScreen extends AbstractContainerScreen<Material
     }
 
     private List<Component> listFacts(ElementRecipe recipe) {
-        ResourceLocation s = element.getId();
+        // PORT-NOTE: 1.21 recipes no longer carry their own id (it lives on the RecipeHolder), so
+        // ElementRecipe#getId() is gone; the id is resolved back out of the recipe manager instead.
+        ResourceLocation s = IAlloyItem.getElementRecipeId(Minecraft.getInstance().level, recipe);
 
         List<Component> outDur = new ArrayList<>();
         outDur.add(Component.literal(Component.translatable("element."+ s +".desc0").getString()));
