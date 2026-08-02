@@ -170,18 +170,6 @@ public class RankineRecipes {
         // no-op — see registerBrewingRecipes above
     }
 
-    public static void registerPredicates() {
-        // PORT-TODO(advancements): ItemPredicate.register is GONE in 1.21.1 — ItemPredicate is a
-        // codec-based record and custom item checks are ItemSubPredicates registered in
-        // Registries.ITEM_SUB_PREDICATE_TYPE. The following 1.18.2 custom predicates need to be
-        // reimplemented as ItemSubPredicate codecs by the advancements/events agent:
-        //   rankine:harvest_level_check        (HarvestLevelPredicate)
-        //   rankine:enchantability_check       (AlloyEnchantabilityPredicate)
-        //   rankine:exact_composition_check    (ExactCompositionPredicate)
-        //   rankine:includes_composition_check (IncludesCompositionPredicate)
-        //   rankine:has_enchantment_check      (HasEnchantmentPredicate)
-    }
-
     public static void registerDispenserBehaviors() {
         for (Item i : RankineLists.GAS_BOTTLES) {
             DispenserBlock.registerBehavior(i,gasDispenseBehavior);

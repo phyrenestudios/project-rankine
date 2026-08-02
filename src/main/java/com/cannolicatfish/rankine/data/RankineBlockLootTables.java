@@ -25,7 +25,7 @@ import net.minecraft.world.level.storage.loot.predicates.BonusLevelTableConditio
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
-import net.neoforged.neoforge.registries.ForgeRegistries;
+import net.minecraft.core.registries.BuiltInRegistries;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -176,7 +176,7 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
             lootTables.put(blk, createBlockLootTable(blk));
         }
         for (Block blk : RankineLists.LANTERNS) {
-            lootTables.put(blk, createBlockLootTable(Blocks.LANTERN, ForgeRegistries.ITEMS.getValue(ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID, blk.getRegistryName().getPath().replace("lantern","nugget")))));
+            lootTables.put(blk, createBlockLootTable(Blocks.LANTERN, BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID, RankineDataUtils.rl(blk).getPath().replace("lantern","nugget")))));
         }
         for (Block blk : RankineLists.ASPHALT_BLOCKS) {
             lootTables.put(blk, createBlockLootTable(RankineBlocks.ASPHALT.get()));
@@ -279,7 +279,7 @@ public class RankineBlockLootTables extends RankineLootTableProvider {
         lootTables.put(RankineBlocks.GAS_BOTTLER.get(), droppingWithName(RankineBlocks.GAS_BOTTLER.get()));
 
         for (Block ORE : RankineLists.CRUSHING_ORES) {
-            lootTables.put(ORE, fortunableOreOreBlockLootTable(ORE, ForgeRegistries.ITEMS.getValue(new ResourceLocation(ORE.getRegistryName().toString().replace("_ore","")))));
+            lootTables.put(ORE, fortunableOreOreBlockLootTable(ORE, BuiltInRegistries.ITEM.get(ResourceLocation.parse(RankineDataUtils.rl(ORE).toString().replace("_ore","")))));
         }
         for (Block BLK : RankineLists.EIGHT_LAYER_BLOCKS) {
             lootTables.put(BLK, eightLayerBlock(BLK));

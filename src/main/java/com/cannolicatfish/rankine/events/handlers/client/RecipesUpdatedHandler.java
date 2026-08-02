@@ -9,24 +9,31 @@ import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.neoforged.neoforge.client.event.RecipesUpdatedEvent;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * 1.21.1: RecipeManager#getAllRecipesFor returns List&lt;RecipeHolder&lt;T&gt;&gt;; RecipeTypes are
+ * DeferredHolders now, so the lookups go through {@code .get()} and the holders are unwrapped.
+ */
 public class RecipesUpdatedHandler {
     public static void onRecipesUpdated(RecipesUpdatedEvent event) {
         ClientLevel world = Minecraft.getInstance().level;
         if (world != null) {
-            List<AlloyingRecipe> alloyingRecipes = new ArrayList<>(world.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.ALLOYING));
+            List<AlloyingRecipe> alloyingRecipes = world.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.ALLOYING.get())
+                    .stream().map(RecipeHolder::value).collect(Collectors.toList());
             AlloyCustomHelper.setAlloyingRecipes(alloyingRecipes);
 
-            List<ElementRecipe> elementRecipes = new ArrayList<>(world.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.ELEMENT));
+            List<ElementRecipe> elementRecipes = world.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.ELEMENT.get())
+                    .stream().map(RecipeHolder::value).collect(Collectors.toList());
             AlloyCustomHelper.setElementRecipes(elementRecipes);
 
             List<AlloyCraftingRecipe> alloyCraftingRecipes = world.getRecipeManager().getAllRecipesFor(RecipeType.CRAFTING).stream()
+                    .map(RecipeHolder::value)
                     .filter((iCraftingRecipe -> iCraftingRecipe instanceof AlloyCraftingRecipe))
                     .map(AlloyCraftingRecipe.class::cast)
                     .collect(Collectors.toList());

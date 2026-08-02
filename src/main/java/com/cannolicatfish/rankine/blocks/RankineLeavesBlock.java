@@ -4,10 +4,12 @@ import com.cannolicatfish.rankine.blocks.block_groups.RankineWood;
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineLists;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
@@ -19,24 +21,38 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.Fluids;
-import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
 
-import java.util.Random;
-
+// PORT-NOTE: Material.LEAVES -> .mapColor(MapColor.PLANT).ignitedByLava().pushReaction(PushReaction.DESTROY).
+//
+// PORT-TODO(RankineLeavesBlock): vanilla LeavesBlock gained a WATERLOGGED property in 1.19+, and its constructor
+// unconditionally calls registerDefaultState(...setValue(WATERLOGGED, false)) — so WATERLOGGED MUST be declared in
+// createBlockStateDefinition or the block crashes at construction. That means Rankine leaves are now waterloggable
+// where they were not in 1.18.2. The water-tick scheduling and getFluidState below mirror vanilla LeavesBlock so
+// the new state behaves correctly. Blockstate/model datagen for leaves lives outside blocks/ (RankineBlockStateProvider)
+// and may need to account for the extra property.
 public class RankineLeavesBlock extends LeavesBlock {
+    public static final MapCodec<RankineLeavesBlock> CODEC = MapCodec.unit(RankineLeavesBlock::new);
     public static final IntegerProperty AGE = BlockStateProperties.AGE_2;
 
-    public RankineLeavesBlock() {
-        super(Block.Properties.of(Material.LEAVES).randomTicks().strength(0.2F).sound(SoundType.GRASS).noOcclusion());
-        this.registerDefaultState(this.stateDefinition.any().setValue(DISTANCE, 7).setValue(PERSISTENT, Boolean.FALSE).setValue(AGE, 0));
+    @Override
+    public MapCodec<? extends RankineLeavesBlock> codec() {
+        return CODEC;
     }
 
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(DISTANCE, PERSISTENT, AGE);
+    public RankineLeavesBlock() {
+        super(Block.Properties.of().mapColor(MapColor.PLANT).ignitedByLava().pushReaction(PushReaction.DESTROY).randomTicks().strength(0.2F).sound(SoundType.GRASS).noOcclusion());
+        this.registerDefaultState(this.stateDefinition.any().setValue(DISTANCE, 7).setValue(PERSISTENT, Boolean.FALSE).setValue(WATERLOGGED, Boolean.FALSE).setValue(AGE, 0));
     }
 
     @Override
-    public void randomTick(BlockState state, ServerLevel levelIn, BlockPos pos, Random random) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(DISTANCE, PERSISTENT, WATERLOGGED, AGE);
+    }
+
+    @Override
+    protected void randomTick(BlockState state, ServerLevel levelIn, BlockPos pos, RandomSource random) {
         BlockState bs = levelIn.getBlockState(pos.below());
         if (random.nextFloat() < Config.GENERAL.LEAF_LITTER_GEN.get() && (bs.is(Blocks.AIR) || bs.canBeReplaced(Fluids.WATER)) && !bs.is(RankineBlocks.WILLOW_BRANCHLET.get())) {
             for (RankineWood Wood : RankineLists.RANKINE_WOODS) {
@@ -55,7 +71,10 @@ public class RankineLeavesBlock extends LeavesBlock {
     }
 
     @Override
-    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
+    protected BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
+        if (stateIn.getValue(WATERLOGGED)) {
+            worldIn.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
+        }
         int i = getDistanceAt(facingState) + 1;
         if (i != 1 || stateIn.getValue(DISTANCE) != i) {
             worldIn.scheduleTick(currentPos, this, 1);

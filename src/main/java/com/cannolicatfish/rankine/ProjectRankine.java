@@ -60,7 +60,6 @@ public class ProjectRankine {
         WorldgenUtils.initConfigs();
 
         event.enqueueWork(() -> {
-            RankineRecipes.registerPredicates();
             RankineRecipes.registerPotionRecipes();
             RankineRecipes.registerDispenserBehaviors();
             for (RankineWood wood : RankineLists.RANKINE_WOODS) {

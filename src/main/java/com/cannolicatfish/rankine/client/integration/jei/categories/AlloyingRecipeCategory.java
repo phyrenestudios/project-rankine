@@ -1,9 +1,9 @@
 package com.cannolicatfish.rankine.client.integration.jei.categories;
 
 import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.client.integration.jei.JEIRankinePlugin;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
-import com.mojang.blaze3d.vertex.PoseStack;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
@@ -11,15 +11,17 @@ import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
+import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.core.Holder;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.Component;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Tuple;
@@ -27,7 +29,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.Level;
-import net.neoforged.neoforge.registries.ForgeRegistries;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -47,16 +48,9 @@ public class AlloyingRecipeCategory implements IRecipeCategory<AlloyingRecipe> {
         slotDrawable = guiHelper.getSlotDrawable();
     }
 
-    @SuppressWarnings("removal")
     @Override
-    public ResourceLocation getUid() {
-        return UID;
-    }
-
-    @SuppressWarnings("removal")
-    @Override
-    public Class<? extends AlloyingRecipe> getRecipeClass() {
-        return AlloyingRecipe.class;
+    public RecipeType<AlloyingRecipe> getRecipeType() {
+        return JEIRankinePlugin.ALLOYING;
     }
 
     @Override
@@ -101,11 +95,16 @@ public class AlloyingRecipeCategory implements IRecipeCategory<AlloyingRecipe> {
             List<String> enchList = recipe.getEnchantments();
             enchList.sort(Comparator.comparingInt(String::length).reversed());
             HashSet<String> enchants = new HashSet<>(enchList);
+            // PORT-TODO(jei): Enchantment is a datapack registry in 1.21 (no more ForgeRegistries.ENCHANTMENTS);
+            // look it up through the client level's dynamic registry access instead.
+            Level level = Minecraft.getInstance().level;
+            Registry<Enchantment> enchantmentRegistry = level.registryAccess().registryOrThrow(Registries.ENCHANTMENT);
             for (String s : enchants) {
-                if (ForgeRegistries.ENCHANTMENTS.containsKey(ResourceLocation.parse(s))) {
-                    Holder<Enchantment> en = ForgeRegistries.ENCHANTMENTS.getHolder(ResourceLocation.parse(s)).orElse(null);
+                ResourceLocation enchId = ResourceLocation.parse(s);
+                if (enchantmentRegistry.containsKey(enchId)) {
+                    Holder<Enchantment> en = enchantmentRegistry.getHolder(enchId).orElse(null);
                     if (en != null && en.isBound()) {
-                        components.add(Component.literal(I18n.get(en.value().getDescriptionId())));
+                        components.add(en.value().description());
                     }
                 } else if (s.equals("rankine:random")) {
                     components.add(Component.literal(I18n.get("rankine.jei.tooltip_any")));
@@ -146,7 +145,7 @@ public class AlloyingRecipeCategory implements IRecipeCategory<AlloyingRecipe> {
     }
 
     @Override
-    public void draw(AlloyingRecipe recipe, IRecipeSlotsView recipeSlotsView, PoseStack stack, double mouseX, double mouseY) {
+    public void draw(AlloyingRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
         Level level = Minecraft.getInstance().level;
         List<Ingredient> ingredients = recipe.getIngredientsList(level,true);
         DecimalFormat df = Util.make(new DecimalFormat("##.##"), (p_234699_0_) -> {
@@ -154,17 +153,17 @@ public class AlloyingRecipeCategory implements IRecipeCategory<AlloyingRecipe> {
         });
         Font font = Minecraft.getInstance().font;
 
-        font.draw(stack,Component.translatable("rankine.jei.tooltip_required"),120, 0, 0x000000);
-        font.draw(stack,Component.translatable("rankine.jei.tooltip_additional"),1, 96, 0x000000);
+        guiGraphics.drawString(font,Component.translatable("rankine.jei.tooltip_required"),120, 0, 0x000000);
+        guiGraphics.drawString(font,Component.translatable("rankine.jei.tooltip_additional"),1, 96, 0x000000);
         int count = 0;
         for (Ingredient i : ingredients) {
             Tuple<Float,Float> minMax = recipe.getMinMaxByElement(level,i.getItems()[0]);
             String s = df.format(minMax.getA()*100) + "-" + df.format(minMax.getB()*100)+"%";
-            font.draw(stack,s,130, 16 + count * 18, 0x000000);
+            guiGraphics.drawString(font,s,130, 16 + count * 18, 0x000000);
             count++;
         }
 
-        IRecipeCategory.super.draw(recipe, recipeSlotsView, stack, mouseX, mouseY);
+        IRecipeCategory.super.draw(recipe, recipeSlotsView, guiGraphics, mouseX, mouseY);
     }
 
     @Override

@@ -1,4 +1,3 @@
-// PORT-TODO(main): register RankineCriteriaTriggers.ITEM_SUB_PREDICATE_TYPES on the mod bus in ProjectRankine's constructor.
 package com.cannolicatfish.rankine.init;
 
 import com.cannolicatfish.rankine.ProjectRankine;

@@ -30,12 +30,15 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 
 import javax.annotation.Nonnull;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @JeiPlugin
 public class JEIRankinePlugin implements IModPlugin {
@@ -81,16 +84,20 @@ public class JEIRankinePlugin implements IModPlugin {
 
     private static List<ElementRecipe> getSortedElementRecipes() {
         RankineJEIRecipes rankineJEIRecipes = new RankineJEIRecipes();
-        List<ElementRecipe> elements = rankineJEIRecipes.getElementRecipes();
-        final Comparator<ElementRecipe> BY_ATOMIC_NUM = Comparator.comparing(ElementRecipe::getAtomicNumber);
+        List<RecipeHolder<ElementRecipe>> elements = new ArrayList<>(rankineJEIRecipes.getElementRecipes());
+        final Comparator<RecipeHolder<ElementRecipe>> BY_ATOMIC_NUM = Comparator.comparing(holder -> holder.value().getAtomicNumber());
         elements.sort(BY_ATOMIC_NUM);
-        return elements;
+        return elements.stream().map(RecipeHolder::value).collect(Collectors.toList());
     }
 
-    private static <T extends Recipe<?>> List<T> getSortedRecipes(List<T> recipes) {
-        final Comparator<Recipe<?>> BY_ID = Comparator.comparing(Recipe::getId);
-        recipes.sort(BY_ID);
-        return recipes;
+    // PORT-TODO(jei): Recipe<?> no longer exposes getId() (removed 1.20.5+); RecipeManager returns
+    // RecipeHolder<T> which carries the id separately. Sort by RecipeHolder::id (preserves the old
+    // "sorted by recipe id" JEI display order) then unwrap to the plain recipe JEI's IRecipeCategory<T> needs.
+    private static <T extends Recipe<?>> List<T> getSortedRecipes(List<RecipeHolder<T>> recipes) {
+        List<RecipeHolder<T>> sorted = new ArrayList<>(recipes);
+        final Comparator<RecipeHolder<T>> BY_ID = Comparator.comparing(RecipeHolder::id);
+        sorted.sort(BY_ID);
+        return sorted.stream().map(RecipeHolder::value).collect(Collectors.toList());
     }
 
     private static List<IBatteryRecipe> getSortedBatteryRecipes(List<IBatteryRecipe> recipes) {

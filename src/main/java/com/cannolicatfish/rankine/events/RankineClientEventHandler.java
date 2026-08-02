@@ -1,46 +1,43 @@
 package com.cannolicatfish.rankine.events;
 
+import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.events.handlers.client.*;
 import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.client.event.FOVModifierEvent;
-import net.neoforged.neoforge.client.event.RecipesUpdatedEvent;
-import net.neoforged.neoforge.client.event.RenderBlockOverlayEvent;
-import net.neoforged.neoforge.client.event.RenderGameOverlayEvent;
-import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.client.event.ComputeFovModifierEvent;
+import net.neoforged.neoforge.client.event.RecipesUpdatedEvent;
+import net.neoforged.neoforge.client.event.RenderBlockScreenEffectEvent;
+import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 
-@EventBusSubscriber
+/**
+ * Client game-bus dispatcher.
+ * 1.21.1: @OnlyIn(Dist.CLIENT) on the individual methods is replaced by the class-level
+ * {@code value = Dist.CLIENT} on @EventBusSubscriber. The old RenderGameOverlayEvent subscription
+ * moved to a registered GUI layer — see {@link RenderGameOverlayHandler}, which subscribes to
+ * RegisterGuiLayersEvent on the MOD bus itself.
+ * The renderBlockOverlayEvent method was non-static in 1.18.2 (and therefore never fired on the
+ * static subscriber); it is static now so the overlay actually works.
+ */
+@EventBusSubscriber(modid = ProjectRankine.MODID, value = Dist.CLIENT)
 public class RankineClientEventHandler {
 
     @SubscribeEvent
-    @OnlyIn(Dist.CLIENT)
     public static void onRecipesUpdated(RecipesUpdatedEvent event) {
         RecipesUpdatedHandler.onRecipesUpdated(event);
     }
 
     @SubscribeEvent
-    @OnlyIn(Dist.CLIENT)
-    public static void fovUpdate(FOVModifierEvent event) {
+    public static void fovUpdate(ComputeFovModifierEvent event) {
         FOVModifierHandler.fovUpdate(event);
     }
 
     @SubscribeEvent
-    @OnlyIn(Dist.CLIENT)
-    public static void renderGameOverlayEvent(RenderGameOverlayEvent event) {
-        RenderGameOverlayHandler.renderOverlay(event);
-    }
-
-    @SubscribeEvent
-    @OnlyIn(Dist.CLIENT)
-    public void renderBlockOverlayEvent(RenderBlockOverlayEvent event) {
+    public static void renderBlockOverlayEvent(RenderBlockScreenEffectEvent event) {
         RenderBlockOverlayHandler.renderOverlayBlockEvent(event);
     }
 
     @SubscribeEvent
-    @OnlyIn(Dist.CLIENT)
     public static void onTooltipCheck(ItemTooltipEvent event) {
         ItemTooltipHandler.onTooltipCheck(event);
     }

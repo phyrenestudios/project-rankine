@@ -3,16 +3,20 @@ package com.cannolicatfish.rankine.blocks;
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.items.MagnetItem;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -23,51 +27,68 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.material.Material;
-import net.minecraft.world.level.material.MaterialColor;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Collectors;
 
+// PORT-NOTE: Material.METAL + MaterialColor.NONE -> .mapColor(MapColor.NONE).
+// DirectionalBlock#codec() is abstract in 1.21.1, so the MapCodec below is mandatory.
 public class ElectromagnetBlock extends DirectionalBlock {
+    public static final MapCodec<ElectromagnetBlock> CODEC = RecordCodecBuilder.mapCodec(instance ->
+            instance.group(
+                    Codec.INT.fieldOf("magnet_type").forGetter(b -> b.type)
+            ).apply(instance, ElectromagnetBlock::new)
+    );
+
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
     public static final BooleanProperty REPULSION_MODE = BooleanProperty.create("repulsion_mode");
     int type;
 
+    @Override
+    public MapCodec<? extends ElectromagnetBlock> codec() {
+        return CODEC;
+    }
+
     public ElectromagnetBlock(int type) {
-        super(Block.Properties.of(Material.METAL, MaterialColor.NONE).sound(SoundType.METAL).requiresCorrectToolForDrops().strength(5.0F, 6.0F));
+        super(Block.Properties.of().mapColor(MapColor.NONE).sound(SoundType.METAL).requiresCorrectToolForDrops().strength(5.0F, 6.0F));
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.EAST).setValue(POWERED, Boolean.FALSE).setValue(REPULSION_MODE, Boolean.FALSE));
         this.type = type;
     }
 
+    @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(FACING, POWERED, REPULSION_MODE);
     }
 
+    @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         return this.defaultBlockState().setValue(FACING, context.getNearestLookingDirection().getOpposite()).setValue(POWERED, Boolean.FALSE).setValue(REPULSION_MODE, Boolean.FALSE);
     }
 
-    public void tick(BlockState p_55661_, ServerLevel p_55662_, BlockPos p_55663_, Random p_55664_) {
+    @Override
+    protected void tick(BlockState p_55661_, ServerLevel p_55662_, BlockPos p_55663_, RandomSource p_55664_) {
         if (p_55661_.getValue(POWERED) && !p_55662_.hasNeighborSignal(p_55663_) && !p_55662_.hasNeighborSignal(p_55663_.above())) {
             p_55662_.setBlock(p_55663_, p_55661_.cycle(POWERED), 2);
         }
     }
 
+    // PORT-NOTE: Block#use(...) split; this interaction is entirely driven by the held stack, so it becomes
+    // useItemOn. PASS_TO_DEFAULT_BLOCK_INTERACTION is the equivalent of the old InteractionResult.PASS.
     @Override
-    public InteractionResult use(BlockState stateIn, Level levelIn, BlockPos pos, Player playerIn, InteractionHand handIn, BlockHitResult p_151974_) {
-        if (playerIn.getItemInHand(handIn).getItem() instanceof MagnetItem) {
+    protected ItemInteractionResult useItemOn(ItemStack heldItem, BlockState stateIn, Level levelIn, BlockPos pos, Player playerIn, InteractionHand handIn, BlockHitResult p_151974_) {
+        if (heldItem.getItem() instanceof MagnetItem) {
             levelIn.setBlockAndUpdate(pos,stateIn.cycle(REPULSION_MODE));
-            return InteractionResult.sidedSuccess(levelIn.isClientSide);
+            return ItemInteractionResult.sidedSuccess(levelIn.isClientSide);
         }
-        return InteractionResult.PASS;
+        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 
-    public void neighborChanged(BlockState stateIn, Level levelIn, BlockPos posIn, Block p_52703_, BlockPos p_52704_, boolean p_52705_) {
+    @Override
+    protected void neighborChanged(BlockState stateIn, Level levelIn, BlockPos posIn, Block p_52703_, BlockPos p_52704_, boolean p_52705_) {
         boolean flagSignal = levelIn.hasNeighborSignal(posIn) || levelIn.hasNeighborSignal(posIn.above());
         boolean flagPowered = stateIn.getValue(POWERED);
         if (flagSignal == flagPowered) return;
@@ -92,10 +113,19 @@ public class ElectromagnetBlock extends DirectionalBlock {
         }
     }
 
+    // PORT-TODO(ElectromagnetBlock): Material is gone, so the old `getMaterial() != Material.METAL` gate for
+    // Config.MACHINES.ELECTROMAGNET_MATERIAL_REQ cannot be reproduced exactly. Closest 1.21.1 analog without
+    // touching files outside blocks/ is the block's SoundType, which lined up with Material.METAL for essentially
+    // every vanilla metal block. A cleaner fix would be a `rankine:magnet_attractable` block tag (needs
+    // RankineTags + a datagen tag file, both outside this agent's scope).
+    private static boolean isMetalMaterial(BlockState state) {
+        return state.getSoundType() == SoundType.METAL;
+    }
+
     private void pullBlock(Level levelIn, BlockPos posIn, BlockPos targetPosIn, Direction dirIn) {
         BlockState pullTargetBS = levelIn.getBlockState(targetPosIn);
-        if (!pullTargetBS.getMaterial().blocksMotion() || !levelIn.getFluidState(targetPosIn).isEmpty() || pullTargetBS.is(RankineTags.Blocks.MAGNET_BANNED) || levelIn.getBlockEntity(targetPosIn) != null) return;
-        if (Config.MACHINES.ELECTROMAGNET_MATERIAL_REQ.get() && pullTargetBS.getMaterial() != Material.METAL) return;
+        if (!pullTargetBS.blocksMotion() || !levelIn.getFluidState(targetPosIn).isEmpty() || pullTargetBS.is(RankineTags.Blocks.MAGNET_BANNED) || levelIn.getBlockEntity(targetPosIn) != null) return;
+        if (Config.MACHINES.ELECTROMAGNET_MATERIAL_REQ.get() && !isMetalMaterial(pullTargetBS)) return;
 
         // Find the closest open space and move the block
         BlockPos endPos = null;
@@ -120,8 +150,8 @@ public class ElectromagnetBlock extends DirectionalBlock {
 
     private void pushBlock(Level levelIn, BlockPos posIn, BlockPos targetPosIn, Direction dirIn) {
         BlockState pullTargetBS = levelIn.getBlockState(targetPosIn);
-        if (!pullTargetBS.getMaterial().blocksMotion() || !levelIn.getFluidState(targetPosIn).isEmpty() || pullTargetBS.is(RankineTags.Blocks.MAGNET_BANNED) || levelIn.getBlockEntity(targetPosIn) != null) return;
-        if (Config.MACHINES.ELECTROMAGNET_MATERIAL_REQ.get() && pullTargetBS.getMaterial() != Material.METAL) return;
+        if (!pullTargetBS.blocksMotion() || !levelIn.getFluidState(targetPosIn).isEmpty() || pullTargetBS.is(RankineTags.Blocks.MAGNET_BANNED) || levelIn.getBlockEntity(targetPosIn) != null) return;
+        if (Config.MACHINES.ELECTROMAGNET_MATERIAL_REQ.get() && !isMetalMaterial(pullTargetBS)) return;
 
         // Find the closest open space and move the block
         BlockPos endPos = null;
@@ -144,14 +174,21 @@ public class ElectromagnetBlock extends DirectionalBlock {
         entityHandler(levelIn, targetPosIn, endPos);
     }
 
+    // PORT-NOTE: the AABB(BlockPos, BlockPos) constructor is gone in 1.21.1 (AABB.encapsulatingFullBlocks is NOT
+    // equivalent - it inflates the max corner by one block). The explicit double ctor below is the exact 1.18.2
+    // corner-to-corner box the old code built.
+    private static AABB boxBetween(BlockPos a, BlockPos b) {
+        return new AABB(a.getX(), a.getY(), a.getZ(), b.getX(), b.getY(), b.getZ());
+    }
+
     private void entityHandler(Level levelIn, BlockPos targetPosIn, BlockPos endPos) {
         //Damage entities along the path
-        List<LivingEntity> entities = levelIn.getEntitiesOfClass(LivingEntity.class, new AABB(endPos, targetPosIn).expandTowards(1, 1, 1), (e) -> e instanceof Mob || e instanceof Player);
+        List<LivingEntity> entities = levelIn.getEntitiesOfClass(LivingEntity.class, boxBetween(endPos, targetPosIn).expandTowards(1, 1, 1), (e) -> e instanceof Mob || e instanceof Player);
         for (LivingEntity i : entities) {
-            i.hurt(DamageSource.FLY_INTO_WALL, Mth.sqrt(type * (float) targetPosIn.distSqr(i.getOnPos())));
+            i.hurt(levelIn.damageSources().flyIntoWall(), Mth.sqrt(type * (float) targetPosIn.distSqr(i.getOnPos())));
         }
         //Teleport entities on top of the moving block
-        List<LivingEntity> entitiesOnBlock = levelIn.getEntitiesOfClass(LivingEntity.class, new AABB(targetPosIn, targetPosIn.above()).expandTowards(1, 1, 1), (e) -> e instanceof Mob || e instanceof Player);
+        List<LivingEntity> entitiesOnBlock = levelIn.getEntitiesOfClass(LivingEntity.class, boxBetween(targetPosIn, targetPosIn.above()).expandTowards(1, 1, 1), (e) -> e instanceof Mob || e instanceof Player);
         for (LivingEntity i : entitiesOnBlock) {
             i.teleportTo(endPos.getX() - (targetPosIn.getX() - i.getX()), endPos.getY() + 1, endPos.getZ() - (targetPosIn.getZ() - i.getZ()));
         }
@@ -159,6 +196,6 @@ public class ElectromagnetBlock extends DirectionalBlock {
 
     private boolean isMagnetBreakable(Level levelIn, BlockPos posIn) {
         BlockState stateIn = levelIn.getBlockState(posIn);
-        return stateIn.is(Blocks.BAMBOO) || stateIn.is(RankineTags.Blocks.COBBLES) || !stateIn.getMaterial().blocksMotion();
+        return stateIn.is(Blocks.BAMBOO) || stateIn.is(RankineTags.Blocks.COBBLES) || !stateIn.blocksMotion();
     }
 }

@@ -5,36 +5,130 @@ import com.cannolicatfish.rankine.blocks.block_groups.RankineWood;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineLists;
 import com.cannolicatfish.rankine.init.RankineTags;
-import net.minecraft.data.DataGenerator;
-import net.minecraft.data.tags.BlockTagsProvider;
+import com.cannolicatfish.rankine.enchantment.RankineEnchantmentTags;
+import com.cannolicatfish.rankine.items.BlunderbussItem;
+import com.cannolicatfish.rankine.items.alloys.AlloyArmorItem;
+import com.cannolicatfish.rankine.items.alloys.AlloyCrowbarItem;
+import com.cannolicatfish.rankine.items.alloys.AlloyHammerItem;
+import com.cannolicatfish.rankine.items.alloys.AlloyHoeItem;
+import com.cannolicatfish.rankine.items.alloys.AlloyKnifeItem;
+import com.cannolicatfish.rankine.items.alloys.AlloySpearItem;
+import com.cannolicatfish.rankine.items.alloys.AlloySwordItem;
+import com.cannolicatfish.rankine.items.alloys.IAlloyTool;
+import com.cannolicatfish.rankine.items.tools.CrowbarItem;
+import com.cannolicatfish.rankine.items.tools.HammerItem;
+import com.cannolicatfish.rankine.items.tools.KnifeItem;
+import com.cannolicatfish.rankine.items.tools.SpearItem;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
+import net.minecraft.data.tags.TagsProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.PickaxeItem;
+import net.minecraft.world.item.ShovelItem;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class RankineItemTagsProvider extends ItemTagsProvider {
 
-    public RankineItemTagsProvider(DataGenerator dataGenerator, BlockTagsProvider blockTagProvider, @Nullable ExistingFileHelper existingFileHelper) {
-        super(dataGenerator, blockTagProvider, ProjectRankine.MODID, existingFileHelper);
+    public RankineItemTagsProvider(PackOutput output,
+                                   CompletableFuture<HolderLookup.Provider> lookupProvider,
+                                   CompletableFuture<TagsProvider.TagLookup<Block>> blockTags,
+                                   @Nullable ExistingFileHelper existingFileHelper) {
+        super(output, lookupProvider, blockTags, ProjectRankine.MODID, existingFileHelper);
     }
 
     public String getName() {
         return "Project Rankine - Item Tags";
     }
 
+    /** Every registered Rankine item matching the predicate, in registration order. */
+    private static List<Item> rankineItems(Predicate<Item> filter) {
+        List<Item> out = new ArrayList<>();
+        RankineItems.ITEMS.getEntries().forEach(holder -> {
+            Item item = holder.get();
+            if (filter.test(item)) {
+                out.add(item);
+            }
+        });
+        return out;
+    }
+
+    private void addAll(TagKey<Item> tagKey, List<Item> items) {
+        for (Item item : items) {
+            tag(tagKey).add(item);
+        }
+    }
+
+    /**
+     * The 1.21 replacement for the deleted {@code EnchantmentCategory} constants: each old category
+     * becomes a {@code rankine:enchantable/*} item tag referenced from the enchantment definitions.
+     */
+    private void addEnchantableTags() {
+        addAll(RankineEnchantmentTags.HAMMER_ENCHANTABLE,
+                rankineItems(i -> i instanceof HammerItem || i instanceof AlloyHammerItem));
+        addAll(RankineEnchantmentTags.CROWBAR_ENCHANTABLE,
+                rankineItems(i -> i instanceof CrowbarItem || i instanceof AlloyCrowbarItem));
+        addAll(RankineEnchantmentTags.KNIFE_ENCHANTABLE,
+                rankineItems(i -> i instanceof KnifeItem || i instanceof AlloyKnifeItem));
+        tag(RankineEnchantmentTags.SWING_ENCHANTABLE)
+                .addTag(RankineEnchantmentTags.HAMMER_ENCHANTABLE)
+                .addTag(RankineEnchantmentTags.CROWBAR_ENCHANTABLE);
+        addAll(RankineEnchantmentTags.SPEAR_ENCHANTABLE,
+                rankineItems(i -> i instanceof SpearItem || i instanceof AlloySpearItem));
+        addAll(RankineEnchantmentTags.ALLOY_HOE_ENCHANTABLE,
+                rankineItems(i -> i instanceof AlloyHoeItem));
+        addAll(RankineEnchantmentTags.ALLOY_TOOL_ENCHANTABLE,
+                rankineItems(i -> i instanceof IAlloyTool && i.components().has(DataComponents.MAX_DAMAGE)));
+        addAll(RankineEnchantmentTags.ALLOY_SWORD_ENCHANTABLE,
+                rankineItems(i -> i instanceof AlloySwordItem));
+        addAll(RankineEnchantmentTags.ALLOY_ARMOR_ENCHANTABLE,
+                rankineItems(i -> i instanceof AlloyArmorItem));
+        addAll(RankineEnchantmentTags.BLUNDERBUSS_ENCHANTABLE,
+                rankineItems(i -> i instanceof BlunderbussItem));
+
+        // old MINING category: every shovel and pickaxe, vanilla + rankine
+        addAll(RankineEnchantmentTags.MINING_ENCHANTABLE,
+                rankineItems(i -> i instanceof ShovelItem || i instanceof PickaxeItem));
+        tag(RankineEnchantmentTags.MINING_ENCHANTABLE)
+                .add(Items.WOODEN_SHOVEL, Items.STONE_SHOVEL, Items.IRON_SHOVEL, Items.GOLDEN_SHOVEL,
+                        Items.DIAMOND_SHOVEL, Items.NETHERITE_SHOVEL,
+                        Items.WOODEN_PICKAXE, Items.STONE_PICKAXE, Items.IRON_PICKAXE, Items.GOLDEN_PICKAXE,
+                        Items.DIAMOND_PICKAXE, Items.NETHERITE_PICKAXE);
+
+        // Ender amalgam single-item categories
+        tag(RankineEnchantmentTags.ENDER_AMALGAM_HAMMER_ENCHANTABLE).add(RankineItems.ENDER_AMALGAM_HAMMER.get());
+        tag(RankineEnchantmentTags.ENDER_AMALGAM_SWORD_ENCHANTABLE).add(RankineItems.ENDER_AMALGAM_SWORD.get());
+        tag(RankineEnchantmentTags.ENDER_AMALGAM_SHOVEL_ENCHANTABLE).add(RankineItems.ENDER_AMALGAM_SHOVEL.get());
+        tag(RankineEnchantmentTags.ENDER_AMALGAM_KNIFE_ENCHANTABLE).add(RankineItems.ENDER_AMALGAM_KNIFE.get());
+        tag(RankineEnchantmentTags.ENDER_AMALGAM_CROWBAR_ENCHANTABLE).add(RankineItems.ENDER_AMALGAM_CROWBAR.get());
+        tag(RankineEnchantmentTags.ENDER_AMALGAM_SPEAR_ENCHANTABLE).add(RankineItems.ENDER_AMALGAM_SPEAR.get());
+        tag(RankineEnchantmentTags.ENDER_AMALGAM_AXE_ENCHANTABLE).add(RankineItems.ENDER_AMALGAM_AXE.get());
+        tag(RankineEnchantmentTags.ENDER_AMALGAM_HOE_ENCHANTABLE).add(RankineItems.ENDER_AMALGAM_HOE.get());
+        tag(RankineEnchantmentTags.ENDER_AMALGAM_PICKAXE_ENCHANTABLE).add(RankineItems.ENDER_AMALGAM_PICKAXE.get());
+        tag(RankineEnchantmentTags.ENDER_AMALGAM_BLUNDERBUSS_ENCHANTABLE).add(RankineItems.ENDER_AMALGAM_BLUNDERBUSS.get());
+    }
+
     @Override
-    protected void addTags() {
+    protected void addTags(HolderLookup.Provider provider) {
+        addEnchantableTags();
 
         copy(RankineTags.Blocks.ORES_LEAD, RankineTags.Items.ORES_LEAD);
         copy(RankineTags.Blocks.ORES_SILVER, RankineTags.Items.ORES_SILVER);
@@ -85,7 +179,7 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         copy(RankineTags.Blocks.STONES_BASALT, RankineTags.Items.STONES_BASALT);
         copy(RankineTags.Blocks.STONES_GRANITE, RankineTags.Items.STONES_GRANITE);
         copy(RankineTags.Blocks.STONES_SANDSTONE, RankineTags.Items.STONES_SANDSTONE);
-        copy(Tags.Blocks.SANDSTONE, Tags.Items.SANDSTONE);
+        copy(Tags.Blocks.SANDSTONE_BLOCKS, Tags.Items.SANDSTONE_BLOCKS);
         copy(RankineTags.Blocks.STONES_PEGMATITE, RankineTags.Items.STONES_PEGMATITE);
         copy(RankineTags.Blocks.STONES_BRECCIA, RankineTags.Items.STONES_BRECCIA);
         copy(RankineTags.Blocks.STONES_PERIDOTITE, RankineTags.Items.STONES_PERIDOTITE);
@@ -694,14 +788,14 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         copy(RankineTags.Blocks.SHEETMETAL, RankineTags.Items.SHEETMETAL);
         copy(RankineTags.Blocks.SHEETMETAL_SALBS, RankineTags.Items.SHEETMETAL_SALBS);
         for (Block blk : RankineLists.SHEETMETALS) {
-            String name = blk.getRegistryName().getPath();
+            String name = RankineDataUtils.rl(blk).getPath();
             String baseName = Arrays.asList(name.split("_sheetmetal")).get(0);
-            tag(ItemTags.create(ResourceLocation.fromNamespaceAndPath("forge", "sheetmetals/"+baseName))).add(blk.asItem());
+            tag(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", "sheetmetals/"+baseName))).add(blk.asItem());
         }
         for (Block blk : RankineLists.ALLOY_SHEETMETALS) {
-            String name = blk.getRegistryName().getPath();
+            String name = RankineDataUtils.rl(blk).getPath();
             String baseName = Arrays.asList(name.split("_sheetmetal")).get(0);
-            tag(ItemTags.create(ResourceLocation.fromNamespaceAndPath("forge", "sheetmetals/"+baseName))).add(blk.asItem());
+            tag(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", "sheetmetals/"+baseName))).add(blk.asItem());
         }
         copy(RankineTags.Blocks.METAL_BARS, RankineTags.Items.METAL_BARS);
         copy(RankineTags.Blocks.METAL_POLES, RankineTags.Items.METAL_POLES);
@@ -827,7 +921,7 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         tag(Tags.Items.GEMS).addTags(RankineTags.Items.GEMS_AMBER,RankineTags.Items.GEMS_AQUAMARINE,RankineTags.Items.GEMS_CINNABAR,RankineTags.Items.GEMS_FLUORITE,RankineTags.Items.GEMS_GARNET,RankineTags.Items.GEMS_OPAL,RankineTags.Items.GEMS_PERIDOT,RankineTags.Items.GEMS_RUBY,RankineTags.Items.GEMS_SAPPHIRE,RankineTags.Items.GEMS_TOPAZ,RankineTags.Items.GEMS_TOURMALINE,RankineTags.Items.GEMS_PEARL);
 
         tag(RankineTags.Items.ROPE).add(RankineItems.ROPE.get());
-        tag(Tags.Items.STRING).add(RankineItems.ROPE.get());
+        tag(Tags.Items.STRINGS).add(RankineItems.ROPE.get());
         tag(RankineTags.Items.CLAY_BALLS).add(RankineItems.FIRE_CLAY_BALL.get(), Items.CLAY_BALL, RankineItems.PORCELAIN_CLAY_BALL.get(), RankineItems.KAOLINITE.get(), RankineItems.HALLOYSITE.get());
 
         tag(RankineTags.Items.RODS_GRAPHITE).add(RankineItems.GRAPHITE_ELECTRODE.get());
@@ -845,11 +939,11 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         copy(RankineTags.Blocks.BOOKSHELVES, Tags.Items.BOOKSHELVES);
         copy(RankineTags.Blocks.CONSTRUCTION_SAND, RankineTags.Items.CONSTRUCTION_SAND);
         copy(RankineTags.Blocks.GRASS_BLOCKS, RankineTags.Items.GRASS_BLOCKS);
-        copy(Tags.Blocks.OBSIDIAN, Tags.Items.OBSIDIAN);
+        copy(Tags.Blocks.OBSIDIANS, Tags.Items.OBSIDIANS);
         copy(RankineTags.Blocks.PATH_BLOCKS, RankineTags.Items.PATH_BLOCKS);
         copy(RankineTags.Blocks.MUD, RankineTags.Items.MUD);
         copy(RankineTags.Blocks.COARSE_DIRT, RankineTags.Items.COARSE_DIRT);
-        copy(Tags.Blocks.GRAVEL, Tags.Items.GRAVEL);
+        copy(Tags.Blocks.GRAVELS, Tags.Items.GRAVELS);
         copy(BlockTags.DIRT, ItemTags.DIRT);
         copy(RankineTags.Blocks.TUFF, RankineTags.Items.TUFF);
         copy(RankineTags.Blocks.MYCELIUM, RankineTags.Items.MYCELIUM);
@@ -869,7 +963,7 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
 
         copy(BlockTags.STONE_BRICKS, ItemTags.STONE_BRICKS);
         copy(BlockTags.WOOL, ItemTags.WOOL);
-        copy(BlockTags.CARPETS, ItemTags.CARPETS);
+        copy(BlockTags.WOOL_CARPETS, ItemTags.WOOL_CARPETS);
         copy(BlockTags.DOORS, ItemTags.DOORS);
         copy(BlockTags.TRAPDOORS, ItemTags.TRAPDOORS);
         copy(BlockTags.SAPLINGS, ItemTags.SAPLINGS);
@@ -890,14 +984,14 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         copy(BlockTags.WALLS, ItemTags.WALLS);
         copy(BlockTags.SLABS, ItemTags.SLABS);
         copy(BlockTags.SAND, ItemTags.SAND);
-        copy(Tags.Blocks.SAND, Tags.Items.SAND);
+        copy(Tags.Blocks.SANDS, Tags.Items.SANDS);
         copy(BlockTags.ICE, RankineTags.Items.ICE);
         copy(RankineTags.Blocks.POLISHED_STONE, RankineTags.Items.POLISHED_STONE);
-        copy(Tags.Blocks.STONE, Tags.Items.STONE);
-        copy(Tags.Blocks.SAND, Tags.Items.SAND);
-        copy(Tags.Blocks.GLASS, Tags.Items.GLASS);
-        copy(Tags.Blocks.COBBLESTONE_NORMAL, Tags.Items.COBBLESTONE_NORMAL);
-        copy(Tags.Blocks.COBBLESTONE, Tags.Items.COBBLESTONE);
+        copy(Tags.Blocks.STONES, Tags.Items.STONES);
+        copy(Tags.Blocks.SANDS, Tags.Items.SANDS);
+        copy(Tags.Blocks.GLASS_BLOCKS, Tags.Items.GLASS_BLOCKS);
+        copy(Tags.Blocks.COBBLESTONES_NORMAL, Tags.Items.COBBLESTONES_NORMAL);
+        copy(Tags.Blocks.COBBLESTONES, Tags.Items.COBBLESTONES);
         //copy(BlockTags.CAMPFIRES, RankineTags.Items.CAMPFIRES);
         tag(RankineTags.Items.CAMPFIRES).add(Items.CAMPFIRE,Items.SOUL_CAMPFIRE);
         tag(RankineTags.Items.CANNONBALLS).add(Items.FIRE_CHARGE,RankineItems.CANNONBALL.get(),RankineItems.CARCASS.get(),RankineItems.ENDERBALL.get());
@@ -914,9 +1008,9 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         tag(RankineTags.Items.COLORED_GOLD_TOOLS).addTags(RankineTags.Items.ROSE_GOLD_TOOLS,RankineTags.Items.GREEN_GOLD_TOOLS,RankineTags.Items.WHITE_GOLD_TOOLS,RankineTags.Items.BLUE_GOLD_TOOLS,RankineTags.Items.PURPLE_GOLD_TOOLS,RankineTags.Items.BLACK_GOLD_TOOLS);
         tag(RankineTags.Items.CRUDE_TOOLS).addTags(RankineTags.Items.WOODEN_TOOLS,RankineTags.Items.STONE_TOOLS,RankineTags.Items.GOLDEN_TOOLS,RankineTags.Items.COLORED_GOLD_TOOLS,RankineTags.Items.FLINT_TOOLS,RankineTags.Items.PEWTER_TOOLS,RankineTags.Items.OSMIRIDIUM_TOOLS,RankineTags.Items.AMALGAM_TOOLS);
         tag(RankineTags.Items.TREE_CHOPPERS).add(RankineItems.PEWTER_AXE.get(),RankineItems.ALLOY_AXE.get(),RankineItems.BRONZE_AXE.get(),RankineItems.INVAR_AXE.get(),RankineItems.STEEL_AXE.get(),RankineItems.STAINLESS_STEEL_AXE.get(),RankineItems.NICKEL_SUPERALLOY_AXE.get(),RankineItems.COBALT_SUPERALLOY_AXE.get(),RankineItems.TUNGSTEN_HEAVY_ALLOY_AXE.get(),RankineItems.ROSE_GOLD_AXE.get(),RankineItems.BLUE_GOLD_AXE.get(),RankineItems.GREEN_GOLD_AXE.get(),RankineItems.WHITE_GOLD_AXE.get(),RankineItems.PURPLE_GOLD_AXE.get(),RankineItems.BLACK_GOLD_AXE.get(),RankineItems.AMALGAM_AXE.get(),RankineItems.ENDER_AMALGAM_AXE.get(),RankineItems.OSMIRIDIUM_AXE.get(),RankineItems.TITANIUM_ALLOY_AXE.get(),RankineItems.NIOBIUM_ALLOY_AXE.get(),RankineItems.ZIRCONIUM_ALLOY_AXE.get());
-        tag(RankineTags.Items.SILICON_DIOXIDE_BLOCKS).addTags(RankineTags.Items.STONES_QUARTZITE,RankineTags.Items.CONSTRUCTION_SAND,Tags.Items.STORAGE_BLOCKS_QUARTZ);
+        tag(RankineTags.Items.SILICON_DIOXIDE_BLOCKS).addTags(RankineTags.Items.STONES_QUARTZITE,RankineTags.Items.CONSTRUCTION_SAND,RankineDataTags.STORAGE_BLOCKS_QUARTZ);
         tag(RankineTags.Items.FLUXES).addTags(RankineTags.Items.STONES_LIMESTONE,RankineTags.Items.STONES_DOLOMITE).add(RankineItems.DOLOMITE.get(),RankineItems.CALCITE.get(),RankineItems.QUICKLIME.get());
-        tag(RankineTags.Items.GLASS_INPUTS).addTags(RankineTags.Items.SILT,Tags.Items.SAND,Tags.Items.GEMS_QUARTZ);
+        tag(RankineTags.Items.GLASS_INPUTS).addTags(RankineTags.Items.SILT,Tags.Items.SANDS,Tags.Items.GEMS_QUARTZ);
         tag(RankineTags.Items.TORCH).add(Items.TORCH, Items.REDSTONE_TORCH, Items.SOUL_TORCH);
 
 

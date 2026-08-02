@@ -1,55 +1,73 @@
 package com.cannolicatfish.rankine.events;
 
-import com.cannolicatfish.rankine.capabilities.ChunkRetrogenProvider;
+import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.commands.BlockWallCommand;
 import com.cannolicatfish.rankine.commands.CreateAlloyCommand;
 import com.cannolicatfish.rankine.commands.GiveTagCommand;
 import com.cannolicatfish.rankine.commands.PeriodicTableCommand;
 import com.cannolicatfish.rankine.events.handlers.common.*;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.chunk.LevelChunk;
-import net.neoforged.neoforge.event.*;
-import net.neoforged.neoforge.event.entity.EntityJoinWorldEvent;
-import net.neoforged.neoforge.event.entity.PlaySoundAtEntityEvent;
+import com.cannolicatfish.rankine.util.WorldgenUtils;
+import net.neoforged.bus.api.EventPriority;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.AnvilUpdateEvent;
+import net.neoforged.neoforge.event.ItemAttributeModifierEvent;
+import net.neoforged.neoforge.event.PlayLevelSoundEvent;
+import net.neoforged.neoforge.event.RegisterCommandsEvent;
+import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
 import net.neoforged.neoforge.event.entity.item.ItemExpireEvent;
-import net.neoforged.neoforge.event.entity.living.*;
+import net.neoforged.neoforge.event.entity.living.LivingChangeTargetEvent;
+import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
+import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
+import net.neoforged.neoforge.event.entity.player.ItemEntityPickupEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.event.furnace.FurnaceFuelBurnTimeEvent;
+import net.neoforged.neoforge.event.level.BlockEvent;
+import net.neoforged.neoforge.event.level.BlockGrowFeatureEvent;
+import net.neoforged.neoforge.event.level.ChunkEvent;
+import net.neoforged.neoforge.event.level.LevelEvent;
+import net.neoforged.neoforge.event.level.PistonEvent;
+import net.neoforged.neoforge.event.level.block.CreateFluidSourceEvent;
+import net.neoforged.neoforge.event.server.ServerAboutToStartEvent;
+import net.neoforged.neoforge.event.tick.EntityTickEvent;
+import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 import net.neoforged.neoforge.event.village.VillagerTradesEvent;
 import net.neoforged.neoforge.event.village.WandererTradesEvent;
-import net.neoforged.neoforge.event.world.*;
-import net.neoforged.bus.api.EventPriority;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.Mod;
-import net.neoforged.fml.common.EventBusSubscriber;
 
-@EventBusSubscriber
+/**
+ * Game-bus event dispatcher. See each handler for the individual 1.18.2 -> 1.21.1 event mapping.
+ * The old AttachCapabilitiesEvent&lt;LevelChunk&gt; subscription is gone — the retrogen flag is a
+ * data attachment now (see init/RankineAttachments and CapabilityRegistrationHandler).
+ */
+@EventBusSubscriber(modid = ProjectRankine.MODID)
 public class RankineEventHandler {
 
     @SubscribeEvent
-    public static void attachCapabilities(AttachCapabilitiesEvent<LevelChunk> event) {
-        event.addCapability(ResourceLocation.parse("rankine:retrogen_chunk"), new ChunkRetrogenProvider());
-    }
-    @SubscribeEvent
-    public static void playSoundAtEntityEvent(PlaySoundAtEntityEvent event) {
+    public static void playSoundAtEntityEvent(PlayLevelSoundEvent.AtEntity event) {
         PlaySoundAtEntityHandler.onPlaySound(event);
     }
     @SubscribeEvent
     public static void registerCommands(RegisterCommandsEvent event) {
-        CreateAlloyCommand.register(event.getDispatcher());
-        GiveTagCommand.register(event.getDispatcher());
+        // 1.21.1: item arguments need the CommandBuildContext
+        CreateAlloyCommand.register(event.getDispatcher(), event.getBuildContext());
+        GiveTagCommand.register(event.getDispatcher(), event.getBuildContext());
         BlockWallCommand.register(event.getDispatcher());
         PeriodicTableCommand.register(event.getDispatcher());
     }
     @SubscribeEvent
-    public static void playerTick(TickEvent.PlayerTickEvent event) {
+    public static void playerTick(PlayerTickEvent.Pre event) {
         PlayerTickHandler.onPlayerTick(event);
         PlayerTickHandler.movementModifier(event);
     }
     @SubscribeEvent
-    public static void worldLoadEvent(WorldEvent.Load event) {
+    public static void worldLoadEvent(LevelEvent.Load event) {
         WorldLoadHandler.updateFuelValues(event);
+    }
+    @SubscribeEvent
+    public static void serverAboutToStart(ServerAboutToStartEvent event) {
+        // Worldgen biome lists can only be resolved once the datapack registries exist.
+        WorldgenUtils.ensureBiomesResolved(event.getServer().registryAccess());
     }
     @SubscribeEvent
     public static void furnaceFuelBurnTimeEvent(FurnaceFuelBurnTimeEvent event) {
@@ -64,11 +82,11 @@ public class RankineEventHandler {
         ItemExpireHandler.onItemPickup(event);
     }
     @SubscribeEvent
-    public static void noWater(BlockEvent.CreateFluidSourceEvent event) {
+    public static void noWater(CreateFluidSourceEvent event) {
         CreateFluidSourceHandler.noWater(event);
     }
     @SubscribeEvent
-    public static void entityJoinWorldEvent(EntityJoinWorldEvent event) {
+    public static void entityJoinWorldEvent(EntityJoinLevelEvent event) {
         EntityJoinWorldHandler.onLightningEvent(event);
         EntityJoinWorldHandler.onSheepJoinWorld(event);
     }
@@ -81,7 +99,7 @@ public class RankineEventHandler {
         ChunkLoadHandler.retrogenChunk(event);
     }
     @SubscribeEvent
-    public static void itemPickupEvent(PlayerEvent.ItemPickupEvent event) {
+    public static void itemPickupEvent(ItemEntityPickupEvent.Post event) {
         ItemPickupHandler.onItemPickup(event);
     }
     @SubscribeEvent
@@ -93,7 +111,7 @@ public class RankineEventHandler {
         VillagerTradesHandler.addVillagerTrades(event);
     }
     @SubscribeEvent
-    public static void saplingGrowTreeEvent(SaplingGrowTreeEvent event) {
+    public static void saplingGrowTreeEvent(BlockGrowFeatureEvent event) {
         SaplingGrowTreeHandler.onSaplingGrow(event);
     }
     @SubscribeEvent
@@ -105,11 +123,11 @@ public class RankineEventHandler {
         AnvilUpdateHandler.specialEnchants(event);
     }
     @SubscribeEvent
-    public static void livingSetAttackTargetEvent(LivingSetAttackTargetEvent event) {
+    public static void livingSetAttackTargetEvent(LivingChangeTargetEvent event) {
         LivingSetAttackTargetHandler.onLivingSetAttackTarget(event);
     }
     @SubscribeEvent
-    public static void livingUpdateEvent(LivingEvent.LivingUpdateEvent event) {
+    public static void livingUpdateEvent(EntityTickEvent.Pre event) {
         LivingUpdateHandler.onLivingUpdate(event);
         LivingUpdateHandler.onEnvironmentEffect(event);
     }
@@ -119,14 +137,19 @@ public class RankineEventHandler {
     }
 
     @SubscribeEvent
-    public static void livingHurt(LivingHurtEvent event) {
+    public static void livingHurt(LivingIncomingDamageEvent event) {
         LivingHurtHandler.onParryEvent(event);
         LivingHurtHandler.onLivingHurt(event);
     }
     @SubscribeEvent
-    public static void livingDamageEntity(LivingDamageEvent event) {
+    public static void livingDamageEntity(LivingDamageEvent.Pre event) {
         LivingDamageHandler.onDamageEntity(event);
         LivingDamageHandler.onLivingDamaged(event);
+    }
+    @SubscribeEvent
+    public static void livingDamagePost(LivingDamageEvent.Post event) {
+        // 1.21.1: datapack enchantments have no doPostAttack hook — Prying/Puncture run here.
+        LivingDamageHandler.onPostDamage(event);
     }
 
     @SubscribeEvent
@@ -152,7 +175,7 @@ public class RankineEventHandler {
         BreakSpeedHandler.onBreakSpeed(event);
     }
     @SubscribeEvent
-    public static void breakSpeedEvent(BlockEvent.BreakEvent event) {
+    public static void blockBreakEvent(BlockEvent.BreakEvent event) {
         BlockBreakHandler.blockBreakingEvents(event);
     }
 

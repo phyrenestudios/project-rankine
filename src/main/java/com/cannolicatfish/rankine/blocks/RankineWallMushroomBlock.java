@@ -8,6 +8,8 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
@@ -25,20 +27,19 @@ import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-import java.util.function.Supplier;
+import java.util.Optional;
 
-// PORT-TODO(RankineWallMushroomBlock): vanilla's own MushroomBlock now stores a ResourceKey<ConfiguredFeature<?,?>>
-// (resolved via level.registryAccess() at grow time) instead of a Supplier<Holder<...>>. We keep the existing
-// Supplier<Holder<...>> field/constructor signature unchanged since instances are constructed from the init/
-// package (outside this file's ownership) and changing the public constructor would break that call site.
-// Consequently codec() below cannot faithfully round-trip the feature supplier (Suppliers aren't codec-serializable
-// and nothing in-engine actually decodes a registered mod Block through this codec at runtime) - it satisfies the
-// now-mandatory BlockBehaviour#codec() contract without attempting to reconstruct the feature reference.
+/**
+ * Configured features are datapack entries in 1.21, so the growth feature is stored as a
+ * ResourceKey and resolved against the level's registry at grow time — the same approach
+ * vanilla MushroomBlock takes. This also makes the block codec round-trippable.
+ */
 public class RankineWallMushroomBlock extends BushBlock implements BonemealableBlock {
     public static final MapCodec<RankineWallMushroomBlock> CODEC = RecordCodecBuilder.mapCodec(instance ->
-            instance.group(propertiesCodec()).apply(instance, properties -> new RankineWallMushroomBlock(properties, () -> {
-                throw new UnsupportedOperationException("RankineWallMushroomBlock cannot be reconstructed from its codec; it is only ever constructed directly during registration.");
-            }))
+            instance.group(
+                    ResourceKey.codec(Registries.CONFIGURED_FEATURE).fieldOf("feature").forGetter(b -> b.feature),
+                    propertiesCodec()
+            ).apply(instance, (feature, properties) -> new RankineWallMushroomBlock(properties, feature))
     );
 
     @Override
@@ -46,7 +47,7 @@ public class RankineWallMushroomBlock extends BushBlock implements BonemealableB
         return CODEC;
     }
 
-    private final Supplier<Holder<? extends ConfiguredFeature<?, ?>>> featureSupplier;
+    private final ResourceKey<ConfiguredFeature<?, ?>> feature;
     protected static final VoxelShape[] SHAPES = new VoxelShape[] {
             Block.box(3.0D, 3.0D, 0.0D, 13.0D, 13.0D, 3.0D),
             Block.box(13.0D, 3.0D, 3.0D, 16.0D, 13.0D, 13.0D),
@@ -55,9 +56,9 @@ public class RankineWallMushroomBlock extends BushBlock implements BonemealableB
 
     public static final DirectionProperty HORIZONTAL_FACING = BlockStateProperties.HORIZONTAL_FACING;
 
-    public RankineWallMushroomBlock(BlockBehaviour.Properties properties, Supplier<Holder<? extends ConfiguredFeature<?, ?>>> p_153984_) {
+    public RankineWallMushroomBlock(BlockBehaviour.Properties properties, ResourceKey<ConfiguredFeature<?, ?>> featureIn) {
         super(properties);
-        this.featureSupplier = p_153984_;
+        this.feature = featureIn;
         this.registerDefaultState(this.stateDefinition.any().setValue(HORIZONTAL_FACING, Direction.SOUTH));
     }
 
@@ -136,8 +137,12 @@ public class RankineWallMushroomBlock extends BushBlock implements BonemealableB
 
 
     public void growMushroom(ServerLevel worldIn, BlockPos pos, BlockState p_54862_, RandomSource p_54863_) {
-        if (!this.featureSupplier.get().value().place(worldIn, worldIn.getChunkSource().getGenerator(), p_54863_, pos)) {
-            worldIn.setBlock(pos,p_54862_,3);
+        Optional<? extends Holder<ConfiguredFeature<?, ?>>> configured = worldIn.registryAccess()
+                .registryOrThrow(Registries.CONFIGURED_FEATURE)
+                .getHolder(this.feature);
+        if (configured.isEmpty()
+                || !configured.get().value().place(worldIn, worldIn.getChunkSource().getGenerator(), p_54863_, pos)) {
+            worldIn.setBlock(pos, p_54862_, 3);
         }
     }
 

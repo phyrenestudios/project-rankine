@@ -77,23 +77,23 @@ public class RankineBlockStateProvider extends BlockStateProvider {
             buttonBlock(Stone.getButton(), ResourceLocation.fromNamespaceAndPath("rankine", "block/"+Stone.getBaseName()));
             cobble(Stone.getCobble());
             columnBlock(Stone.getColumn(), ResourceLocation.fromNamespaceAndPath("rankine", "block/"+Stone.getBaseName()));
-            simpleBlock(Stone.getInfested(),models().withExistingParent(Stone.getInfested().getRegistryName().getPath(), ResourceLocation.fromNamespaceAndPath("rankine", "block/"+Stone.getBaseName())));
+            simpleBlock(Stone.getInfested(),models().withExistingParent(RankineDataUtils.rl(Stone.getInfested()).getPath(), ResourceLocation.fromNamespaceAndPath("rankine", "block/"+Stone.getBaseName())));
         }
 
         for (RankineWood Wood : RankineLists.RANKINE_WOODS) {
             if (Wood.hasLogs()) {
-                axisBlock(Wood.getLog(), getBlockRSL(Wood.getLog()), getBlockRSL(Wood.getLog().getRegistryName().getPath() + "_top"));
-                axisBlock(Wood.getStrippedLog(), getBlockRSL(Wood.getStrippedLog()), getBlockRSL(Wood.getStrippedLog().getRegistryName().getPath() + "_top"));
-                axisBlock(Wood.getWood(), getBlockRSL(Wood.getLog()), getBlockRSL(Wood.getLog().getRegistryName().getPath()));
-                axisBlock(Wood.getStrippedWood(), getBlockRSL(Wood.getStrippedLog()), getBlockRSL(Wood.getStrippedLog().getRegistryName().getPath()));
+                axisBlock(Wood.getLog(), getBlockRSL(Wood.getLog()), getBlockRSL(RankineDataUtils.rl(Wood.getLog()).getPath() + "_top"));
+                axisBlock(Wood.getStrippedLog(), getBlockRSL(Wood.getStrippedLog()), getBlockRSL(RankineDataUtils.rl(Wood.getStrippedLog()).getPath() + "_top"));
+                axisBlock(Wood.getWood(), getBlockRSL(Wood.getLog()), getBlockRSL(RankineDataUtils.rl(Wood.getLog()).getPath()));
+                axisBlock(Wood.getStrippedWood(), getBlockRSL(Wood.getStrippedLog()), getBlockRSL(RankineDataUtils.rl(Wood.getStrippedLog()).getPath()));
                 hollowLog(Wood.getHollowLog(), "rankine");
             }
             fancyPlanksBlock(Wood.getPlanks());
-            slabBlock(Wood.getSlab(), getBlockRSL(Wood.getPlanks().getRegistryName().getPath()+"1"), getBlockRSL(Wood.getPlanks()));
+            slabBlock(Wood.getSlab(), getBlockRSL(RankineDataUtils.rl(Wood.getPlanks()).getPath()+"1"), getBlockRSL(Wood.getPlanks()));
             stairsBlock(Wood.getStairs(), getBlockRSL(Wood.getPlanks()));
             fenceBlock(Wood.getFence(), getBlockRSL(Wood.getPlanks()));
             fenceGateBlock(Wood.getFenceGate(), getBlockRSL(Wood.getPlanks()));
-            doorBlock(Wood.getDoor(), ResourceLocation.fromNamespaceAndPath("rankine","block/"+Wood.getDoor().getRegistryName().getPath()+"_bottom"), ResourceLocation.fromNamespaceAndPath("rankine","block/"+Wood.getDoor().getRegistryName().getPath()+"_top"));
+            doorBlock(Wood.getDoor(), ResourceLocation.fromNamespaceAndPath("rankine","block/"+RankineDataUtils.rl(Wood.getDoor()).getPath()+"_bottom"), ResourceLocation.fromNamespaceAndPath("rankine","block/"+RankineDataUtils.rl(Wood.getDoor()).getPath()+"_top"));
             trapdoorBlock(Wood.getTrapdoor(), getBlockRSL(Wood.getTrapdoor()), true);
             pressurePlateBlock(Wood.getPressurePlate(), getBlockRSL(Wood.getPlanks()));
             buttonBlock(Wood.getButton(), getBlockRSL(Wood.getPlanks()));
@@ -103,8 +103,8 @@ public class RankineBlockStateProvider extends BlockStateProvider {
             if (Wood.isTree()) {
                 leavesBlock(Wood.getLeaves());
                 leafLitterBlock(Wood.getLeafLitter(), "rankine");
-                simpleBlock(Wood.getSapling(), models().cross(Wood.getSapling().getRegistryName().getPath(), modLoc("block/" + Wood.getSapling().getRegistryName().getPath())));
-                simpleBlock(Wood.getPottedSapling(), models().withExistingParent(Wood.getPottedSapling().getRegistryName().getPath(), "block/flower_pot_cross").texture("plant", "block/" + Wood.getSapling().getRegistryName().getPath()));
+                simpleBlock(Wood.getSapling(), models().cross(RankineDataUtils.rl(Wood.getSapling()).getPath(), modLoc("block/" + RankineDataUtils.rl(Wood.getSapling()).getPath())));
+                simpleBlock(Wood.getPottedSapling(), models().withExistingParent(RankineDataUtils.rl(Wood.getPottedSapling()).getPath(), "block/flower_pot_cross").texture("plant", "block/" + RankineDataUtils.rl(Wood.getSapling()).getPath()));
             }
         }
 
@@ -184,15 +184,15 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         }
         for (Block blk : RankineLists.ELEMENT_BLOCKS) {
             if (blk == RankineBlocks.HELIUM_BLOCK.get() || blk == RankineBlocks.FLUORINE_BLOCK.get() || blk == RankineBlocks.CHLORINE_BLOCK.get() || blk == RankineBlocks.OXYGEN_BLOCK.get() || blk == RankineBlocks.NITROGEN_BLOCK.get() || blk == RankineBlocks.HYDROGEN_BLOCK.get() || blk == RankineBlocks.NEON_BLOCK.get() || blk == RankineBlocks.ARGON_BLOCK.get() || blk == RankineBlocks.KRYPTON_BLOCK.get() || blk == RankineBlocks.RADON_BLOCK.get() || blk == RankineBlocks.XENON_BLOCK.get() || blk == RankineBlocks.OGANESSON_BLOCK.get()) {
-                simpleBlock(blk, models().withExistingParent(blk.getRegistryName().getPath(), modLoc("template_solid_gas")).texture("all", getBlockRSL(blk.getRegistryName().getPath())));
+                simpleBlock(blk, models().withExistingParent(RankineDataUtils.rl(blk).getPath(), modLoc("template_solid_gas")).texture("all", getBlockRSL(RankineDataUtils.rl(blk).getPath())));
             } else {
                 simpleBlock(blk);
             }
         }
         for (Block blk : RankineLists.LIGHTNING_GLASSES) {
             getVariantBuilder(blk)
-                    .partialState().with(LightningGlassBlock.GLOWING, false).modelForState().modelFile(models().cubeAll(blk.getRegistryName().getPath(), getBlockRSL(blk))).addModel()
-                    .partialState().with(LightningGlassBlock.GLOWING, true).modelForState().modelFile(models().cubeAll(blk.getRegistryName().getPath()+"_glowing", getBlockRSL(blk.getRegistryName().getPath()+"_glowing"))).addModel();
+                    .partialState().with(LightningGlassBlock.GLOWING, false).modelForState().modelFile(models().cubeAll(RankineDataUtils.rl(blk).getPath(), getBlockRSL(blk))).addModel()
+                    .partialState().with(LightningGlassBlock.GLOWING, true).modelForState().modelFile(models().cubeAll(RankineDataUtils.rl(blk).getPath()+"_glowing", getBlockRSL(RankineDataUtils.rl(blk).getPath()+"_glowing"))).addModel();
         }
         for (Block blk : Stream.of(RankineLists.MISC_SLABS).flatMap(Collection::stream).collect(Collectors.toList())) {
             slabBlock(blk,false);
@@ -217,7 +217,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         }
 
         for (Block blk : Stream.of(RankineLists.VANILLA_BRICKS_PRESSURE_PLATES).flatMap(Collection::stream).collect(Collectors.toList())) {
-            String name = blk.getRegistryName().getPath();
+            String name = RankineDataUtils.rl(blk).getPath();
             String baseStone = Arrays.asList(name.split("_pressure_plate")).get(0);
             pressurePlateBlock((RankineStonePressurePlate) blk, ResourceLocation.fromNamespaceAndPath("rankine", "block/" + baseStone));
         }
@@ -226,21 +226,21 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         sixSideCrossBlock(RankineBlocks.GWIHABAITE_CRYSTAL.get());
         crossBlock(RankineBlocks.STINGING_NETTLE.get());
         axisBlock((RotatedPillarBlock) RankineBlocks.BONE_CHAR_BLOCK.get());
-        simpleBlock(RankineBlocks.ALLUVIUM.get(), models().cubeColumn(RankineBlocks.ALLUVIUM.get().getRegistryName().getPath(), blockTexture(RankineBlocks.ALLUVIUM.get()), getBlockRSL("alluvium_end")));
-        simpleBlock(RankineBlocks.SAP_CAULDRON.get(), models().withExistingParent(RankineBlocks.SAP_CAULDRON.get().getRegistryName().getPath(), mcLoc("template_cauldron_full")).texture("content", getBlockRSL("sap_still")));
-        simpleBlock(RankineBlocks.MAPLE_SAP_CAULDRON.get(), models().withExistingParent(RankineBlocks.MAPLE_SAP_CAULDRON.get().getRegistryName().getPath(), mcLoc("template_cauldron_full")).texture("content", getBlockRSL("maple_sap_still")));
-        simpleBlock(RankineBlocks.MAPLE_SYRUP_CAULDRON.get(), models().withExistingParent(RankineBlocks.MAPLE_SYRUP_CAULDRON.get().getRegistryName().getPath(), mcLoc("template_cauldron_full")).texture("content", getBlockRSL("maple_syrup_still")));
-        simpleBlock(RankineBlocks.RESIN_CAULDRON.get(), models().withExistingParent(RankineBlocks.RESIN_CAULDRON.get().getRegistryName().getPath(), mcLoc("template_cauldron_full")).texture("content", getBlockRSL("resin_still")));
-        simpleBlock(RankineBlocks.LATEX_CAULDRON.get(), models().withExistingParent(RankineBlocks.LATEX_CAULDRON.get().getRegistryName().getPath(), mcLoc("template_cauldron_full")).texture("content", getBlockRSL("latex_still")));
-        simpleBlock(RankineBlocks.JUGLONE_CAULDRON.get(), models().withExistingParent(RankineBlocks.JUGLONE_CAULDRON.get().getRegistryName().getPath(), mcLoc("template_cauldron_full")).texture("content", getBlockRSL("juglone_still")));
+        simpleBlock(RankineBlocks.ALLUVIUM.get(), models().cubeColumn(RankineDataUtils.rl(RankineBlocks.ALLUVIUM.get()).getPath(), blockTexture(RankineBlocks.ALLUVIUM.get()), getBlockRSL("alluvium_end")));
+        simpleBlock(RankineBlocks.SAP_CAULDRON.get(), models().withExistingParent(RankineDataUtils.rl(RankineBlocks.SAP_CAULDRON.get()).getPath(), mcLoc("template_cauldron_full")).texture("content", getBlockRSL("sap_still")));
+        simpleBlock(RankineBlocks.MAPLE_SAP_CAULDRON.get(), models().withExistingParent(RankineDataUtils.rl(RankineBlocks.MAPLE_SAP_CAULDRON.get()).getPath(), mcLoc("template_cauldron_full")).texture("content", getBlockRSL("maple_sap_still")));
+        simpleBlock(RankineBlocks.MAPLE_SYRUP_CAULDRON.get(), models().withExistingParent(RankineDataUtils.rl(RankineBlocks.MAPLE_SYRUP_CAULDRON.get()).getPath(), mcLoc("template_cauldron_full")).texture("content", getBlockRSL("maple_syrup_still")));
+        simpleBlock(RankineBlocks.RESIN_CAULDRON.get(), models().withExistingParent(RankineDataUtils.rl(RankineBlocks.RESIN_CAULDRON.get()).getPath(), mcLoc("template_cauldron_full")).texture("content", getBlockRSL("resin_still")));
+        simpleBlock(RankineBlocks.LATEX_CAULDRON.get(), models().withExistingParent(RankineDataUtils.rl(RankineBlocks.LATEX_CAULDRON.get()).getPath(), mcLoc("template_cauldron_full")).texture("content", getBlockRSL("latex_still")));
+        simpleBlock(RankineBlocks.JUGLONE_CAULDRON.get(), models().withExistingParent(RankineDataUtils.rl(RankineBlocks.JUGLONE_CAULDRON.get()).getPath(), mcLoc("template_cauldron_full")).texture("content", getBlockRSL("juglone_still")));
 
         for (Block BLK : RankineLists.LANTERNS) {
             lanternBlock(BLK);
         }
         for (Block BLK : Stream.of(RankineLists.SHEETMETALS,RankineLists.ALLOY_SHEETMETALS).flatMap(Collection::stream).collect(Collectors.toList())) {
-            getVariantBuilder(BLK).partialState().modelForState().modelFile(models().withExistingParent(BLK.getRegistryName().getPath(), modLoc("alloy_sheetmetal"))).addModel();
+            getVariantBuilder(BLK).partialState().modelForState().modelFile(models().withExistingParent(RankineDataUtils.rl(BLK).getPath(), modLoc("alloy_sheetmetal"))).addModel();
         }
-        //getVariantBuilder(RankineBlocks.ENDER_SHIRO.get()).partialState().modelForState().modelFile(models().cubeBottomTop(RankineBlocks.ENDER_SHIRO.get().getRegistryName().getPath(), getRSL("ender_shiro_side"), getRSL("minecraft","end_stone"), getRSL("ender_shiro_top"))).addModel();
+        //getVariantBuilder(RankineBlocks.ENDER_SHIRO.get()).partialState().modelForState().modelFile(models().cubeBottomTop(RankineDataUtils.rl(RankineBlocks.ENDER_SHIRO.get()).getPath(), getRSL("ender_shiro_side"), getRSL("minecraft","end_stone"), getRSL("ender_shiro_top"))).addModel();
 
         getVariantBuilder(RankineBlocks.TILLED_SOIL.get()).forAllStates(state -> {
             int MOISTURE = state.getValue(TilledSoilBlock.MOISTURE);
@@ -258,17 +258,17 @@ public class RankineBlockStateProvider extends BlockStateProvider {
                 case SANDY_CLAY:
                 case SILTY_CLAY:
                 case SANDY_LOAM:
-                     DRY = models().withExistingParent(RankineBlocks.TILLED_SOIL.get().getRegistryName().getPath()+"_"+TYPE.getSerializedName(), mcLoc("block/template_farmland")).texture("dirt", getBlockRSL(TYPE.getSerializedName())).texture("top", getBlockRSL(TYPE.getSerializedName()+"_farmland"));
-                     MOIST = models().withExistingParent(RankineBlocks.TILLED_SOIL.get().getRegistryName().getPath()+"_"+TYPE.getSerializedName()+"_moist", mcLoc("block/template_farmland")).texture("dirt", getBlockRSL(TYPE.getSerializedName())).texture("top", getBlockRSL(TYPE.getSerializedName()+"_farmland_moist"));
+                     DRY = models().withExistingParent(RankineDataUtils.rl(RankineBlocks.TILLED_SOIL.get()).getPath()+"_"+TYPE.getSerializedName(), mcLoc("block/template_farmland")).texture("dirt", getBlockRSL(TYPE.getSerializedName())).texture("top", getBlockRSL(TYPE.getSerializedName()+"_farmland"));
+                     MOIST = models().withExistingParent(RankineDataUtils.rl(RankineBlocks.TILLED_SOIL.get()).getPath()+"_"+TYPE.getSerializedName()+"_moist", mcLoc("block/template_farmland")).texture("dirt", getBlockRSL(TYPE.getSerializedName())).texture("top", getBlockRSL(TYPE.getSerializedName()+"_farmland_moist"));
                     break;
                 case SOUL_SOIL:
-                    DRY = models().withExistingParent(RankineBlocks.TILLED_SOIL.get().getRegistryName().getPath()+"_"+TYPE.getSerializedName(), mcLoc("block/template_farmland")).texture("dirt", ResourceLocation.fromNamespaceAndPath("minecraft", "block/"+TYPE.getSerializedName())).texture("top", getBlockRSL(TYPE.getSerializedName()+"_farmland"));
-                    MOIST = models().withExistingParent(RankineBlocks.TILLED_SOIL.get().getRegistryName().getPath()+"_"+TYPE.getSerializedName()+"_moist", mcLoc("block/template_farmland")).texture("dirt", ResourceLocation.fromNamespaceAndPath("minecraft", "block/"+TYPE.getSerializedName())).texture("top", getBlockRSL(TYPE.getSerializedName()+"_farmland_moist"));
+                    DRY = models().withExistingParent(RankineDataUtils.rl(RankineBlocks.TILLED_SOIL.get()).getPath()+"_"+TYPE.getSerializedName(), mcLoc("block/template_farmland")).texture("dirt", ResourceLocation.fromNamespaceAndPath("minecraft", "block/"+TYPE.getSerializedName())).texture("top", getBlockRSL(TYPE.getSerializedName()+"_farmland"));
+                    MOIST = models().withExistingParent(RankineDataUtils.rl(RankineBlocks.TILLED_SOIL.get()).getPath()+"_"+TYPE.getSerializedName()+"_moist", mcLoc("block/template_farmland")).texture("dirt", ResourceLocation.fromNamespaceAndPath("minecraft", "block/"+TYPE.getSerializedName())).texture("top", getBlockRSL(TYPE.getSerializedName()+"_farmland_moist"));
                     break;
                 case DIRT:
                 default:
-                    DRY = models().withExistingParent(RankineBlocks.TILLED_SOIL.get().getRegistryName().getPath()+"_"+TYPE.getSerializedName(), mcLoc("block/template_farmland")).texture("dirt", ResourceLocation.fromNamespaceAndPath("minecraft", "block/"+TYPE.getSerializedName())).texture("top", ResourceLocation.parse("minecraft:block/farmland"));
-                    MOIST = models().withExistingParent(RankineBlocks.TILLED_SOIL.get().getRegistryName().getPath()+"_"+TYPE.getSerializedName()+"_moist", mcLoc("block/template_farmland")).texture("dirt", ResourceLocation.fromNamespaceAndPath("minecraft", "block/"+TYPE.getSerializedName())).texture("top", ResourceLocation.parse("minecraft:block/farmland_moist"));
+                    DRY = models().withExistingParent(RankineDataUtils.rl(RankineBlocks.TILLED_SOIL.get()).getPath()+"_"+TYPE.getSerializedName(), mcLoc("block/template_farmland")).texture("dirt", ResourceLocation.fromNamespaceAndPath("minecraft", "block/"+TYPE.getSerializedName())).texture("top", ResourceLocation.parse("minecraft:block/farmland"));
+                    MOIST = models().withExistingParent(RankineDataUtils.rl(RankineBlocks.TILLED_SOIL.get()).getPath()+"_"+TYPE.getSerializedName()+"_moist", mcLoc("block/template_farmland")).texture("dirt", ResourceLocation.fromNamespaceAndPath("minecraft", "block/"+TYPE.getSerializedName())).texture("top", ResourceLocation.parse("minecraft:block/farmland_moist"));
                     break;
             }
 
@@ -278,7 +278,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         getVariantBuilder(RankineBlocks.AGED_CHEESE.get()).forAllStates(state -> {
             int BITES = state.get(CakeBlock.BITES);
             return ConfiguredModel.builder()
-                    .modelFile(models().withExistingParent(RankineBlocks.AGED_CHEESE.get().getRegistryName().getPath()+"_slice"+(BITES),mcLoc("block/block"))
+                    .modelFile(models().withExistingParent(RankineDataUtils.rl(RankineBlocks.AGED_CHEESE.get()).getPath()+"_slice"+(BITES),mcLoc("block/block"))
                             .texture("particle", texture)
                             .texture("top", texture)
                             .texture("side", texture)
@@ -302,7 +302,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
 
 
         for (Block BLOCK : RankineLists.EIGHT_LAYER_BLOCKS) {
-            String NAME = BLOCK.getRegistryName().getPath();
+            String NAME = RankineDataUtils.rl(BLOCK).getPath();
             ResourceLocation texture = ResourceLocation.fromNamespaceAndPath("rankine","block/"+NAME);
             getVariantBuilder(BLOCK).forAllStates(state -> {
                 int i = state.getValue(RankineEightLayerBlock.LAYERS);
@@ -322,7 +322,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
 
         /*
         for (Block BLOCK : RankineLists.STONE_PILLARS) {
-            String NAME = BLOCK.getRegistryName().getPath();
+            String NAME = RankineDataUtils.rl(BLOCK).getPath();
             ResourceLocation texture = ResourceLocation.fromNamespaceAndPath("rankine","block/"+NAME);
             getVariantBuilder(BLOCK).forAllStatesExcept(state -> {
                 int i = state.get(PillarBlock.SIZE);
@@ -347,9 +347,9 @@ public class RankineBlockStateProvider extends BlockStateProvider {
             getVariantBuilder(CROP).forAllStates(state -> {
                 int i = state.getValue(CropBlock.AGE);
                 if (CROP.equals(RankineBlocks.RICE_PLANT.get()) || CROP.equals(RankineBlocks.SOYBEAN_PLANT.get()) || CROP.equals(RankineBlocks.CAMPHOR_BASIL_PLANT.get())) {
-                    return ConfiguredModel.builder().modelFile(models().cross(CROP.getRegistryName().getPath()+"_stage"+i,modLoc("block/"+CROP.getRegistryName().getPath()+"_stage"+i))).build();
+                    return ConfiguredModel.builder().modelFile(models().cross(RankineDataUtils.rl(CROP).getPath()+"_stage"+i,modLoc("block/"+RankineDataUtils.rl(CROP).getPath()+"_stage"+i))).build();
                 } else {
-                    return ConfiguredModel.builder().modelFile(models().crop(CROP.getRegistryName().getPath() + "_stage" + i, modLoc("block/" + CROP.getRegistryName().getPath() + "_stage" + i))).build();
+                    return ConfiguredModel.builder().modelFile(models().crop(RankineDataUtils.rl(CROP).getPath() + "_stage" + i, modLoc("block/" + RankineDataUtils.rl(CROP).getPath() + "_stage" + i))).build();
                 }
             });
         }
@@ -363,9 +363,9 @@ public class RankineBlockStateProvider extends BlockStateProvider {
                     MODEL = models().withExistingParent("air",mcLoc("block/air"));
                 } else {
                     if (CROP.equals(RankineBlocks.BARLEY_PLANT.get()) || CROP.equals(RankineBlocks.RYE_PLANT.get())) {
-                        MODEL = models().crop(CROP.getRegistryName().getPath()+"_"+SECTION+"_stage"+AGE,modLoc("block/"+CROP.getRegistryName().getPath()+"_"+SECTION+"_stage"+AGE));
+                        MODEL = models().crop(RankineDataUtils.rl(CROP).getPath()+"_"+SECTION+"_stage"+AGE,modLoc("block/"+RankineDataUtils.rl(CROP).getPath()+"_"+SECTION+"_stage"+AGE));
                     } else {
-                        MODEL = models().cross(CROP.getRegistryName().getPath()+"_"+SECTION+"_stage"+AGE,modLoc("block/"+CROP.getRegistryName().getPath()+"_"+SECTION+"_stage"+AGE));
+                        MODEL = models().cross(RankineDataUtils.rl(CROP).getPath()+"_"+SECTION+"_stage"+AGE,modLoc("block/"+RankineDataUtils.rl(CROP).getPath()+"_"+SECTION+"_stage"+AGE));
                     }
                 }
                 return ConfiguredModel.builder().modelFile(MODEL).build();
@@ -380,8 +380,8 @@ public class RankineBlockStateProvider extends BlockStateProvider {
                     MODEL = models().withExistingParent("air",mcLoc("block/air"));
                 } else {
                     MODEL = CROP.equals(RankineBlocks.JUTE_PLANT.get()) || CROP.equals(RankineBlocks.SORGHUM_PLANT.get()) ?
-                            models().crop(CROP.getRegistryName().getPath()+"_"+SECTION+"_age"+AGE,modLoc("block/"+CROP.getRegistryName().getPath()+"_"+SECTION+"_age"+AGE)) :
-                            models().cross(CROP.getRegistryName().getPath()+"_"+SECTION+"_age"+AGE,modLoc("block/"+CROP.getRegistryName().getPath()+"_"+SECTION+"_age"+AGE));
+                            models().crop(RankineDataUtils.rl(CROP).getPath()+"_"+SECTION+"_age"+AGE,modLoc("block/"+RankineDataUtils.rl(CROP).getPath()+"_"+SECTION+"_age"+AGE)) :
+                            models().cross(RankineDataUtils.rl(CROP).getPath()+"_"+SECTION+"_age"+AGE,modLoc("block/"+RankineDataUtils.rl(CROP).getPath()+"_"+SECTION+"_age"+AGE));
                 }
                 return ConfiguredModel.builder().modelFile(MODEL).build();
             });
@@ -391,22 +391,22 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         for (Block BUSH : RankineLists.BUSH_PLANTS) {
             getVariantBuilder(BUSH).forAllStates(state -> {
                 int i = state.getValue(RankinePlantBlock.AGE);
-                return ConfiguredModel.builder().modelFile(models().cross(BUSH.getRegistryName().getPath()+"_stage"+i,modLoc("block/"+BUSH.getRegistryName().getPath()+"_stage"+i))).build();
+                return ConfiguredModel.builder().modelFile(models().cross(RankineDataUtils.rl(BUSH).getPath()+"_stage"+i,modLoc("block/"+RankineDataUtils.rl(BUSH).getPath()+"_stage"+i))).build();
             });
         }
         for (Block BUSH : RankineLists.DOUBLE_BUSH_PLANTS) {
             getVariantBuilder(BUSH).forAllStates(state -> {
                 int AGE = state.getValue(RankinePlantBlock.AGE);
                 String STAGE = state.getValue(RankineDoublePlantBlock.SECTION).toString();
-                return ConfiguredModel.builder().modelFile(models().cross(BUSH.getRegistryName().getPath()+"_"+STAGE+"_stage"+AGE,modLoc("block/"+BUSH.getRegistryName().getPath()+"_"+STAGE+"_stage"+AGE))).build();
+                return ConfiguredModel.builder().modelFile(models().cross(RankineDataUtils.rl(BUSH).getPath()+"_"+STAGE+"_stage"+AGE,modLoc("block/"+RankineDataUtils.rl(BUSH).getPath()+"_"+STAGE+"_stage"+AGE))).build();
             });
         }
         for (Block blk : RankineLists.METAL_DOORS) {
-            String name = blk.getRegistryName().getPath();
+            String name = RankineDataUtils.rl(blk).getPath();
             doorBlock((RankineMetalDoor) blk, ResourceLocation.fromNamespaceAndPath("rankine","block/"+name+"_bottom"), ResourceLocation.fromNamespaceAndPath("rankine","block/"+name+"_top"));
         }
         for (Block blk : RankineLists.METAL_TRAPDOORS) {
-            String name = blk.getRegistryName().getPath();
+            String name = RankineDataUtils.rl(blk).getPath();
             trapdoorBlock((RankineMetalTrapdoor) blk, ResourceLocation.fromNamespaceAndPath("rankine","block/"+name), true);
         }
 
@@ -418,7 +418,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         }
         /*
         for (Block blk : RankineLists.GAS_TUBES) {
-            String PATH = blk.getRegistryName().getPath();
+            String PATH = RankineDataUtils.rl(blk).getPath();
             ModelFile MODEL = models().withExistingParent(PATH, modLoc("block/template_gas_tube")).texture("gas", getBlockRSL(PATH.replace("tube","block")));
             getVariantBuilder(blk)
                     .partialState().with(RotatedPillarBlock.AXIS, Direction.Axis.Y)
@@ -434,7 +434,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
 
         //Ores
         for (Block blk : Stream.of(RankineLists.NATIVE_ORES, RankineLists.CRUSHING_ORES, RankineLists.SPECIAL_ORES).flatMap(Collection::stream).collect(Collectors.toList())) {
-            String regName = blk.getRegistryName().getPath();
+            String regName = RankineDataUtils.rl(blk).getPath();
 
             getVariantBuilder(blk).forAllStates(state -> {
                 int i = state.getValue(RankineOreBlock.TYPE);
@@ -461,21 +461,21 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         for (Block PODZOL : RankineLists.PODZOL_BLOCKS) {
             Block SOIL = RankineLists.SOIL_BLOCKS.get(RankineLists.PODZOL_BLOCKS.indexOf(PODZOL));
             getVariantBuilder(PODZOL)
-                    .partialState().with(BlockStateProperties.SNOWY,false).modelForState().modelFile(models().cubeBottomTop(PODZOL.getRegistryName().getPath(), getBlockRSL(PODZOL.getRegistryName().getPath()), getBlockRSL(SOIL.getRegistryName().getPath()),getBlockRSL("minecraft","podzol_top"))).addModel()
-                    .partialState().with(BlockStateProperties.SNOWY,true).modelForState().modelFile(new ModelFile.ExistingModelFile(getBlockRSL(SOIL.getRegistryName().getPath()+"_grass_block_snow"),models().existingFileHelper)).addModel();
+                    .partialState().with(BlockStateProperties.SNOWY,false).modelForState().modelFile(models().cubeBottomTop(RankineDataUtils.rl(PODZOL).getPath(), getBlockRSL(RankineDataUtils.rl(PODZOL).getPath()), getBlockRSL(RankineDataUtils.rl(SOIL).getPath()),getBlockRSL("minecraft","podzol_top"))).addModel()
+                    .partialState().with(BlockStateProperties.SNOWY,true).modelForState().modelFile(new ModelFile.ExistingModelFile(getBlockRSL(RankineDataUtils.rl(SOIL).getPath()+"_grass_block_snow"),models().existingFileHelper)).addModel();
         }
         for (Block MYCELIUM : RankineLists.MYCELIUM_BLOCKS) {
             Block SOIL = RankineLists.SOIL_BLOCKS.get(RankineLists.MYCELIUM_BLOCKS.indexOf(MYCELIUM));
             getVariantBuilder(MYCELIUM)
-                    .partialState().with(BlockStateProperties.SNOWY,false).modelForState().modelFile(models().cubeBottomTop(MYCELIUM.getRegistryName().getPath(), getBlockRSL(MYCELIUM.getRegistryName().getPath()), getBlockRSL(SOIL.getRegistryName().getPath()),getBlockRSL("minecraft","mycelium_top"))).addModel()
-                    .partialState().with(BlockStateProperties.SNOWY,true).modelForState().modelFile(new ModelFile.ExistingModelFile(getBlockRSL(SOIL.getRegistryName().getPath()+"_grass_block_snow"),models().existingFileHelper)).addModel();
+                    .partialState().with(BlockStateProperties.SNOWY,false).modelForState().modelFile(models().cubeBottomTop(RankineDataUtils.rl(MYCELIUM).getPath(), getBlockRSL(RankineDataUtils.rl(MYCELIUM).getPath()), getBlockRSL(RankineDataUtils.rl(SOIL).getPath()),getBlockRSL("minecraft","mycelium_top"))).addModel()
+                    .partialState().with(BlockStateProperties.SNOWY,true).modelForState().modelFile(new ModelFile.ExistingModelFile(getBlockRSL(RankineDataUtils.rl(SOIL).getPath()+"_grass_block_snow"),models().existingFileHelper)).addModel();
         }
         for (Block PATH : RankineLists.PATH_BLOCKS) {
-            String regName = PATH.getRegistryName().getPath();
+            String regName = RankineDataUtils.rl(PATH).getPath();
             Block SOIL = RankineLists.SOIL_BLOCKS.get(RankineLists.PATH_BLOCKS.indexOf(PATH));
             ResourceLocation TOP = ResourceLocation.fromNamespaceAndPath("rankine","block/"+regName+"_top");
             ResourceLocation SIDE = ResourceLocation.fromNamespaceAndPath("rankine","block/"+regName+"_side");
-            ResourceLocation BOTTOM = ResourceLocation.fromNamespaceAndPath("rankine","block/"+SOIL.getRegistryName().getPath());
+            ResourceLocation BOTTOM = ResourceLocation.fromNamespaceAndPath("rankine","block/"+RankineDataUtils.rl(SOIL).getPath());
             pathBlock(PATH, ResourceLocation.fromNamespaceAndPath("minecraft","block/dirt_path_top"), SIDE, BOTTOM);
         }
         pathBlock(RankineBlocks.MYCELIUM_PATH.get(), ResourceLocation.fromNamespaceAndPath("rankine","block/mycelium_path_top"), ResourceLocation.fromNamespaceAndPath("rankine","block/mycelium_path_side"), ResourceLocation.fromNamespaceAndPath("minecraft","block/dirt"));
@@ -513,7 +513,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         }
         for (Block blk : RankineLists.FIBER_MAT) {
             Block fiberBlock = RankineLists.FIBER_BLOCK.get(RankineLists.FIBER_MAT.indexOf(blk));
-            fiberMatBlock((FiberMatBlock) blk, ResourceLocation.fromNamespaceAndPath("rankine","block/"+fiberBlock.getRegistryName().getPath()));
+            fiberMatBlock((FiberMatBlock) blk, ResourceLocation.fromNamespaceAndPath("rankine","block/"+RankineDataUtils.rl(fiberBlock).getPath()));
         }
         for (Block blk : RankineLists.FLUID_BLOCKS) {
             fluidBlock(blk);
@@ -531,9 +531,9 @@ public class RankineBlockStateProvider extends BlockStateProvider {
 
         getVariantBuilder(RankineBlocks.SHORT_GRASS.get())
                 .partialState().modelForState()
-                .modelFile(models().withExistingParent(RankineBlocks.SHORT_GRASS.get().getRegistryName().getPath()+"0", mcLoc("block/tinted_cross")).texture("cross", "block/"+RankineBlocks.SHORT_GRASS.get().getRegistryName().getPath()+"0")).weight(2).nextModel()
-                .modelFile(models().withExistingParent(RankineBlocks.SHORT_GRASS.get().getRegistryName().getPath()+"1", mcLoc("block/tinted_cross")).texture("cross", "block/"+RankineBlocks.SHORT_GRASS.get().getRegistryName().getPath()+"1")).weight(1).nextModel()
-                .modelFile(models().withExistingParent(RankineBlocks.SHORT_GRASS.get().getRegistryName().getPath()+"2", mcLoc("block/tinted_cross")).texture("cross", "block/"+RankineBlocks.SHORT_GRASS.get().getRegistryName().getPath()+"2")).weight(1).addModel();
+                .modelFile(models().withExistingParent(RankineDataUtils.rl(RankineBlocks.SHORT_GRASS.get()).getPath()+"0", mcLoc("block/tinted_cross")).texture("cross", "block/"+RankineDataUtils.rl(RankineBlocks.SHORT_GRASS.get()).getPath()+"0")).weight(2).nextModel()
+                .modelFile(models().withExistingParent(RankineDataUtils.rl(RankineBlocks.SHORT_GRASS.get()).getPath()+"1", mcLoc("block/tinted_cross")).texture("cross", "block/"+RankineDataUtils.rl(RankineBlocks.SHORT_GRASS.get()).getPath()+"1")).weight(1).nextModel()
+                .modelFile(models().withExistingParent(RankineDataUtils.rl(RankineBlocks.SHORT_GRASS.get()).getPath()+"2", mcLoc("block/tinted_cross")).texture("cross", "block/"+RankineDataUtils.rl(RankineBlocks.SHORT_GRASS.get()).getPath()+"2")).weight(1).addModel();
 
         for (Block blk : RankineLists.WALL_MUSHROOMS) {
             wallMushroom(blk);
@@ -542,42 +542,42 @@ public class RankineBlockStateProvider extends BlockStateProvider {
             if (blk.equals(RankineBlocks.ASPHALT.get())) {
                 asphaltBlock(blk, getBlockRSL("asphalt"), getBlockRSL("asphalt"));
             } else {
-                asphaltBlock(blk, getBlockRSL("asphalt"), getBlockRSL(blk.getRegistryName().getPath()));
+                asphaltBlock(blk, getBlockRSL("asphalt"), getBlockRSL(RankineDataUtils.rl(blk).getPath()));
             }
         }
         for (Block blk : RankineLists.RED_ASPHALT_BLOCKS) {
             if (blk.equals(RankineBlocks.RED_ASPHALT.get())) {
                 asphaltBlock(blk, getBlockRSL("red_asphalt"),getBlockRSL("red_asphalt"));
             } else {
-                asphaltBlock(blk, getBlockRSL("red_asphalt"),getBlockRSL(blk.getRegistryName().getPath().replace("red_","")));
+                asphaltBlock(blk, getBlockRSL("red_asphalt"),getBlockRSL(RankineDataUtils.rl(blk).getPath().replace("red_","")));
             }
         }
         for (Block blk : RankineLists.GRAY_ASPHALT_BLOCKS) {
             if (blk.equals(RankineBlocks.GRAY_ASPHALT.get())) {
                 asphaltBlock(blk, getBlockRSL("gray_asphalt"),getBlockRSL("gray_asphalt"));
             } else {
-                asphaltBlock(blk, getBlockRSL("gray_asphalt"),getBlockRSL(blk.getRegistryName().getPath().replace("gray_","")));
+                asphaltBlock(blk, getBlockRSL("gray_asphalt"),getBlockRSL(RankineDataUtils.rl(blk).getPath().replace("gray_","")));
             }
         }
         for (Block blk : RankineLists.DARK_GRAY_ASPHALT_BLOCKS) {
             if (blk.equals(RankineBlocks.DARK_GRAY_ASPHALT.get())) {
                 asphaltBlock(blk, getBlockRSL("dark_gray_asphalt"),getBlockRSL("dark_gray_asphalt"));
             } else {
-                asphaltBlock(blk, getBlockRSL("dark_gray_asphalt"),getBlockRSL(blk.getRegistryName().getPath().replace("dark_gray_","")));
+                asphaltBlock(blk, getBlockRSL("dark_gray_asphalt"),getBlockRSL(RankineDataUtils.rl(blk).getPath().replace("dark_gray_","")));
             }
         }
         for (Block blk : RankineLists.BLUE_ASPHALT_BLOCKS) {
             if (blk.equals(RankineBlocks.BLUE_ASPHALT.get())) {
                 asphaltBlock(blk, getBlockRSL("blue_asphalt"),getBlockRSL("blue_asphalt"));
             } else {
-                asphaltBlock(blk, getBlockRSL("blue_asphalt"),getBlockRSL(blk.getRegistryName().getPath().replace("blue_","")));
+                asphaltBlock(blk, getBlockRSL("blue_asphalt"),getBlockRSL(RankineDataUtils.rl(blk).getPath().replace("blue_","")));
             }
         }
         for (Block blk : RankineLists.GREEN_ASPHALT_BLOCKS) {
             if (blk.equals(RankineBlocks.GREEN_ASPHALT.get())) {
                 asphaltBlock(blk, getBlockRSL("green_asphalt"),getBlockRSL("green_asphalt"));
             } else {
-                asphaltBlock(blk, getBlockRSL("green_asphalt"),getBlockRSL(blk.getRegistryName().getPath().replace("green_","")));
+                asphaltBlock(blk, getBlockRSL("green_asphalt"),getBlockRSL(RankineDataUtils.rl(blk).getPath().replace("green_","")));
             }
         }
 
@@ -589,11 +589,11 @@ public class RankineBlockStateProvider extends BlockStateProvider {
             doublePlant(blk);
         }
         for (Block blk : RankineLists.GLAZED_PORCELAIN_BLOCKS) {
-            getVariantBuilder(blk).forAllStates(state -> ConfiguredModel.builder().modelFile(models().withExistingParent(blk.getRegistryName().getPath()+state.getValue(((BuildingModeBlock) blk).getProperty()), modLoc("template_glazed_porcelain")).texture("overlay", getBlockRSL("glazed_porcelain"+state.getValue(((BuildingModeBlock) blk).getProperty())))).rotationY((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot()).build());
+            getVariantBuilder(blk).forAllStates(state -> ConfiguredModel.builder().modelFile(models().withExistingParent(RankineDataUtils.rl(blk).getPath()+state.getValue(((BuildingModeBlock) blk).getProperty()), modLoc("template_glazed_porcelain")).texture("overlay", getBlockRSL("glazed_porcelain"+state.getValue(((BuildingModeBlock) blk).getProperty())))).rotationY((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot()).build());
         }
         triplePlant(RankineBlocks.CORN_STALK.get());
         pillarFour(RankineBlocks.ROPE.get());
-        simpleBlock(RankineBlocks.STICK_BLOCK.get(), models().cubeBottomTop(RankineBlocks.STICK_BLOCK.get().getRegistryName().getPath(), getBlockRSL("stick_block_side"), getBlockRSL("stick_block_top"), getBlockRSL("stick_block_top")));
+        simpleBlock(RankineBlocks.STICK_BLOCK.get(), models().cubeBottomTop(RankineDataUtils.rl(RankineBlocks.STICK_BLOCK.get()).getPath(), getBlockRSL("stick_block_side"), getBlockRSL("stick_block_top"), getBlockRSL("stick_block_top")));
 
 
         //MACHINES
@@ -601,7 +601,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
             Direction facing = state.getValue(GroundTapBlock.FACING);
             int yRot = (int) facing.toYRot();
             return ConfiguredModel.builder()
-                    .modelFile(models().withExistingParent(RankineBlocks.GROUND_TAP.get().getRegistryName().getPath(), modLoc("block/template_ground_tap")).texture("side","block/metal_pipe"))
+                    .modelFile(models().withExistingParent(RankineDataUtils.rl(RankineBlocks.GROUND_TAP.get()).getPath(), modLoc("block/template_ground_tap")).texture("side","block/metal_pipe"))
                     .rotationY(facing.getAxis() == Direction.Axis.Y ? 0 : (yRot+180)%360)
                     .rotationX(facing == Direction.UP ? 0 : facing == Direction.DOWN ? 180 : 90)
                     .build();
@@ -613,12 +613,12 @@ public class RankineBlockStateProvider extends BlockStateProvider {
                     return ConfiguredModel.builder().modelFile(CONNECTED ? models().getExistingFile(getBlockRSL("tree_tap_connected")) : models().getExistingFile(getBlockRSL("tree_tap"))).rotationY(((int) state.getValue(TreeTapBlock.FACING).toYRot()+180)%360).build();
                 });
 
-        getVariantBuilder(RankineBlocks.FLOOD_GATE.get()).forAllStatesExcept(state -> ConfiguredModel.builder().modelFile(models().cubeAll(RankineBlocks.FLOOD_GATE.get().getRegistryName().getPath(), getBlockRSL(RankineBlocks.FLOOD_GATE.get().getRegistryName().getPath()))).build(), BlockStateProperties.WATERLOGGED);
+        getVariantBuilder(RankineBlocks.FLOOD_GATE.get()).forAllStatesExcept(state -> ConfiguredModel.builder().modelFile(models().cubeAll(RankineDataUtils.rl(RankineBlocks.FLOOD_GATE.get()).getPath(), getBlockRSL(RankineDataUtils.rl(RankineBlocks.FLOOD_GATE.get()).getPath()))).build(), BlockStateProperties.WATERLOGGED);
 
 
         //simpleBlock(RankineBlocks.LASER_QUARRY.get());
-        directionalBlock(RankineBlocks.GAS_VENT.get(),models().cubeColumnHorizontal(RankineBlocks.GAS_VENT.get().getRegistryName().getPath(),getBlockRSL("gas_vent_side"),getBlockRSL("gas_vent_end")));
-        directionalBlock(RankineBlocks.GAS_BOTTLER.get(),models().orientableVertical(RankineBlocks.GAS_BOTTLER.get().getRegistryName().getPath(),getBlockRSL("gas_bottler_side"),getBlockRSL("gas_bottler_end")));
+        directionalBlock(RankineBlocks.GAS_VENT.get(),models().cubeColumnHorizontal(RankineDataUtils.rl(RankineBlocks.GAS_VENT.get()).getPath(),getBlockRSL("gas_vent_side"),getBlockRSL("gas_vent_end")));
+        directionalBlock(RankineBlocks.GAS_BOTTLER.get(),models().orientableVertical(RankineDataUtils.rl(RankineBlocks.GAS_BOTTLER.get()).getPath(),getBlockRSL("gas_bottler_side"),getBlockRSL("gas_bottler_end")));
         cobBlock(RankineBlocks.COB.get());
         ornamentBlock(RankineBlocks.ORNAMENT.get());
         simpleBlock(RankineBlocks.DISTILLATION_TOWER.get());
@@ -632,17 +632,17 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         simpleBlock(RankineBlocks.HYDROGEN_SULFIDE_FUMAROLE.get());
         simpleBlock(RankineBlocks.SULFUR_DIOXIDE_FUMAROLE.get());
         directionalBlock(RankineBlocks.HEATING_ELEMENT_1.get(),models().cubeBottomTop("heating_element_1",getBlockRSL("heating_element_side"), getBlockRSL("heating_element_bottom"), getBlockRSL("heating_element_top")));
-        simpleBlock(RankineBlocks.PCF.get(), models().orientable(RankineBlocks.PCF.get().getRegistryName().getPath(), getBlockRSL("pcf_side"), getBlockRSL("pcf_front"), getBlockRSL("pcf_top")));
-        simpleBlock(RankineBlocks.BOTANIST_STATION.get(), models().orientable(RankineBlocks.BOTANIST_STATION.get().getRegistryName().getPath(), getBlockRSL("botanist_station_side"), getBlockRSL("botanist_station_front"), getBlockRSL("botanist_station_top")));
-        simpleBlock(RankineBlocks.TEMPLATE_TABLE.get(), models().orientable(RankineBlocks.TEMPLATE_TABLE.get().getRegistryName().getPath(), getBlockRSL("template_table_side"), getBlockRSL("template_table_front"), getBlockRSL("template_table_top")));
-        simpleBlock(RankineBlocks.MATERIAL_TESTING_TABLE.get(), models().orientable(RankineBlocks.MATERIAL_TESTING_TABLE.get().getRegistryName().getPath(), getBlockRSL("material_testing_table_side"), getBlockRSL("material_testing_table_front"), getBlockRSL("material_testing_table_top")));
-        simpleBlock(RankineBlocks.EVAPORATION_TOWER.get(), models().cubeBottomTop(RankineBlocks.EVAPORATION_TOWER.get().getRegistryName().getPath(), getBlockRSL("evaporation_tower_side"), getBlockRSL("evaporation_tower_bottom"), getBlockRSL("evaporation_tower_top")));
-        onOffBlock(RankineBlocks.CHARCOAL_PIT.get(), models().cubeBottomTop(RankineBlocks.CHARCOAL_PIT.get().getRegistryName().getPath(), getBlockRSL("charcoal_pit_side"), getBlockRSL("charcoal_pit_top"), getBlockRSL("charcoal_pit_top")), models().cubeBottomTop(RankineBlocks.CHARCOAL_PIT.get().getRegistryName().getPath()+"_on", getBlockRSL("charcoal_pit_side"), getBlockRSL("charcoal_pit_top_on"), getBlockRSL("charcoal_pit_top_on")));
-        onOffBlock(RankineBlocks.BEEHIVE_OVEN_PIT.get(), models().cubeTop(RankineBlocks.BEEHIVE_OVEN_PIT.get().getRegistryName().getPath(), ResourceLocation.fromNamespaceAndPath("rankine", "block/refractory_bricks"), ResourceLocation.fromNamespaceAndPath("rankine", "block/beehive_oven")), models().cubeTop(RankineBlocks.BEEHIVE_OVEN_PIT.get().getRegistryName().getPath()+"_on", ResourceLocation.fromNamespaceAndPath("rankine", "block/refractory_bricks"), ResourceLocation.fromNamespaceAndPath("rankine", "block/beehive_oven_on")));
-        onOffBlock(RankineBlocks.ALLOY_FURNACE.get(), models().cubeBottomTop(RankineBlocks.ALLOY_FURNACE.get().getRegistryName().getPath(), getBlockRSL("alloy_furnace_front"), getBlockRSL("refractory_bricks"), getBlockRSL("alloy_furnace_top")), models().cubeBottomTop(RankineBlocks.ALLOY_FURNACE.get().getRegistryName().getPath()+"_on", getBlockRSL("alloy_furnace_front_on"), getBlockRSL("refractory_bricks"), getBlockRSL("alloy_furnace_top")));
-        rotateableMachineBlock(RankineBlocks.INDUCTION_FURNACE.get(), models().orientable(RankineBlocks.INDUCTION_FURNACE.get().getRegistryName().getPath(), getBlockRSL("induction_furnace_side"), getBlockRSL("induction_furnace_front"), getBlockRSL("induction_furnace_top")), models().orientable(RankineBlocks.INDUCTION_FURNACE.get().getRegistryName().getPath()+"_on", getBlockRSL("induction_furnace_side"), getBlockRSL("induction_furnace_front"), getBlockRSL("induction_furnace_top_on")));
-        rotateableMachineBlock(RankineBlocks.FUSION_FURNACE.get(), models().orientable(RankineBlocks.FUSION_FURNACE.get().getRegistryName().getPath(), getBlockRSL("fusion_furnace_side"), getBlockRSL("fusion_furnace_front"), getBlockRSL("fusion_furnace_top")), models().orientable(RankineBlocks.FUSION_FURNACE.get().getRegistryName().getPath()+"_on", getBlockRSL("fusion_furnace_side"), getBlockRSL("fusion_furnace_front_on"), getBlockRSL("fusion_furnace_top")));
-        directionalBlock(RankineBlocks.BATTERY_CHARGER.get(), models().orientable(RankineBlocks.BATTERY_CHARGER.get().getRegistryName().getPath(), getBlockRSL("battery_charger_side"), getBlockRSL("battery_charger_front"), getBlockRSL("battery_charger_top")));
+        simpleBlock(RankineBlocks.PCF.get(), models().orientable(RankineDataUtils.rl(RankineBlocks.PCF.get()).getPath(), getBlockRSL("pcf_side"), getBlockRSL("pcf_front"), getBlockRSL("pcf_top")));
+        simpleBlock(RankineBlocks.BOTANIST_STATION.get(), models().orientable(RankineDataUtils.rl(RankineBlocks.BOTANIST_STATION.get()).getPath(), getBlockRSL("botanist_station_side"), getBlockRSL("botanist_station_front"), getBlockRSL("botanist_station_top")));
+        simpleBlock(RankineBlocks.TEMPLATE_TABLE.get(), models().orientable(RankineDataUtils.rl(RankineBlocks.TEMPLATE_TABLE.get()).getPath(), getBlockRSL("template_table_side"), getBlockRSL("template_table_front"), getBlockRSL("template_table_top")));
+        simpleBlock(RankineBlocks.MATERIAL_TESTING_TABLE.get(), models().orientable(RankineDataUtils.rl(RankineBlocks.MATERIAL_TESTING_TABLE.get()).getPath(), getBlockRSL("material_testing_table_side"), getBlockRSL("material_testing_table_front"), getBlockRSL("material_testing_table_top")));
+        simpleBlock(RankineBlocks.EVAPORATION_TOWER.get(), models().cubeBottomTop(RankineDataUtils.rl(RankineBlocks.EVAPORATION_TOWER.get()).getPath(), getBlockRSL("evaporation_tower_side"), getBlockRSL("evaporation_tower_bottom"), getBlockRSL("evaporation_tower_top")));
+        onOffBlock(RankineBlocks.CHARCOAL_PIT.get(), models().cubeBottomTop(RankineDataUtils.rl(RankineBlocks.CHARCOAL_PIT.get()).getPath(), getBlockRSL("charcoal_pit_side"), getBlockRSL("charcoal_pit_top"), getBlockRSL("charcoal_pit_top")), models().cubeBottomTop(RankineDataUtils.rl(RankineBlocks.CHARCOAL_PIT.get()).getPath()+"_on", getBlockRSL("charcoal_pit_side"), getBlockRSL("charcoal_pit_top_on"), getBlockRSL("charcoal_pit_top_on")));
+        onOffBlock(RankineBlocks.BEEHIVE_OVEN_PIT.get(), models().cubeTop(RankineDataUtils.rl(RankineBlocks.BEEHIVE_OVEN_PIT.get()).getPath(), ResourceLocation.fromNamespaceAndPath("rankine", "block/refractory_bricks"), ResourceLocation.fromNamespaceAndPath("rankine", "block/beehive_oven")), models().cubeTop(RankineDataUtils.rl(RankineBlocks.BEEHIVE_OVEN_PIT.get()).getPath()+"_on", ResourceLocation.fromNamespaceAndPath("rankine", "block/refractory_bricks"), ResourceLocation.fromNamespaceAndPath("rankine", "block/beehive_oven_on")));
+        onOffBlock(RankineBlocks.ALLOY_FURNACE.get(), models().cubeBottomTop(RankineDataUtils.rl(RankineBlocks.ALLOY_FURNACE.get()).getPath(), getBlockRSL("alloy_furnace_front"), getBlockRSL("refractory_bricks"), getBlockRSL("alloy_furnace_top")), models().cubeBottomTop(RankineDataUtils.rl(RankineBlocks.ALLOY_FURNACE.get()).getPath()+"_on", getBlockRSL("alloy_furnace_front_on"), getBlockRSL("refractory_bricks"), getBlockRSL("alloy_furnace_top")));
+        rotateableMachineBlock(RankineBlocks.INDUCTION_FURNACE.get(), models().orientable(RankineDataUtils.rl(RankineBlocks.INDUCTION_FURNACE.get()).getPath(), getBlockRSL("induction_furnace_side"), getBlockRSL("induction_furnace_front"), getBlockRSL("induction_furnace_top")), models().orientable(RankineDataUtils.rl(RankineBlocks.INDUCTION_FURNACE.get()).getPath()+"_on", getBlockRSL("induction_furnace_side"), getBlockRSL("induction_furnace_front"), getBlockRSL("induction_furnace_top_on")));
+        rotateableMachineBlock(RankineBlocks.FUSION_FURNACE.get(), models().orientable(RankineDataUtils.rl(RankineBlocks.FUSION_FURNACE.get()).getPath(), getBlockRSL("fusion_furnace_side"), getBlockRSL("fusion_furnace_front"), getBlockRSL("fusion_furnace_top")), models().orientable(RankineDataUtils.rl(RankineBlocks.FUSION_FURNACE.get()).getPath()+"_on", getBlockRSL("fusion_furnace_side"), getBlockRSL("fusion_furnace_front_on"), getBlockRSL("fusion_furnace_top")));
+        directionalBlock(RankineBlocks.BATTERY_CHARGER.get(), models().orientable(RankineDataUtils.rl(RankineBlocks.BATTERY_CHARGER.get()).getPath(), getBlockRSL("battery_charger_side"), getBlockRSL("battery_charger_front"), getBlockRSL("battery_charger_top")));
         simpleBlock(RankineBlocks.PISTON_CRUSHER.get());
         simpleBlock(RankineBlocks.GYRATORY_CRUSHER.get());
 
@@ -653,7 +653,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
 
         //asphaltBlock(RankineBlocks.MANHOLE.get());
         /*
-        getVariantBuilder(RankineBlocks.POTHOLE.get()).partialState().modelForState().modelFile(models().withExistingParent(RankineBlocks.POTHOLE.get().getRegistryName().getPath(), mcLoc("block/block"))
+        getVariantBuilder(RankineBlocks.POTHOLE.get()).partialState().modelForState().modelFile(models().withExistingParent(RankineDataUtils.rl(RankineBlocks.POTHOLE.get()).getPath(), mcLoc("block/block"))
                 .texture("particle", getBlockRSL("asphalt/asphalt_age0"))
                 .texture("side", getBlockRSL("asphalt/asphalt_age0"))
                 .texture("top", getBlockRSL("asphalt/pothole"))
@@ -668,7 +668,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
 
          */
 
-        getVariantBuilder(RankineBlocks.TRAMPOLINE.get()).partialState().modelForState().modelFile(models().withExistingParent(RankineBlocks.TRAMPOLINE.get().getRegistryName().getPath(), mcLoc("block/block"))
+        getVariantBuilder(RankineBlocks.TRAMPOLINE.get()).partialState().modelForState().modelFile(models().withExistingParent(RankineDataUtils.rl(RankineBlocks.TRAMPOLINE.get()).getPath(), mcLoc("block/block"))
                 .texture("particle", getBlockRSL("trampoline"))
                 .texture("side", getBlockRSL("trampoline_side"))
                 .texture("top", getBlockRSL("trampoline"))
@@ -690,7 +690,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
                 .modelFile(STUMP2).rotationY(0).nextModel().modelFile(STUMP2).rotationY(90).nextModel().modelFile(STUMP2).rotationY(180).nextModel().modelFile(STUMP2).rotationY(270).addModel();
 
         getVariantBuilder(RankineBlocks.SOD_BLOCK.get())
-                .partialState().modelForState().modelFile(models().withExistingParent(RankineBlocks.SOD_BLOCK.get().getRegistryName().getPath(), mcLoc("block/block"))
+                .partialState().modelForState().modelFile(models().withExistingParent(RankineDataUtils.rl(RankineBlocks.SOD_BLOCK.get()).getPath(), mcLoc("block/block"))
                     .texture("particle", getBlockRSL("sod_block"))
                     .texture("all", getBlockRSL("sod_block"))
                     .element().from(0.0f,0.0f,0.0f).to(16.0f,16.0f,16.0f)
@@ -706,13 +706,13 @@ public class RankineBlockStateProvider extends BlockStateProvider {
 
 
         for (Block BALE : RankineLists.BALES) {
-            axisBlock((RotatedPillarBlock) BALE, getBlockRSL(BALE.getRegistryName().getPath()+"_side"),getBlockRSL(BALE.getRegistryName().getPath()+"_top"));
+            axisBlock((RotatedPillarBlock) BALE, getBlockRSL(RankineDataUtils.rl(BALE).getPath()+"_side"),getBlockRSL(RankineDataUtils.rl(BALE).getPath()+"_top"));
         }
 
     }
 
     public static ResourceLocation getBlockRSL(Block blk) {
-        return getBlockRSL(blk.getRegistryName().getPath());
+        return getBlockRSL(RankineDataUtils.rl(blk).getPath());
     }
     public static ResourceLocation getBlockRSL(String textureName) {
         return ResourceLocation.fromNamespaceAndPath("rankine","block/"+textureName);
@@ -723,17 +723,17 @@ public class RankineBlockStateProvider extends BlockStateProvider {
 
 
     public void fluidBlock(Block blk) {
-        String name = blk.getRegistryName().getPath();
+        String name = RankineDataUtils.rl(blk).getPath();
         getVariantBuilder(blk).partialState().modelForState().modelFile(models().withExistingParent(name, mcLoc("block/block")).texture("particle", getBlockRSL(name+"_still"))).addModel();
     }
 
     public void signBlock(Block blk, ResourceLocation plank) {
-        String name = blk.getRegistryName().getPath();
+        String name = RankineDataUtils.rl(blk).getPath();
         getVariantBuilder(blk).partialState().modelForState().modelFile(models().withExistingParent(name, modLoc("block/template_sign")).texture("particle", plank)).addModel();
     }
 
     public void hollowLog(Block blk, String nameSpace) {
-        String PATH = blk.getRegistryName().getPath();
+        String PATH = RankineDataUtils.rl(blk).getPath();
         ModelFile MODEL = models().withExistingParent(PATH, modLoc("block/template_hollow_log")).texture("log", getBlockRSL(nameSpace,PATH.replace("hollow_",""))).texture("log_top", getBlockRSL(nameSpace,PATH.replace("hollow_","")+"_top")).texture("stripped_log", getBlockRSL(nameSpace,PATH.replace("hollow_","stripped_")));
         ModelFile MODEL_MOSSY = models().withExistingParent(PATH+"_mossy", modLoc("block/template_hollow_log_mossy")).texture("log", getBlockRSL(nameSpace,PATH.replace("hollow_",""))).texture("log_top", getBlockRSL(nameSpace,PATH.replace("hollow_","")+"_top")).texture("stripped_log", getBlockRSL(nameSpace,PATH.replace("hollow_","stripped_")));
         getVariantBuilder(blk)
@@ -746,7 +746,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
 
     }
     public void leafLitterBlock(Block blk, String nameSpace) {
-        String PATH = blk.getRegistryName().getPath();
+        String PATH = RankineDataUtils.rl(blk).getPath();
         getVariantBuilder(blk).partialState().modelForState()
                 .modelFile(models().withExistingParent(PATH, mcLoc("block/block"))
                         .texture("particle", getBlockRSL(nameSpace,PATH.replace("leaf_litter","leaves")))
@@ -759,7 +759,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
     }
 
     public void cobble(Block BLK) {
-        String PATH = BLK.getRegistryName().getPath();
+        String PATH = RankineDataUtils.rl(BLK).getPath();
         ModelFile model = models().withExistingParent(PATH+"1", modLoc("block/template_cobble1")).texture("all", getBlockRSL(PATH.replace("_cobble","")));
         ModelFile model2 = models().withExistingParent(PATH+"2", modLoc("block/template_cobble2")).texture("all", getBlockRSL(PATH.replace("_cobble","")));
         ModelFile model3 = models().withExistingParent(PATH+"3", modLoc("block/template_cobble3")).texture("all", getBlockRSL(PATH.replace("_cobble","")));
@@ -779,7 +779,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
     }
 
     public void quarterSlab(Block BLK) {
-        String path = BLK.getRegistryName().getPath();
+        String path = RankineDataUtils.rl(BLK).getPath();
         getVariantBuilder(BLK).forAllStates(state -> {
             int SIZE = state.getValue(QuarterSlabBlock.SIZE);
 
@@ -824,10 +824,10 @@ public class RankineBlockStateProvider extends BlockStateProvider {
     }
 
     public void steppingStoneBlock(Block BLK, ResourceLocation texture) {
-        ModelFile MODEL0 = models().withExistingParent(BLK.getRegistryName().getPath()+"0", modLoc("block/template_stepping_stones0")).texture("all", texture);
-        ModelFile MODEL1 = models().withExistingParent(BLK.getRegistryName().getPath()+"1", modLoc("block/template_stepping_stones1")).texture("all", texture);
-        ModelFile MODEL2 = models().withExistingParent(BLK.getRegistryName().getPath()+"2", modLoc("block/template_stepping_stones2")).texture("all", texture);
-        ModelFile MODEL3 = models().withExistingParent(BLK.getRegistryName().getPath()+"3", modLoc("block/template_stepping_stones3")).texture("all", texture);
+        ModelFile MODEL0 = models().withExistingParent(RankineDataUtils.rl(BLK).getPath()+"0", modLoc("block/template_stepping_stones0")).texture("all", texture);
+        ModelFile MODEL1 = models().withExistingParent(RankineDataUtils.rl(BLK).getPath()+"1", modLoc("block/template_stepping_stones1")).texture("all", texture);
+        ModelFile MODEL2 = models().withExistingParent(RankineDataUtils.rl(BLK).getPath()+"2", modLoc("block/template_stepping_stones2")).texture("all", texture);
+        ModelFile MODEL3 = models().withExistingParent(RankineDataUtils.rl(BLK).getPath()+"3", modLoc("block/template_stepping_stones3")).texture("all", texture);
         getVariantBuilder(BLK)
                 .partialState().modelForState()
                 .modelFile(MODEL0).rotationY(0).weight(1).nextModel()
@@ -850,7 +850,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
     }
 
     public void createPointedDripstone(Block blk) {
-        String path = blk.getRegistryName().getPath();
+        String path = RankineDataUtils.rl(blk).getPath();
         getVariantBuilder(blk).forAllStatesExcept(state -> {
             String thickness = state.getValue(PointedDripstoneBlock.THICKNESS).toString();
             String direction = state.getValue(PointedDripstoneBlock.TIP_DIRECTION).toString();
@@ -862,7 +862,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
 
 
     public void asphaltBlock(Block blk, ResourceLocation textureBase, ResourceLocation textureOverlay) {
-        String path = blk.getRegistryName().getPath();
+        String path = RankineDataUtils.rl(blk).getPath();
         getVariantBuilder(blk).forAllStates(state -> {
             int rot = (int) state.getValue(HorizontalDirectionalBlock.FACING).toYRot();
             int SIZE = state.getValue(BaseAsphaltBlock.SIZE);
@@ -891,9 +891,9 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         });
     }
     public void wallMushroom(Block BLK) {
-        ModelFile Mush1 = new ModelFile.ExistingModelFile(getBlockRSL(BLK.getRegistryName().getPath()+"1"), models().existingFileHelper);
-        ModelFile Mush2 = new ModelFile.ExistingModelFile(getBlockRSL(BLK.getRegistryName().getPath()+"2"), models().existingFileHelper);
-        ModelFile Mush3 = new ModelFile.ExistingModelFile(getBlockRSL(BLK.getRegistryName().getPath()+"3"), models().existingFileHelper);
+        ModelFile Mush1 = new ModelFile.ExistingModelFile(getBlockRSL(RankineDataUtils.rl(BLK).getPath()+"1"), models().existingFileHelper);
+        ModelFile Mush2 = new ModelFile.ExistingModelFile(getBlockRSL(RankineDataUtils.rl(BLK).getPath()+"2"), models().existingFileHelper);
+        ModelFile Mush3 = new ModelFile.ExistingModelFile(getBlockRSL(RankineDataUtils.rl(BLK).getPath()+"3"), models().existingFileHelper);
         getVariantBuilder(BLK).forAllStates(blockState -> {
             Direction dir = blockState.getValue(RankineWallMushroomBlock.HORIZONTAL_FACING);
             int rotY = (int) dir.toYRot();
@@ -903,9 +903,9 @@ public class RankineBlockStateProvider extends BlockStateProvider {
                     .modelFile(Mush3).rotationY(rotY).build();
         });
         /*
-        ModelFile Mush1 = new ModelFile.ExistingModelFile(getBlockRSL(BLK.getRegistryName().getPath()+"1"), models().existingFileHelper);
-        ModelFile Mush2 = new ModelFile.ExistingModelFile(getBlockRSL(BLK.getRegistryName().getPath()+"2"), models().existingFileHelper);
-        ModelFile Mush3 = new ModelFile.ExistingModelFile(getBlockRSL(BLK.getRegistryName().getPath()+"3"), models().existingFileHelper);
+        ModelFile Mush1 = new ModelFile.ExistingModelFile(getBlockRSL(RankineDataUtils.rl(BLK).getPath()+"1"), models().existingFileHelper);
+        ModelFile Mush2 = new ModelFile.ExistingModelFile(getBlockRSL(RankineDataUtils.rl(BLK).getPath()+"2"), models().existingFileHelper);
+        ModelFile Mush3 = new ModelFile.ExistingModelFile(getBlockRSL(RankineDataUtils.rl(BLK).getPath()+"3"), models().existingFileHelper);
         getVariantBuilder(BLK).forAllStates(blockState -> {
             Direction dir = blockState.get(RankineWallMushroomBlock.FACING);
             int rotY = dir.getHorizontalIndex() == -1 ? 0 : (int) dir.getHorizontalAngle();
@@ -920,7 +920,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
     }
 
     public void sixSideCrossBlock(Block BLK) {
-        ModelFile CROSS = models().withExistingParent(BLK.getRegistryName().getPath(), modLoc("block/template_cross")).texture("all", "block/"+BLK.getRegistryName().getPath());
+        ModelFile CROSS = models().withExistingParent(RankineDataUtils.rl(BLK).getPath(), modLoc("block/template_cross")).texture("all", "block/"+RankineDataUtils.rl(BLK).getPath());
         getVariantBuilder(BLK)
                 .partialState().with(BlockStateProperties.FACING, Direction.UP).modelForState().modelFile(CROSS).addModel()
                 .partialState().with(BlockStateProperties.FACING, Direction.DOWN).modelForState().modelFile(CROSS).rotationX(180).addModel()
@@ -930,28 +930,28 @@ public class RankineBlockStateProvider extends BlockStateProvider {
                 .partialState().with(BlockStateProperties.FACING, Direction.WEST).modelForState().modelFile(CROSS).rotationY(270).rotationX(90).addModel();
     }
     public void crossBlock(Block BLK) {
-        getVariantBuilder(BLK).partialState().modelForState().modelFile(models().withExistingParent(BLK.getRegistryName().getPath(), mcLoc("block/cross")).texture("cross", "block/"+BLK.getRegistryName().getPath())).addModel();
+        getVariantBuilder(BLK).partialState().modelForState().modelFile(models().withExistingParent(RankineDataUtils.rl(BLK).getPath(), mcLoc("block/cross")).texture("cross", "block/"+RankineDataUtils.rl(BLK).getPath())).addModel();
     }
     public void squareCross(Block BLK) {
-        getVariantBuilder(BLK).partialState().modelForState().modelFile(models().withExistingParent(BLK.getRegistryName().getPath(), modLoc("block/template_square")).texture("all", "block/"+BLK.getRegistryName().getPath())).addModel();
+        getVariantBuilder(BLK).partialState().modelForState().modelFile(models().withExistingParent(RankineDataUtils.rl(BLK).getPath(), modLoc("block/template_square")).texture("all", "block/"+RankineDataUtils.rl(BLK).getPath())).addModel();
     }
     public void cropBlock(Block BLK) {
-        getVariantBuilder(BLK).partialState().modelForState().modelFile(models().withExistingParent(BLK.getRegistryName().getPath(), mcLoc("block/crop")).texture("crop", "block/"+BLK.getRegistryName().getPath())).addModel();
+        getVariantBuilder(BLK).partialState().modelForState().modelFile(models().withExistingParent(RankineDataUtils.rl(BLK).getPath(), mcLoc("block/crop")).texture("crop", "block/"+RankineDataUtils.rl(BLK).getPath())).addModel();
     }
     public void tintedCrossBlock(Block BLK, ResourceLocation base, ResourceLocation overlay) {
-        getVariantBuilder(BLK).partialState().modelForState().modelFile(models().withExistingParent(BLK.getRegistryName().getPath(), getBlockRSL("template_tinted_cross_overlay")).texture("cross",base).texture("overlay", overlay)).addModel();
+        getVariantBuilder(BLK).partialState().modelForState().modelFile(models().withExistingParent(RankineDataUtils.rl(BLK).getPath(), getBlockRSL("template_tinted_cross_overlay")).texture("cross",base).texture("overlay", overlay)).addModel();
     }
     public void leavesBlock(Block BLK) {
-        String PATH = BLK.getRegistryName().getPath();
+        String PATH = RankineDataUtils.rl(BLK).getPath();
         getVariantBuilder(BLK)
             .partialState().with(RankineLeavesBlock.AGE, 0).modelForState().modelFile(models().withExistingParent(PATH +"_age0", getBlockRSL("minecraft","leaves")).texture("all", getBlockRSL(PATH))).addModel()
             .partialState().with(RankineLeavesBlock.AGE, 1).modelForState().modelFile(models().withExistingParent(PATH +"_age1", getBlockRSL("minecraft","leaves")).texture("all", getBlockRSL(PATH))).addModel()
             .partialState().with(RankineLeavesBlock.AGE, 2).modelForState().modelFile(models().withExistingParent(PATH +"_age3", getBlockRSL("leaves_age5")).texture("leaves", getBlockRSL(PATH)).texture("snowy_overlay", getBlockRSL("snowy_leaves_overlay"))).addModel();
     }
     public void layerBlock(Block BLK) {
-        ModelFile model = models().withExistingParent(BLK.getRegistryName().getPath(), mcLoc("block/block"))
-                .texture("particle", getBlockRSL(BLK.getRegistryName().getPath()))
-                .texture("layer", getBlockRSL(BLK.getRegistryName().getPath()))
+        ModelFile model = models().withExistingParent(RankineDataUtils.rl(BLK).getPath(), mcLoc("block/block"))
+                .texture("particle", getBlockRSL(RankineDataUtils.rl(BLK).getPath()))
+                .texture("layer", getBlockRSL(RankineDataUtils.rl(BLK).getPath()))
                 .element().from(0.0f,0.25f,0.0f).to(16.0f,0.25f,16.0f)
                 .face(Direction.UP).uvs(16, 16, 0,0).texture("#layer").end()
                 .face(Direction.DOWN).uvs(16, 0, 0, 16).texture("#layer").end()
@@ -962,7 +962,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
 
 
     public void electroMagnet(Block block) {
-        String name = block.getRegistryName().getPath();
+        String name = RankineDataUtils.rl(block).getPath();
         ModelFile off = models().cubeTop(name, getBlockRSL(name+"_side"), getBlockRSL(name));
         getVariantBuilder(block)
                 .forAllStatesExcept(state -> {
@@ -976,7 +976,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
     }
 
     public void ladderBlock(Block blk) {
-        String NAME = blk.getRegistryName().getPath();
+        String NAME = RankineDataUtils.rl(blk).getPath();
         getVariantBuilder(blk).forAllStatesExcept(blockState -> {
             Direction dir = blockState.getValue(LadderBlock.FACING);
             int style = blockState.getValue(((MetalLadderBlock) blk).getProperty());
@@ -987,11 +987,11 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         },MetalLadderBlock.WATERLOGGED);
     }
     public void pillarFour(Block blk) {
-        String name = blk.getRegistryName().getPath();
+        String name = RankineDataUtils.rl(blk).getPath();
         getVariantBuilder(blk).partialState().modelForState().modelFile(models().withExistingParent(name, modLoc("block/template_pillar_four")).texture("all", modLoc("block/"+name))).addModel();
     }
     public void onOffBlock(Block block) {
-        String name = block.getRegistryName().getPath();
+        String name = RankineDataUtils.rl(block).getPath();
         ModelFile off = models().withExistingParent(name, mcLoc("block/cube_all")).texture("all", ResourceLocation.fromNamespaceAndPath("rankine", "block/" + name));
         ModelFile on = models().withExistingParent(name+"_on", mcLoc("block/cube_all")).texture("all", ResourceLocation.fromNamespaceAndPath("rankine", "block/" + name + "_on"));
         getVariantBuilder(block)
@@ -1004,8 +1004,8 @@ public class RankineBlockStateProvider extends BlockStateProvider {
                 .partialState().with(BlockStateProperties.LIT, true).modelForState().modelFile(on).addModel();
     }
     public void grassySoilBlock(Block grass, Block soil) {
-        String grassyName = grass.getRegistryName().getPath();
-        String soilName = soil.getRegistryName().getPath();
+        String grassyName = RankineDataUtils.rl(grass).getPath();
+        String soilName = RankineDataUtils.rl(soil).getPath();
         ModelFile grassy = models().withExistingParent(grassyName, modLoc("block/template_grassy_soil")).texture("soil", ResourceLocation.fromNamespaceAndPath("rankine", "block/" + soilName)).texture("grassy_soil_top", getBlockRSL("minecraft","grass_block_top")).texture("grassy_soil_side", ResourceLocation.fromNamespaceAndPath("rankine", "block/" + grassyName + "_side")).texture("grassy_soil_side_overlay", ResourceLocation.fromNamespaceAndPath("rankine", "block/" + grassyName + "_side_overlay"));
         ModelFile snowy = models().withExistingParent(grassyName+"_snow", mcLoc("block/cube_bottom_top")).texture("top", getBlockRSL("minecraft","grass_block_top")).texture("bottom", ResourceLocation.fromNamespaceAndPath("rankine", "block/" + soilName)).texture("side", ResourceLocation.fromNamespaceAndPath("rankine", "block/"+grassyName+"_snow"));
         getVariantBuilder(grass)
@@ -1048,17 +1048,17 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         }
     }
     public void fiberBlock(FiberBlock blk) {
-        String NAME = blk.getRegistryName().getPath();
+        String NAME = RankineDataUtils.rl(blk).getPath();
         ModelFile blkModel = models().withExistingParent(NAME, modLoc("block/template_fiber_block")).texture("pattern", modLoc("block/"+NAME));
         getVariantBuilder(blk).forAllStates(state -> ConfiguredModel.builder().modelFile(blkModel).rotationY((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot()).build());
     }
     public void fiberMatBlock(FiberMatBlock blk, ResourceLocation texture) {
-        String NAME = blk.getRegistryName().getPath();
+        String NAME = RankineDataUtils.rl(blk).getPath();
         ModelFile blkModel = models().withExistingParent(NAME, mcLoc("block/carpet")).texture("wool", texture);
         getVariantBuilder(blk).forAllStates(state -> ConfiguredModel.builder().modelFile(blkModel).rotationY((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot()).build());
     }
     public void geodeBlock(Block blk) {
-        String name = blk.getRegistryName().getPath();
+        String name = RankineDataUtils.rl(blk).getPath();
         ModelFile MODEL;
         if (blk.equals(RankineBlocks.GEODE.get())) {
             MODEL = models().withExistingParent(name, modLoc("block/template_geode"));
@@ -1075,24 +1075,24 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         },BlockStateProperties.WATERLOGGED);
     }
     public void crushingHeadBlock(Block blk) {
-        String name = blk.getRegistryName().getPath();
+        String name = RankineDataUtils.rl(blk).getPath();
         ModelFile MODEL = models().withExistingParent(name, modLoc("block/template_crushing_head")).texture("all", blockTexture(blk));
         directionalBlock(blk, MODEL);
     }
     public void miningHeadBlock(Block blk) {
-        String name = blk.getRegistryName().getPath();
+        String name = RankineDataUtils.rl(blk).getPath();
         ModelFile MODEL = models().withExistingParent(name, modLoc("block/template_mining_head")).texture("base", blockTexture(blk));
         directionalBlock(blk, MODEL);
     }
     public void pedestalBlock(Block blk) {
-        getVariantBuilder(blk).partialState().modelForState().modelFile(models().withExistingParent(blk.getRegistryName().getPath(), modLoc("block/template_pedestal")).texture("all", modLoc("block/"+blk.getRegistryName().getPath().replace("_pedestal","_block")))).addModel();
+        getVariantBuilder(blk).partialState().modelForState().modelFile(models().withExistingParent(RankineDataUtils.rl(blk).getPath(), modLoc("block/template_pedestal")).texture("all", modLoc("block/"+RankineDataUtils.rl(blk).getPath().replace("_pedestal","_block")))).addModel();
     }
     public void pathBlock(Block blk, ResourceLocation top, ResourceLocation side, ResourceLocation bottom) {
-        getVariantBuilder(blk).partialState().modelForState().modelFile(models().withExistingParent(blk.getRegistryName().getPath(), modLoc("block/template_path_block")).texture("top", top).texture("side", side).texture("bottom", bottom)).addModel();
+        getVariantBuilder(blk).partialState().modelForState().modelFile(models().withExistingParent(RankineDataUtils.rl(blk).getPath(), modLoc("block/template_path_block")).texture("top", top).texture("side", side).texture("bottom", bottom)).addModel();
     }
 
     public void metalPoleBlock(Block BLK) {
-        String path = BLK.getRegistryName().getPath();
+        String path = RankineDataUtils.rl(BLK).getPath();
 
         getVariantBuilder(BLK)
                 .partialState().with(MetalPoleBlock.STYLE,0).modelForState().modelFile(models().withExistingParent(path+"0", modLoc("block/template_metal_pole")).texture("side", getBlockRSL("template_pole"))).addModel()
@@ -1106,7 +1106,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
     }
 
     public void tintedBarsBlock(IronBarsBlock block, ResourceLocation pane, ResourceLocation edge) {
-        tintedBarsBlockInternal(block, block.getRegistryName().toString(), pane, edge);
+        tintedBarsBlockInternal(block, RankineDataUtils.rl(block).toString(), pane, edge);
     }
     private void tintedBarsBlockInternal(IronBarsBlock block, String baseName, ResourceLocation pane, ResourceLocation edge) {
         ModelFile post = tintedBarsPost(baseName + "_post", pane);
@@ -1154,7 +1154,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
 
 
     public void tintedPaneBlock(IronBarsBlock block, ResourceLocation pane, ResourceLocation edge) {
-        tintedPaneBlockInternal(block, block.getRegistryName().toString(), pane, edge);
+        tintedPaneBlockInternal(block, RankineDataUtils.rl(block).toString(), pane, edge);
     }
 
     private void tintedPaneBlockInternal(IronBarsBlock block, String baseName, ResourceLocation pane, ResourceLocation edge) {
@@ -1207,7 +1207,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
     }
 /*
     public void metalPoleBlock(MetalPoleBlock blk, ResourceLocation texture) {
-        fourWayBlock(blk, metalPole(blk.getRegistryName().getPath(), texture), metalPoleSide(blk.getRegistryName().getPath() + "_pole_side", texture));
+        fourWayBlock(blk, metalPole(RankineDataUtils.rl(blk).getPath(), texture), metalPoleSide(RankineDataUtils.rl(blk).getPath() + "_pole_side", texture));
     }
     public void fourWayBlock(MetalPoleBlock block, ModelFile post, ModelFile side) {
         MultiPartBlockStateBuilder builder = getMultipartBuilder(block)
@@ -1227,28 +1227,28 @@ public class RankineBlockStateProvider extends BlockStateProvider {
     @Override
     public void fenceBlock(FenceBlock block, ResourceLocation texture) {
         super.fenceBlock(block, texture);
-        models().withExistingParent(block.getRegistryName().getPath() + "_inventory", mcLoc("block/fence_inventory"))
+        models().withExistingParent(RankineDataUtils.rl(block).getPath() + "_inventory", mcLoc("block/fence_inventory"))
                 .texture("texture", texture);
     }
 
     @Override
     public void wallBlock(WallBlock block, ResourceLocation texture) {
         super.wallBlock(block, texture);
-        models().withExistingParent(block.getRegistryName().getPath() + "_inventory", mcLoc("block/wall_inventory"))
+        models().withExistingParent(RankineDataUtils.rl(block).getPath() + "_inventory", mcLoc("block/wall_inventory"))
                 .texture("wall", texture);
     }
 
 
     public void pressurePlateBlock(PressurePlateBlock block, ResourceLocation texture) {
         getVariantBuilder(block)
-                .partialState().with(PressurePlateBlock.POWERED, true).modelForState().modelFile(models().withExistingParent(block.getRegistryName().getPath()+"_down", mcLoc("block/pressure_plate_down")).texture("texture", texture)).addModel()
-                .partialState().with(PressurePlateBlock.POWERED, false).modelForState().modelFile(models().withExistingParent(block.getRegistryName().getPath()+"_up", mcLoc("block/pressure_plate_up")).texture("texture", texture)).addModel();
+                .partialState().with(PressurePlateBlock.POWERED, true).modelForState().modelFile(models().withExistingParent(RankineDataUtils.rl(block).getPath()+"_down", mcLoc("block/pressure_plate_down")).texture("texture", texture)).addModel()
+                .partialState().with(PressurePlateBlock.POWERED, false).modelForState().modelFile(models().withExistingParent(RankineDataUtils.rl(block).getPath()+"_up", mcLoc("block/pressure_plate_up")).texture("texture", texture)).addModel();
     }
 
 
     //VERTICAL SLABS
     public void verticalSlabBlock(RankineVerticalSlabBlock BLK, ResourceLocation all) {
-        ModelFile straightSlab = models().withExistingParent(BLK.getRegistryName().getPath()+"_straight", mcLoc("block/block"))
+        ModelFile straightSlab = models().withExistingParent(RankineDataUtils.rl(BLK).getPath()+"_straight", mcLoc("block/block"))
                 .texture("particle", all)
                 .texture("all", all)
                 .element().from(0.0f,0.0f,8.0f).to(16.0f,16.0f,16.0f)
@@ -1259,7 +1259,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
                 .face(Direction.UP).texture("#all").cullface(Direction.UP).end()
                 .face(Direction.DOWN).texture("#all").cullface(Direction.DOWN).end()
                 .end();
-        ModelFile doubleSlab = models().withExistingParent(BLK.getRegistryName().getPath()+"_double", mcLoc("block/block"))
+        ModelFile doubleSlab = models().withExistingParent(RankineDataUtils.rl(BLK).getPath()+"_double", mcLoc("block/block"))
                 .texture("particle", all)
                 .texture("all", all)
                 .element().from(0.0f,0.0f,0.0f).to(16.0f,16.0f,16.0f)
@@ -1270,7 +1270,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
                 .face(Direction.UP).texture("#all").cullface(Direction.UP).end()
                 .face(Direction.DOWN).texture("#all").cullface(Direction.DOWN).end()
                 .end();
-        ModelFile innerSlab = models().withExistingParent(BLK.getRegistryName().getPath()+"_inner", mcLoc("block/block"))
+        ModelFile innerSlab = models().withExistingParent(RankineDataUtils.rl(BLK).getPath()+"_inner", mcLoc("block/block"))
                 .texture("particle", all)
                 .texture("all", all)
                 .element().from(8.0f,0.0f,8.0f).to(16.0f,16.0f,16.0f)
@@ -1281,7 +1281,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
                 .face(Direction.UP).texture("#all").cullface(Direction.UP).end()
                 .face(Direction.DOWN).texture("#all").cullface(Direction.DOWN).end()
                 .end();
-        ModelFile outerSlab = models().withExistingParent(BLK.getRegistryName().getPath()+"_outer", mcLoc("block/block"))
+        ModelFile outerSlab = models().withExistingParent(RankineDataUtils.rl(BLK).getPath()+"_outer", mcLoc("block/block"))
                 .texture("particle", all)
                 .texture("all", all)
                 .element().from(0.0f,0.0f,8.0f).to(16.0f,16.0f,16.0f)
@@ -1349,7 +1349,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
 
 
     public void buttonBlock(ButtonBlock blk, ResourceLocation texture) {
-        String regName = blk.getRegistryName().getPath();
+        String regName = RankineDataUtils.rl(blk).getPath();
         buttonInventory(regName, texture);
         buttonBlock(blk, models().withExistingParent(regName, mcLoc("block/button")).texture("texture", texture), models().withExistingParent(regName+"_pressed", mcLoc("block/button_pressed")).texture("texture", texture));
     }
@@ -1373,8 +1373,8 @@ public class RankineBlockStateProvider extends BlockStateProvider {
     }
 
     public void SVLBlock(SodiumVaporLampBlock blk) {
-        ModelFile HANG = models().withExistingParent(blk.getRegistryName().getPath(), modLoc("block/template_sodium_vapor_lamp")).texture("base", getBlockRSL("cast_iron_block")).texture("lamp", getBlockRSL("sodium_vapor_lamp"));
-        ModelFile WALL = models().withExistingParent(blk.getRegistryName().getPath()+"wall", modLoc("block/template_sodium_vapor_lamp_wall")).texture("base", getBlockRSL("cast_iron_block")).texture("lamp", getBlockRSL("sodium_vapor_lamp")).texture("pole", getBlockRSL("cast_iron_pole"));
+        ModelFile HANG = models().withExistingParent(RankineDataUtils.rl(blk).getPath(), modLoc("block/template_sodium_vapor_lamp")).texture("base", getBlockRSL("cast_iron_block")).texture("lamp", getBlockRSL("sodium_vapor_lamp"));
+        ModelFile WALL = models().withExistingParent(RankineDataUtils.rl(blk).getPath()+"wall", modLoc("block/template_sodium_vapor_lamp_wall")).texture("base", getBlockRSL("cast_iron_block")).texture("lamp", getBlockRSL("sodium_vapor_lamp")).texture("pole", getBlockRSL("cast_iron_pole"));
 
         getVariantBuilder(blk).forAllStatesExcept(state -> {
             Boolean hanging = state.getValue(SodiumVaporLampBlock.HANGING);
@@ -1402,7 +1402,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
 
 
     public void mixingBarrelBlock(Block BLOCK) {
-        String NAME = BLOCK.getRegistryName().getPath();
+        String NAME = RankineDataUtils.rl(BLOCK).getPath();
         getVariantBuilder(BLOCK).forAllStates(state -> {
             int i = state.getValue(MixingBarrelBlock.ANGLE);
             return ConfiguredModel.builder()
@@ -1440,7 +1440,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
 
 
     public void fancyPolishedBlock(Block BLK) {
-        String name = BLK.getRegistryName().getPath();
+        String name = RankineDataUtils.rl(BLK).getPath();
         ResourceLocation polished = modLoc("block/"+name);
         IntegerProperty STYLE = ((BuildingModeBlock) BLK).getProperty();
         getVariantBuilder(BLK)
@@ -1473,7 +1473,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
     }
 
     public void fancyStoneBricksBlock(Block block) {
-        String name = block.getRegistryName().getPath();
+        String name = RankineDataUtils.rl(block).getPath();
         ResourceLocation large = modLoc("block/"+name);
         IntegerProperty STYLE = ((BuildingModeBlock) block).getProperty();
         getVariantBuilder(block)
@@ -1483,7 +1483,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
                 .modelForState().modelFile(models().withExistingParent(name+2, modLoc("block/template_rotation")).texture("all", large)).addModel();
     }
     public void fancyMossyStoneBricksBlock(Block block) {
-        String name = block.getRegistryName().getPath();
+        String name = RankineDataUtils.rl(block).getPath();
         ResourceLocation large = modLoc("block/"+name);
         IntegerProperty STYLE = ((BuildingModeBlock) block).getProperty();
         getVariantBuilder(block)
@@ -1493,7 +1493,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
                     .modelForState().modelFile(models().withExistingParent(name+2, modLoc("block/template_rotation")).texture("all", large)).addModel();
     }
     public void fancyBricksBlock(Block block) {
-        String name = block.getRegistryName().getPath();
+        String name = RankineDataUtils.rl(block).getPath();
         ResourceLocation normal = modLoc("block/"+name);
         ResourceLocation alt = modLoc("block/"+name+"_alt");
         IntegerProperty STYLE = ((BuildingModeBlock) block).getProperty();
@@ -1508,7 +1508,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
                     .modelForState().modelFile(models().withExistingParent(name+4, modLoc("block/template_rotation")).texture("all", alt)).addModel();
     }
     public void fancyPlanksBlock(Block block) {
-        String name = block.getRegistryName().getPath();
+        String name = RankineDataUtils.rl(block).getPath();
         ResourceLocation normal = modLoc("block/"+name);
         IntegerProperty STYLE = ((BuildingModeBlock) block).getProperty();
         getVariantBuilder(block)
@@ -1522,8 +1522,8 @@ public class RankineBlockStateProvider extends BlockStateProvider {
                     .modelForState().modelFile(models().withExistingParent(name+4, mcLoc("block/cube_all")).texture("all", normal)).addModel();
     }
     public void fancyBookshelvesBlock(RankineWood wood) {
-        String name = wood.getBookshelf().getRegistryName().getPath();
-        String plankName = wood.getPlanks().getRegistryName().getPath();
+        String name = RankineDataUtils.rl(wood.getBookshelf()).getPath();
+        String plankName = RankineDataUtils.rl(wood.getPlanks()).getPath();
         IntegerProperty STYLE = ((BuildingModeBlock) wood.getBookshelf()).getProperty();
         getVariantBuilder(wood.getBookshelf())
                 .partialState().with(STYLE, 1)
@@ -1538,7 +1538,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
     }
 
     public void doublePlant(Block block) {
-        String name = block.getRegistryName().getPath();
+        String name = RankineDataUtils.rl(block).getPath();
         getVariantBuilder(block)
                 .partialState().with(DoublePlantBlock.HALF, DoubleBlockHalf.UPPER)
                     .modelForState().modelFile(models().withExistingParent(name+"_top", mcLoc("block/cross")).texture("cross", "block/"+name+"_top")).addModel()
@@ -1546,7 +1546,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
                     .modelForState().modelFile(models().withExistingParent(name+"_bottom", mcLoc("block/cross")).texture("cross", "block/"+name+"_bottom")).addModel();
     }
     public void triplePlant(Block block) {
-        String name = block.getRegistryName().getPath();
+        String name = RankineDataUtils.rl(block).getPath();
         getVariantBuilder(block)
                 .partialState().with(TripleCropsBlock.SECTION, TripleBlockSection.TOP)
                 .modelForState().modelFile(models().withExistingParent(name+"_top", mcLoc("block/cross")).texture("cross", "block/"+name+"_top")).addModel()
@@ -1556,7 +1556,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
                 .modelForState().modelFile(models().withExistingParent(name+"_bottom", mcLoc("block/cross")).texture("cross", "block/"+name+"_bottom")).addModel();
     }
     public void columnBlock(Block BLK, ResourceLocation texture) {
-        String NAME = BLK.getRegistryName().getPath();
+        String NAME = RankineDataUtils.rl(BLK).getPath();
         getVariantBuilder(BLK).forAllStatesExcept(state -> {
             int i = state.getValue(StoneColumnBlock.SIZE);
             return ConfiguredModel.builder()
@@ -1575,27 +1575,27 @@ public class RankineBlockStateProvider extends BlockStateProvider {
     }
 
     public void lanternBlock(Block BLK) {
-        String NAME = BLK.getRegistryName().getPath();
+        String NAME = RankineDataUtils.rl(BLK).getPath();
         getVariantBuilder(BLK)
                 .partialState().with(LanternBlock.HANGING,false).modelForState().modelFile(models().withExistingParent(NAME, getBlockRSL("template_rankine_lantern")).texture("overlay", getBlockRSL(BLK))).addModel()
                 .partialState().with(LanternBlock.HANGING,true).modelForState().modelFile(models().withExistingParent(NAME+"_hanging", getBlockRSL("template_hanging_rankine_lantern")).texture("overlay", getBlockRSL(BLK))).addModel();
     }
 
     public void cubeTopBottomBLock(Block BLK) {
-        String pathName = BLK.getRegistryName().getPath();
+        String pathName = RankineDataUtils.rl(BLK).getPath();
         simpleBlock(BLK,models().cubeBottomTop(pathName,blockTexture(BLK),getBlockRSL(pathName+"_end"),getBlockRSL(pathName+"_end")));
     }
 
     public void slabBlock(Block BLK, boolean special) {
-        String regName = BLK.getRegistryName().getPath();
+        String regName = RankineDataUtils.rl(BLK).getPath();
         slabBlock((RankineSlabBlock) BLK, ResourceLocation.fromNamespaceAndPath("rankine","block/"+regName.replace("_slab",special ? "1" : "")), ResourceLocation.fromNamespaceAndPath("rankine","block/"+regName.replace("_slab","")));
     }
     public void stairsBlock(Block BLK, boolean special) {
-        String regName = BLK.getRegistryName().getPath();
+        String regName = RankineDataUtils.rl(BLK).getPath();
         stairsBlock((RankineStairsBlock) BLK, ResourceLocation.fromNamespaceAndPath("rankine","block/"+regName.replace("_stairs","")));
     }
     public void wallBlock(Block BLK, boolean special) {
-        String regName = BLK.getRegistryName().getPath();
+        String regName = RankineDataUtils.rl(BLK).getPath();
         wallBlock((RankineWallBlock) BLK, ResourceLocation.fromNamespaceAndPath("rankine","block/"+regName.replace("_wall","")));
     }
     

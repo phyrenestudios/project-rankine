@@ -1,13 +1,13 @@
 package com.cannolicatfish.rankine.client.integration.jei.categories;
 
 import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.client.integration.jei.JEIRankinePlugin;
 import com.cannolicatfish.rankine.client.integration.jei.recipes.IBatteryRecipe;
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.items.RTGItem;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
-import com.mojang.blaze3d.vertex.PoseStack;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.gui.drawable.IDrawableAnimated;
@@ -16,13 +16,13 @@ import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
+import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.resources.language.I18n;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 
@@ -61,15 +61,9 @@ public class BatteryRecipeCategory implements IRecipeCategory<IBatteryRecipe> {
                     }
                 });
     }
-    @SuppressWarnings("removal")
     @Override
-    public ResourceLocation getUid() {
-        return UID;
-    }
-    @SuppressWarnings("removal")
-    @Override
-    public Class<? extends IBatteryRecipe> getRecipeClass() {
-        return IBatteryRecipe.class;
+    public RecipeType<IBatteryRecipe> getRecipeType() {
+        return JEIRankinePlugin.BATTERY;
     }
 
     @Override
@@ -88,16 +82,16 @@ public class BatteryRecipeCategory implements IRecipeCategory<IBatteryRecipe> {
     }
 
     @Override
-    public void draw(IBatteryRecipe recipe, IRecipeSlotsView recipeSlotsView, PoseStack poseStack, double mouseX, double mouseY) {
+    public void draw(IBatteryRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
         int burnTime = recipe.getBatteryCharge();
         IDrawableAnimated flame = cachedCharges.getUnchecked(burnTime);
-        flame.draw(poseStack, 1, 0);
+        flame.draw(guiGraphics, 1, 0);
         Minecraft minecraft = Minecraft.getInstance();
         Font font = minecraft.font;
         boolean rtg = recipe.getInputs().stream().findFirst().isPresent() && recipe.getInputs().stream().findFirst().get().getItem() instanceof RTGItem;
         int count = 0;
         for (Component c : createChargeCountText(rtg, burnTime)) {
-            font.draw(poseStack, c, 22, 17 + count, 0xFF808080);
+            guiGraphics.drawString(font, c, 22, 17 + count, 0xFF808080);
             count += 10;
         }
 

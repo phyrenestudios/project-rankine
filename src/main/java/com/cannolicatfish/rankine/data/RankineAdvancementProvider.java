@@ -133,21 +133,21 @@ public class RankineAdvancementProvider extends AdvancementProvider {
     private Advancement orList(Consumer<Advancement> consumer, Advancement parent, ItemLike displayItem, String text, List<ItemLike> itemList) {
         Advancement.Builder temp = Advancement.Builder.advancement().parent(parent).display(displayItem, Component.translatable("rankine.advancements.story."+text+".title"), Component.translatable("rankine.advancements.story."+text+".description"),null,  FrameType.TASK, true, true, false);
         for (ItemLike item : itemList) {
-            temp.addCriterion(item.asItem().getRegistryName().getPath(), InventoryChangeTrigger.TriggerInstance.hasItems(item));
+            temp.addCriterion(RankineDataUtils.rl(item.asItem()).getPath(), InventoryChangeTrigger.TriggerInstance.hasItems(item));
         }
         return temp.requirements(RequirementsStrategy.OR).save(consumer,"rankine:story/"+text);
     }
     private Advancement andList(Consumer<Advancement> consumer, Advancement parent, ItemLike displayItem, String text, List<ItemLike> itemList) {
         Advancement.Builder temp = Advancement.Builder.advancement().parent(parent).display(displayItem, Component.translatable("rankine.advancements.story."+text+".title"), Component.translatable("rankine.advancements.story."+text+".description"),null,  FrameType.TASK, true, true, false);
         for (ItemLike item : itemList) {
-            temp.addCriterion(item.asItem().getRegistryName().getPath(), InventoryChangeTrigger.TriggerInstance.hasItems(item));
+            temp.addCriterion(RankineDataUtils.rl(item.asItem()).getPath(), InventoryChangeTrigger.TriggerInstance.hasItems(item));
         }
         return temp.requirements(RequirementsStrategy.AND).save(consumer,"rankine:story/"+text);
     }
     private Advancement andListChallenge(Consumer<Advancement> consumer, Advancement parent, ItemLike displayItem, String text, int XP, List<ItemLike> itemList) {
         Advancement.Builder temp = Advancement.Builder.advancement().parent(parent).display(displayItem, Component.translatable("rankine.advancements.challenges."+text+".title"), Component.translatable("rankine.advancements.challenges."+text+".description"),null,  FrameType.CHALLENGE, true, true, false);
         for (ItemLike item : itemList) {
-            temp.addCriterion(item.asItem().getRegistryName().getPath(), InventoryChangeTrigger.TriggerInstance.hasItems(item));
+            temp.addCriterion(RankineDataUtils.rl(item.asItem()).getPath(), InventoryChangeTrigger.TriggerInstance.hasItems(item));
         }
         return temp.requirements(RequirementsStrategy.AND).rewards(AdvancementRewards.Builder.experience(XP)).save(consumer,"rankine:challenges/"+text);
     }

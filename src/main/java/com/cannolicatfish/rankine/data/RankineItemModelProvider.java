@@ -54,11 +54,11 @@ public class RankineItemModelProvider extends ItemModelProvider {
             wallParent(Stone.getPolishedWall());
             wallParent(Stone.getBricksWall());
             wallParent(Stone.getMossyBricksWall());
-            withExistingParent(Stone.getPressurePlate().getRegistryName().getPath(), modLoc("block/" + Stone.getPressurePlate().getRegistryName().getPath() + "_up"));
-            withExistingParent(Stone.getBricksPressurePlate().getRegistryName().getPath(), modLoc("block/" + Stone.getBricksPressurePlate().getRegistryName().getPath() + "_up"));
-            withExistingParent(Stone.getButton().getRegistryName().getPath(), modLoc("block/" + Stone.getButton().getRegistryName().getPath() + "_inventory"));
-            withExistingParent(Stone.getCobble().getRegistryName().getPath(), RankineBlockStateProvider.getBlockRSL(Stone.getCobble().getRegistryName().getPath()+"1"));
-            withExistingParent(Stone.getColumn().getRegistryName().getPath(), RankineBlockStateProvider.getBlockRSL(Stone.getColumn().getRegistryName().getPath()+"1"));
+            withExistingParent(RankineDataUtils.rl(Stone.getPressurePlate()).getPath(), modLoc("block/" + RankineDataUtils.rl(Stone.getPressurePlate()).getPath() + "_up"));
+            withExistingParent(RankineDataUtils.rl(Stone.getBricksPressurePlate()).getPath(), modLoc("block/" + RankineDataUtils.rl(Stone.getBricksPressurePlate()).getPath() + "_up"));
+            withExistingParent(RankineDataUtils.rl(Stone.getButton()).getPath(), modLoc("block/" + RankineDataUtils.rl(Stone.getButton()).getPath() + "_inventory"));
+            withExistingParent(RankineDataUtils.rl(Stone.getCobble()).getPath(), RankineBlockStateProvider.getBlockRSL(RankineDataUtils.rl(Stone.getCobble()).getPath()+"1"));
+            withExistingParent(RankineDataUtils.rl(Stone.getColumn()).getPath(), RankineBlockStateProvider.getBlockRSL(RankineDataUtils.rl(Stone.getColumn()).getPath()+"1"));
             withExistingParent(Stone.getInfested());
         }
 
@@ -73,18 +73,18 @@ public class RankineItemModelProvider extends ItemModelProvider {
             buildingModeItem(Wood.getPlanks().asItem(), ((BuildingModeBlock) Wood.getPlanks()).getMaxStyles());
             slabParent(Wood.getSlab());
             stairsParent(Wood.getStairs());
-            withExistingParent(Wood.getFence().getRegistryName().getPath(), modLoc("block/" + Wood.getFence().getRegistryName().getPath() + "_inventory"));
+            withExistingParent(RankineDataUtils.rl(Wood.getFence()).getPath(), modLoc("block/" + RankineDataUtils.rl(Wood.getFence()).getPath() + "_inventory"));
             withExistingParent(Wood.getFenceGate());
             basicItem(Wood.getDoor().asItem());
-            withExistingParent(Wood.getTrapdoor().getRegistryName().getPath(), modLoc("block/"+Wood.getTrapdoor().getRegistryName().getPath()+"_bottom"));
-            withExistingParent(Wood.getPressurePlate().getRegistryName().getPath(), modLoc("block/" + Wood.getPressurePlate().getRegistryName().getPath() + "_up"));
-            withExistingParent(Wood.getButton().getRegistryName().getPath(), modLoc("block/" + Wood.getButton().getRegistryName().getPath() + "_inventory"));
+            withExistingParent(RankineDataUtils.rl(Wood.getTrapdoor()).getPath(), modLoc("block/"+RankineDataUtils.rl(Wood.getTrapdoor()).getPath()+"_bottom"));
+            withExistingParent(RankineDataUtils.rl(Wood.getPressurePlate()).getPath(), modLoc("block/" + RankineDataUtils.rl(Wood.getPressurePlate()).getPath() + "_up"));
+            withExistingParent(RankineDataUtils.rl(Wood.getButton()).getPath(), modLoc("block/" + RankineDataUtils.rl(Wood.getButton()).getPath() + "_inventory"));
             basicItem(Wood.getSignItem());
             buildingModeItem(Wood.getBookshelf().asItem(), ((BuildingModeBlock) Wood.getBookshelf()).getMaxStyles());
             basicItem(Wood.getBoat());
             if (Wood.isTree()) {
-                withExistingParent(Wood.getLeaves().getRegistryName().getPath(), ResourceLocation.fromNamespaceAndPath("rankine","block/"+Wood.getLeaves().getRegistryName().getPath()+"_age0"));
-                basicItemAltTexture(Wood.getSapling().asItem(), modLoc("block/" + Wood.getSapling().getRegistryName().getPath()));
+                withExistingParent(RankineDataUtils.rl(Wood.getLeaves()).getPath(), ResourceLocation.fromNamespaceAndPath("rankine","block/"+RankineDataUtils.rl(Wood.getLeaves()).getPath()+"_age0"));
+                basicItemAltTexture(Wood.getSapling().asItem(), modLoc("block/" + RankineDataUtils.rl(Wood.getSapling()).getPath()));
                 withExistingParent(Wood.getLeafLitter());
             }
         }
@@ -103,7 +103,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
         }
         for (RankineCement Cement : RankineLists.RANKINE_CEMENTS) {
             withExistingParent(Cement.getCementBlock());
-            withExistingParent(Cement.getCementSlab().getRegistryName().getPath(), new ResourceLocation("rankine:block/"+Cement.getCementSlab().getRegistryName().getPath()+"_size2"));
+            withExistingParent(RankineDataUtils.rl(Cement.getCementSlab()).getPath(), ResourceLocation.parse("rankine:block/"+RankineDataUtils.rl(Cement.getCementSlab()).getPath()+"_size2"));
             stairsParent(Cement.getCementStairs());
             wallParent(Cement.getCementWall());
         }
@@ -115,7 +115,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
         }
         for (RankineDripstone Dripstone : RankineLists.RANKINE_DRIPSTONES) {
             withExistingParent(Dripstone.getDripstone());
-            basicItemAltTexture(Dripstone.getPointedDripstone().asItem(), modLoc("block/" + Dripstone.getPointedDripstone().asItem().getRegistryName().getPath() + "_down_tip"));
+            basicItemAltTexture(Dripstone.getPointedDripstone().asItem(), modLoc("block/" + RankineDataUtils.rl(Dripstone.getPointedDripstone().asItem()).getPath() + "_down_tip"));
         }
 
         //food items
@@ -467,29 +467,29 @@ public class RankineItemModelProvider extends ItemModelProvider {
 
         /*
         for (Block BLK : RankineLists.STONE_PILLARS) {
-            withExistingParent(BLK.getRegistryName().getPath(), RankineBlockStateProvider.getBlockRSL(BLK.getRegistryName().getPath()+"8"));
+            withExistingParent(RankineDataUtils.rl(BLK).getPath(), RankineBlockStateProvider.getBlockRSL(RankineDataUtils.rl(BLK).getPath()+"8"));
         }
 
          */
         for (Block BLK : Stream.of(RankineLists.GLAZED_PORCELAIN_BLOCKS,RankineLists.VANILLA_BRICKS).flatMap(Collection::stream).collect(Collectors.toList())) {
             buildingModeItem(BLK.asItem(), ((BuildingModeBlock) BLK).getMaxStyles());
         }
-        withExistingParent(RankineBlocks.TILLED_SOIL.get().getRegistryName().getPath(), ResourceLocation.fromNamespaceAndPath("rankine","block/tilled_soil_loam"));
-        withExistingParent(RankineBlocks.STUMP.get().getRegistryName().getPath(), ResourceLocation.fromNamespaceAndPath("rankine","block/stump0"));
-        withExistingParent(RankineBlocks.MIXING_BARREL.get().getRegistryName().getPath(), ResourceLocation.fromNamespaceAndPath("rankine","block/mixing_barrel0"));
+        withExistingParent(RankineDataUtils.rl(RankineBlocks.TILLED_SOIL.get()).getPath(), ResourceLocation.fromNamespaceAndPath("rankine","block/tilled_soil_loam"));
+        withExistingParent(RankineDataUtils.rl(RankineBlocks.STUMP.get()).getPath(), ResourceLocation.fromNamespaceAndPath("rankine","block/stump0"));
+        withExistingParent(RankineDataUtils.rl(RankineBlocks.MIXING_BARREL.get()).getPath(), ResourceLocation.fromNamespaceAndPath("rankine","block/mixing_barrel0"));
 
-        withExistingParent(RankineBlocks.ASPHALT.get().getRegistryName().getPath(), ResourceLocation.fromNamespaceAndPath("rankine","block/asphalt_size4"));
-        withExistingParent(RankineBlocks.RED_ASPHALT.get().getRegistryName().getPath(), ResourceLocation.fromNamespaceAndPath("rankine","block/red_asphalt_size4"));
-        withExistingParent(RankineBlocks.GRAY_ASPHALT.get().getRegistryName().getPath(), ResourceLocation.fromNamespaceAndPath("rankine","block/gray_asphalt_size4"));
-        withExistingParent(RankineBlocks.DARK_GRAY_ASPHALT.get().getRegistryName().getPath(), ResourceLocation.fromNamespaceAndPath("rankine","block/dark_gray_asphalt_size4"));
-        withExistingParent(RankineBlocks.BLUE_ASPHALT.get().getRegistryName().getPath(), ResourceLocation.fromNamespaceAndPath("rankine","block/blue_asphalt_size4"));
-        withExistingParent(RankineBlocks.GREEN_ASPHALT.get().getRegistryName().getPath(), ResourceLocation.fromNamespaceAndPath("rankine","block/green_asphalt_size4"));
+        withExistingParent(RankineDataUtils.rl(RankineBlocks.ASPHALT.get()).getPath(), ResourceLocation.fromNamespaceAndPath("rankine","block/asphalt_size4"));
+        withExistingParent(RankineDataUtils.rl(RankineBlocks.RED_ASPHALT.get()).getPath(), ResourceLocation.fromNamespaceAndPath("rankine","block/red_asphalt_size4"));
+        withExistingParent(RankineDataUtils.rl(RankineBlocks.GRAY_ASPHALT.get()).getPath(), ResourceLocation.fromNamespaceAndPath("rankine","block/gray_asphalt_size4"));
+        withExistingParent(RankineDataUtils.rl(RankineBlocks.DARK_GRAY_ASPHALT.get()).getPath(), ResourceLocation.fromNamespaceAndPath("rankine","block/dark_gray_asphalt_size4"));
+        withExistingParent(RankineDataUtils.rl(RankineBlocks.BLUE_ASPHALT.get()).getPath(), ResourceLocation.fromNamespaceAndPath("rankine","block/blue_asphalt_size4"));
+        withExistingParent(RankineDataUtils.rl(RankineBlocks.GREEN_ASPHALT.get()).getPath(), ResourceLocation.fromNamespaceAndPath("rankine","block/green_asphalt_size4"));
 
         for (Block blk : RankineLists.WALL_MUSHROOMS) {
-            basicItemAltTexture(blk.asItem(), modLoc("item/" + blk.getRegistryName().getPath()));
+            basicItemAltTexture(blk.asItem(), modLoc("item/" + RankineDataUtils.rl(blk).getPath()));
         }
         for (Block blk : RankineLists.ALLOY_POLES) {
-            withExistingParent(blk.getRegistryName().getPath(), ResourceLocation.fromNamespaceAndPath("rankine","block/" + blk.getRegistryName().getPath() + "0"));
+            withExistingParent(RankineDataUtils.rl(blk).getPath(), ResourceLocation.fromNamespaceAndPath("rankine","block/" + RankineDataUtils.rl(blk).getPath() + "0"));
         }
         for (Block blk : RankineLists.ALLOY_BARS) {
             basicItemAltTexture(blk.asItem(), modLoc("block/alloy_bars1"));
@@ -502,7 +502,7 @@ public class RankineItemModelProvider extends ItemModelProvider {
         basicItemAltTexture(RankineItems.SHORT_GRASS.get(), modLoc("block/" + "short_grass0"));
 
         for (Block blk : RankineLists.TALL_FLOWERS) {
-            basicItemAltTexture(blk.asItem(), modLoc("block/" + blk.getRegistryName().getPath() + "_top"));
+            basicItemAltTexture(blk.asItem(), modLoc("block/" + RankineDataUtils.rl(blk).getPath() + "_top"));
         }
 
         for (Item TOOL : Stream.of(RankineLists.WOODEN_TOOLS,RankineLists.STONE_TOOLS, RankineLists.FLINT_TOOLS, RankineLists.BRONZE_TOOLS, RankineLists.ALLOY_TOOLS, RankineLists.PEWTER_TOOLS, RankineLists.INVAR_TOOLS, RankineLists.TITANIUM_ALLOY_TOOLS, RankineLists.ZIRCONIUM_ALLOY_TOOLS, RankineLists.NIOBIUM_ALLOY_TOOLS, RankineLists.STEEL_TOOLS, RankineLists.STAINLESS_STEEL_TOOLS, RankineLists.COBALT_SUPERALLOY_TOOLS, RankineLists.NICKEL_SUPERALLOY_TOOLS, RankineLists.TUNGSTEN_HEAVY_ALLOY_TOOLS, RankineLists.BLACK_GOLD_TOOLS, RankineLists.BLUE_GOLD_TOOLS, RankineLists.GREEN_GOLD_TOOLS, RankineLists.ROSE_GOLD_TOOLS, RankineLists.PURPLE_GOLD_TOOLS, RankineLists.WHITE_GOLD_TOOLS, RankineLists.OSMIRIDIUM_TOOLS, RankineLists.AMALGAM_TOOLS, RankineLists.ENDER_AMALGAM_TOOLS).flatMap(Collection::stream).collect(Collectors.toList())) {
@@ -525,18 +525,18 @@ public class RankineItemModelProvider extends ItemModelProvider {
 
         //ALLOYS
         for (Item ALLOY : RankineLists.ALLOY_NUGGETS) {
-            String name = ALLOY.getRegistryName().getPath();
+            String name = RankineDataUtils.rl(ALLOY).getPath();
             basicItem(name);
         }
         for (Item ALLOY : RankineLists.ALLOY_INGOTS) {
-            String name = ALLOY.getRegistryName().getPath();
+            String name = RankineDataUtils.rl(ALLOY).getPath();
             basicItem(name);
         }
 
 
         //ORES
         for (Block blk : Stream.of(RankineLists.NATIVE_ORES, RankineLists.CRUSHING_ORES, RankineLists.SPECIAL_ORES).flatMap(Collection::stream).collect(Collectors.toList())) {
-            String regName = blk.getRegistryName().getPath();
+            String regName = RankineDataUtils.rl(blk).getPath();
             withExistingParent(regName, modLoc("block/"+regName+"0"));
         }
 
@@ -544,22 +544,22 @@ public class RankineItemModelProvider extends ItemModelProvider {
 
         //GEODESw
         for (Block blk : RankineLists.GEODES) {
-            String name = blk.getRegistryName().getPath();
+            String name = RankineDataUtils.rl(blk).getPath();
             withExistingParent(name, modLoc("block/"+name));
         }
         for (Block blk : Stream.of(RankineLists.VANILLA_BRICKS_PRESSURE_PLATES).flatMap(Collection::stream).collect(Collectors.toList())) {
-            String name = blk.getRegistryName().getPath();
+            String name = RankineDataUtils.rl(blk).getPath();
             withExistingParent(name, modLoc("block/" + name + "_up"));
         }
         for (Block blk : Stream.of(RankineLists.METAL_DOORS).flatMap(Collection::stream).collect(Collectors.toList())) {
             basicItem(blk.asItem());
         }
         for (Block blk : Stream.of(RankineLists.METAL_TRAPDOORS).flatMap(Collection::stream).collect(Collectors.toList())) {
-            withExistingParent(blk.getRegistryName().getPath(), modLoc("block/"+blk.getRegistryName().getPath()+"_bottom"));
+            withExistingParent(RankineDataUtils.rl(blk).getPath(), modLoc("block/"+RankineDataUtils.rl(blk).getPath()+"_bottom"));
         }
 
        // for (Block blk : RankineLists.LANTERNS) {
-       //     getBuilder(blk.getRegistryName().getPath()).parent(getExistingFile(modLoc("item/base_lantern")));
+       //     getBuilder(RankineDataUtils.rl(blk).getPath()).parent(getExistingFile(modLoc("item/base_lantern")));
        // }
 
         basicItem(RankineItems.PENNING_TRAP.get());
@@ -567,50 +567,50 @@ public class RankineItemModelProvider extends ItemModelProvider {
     }
 
     private ItemModelBuilder withExistingParent(Block blk) {
-        return withExistingParent(blk.getRegistryName().getPath(), modLoc("block/" + blk.getRegistryName().getPath()));
+        return withExistingParent(RankineDataUtils.rl(blk).getPath(), modLoc("block/" + RankineDataUtils.rl(blk).getPath()));
     }
     private ItemModelBuilder basicItem(String name) {
         return getBuilder(name).parent(getExistingFile(mcLoc("item/generated"))).texture("layer0", "item/" + name);
     }
     public ItemModelBuilder basicItem(Item name) {
-        return getBuilder(name.getRegistryName().getPath()).parent(getExistingFile(mcLoc("item/generated"))).texture("layer0", "item/" + name.getRegistryName().getPath());
+        return getBuilder(RankineDataUtils.rl(name).getPath()).parent(getExistingFile(mcLoc("item/generated"))).texture("layer0", "item/" + RankineDataUtils.rl(name).getPath());
     }
     private ItemModelBuilder basicItemHandheld(Item name) {
-        return getBuilder(name.getRegistryName().getPath()).parent(getExistingFile(mcLoc("item/handheld"))).texture("layer0", "item/" + name.getRegistryName().getPath());
+        return getBuilder(RankineDataUtils.rl(name).getPath()).parent(getExistingFile(mcLoc("item/handheld"))).texture("layer0", "item/" + RankineDataUtils.rl(name).getPath());
     }
     private ItemModelBuilder basicItemHandheldRod(Item name) {
-        return getBuilder(name.getRegistryName().getPath()).parent(getExistingFile(mcLoc("item/handheld_rod"))).texture("layer0", "item/" + name.getRegistryName().getPath());
+        return getBuilder(RankineDataUtils.rl(name).getPath()).parent(getExistingFile(mcLoc("item/handheld_rod"))).texture("layer0", "item/" + RankineDataUtils.rl(name).getPath());
     }
     private ItemModelBuilder basicItem(Block name) {
-        return getBuilder(name.getRegistryName().getPath()).parent(getExistingFile(mcLoc("item/generated"))).texture("layer0", "item/" + name.getRegistryName().getPath());
+        return getBuilder(RankineDataUtils.rl(name).getPath()).parent(getExistingFile(mcLoc("item/generated"))).texture("layer0", "item/" + RankineDataUtils.rl(name).getPath());
     }
     private ItemModelBuilder basicItemAltTexture(Item item, ResourceLocation texture) {
-        return getBuilder(item.getRegistryName().getPath()).parent(getExistingFile(mcLoc("item/generated"))).texture("layer0", texture);
+        return getBuilder(RankineDataUtils.rl(item).getPath()).parent(getExistingFile(mcLoc("item/generated"))).texture("layer0", texture);
     }
     
     private ItemModelBuilder slabParent(Block BLK) {
-        return withExistingParent(BLK.getRegistryName().getPath(), modLoc("block/" + BLK.getRegistryName().getPath()));
+        return withExistingParent(RankineDataUtils.rl(BLK).getPath(), modLoc("block/" + RankineDataUtils.rl(BLK).getPath()));
     }    
     private ItemModelBuilder verticalSlabParent(Block BLK) {
-        return withExistingParent(BLK.getRegistryName().getPath(), modLoc("block/" + BLK.getRegistryName().getPath()+"_straight"));
+        return withExistingParent(RankineDataUtils.rl(BLK).getPath(), modLoc("block/" + RankineDataUtils.rl(BLK).getPath()+"_straight"));
     }    
     private ItemModelBuilder stairsParent(Block BLK) {
-        return withExistingParent(BLK.getRegistryName().getPath(), modLoc("block/" + BLK.getRegistryName().getPath()));
+        return withExistingParent(RankineDataUtils.rl(BLK).getPath(), modLoc("block/" + RankineDataUtils.rl(BLK).getPath()));
     }    
     private ItemModelBuilder wallParent(Block BLK) {
-        return withExistingParent(BLK.getRegistryName().getPath(), modLoc("block/" + BLK.getRegistryName().getPath()+"_inventory"));
+        return withExistingParent(RankineDataUtils.rl(BLK).getPath(), modLoc("block/" + RankineDataUtils.rl(BLK).getPath()+"_inventory"));
     }
 
 
     private void buildingModeItem(Item item, int maxModes) {
-        String Path = item.getRegistryName().getPath();
+        String Path = RankineDataUtils.rl(item).getPath();
         ItemModelBuilder thing = withExistingParent(Path, RankineBlockStateProvider.getBlockRSL(Path+"1"));
         for (int i = 2; i <= maxModes; i++) {
             thing.override().predicate(ResourceLocation.parse("rankine:building_mode"), (float) i).model(getExistingFile(RankineBlockStateProvider.getBlockRSL(Path+i))).end();
         }
     }
     private void buildingModeGeneratedItem(Item item, int maxModes) {
-        String Path = item.getRegistryName().getPath();
+        String Path = RankineDataUtils.rl(item).getPath();
         getBuilder(Path+"2").parent(getExistingFile(mcLoc("item/generated"))).texture("layer0", "block/metal_ladder2");
         getBuilder(Path+"3").parent(getExistingFile(mcLoc("item/generated"))).texture("layer0", "block/metal_ladder3");
         getBuilder(Path+"4").parent(getExistingFile(mcLoc("item/generated"))).texture("layer0", "block/metal_ladder4");
@@ -621,14 +621,14 @@ public class RankineItemModelProvider extends ItemModelProvider {
     }
 
     private void spearItem(Item item) {
-        String Path = item.getRegistryName().getPath();
+        String Path = RankineDataUtils.rl(item).getPath();
         getBuilder(Path).parent(getExistingFile(mcLoc("item/generated"))).texture("layer0", "item/" + Path);
         getBuilder(Path+"_throwing").parent(getExistingFile(modLoc("item/spear_throwing"))).texture("layer0", "item/" + Path);
         getBuilder(Path).parent(getExistingFile(modLoc("item/spear_in_hand"))).texture("layer0", "item/" + Path).override().predicate(ResourceLocation.parse("throwing"), 1.0f).model(getExistingFile(modLoc("item/"+Path+"_throwing")));
     }
 
     private void filledTagItem(Item item) {
-        String Path = item.getRegistryName().getPath();
+        String Path = RankineDataUtils.rl(item).getPath();
         getBuilder(Path+"_filled").parent(getExistingFile(mcLoc("item/handheld"))).texture("layer0", "item/" + Path+"_filled");
         getBuilder(Path).parent(getExistingFile(mcLoc("item/handheld"))).texture("layer0", "item/" + Path).override().predicate(ResourceLocation.parse("rankine:filled"), 1).model(getExistingFile(modLoc("item/"+Path+"_filled")));
     }

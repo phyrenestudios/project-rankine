@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.blocks;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -17,24 +18,32 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
-import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 import javax.annotation.Nullable;
 
+// PORT-NOTE: Material.METAL -> .mapColor(MapColor.METAL) (METAL implied no extra behavior flags).
 public class CrushingHeadBlock extends Block implements SimpleWaterloggedBlock {
+    public static final MapCodec<CrushingHeadBlock> CODEC = MapCodec.unit(CrushingHeadBlock::new);
     public static final DirectionProperty FACING = BlockStateProperties.FACING;
     public static final IntegerProperty POWER = BlockStateProperties.POWER;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
+    @Override
+    public MapCodec<? extends CrushingHeadBlock> codec() {
+        return CODEC;
+    }
+
     public CrushingHeadBlock() {
-        super(Block.Properties.of(Material.METAL).sound(SoundType.METAL).requiresCorrectToolForDrops().strength(5.0F, 6.0F).noOcclusion().dynamicShape());
+        super(Block.Properties.of().mapColor(MapColor.METAL).sound(SoundType.METAL).requiresCorrectToolForDrops().strength(5.0F, 6.0F).noOcclusion().dynamicShape());
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.UP).setValue(POWER, 0).setValue(WATERLOGGED, Boolean.FALSE));
     }
 
-    public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
+    @Override
+    protected VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
         switch (state.getValue(FACING)) {
             case DOWN:
                 return Shapes.or(Block.box(1, 14, 1, 15, 16, 15), Block.box(6, 4, 6, 10, 14, 10), Block.box(3, 1, 3, 13, 4, 13), Block.box(4, 0, 4, 12, 1, 12));
@@ -53,7 +62,8 @@ public class CrushingHeadBlock extends Block implements SimpleWaterloggedBlock {
 
     }
 
-    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
+    @Override
+    protected BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
         if (facing.getOpposite() == stateIn.getValue(FACING) && !stateIn.canSurvive(worldIn, currentPos)) {
             return Blocks.AIR.defaultBlockState();
         } else {
@@ -66,6 +76,7 @@ public class CrushingHeadBlock extends Block implements SimpleWaterloggedBlock {
     }
 
     @Nullable
+    @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         Direction direction = context.getClickedFace();
         FluidState fluidstate = context.getLevel().getFluidState(context.getClickedPos());
@@ -73,11 +84,13 @@ public class CrushingHeadBlock extends Block implements SimpleWaterloggedBlock {
         return this.defaultBlockState().setValue(FACING, direction).setValue(POWER, 0).setValue(WATERLOGGED, fluidstate.getType() == Fluids.WATER);
     }
 
+    @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(FACING, POWER, WATERLOGGED);
     }
 
-    public FluidState getFluidState(BlockState state) {
+    @Override
+    protected FluidState getFluidState(BlockState state) {
         return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }
 }

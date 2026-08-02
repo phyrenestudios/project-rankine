@@ -2,10 +2,11 @@ package com.cannolicatfish.rankine.blocks;
 
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineLists;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.tags.BlockTags;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.item.FallingBlockEntity;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -19,18 +20,25 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.Fluid;
-import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-import java.util.Random;
-
+// PORT-NOTE: Material.PLANT -> .mapColor(MapColor.PLANT).pushReaction(PushReaction.DESTROY).
+// FallingBlock#codec() is abstract in 1.21.1, so the MapCodec below is mandatory, not decorative.
 public class LeafLitterBlock extends FallingBlock {
+    public static final MapCodec<LeafLitterBlock> CODEC = MapCodec.unit(LeafLitterBlock::new);
 
     public static final IntegerProperty AGE = BlockStateProperties.AGE_15;
 
+    @Override
+    protected MapCodec<? extends LeafLitterBlock> codec() {
+        return CODEC;
+    }
+
     public LeafLitterBlock() {
-        super(Block.Properties.of(Material.PLANT).instabreak().noOcclusion().sound(SoundType.GRASS));
+        super(Block.Properties.of().mapColor(MapColor.PLANT).pushReaction(PushReaction.DESTROY).instabreak().noOcclusion().sound(SoundType.GRASS));
         this.registerDefaultState(this.stateDefinition.any().setValue(AGE, 0));
     }
 
@@ -39,17 +47,18 @@ public class LeafLitterBlock extends FallingBlock {
         builder.add(AGE);
     }
 
-    public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
+    @Override
+    protected VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
         return Block.box(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D);
     }
 
     @Override
-    public boolean isRandomlyTicking(BlockState p_49921_) {
+    protected boolean isRandomlyTicking(BlockState p_49921_) {
         return true;
     }
 
     @Override
-    public void randomTick(BlockState state, ServerLevel levelIn, BlockPos pos, Random p_60554_) {
+    protected void randomTick(BlockState state, ServerLevel levelIn, BlockPos pos, RandomSource p_60554_) {
         int j = state.getValue(AGE);
         if (j == 15) {
             if (levelIn.getRawBrightness(pos.above(),0) <= 9) {
@@ -71,7 +80,7 @@ public class LeafLitterBlock extends FallingBlock {
     }
 
     @Override
-    public void tick(BlockState state, ServerLevel levelIn, BlockPos pos, Random rand) {
+    protected void tick(BlockState state, ServerLevel levelIn, BlockPos pos, RandomSource rand) {
         if (levelIn.isEmptyBlock(pos.below()) || canFallThrough(levelIn.getBlockState(pos.below())) && pos.getY() >= 0) {
             FallingBlockEntity.fall(levelIn, pos, state).dropItem = false;
         } else if (!canSurvive(state,levelIn,pos)) {
@@ -79,23 +88,24 @@ public class LeafLitterBlock extends FallingBlock {
         }
     }
 
+    // PORT-NOTE: BlockState#getMaterial() is gone. FallingBlock#isFree(BlockState) is exactly the old
+    // `isAir() || is(FIRE) || material.isLiquid() || material.isReplaceable()` test, so this stays 1:1.
     public static boolean canFallThrough(BlockState state) {
-        Material material = state.getMaterial();
-        return state.isAir() || state.is(BlockTags.FIRE) || material.isLiquid() || material.isReplaceable() || state.getBlock() instanceof LeafLitterBlock;
+        return isFree(state) || state.getBlock() instanceof LeafLitterBlock;
     }
 
     @Override
-    public boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
+    protected boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
         return worldIn.getBlockState(pos.below()).isCollisionShapeFullBlock(worldIn,pos.below());
     }
 
     @Override
-    public boolean canBeReplaced(BlockState state, BlockPlaceContext useContext) {
+    protected boolean canBeReplaced(BlockState state, BlockPlaceContext useContext) {
         return true;
     }
 
     @Override
-    public boolean canBeReplaced(BlockState state, Fluid fluid) {
+    protected boolean canBeReplaced(BlockState state, Fluid fluid) {
         return super.canBeReplaced(state, fluid);
     }
 

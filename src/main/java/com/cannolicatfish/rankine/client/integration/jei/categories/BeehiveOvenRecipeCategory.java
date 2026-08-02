@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.client.integration.jei.categories;
 
 import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.client.integration.jei.JEIRankinePlugin;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.recipe.BeehiveOvenRecipe;
@@ -10,7 +11,6 @@ import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.platform.InputConstants;
-import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
@@ -20,12 +20,12 @@ import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
+import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.resources.language.I18n;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -86,30 +86,23 @@ public class BeehiveOvenRecipeCategory implements IRecipeCategory<BeehiveOvenRec
         return this.cachedArrows.getUnchecked(cookTime);
     }
 
-    protected void drawCookTime(BeehiveOvenRecipe recipe, PoseStack poseStack, int y) {
+    protected void drawCookTime(BeehiveOvenRecipe recipe, GuiGraphics guiGraphics, int y) {
         int minCookTime = recipe.getMinCookTime();
         int maxCookTime = recipe.getMaxCookTime();
         if (minCookTime > 0 && maxCookTime > 0) {
             int minCookTimeSeconds = Math.round((minCookTime / 20f) * multiplier);
             int maxCookTimeSeconds = Math.round((maxCookTime / 20f) * multiplier);
-            TextComponent timeString = Component.literal(Component.translatable("gui.jei.category.smelting.time.seconds", minCookTimeSeconds).getString() + " - " + Component.translatable("gui.jei.category.smelting.time.seconds", maxCookTimeSeconds).getString());
+            Component timeString = Component.literal(Component.translatable("gui.jei.category.smelting.time.seconds", minCookTimeSeconds).getString() + " - " + Component.translatable("gui.jei.category.smelting.time.seconds", maxCookTimeSeconds).getString());
             Minecraft minecraft = Minecraft.getInstance();
             Font fontRenderer = minecraft.font;
             int stringWidth = fontRenderer.width(timeString);
-            fontRenderer.draw(poseStack, timeString, background.getWidth() - stringWidth, y, 0xFF808080);
+            guiGraphics.drawString(fontRenderer, timeString, background.getWidth() - stringWidth, y, 0xFF808080);
         }
     }
 
-    @SuppressWarnings("removal")
     @Override
-    public @NotNull ResourceLocation getUid() {
-        return UID;
-    }
-
-    @SuppressWarnings("removal")
-    @Override
-    public @NotNull Class<? extends BeehiveOvenRecipe> getRecipeClass() {
-        return BeehiveOvenRecipe.class;
+    public @NotNull RecipeType<BeehiveOvenRecipe> getRecipeType() {
+        return JEIRankinePlugin.BEEHIVE_OVEN;
     }
 
     @Override
@@ -128,25 +121,25 @@ public class BeehiveOvenRecipeCategory implements IRecipeCategory<BeehiveOvenRec
     }
 
     @Override
-    public void draw(BeehiveOvenRecipe recipe, IRecipeSlotsView recipeSlotsView, PoseStack stack, double mouseX, double mouseY) {
+    public void draw(BeehiveOvenRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
         int burnTime = Math.round(recipe.getMinCookTime() * multiplier);
         IDrawableAnimated flame = cachedFlames.getUnchecked(burnTime);
-        flame.draw(stack, 20, 20);
+        flame.draw(guiGraphics, 20, 20);
 
         IDrawableAnimated arrow = getArrow(recipe);
-        arrow.draw(stack, 55, 19);
+        arrow.draw(guiGraphics, 55, 19);
 
         if (multiplier == 1f) {
-            firstTierBeehiveOven.draw(stack, 0,36);
+            firstTierBeehiveOven.draw(guiGraphics, 0,36);
         } else if (multiplier == 0.5f) {
-            secondTierBeehiveOven.draw(stack, 0,36);
+            secondTierBeehiveOven.draw(guiGraphics, 0,36);
         } else if (multiplier == 0.25f) {
-            thirdTierBeehiveOven.draw(stack, 0,36);
+            thirdTierBeehiveOven.draw(guiGraphics, 0,36);
         }
 
-        drawCookTime(recipe, stack, 55);
+        drawCookTime(recipe, guiGraphics, 55);
 
-        IRecipeCategory.super.draw(recipe, recipeSlotsView, stack, mouseX, mouseY);
+        IRecipeCategory.super.draw(recipe, recipeSlotsView, guiGraphics, mouseX, mouseY);
     }
 
     @Override
