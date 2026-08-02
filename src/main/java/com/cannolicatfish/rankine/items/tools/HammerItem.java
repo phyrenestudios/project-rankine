@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.items.tools;
 
 import com.cannolicatfish.rankine.enchantment.RankineEnchantmentHelper;
 import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.RankineEnchantments;
 import com.cannolicatfish.rankine.init.RankineLists;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.init.RankineTags;
@@ -99,13 +100,15 @@ public class HammerItem extends DiggerItem {
 
     @Override
     public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        if (target.getCommandSenderWorld().isRainingAt(target.blockPosition()) && RankineEnchantmentHelper.getLightningAspectEnchantment(stack) > 0) {
+        // PORT-NOTE: the per-enchantment helper methods are gone (enchantments are data-driven registry
+        // entries now); levels are looked up by ResourceKey through the level registry.
+        if (target.getCommandSenderWorld().isRainingAt(target.blockPosition()) && RankineEnchantmentHelper.getLevel(attacker, RankineEnchantments.LIGHTNING_ASPECT, stack) > 0) {
             LightningBolt ent = new LightningBolt(EntityType.LIGHTNING_BOLT,attacker.level());
             ent.setPos(target.getX(),target.getY(),target.getZ());
             target.getCommandSenderWorld().addFreshEntity(ent);
         }
-        if (RankineEnchantmentHelper.getDazeEnchantment(stack) > 0) {
-            int dazeLevel = RankineEnchantmentHelper.getDazeEnchantment(stack);
+        int dazeLevel = RankineEnchantmentHelper.getLevel(attacker, RankineEnchantments.DAZE, stack);
+        if (dazeLevel > 0) {
             if (attacker instanceof Player) {
                 Player player = (Player) attacker;
                 if (player.getAttackStrengthScale(0) >= (1f)) {
@@ -128,8 +131,9 @@ public class HammerItem extends DiggerItem {
 
     public void getExcavationResult(BlockPos posIn, Level levelIn, Player player, ItemStack stack) {
         BlockHitResult raytraceresult = getPlayerPOVHitResult(levelIn, player, ClipContext.Fluid.ANY);
-        if (RankineEnchantmentHelper.getExcavateEnchantment(stack) <= 0) return;
-        for (BlockPos p : evacuationArea(posIn, raytraceresult.getDirection(), RankineEnchantmentHelper.getExcavateEnchantment(stack))) {
+        int excavateLevel = RankineEnchantmentHelper.getLevel(levelIn, RankineEnchantments.EXCAVATE, stack);
+        if (excavateLevel <= 0) return;
+        for (BlockPos p : evacuationArea(posIn, raytraceresult.getDirection(), excavateLevel)) {
             mineBlock(stack, levelIn, levelIn.getBlockState(p), p, player);
         }
     }

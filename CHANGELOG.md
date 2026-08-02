@@ -1,6 +1,44 @@
 
 # Changelog
 All notable changes to the mod, Project Rankine, will be kept in this file.
+
+## Project Rankine Version 1.21.1-1.4.0 Changelog
+
+### PLATFORM
+- Updated from Minecraft 1.18.2 (Forge) to **Minecraft 1.21.1 (NeoForge 21.1.248)**, Java 21
+- Build system moved from ForgeGradle to ModDevGradle; Gradle 8.12
+- Removed the unused mixin configuration and the client/server proxy scaffolding
+
+### MECHANICS PRESERVED WITH NEW IMPLEMENTATIONS
+- Alloy data (composition, recipe, per-stack stats, elements, modifiers, templates) moved from item NBT to
+  **data components**. Alloy tools additionally publish vanilla `tool`, `max_damage` and attribute components so
+  mining speed and durability behave correctly with 1.21's item pipeline.
+- All 44 Rankine **enchantments** are now data-driven datapack entries. Behavior that used to live in
+  `Enchantment` subclasses moved into event handlers; applicability moved to `rankine:enchantable/*` item tags.
+- **Worldgen** wiring moved off `BiomeLoadingEvent` to NeoForge biome modifiers (59 entries), with custom modifiers
+  where generation depends on config values.
+- **Capabilities**: machine inventories are now registered centrally; sided access rules are unchanged.
+- **Networking** moved to the payload system; **chunk retrogen state** moved from a capability to an attachment.
+- Custom **recipes** now use Codec-based serializers. Existing recipe JSON keeps working — field names and recipe
+  ids are unchanged.
+
+### FIXES (pre-existing bugs found during the port)
+- Alloy templates always displayed white; the stored color was written under one key and read under another
+- Alloy knockback resistance was written as a float and read as an int, so it was always zero
+- Player tick handlers ran twice per tick due to a missing phase check
+- The block overlay render handler was never actually invoked
+- The Ender Amalgam Shovel's enchantment category matched the spear item
+
+### KNOWN BEHAVIOR CHANGES
+- Chunk retrogen state is not migrated from the old format, so previously generated chunks run the retrogen
+  replacement pass once more
+- The Invigorating Totem repairs at half its previous rate (the old rate came from the double-tick bug above)
+- Tofu, Cooked Tofu, Tuna and Cooked Tuna lose their "is meat" flag (the API was removed)
+- Rankine leaves are now waterloggable, matching vanilla leaves
+- The Electromagnet's "is metal" check is approximated by block sound type and misses netherite blocks and anvils
+- Off-hand right-clicks no longer reach a few block interaction fallbacks, following vanilla's interaction split
+- Recipe-unlock advancements are grouped under `recipes/misc`; recipe ids themselves are unchanged
+
 ## Project Rankine Version 1.3.8 Changelog
 
 ### BLOCKS

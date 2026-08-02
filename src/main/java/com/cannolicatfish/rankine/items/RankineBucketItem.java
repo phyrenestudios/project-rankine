@@ -18,8 +18,11 @@ import net.minecraft.world.phys.HitResult;
 
 public class RankineBucketItem extends BucketItem {
 
+    // PORT-NOTE: BucketItem's Supplier<Fluid> constructor is gone in 1.21.1 (it takes the Fluid directly).
+    // The Supplier parameter is kept so RankineItems' call sites are unchanged; it is resolved here, which is
+    // safe because the FLUID registry is populated before the ITEM registry.
     public RankineBucketItem(java.util.function.Supplier<? extends Fluid> supplier, Item.Properties builder) {
-        super(supplier, builder);
+        super(supplier.get(), builder);
     }
 
     @Override

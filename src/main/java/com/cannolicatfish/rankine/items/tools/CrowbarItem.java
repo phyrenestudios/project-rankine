@@ -101,7 +101,10 @@ public class CrowbarItem extends DiggerItem {
         }
         if (player != null && !player.onGround() && worldIn.getBlockState(blockpos.above()).isAir() && worldIn.getBlockState(blockpos.above(2)).isAir() ) {
             Vec3 oldVector = player.getDeltaMovement().normalize();
-            int liftLevel = RankineEnchantmentHelper.getLiftEnchantment(stack);
+            // PORT-NOTE: the per-enchantment helper methods are gone (enchantments are data-driven registry
+            // entries now); levels are looked up by ResourceKey through the level registry. Fulcrum is the
+            // enchantment the old getLiftEnchantment() read.
+            int liftLevel = RankineEnchantmentHelper.getLevel(worldIn, RankineEnchantments.FULCRUM, stack);
             if (liftLevel > 0) {
                 player.setDeltaMovement(oldVector.x*Math.sqrt(liftLevel), liftLevel*0.4D, oldVector.z*Math.sqrt(liftLevel));
             } else {
