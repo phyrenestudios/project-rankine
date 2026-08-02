@@ -5,25 +5,31 @@ import com.cannolicatfish.rankine.blocks.plants.DoubleCropsBlock;
 import com.cannolicatfish.rankine.blocks.plants.TripleCropsBlock;
 import com.cannolicatfish.rankine.blocks.states.TripleBlockSection;
 import com.cannolicatfish.rankine.blocks.tilledsoil.TilledSoilBlock;
+import com.cannolicatfish.rankine.enchantment.RankineEnchantmentHelper;
 import com.cannolicatfish.rankine.init.*;
 import com.cannolicatfish.rankine.items.alloys.AlloyHoeItem;
 import com.cannolicatfish.rankine.recipe.SluicingRecipe;
 import com.cannolicatfish.rankine.recipe.StrippingRecipe;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
-import net.minecraft.world.item.alchemy.PotionUtils;
+import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.alchemy.Potions;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.RecipeInput;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
@@ -32,19 +38,30 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
-import net.neoforged.bus.api.Event;
-import net.neoforged.neoforge.registries.ForgeRegistries;
-import net.neoforged.neoforge.registries.tags.IReverseTag;
+import net.neoforged.neoforge.items.wrapper.InvWrapper;
+import net.neoforged.neoforge.items.wrapper.RecipeWrapper;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
-import java.util.Random;
-import java.util.stream.Stream;
 
+/**
+ * 1.21.1 notes:
+ * - getPlayer() -> getEntity(), getWorld() -> getLevel().
+ * - PotionUtils.getPotion(stack) -> the POTION_CONTENTS data component.
+ * - Block#getRegistryName() -> BuiltInRegistries.BLOCK.getKey(block); forge: tag namespace -> c:.
+ * - Forge reverse-tag lookups -> ItemStack#getTags().
+ * - RecipeType#tryMatch / Container recipes -> getRecipeFor(type, RecipeInput, level) returning
+ *   Optional&lt;RecipeHolder&lt;R&gt;&gt;.
+ * - hurtAndBreak(amount, entity, slot) replaces hurtAndBreak + broadcastBreakEvent.
+ * - Items.GRASS -> Items.SHORT_GRASS.
+ * - PORT-NOTE: event.setResult(Event.Result.ALLOW) was inert on RightClickBlock in 1.18.2
+ *   (only useBlock/useItem and cancellation are consulted) and Event.Result is gone in NeoForge —
+ *   the calls are dropped, preserving behavior.
+ */
 public class RightClickBlockHandler {
 
-    private static Map<Block, BlockState> flintLightMap = new HashMap<>();
+    private static final Map<Block, BlockState> flintLightMap = new HashMap<>();
     public static Map<Block, Block> stripping_map = new HashMap<Block, Block>();
     public static Map<TagKey<Item>, LanternBlock> lanternMap = new HashMap<TagKey<Item>, LanternBlock>();
 
@@ -60,28 +77,39 @@ public class RightClickBlockHandler {
         }
 
         for (Block block : RankineLists.LANTERNS) {
-            if (!ForgeRegistries.ITEMS.tags().isKnownTagName(ForgeRegistries.ITEMS.tags().createTagKey(new ResourceLocation("forge:nuggets/"+block.getRegistryName().getPath().replace("_lantern",""))))) break;
-            lanternMap.put(ForgeRegistries.ITEMS.tags().createTagKey(new ResourceLocation("forge:nuggets/"+block.getRegistryName().getPath().replace("_lantern",""))), (LanternBlock) block);
+            ResourceLocation blockId = BuiltInRegistries.BLOCK.getKey(block);
+            if (blockId == null) continue;
+            // 1.21.1: the "forge" tag namespace is now "c"; tag existence can't be probed at
+            // class-init time any more, so the TagKey is simply created (unknown tags stay empty).
+            TagKey<Item> nuggetTag = TagKey.create(Registries.ITEM,
+                    ResourceLocation.fromNamespaceAndPath("c", "nuggets/" + blockId.getPath().replace("_lantern","")));
+            lanternMap.put(nuggetTag, (LanternBlock) block);
         }
         lanternMap.put(Tags.Items.NUGGETS_IRON, (LanternBlock) Blocks.LANTERN);
         lanternMap.put(RankineTags.Items.NUGGETS_SULFUR, (LanternBlock) Blocks.SOUL_LANTERN);
     }
 
+    private static EquipmentSlot slotFor(InteractionHand hand) {
+        return hand == InteractionHand.OFF_HAND ? EquipmentSlot.OFFHAND : EquipmentSlot.MAINHAND;
+    }
 
     public static void rightClickBlockEvent(PlayerInteractEvent.RightClickBlock event) {
         if (event.getFace() == null) return;
-        Player playerIn = event.getPlayer();
-        Level levelIn = event.getWorld();
+        Player playerIn = event.getEntity();
+        Level levelIn = event.getLevel();
         BlockPos posIn = event.getPos();
         BlockState stateIn = levelIn.getBlockState(posIn);
         ItemStack itemStack = playerIn.getItemInHand(event.getHand());
 
         // Mud creation
-        if (itemStack.getItem() instanceof PotionItem && PotionUtils.getPotion(itemStack).equals(Potions.WATER)) {
-            if (RankineLists.SOIL_BLOCKS.contains(levelIn.getBlockState(posIn).getBlock())) {
-                levelIn.setBlockAndUpdate(posIn, RankineLists.MUD_BLOCKS.get(RankineLists.SOIL_BLOCKS.indexOf(levelIn.getBlockState(posIn).getBlock())).defaultBlockState());
-                playerIn.getInventory().add(ItemUtils.createFilledResult(itemStack, playerIn, new ItemStack(Items.GLASS_BOTTLE)));
-                return;
+        if (itemStack.getItem() instanceof PotionItem) {
+            PotionContents contents = itemStack.get(DataComponents.POTION_CONTENTS);
+            if (contents != null && contents.is(Potions.WATER)) {
+                if (RankineLists.SOIL_BLOCKS.contains(levelIn.getBlockState(posIn).getBlock())) {
+                    levelIn.setBlockAndUpdate(posIn, RankineLists.MUD_BLOCKS.get(RankineLists.SOIL_BLOCKS.indexOf(levelIn.getBlockState(posIn).getBlock())).defaultBlockState());
+                    playerIn.getInventory().add(ItemUtils.createFilledResult(itemStack, playerIn, new ItemStack(Items.GLASS_BOTTLE)));
+                    return;
+                }
             }
         }
 
@@ -89,7 +117,7 @@ public class RightClickBlockHandler {
         if (playerIn.getMainHandItem().is(RankineTags.Items.FLINT) && playerIn.getOffhandItem().is(RankineTags.Items.FLINT) && Config.GENERAL.FLINT_FIRE.get()) {
             BlockPos pos = event.getPos();
             BlockPos blockpos1 = event.getPos().relative(event.getFace());
-            Random rand = levelIn.random;
+            RandomSource rand = levelIn.random;
             BlockState blockState = levelIn.getBlockState(pos);
             boolean flag = false;
             if (rand.nextFloat() > Config.GENERAL.FLINT_FIRE_CHANCE.get()) {
@@ -119,7 +147,7 @@ public class RightClickBlockHandler {
 
         //Metal Lanterns
         if (stateIn.getBlock() instanceof LanternBlock && itemStack.is(Tags.Items.NUGGETS)) {
-            for (TagKey<Item> tag : ForgeRegistries.ITEMS.tags().getReverseTag(itemStack.getItem()).map(IReverseTag::getTagKeys).orElseGet(Stream::of).toList()) {
+            for (TagKey<Item> tag : itemStack.getTags().toList()) {
                 if (lanternMap.containsKey(tag)) {
                     levelIn.setBlockAndUpdate(posIn, lanternMap.get(tag).defaultBlockState().setValue(LanternBlock.HANGING, stateIn.getValue(LanternBlock.HANGING)));
                     if (!playerIn.isCreative()) itemStack.shrink(1);
@@ -134,22 +162,24 @@ public class RightClickBlockHandler {
 
         ItemStack stack = event.getItemStack();
         Item item = stack.getItem();
-        Level worldIn = event.getWorld();
+        Level worldIn = event.getLevel();
         BlockPos pos = event.getPos();
-        Player player = event.getPlayer();
+        Player player = event.getEntity();
         BlockState targetBS = worldIn.getBlockState(pos);
         Block b = targetBS.getBlock();
 
         if(item instanceof AxeItem) {
             //Extra items from stripping recipe
-            StrippingRecipe irecipe = worldIn.getRecipeManager().getRecipeFor(RankineRecipeTypes.STRIPPING, new SimpleContainer(new ItemStack(b)), worldIn).orElse(null);
+            RecipeInput strippingInput = new RecipeWrapper(new InvWrapper(new SimpleContainer(new ItemStack(b))));
+            StrippingRecipe irecipe = worldIn.getRecipeManager().getRecipeFor(RankineRecipeTypes.STRIPPING.get(), strippingInput, worldIn).map(RecipeHolder::value).orElse(null);
             if (irecipe != null) {
                 if (worldIn.getRandom().nextFloat() < irecipe.getChance()) {
-                    Block.popResource(event.getWorld(), event.getPos(), irecipe.getResult());
+                    Block.popResource(worldIn, pos, irecipe.getResult());
                 }
             }
-            if (ForgeRegistries.BLOCKS.tags().getTag(BlockTags.LOGS).contains(b) && !b.getRegistryName().toString().contains("stripped") && Config.GENERAL.STRIPPABLES_STICKS.get() && worldIn.getRandom().nextFloat() < 0.3) {
-                Block.popResource(event.getWorld(), event.getPos(), new ItemStack(Items.STICK, 1));
+            ResourceLocation blockId = BuiltInRegistries.BLOCK.getKey(b);
+            if (targetBS.is(BlockTags.LOGS) && blockId != null && !blockId.toString().contains("stripped") && Config.GENERAL.STRIPPABLES_STICKS.get() && worldIn.getRandom().nextFloat() < 0.3) {
+                Block.popResource(worldIn, pos, new ItemStack(Items.STICK, 1));
             }
 
             if(stripping_map.get(b) != null) {
@@ -157,32 +187,23 @@ public class RightClickBlockHandler {
                     Direction.Axis axis = targetBS.getValue(RotatedPillarBlock.AXIS);
                     worldIn.playSound(player, pos, SoundEvents.AXE_STRIP, SoundSource.BLOCKS, 1.0F, 1.0F);
                     worldIn.setBlock(pos, stripping_map.get(b).defaultBlockState().setValue(RotatedPillarBlock.AXIS, axis), 2);
-                    stack.hurtAndBreak(1, player, (entity) -> {
-                        entity.broadcastBreakEvent(event.getHand());
-                    });
+                    stack.hurtAndBreak(1, player, slotFor(event.getHand()));
                     player.swing(event.getHand());
-                    event.setResult(Event.Result.ALLOW);
                 }
             }
         } else if (item instanceof ShovelItem) {
             if (VanillaIntegration.pathBlocks_map.get(b) != null) {
                 worldIn.playSound(player, pos, SoundEvents.SHOVEL_FLATTEN, SoundSource.BLOCKS, 1.0F, 1.0F);
                 worldIn.setBlock(pos, VanillaIntegration.pathBlocks_map.get(b).defaultBlockState(), 2);
-                stack.hurtAndBreak(1, player, (entity) -> {
-                    entity.broadcastBreakEvent(event.getHand());
-                });
+                stack.hurtAndBreak(1, player, slotFor(event.getHand()));
                 player.swing(event.getHand());
-                event.setResult(Event.Result.ALLOW);
             }
         } else if (item instanceof HoeItem) {
             if (VanillaIntegration.hoeables_map.get(b) != null) {
                 worldIn.playSound(player, pos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1.0F, 1.0F);
                 worldIn.setBlock(pos, RankineBlocks.TILLED_SOIL.get().defaultBlockState().setValue(TilledSoilBlock.MOISTURE, 0).setValue(TilledSoilBlock.SOIL_TYPE, VanillaIntegration.hoeables_map.get(b)), 3);
-                stack.hurtAndBreak(1, player, (entity) -> {
-                    entity.broadcastBreakEvent(event.getHand());
-                });
+                stack.hurtAndBreak(1, player, slotFor(event.getHand()));
                 player.swing(event.getHand());
-                event.setResult(Event.Result.ALLOW);
             } else if (b instanceof DoubleCropsBlock && item instanceof AlloyHoeItem) {
                 if (targetBS.hasProperty(CropBlock.AGE) && targetBS.getValue(DoubleCropsBlock.AGE) == 7) {
                     if (targetBS.getValue(DoubleCropsBlock.SECTION) == DoubleBlockHalf.LOWER) {
@@ -196,7 +217,7 @@ public class RightClickBlockHandler {
                             worldIn.setBlockAndUpdate(pos.below(), b.defaultBlockState().setValue(CropBlock.AGE, 0));
                         }
                     }
-                    if (EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ENDOSPORE.get(),stack) > 0 && worldIn.getRandom().nextFloat() < (0.2f + Math.min(player.getLuck()/20f,0.3))) {
+                    if (RankineEnchantmentHelper.getLevel(worldIn, RankineEnchantments.ENDOSPORE, stack) > 0 && worldIn.getRandom().nextFloat() < (0.2f + Math.min(player.getLuck()/20f,0.3))) {
                         Optional<BlockPos> bp = BlockPos.findClosestMatch(pos,3,3, blockPos ->!blockPos.equals(pos) && worldIn.isEmptyBlock(blockPos) && targetBS.getBlock().canSurvive(b.defaultBlockState().setValue(CropBlock.AGE, 0),worldIn,blockPos));
                         bp.ifPresent(blockPos -> worldIn.setBlockAndUpdate(blockPos, b.defaultBlockState().setValue(CropBlock.AGE, CropBlock.AGE.getPossibleValues().stream().max(Integer::compareTo).orElse(0))));
                     }
@@ -219,7 +240,7 @@ public class RightClickBlockHandler {
                             worldIn.setBlockAndUpdate(pos.below(2), b.defaultBlockState().setValue(CropBlock.AGE, 0));
                         }
                     }
-                    if (EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ENDOSPORE.get(),stack) > 0 && worldIn.getRandom().nextFloat() < (0.2f + Math.min(player.getLuck()/20f,0.3))) {
+                    if (RankineEnchantmentHelper.getLevel(worldIn, RankineEnchantments.ENDOSPORE, stack) > 0 && worldIn.getRandom().nextFloat() < (0.2f + Math.min(player.getLuck()/20f,0.3))) {
                         Optional<BlockPos> bp = BlockPos.findClosestMatch(pos,3,3, blockPos -> !blockPos.equals(pos) && worldIn.isEmptyBlock(blockPos) && targetBS.getBlock().canSurvive(b.defaultBlockState().setValue(CropBlock.AGE, 0),worldIn,blockPos));
                         bp.ifPresent(blockPos -> worldIn.setBlockAndUpdate(blockPos, b.defaultBlockState().setValue(CropBlock.AGE, CropBlock.AGE.getPossibleValues().stream().max(Integer::compareTo).orElse(0))));
                     }
@@ -231,7 +252,7 @@ public class RightClickBlockHandler {
                     if (targetBS.getBlock().canSurvive(b.defaultBlockState().setValue(CropBlock.AGE, 0),worldIn,pos)) {
                         worldIn.setBlockAndUpdate(pos,b.defaultBlockState().setValue(CropBlock.AGE, 0));
                     }
-                    if (EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ENDOSPORE.get(),stack) > 0 && worldIn.getRandom().nextFloat() < (0.2f + Math.min(player.getLuck()/20f,0.3))) {
+                    if (RankineEnchantmentHelper.getLevel(worldIn, RankineEnchantments.ENDOSPORE, stack) > 0 && worldIn.getRandom().nextFloat() < (0.2f + Math.min(player.getLuck()/20f,0.3))) {
                         Optional<BlockPos> bp = BlockPos.findClosestMatch(pos,3,3,blockPos -> !blockPos.equals(pos) && worldIn.isEmptyBlock(blockPos) && targetBS.getBlock().canSurvive(b.defaultBlockState().setValue(CropBlock.AGE, 0),worldIn,blockPos));
                         bp.ifPresent(blockPos -> worldIn.setBlockAndUpdate(blockPos, b.defaultBlockState().setValue(CropBlock.AGE, CropBlock.AGE.getPossibleValues().stream().max(Integer::compareTo).orElse(0))));
                     }
@@ -242,16 +263,16 @@ public class RightClickBlockHandler {
 
     public static void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
         ItemStack stack = event.getItemStack();
-        Level world = event.getWorld();
+        Level world = event.getLevel();
         Direction direction = event.getFace();
         InteractionHand hand = event.getHand();
         BlockPos pos = event.getPos();
         BlockState state = world.getBlockState(pos);
-        Player player = event.getPlayer();
+        Player player = event.getEntity();
 
-        if (ForgeRegistries.ITEMS.tags().getTag(RankineTags.Items.KNIVES).contains(stack.getItem()) && direction != null && hand == InteractionHand.MAIN_HAND) {
+        if (stack.is(RankineTags.Items.KNIVES) && direction != null && hand == InteractionHand.MAIN_HAND) {
             Block target = state.getBlock();
-            if ((ForgeRegistries.BLOCKS.tags().getTag(RankineTags.Blocks.GRASS_BLOCKS).contains(target)) && direction.equals(Direction.UP)) {
+            if (state.is(RankineTags.Blocks.GRASS_BLOCKS) && direction.equals(Direction.UP)) {
                 world.playSound(player, pos, SoundEvents.SHEEP_SHEAR, SoundSource.BLOCKS, 1.0F, world.getRandom().nextFloat() * 0.4F + 0.8F);
                 if (RankineLists.GRASS_BLOCKS.contains(target)) {
                     world.setBlock(pos, RankineLists.SOIL_BLOCKS.get(RankineLists.GRASS_BLOCKS.indexOf(target)).defaultBlockState(), 3);
@@ -260,13 +281,11 @@ public class RightClickBlockHandler {
                 }
                 player.swing(hand);
                 if (!world.isClientSide && world.getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS) && !world.restoringBlockSnapshots) { // do not drop items while restoring blockstates, prevents item dupe
-                    Block.popResource(world, pos.above(), new ItemStack(Items.GRASS, 1));
+                    Block.popResource(world, pos.above(), new ItemStack(Items.SHORT_GRASS, 1));
                     if (world.getRandom().nextFloat() < 0.2) Block.popResource(world, pos.above(), new ItemStack(RankineItems.GRASS_SEEDS.get(), 1));
                 }
                 if (!world.isClientSide) {
-                    player.getItemInHand(hand).hurtAndBreak(1, player, (p_220038_0_) -> {
-                        p_220038_0_.broadcastBreakEvent(hand);
-                    });
+                    player.getItemInHand(hand).hurtAndBreak(1, player, slotFor(hand));
                 }
             } else if (target == RankineBlocks.AGED_CHEESE.get()) {
                 player.swing(hand);
@@ -277,9 +296,7 @@ public class RightClickBlockHandler {
                     player.addItem(new ItemStack(RankineItems.CHEESE.get(), 1));
                     world.removeBlock(pos, false);
                 }
-                player.getItemInHand(hand).hurtAndBreak(1, player, (p_220040_1_) -> {
-                    p_220040_1_.broadcastBreakEvent(hand);
-                });
+                player.getItemInHand(hand).hurtAndBreak(1, player, slotFor(hand));
                 world.playSound(player, pos, SoundEvents.WOOL_PLACE, SoundSource.BLOCKS, 0.7F, world.getRandom().nextFloat() * 0.4F + 0.5F);
 
             } else if (state.getBlock() == Blocks.CAKE) {
@@ -291,14 +308,13 @@ public class RightClickBlockHandler {
                     player.addItem(new ItemStack(RankineItems.CAKE_SLICE.get(), 1));
                     world.removeBlock(pos, false);
                 }
-                player.getMainHandItem().hurtAndBreak(1, player, (p_220040_1_) -> {
-                    p_220040_1_.broadcastBreakEvent(player.swingingArm);
-                });
+                player.getMainHandItem().hurtAndBreak(1, player, slotFor(player.swingingArm));
                 world.playSound(player, pos, SoundEvents.WOOL_PLACE, SoundSource.BLOCKS, 0.7F, world.getRandom().nextFloat() * 0.4F + 0.5F);
 
             }
-        } else if (ForgeRegistries.ITEMS.tags().getTag(RankineTags.Items.SLUICING_TOOLS).contains(stack.getItem()) && direction != null && !player.getCooldowns().isOnCooldown(stack.getItem())) {
-            SluicingRecipe recipe = world.getRecipeManager().getRecipeFor(RankineRecipeTypes.SLUICING, new SimpleContainer(new ItemStack(world.getBlockState(pos).getBlock()), stack), world).orElse(null);
+        } else if (stack.is(RankineTags.Items.SLUICING_TOOLS) && direction != null && !player.getCooldowns().isOnCooldown(stack.getItem())) {
+            RecipeInput sluicingInput = new RecipeWrapper(new InvWrapper(new SimpleContainer(new ItemStack(world.getBlockState(pos).getBlock()), stack)));
+            SluicingRecipe recipe = world.getRecipeManager().getRecipeFor(RankineRecipeTypes.SLUICING.get(), sluicingInput, world).map(RecipeHolder::value).orElse(null);
             if (recipe != null) {
                 float r = world.getRandom().nextFloat();
                 world.playSound(player, pos, SoundEvents.SAND_FALL, SoundSource.BLOCKS, 1.0F, r * 0.4F + 0.8F);
@@ -314,9 +330,7 @@ public class RightClickBlockHandler {
                     }
 
                     if (stack.getItem().canBeDepleted()) {
-                        player.getMainHandItem().hurtAndBreak(1, player, (p_220038_0_) -> {
-                            p_220038_0_.broadcastBreakEvent(EquipmentSlot.MAINHAND);
-                        });
+                        player.getMainHandItem().hurtAndBreak(1, player, EquipmentSlot.MAINHAND);
                     }
                 }
             }

@@ -2,15 +2,19 @@ package com.cannolicatfish.rankine.data;
 
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.init.RankineEntityTypes;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.EntityTypeTagsProvider;
 import net.minecraft.tags.EntityTypeTags;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.concurrent.CompletableFuture;
+
 public class RankineEntityTypeTagsProvider extends EntityTypeTagsProvider {
-    public RankineEntityTypeTagsProvider(DataGenerator p_i50784_1_, @Nullable ExistingFileHelper existingFileHelper) {
-        super(p_i50784_1_, ProjectRankine.MODID, existingFileHelper);
+
+    public RankineEntityTypeTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, @Nullable ExistingFileHelper existingFileHelper) {
+        super(output, lookupProvider, ProjectRankine.MODID, existingFileHelper);
     }
 
     public String getName() {
@@ -18,10 +22,7 @@ public class RankineEntityTypeTagsProvider extends EntityTypeTagsProvider {
     }
 
     @Override
-    protected void addTags() {
-        tag(EntityTypeTags.ARROWS).add(RankineEntityTypes.ALLOY_ARROW.get(),RankineEntityTypes.ROPE_COIL_ARROW.get());
-
+    protected void addTags(HolderLookup.Provider provider) {
+        tag(EntityTypeTags.ARROWS).add(RankineEntityTypes.ALLOY_ARROW.get(), RankineEntityTypes.ROPE_COIL_ARROW.get());
     }
-
-
 }

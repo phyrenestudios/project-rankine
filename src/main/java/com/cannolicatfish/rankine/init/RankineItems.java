@@ -1477,10 +1477,10 @@ public class RankineItems {
     public static final DeferredItem<Item> CONDUIT_DIVING_CHESTPLATE = ITEMS.register("conduit_diving_chestplate", () -> new ArmorItem(RankineArmorMaterials.CONDUIT_DIVING, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
     public static final DeferredItem<Item> CONDUIT_DIVING_LEGGINGS = ITEMS.register("conduit_diving_leggings", () -> new ArmorItem(RankineArmorMaterials.CONDUIT_DIVING, ArmorItem.Type.LEGGINGS, new Item.Properties()));
     public static final DeferredItem<Item> CONDUIT_DIVING_BOOTS = ITEMS.register("conduit_diving_boots", () -> new ArmorItem(RankineArmorMaterials.CONDUIT_DIVING, ArmorItem.Type.BOOTS, new Item.Properties()));
-    public static final DeferredItem<Item> ALLOY_HELMET = ITEMS.register("alloy_helmet", () -> new AlloyArmorItem(RankineArmorMaterials.ALLOY, EquipmentSlot.HEAD, "80Hg-20Au",null, new Item.Properties()));
-    public static final DeferredItem<Item> ALLOY_CHESTPLATE = ITEMS.register("alloy_chestplate", () -> new AlloyArmorItem(RankineArmorMaterials.ALLOY, EquipmentSlot.CHEST, "80Hg-20Au",null, new Item.Properties()));
-    public static final DeferredItem<Item> ALLOY_LEGGINGS = ITEMS.register("alloy_leggings", () -> new AlloyArmorItem(RankineArmorMaterials.ALLOY, EquipmentSlot.LEGS, "80Hg-20Au",null, new Item.Properties()));
-    public static final DeferredItem<Item> ALLOY_BOOTS = ITEMS.register("alloy_boots", () -> new AlloyArmorItem(RankineArmorMaterials.ALLOY, EquipmentSlot.FEET, "80Hg-20Au",null, new Item.Properties()));
+    public static final DeferredItem<Item> ALLOY_HELMET = ITEMS.register("alloy_helmet", () -> new AlloyArmorItem(RankineArmorMaterials.ALLOY, ArmorItem.Type.HELMET, "80Hg-20Au",null, new Item.Properties()));
+    public static final DeferredItem<Item> ALLOY_CHESTPLATE = ITEMS.register("alloy_chestplate", () -> new AlloyArmorItem(RankineArmorMaterials.ALLOY, ArmorItem.Type.CHESTPLATE, "80Hg-20Au",null, new Item.Properties()));
+    public static final DeferredItem<Item> ALLOY_LEGGINGS = ITEMS.register("alloy_leggings", () -> new AlloyArmorItem(RankineArmorMaterials.ALLOY, ArmorItem.Type.LEGGINGS, "80Hg-20Au",null, new Item.Properties()));
+    public static final DeferredItem<Item> ALLOY_BOOTS = ITEMS.register("alloy_boots", () -> new AlloyArmorItem(RankineArmorMaterials.ALLOY, ArmorItem.Type.BOOTS, "80Hg-20Au",null, new Item.Properties()));
 
     public static final DeferredItem<Item> GAS_MASK = ITEMS.register("gas_mask", () -> new ArmorItem(RankineArmorMaterials.RUBBER, ArmorItem.Type.HELMET, new Item.Properties().stacksTo(1)));
     public static final DeferredItem<Item> GOGGLES = ITEMS.register("goggles", () -> new ArmorItem(RankineArmorMaterials.RUBBER, ArmorItem.Type.HELMET, new Item.Properties().stacksTo(1)));

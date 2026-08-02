@@ -1,11 +1,15 @@
 package com.cannolicatfish.rankine.data;
 
 import com.cannolicatfish.rankine.ProjectRankine;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.forge.event.lifecycle.GatherDataEvent;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.data.event.GatherDataEvent;
+
+import java.util.concurrent.CompletableFuture;
 
 @EventBusSubscriber(modid = ProjectRankine.MODID, bus = EventBusSubscriber.Bus.MOD)
 public final class DataGenerators {
@@ -14,25 +18,33 @@ public final class DataGenerators {
     @SubscribeEvent
     public static void gatherData(GatherDataEvent event) {
         DataGenerator gen = event.getGenerator();
-        if (event.includeServer()) {
-            RankineBlockTagsProvider blockTagsGeneration = new RankineBlockTagsProvider(gen, event.getExistingFileHelper());
-            gen.addProvider(blockTagsGeneration);
-            gen.addProvider(new RankineItemTagsProvider(gen, blockTagsGeneration, event.getExistingFileHelper()));
-            gen.addProvider(new RankineBiomeTagsProvider(gen, ProjectRankine.MODID, event.getExistingFileHelper()));
-            gen.addProvider(new RankineEntityTypeTagsProvider(gen, event.getExistingFileHelper()));
-            gen.addProvider(new RankineBlockLootTables(gen));
-            gen.addProvider(new RankineAdvancementProvider(gen));
-            gen.addProvider(new RankineRecipesProvider(gen));
+        PackOutput output = gen.getPackOutput();
+        ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
+        boolean server = event.includeServer();
+        boolean client = event.includeClient();
 
-            gen.addProvider(new RankineLootModifierProvider(gen));
+        // Datapack registries first: everything downstream (tags on enchantments/damage types,
+        // loot tables, advancements) needs to see the modded dynamic-registry entries.
+        RankineDatapackProvider datapackProvider =
+                gen.addProvider(server, new RankineDatapackProvider(output, event.getLookupProvider()));
+        CompletableFuture<HolderLookup.Provider> lookupProvider = datapackProvider.getRegistryProvider();
 
-        }
-        if (event.includeClient()) {
-            gen.addProvider(new RankineBlockStateProvider(gen, event.getExistingFileHelper()));
-            gen.addProvider(new RankineItemModelProvider(gen, event.getExistingFileHelper()));
+        RankineBlockTagsProvider blockTags =
+                gen.addProvider(server, new RankineBlockTagsProvider(output, lookupProvider, existingFileHelper));
+        gen.addProvider(server, new RankineItemTagsProvider(output, lookupProvider, blockTags.contentsGetter(), existingFileHelper));
+        gen.addProvider(server, new RankineFluidTagsProvider(output, lookupProvider, existingFileHelper));
+        gen.addProvider(server, new RankineBiomeTagsProvider(output, lookupProvider, existingFileHelper));
+        gen.addProvider(server, new RankineEntityTypeTagsProvider(output, lookupProvider, existingFileHelper));
+        gen.addProvider(server, new RankineEnchantmentTagsProvider(output, lookupProvider, existingFileHelper));
+        gen.addProvider(server, new RankineDamageTypeTagsProvider(output, lookupProvider, existingFileHelper));
 
-            RankineLangProvider langProvider = new RankineLangProvider(gen, "en_us");
-            gen.addProvider(langProvider);
-        }
+        gen.addProvider(server, new RankineLootTableProvider(output, lookupProvider));
+        gen.addProvider(server, new RankineAdvancementProvider(output, lookupProvider, existingFileHelper));
+        gen.addProvider(server, new RankineRecipesProvider(output, lookupProvider));
+        gen.addProvider(server, new RankineLootModifierProvider(output, lookupProvider));
+
+        gen.addProvider(client, new RankineBlockStateProvider(output, existingFileHelper));
+        gen.addProvider(client, new RankineItemModelProvider(output, existingFileHelper));
+        gen.addProvider(client, new RankineLangProvider(output, "en_us"));
     }
 }

@@ -7,8 +7,7 @@ import com.cannolicatfish.rankine.items.totems.InvigoratingTotemItem;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Registry;
-import net.minecraft.network.chat.Component;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.tags.TagKey;
@@ -23,28 +22,40 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FrostedIceBlock;
-import net.neoforged.neoforge.common.ForgeMod;
+import net.neoforged.neoforge.common.NeoForgeMod;
 import net.neoforged.neoforge.common.Tags;
-import net.neoforged.neoforge.event.TickEvent;
-import net.neoforged.neoforge.registries.ForgeRegistries;
-import net.neoforged.neoforge.registries.tags.ITagManager;
+import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 
 import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * 1.21.1 notes:
+ * - TickEvent.PlayerTickEvent -> PlayerTickEvent.Pre. PORT-NOTE: the 1.18.2 subscriber had no
+ *   {@code event.phase} check, so both handlers actually ran TWICE per tick (START and END).
+ *   The port runs them once per tick (Pre) — the only observable difference is that the
+ *   Invigorating Totem repairs at half the old rate; everything else was idempotent.
+ * - event.player -> event.getEntity(); entity.level field -> level().
+ * - Registry.BIOME_REGISTRY -> Registries.BIOME.
+ * - Biome#shouldSnowGolemBurn is gone (its body was {@code getTemperature(pos) > 1.0F} and
+ *   getTemperature(BlockPos) is private) -> getBaseTemperature() > 1.0F.
+ * - ForgeMod.SWIM_SPEED -> NeoForgeMod.SWIM_SPEED; ForgeMod.STEP_HEIGHT_ADDITION ->
+ *   vanilla Attributes.STEP_HEIGHT (exposed via RankineAttributes.STEP_HEIGHT).
+ * - AttributeInstance#hasModifier now takes the modifier's ResourceLocation id.
+ * - Forge tag manager lookups -> BlockState#is(TagKey).
+ */
 public class PlayerTickHandler {
-    public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
-        Player player = event.player;
-        Level worldIn = player.level;
+    public static void onPlayerTick(PlayerTickEvent.Pre event) {
+        Player player = event.getEntity();
+        Level worldIn = player.level();
         BlockPos pos = player.isShiftKeyDown() ? player.blockPosition() : player.blockPosition().above();
 
         // Tools
@@ -71,7 +82,7 @@ public class PlayerTickHandler {
             } else if (!Config.TOOLS.DISABLE_THERMOMETER.get() && (player.getOffhandItem().getItem() == RankineItems.THERMOMETER.get() || player.getMainHandItem().getItem() == RankineItems.THERMOMETER.get())) {
                 Biome biome = worldIn.getBiome(pos).value();
                 float temp = biome.getBaseTemperature();
-                if (biome.shouldSnowGolemBurn(pos)) {
+                if (temp > 1.0F) {
                     player.displayClientMessage(Component.literal("Temperature = " + new DecimalFormat("#.###").format(temp)).withStyle(ChatFormatting.RED, ChatFormatting.BOLD), true);
                 } else if (biome.warmEnoughToRain(pos)) {
                     player.displayClientMessage(Component.literal("Temperature = " + new DecimalFormat("#.###").format(temp)).withStyle(ChatFormatting.YELLOW, ChatFormatting.BOLD), true);
@@ -97,7 +108,7 @@ public class PlayerTickHandler {
 
                 player.displayClientMessage(Component.literal("Light Levels: Sky = " + new DecimalFormat("##").format(SLL) + " Block = " + new DecimalFormat("##").format(BLL)).withStyle(ChatFormatting.GREEN, ChatFormatting.BOLD), true);
             } else if (!Config.TOOLS.DISABLE_BIOMETER.get() && (player.getOffhandItem().getItem() == RankineItems.BIOMETER.get() || player.getMainHandItem().getItem() == RankineItems.BIOMETER.get())) {
-                player.displayClientMessage(Component.literal("Biome = " + Component.translatable(Util.makeDescriptionId("biome",worldIn.registryAccess().registryOrThrow(Registry.BIOME_REGISTRY).getKey(worldIn.getBiome(pos).value()))).getString()).withStyle(ChatFormatting.GOLD), true);
+                player.displayClientMessage(Component.literal("Biome = " + Component.translatable(Util.makeDescriptionId("biome",worldIn.registryAccess().registryOrThrow(Registries.BIOME).getKey(worldIn.getBiome(pos).value()))).getString()).withStyle(ChatFormatting.GOLD), true);
             } else if (!Config.TOOLS.DISABLE_BIOMETER.get() && (player.getOffhandItem().getItem() == RankineItems.MAGNETOMETER.get() || player.getMainHandItem().getItem() == RankineItems.MAGNETOMETER.get())) {
                 double strength = 0.05D;
                 if (BlockPos.findClosestMatch(player.blockPosition(), 5, 4, (p) -> worldIn.getBlockState(p).is(RankineTags.Blocks.ELECTROMAGNETS)).isPresent()) {
@@ -122,7 +133,6 @@ public class PlayerTickHandler {
 
             double d0 = Math.abs(ent.getX() - player.xOld);
             double d1 = Math.abs(ent.getZ() - player.zOld);
-            //double d2 = Math.abs(player.getPosY() - player.lastTickPosY);
             double speed = Math.sqrt(Math.pow(d0, 2) + Math.pow(d1, 2));
             Item mainhand = player.getMainHandItem().getItem();
             Item offhand = player.getOffhandItem().getItem();
@@ -156,7 +166,7 @@ public class PlayerTickHandler {
         if (player.getCommandSenderWorld().getGameTime() % 1200L == 0) {
             int count = 0;
             for (ItemStack s : player.getArmorSlots()) {
-                if (s.isEnchanted() && EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.GUARD.get(), s) > 0) {
+                if (s.isEnchanted() && RankineEnchantmentHelper.getLevel(worldIn, RankineEnchantments.GUARD, s) > 0) {
                     count+=2;
                 }
             }
@@ -183,21 +193,22 @@ public class PlayerTickHandler {
         }
 
         AttributeInstance att = player.getAttribute(Attributes.MOVEMENT_SPEED);
-        if (player.getOffhandItem().getItem() == RankineItems.TOTEM_OF_TIMESAVING.get() && att != null && !att.hasModifier(RankineAttributes.SWIFTNESS_TOTEM)) {
+        if (player.getOffhandItem().getItem() == RankineItems.TOTEM_OF_TIMESAVING.get() && att != null && !att.hasModifier(RankineAttributes.SWIFTNESS_TOTEM.id())) {
             att.addTransientModifier(RankineAttributes.SWIFTNESS_TOTEM);
         }
 
         AttributeInstance att2 = player.getAttribute(Attributes.MAX_HEALTH);
-        if (player.getOffhandItem().getItem() == RankineItems.TOTEM_OF_ENDURING.get() && att2 != null && !att2.hasModifier(RankineAttributes.ENDURING_TOTEM)) {
+        if (player.getOffhandItem().getItem() == RankineItems.TOTEM_OF_ENDURING.get() && att2 != null && !att2.hasModifier(RankineAttributes.ENDURING_TOTEM.id())) {
             att2.addTransientModifier(RankineAttributes.ENDURING_TOTEM);
         }
     }
 
-    public static void movementModifier(TickEvent.PlayerTickEvent event) {
-        Player playerIn = event.player;
+    public static void movementModifier(PlayerTickEvent.Pre event) {
+        Player playerIn = event.getEntity();
         AttributeInstance movementSpeed = playerIn.getAttribute(Attributes.MOVEMENT_SPEED);
-        AttributeInstance swimSpeed = playerIn.getAttribute(ForgeMod.SWIM_SPEED.get());
+        AttributeInstance swimSpeed = playerIn.getAttribute(NeoForgeMod.SWIM_SPEED);
         AttributeInstance stepHeight = playerIn.getAttribute(RankineAttributes.STEP_HEIGHT);
+        if (movementSpeed == null || swimSpeed == null || stepHeight == null) return;
 
         if (playerIn.isCreative() || playerIn.isFallFlying()) {
             List<AttributeModifier> mods = Arrays.asList(RankineAttributes.SNOW_DRIFTER, RankineAttributes.SWIFT_SWIMMER, RankineAttributes.AQUA_LENSE, RankineAttributes.SPEED_SKATER, RankineAttributes.SNOW_DRIFTER, RankineAttributes.DUNE_WALKER, RankineAttributes.CONCRETE_MS, RankineAttributes.GRASS_PATH_MS, RankineAttributes.ROMAN_CONCRETE_MS, RankineAttributes.DIRT_MS, RankineAttributes.MUD_MS, RankineAttributes.POLISHED_STONE_MS, RankineAttributes.SAND_MS, RankineAttributes.SNOW_MS, RankineAttributes.WOODEN_MS);
@@ -207,18 +218,18 @@ public class PlayerTickHandler {
             return;
         }
 
-        Level levelIn = event.player.level;
+        Level levelIn = playerIn.level();
         Item feetEquipment = playerIn.getItemBySlot(EquipmentSlot.FEET).getItem();
         Item headEquipment = playerIn.getItemBySlot(EquipmentSlot.HEAD).getItem();
         BlockPos groundPos = playerIn.getY() % 1 < 0.5 ? playerIn.blockPosition().below() : playerIn.blockPosition();
         Block groundBlock = levelIn.getBlockState(groundPos).getBlock();
 
-        if (playerIn.isEyeInFluid(FluidTags.WATER) && (headEquipment == RankineItems.GOGGLES.get() || RankineEnchantmentHelper.hasAquaLense(playerIn))) {
+        if (playerIn.isEyeInFluid(FluidTags.WATER) && (headEquipment == RankineItems.GOGGLES.get() || RankineEnchantmentHelper.hasEnchantment(playerIn, RankineEnchantments.AQUA_LENSE))) {
             playerIn.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION,400,0,false,false));
         }
 
-        if (ForgeRegistries.BLOCKS.tags().getTag(RankineTags.Blocks.MOVEMENT_MODIFIERS_ICE).contains(groundBlock)) {
-            if (levelIn.random.nextFloat() < Config.GENERAL.ICE_BREAK.get() && !RankineEnchantmentHelper.hasSpeedSkater(playerIn) && feetEquipment != RankineItems.ICE_SKATES.get()) {
+        if (levelIn.getBlockState(groundPos).is(RankineTags.Blocks.MOVEMENT_MODIFIERS_ICE)) {
+            if (levelIn.random.nextFloat() < Config.GENERAL.ICE_BREAK.get() && !RankineEnchantmentHelper.hasEnchantment(playerIn, RankineEnchantments.SPEED_SKATER) && feetEquipment != RankineItems.ICE_SKATES.get()) {
                 for (BlockPos B : BlockPos.betweenClosed(groundPos.offset(-2, -1, -2), groundPos.offset(2, -1, 2))) {
                     if (levelIn.getBlockState(B).getBlock() == Blocks.ICE) {
                         levelIn.setBlockAndUpdate(B, Blocks.FROSTED_ICE.defaultBlockState().setValue(FrostedIceBlock.AGE, 2));
@@ -227,75 +238,71 @@ public class PlayerTickHandler {
             }
         }
 
-        handleEquipmentModifier(stepHeight, movementSpeed, RankineAttributes.DUNE_WALKER, groundBlock, RankineTags.Blocks.MOVEMENT_MODIFIERS_SAND, RankineEnchantmentHelper.hasDuneWalker(playerIn) || feetEquipment == RankineItems.SANDALS.get(), true);
-        handleEquipmentModifier(stepHeight, movementSpeed, RankineAttributes.SNOW_DRIFTER, levelIn.getBlockState(playerIn.blockPosition()).getBlock(),levelIn.getBlockState(playerIn.blockPosition().below()).getBlock(), RankineTags.Blocks.MOVEMENT_MODIFIERS_SNOW, RankineEnchantmentHelper.hasSnowDrifter(playerIn) || feetEquipment == RankineItems.SNOWSHOES.get(), true);
-        handleEquipmentModifier(stepHeight, movementSpeed, RankineAttributes.SPEED_SKATER, groundBlock, RankineTags.Blocks.MOVEMENT_MODIFIERS_ICE, RankineEnchantmentHelper.hasSpeedSkater(playerIn) || feetEquipment == RankineItems.ICE_SKATES.get(), true);
-        handleEquipmentModifier(stepHeight, swimSpeed, RankineAttributes.SWIFT_SWIMMER,(RankineEnchantmentHelper.hasSwiftSwimmer(playerIn) || feetEquipment == RankineItems.FINS.get()) && playerIn.isSwimming(), false);
-        handleEquipmentModifier(stepHeight, swimSpeed, RankineAttributes.AQUA_LENSE,(RankineEnchantmentHelper.hasAquaLense(playerIn) || headEquipment == RankineItems.GOGGLES.get()) && playerIn.isSwimming(), false);
+        handleEquipmentModifier(levelIn, stepHeight, movementSpeed, RankineAttributes.DUNE_WALKER, groundBlock, RankineTags.Blocks.MOVEMENT_MODIFIERS_SAND, RankineEnchantmentHelper.hasEnchantment(playerIn, RankineEnchantments.DUNE_WALKER) || feetEquipment == RankineItems.SANDALS.get(), true);
+        handleEquipmentModifier(levelIn, stepHeight, movementSpeed, RankineAttributes.SNOW_DRIFTER, levelIn.getBlockState(playerIn.blockPosition()).getBlock(),levelIn.getBlockState(playerIn.blockPosition().below()).getBlock(), RankineTags.Blocks.MOVEMENT_MODIFIERS_SNOW, RankineEnchantmentHelper.hasEnchantment(playerIn, RankineEnchantments.SNOW_DRIFTER) || feetEquipment == RankineItems.SNOWSHOES.get(), true);
+        handleEquipmentModifier(levelIn, stepHeight, movementSpeed, RankineAttributes.SPEED_SKATER, groundBlock, RankineTags.Blocks.MOVEMENT_MODIFIERS_ICE, RankineEnchantmentHelper.hasEnchantment(playerIn, RankineEnchantments.SPEED_SKATER) || feetEquipment == RankineItems.ICE_SKATES.get(), true);
+        handleEquipmentModifier(stepHeight, swimSpeed, RankineAttributes.SWIFT_SWIMMER,(RankineEnchantmentHelper.hasEnchantment(playerIn, RankineEnchantments.SWIFT_SWIMMER) || feetEquipment == RankineItems.FINS.get()) && playerIn.isSwimming(), false);
+        handleEquipmentModifier(stepHeight, swimSpeed, RankineAttributes.AQUA_LENSE,(RankineEnchantmentHelper.hasEnchantment(playerIn, RankineEnchantments.AQUA_LENSE) || headEquipment == RankineItems.GOGGLES.get()) && playerIn.isSwimming(), false);
 
         if (Config.GENERAL.MOVEMENT_MODIFIERS.get()) {
-            if (handleMovementModifier(movementSpeed,RankineAttributes.GRASS_PATH_MS,groundBlock,RankineTags.Blocks.MOVEMENT_MODIFIERS_PATHS)) return;
-            if (handleMovementModifier(movementSpeed,RankineAttributes.SAND_MS,groundBlock,RankineTags.Blocks.MOVEMENT_MODIFIERS_SAND)) return;
-            if (handleMovementModifier(movementSpeed,RankineAttributes.MUD_MS,groundBlock,RankineTags.Blocks.MOVEMENT_MODIFIERS_MUD)) return;
-            if (handleMovementModifierDouble(movementSpeed,RankineAttributes.SNOW_MS, levelIn.getBlockState(playerIn.blockPosition()).getBlock(),levelIn.getBlockState(playerIn.blockPosition().below()).getBlock(), RankineTags.Blocks.MOVEMENT_MODIFIERS_SNOW)) return;
-            if (handleMovementModifier(movementSpeed,RankineAttributes.DIRT_MS,groundBlock,RankineTags.Blocks.MOVEMENT_MODIFIERS_DIRT)) return;
-            if (handleMovementModifier(movementSpeed,RankineAttributes.WOODEN_MS,groundBlock,RankineTags.Blocks.MOVEMENT_MODIFIERS_WOOD)) return;
-            if (handleMovementModifier(movementSpeed,RankineAttributes.POLISHED_STONE_MS,groundBlock,RankineTags.Blocks.MOVEMENT_MODIFIERS_POLISHED)) return;
-            if (handleMovementModifier(movementSpeed,RankineAttributes.BRICKS_MS,groundBlock,RankineTags.Blocks.MOVEMENT_MODIFIERS_BRICKS)) return;
-            if (handleMovementModifier(movementSpeed,RankineAttributes.ROMAN_CONCRETE_MS,groundBlock,RankineTags.Blocks.MOVEMENT_MODIFIERS_ROMAN)) return;
-            if (handleMovementModifier(movementSpeed,RankineAttributes.CONCRETE_MS,groundBlock,RankineTags.Blocks.MOVEMENT_MODIFIERS_CONCRETE)) return;
+            if (handleMovementModifier(levelIn, movementSpeed,RankineAttributes.GRASS_PATH_MS,groundBlock,RankineTags.Blocks.MOVEMENT_MODIFIERS_PATHS)) return;
+            if (handleMovementModifier(levelIn, movementSpeed,RankineAttributes.SAND_MS,groundBlock,RankineTags.Blocks.MOVEMENT_MODIFIERS_SAND)) return;
+            if (handleMovementModifier(levelIn, movementSpeed,RankineAttributes.MUD_MS,groundBlock,RankineTags.Blocks.MOVEMENT_MODIFIERS_MUD)) return;
+            if (handleMovementModifierDouble(levelIn, movementSpeed,RankineAttributes.SNOW_MS, levelIn.getBlockState(playerIn.blockPosition()).getBlock(),levelIn.getBlockState(playerIn.blockPosition().below()).getBlock(), RankineTags.Blocks.MOVEMENT_MODIFIERS_SNOW)) return;
+            if (handleMovementModifier(levelIn, movementSpeed,RankineAttributes.DIRT_MS,groundBlock,RankineTags.Blocks.MOVEMENT_MODIFIERS_DIRT)) return;
+            if (handleMovementModifier(levelIn, movementSpeed,RankineAttributes.WOODEN_MS,groundBlock,RankineTags.Blocks.MOVEMENT_MODIFIERS_WOOD)) return;
+            if (handleMovementModifier(levelIn, movementSpeed,RankineAttributes.POLISHED_STONE_MS,groundBlock,RankineTags.Blocks.MOVEMENT_MODIFIERS_POLISHED)) return;
+            if (handleMovementModifier(levelIn, movementSpeed,RankineAttributes.BRICKS_MS,groundBlock,RankineTags.Blocks.MOVEMENT_MODIFIERS_BRICKS)) return;
+            if (handleMovementModifier(levelIn, movementSpeed,RankineAttributes.ROMAN_CONCRETE_MS,groundBlock,RankineTags.Blocks.MOVEMENT_MODIFIERS_ROMAN)) return;
+            if (handleMovementModifier(levelIn, movementSpeed,RankineAttributes.CONCRETE_MS,groundBlock,RankineTags.Blocks.MOVEMENT_MODIFIERS_CONCRETE)) return;
         }
     }
 
     private static void handleEquipmentModifier(AttributeInstance stepHeight, AttributeInstance attribute, AttributeModifier modifier, boolean isEquiped, boolean autoStep) {
         if (!isEquiped) {
-            if (attribute.hasModifier(modifier)) attribute.removeModifier(modifier);
-            if (stepHeight.hasModifier(RankineAttributes.STEP)) stepHeight.removeModifier(RankineAttributes.STEP);
+            if (attribute.hasModifier(modifier.id())) attribute.removeModifier(modifier);
+            if (stepHeight.hasModifier(RankineAttributes.STEP.id())) stepHeight.removeModifier(RankineAttributes.STEP);
             return;
         }
-        if (!attribute.hasModifier(modifier)) attribute.addTransientModifier(modifier);
-        if (autoStep && !stepHeight.hasModifier(RankineAttributes.STEP)) stepHeight.addTransientModifier(RankineAttributes.STEP);
+        if (!attribute.hasModifier(modifier.id())) attribute.addTransientModifier(modifier);
+        if (autoStep && !stepHeight.hasModifier(RankineAttributes.STEP.id())) stepHeight.addTransientModifier(RankineAttributes.STEP);
     }
-    private static void handleEquipmentModifier(AttributeInstance stepHeight, AttributeInstance attribute, AttributeModifier modifier, Block groundBlock, TagKey<Block> tagIn, boolean isEquiped, boolean autoStep) {
+    private static void handleEquipmentModifier(Level level, AttributeInstance stepHeight, AttributeInstance attribute, AttributeModifier modifier, Block groundBlock, TagKey<Block> tagIn, boolean isEquiped, boolean autoStep) {
         if (groundBlock == Blocks.AIR) return;
-        ITagManager<Block> blockITagManager = ForgeRegistries.BLOCKS.tags();
-        if (!isEquiped || !blockITagManager.getTag(tagIn).contains(groundBlock)) {
-            if (attribute.hasModifier(modifier)) attribute.removeModifier(modifier);
-            if (stepHeight.hasModifier(RankineAttributes.STEP)) stepHeight.removeModifier(RankineAttributes.STEP);
+        if (!isEquiped || !groundBlock.defaultBlockState().is(tagIn)) {
+            if (attribute.hasModifier(modifier.id())) attribute.removeModifier(modifier);
+            if (stepHeight.hasModifier(RankineAttributes.STEP.id())) stepHeight.removeModifier(RankineAttributes.STEP);
             return;
         }
-        if (!attribute.hasModifier(modifier)) attribute.addTransientModifier(modifier);
-        if (autoStep && !stepHeight.hasModifier(RankineAttributes.STEP)) stepHeight.addTransientModifier(RankineAttributes.STEP);
+        if (!attribute.hasModifier(modifier.id())) attribute.addTransientModifier(modifier);
+        if (autoStep && !stepHeight.hasModifier(RankineAttributes.STEP.id())) stepHeight.addTransientModifier(RankineAttributes.STEP);
     }
-    private static void handleEquipmentModifier(AttributeInstance stepHeight, AttributeInstance attribute, AttributeModifier modifier, Block groundBlock, Block groundBlock2, TagKey<Block> tagIn, boolean isEquiped, boolean autoStep) {
+    private static void handleEquipmentModifier(Level level, AttributeInstance stepHeight, AttributeInstance attribute, AttributeModifier modifier, Block groundBlock, Block groundBlock2, TagKey<Block> tagIn, boolean isEquiped, boolean autoStep) {
         if (groundBlock == Blocks.AIR && groundBlock2 == Blocks.AIR) return;
-        ITagManager<Block> blockITagManager = ForgeRegistries.BLOCKS.tags();
-        if (!isEquiped || (!blockITagManager.getTag(tagIn).contains(groundBlock) && !blockITagManager.getTag(tagIn).contains(groundBlock2))) {
-            if (attribute.hasModifier(modifier)) attribute.removeModifier(modifier);
-            if (stepHeight.hasModifier(RankineAttributes.STEP)) stepHeight.removeModifier(RankineAttributes.STEP);
+        if (!isEquiped || (!groundBlock.defaultBlockState().is(tagIn) && !groundBlock2.defaultBlockState().is(tagIn))) {
+            if (attribute.hasModifier(modifier.id())) attribute.removeModifier(modifier);
+            if (stepHeight.hasModifier(RankineAttributes.STEP.id())) stepHeight.removeModifier(RankineAttributes.STEP);
             return;
         }
-        if (!attribute.hasModifier(modifier)) attribute.addTransientModifier(modifier);
-        if (autoStep && !stepHeight.hasModifier(RankineAttributes.STEP)) stepHeight.addTransientModifier(RankineAttributes.STEP);
+        if (!attribute.hasModifier(modifier.id())) attribute.addTransientModifier(modifier);
+        if (autoStep && !stepHeight.hasModifier(RankineAttributes.STEP.id())) stepHeight.addTransientModifier(RankineAttributes.STEP);
     }
-    private static boolean handleMovementModifier(AttributeInstance attribute, AttributeModifier modifier, Block groundBlock, TagKey<Block> tagIn) {
+    private static boolean handleMovementModifier(Level level, AttributeInstance attribute, AttributeModifier modifier, Block groundBlock, TagKey<Block> tagIn) {
         if (groundBlock == Blocks.AIR) return true;
-        ITagManager<Block> blockITagManager = ForgeRegistries.BLOCKS.tags();
-        if (!blockITagManager.getTag(tagIn).contains(groundBlock)) {
-            if (attribute.hasModifier(modifier)) attribute.removeModifier(modifier);
+        if (!groundBlock.defaultBlockState().is(tagIn)) {
+            if (attribute.hasModifier(modifier.id())) attribute.removeModifier(modifier);
             return false;
         }
-        if (!attribute.hasModifier(modifier)) attribute.addTransientModifier(modifier);
+        if (!attribute.hasModifier(modifier.id())) attribute.addTransientModifier(modifier);
         return true;
     }
-    private static boolean handleMovementModifierDouble(AttributeInstance attribute, AttributeModifier modifier, Block groundBlock, Block feetblock, TagKey<Block> tagIn) {
+    private static boolean handleMovementModifierDouble(Level level, AttributeInstance attribute, AttributeModifier modifier, Block groundBlock, Block feetblock, TagKey<Block> tagIn) {
         if (groundBlock == Blocks.AIR && feetblock == Blocks.AIR) return true;
-        ITagManager<Block> blockITagManager = ForgeRegistries.BLOCKS.tags();
-        if (!blockITagManager.getTag(tagIn).contains(groundBlock) && !blockITagManager.getTag(tagIn).contains(feetblock)) {
-            if (attribute.hasModifier(modifier)) attribute.removeModifier(modifier);
+        if (!groundBlock.defaultBlockState().is(tagIn) && !feetblock.defaultBlockState().is(tagIn)) {
+            if (attribute.hasModifier(modifier.id())) attribute.removeModifier(modifier);
             return false;
         }
-        if (!attribute.hasModifier(modifier)) attribute.addTransientModifier(modifier);
+        if (!attribute.hasModifier(modifier.id())) attribute.addTransientModifier(modifier);
         return true;
     }
 }

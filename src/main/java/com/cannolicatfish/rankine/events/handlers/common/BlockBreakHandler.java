@@ -1,23 +1,26 @@
 package com.cannolicatfish.rankine.events.handlers.common;
 
 import com.cannolicatfish.rankine.blocks.charcoalpit.CharcoalPitTile;
+import com.cannolicatfish.rankine.enchantment.RankineEnchantmentHelper;
 import com.cannolicatfish.rankine.init.*;
 import com.cannolicatfish.rankine.items.alloys.AlloyHoeItem;
 import com.cannolicatfish.rankine.items.alloys.AlloyPickaxeItem;
 import com.cannolicatfish.rankine.recipe.ForagingRecipe;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
@@ -26,18 +29,25 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Material;
-import net.neoforged.neoforge.common.Tags;
-import net.neoforged.neoforge.event.world.BlockEvent;
-import net.neoforged.neoforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.event.level.BlockEvent;
 
 import java.util.*;
 
+/**
+ * 1.21.1 notes:
+ * - BlockEvent moved to net.neoforged.neoforge.event.level.
+ * - Material is gone: the old {@code getMaterial() == Material.DIRT/SAND} stump check becomes
+ *   BlockTags.DIRT / BlockTags.SAND.
+ * - Block#getRegistryName() is gone -> BuiltInRegistries.BLOCK.getKey(block).
+ * - Forge tag manager lookups -> BlockState#is(TagKey); Tags.Biomes.IS_END -> BiomeTags.IS_END.
+ * - hurtAndBreak(amount, entity, slot) replaces hurtAndBreak + broadcastBreakEvent.
+ * - Enchantment levels (vanilla and Rankine) resolve through RankineEnchantmentHelper.
+ */
 public class BlockBreakHandler {
     public static void blockBreakingEvents(BlockEvent.BreakEvent event) {
-        Level levelIn = event.getPlayer().getLevel();
-        Random rand = levelIn.random;
         Player player = event.getPlayer();
+        Level levelIn = player.level();
+        RandomSource rand = levelIn.random;
         BlockPos pos = event.getPos();
         BlockState targetBlockState = levelIn.getBlockState(pos);
         Block targetBlock = levelIn.getBlockState(pos).getBlock();
@@ -97,10 +107,11 @@ public class BlockBreakHandler {
 
                 if (alive) {
                     for (BlockPos b : logs) {
-                        if (Config.GENERAL.STUMP_CREATION.get() && (levelIn.getBlockState(b.below()).getMaterial().equals(Material.DIRT) || levelIn.getBlockState(b.below()).getMaterial().equals(Material.SAND))) {
+                        BlockState below = levelIn.getBlockState(b.below());
+                        if (Config.GENERAL.STUMP_CREATION.get() && (below.is(BlockTags.DIRT) || below.is(BlockTags.SAND))) {
                             levelIn.setBlock(b, RankineBlocks.STUMP.get().defaultBlockState(),3);
                         } else {
-                            if (EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ENDOTHERMIC.get(),player.getMainHandItem()) > 0) {
+                            if (RankineEnchantmentHelper.getLevel(levelIn, RankineEnchantments.ENDOTHERMIC, player.getMainHandItem()) > 0) {
                                 Block.popResource(levelIn,b,new ItemStack(Items.CHARCOAL, CharcoalPitTile.logLayerCount(levelIn,levelIn.getBlockState(b))));
                                 levelIn.destroyBlock(b,false);
                             } else {
@@ -121,14 +132,16 @@ public class BlockBreakHandler {
                         BlockState LEAF = levelIn.getBlockState(b);
                         LeavesBlock.dropResources(LEAF,levelIn,pos);
                         levelIn.removeBlock(b,false);
-                        if (levelIn.getRandom().nextFloat() < Config.GENERAL.LEAF_LITTER_GEN_TREES.get() && ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse(LEAF.getBlock().getRegistryName().toString().replace("leaves", "leaf_litter"))) != null) {
-                            levelIn.setBlockAndUpdate(b, ForgeRegistries.BLOCKS.getValue(ResourceLocation.tryParse("rankine:"+LEAF.getBlock().getRegistryName().getPath().replace("leaves", "leaf_litter"))).defaultBlockState());
+                        ResourceLocation leafId = BuiltInRegistries.BLOCK.getKey(LEAF.getBlock());
+                        if (levelIn.getRandom().nextFloat() < Config.GENERAL.LEAF_LITTER_GEN_TREES.get() && leafId != null) {
+                            ResourceLocation litterId = ResourceLocation.fromNamespaceAndPath("rankine", leafId.getPath().replace("leaves", "leaf_litter"));
+                            if (BuiltInRegistries.BLOCK.containsKey(litterId)) {
+                                levelIn.setBlockAndUpdate(b, BuiltInRegistries.BLOCK.get(litterId).defaultBlockState());
+                            }
                         }
                     }
                     levelIn.playSound(null,pos, SoundEvents.GRASS_BREAK, SoundSource.BLOCKS,1.0f,0.8f);
-                    player.getMainHandItem().hurtAndBreak(logs.size()-1, player, (p_220038_0_) -> {
-                        p_220038_0_.broadcastBreakEvent(EquipmentSlot.MAINHAND);
-                    });
+                    player.getMainHandItem().hurtAndBreak(logs.size()-1, player, EquipmentSlot.MAINHAND);
                     event.setCanceled(true);
                     return;
                 }
@@ -136,20 +149,19 @@ public class BlockBreakHandler {
 
 
             //Foraging
-            if (mainHandItem.getItem() instanceof AlloyHoeItem || mainHandItem.getItem().equals(RankineItems.FLINT_HOE.get()) && !(EnchantmentHelper.getItemEnchantmentLevel(Enchantments.SILK_TOUCH, mainHandItem) > 0)) {
-                ItemStack itemStack = ForagingRecipe.getForagingResult(levelIn, levelIn.getBiome(pos).value().getRegistryName(), targetBlockState, EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.FORAGING.get(), mainHandItem) > 0);
+            if (mainHandItem.getItem() instanceof AlloyHoeItem || mainHandItem.getItem().equals(RankineItems.FLINT_HOE.get()) && !(RankineEnchantmentHelper.getLevel(levelIn, Enchantments.SILK_TOUCH, mainHandItem) > 0)) {
+                ResourceLocation biomeName = levelIn.getBiome(pos).unwrapKey().map(k -> k.location()).orElse(null);
+                ItemStack itemStack = ForagingRecipe.getForagingResult(levelIn, biomeName, targetBlockState, RankineEnchantmentHelper.getLevel(levelIn, RankineEnchantments.FORAGING, mainHandItem) > 0);
                 if (!itemStack.isEmpty()) {
                     Block.popResource(levelIn, pos, itemStack);
                     levelIn.destroyBlock(pos, false);
                 }
             }
 
-            if (ForgeRegistries.BLOCKS.tags().getTag(BlockTags.LOGS_THAT_BURN).contains(targetBlock) && EnchantmentHelper.getItemEnchantmentLevel(RankineEnchantments.ENDOTHERMIC.get(),player.getMainHandItem()) > 0 && !levelIn.isClientSide) {
+            if (targetBlockState.is(BlockTags.LOGS_THAT_BURN) && RankineEnchantmentHelper.getLevel(levelIn, RankineEnchantments.ENDOTHERMIC, player.getMainHandItem()) > 0 && !levelIn.isClientSide) {
                 levelIn.removeBlock(pos,false);
                 Block.popResource(levelIn,pos,new ItemStack(Items.CHARCOAL, CharcoalPitTile.logLayerCount(levelIn,levelIn.getBlockState(pos))));
-                player.getMainHandItem().hurtAndBreak(1, player, (p_220038_0_) -> {
-                    p_220038_0_.broadcastBreakEvent(EquipmentSlot.MAINHAND);
-                });
+                player.getMainHandItem().hurtAndBreak(1, player, EquipmentSlot.MAINHAND);
 
                 event.setCanceled(true);
                 //return;
@@ -158,12 +170,12 @@ public class BlockBreakHandler {
 
 
             if (targetBlock.equals(Blocks.GLOWSTONE)) {
-                if (EnchantmentHelper.getItemEnchantmentLevel(Enchantments.SILK_TOUCH, mainHandItem) > 0) return;
+                if (RankineEnchantmentHelper.getLevel(levelIn, Enchantments.SILK_TOUCH, mainHandItem) > 0) return;
                 levelIn.destroyBlock(pos, true);
                 Block gas = Arrays.asList(RankineBlocks.ARGON_GAS_BLOCK.get(),RankineBlocks.NEON_GAS_BLOCK.get(),RankineBlocks.KRYPTON_GAS_BLOCK.get()).get(rand.nextInt(3));
                 if (levelIn.getBiome(pos).is(BiomeTags.IS_NETHER) && rand.nextFloat() < Config.GENERAL.GLOWSTONE_GAS_CHANCE.get()) {
                     levelIn.setBlockAndUpdate(pos, gas.defaultBlockState());
-                } else if (levelIn.getBiome(pos).is(Tags.Biomes.IS_END) && rand.nextFloat() < Config.GENERAL.GLOWSTONE_GAS_CHANCE.get()*5) {
+                } else if (levelIn.getBiome(pos).is(BiomeTags.IS_END) && rand.nextFloat() < Config.GENERAL.GLOWSTONE_GAS_CHANCE.get()*5) {
                     levelIn.setBlockAndUpdate(pos, gas.defaultBlockState());
                 } else if (rand.nextFloat() < Config.GENERAL.GLOWSTONE_GAS_CHANCE.get()/5f) {
                     levelIn.setBlockAndUpdate(pos, gas.defaultBlockState());
@@ -180,7 +192,7 @@ public class BlockBreakHandler {
                     }
                 }
             } else if (offHandItem == RankineItems.TOTEM_OF_SOFTENING.get()) {
-                if ((player.getMainHandItem().isEmpty() && levelIn.getBlockState(pos).canHarvestBlock(levelIn,pos,player) && levelIn.getBlockEntity(pos) == null && levelIn.getFluidState(pos).isEmpty()) && !levelIn.isClientSide) {
+                if ((player.getMainHandItem().isEmpty() && player.hasCorrectToolForDrops(levelIn.getBlockState(pos), levelIn, pos) && levelIn.getBlockEntity(pos) == null && levelIn.getFluidState(pos).isEmpty()) && !levelIn.isClientSide) {
                     levelIn.removeBlock(pos, false);
                     Block.popResource(levelIn,pos,new ItemStack(levelIn.getBlockState(pos).getBlock().asItem(), 1));
                     SoundType soundtype = levelIn.getBlockState(pos).getSoundType(levelIn, pos, null);
@@ -189,36 +201,8 @@ public class BlockBreakHandler {
             }
 
             //Nugget Drops
-            if (ForgeRegistries.BLOCKS.tags().getTag(Tags.Blocks.STONE).contains(targetBlock)) {
+            if (targetBlockState.is(net.neoforged.neoforge.common.Tags.Blocks.STONES)) {
                 if (mainHandItem.getItem() instanceof AlloyPickaxeItem) {
-                    /*BlockPos foundPos = null;
-                    for (int x = 1; x < Config.GENERAL.NUGGET_DISTANCE.get(); x++) {
-                        if (levelIn.getBlockState(pos.below(x)).getBlock() instanceof RankineOreBlock) {
-                            foundPos = pos.below(x);
-                        } else if (levelIn.getBlockState(pos.above(x)).getBlock() instanceof RankineOreBlock) {
-                            foundPos = pos.above(x);
-                        } else if (levelIn.getBlockState(pos.south(x)).getBlock() instanceof RankineOreBlock) {
-                            foundPos = pos.south(x);
-                        } else if (levelIn.getBlockState(pos.north(x)).getBlock() instanceof RankineOreBlock) {
-                            foundPos = pos.north(x);
-                        } else if (levelIn.getBlockState(pos.east(x)).getBlock() instanceof RankineOreBlock) {
-                            foundPos = pos.east(x);
-                        } else if (levelIn.getBlockState(pos.west(x)).getBlock() instanceof RankineOreBlock) {
-                            foundPos = pos.west(x);
-                        }
-                        if (foundPos != null && rand.nextFloat() < Config.GENERAL.NUGGET_CHANCE.get() && !levelIn.isClientSide && levelIn.getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS) && !levelIn.restoringBlockSnapshots) {
-                            Block b = levelIn.getBlockState(foundPos).getBlock();
-                            ItemStack nug = ItemStack.EMPTY;
-                            if (VanillaIntegration.oreNuggetMap.containsKey(b)) {
-                                nug = new ItemStack(VanillaIntegration.oreNuggetMap.get(b));
-                            }
-                            if (!nug.isEmpty()) {
-                                Block.popResource(levelIn, pos, nug);
-                                break;
-                            }
-                        }
-                    }*/
-
                     //Geodes
                     if (levelIn.getRandom().nextFloat() <= Config.GENERAL.GEODE_CHANCE.get() && !levelIn.isClientSide && levelIn.getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS) && !levelIn.restoringBlockSnapshots) {
                         Block.popResource(levelIn, pos, new ItemStack(RankineItems.GEODE.get(), 1));
@@ -244,9 +228,8 @@ public class BlockBreakHandler {
                     } else {
                         Block.popResource(levelIn, pos, new ItemStack(targetBlock.asItem()));
                     }
-                    player.getItemInHand(event.getPlayer().swingingArm).hurtAndBreak(1, player, (p_220040_1_) -> {
-                        p_220040_1_.broadcastBreakEvent(event.getPlayer().swingingArm);
-                    });
+                    EquipmentSlot swingSlot = player.swingingArm == InteractionHand.OFF_HAND ? EquipmentSlot.OFFHAND : EquipmentSlot.MAINHAND;
+                    player.getItemInHand(player.swingingArm).hurtAndBreak(1, player, swingSlot);
                 }
             }
 
