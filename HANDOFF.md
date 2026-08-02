@@ -46,9 +46,16 @@ The server gate needs `run/server/eula.txt` containing `eula=true` (verify.sh wr
    - **Do not judge liveness by log output or file mtimes** — neither changes during snapshotting.
      Check accumulated CPU of the java process instead (`Get-Process java | Select Id,CPU`).
    - `org.gradle.caching` and `org.gradle.parallel` are **off** on purpose (pure overhead here).
-   - **Suggested to Karl, NOT applied (his call, it is a security setting):** a Windows Defender
-     exclusion for the repo + `~/.gradle` would cut build times a lot:
-     `Add-MpPreference -ExclusionPath 'C:\Users\karl\Documents\Projects\project-rankine','C:\Users\karl\.gradle'`
+   - **Windows Defender exclusion: DECIDED AGAINST — do not apply, and do not re-suggest it
+     unprompted.** Real-time scanning of those file opens is the dominant cost, but Karl asked and
+     the conclusion was that it is not worth trading a security control for a few minutes on
+     one-off gate runs (datagen is ~3m once caches are warm). If build times ever do become the
+     bottleneck, exclude ONLY the two machine-generated trees, never `~/.gradle` — that is where
+     third-party JARs from Maven Central/NeoForged/BlameJared land and is the one place scanning
+     has real value against a compromised dependency:
+     `Add-MpPreference -ExclusionPath '<repo>\build','<repo>\src\generated\resources'`
+     (Those two trees are ~92k reproducible generated files and account for nearly all the cost.)
+     It is a system security setting — surface the command, let Karl run it, never run it here.
    - One earlier run genuinely wedged; if CPU is flat for 5+ min, `./gradlew --stop`, kill stray
      java PIDs, and re-run.
 3. **Gradle incremental compilation emits stale phantom errors** (symbols reported missing that are
@@ -137,6 +144,20 @@ The GameTests are deliberately registry-driven rather than asserting specific ma
 they stay valid as details change.
 
 ---
+
+## Decisions already settled (do not re-litigate)
+
+- **Security review (`/security-review`) is not warranted for this port.** Grounded in the actual
+  diff, not a guess: the only server-bound network payload is `SelectAlloyPacket` (a single VAR_INT)
+  whose handler is an empty lambda — preserved 1.18 behaviour, where the body was commented out.
+  `FluidStackPacket` is client-bound only. No auth, path handling, command execution, external I/O,
+  or credential surface anywhere in the change. Data components / recipe codecs / datapack JSON all
+  deserialize trusted content (the mod's own generated files and packs the server owner installs),
+  so failures there are correctness bugs, not privilege boundaries.
+  **It would become worth doing** if `SelectAlloyPacket`'s handler is ever wired up to act on client
+  input (it is the template-table alloy picker), or if new server-bound packets write NBT or move
+  items — that is unvalidated client input against a container the player may not have open.
+- **Windows Defender exclusion: declined.** See the build-speed section above.
 
 ## If gate 4 or 5 fails
 
