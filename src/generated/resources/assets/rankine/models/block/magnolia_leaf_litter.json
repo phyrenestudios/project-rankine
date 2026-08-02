@@ -1,11 +1,23 @@
 {
   "parent": "minecraft:block/block",
-  "textures": {
-    "particle": "rankine:block/magnolia_leaves",
-    "layer": "rankine:block/magnolia_leaves"
-  },
   "elements": [
     {
+      "faces": {
+        "down": {
+          "texture": "#layer",
+          "tintindex": 0,
+          "uv": [
+            16.0,
+            16.0,
+            0.0,
+            0.0
+          ]
+        },
+        "up": {
+          "texture": "#layer",
+          "tintindex": 0
+        }
+      },
       "from": [
         0,
         0.25,
@@ -15,23 +27,12 @@
         16,
         0.25,
         16
-      ],
-      "faces": {
-        "down": {
-          "texture": "#layer",
-          "uv": [
-            16.0,
-            16.0,
-            0.0,
-            0.0
-          ],
-          "tintindex": 0
-        },
-        "up": {
-          "texture": "#layer",
-          "tintindex": 0
-        }
-      }
+      ]
     }
-  ]
+  ],
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "layer": "rankine:block/magnolia_leaves",
+    "particle": "rankine:block/magnolia_leaves"
+  }
 }

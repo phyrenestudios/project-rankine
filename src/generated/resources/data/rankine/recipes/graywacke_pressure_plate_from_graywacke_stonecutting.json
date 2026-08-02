@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:graywacke"
-  },
-  "result": "rankine:graywacke_pressure_plate",
-  "count": 1
-}

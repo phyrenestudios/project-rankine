@@ -1,11 +1,32 @@
 {
   "parent": "minecraft:block/block",
-  "textures": {
-    "particle": "rankine:block/blue_cement",
-    "all": "rankine:block/blue_cement"
-  },
   "elements": [
     {
+      "faces": {
+        "down": {
+          "cullface": "down",
+          "texture": "#all"
+        },
+        "east": {
+          "cullface": "east",
+          "texture": "#all"
+        },
+        "north": {
+          "cullface": "north",
+          "texture": "#all"
+        },
+        "south": {
+          "cullface": "south",
+          "texture": "#all"
+        },
+        "up": {
+          "texture": "#all"
+        },
+        "west": {
+          "cullface": "west",
+          "texture": "#all"
+        }
+      },
       "from": [
         0,
         0,
@@ -15,54 +36,31 @@
         16,
         4,
         16
-      ],
-      "faces": {
-        "down": {
-          "texture": "#all",
-          "cullface": "down"
-        },
-        "up": {
-          "texture": "#all"
-        },
-        "north": {
-          "texture": "#all",
-          "cullface": "north"
-        },
-        "south": {
-          "texture": "#all",
-          "cullface": "south"
-        },
-        "west": {
-          "texture": "#all",
-          "cullface": "west"
-        },
-        "east": {
-          "texture": "#all",
-          "cullface": "east"
-        }
-      }
+      ]
     },
     {
-      "from": [
-        3,
-        4,
-        3
-      ],
-      "to": [
-        13,
-        16,
-        13
-      ],
       "faces": {
         "down": {
+          "cullface": "down",
           "texture": "#all",
           "uv": [
             3.0,
             4.0,
             13.0,
             13.0
-          ],
-          "cullface": "down"
+          ]
+        },
+        "east": {
+          "cullface": "east",
+          "texture": "#all"
+        },
+        "north": {
+          "cullface": "north",
+          "texture": "#all"
+        },
+        "south": {
+          "cullface": "south",
+          "texture": "#all"
         },
         "up": {
           "texture": "#all",
@@ -73,23 +71,25 @@
             13.0
           ]
         },
-        "north": {
-          "texture": "#all",
-          "cullface": "north"
-        },
-        "south": {
-          "texture": "#all",
-          "cullface": "south"
-        },
         "west": {
-          "texture": "#all",
-          "cullface": "west"
-        },
-        "east": {
-          "texture": "#all",
-          "cullface": "east"
+          "cullface": "west",
+          "texture": "#all"
         }
-      }
+      },
+      "from": [
+        3,
+        4,
+        3
+      ],
+      "to": [
+        13,
+        16,
+        13
+      ]
     }
-  ]
+  ],
+  "textures": {
+    "all": "rankine:block/blue_cement",
+    "particle": "rankine:block/blue_cement"
+  }
 }

@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:polished_greenschist"
-  },
-  "result": "rankine:polished_greenschist_stairs",
-  "count": 1
-}

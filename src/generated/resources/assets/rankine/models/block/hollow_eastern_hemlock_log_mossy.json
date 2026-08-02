@@ -1,5 +1,6 @@
 {
   "parent": "rankine:block/template_hollow_log_mossy",
+  "render_type": "minecraft:cutout",
   "textures": {
     "log": "rankine:block/eastern_hemlock_log",
     "log_top": "rankine:block/eastern_hemlock_log_top",

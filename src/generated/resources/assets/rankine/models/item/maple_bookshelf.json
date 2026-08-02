@@ -2,10 +2,10 @@
   "parent": "rankine:block/maple_bookshelf1",
   "overrides": [
     {
+      "model": "rankine:block/maple_bookshelf2",
       "predicate": {
         "rankine:building_mode": 2.0
-      },
-      "model": "rankine:block/maple_bookshelf2"
+      }
     }
   ]
 }

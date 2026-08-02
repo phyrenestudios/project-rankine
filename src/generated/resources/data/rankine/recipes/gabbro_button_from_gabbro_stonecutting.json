@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:gabbro"
-  },
-  "result": "rankine:gabbro_button",
-  "count": 1
-}

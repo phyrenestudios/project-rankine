@@ -17,6 +17,9 @@
         "y": 270
       }
     ],
+    "dead=false,snowy=true": {
+      "model": "rankine:block/humus_grass_block_snow"
+    },
     "dead=true,snowy=false": [
       {
         "model": "rankine:block/humus_grass_block"
@@ -34,9 +37,6 @@
         "y": 270
       }
     ],
-    "dead=false,snowy=true": {
-      "model": "rankine:block/humus_grass_block_snow"
-    },
     "dead=true,snowy=true": {
       "model": "rankine:block/humus_grass_block_snow"
     }

@@ -1,11 +1,29 @@
 {
   "parent": "minecraft:block/block",
-  "textures": {
-    "particle": "rankine:block/honeystone",
-    "all": "rankine:block/honeystone"
-  },
   "elements": [
     {
+      "faces": {
+        "down": {
+          "cullface": "down",
+          "texture": "#all"
+        },
+        "east": {
+          "texture": "#all"
+        },
+        "north": {
+          "texture": "#all"
+        },
+        "south": {
+          "texture": "#all"
+        },
+        "up": {
+          "cullface": "up",
+          "texture": "#all"
+        },
+        "west": {
+          "texture": "#all"
+        }
+      },
       "from": [
         3,
         0,
@@ -15,29 +33,11 @@
         13,
         16,
         13
-      ],
-      "faces": {
-        "down": {
-          "texture": "#all",
-          "cullface": "down"
-        },
-        "up": {
-          "texture": "#all",
-          "cullface": "up"
-        },
-        "north": {
-          "texture": "#all"
-        },
-        "south": {
-          "texture": "#all"
-        },
-        "west": {
-          "texture": "#all"
-        },
-        "east": {
-          "texture": "#all"
-        }
-      }
+      ]
     }
-  ]
+  ],
+  "textures": {
+    "all": "rankine:block/honeystone",
+    "particle": "rankine:block/honeystone"
+  }
 }

@@ -1,9 +1,0 @@
-{
-  "replace": false,
-  "values": [
-    "rankine:light_gravel",
-    "rankine:dark_gravel",
-    "rankine:desert_sand",
-    "rankine:white_sand"
-  ]
-}

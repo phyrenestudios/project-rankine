@@ -1,11 +1,29 @@
 {
   "parent": "minecraft:block/block",
-  "textures": {
-    "particle": "rankine:block/bridgmanham",
-    "all": "rankine:block/bridgmanham"
-  },
   "elements": [
     {
+      "faces": {
+        "down": {
+          "cullface": "down",
+          "texture": "#all"
+        },
+        "east": {
+          "texture": "#all"
+        },
+        "north": {
+          "texture": "#all"
+        },
+        "south": {
+          "texture": "#all"
+        },
+        "up": {
+          "cullface": "up",
+          "texture": "#all"
+        },
+        "west": {
+          "texture": "#all"
+        }
+      },
       "from": [
         5,
         0,
@@ -15,29 +33,11 @@
         11,
         16,
         11
-      ],
-      "faces": {
-        "down": {
-          "texture": "#all",
-          "cullface": "down"
-        },
-        "up": {
-          "texture": "#all",
-          "cullface": "up"
-        },
-        "north": {
-          "texture": "#all"
-        },
-        "south": {
-          "texture": "#all"
-        },
-        "west": {
-          "texture": "#all"
-        },
-        "east": {
-          "texture": "#all"
-        }
-      }
+      ]
     }
-  ]
+  ],
+  "textures": {
+    "all": "rankine:block/bridgmanham",
+    "particle": "rankine:block/bridgmanham"
+  }
 }

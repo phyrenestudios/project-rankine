@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:ringwoodine"
-  },
-  "result": "rankine:ringwoodine_slab",
-  "count": 2
-}

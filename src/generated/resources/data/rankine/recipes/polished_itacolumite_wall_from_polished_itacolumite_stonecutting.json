@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:polished_itacolumite"
-  },
-  "result": "rankine:polished_itacolumite_wall",
-  "count": 1
-}

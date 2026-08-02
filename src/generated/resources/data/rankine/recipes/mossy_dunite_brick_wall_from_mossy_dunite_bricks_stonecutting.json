@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:mossy_dunite_bricks"
-  },
-  "result": "rankine:mossy_dunite_bricks_wall",
-  "count": 1
-}

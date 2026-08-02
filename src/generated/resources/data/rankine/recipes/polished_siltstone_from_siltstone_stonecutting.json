@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:siltstone"
-  },
-  "result": "rankine:polished_siltstone",
-  "count": 1
-}

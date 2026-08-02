@@ -1,5 +1,6 @@
 {
   "parent": "rankine:block/leaves_age5",
+  "render_type": "minecraft:cutout",
   "textures": {
     "leaves": "rankine:block/red_birch_leaves",
     "snowy_overlay": "rankine:block/snowy_leaves_overlay"

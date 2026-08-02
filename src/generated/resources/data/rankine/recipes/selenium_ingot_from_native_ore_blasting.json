@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "ingredient": {
-    "item": "rankine:native_selenium_ore"
-  },
-  "result": "rankine:selenium",
-  "experience": 0.5,
-  "cookingtime": 100
-}

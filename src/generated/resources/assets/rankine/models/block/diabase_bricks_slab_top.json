@@ -1,8 +1,9 @@
 {
   "parent": "minecraft:block/slab_top",
+  "render_type": "minecraft:cutout",
   "textures": {
-    "side": "rankine:block/diabase_bricks",
     "bottom": "rankine:block/diabase_bricks",
+    "side": "rankine:block/diabase_bricks",
     "top": "rankine:block/diabase_bricks"
   }
 }

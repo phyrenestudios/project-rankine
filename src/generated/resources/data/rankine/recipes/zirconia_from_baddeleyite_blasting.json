@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "ingredient": {
-    "item": "rankine:baddeleyite"
-  },
-  "result": "rankine:zirconia",
-  "experience": 0.5,
-  "cookingtime": 100
-}

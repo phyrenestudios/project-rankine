@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/door_bottom",
-  "textures": {
-    "bottom": "rankine:block/erythrina_door_bottom",
-    "top": "rankine:block/erythrina_door_top"
-  }
-}

@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:rhyolite"
-  },
-  "result": "rankine:rhyolite_slab",
-  "count": 2
-}

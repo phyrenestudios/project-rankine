@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:polished_episyenite"
-  },
-  "result": "rankine:polished_episyenite_slab",
-  "count": 2
-}

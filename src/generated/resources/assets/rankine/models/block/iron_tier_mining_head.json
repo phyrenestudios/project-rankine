@@ -1,5 +1,6 @@
 {
   "parent": "rankine:block/template_mining_head",
+  "render_type": "minecraft:cutout",
   "textures": {
     "base": "rankine:block/iron_tier_mining_head"
   }

@@ -1,5 +1,6 @@
 {
   "parent": "minecraft:block/crop",
+  "render_type": "minecraft:cutout_mipped",
   "textures": {
     "crop": "rankine:block/sorghum_plant_middle_age6"
   }

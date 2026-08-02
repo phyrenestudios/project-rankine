@@ -1,8 +1,9 @@
 {
   "parent": "minecraft:block/outer_stairs",
+  "render_type": "minecraft:cutout",
   "textures": {
-    "side": "rankine:block/dunite_bricks",
     "bottom": "rankine:block/dunite_bricks",
+    "side": "rankine:block/dunite_bricks",
     "top": "rankine:block/dunite_bricks"
   }
 }

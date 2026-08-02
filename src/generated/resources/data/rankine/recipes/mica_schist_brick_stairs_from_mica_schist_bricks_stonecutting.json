@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:mica_schist_bricks"
-  },
-  "result": "rankine:mica_schist_bricks_stairs",
-  "count": 1
-}

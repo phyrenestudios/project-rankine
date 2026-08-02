@@ -2,10 +2,10 @@
   "parent": "rankine:block/tholeiitic_basalt_bricks1",
   "overrides": [
     {
+      "model": "rankine:block/tholeiitic_basalt_bricks2",
       "predicate": {
         "rankine:building_mode": 2.0
-      },
-      "model": "rankine:block/tholeiitic_basalt_bricks2"
+      }
     }
   ]
 }

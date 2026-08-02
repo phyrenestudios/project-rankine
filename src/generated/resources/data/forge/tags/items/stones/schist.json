@@ -1,9 +1,0 @@
-{
-  "replace": false,
-  "values": [
-    "rankine:mica_schist",
-    "rankine:greenschist",
-    "rankine:blueschist",
-    "rankine:whiteschist"
-  ]
-}

@@ -1,5 +1,6 @@
 {
   "parent": "rankine:block/template_tinted_bars_post_ends",
+  "render_type": "minecraft:cutout",
   "textures": {
     "edge": "rankine:block/alloy_bars_edge"
   }

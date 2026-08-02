@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "rankine:tuna"
-  },
-  "result": "rankine:cooked_tuna",
-  "experience": 0.35,
-  "cookingtime": 200
-}

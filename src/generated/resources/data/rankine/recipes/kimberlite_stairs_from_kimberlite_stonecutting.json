@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:kimberlite"
-  },
-  "result": "rankine:kimberlite_stairs",
-  "count": 1
-}

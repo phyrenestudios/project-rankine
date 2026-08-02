@@ -1,9 +1,0 @@
-{
-  "replace": false,
-  "values": [
-    "rankine:brass_door",
-    "rankine:bronze_door",
-    "rankine:cupronickel_door",
-    "rankine:steel_door"
-  ]
-}

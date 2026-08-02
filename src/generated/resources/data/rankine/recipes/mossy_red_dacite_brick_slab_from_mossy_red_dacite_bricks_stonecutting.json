@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:mossy_red_dacite_bricks"
-  },
-  "result": "rankine:mossy_red_dacite_bricks_slab",
-  "count": 2
-}

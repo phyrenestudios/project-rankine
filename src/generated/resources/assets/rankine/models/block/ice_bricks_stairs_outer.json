@@ -1,8 +1,9 @@
 {
   "parent": "minecraft:block/outer_stairs",
+  "render_type": "minecraft:translucent",
   "textures": {
-    "side": "rankine:block/ice_bricks",
     "bottom": "rankine:block/ice_bricks",
+    "side": "rankine:block/ice_bricks",
     "top": "rankine:block/ice_bricks"
   }
 }

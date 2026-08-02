@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:polished_red_dacite"
-  },
-  "result": "rankine:polished_red_dacite_wall",
-  "count": 1
-}

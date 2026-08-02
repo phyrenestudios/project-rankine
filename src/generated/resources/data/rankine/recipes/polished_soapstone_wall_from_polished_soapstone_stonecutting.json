@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:polished_soapstone"
-  },
-  "result": "rankine:polished_soapstone_wall",
-  "count": 1
-}

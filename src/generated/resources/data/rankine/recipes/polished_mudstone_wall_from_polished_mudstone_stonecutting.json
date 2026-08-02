@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:polished_mudstone"
-  },
-  "result": "rankine:polished_mudstone_wall",
-  "count": 1
-}

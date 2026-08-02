@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:mariposite_bricks"
-  },
-  "result": "rankine:mariposite_bricks_slab",
-  "count": 2
-}

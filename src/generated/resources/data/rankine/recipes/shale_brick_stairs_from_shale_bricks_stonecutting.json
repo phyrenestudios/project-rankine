@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:shale_bricks"
-  },
-  "result": "rankine:shale_bricks_stairs",
-  "count": 1
-}

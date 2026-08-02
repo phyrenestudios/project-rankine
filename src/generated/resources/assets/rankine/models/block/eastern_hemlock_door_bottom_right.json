@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/door_bottom_right",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "bottom": "rankine:block/eastern_hemlock_door_bottom",
+    "top": "rankine:block/eastern_hemlock_door_top"
+  }
+}

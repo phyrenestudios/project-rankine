@@ -2,10 +2,10 @@
   "parent": "rankine:block/mossy_blueschist_bricks1",
   "overrides": [
     {
+      "model": "rankine:block/mossy_blueschist_bricks2",
       "predicate": {
         "rankine:building_mode": 2.0
-      },
-      "model": "rankine:block/mossy_blueschist_bricks2"
+      }
     }
   ]
 }

@@ -1,9 +1,0 @@
-{
-  "type": "rankine:beehive_oven",
-  "input": {
-    "item": "rankine:porcelain_clay"
-  },
-  "result": "rankine:porcelain",
-  "minCookTime": 300,
-  "maxCookTime": 600
-}

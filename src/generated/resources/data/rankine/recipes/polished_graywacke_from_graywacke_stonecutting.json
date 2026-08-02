@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:graywacke"
-  },
-  "result": "rankine:polished_graywacke",
-  "count": 1
-}

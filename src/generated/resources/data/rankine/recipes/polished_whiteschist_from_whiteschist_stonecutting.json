@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:whiteschist"
-  },
-  "result": "rankine:polished_whiteschist",
-  "count": 1
-}

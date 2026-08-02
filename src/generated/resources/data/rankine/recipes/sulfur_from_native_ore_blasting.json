@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "ingredient": {
-    "item": "rankine:native_sulfur_ore"
-  },
-  "result": "rankine:sulfur",
-  "experience": 0.5,
-  "cookingtime": 100
-}

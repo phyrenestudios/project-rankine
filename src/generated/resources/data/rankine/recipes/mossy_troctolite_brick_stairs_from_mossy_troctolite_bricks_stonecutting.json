@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:mossy_troctolite_bricks"
-  },
-  "result": "rankine:mossy_troctolite_bricks_stairs",
-  "count": 1
-}

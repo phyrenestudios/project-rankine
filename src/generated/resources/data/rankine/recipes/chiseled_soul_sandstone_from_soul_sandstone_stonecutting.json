@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:soul_sandstone"
-  },
-  "result": "rankine:chiseled_soul_sandstone",
-  "count": 1
-}

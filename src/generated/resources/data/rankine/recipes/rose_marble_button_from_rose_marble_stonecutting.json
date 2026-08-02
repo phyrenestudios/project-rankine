@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:rose_marble"
-  },
-  "result": "rankine:rose_marble_button",
-  "count": 1
-}

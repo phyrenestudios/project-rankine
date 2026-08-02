@@ -1,5 +1,6 @@
 {
   "parent": "rankine:block/template_solid_gas",
+  "render_type": "minecraft:translucent",
   "textures": {
     "all": "rankine:block/hydrogen_block"
   }

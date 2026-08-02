@@ -1,5 +1,6 @@
 {
   "parent": "minecraft:block/wall_inventory",
+  "render_type": "minecraft:cutout",
   "textures": {
     "wall": "rankine:block/mossy_greenschist_bricks"
   }

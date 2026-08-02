@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:wadsleyone"
-  },
-  "result": "rankine:polished_wadsleyone",
-  "count": 1
-}

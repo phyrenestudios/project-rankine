@@ -1,8 +1,9 @@
 {
   "parent": "minecraft:block/inner_stairs",
+  "render_type": "minecraft:cutout",
   "textures": {
-    "side": "rankine:block/hornblende_andesite_bricks",
     "bottom": "rankine:block/hornblende_andesite_bricks",
+    "side": "rankine:block/hornblende_andesite_bricks",
     "top": "rankine:block/hornblende_andesite_bricks"
   }
 }

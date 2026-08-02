@@ -1,9 +1,0 @@
-{
-  "replace": false,
-  "values": [
-    "#forge:tuff",
-    "#forge:stone",
-    "#minecraft:dirt",
-    "#forge:gravel"
-  ]
-}

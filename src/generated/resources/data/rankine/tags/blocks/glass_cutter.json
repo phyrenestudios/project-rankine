@@ -1,8 +1,0 @@
-{
-  "replace": false,
-  "values": [
-    "#forge:hardened_glass",
-    "#forge:glass",
-    "#forge:glass_panes"
-  ]
-}

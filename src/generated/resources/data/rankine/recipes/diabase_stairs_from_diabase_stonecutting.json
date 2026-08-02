@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:diabase"
-  },
-  "result": "rankine:diabase_stairs",
-  "count": 1
-}

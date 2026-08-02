@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:diabase"
-  },
-  "result": "rankine:polished_diabase",
-  "count": 1
-}

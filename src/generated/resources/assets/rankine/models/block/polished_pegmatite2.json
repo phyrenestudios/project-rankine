@@ -1,11 +1,57 @@
 {
   "parent": "minecraft:block/block",
-  "textures": {
-    "particle": "rankine:block/polished_pegmatite",
-    "all": "rankine:block/polished_pegmatite"
-  },
   "elements": [
     {
+      "faces": {
+        "down": {
+          "cullface": "down",
+          "texture": "#all"
+        },
+        "east": {
+          "cullface": "east",
+          "texture": "#all",
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            8.0
+          ]
+        },
+        "north": {
+          "cullface": "north",
+          "texture": "#all",
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            8.0
+          ]
+        },
+        "south": {
+          "cullface": "south",
+          "texture": "#all",
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            8.0
+          ]
+        },
+        "up": {
+          "cullface": "up",
+          "texture": "#all"
+        },
+        "west": {
+          "cullface": "west",
+          "texture": "#all",
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            8.0
+          ]
+        }
+      },
       "from": [
         0,
         0,
@@ -15,59 +61,59 @@
         16,
         8,
         16
-      ],
-      "faces": {
-        "down": {
-          "texture": "#all",
-          "cullface": "down"
-        },
-        "up": {
-          "texture": "#all",
-          "cullface": "up"
-        },
-        "north": {
-          "texture": "#all",
-          "uv": [
-            0.0,
-            0.0,
-            16.0,
-            8.0
-          ],
-          "cullface": "north"
-        },
-        "south": {
-          "texture": "#all",
-          "uv": [
-            0.0,
-            0.0,
-            16.0,
-            8.0
-          ],
-          "cullface": "south"
-        },
-        "west": {
-          "texture": "#all",
-          "uv": [
-            0.0,
-            0.0,
-            16.0,
-            8.0
-          ],
-          "cullface": "west"
-        },
-        "east": {
-          "texture": "#all",
-          "uv": [
-            0.0,
-            0.0,
-            16.0,
-            8.0
-          ],
-          "cullface": "east"
-        }
-      }
+      ]
     },
     {
+      "faces": {
+        "down": {
+          "cullface": "down",
+          "texture": "#all"
+        },
+        "east": {
+          "cullface": "east",
+          "texture": "#all",
+          "uv": [
+            0.0,
+            8.0,
+            16.0,
+            16.0
+          ]
+        },
+        "north": {
+          "cullface": "north",
+          "texture": "#all",
+          "uv": [
+            0.0,
+            8.0,
+            16.0,
+            16.0
+          ]
+        },
+        "south": {
+          "cullface": "south",
+          "texture": "#all",
+          "uv": [
+            0.0,
+            8.0,
+            16.0,
+            16.0
+          ]
+        },
+        "up": {
+          "cullface": "up",
+          "texture": "#all"
+        },
+        "west": {
+          "cullface": "west",
+          "texture": "#all",
+          "uv": [
+            0.0,
+            8.0,
+            16.0,
+            16.0
+          ]
+        }
+      },
       "from": [
         0,
         8,
@@ -77,57 +123,11 @@
         16,
         16,
         16
-      ],
-      "faces": {
-        "down": {
-          "texture": "#all",
-          "cullface": "down"
-        },
-        "up": {
-          "texture": "#all",
-          "cullface": "up"
-        },
-        "north": {
-          "texture": "#all",
-          "uv": [
-            0.0,
-            8.0,
-            16.0,
-            16.0
-          ],
-          "cullface": "north"
-        },
-        "south": {
-          "texture": "#all",
-          "uv": [
-            0.0,
-            8.0,
-            16.0,
-            16.0
-          ],
-          "cullface": "south"
-        },
-        "west": {
-          "texture": "#all",
-          "uv": [
-            0.0,
-            8.0,
-            16.0,
-            16.0
-          ],
-          "cullface": "west"
-        },
-        "east": {
-          "texture": "#all",
-          "uv": [
-            0.0,
-            8.0,
-            16.0,
-            16.0
-          ],
-          "cullface": "east"
-        }
-      }
+      ]
     }
-  ]
+  ],
+  "textures": {
+    "all": "rankine:block/polished_pegmatite",
+    "particle": "rankine:block/polished_pegmatite"
+  }
 }

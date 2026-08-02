@@ -1,5 +1,6 @@
 {
   "parent": "rankine:block/template_square",
+  "render_type": "minecraft:cutout",
   "textures": {
     "all": "rankine:block/willow_branchlet"
   }

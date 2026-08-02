@@ -1,5 +1,6 @@
 {
   "parent": "rankine:block/template_hollow_log",
+  "render_type": "minecraft:cutout",
   "textures": {
     "log": "minecraft:block/spruce_log",
     "log_top": "minecraft:block/spruce_log_top",

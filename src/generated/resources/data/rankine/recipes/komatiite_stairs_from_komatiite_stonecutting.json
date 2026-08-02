@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:komatiite"
-  },
-  "result": "rankine:komatiite_stairs",
-  "count": 1
-}

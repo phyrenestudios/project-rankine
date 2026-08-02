@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:hornblende_andesite"
-  },
-  "result": "rankine:polished_hornblende_andesite",
-  "count": 1
-}

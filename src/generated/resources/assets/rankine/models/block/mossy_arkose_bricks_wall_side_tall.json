@@ -1,5 +1,6 @@
 {
   "parent": "minecraft:block/template_wall_side_tall",
+  "render_type": "minecraft:cutout",
   "textures": {
     "wall": "rankine:block/mossy_arkose_bricks"
   }

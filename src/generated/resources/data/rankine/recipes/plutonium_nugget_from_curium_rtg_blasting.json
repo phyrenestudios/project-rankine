@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "ingredient": {
-    "item": "rankine:curium_rtg"
-  },
-  "result": "rankine:plutonium_nugget",
-  "experience": 0.5,
-  "cookingtime": 100
-}

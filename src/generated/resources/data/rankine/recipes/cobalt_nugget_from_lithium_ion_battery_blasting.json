@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:blasting",
-  "ingredient": {
-    "item": "rankine:lithium_ion_battery"
-  },
-  "result": "rankine:cobalt_nugget",
-  "experience": 0.5,
-  "cookingtime": 100
-}

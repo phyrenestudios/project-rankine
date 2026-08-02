@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:honeystone_bricks"
-  },
-  "result": "rankine:honeystone_bricks_stairs",
-  "count": 1
-}

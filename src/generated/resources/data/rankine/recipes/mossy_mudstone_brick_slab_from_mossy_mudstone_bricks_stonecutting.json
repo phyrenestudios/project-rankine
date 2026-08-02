@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:mossy_mudstone_bricks"
-  },
-  "result": "rankine:mossy_mudstone_bricks_slab",
-  "count": 2
-}

@@ -1,8 +1,9 @@
 {
   "parent": "minecraft:block/inner_stairs",
+  "render_type": "minecraft:cutout",
   "textures": {
-    "side": "rankine:block/chalk_bricks",
     "bottom": "rankine:block/chalk_bricks",
+    "side": "rankine:block/chalk_bricks",
     "top": "rankine:block/chalk_bricks"
   }
 }

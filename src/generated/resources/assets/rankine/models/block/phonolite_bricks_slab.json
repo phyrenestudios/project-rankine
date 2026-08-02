@@ -1,8 +1,9 @@
 {
   "parent": "minecraft:block/slab",
+  "render_type": "minecraft:cutout",
   "textures": {
-    "side": "rankine:block/phonolite_bricks",
     "bottom": "rankine:block/phonolite_bricks",
+    "side": "rankine:block/phonolite_bricks",
     "top": "rankine:block/phonolite_bricks"
   }
 }

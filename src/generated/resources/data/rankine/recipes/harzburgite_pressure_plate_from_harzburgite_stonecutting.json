@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:harzburgite"
-  },
-  "result": "rankine:harzburgite_pressure_plate",
-  "count": 1
-}

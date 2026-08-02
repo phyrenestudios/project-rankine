@@ -1,8 +1,9 @@
 {
   "parent": "minecraft:block/cube_bottom_top",
+  "render_type": "minecraft:cutout_mipped",
   "textures": {
-    "top": "minecraft:block/grass_block_top",
     "bottom": "rankine:block/humus",
-    "side": "rankine:block/humus_grass_block_snow"
+    "side": "rankine:block/humus_grass_block_snow",
+    "top": "minecraft:block/grass_block_top"
   }
 }

@@ -1,5 +1,6 @@
 {
   "parent": "rankine:block/template_rankine_lantern",
+  "render_type": "minecraft:cutout_mipped",
   "textures": {
     "overlay": "rankine:block/manganese_lantern"
   }

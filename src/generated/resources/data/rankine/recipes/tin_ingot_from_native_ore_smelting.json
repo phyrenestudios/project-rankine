@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "rankine:native_tin_ore"
-  },
-  "result": "rankine:tin_ingot",
-  "experience": 0.5,
-  "cookingtime": 200
-}

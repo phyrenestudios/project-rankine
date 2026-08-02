@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:wehrlite"
-  },
-  "result": "rankine:wehrlite_button",
-  "count": 1
-}

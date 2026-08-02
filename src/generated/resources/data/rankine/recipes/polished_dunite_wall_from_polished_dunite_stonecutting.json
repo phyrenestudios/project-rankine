@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:polished_dunite"
-  },
-  "result": "rankine:polished_dunite_wall",
-  "count": 1
-}

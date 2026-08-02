@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "rankine:serpentinite"
-  },
-  "result": "rankine:serpentinite_slab",
-  "count": 2
-}

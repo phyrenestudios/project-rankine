@@ -1,9 +1,10 @@
 {
   "parent": "rankine:block/template_grassy_soil",
+  "render_type": "minecraft:cutout_mipped",
   "textures": {
-    "soil": "rankine:block/silty_loam",
-    "grassy_soil_top": "minecraft:block/grass_block_top",
     "grassy_soil_side": "rankine:block/silty_loam_grass_block_side",
-    "grassy_soil_side_overlay": "rankine:block/silty_loam_grass_block_side_overlay"
+    "grassy_soil_side_overlay": "rankine:block/silty_loam_grass_block_side_overlay",
+    "grassy_soil_top": "minecraft:block/grass_block_top",
+    "soil": "rankine:block/silty_loam"
   }
 }

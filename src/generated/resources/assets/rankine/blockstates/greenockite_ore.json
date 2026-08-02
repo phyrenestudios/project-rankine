@@ -6,30 +6,6 @@
     "type=1": {
       "model": "rankine:block/greenockite_ore1"
     },
-    "type=2": {
-      "model": "rankine:block/greenockite_ore2"
-    },
-    "type=3": {
-      "model": "rankine:block/greenockite_ore3"
-    },
-    "type=4": {
-      "model": "rankine:block/greenockite_ore4"
-    },
-    "type=5": {
-      "model": "rankine:block/greenockite_ore5"
-    },
-    "type=6": {
-      "model": "rankine:block/greenockite_ore6"
-    },
-    "type=7": {
-      "model": "rankine:block/greenockite_ore7"
-    },
-    "type=8": {
-      "model": "rankine:block/greenockite_ore8"
-    },
-    "type=9": {
-      "model": "rankine:block/greenockite_ore9"
-    },
     "type=10": {
       "model": "rankine:block/greenockite_ore10"
     },
@@ -59,6 +35,9 @@
     },
     "type=19": {
       "model": "rankine:block/greenockite_ore19"
+    },
+    "type=2": {
+      "model": "rankine:block/greenockite_ore2"
     },
     "type=20": {
       "model": "rankine:block/greenockite_ore20"
@@ -90,6 +69,9 @@
     "type=29": {
       "model": "rankine:block/greenockite_ore29"
     },
+    "type=3": {
+      "model": "rankine:block/greenockite_ore3"
+    },
     "type=30": {
       "model": "rankine:block/greenockite_ore30"
     },
@@ -119,6 +101,9 @@
     },
     "type=39": {
       "model": "rankine:block/greenockite_ore39"
+    },
+    "type=4": {
+      "model": "rankine:block/greenockite_ore4"
     },
     "type=40": {
       "model": "rankine:block/greenockite_ore40"
@@ -150,6 +135,9 @@
     "type=49": {
       "model": "rankine:block/greenockite_ore49"
     },
+    "type=5": {
+      "model": "rankine:block/greenockite_ore5"
+    },
     "type=50": {
       "model": "rankine:block/greenockite_ore50"
     },
@@ -179,6 +167,9 @@
     },
     "type=59": {
       "model": "rankine:block/greenockite_ore59"
+    },
+    "type=6": {
+      "model": "rankine:block/greenockite_ore6"
     },
     "type=60": {
       "model": "rankine:block/greenockite_ore60"
@@ -210,6 +201,9 @@
     "type=69": {
       "model": "rankine:block/greenockite_ore69"
     },
+    "type=7": {
+      "model": "rankine:block/greenockite_ore7"
+    },
     "type=70": {
       "model": "rankine:block/greenockite_ore70"
     },
@@ -233,6 +227,12 @@
     },
     "type=77": {
       "model": "rankine:block/greenockite_ore77"
+    },
+    "type=8": {
+      "model": "rankine:block/greenockite_ore8"
+    },
+    "type=9": {
+      "model": "rankine:block/greenockite_ore9"
     }
   }
 }

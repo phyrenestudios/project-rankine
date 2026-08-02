@@ -1,5 +1,6 @@
 {
   "parent": "rankine:block/template_hollow_log_mossy",
+  "render_type": "minecraft:cutout",
   "textures": {
     "log": "rankine:block/cork_oak_log",
     "log_top": "rankine:block/cork_oak_log_top",
