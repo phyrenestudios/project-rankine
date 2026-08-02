@@ -1,9 +1,11 @@
 package com.cannolicatfish.rankine.blocks;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.FallingBlockEntity;
@@ -23,9 +25,16 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 
 import javax.annotation.Nullable;
-import java.util.Random;
 
 public class BlastingPowderBlock extends FallingBlock {
+    // FallingBlock#codec() is abstract in 1.21.1, so the MapCodec below is mandatory.
+    public static final MapCodec<BlastingPowderBlock> CODEC = simpleCodec(BlastingPowderBlock::new);
+
+    @Override
+    public MapCodec<? extends BlastingPowderBlock> codec() {
+        return CODEC;
+    }
+
     public BlastingPowderBlock(Properties properties) {
         super(properties);
     }
@@ -33,13 +42,17 @@ public class BlastingPowderBlock extends FallingBlock {
     @Override
     public void onCaughtFire(BlockState state, Level world, BlockPos pos, @Nullable net.minecraft.core.Direction face, @Nullable LivingEntity igniter) {
         world.removeBlock(pos, false);
-        world.explode(igniter, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), 2.4F, Explosion.BlockInteraction.BREAK);
+        // PORT-NOTE: Explosion.BlockInteraction.BREAK is gone; Level#explode now takes a Level.ExplosionInteraction.
+        // BLOCK resolves to DESTROY_WITH_DECAY/DESTROY per the block-explosion-drop-decay gamerule, i.e. the old
+        // BREAK behaviour (blocks destroyed, drops preserved).
+        world.explode(igniter, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), 2.4F, Level.ExplosionInteraction.BLOCK);
     }
 
 
     @Override
     public void setPlacedBy(Level worldIn, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
-        Random random = new Random();
+        // PORT-NOTE: java.util.Random -> the level's RandomSource (1.18.2 allocated a fresh Random here).
+        RandomSource random = worldIn.getRandom();
         if (random.nextFloat() <= 0.05f) {
             if (placer instanceof Player) {
                 if (!((Player)placer).getAbilities().instabuild) {
@@ -52,7 +65,7 @@ public class BlastingPowderBlock extends FallingBlock {
     }
 
     @Override
-    public void neighborChanged(BlockState state, Level worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
+    protected void neighborChanged(BlockState state, Level worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
         if (worldIn.hasNeighborSignal(pos)) {
             onCaughtFire(state, worldIn, pos, null, null);
         }
@@ -68,31 +81,32 @@ public class BlastingPowderBlock extends FallingBlock {
         return true;
     }
 
+    // PORT-NOTE: Block#use split into useWithoutItem/useItemOn. This branch is item-driven, so it becomes
+    // useItemOn; the old `super.use(...)` fallback is now `super.useItemOn(...)`.
     @Override
-    public InteractionResult use(BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult p_225533_6_) {
-        ItemStack itemstack = player.getItemInHand(handIn);
+    protected ItemInteractionResult useItemOn(ItemStack itemstack, BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult p_225533_6_) {
         Item item = itemstack.getItem();
         if (item != Items.FLINT_AND_STEEL && item != Items.FIRE_CHARGE) {
-            return super.use(state, worldIn, pos, player, handIn, p_225533_6_);
+            return super.useItemOn(itemstack, state, worldIn, pos, player, handIn, p_225533_6_);
         } else {
             onCaughtFire(state, worldIn, pos, p_225533_6_.getDirection(), player);
             worldIn.setBlock(pos, Blocks.AIR.defaultBlockState(), 11);
             if (!player.isCreative()) {
                 if (item == Items.FLINT_AND_STEEL) {
-                    itemstack.hurtAndBreak(1, player, (p_220287_1_) -> {
-                        p_220287_1_.broadcastBreakEvent(handIn);
-                    });
+                    // PORT-NOTE: the Consumer<ItemStack>/broadcastBreakEvent overload is gone; the slot-based
+                    // overload broadcasts the break itself.
+                    itemstack.hurtAndBreak(1, player, LivingEntity.getSlotForHand(handIn));
                 } else {
                     itemstack.shrink(1);
                 }
             }
 
-            return InteractionResult.SUCCESS;
+            return ItemInteractionResult.SUCCESS;
         }
     }
 
     @Override
-    public void onProjectileHit(Level worldIn, BlockState state, BlockHitResult hit, Projectile projectile) {
+    protected void onProjectileHit(Level worldIn, BlockState state, BlockHitResult hit, Projectile projectile) {
         if (!worldIn.isClientSide && projectile instanceof AbstractArrow) {
             AbstractArrow abstractarrowentity = (AbstractArrow)projectile;
             Entity entity = abstractarrowentity.getOwner();
@@ -110,13 +124,15 @@ public class BlastingPowderBlock extends FallingBlock {
         }
     }
 
+    // PORT-NOTE: playerWillDestroy now returns the BlockState (so callers can chain); behaviour unchanged.
     @Override
-    public void playerWillDestroy(Level worldIn, BlockPos pos, BlockState state, Player player) {
-        Random random = new Random();
+    public BlockState playerWillDestroy(Level worldIn, BlockPos pos, BlockState state, Player player) {
+        RandomSource random = worldIn.getRandom();
         if (random.nextFloat() <= 0.50f && !player.getAbilities().instabuild)
         {
             onCaughtFire(worldIn.getBlockState(pos), worldIn, pos, null,player);
         }
+        return super.playerWillDestroy(worldIn, pos, state, player);
     }
 
     @Override

@@ -1,17 +1,18 @@
 package com.cannolicatfish.rankine.client.integration.jei.categories;
 
 import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.client.integration.jei.JEIRankinePlugin;
 import com.cannolicatfish.rankine.recipe.RockGeneratorRecipe;
 import mezz.jei.api.constants.VanillaTypes;
-import mezz.jei.api.forge.ForgeTypes;
+import mezz.jei.api.neoforge.NeoForgeTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
+import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.client.resources.language.I18n;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
@@ -33,15 +34,9 @@ public class VolcanicGeneratorRecipeCategory implements IRecipeCategory<RockGene
                 .addPadding(1, 0, 1, 0)
                 .build();
     }
-    @SuppressWarnings("removal")
     @Override
-    public ResourceLocation getUid() {
-        return UID;
-    }
-    @SuppressWarnings("removal")
-    @Override
-    public Class<? extends RockGeneratorRecipe> getRecipeClass() {
-        return RockGeneratorRecipe.class;
+    public RecipeType<RockGeneratorRecipe> getRecipeType() {
+        return JEIRankinePlugin.VOLCANIC;
     }
 
     @Override
@@ -63,9 +58,8 @@ public class VolcanicGeneratorRecipeCategory implements IRecipeCategory<RockGene
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, RockGeneratorRecipe recipe, IFocusGroup focuses) {
         builder.addSlot(RecipeIngredientRole.INPUT,25,46).addIngredients(recipe.getFirstIngredient());
-        builder.addSlot(RecipeIngredientRole.INPUT,2,2).addIngredient(ForgeTypes.FLUID_STACK, new FluidStack(Fluids.WATER,1000));
-        builder.addSlot(RecipeIngredientRole.INPUT,25,28).addIngredient(ForgeTypes.FLUID_STACK, new FluidStack(Fluids.LAVA,1000));
+        builder.addSlot(RecipeIngredientRole.INPUT,2,2).addIngredient(NeoForgeTypes.FLUID_STACK, new FluidStack(Fluids.WATER,1000));
+        builder.addSlot(RecipeIngredientRole.INPUT,25,28).addIngredient(NeoForgeTypes.FLUID_STACK, new FluidStack(Fluids.LAVA,1000));
         builder.addSlot(RecipeIngredientRole.OUTPUT,80,27).addItemStack(recipe.getResultItem());
-        IRecipeCategory.super.setRecipe(builder, recipe, focuses);
     }
 }
