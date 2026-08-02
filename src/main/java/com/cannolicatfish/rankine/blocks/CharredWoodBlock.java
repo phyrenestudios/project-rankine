@@ -12,7 +12,7 @@ import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
-import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
@@ -33,13 +33,13 @@ public class CharredWoodBlock extends Block {
     }
 
     public static void spawnSmokeParticles(Level worldIn, BlockPos pos) {
-        Random random = worldIn.getRandom();
+        RandomSource random = worldIn.getRandom();
         SimpleParticleType basicparticletype = ParticleTypes.LARGE_SMOKE;
         worldIn.addAlwaysVisibleParticle(basicparticletype,  true, (double)pos.getX() + 0.5D + random.nextDouble() / 3.0D * (double)(random.nextBoolean() ? 1 : -1), (double)pos.getY() + random.nextDouble() + random.nextDouble(), (double)pos.getZ() + 0.5D + random.nextDouble() / 3.0D * (double)(random.nextBoolean() ? 1 : -1), 0.0D, 0.07D, 0.0D);
     }
 
     @OnlyIn(Dist.CLIENT)
-    public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, Random rand) {
+    public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, RandomSource rand) {
         if (rand.nextFloat() < 0.5) {
             spawnSmokeParticles(worldIn, pos);
         }
