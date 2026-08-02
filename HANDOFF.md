@@ -17,19 +17,23 @@ Target: Minecraft 1.21.1 / NeoForge 21.1.248 / Java 21 / ModDevGradle 2.0.143.
 | 1. build | `./gradlew build -x test` | **PASS** |
 | 2. unit tests | `./gradlew test` | **PASS** — 19 tests, 0 failures |
 | 3. datagen | `./gradlew runData` | **PASS** — 3m12s, 35,662 JSONs |
-| 4. gametest | `./gradlew runGameTestServer` | **NOT YET RUN** ← next step |
+| 4. gametest | `./gradlew runGameTestServer` | 1st run: server booted, ran all tests, **5 failed → all triaged and fixed**. **RERUN WAS IN FLIGHT** when this was written — check the log first. |
 | 5. server smoke | `./gradlew runServer` | **NOT YET RUN** |
 
-All work is committed; working tree is clean at `af3f20350`.
+All work is committed; working tree clean at `30ca7b9d7`.
 Everything compiles: **0 errors** across ~680 source files (was 4,833 at the start of the loop).
 
 ### Immediate next step
-```bash
-cd /c/Users/karl/Documents/Projects/project-rankine && ./gradlew runGameTestServer --console=plain > .porting/logs/gametest.log 2>&1
-```
-Then gate 5. There is a gate runner at `.porting/verify.sh` (`bash .porting/verify.sh gametest`),
-but it has NOT been exercised end-to-end — run the gradle commands directly if it misbehaves.
-The server gate needs `run/server/eula.txt` containing `eula=true` (verify.sh writes it).
+1. Check whether the in-flight gate 4 rerun finished:
+   `grep -aE "BUILD SUCCESSFUL|BUILD FAILED|required tests" .porting/logs/gametest.log | tail -3`
+   If no BUILD line and no java process is running, just re-run it:
+   ```bash
+   cd /c/Users/karl/Documents/Projects/project-rankine && ./gradlew runGameTestServer --console=plain > .porting/logs/gametest.log 2>&1
+   ```
+2. Then gate 5 (`runServer`). It needs `run/server/eula.txt` with `eula=true`.
+   `.porting/verify.sh` writes that and drives all gates, but has NOT been exercised end-to-end —
+   prefer the raw gradle commands if it misbehaves.
+3. Then hand back to Karl for a manual dev-client pass (`./gradlew runClient`).
 
 ---
 
@@ -59,8 +63,12 @@ The server gate needs `run/server/eula.txt` containing `eula=true` (verify.sh wr
    - One earlier run genuinely wedged; if CPU is flat for 5+ min, `./gradlew --stop`, kill stray
      java PIDs, and re-run.
 3. **Gradle incremental compilation emits stale phantom errors** (symbols reported missing that are
-   plainly declared). If an error looks impossible, re-run with `--rerun-tasks` before chasing it.
+   plainly declared). If an error looks impossible, force a clean recompile before chasing it.
    This wasted real time once — 136 bogus errors vanished on a clean recompile.
+   - **BUT: `--rerun-tasks` is a trap here.** It also re-runs `createMinecraftArtifacts`, i.e. the
+     entire NeoForm decompile/recompile pipeline. One such run took **2h38m**. Prefer
+     `./gradlew cleanCompileJava compileJava`, or just delete `build/classes`. Reserve
+     `--rerun-tasks` for genuinely suspected stale state, and expect to lose hours if you use it.
 4. **javac caps at 100 errors by default.** `-Xmaxerrs 3000` is set in build.gradle; without it the
    true error count was hidden (200 reported vs 4,833 actual).
 5. **Datagen needs `src/generated/resources` as BOTH `--existing` and `--output`** (providers parent
@@ -144,6 +152,36 @@ The GameTests are deliberately registry-driven rather than asserting specific ma
 they stay valid as details change.
 
 ---
+
+## Gate 4 (GameTest) — first run results, already triaged
+
+The headless server **booted fully**: all registries loaded, datapacks parsed, world generated,
+tests executed. That alone validates the bulk of the port. 5 of the tests failed; all were
+investigated against the 1.18.2 baseline and resolved in commit `30ca7b9d7`.
+
+**One real bug, fixed:** every `AlloyBlock` creates an `AlloyBlockTile`, but the block entity type
+only listed the generic `rankine:alloy_block`. That mismatch existed in 1.18.2 as well, where it was
+only *logged as a warning*; 1.21 throws `IllegalStateException` from `LevelChunk`, so placing any of
+the 35 specific alloy blocks (steel_block, bronze_block, invar_block, …) would fail. Now bound to
+all 36 via `RankineLists.ALLOY_BLOCKS`. **This is the template for the remaining risk in this port:
+1.18 tolerances that 1.21 turned into hard errors.**
+
+**Three were my tests being too strict, relaxed (not the mod's fault):**
+- A sided `IItemHandler` may legitimately expose 0 slots on faces with no accessible slots (1.18's
+  sided wrappers did the same). Now requires one usable face, not all.
+- There is no `rankine:pedestal` block — pedestals are registered per alloy (`rose_gold_pedestal`…).
+  Removed from the machine list; they are still covered by the block-entity sweep.
+
+**Pre-existing content gaps — deliberately NOT "fixed" (would change gameplay; Karl's call):**
+- **44 blocks have no loot table** and therefore drop nothing when broken: skarn_stairs, skarn_wall,
+  cast_iron_support_stairs/wall, fiber_block_wall, sodium_vapor_lamp, aged_cheese, stick_block,
+  distillation_tower, pcf, tap_line, locust_spine, the fumaroles, several ores, and more.
+  Verified against 1.18.2's committed `src/generated/resources` — **absent there too**.
+- **`piston_crusher` and `gyratory_crusher` have no BlockItem** (registered as blocks only, same as
+  1.18.2), so they are uncraftable/unobtainable.
+- Both checks are now *floor* assertions (loot tables > 900 loaded; > 90% of blocks have items) so
+  they catch a wholesale provider failure without asserting a gap that predates the port.
+  If Karl wants these filled in, that is a content change, not a port fix.
 
 ## Decisions already settled (do not re-litigate)
 
