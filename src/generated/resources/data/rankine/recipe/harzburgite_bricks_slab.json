@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "stone_slab",
+  "key": {
+    "#": {
+      "item": "rankine:harzburgite_bricks"
+    }
+  },
+  "pattern": [
+    "###"
+  ],
+  "result": {
+    "count": 6,
+    "id": "rankine:harzburgite_bricks_slab"
+  }
+}

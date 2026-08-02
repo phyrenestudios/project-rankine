@@ -1,0 +1,12 @@
+{
+  "values": [
+    "#c:wooden_tools",
+    "#c:stone_tools",
+    "#c:golden_tools",
+    "#rankine:colored_gold_tools",
+    "#c:flint_tools",
+    "#c:pewter_tools",
+    "#c:osmiridium_tools",
+    "#c:amalgam_tools"
+  ]
+}

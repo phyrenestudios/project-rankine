@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:rhyolite_bricks"
+  },
+  "result": {
+    "count": 2,
+    "id": "rankine:rhyolite_bricks_slab"
+  }
+}

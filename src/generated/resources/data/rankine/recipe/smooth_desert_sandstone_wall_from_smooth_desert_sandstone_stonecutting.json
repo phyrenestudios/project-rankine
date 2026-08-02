@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:smooth_desert_sandstone"
+  },
+  "result": {
+    "count": 1,
+    "id": "rankine:smooth_desert_sandstone_wall"
+  }
+}

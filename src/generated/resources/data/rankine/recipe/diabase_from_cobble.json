@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "stone_from_cobble",
+  "ingredients": [
+    {
+      "item": "rankine:diabase_cobble"
+    },
+    {
+      "item": "rankine:diabase_cobble"
+    },
+    {
+      "item": "rankine:diabase_cobble"
+    },
+    {
+      "item": "rankine:diabase_cobble"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "rankine:diabase"
+  }
+}

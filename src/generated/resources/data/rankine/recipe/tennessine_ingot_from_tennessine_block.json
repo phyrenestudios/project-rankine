@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "rankine:tennessine_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "rankine:tennessine_ingot"
+  }
+}

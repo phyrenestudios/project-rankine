@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "stone_slab",
+  "key": {
+    "#": {
+      "item": "rankine:tholeiitic_basalt"
+    }
+  },
+  "pattern": [
+    "###"
+  ],
+  "result": {
+    "count": 6,
+    "id": "rankine:tholeiitic_basalt_slab"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "minecraft:conduit"
+  },
+  "base": {
+    "item": "rankine:diving_chestplate"
+  },
+  "result": {
+    "count": 1,
+    "id": "rankine:conduit_diving_chestplate"
+  },
+  "template": []
+}

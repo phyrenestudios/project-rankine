@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "block_from_slab",
+  "ingredients": [
+    {
+      "item": "rankine:hornblende_andesite_slab"
+    },
+    {
+      "item": "rankine:hornblende_andesite_slab"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "rankine:hornblende_andesite"
+  }
+}

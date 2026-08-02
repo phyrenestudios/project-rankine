@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "I": {
+      "tag": "rankine:crafting_metal_ingots"
+    },
+    "N": {
+      "tag": "rankine:crafting_metal_nuggets"
+    },
+    "W": {
+      "item": "minecraft:water_bucket"
+    }
+  },
+  "pattern": [
+    "INI",
+    "IWI",
+    "III"
+  ],
+  "result": {
+    "count": 1,
+    "id": "rankine:fire_extinguisher"
+  }
+}

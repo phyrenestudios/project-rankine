@@ -1,0 +1,32 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 16777215,
+  "group": "rankine:alloy_axes",
+  "inherit": true,
+  "inheritRecipe": "rankine:alloying/stainless_steel_alloying",
+  "key": {
+    "A": {
+      "item": "rankine:stainless_steel_ingot"
+    },
+    "B": {
+      "item": "rankine:stainless_steel_ingot"
+    },
+    "C": {
+      "item": "rankine:stainless_steel_ingot"
+    },
+    "D": {
+      "item": "rankine:alloy_rod"
+    },
+    "F": {
+      "item": "rankine:alloy_rod"
+    }
+  },
+  "pattern": [
+    "AB",
+    "CD",
+    " F"
+  ],
+  "result": {
+    "item": "rankine:stainless_steel_axe"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 16777215,
+  "group": "rankine:alloy_hammers",
+  "inherit": true,
+  "inheritRecipe": "rankine:alloying/cobalt_superalloy_alloying",
+  "key": {
+    "A": {
+      "item": "rankine:cobalt_superalloy_ingot"
+    },
+    "B": {
+      "item": "rankine:cobalt_superalloy_ingot"
+    },
+    "C": {
+      "item": "rankine:cobalt_superalloy_ingot"
+    },
+    "D": {
+      "item": "rankine:cobalt_superalloy_ingot"
+    },
+    "E": {
+      "item": "rankine:alloy_rod"
+    },
+    "F": {
+      "item": "rankine:cobalt_superalloy_ingot"
+    },
+    "H": {
+      "item": "rankine:alloy_rod"
+    }
+  },
+  "pattern": [
+    "ABC",
+    "DEF",
+    " H "
+  ],
+  "result": {
+    "item": "rankine:cobalt_superalloy_hammer"
+  }
+}

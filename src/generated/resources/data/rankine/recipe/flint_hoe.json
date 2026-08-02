@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "F": {
+      "item": "minecraft:flint"
+    },
+    "R": {
+      "item": "rankine:rope"
+    },
+    "S": {
+      "tag": "c:rods/wooden"
+    }
+  },
+  "pattern": [
+    "RF",
+    "S ",
+    "S "
+  ],
+  "result": {
+    "count": 1,
+    "id": "rankine:flint_hoe"
+  }
+}

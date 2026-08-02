@@ -1,0 +1,38 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 15510384,
+  "group": "rankine:alloy_leggings",
+  "inherit": true,
+  "key": {
+    "A": {
+      "item": "rankine:brass_ingot"
+    },
+    "B": {
+      "item": "rankine:brass_ingot"
+    },
+    "C": {
+      "item": "rankine:brass_ingot"
+    },
+    "D": {
+      "item": "rankine:brass_ingot"
+    },
+    "F": {
+      "item": "rankine:brass_ingot"
+    },
+    "G": {
+      "item": "rankine:brass_ingot"
+    },
+    "I": {
+      "item": "rankine:brass_ingot"
+    }
+  },
+  "langName": "item.rankine.brass_alloying",
+  "pattern": [
+    "ABC",
+    "D F",
+    "G I"
+  ],
+  "result": {
+    "item": "rankine:alloy_leggings"
+  }
+}

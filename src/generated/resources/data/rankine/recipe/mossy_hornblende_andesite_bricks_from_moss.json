@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "mossy_bricks_moss",
+  "ingredients": [
+    {
+      "item": "rankine:hornblende_andesite"
+    },
+    {
+      "item": "minecraft:moss_block"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "rankine:mossy_hornblende_andesite_bricks"
+  }
+}

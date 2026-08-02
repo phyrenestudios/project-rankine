@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "rankine:poles",
+  "key": {
+    "#": {
+      "item": "rankine:green_gold_ingot"
+    }
+  },
+  "pattern": [
+    "#",
+    "#",
+    "#"
+  ],
+  "result": {
+    "count": 8,
+    "id": "rankine:green_gold_pole"
+  }
+}

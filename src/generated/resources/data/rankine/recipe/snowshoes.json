@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "R": {
+      "item": "rankine:rope"
+    },
+    "S": {
+      "tag": "c:rods/wooden"
+    }
+  },
+  "pattern": [
+    "SRS",
+    "SRS",
+    " S "
+  ],
+  "result": {
+    "count": 1,
+    "id": "rankine:snowshoes"
+  }
+}

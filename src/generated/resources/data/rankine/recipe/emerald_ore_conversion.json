@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "ore_conversion",
+  "ingredients": [
+    {
+      "item": "rankine:emerald_ore"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "minecraft:emerald_ore"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "values": [
+    "#c:stones/limestone",
+    "#c:stones/dolomite",
+    "#c:stones/mudstone",
+    "#c:stones/shale",
+    "#c:stones/siltstone",
+    "#c:stones/sandstone",
+    "#c:stones/marlstone",
+    "#c:stones/chalk"
+  ]
+}

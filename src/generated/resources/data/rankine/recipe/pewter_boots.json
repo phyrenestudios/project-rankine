@@ -1,0 +1,28 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 11711154,
+  "group": "rankine:alloy_boots",
+  "inherit": true,
+  "key": {
+    "A": {
+      "item": "rankine:pewter_ingot"
+    },
+    "C": {
+      "item": "rankine:pewter_ingot"
+    },
+    "D": {
+      "item": "rankine:pewter_ingot"
+    },
+    "F": {
+      "item": "rankine:pewter_ingot"
+    }
+  },
+  "langName": "item.rankine.pewter_alloying",
+  "pattern": [
+    "A C",
+    "D F"
+  ],
+  "result": {
+    "item": "rankine:alloy_boots"
+  }
+}

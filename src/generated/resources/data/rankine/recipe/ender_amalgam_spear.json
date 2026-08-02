@@ -1,0 +1,32 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 16777215,
+  "group": "rankine:alloy_spears",
+  "inherit": true,
+  "inheritRecipe": "rankine:alloying/ender_amalgam_alloying",
+  "key": {
+    "B": {
+      "item": "rankine:ender_amalgam_ingot"
+    },
+    "C": {
+      "item": "rankine:ender_amalgam_ingot"
+    },
+    "E": {
+      "item": "rankine:alloy_rod"
+    },
+    "F": {
+      "item": "rankine:ender_amalgam_ingot"
+    },
+    "G": {
+      "item": "rankine:alloy_rod"
+    }
+  },
+  "pattern": [
+    " BC",
+    " EF",
+    "G  "
+  ],
+  "result": {
+    "item": "rankine:ender_amalgam_spear"
+  }
+}

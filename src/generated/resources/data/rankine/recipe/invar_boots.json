@@ -1,0 +1,28 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 13028546,
+  "group": "rankine:alloy_boots",
+  "inherit": true,
+  "key": {
+    "A": {
+      "item": "rankine:invar_ingot"
+    },
+    "C": {
+      "item": "rankine:invar_ingot"
+    },
+    "D": {
+      "item": "rankine:invar_ingot"
+    },
+    "F": {
+      "item": "rankine:invar_ingot"
+    }
+  },
+  "langName": "item.rankine.invar_alloying",
+  "pattern": [
+    "A C",
+    "D F"
+  ],
+  "result": {
+    "item": "rankine:alloy_boots"
+  }
+}

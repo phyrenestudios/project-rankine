@@ -1,0 +1,45 @@
+{
+  "parent": "rankine:story/craft_rope",
+  "criteria": {
+    "flint_axe": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:flint_axe"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "stone_axe": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:stone_axe"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "rankine.advancements.story.craft_flint_axe.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "rankine:flint_axe"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.craft_flint_axe.title"
+    }
+  },
+  "requirements": [
+    [
+      "flint_axe",
+      "stone_axe"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

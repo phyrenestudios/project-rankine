@@ -1,0 +1,28 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 13028546,
+  "group": "rankine:alloy_boots",
+  "inherit": true,
+  "key": {
+    "A": {
+      "item": "rankine:meteoric_iron"
+    },
+    "C": {
+      "item": "rankine:meteoric_iron"
+    },
+    "D": {
+      "item": "rankine:meteoric_iron"
+    },
+    "F": {
+      "item": "rankine:meteoric_iron"
+    }
+  },
+  "langName": "item.rankine.invar_alloying",
+  "pattern": [
+    "A C",
+    "D F"
+  ],
+  "result": {
+    "item": "rankine:alloy_boots"
+  }
+}

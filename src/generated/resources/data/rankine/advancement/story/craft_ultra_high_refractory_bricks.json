@@ -1,0 +1,34 @@
+{
+  "parent": "rankine:story/craft_high_refractory_bricks",
+  "criteria": {
+    "ultra_high_refractory_bricks": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:ultra_high_refractory_bricks"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "rankine.advancements.story.craft_ultra_high_refractory_bricks.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "rankine:ultra_high_refractory_bricks"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.craft_ultra_high_refractory_bricks.title"
+    }
+  },
+  "requirements": [
+    [
+      "ultra_high_refractory_bricks"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

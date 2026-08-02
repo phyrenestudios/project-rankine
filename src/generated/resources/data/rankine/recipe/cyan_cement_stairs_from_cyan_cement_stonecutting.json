@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:cyan_cement"
+  },
+  "result": {
+    "count": 1,
+    "id": "rankine:cyan_cement_stairs"
+  }
+}

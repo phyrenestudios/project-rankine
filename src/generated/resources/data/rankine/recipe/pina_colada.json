@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:ice"
+    },
+    {
+      "item": "rankine:coconut"
+    },
+    {
+      "tag": "c:pineapple"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "rankine:pina_colada"
+  }
+}

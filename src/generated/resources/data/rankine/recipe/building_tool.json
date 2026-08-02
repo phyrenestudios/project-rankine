@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "P": {
+      "tag": "c:stones"
+    },
+    "R": {
+      "tag": "c:rope"
+    },
+    "S": {
+      "tag": "c:rods/wooden"
+    }
+  },
+  "pattern": [
+    "PRP",
+    "PRP",
+    " S "
+  ],
+  "result": {
+    "count": 1,
+    "id": "rankine:building_tool"
+  }
+}

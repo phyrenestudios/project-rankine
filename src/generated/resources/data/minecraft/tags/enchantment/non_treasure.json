@@ -1,0 +1,27 @@
+{
+  "values": [
+    "rankine:puncture",
+    "rankine:swing",
+    "rankine:daze",
+    "rankine:atomize",
+    "rankine:excavate",
+    "rankine:impact",
+    "rankine:quake",
+    "rankine:foraging",
+    "rankine:lightning_aspect",
+    "rankine:cleanse",
+    "rankine:guard",
+    "rankine:accuracy",
+    "rankine:preparation",
+    "rankine:poison_aspect",
+    "rankine:backstab",
+    "rankine:grafting",
+    "rankine:retaliate",
+    "rankine:retreat",
+    "rankine:leverage",
+    "rankine:torque",
+    "rankine:prying",
+    "rankine:fulcrum",
+    "rankine:retrieval"
+  ]
+}

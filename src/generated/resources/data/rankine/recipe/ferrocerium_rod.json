@@ -1,0 +1,27 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 7433071,
+  "group": "rankine:alloy_rods",
+  "inherit": true,
+  "key": {
+    "C": {
+      "item": "rankine:ferrocerium_ingot"
+    },
+    "E": {
+      "item": "rankine:ferrocerium_ingot"
+    },
+    "G": {
+      "item": "rankine:ferrocerium_ingot"
+    }
+  },
+  "langName": "item.rankine.ferrocerium_alloying",
+  "pattern": [
+    "  C",
+    " E ",
+    "G  "
+  ],
+  "result": {
+    "count": 4,
+    "item": "rankine:alloy_rod"
+  }
+}

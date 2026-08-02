@@ -1,0 +1,43 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 16777215,
+  "group": "rankine:alloy_blocks",
+  "inherit": true,
+  "key": {
+    "A": {
+      "item": "rankine:cobalt_superalloy_nugget"
+    },
+    "B": {
+      "item": "rankine:cobalt_superalloy_nugget"
+    },
+    "C": {
+      "item": "rankine:cobalt_superalloy_nugget"
+    },
+    "D": {
+      "item": "rankine:cobalt_superalloy_nugget"
+    },
+    "E": {
+      "item": "rankine:cobalt_superalloy_nugget"
+    },
+    "F": {
+      "item": "rankine:cobalt_superalloy_nugget"
+    },
+    "G": {
+      "item": "rankine:cobalt_superalloy_nugget"
+    },
+    "H": {
+      "item": "rankine:cobalt_superalloy_nugget"
+    },
+    "I": {
+      "item": "rankine:cobalt_superalloy_nugget"
+    }
+  },
+  "pattern": [
+    "ABC",
+    "DEF",
+    "GHI"
+  ],
+  "result": {
+    "item": "rankine:cobalt_superalloy_ingot"
+  }
+}

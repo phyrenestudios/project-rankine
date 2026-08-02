@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "sheetmetal",
+  "key": {
+    "#": {
+      "tag": "c:nuggets/purple_gold"
+    },
+    "I": {
+      "tag": "c:ingots/purple_gold"
+    }
+  },
+  "pattern": [
+    "#I#",
+    "#I#",
+    "#I#"
+  ],
+  "result": {
+    "count": 8,
+    "id": "rankine:purple_gold_sheetmetal"
+  }
+}

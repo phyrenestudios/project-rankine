@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "cobble_from_stone",
+  "ingredients": [
+    {
+      "item": "rankine:honeystone"
+    },
+    {
+      "tag": "c:cobblestones"
+    }
+  ],
+  "result": {
+    "count": 8,
+    "id": "rankine:honeystone_cobble"
+  }
+}

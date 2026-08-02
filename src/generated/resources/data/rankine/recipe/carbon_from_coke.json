@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "carbon_nugget",
+  "ingredients": [
+    {
+      "tag": "c:coal_coke"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "rankine:carbon_nugget"
+  }
+}

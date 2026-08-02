@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "I": {
+      "tag": "c:ingots/cast_iron"
+    },
+    "M": {
+      "item": "minecraft:magma_block"
+    },
+    "W": {
+      "item": "rankine:alloy_wire"
+    }
+  },
+  "pattern": [
+    "III",
+    "WMW",
+    "WMW"
+  ],
+  "result": {
+    "count": 1,
+    "id": "rankine:heating_element_1"
+  }
+}

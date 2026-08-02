@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "stone_slab",
+  "key": {
+    "#": {
+      "item": "rankine:bridgmanham"
+    }
+  },
+  "pattern": [
+    "###"
+  ],
+  "result": {
+    "count": 6,
+    "id": "rankine:bridgmanham_slab"
+  }
+}

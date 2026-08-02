@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "rankine:poles",
+  "key": {
+    "#": {
+      "item": "rankine:amalgam_ingot"
+    }
+  },
+  "pattern": [
+    "#",
+    "#",
+    "#"
+  ],
+  "result": {
+    "count": 8,
+    "id": "rankine:amalgam_pole"
+  }
+}

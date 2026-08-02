@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:pegmatite"
+  },
+  "result": {
+    "count": 2,
+    "id": "rankine:pegmatite_slab"
+  }
+}

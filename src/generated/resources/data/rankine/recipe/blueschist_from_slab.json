@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "block_from_slab",
+  "ingredients": [
+    {
+      "item": "rankine:blueschist_slab"
+    },
+    {
+      "item": "rankine:blueschist_slab"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "rankine:blueschist"
+  }
+}

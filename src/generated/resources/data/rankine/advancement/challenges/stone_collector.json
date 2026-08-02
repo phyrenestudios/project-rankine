@@ -1,0 +1,791 @@
+{
+  "parent": "rankine:story/craft_flint_pickaxe",
+  "criteria": {
+    "anorthosite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:anorthosite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "arkose": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:arkose"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "black_dacite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:black_dacite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "black_marble": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:black_marble"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "blueschist": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:blueschist"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "bridgmanham": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:bridgmanham"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "chalk": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:chalk"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "comendite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:comendite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "diabase": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:diabase"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "dolostone": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:dolostone"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "dunite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:dunite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "eclogite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:eclogite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "episyenite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:episyenite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "gabbro": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:gabbro"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "gneiss": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:gneiss"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "granodiorite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:granodiorite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "gray_granite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:gray_granite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "gray_marble": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:gray_marble"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "graywacke": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:graywacke"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "greenschist": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:greenschist"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "harzburgite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:harzburgite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "honeystone": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:honeystone"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "hornblende_andesite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:hornblende_andesite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "itacolumite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:itacolumite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "kimberlite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:kimberlite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "komatiite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:komatiite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "lherzolite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:lherzolite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "limestone": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:limestone"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "mariposite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:mariposite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "marlstone": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:marlstone"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "mica_schist": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:mica_schist"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "mudstone": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:mudstone"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "nepheline_syenite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:nepheline_syenite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "norite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:norite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "pegmatite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:pegmatite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "phonolite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:phonolite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "phyllite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:phyllite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "post_perovskite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:post_perovskite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "purple_porphyry": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:purple_porphyry"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "pyroxenite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:pyroxenite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "quartzite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:quartzite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "red_dacite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:red_dacite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "red_porphyry": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:red_porphyry"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "rhyolite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:rhyolite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "ringwoodine": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:ringwoodine"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "rose_marble": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:rose_marble"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "serpentinite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:serpentinite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "shale": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:shale"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "shonkinite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:shonkinite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "siltstone": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:siltstone"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "slate": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:slate"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "soapstone": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:soapstone"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "sommanite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:sommanite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "tholeiitic_basalt": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:tholeiitic_basalt"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "troctolite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:troctolite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "wadsleyone": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:wadsleyone"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "wehrlite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:wehrlite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "white_marble": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:white_marble"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "whiteschist": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:whiteschist"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "rankine.advancements.challenges.stone_collector.description"
+    },
+    "frame": "challenge",
+    "icon": {
+      "count": 1,
+      "id": "rankine:black_dacite"
+    },
+    "title": {
+      "translate": "rankine.advancements.challenges.stone_collector.title"
+    }
+  },
+  "requirements": [
+    [
+      "pegmatite"
+    ],
+    [
+      "gray_granite"
+    ],
+    [
+      "rhyolite"
+    ],
+    [
+      "comendite"
+    ],
+    [
+      "episyenite"
+    ],
+    [
+      "nepheline_syenite"
+    ],
+    [
+      "phonolite"
+    ],
+    [
+      "granodiorite"
+    ],
+    [
+      "red_porphyry"
+    ],
+    [
+      "purple_porphyry"
+    ],
+    [
+      "black_dacite"
+    ],
+    [
+      "red_dacite"
+    ],
+    [
+      "hornblende_andesite"
+    ],
+    [
+      "shonkinite"
+    ],
+    [
+      "anorthosite"
+    ],
+    [
+      "norite"
+    ],
+    [
+      "troctolite"
+    ],
+    [
+      "gabbro"
+    ],
+    [
+      "diabase"
+    ],
+    [
+      "tholeiitic_basalt"
+    ],
+    [
+      "dunite"
+    ],
+    [
+      "harzburgite"
+    ],
+    [
+      "lherzolite"
+    ],
+    [
+      "wehrlite"
+    ],
+    [
+      "pyroxenite"
+    ],
+    [
+      "komatiite"
+    ],
+    [
+      "kimberlite"
+    ],
+    [
+      "sommanite"
+    ],
+    [
+      "ringwoodine"
+    ],
+    [
+      "wadsleyone"
+    ],
+    [
+      "bridgmanham"
+    ],
+    [
+      "post_perovskite"
+    ],
+    [
+      "black_marble"
+    ],
+    [
+      "gray_marble"
+    ],
+    [
+      "white_marble"
+    ],
+    [
+      "rose_marble"
+    ],
+    [
+      "slate"
+    ],
+    [
+      "phyllite"
+    ],
+    [
+      "mica_schist"
+    ],
+    [
+      "blueschist"
+    ],
+    [
+      "greenschist"
+    ],
+    [
+      "whiteschist"
+    ],
+    [
+      "gneiss"
+    ],
+    [
+      "quartzite"
+    ],
+    [
+      "serpentinite"
+    ],
+    [
+      "mariposite"
+    ],
+    [
+      "eclogite"
+    ],
+    [
+      "limestone"
+    ],
+    [
+      "dolostone"
+    ],
+    [
+      "chalk"
+    ],
+    [
+      "marlstone"
+    ],
+    [
+      "soapstone"
+    ],
+    [
+      "shale"
+    ],
+    [
+      "mudstone"
+    ],
+    [
+      "siltstone"
+    ],
+    [
+      "itacolumite"
+    ],
+    [
+      "arkose"
+    ],
+    [
+      "graywacke"
+    ],
+    [
+      "honeystone"
+    ]
+  ],
+  "rewards": {
+    "experience": 400
+  },
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,11 @@
+{
+  "type": "rankine:beehive_oven",
+  "input": {
+    "tag": "c:stones/dolomite"
+  },
+  "maxCookTime": 600,
+  "minCookTime": 300,
+  "result": {
+    "item": "rankine:quicklime_block"
+  }
+}

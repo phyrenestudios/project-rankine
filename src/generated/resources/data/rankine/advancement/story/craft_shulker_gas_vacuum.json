@@ -1,0 +1,33 @@
+{
+  "parent": "rankine:story/craft_gas_mask",
+  "criteria": {
+    "shulker_gas_vacuum": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:shulker_gas_vacuum"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "rankine.advancements.story.craft_shulker_gas_vacuum.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "rankine:shulker_gas_vacuum"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.craft_shulker_gas_vacuum.title"
+    }
+  },
+  "requirements": [
+    [
+      "shulker_gas_vacuum"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

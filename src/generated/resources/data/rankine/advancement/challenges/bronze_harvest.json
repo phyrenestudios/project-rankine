@@ -1,0 +1,44 @@
+{
+  "parent": "rankine:story/craft_material_testing_table",
+  "criteria": {
+    "pickaxe": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:bronze_pickaxe",
+            "predicates": {
+              "rankine:harvest_level_check": {
+                "level": {
+                  "min": 3
+                }
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "rankine.advancements.challenges.bronze_harvest.description"
+    },
+    "frame": "challenge",
+    "icon": {
+      "count": 1,
+      "id": "rankine:bronze_pickaxe"
+    },
+    "title": {
+      "translate": "rankine.advancements.challenges.bronze_harvest.title"
+    }
+  },
+  "requirements": [
+    [
+      "pickaxe"
+    ]
+  ],
+  "rewards": {
+    "experience": 200
+  },
+  "sends_telemetry_event": true
+}

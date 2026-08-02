@@ -1,0 +1,32 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 11946807,
+  "group": "rankine:alloy_gears",
+  "inherit": true,
+  "key": {
+    "B": {
+      "item": "rankine:cupronickel_ingot"
+    },
+    "D": {
+      "item": "rankine:cupronickel_ingot"
+    },
+    "E": {
+      "tag": "c:rods/wooden"
+    },
+    "F": {
+      "item": "rankine:cupronickel_ingot"
+    },
+    "H": {
+      "item": "rankine:cupronickel_ingot"
+    }
+  },
+  "langName": "item.rankine.cupronickel_alloying",
+  "pattern": [
+    " B ",
+    "DEF",
+    " H "
+  ],
+  "result": {
+    "item": "rankine:alloy_gear"
+  }
+}

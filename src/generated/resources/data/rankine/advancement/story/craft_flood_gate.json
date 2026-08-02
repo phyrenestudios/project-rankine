@@ -1,0 +1,34 @@
+{
+  "parent": "rankine:story/craft_ground_tap",
+  "criteria": {
+    "flood_gate": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:flood_gate"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "rankine.advancements.story.craft_flood_gate.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "rankine:flood_gate"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.craft_flood_gate.title"
+    }
+  },
+  "requirements": [
+    [
+      "flood_gate"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

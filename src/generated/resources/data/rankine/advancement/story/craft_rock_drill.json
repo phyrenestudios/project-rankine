@@ -1,0 +1,34 @@
+{
+  "parent": "rankine:story/craft_prospecting_stick",
+  "criteria": {
+    "rock_drill": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:rock_drill"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "rankine.advancements.story.craft_rock_drill.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "rankine:rock_drill"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.craft_rock_drill.title"
+    }
+  },
+  "requirements": [
+    [
+      "rock_drill"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

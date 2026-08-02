@@ -1,0 +1,43 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 16777215,
+  "group": "rankine:alloy_blocks",
+  "inherit": true,
+  "key": {
+    "A": {
+      "item": "rankine:mischmetal_ingot"
+    },
+    "B": {
+      "item": "rankine:mischmetal_ingot"
+    },
+    "C": {
+      "item": "rankine:mischmetal_ingot"
+    },
+    "D": {
+      "item": "rankine:mischmetal_ingot"
+    },
+    "E": {
+      "item": "rankine:mischmetal_ingot"
+    },
+    "F": {
+      "item": "rankine:mischmetal_ingot"
+    },
+    "G": {
+      "item": "rankine:mischmetal_ingot"
+    },
+    "H": {
+      "item": "rankine:mischmetal_ingot"
+    },
+    "I": {
+      "item": "rankine:mischmetal_ingot"
+    }
+  },
+  "pattern": [
+    "ABC",
+    "DEF",
+    "GHI"
+  ],
+  "result": {
+    "item": "rankine:mischmetal_block"
+  }
+}

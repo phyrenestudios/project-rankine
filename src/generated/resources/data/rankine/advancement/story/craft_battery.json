@@ -1,0 +1,99 @@
+{
+  "parent": "rankine:story/craft_alloy_furnace",
+  "criteria": {
+    "battery1": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:silver_zinc_battery"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "battery2": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:zinc_bromine_battery"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "battery3": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:lead_acid_battery"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "battery4": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:magnesium_battery"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "battery5": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:sodium_sulfur_battery"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "battery6": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:vanadium_redox_battery"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "battery7": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:lithium_ion_battery"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "rankine.advancements.story.craft_battery.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "rankine:silver_zinc_battery"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.craft_battery.title"
+    }
+  },
+  "requirements": [
+    [
+      "battery1",
+      "battery2",
+      "battery3",
+      "battery4",
+      "battery5",
+      "battery6",
+      "battery7"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

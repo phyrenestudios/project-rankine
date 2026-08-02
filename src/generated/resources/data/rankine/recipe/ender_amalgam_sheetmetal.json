@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "sheetmetal",
+  "key": {
+    "#": {
+      "tag": "c:nuggets/ender_amalgam"
+    },
+    "I": {
+      "tag": "c:ingots/ender_amalgam"
+    }
+  },
+  "pattern": [
+    "#I#",
+    "#I#",
+    "#I#"
+  ],
+  "result": {
+    "count": 8,
+    "id": "rankine:ender_amalgam_sheetmetal"
+  }
+}

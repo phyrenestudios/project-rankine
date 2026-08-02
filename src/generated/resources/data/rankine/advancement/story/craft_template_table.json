@@ -1,0 +1,34 @@
+{
+  "parent": "rankine:story/craft_alloy_furnace",
+  "criteria": {
+    "template_table": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:template_table"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "rankine.advancements.story.craft_template_table.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "rankine:template_table"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.craft_template_table.title"
+    }
+  },
+  "requirements": [
+    [
+      "template_table"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

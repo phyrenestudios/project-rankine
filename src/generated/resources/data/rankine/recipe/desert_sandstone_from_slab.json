@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "block_from_slab",
+  "ingredients": [
+    {
+      "item": "rankine:desert_sandstone_slab"
+    },
+    {
+      "item": "rankine:desert_sandstone_slab"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "rankine:desert_sandstone"
+  }
+}

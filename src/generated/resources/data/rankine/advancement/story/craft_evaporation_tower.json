@@ -1,0 +1,34 @@
+{
+  "parent": "rankine:story/craft_alloy_furnace",
+  "criteria": {
+    "evaporation_tower": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:evaporation_tower"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "rankine.advancements.story.craft_evaporation_tower.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "rankine:evaporation_tower"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.craft_evaporation_tower.title"
+    }
+  },
+  "requirements": [
+    [
+      "evaporation_tower"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,32 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 15510384,
+  "group": "rankine:alloy_gears",
+  "inherit": true,
+  "key": {
+    "B": {
+      "item": "rankine:bronze_ingot"
+    },
+    "D": {
+      "item": "rankine:bronze_ingot"
+    },
+    "E": {
+      "tag": "c:rods/wooden"
+    },
+    "F": {
+      "item": "rankine:bronze_ingot"
+    },
+    "H": {
+      "item": "rankine:bronze_ingot"
+    }
+  },
+  "langName": "item.rankine.bronze_alloying",
+  "pattern": [
+    " B ",
+    "DEF",
+    " H "
+  ],
+  "result": {
+    "item": "rankine:alloy_gear"
+  }
+}

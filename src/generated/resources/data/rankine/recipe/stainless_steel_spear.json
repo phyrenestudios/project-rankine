@@ -1,0 +1,32 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 16777215,
+  "group": "rankine:alloy_spears",
+  "inherit": true,
+  "inheritRecipe": "rankine:alloying/stainless_steel_alloying",
+  "key": {
+    "B": {
+      "item": "rankine:stainless_steel_ingot"
+    },
+    "C": {
+      "item": "rankine:stainless_steel_ingot"
+    },
+    "E": {
+      "item": "rankine:alloy_rod"
+    },
+    "F": {
+      "item": "rankine:stainless_steel_ingot"
+    },
+    "G": {
+      "item": "rankine:alloy_rod"
+    }
+  },
+  "pattern": [
+    " BC",
+    " EF",
+    "G  "
+  ],
+  "result": {
+    "item": "rankine:stainless_steel_spear"
+  }
+}

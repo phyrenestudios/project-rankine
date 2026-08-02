@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "stone_button",
+  "ingredients": [
+    {
+      "item": "rankine:shale"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "rankine:shale_button"
+  }
+}

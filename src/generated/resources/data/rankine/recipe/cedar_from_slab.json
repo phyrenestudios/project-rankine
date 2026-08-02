@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "block_from_vslab",
+  "ingredients": [
+    {
+      "item": "rankine:cedar_slab"
+    },
+    {
+      "item": "rankine:cedar_slab"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "rankine:cedar_planks"
+  }
+}

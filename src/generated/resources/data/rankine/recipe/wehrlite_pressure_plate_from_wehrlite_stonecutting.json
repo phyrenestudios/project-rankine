@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:wehrlite"
+  },
+  "result": {
+    "count": 1,
+    "id": "rankine:wehrlite_pressure_plate"
+  }
+}

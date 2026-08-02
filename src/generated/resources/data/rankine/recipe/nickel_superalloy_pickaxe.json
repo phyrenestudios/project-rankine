@@ -1,0 +1,32 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 16777215,
+  "group": "rankine:alloy_pickaxes",
+  "inherit": true,
+  "inheritRecipe": "rankine:alloying/nickel_superalloy_alloying",
+  "key": {
+    "A": {
+      "item": "rankine:nickel_superalloy_ingot"
+    },
+    "B": {
+      "item": "rankine:nickel_superalloy_ingot"
+    },
+    "C": {
+      "item": "rankine:nickel_superalloy_ingot"
+    },
+    "E": {
+      "item": "rankine:alloy_rod"
+    },
+    "H": {
+      "item": "rankine:alloy_rod"
+    }
+  },
+  "pattern": [
+    "ABC",
+    " E ",
+    " H "
+  ],
+  "result": {
+    "item": "rankine:nickel_superalloy_pickaxe"
+  }
+}

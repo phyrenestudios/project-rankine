@@ -1,0 +1,34 @@
+{
+  "parent": "rankine:story/root",
+  "criteria": {
+    "dowsing_rod": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:dowsing_rod"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "rankine.advancements.story.craft_dowsing_rod.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "rankine:dowsing_rod"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.craft_dowsing_rod.title"
+    }
+  },
+  "requirements": [
+    [
+      "dowsing_rod"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

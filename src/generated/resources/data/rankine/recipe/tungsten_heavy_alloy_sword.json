@@ -1,0 +1,26 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 16777215,
+  "group": "rankine:alloy_swords",
+  "inherit": true,
+  "inheritRecipe": "rankine:alloying/tungsten_heavy_alloy_alloying",
+  "key": {
+    "A": {
+      "item": "rankine:tungsten_heavy_alloy_ingot"
+    },
+    "B": {
+      "item": "rankine:tungsten_heavy_alloy_ingot"
+    },
+    "C": {
+      "item": "rankine:alloy_rod"
+    }
+  },
+  "pattern": [
+    "A",
+    "B",
+    "C"
+  ],
+  "result": {
+    "item": "rankine:tungsten_heavy_alloy_sword"
+  }
+}

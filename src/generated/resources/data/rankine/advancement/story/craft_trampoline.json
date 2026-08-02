@@ -1,0 +1,33 @@
+{
+  "parent": "rankine:story/craft_tree_tap",
+  "criteria": {
+    "trampoline": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:trampoline"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "rankine.advancements.story.craft_trampoline.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "rankine:trampoline"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.craft_trampoline.title"
+    }
+  },
+  "requirements": [
+    [
+      "trampoline"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

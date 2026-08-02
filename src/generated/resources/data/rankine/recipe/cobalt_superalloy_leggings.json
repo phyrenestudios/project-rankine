@@ -1,0 +1,38 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 6534878,
+  "group": "rankine:alloy_leggings",
+  "inherit": true,
+  "key": {
+    "A": {
+      "item": "rankine:cobalt_superalloy_ingot"
+    },
+    "B": {
+      "item": "rankine:cobalt_superalloy_ingot"
+    },
+    "C": {
+      "item": "rankine:cobalt_superalloy_ingot"
+    },
+    "D": {
+      "item": "rankine:cobalt_superalloy_ingot"
+    },
+    "F": {
+      "item": "rankine:cobalt_superalloy_ingot"
+    },
+    "G": {
+      "item": "rankine:cobalt_superalloy_ingot"
+    },
+    "I": {
+      "item": "rankine:cobalt_superalloy_ingot"
+    }
+  },
+  "langName": "item.rankine.cobalt_superalloy_alloying",
+  "pattern": [
+    "ABC",
+    "D F",
+    "G I"
+  ],
+  "result": {
+    "item": "rankine:alloy_leggings"
+  }
+}

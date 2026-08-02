@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "wooden_pressure_plate",
+  "key": {
+    "#": {
+      "item": "rankine:bamboo_culms"
+    }
+  },
+  "pattern": [
+    "##"
+  ],
+  "result": {
+    "count": 1,
+    "id": "rankine:bamboo_culms_pressure_plate"
+  }
+}

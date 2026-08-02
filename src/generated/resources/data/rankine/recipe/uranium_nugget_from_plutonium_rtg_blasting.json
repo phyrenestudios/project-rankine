@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 100,
+  "experience": 0.5,
+  "ingredient": {
+    "item": "rankine:plutonium_rtg"
+  },
+  "result": {
+    "count": 1,
+    "id": "rankine:uranium_nugget"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "block_from_vslab",
+  "ingredients": [
+    {
+      "item": "rankine:magnolia_slab"
+    },
+    {
+      "item": "rankine:magnolia_slab"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "rankine:magnolia_planks"
+  }
+}

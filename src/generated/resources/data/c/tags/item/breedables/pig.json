@@ -1,0 +1,10 @@
+{
+  "values": [
+    "#c:crops/soybean",
+    "#c:crops/asparagus",
+    "#c:crops/corn",
+    "#c:crops/beetroot",
+    "#c:crops/potato",
+    "#c:crops/carrot"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "sheetmetal",
+  "key": {
+    "#": {
+      "tag": "c:nuggets/white_gold"
+    },
+    "I": {
+      "tag": "c:ingots/white_gold"
+    }
+  },
+  "pattern": [
+    "#I#",
+    "#I#",
+    "#I#"
+  ],
+  "result": {
+    "count": 8,
+    "id": "rankine:white_gold_sheetmetal"
+  }
+}

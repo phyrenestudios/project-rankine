@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:smelting",
+  "category": "blocks",
+  "cookingtime": 200,
+  "experience": 0.1,
+  "ingredient": {
+    "item": "rankine:soul_sandstone"
+  },
+  "result": {
+    "count": 1,
+    "id": "rankine:smooth_soul_sandstone"
+  }
+}

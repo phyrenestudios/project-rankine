@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "led",
+  "key": {
+    "D": {
+      "tag": "c:dyes/light_blue"
+    },
+    "R": {
+      "tag": "c:dusts/redstone"
+    },
+    "S": {
+      "item": "rankine:silicon_carbide"
+    }
+  },
+  "pattern": [
+    "DRD",
+    "RSR",
+    "DRD"
+  ],
+  "result": {
+    "count": 4,
+    "id": "rankine:light_blue_led"
+  }
+}

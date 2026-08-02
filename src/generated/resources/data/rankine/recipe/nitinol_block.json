@@ -1,0 +1,43 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 16777215,
+  "group": "rankine:alloy_blocks",
+  "inherit": true,
+  "key": {
+    "A": {
+      "item": "rankine:nitinol_ingot"
+    },
+    "B": {
+      "item": "rankine:nitinol_ingot"
+    },
+    "C": {
+      "item": "rankine:nitinol_ingot"
+    },
+    "D": {
+      "item": "rankine:nitinol_ingot"
+    },
+    "E": {
+      "item": "rankine:nitinol_ingot"
+    },
+    "F": {
+      "item": "rankine:nitinol_ingot"
+    },
+    "G": {
+      "item": "rankine:nitinol_ingot"
+    },
+    "H": {
+      "item": "rankine:nitinol_ingot"
+    },
+    "I": {
+      "item": "rankine:nitinol_ingot"
+    }
+  },
+  "pattern": [
+    "ABC",
+    "DEF",
+    "GHI"
+  ],
+  "result": {
+    "item": "rankine:nitinol_block"
+  }
+}

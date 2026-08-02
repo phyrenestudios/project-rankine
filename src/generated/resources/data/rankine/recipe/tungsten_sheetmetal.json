@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "sheetmetal",
+  "key": {
+    "#": {
+      "tag": "c:nuggets/tungsten"
+    },
+    "I": {
+      "tag": "c:ingots/tungsten"
+    }
+  },
+  "pattern": [
+    "#I#",
+    "#I#",
+    "#I#"
+  ],
+  "result": {
+    "count": 8,
+    "id": "rankine:tungsten_sheetmetal"
+  }
+}

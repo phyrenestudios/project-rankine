@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "rankine:cork"
+    },
+    "I": {
+      "tag": "c:ingots/stainless_steel"
+    }
+  },
+  "pattern": [
+    " I ",
+    "I I",
+    "CI "
+  ],
+  "result": {
+    "count": 1,
+    "id": "minecraft:name_tag"
+  }
+}

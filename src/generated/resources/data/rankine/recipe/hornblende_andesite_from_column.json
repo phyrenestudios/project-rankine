@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "stone_from_stone_column",
+  "ingredients": [
+    {
+      "item": "rankine:hornblende_andesite_column"
+    },
+    {
+      "item": "rankine:hornblende_andesite_column"
+    },
+    {
+      "item": "rankine:hornblende_andesite_column"
+    },
+    {
+      "item": "rankine:hornblende_andesite_column"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "rankine:hornblende_andesite"
+  }
+}

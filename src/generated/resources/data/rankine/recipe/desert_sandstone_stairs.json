@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "sandstone_stairs",
+  "key": {
+    "#": {
+      "item": "rankine:desert_sandstone"
+    }
+  },
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "result": {
+    "count": 4,
+    "id": "rankine:desert_sandstone_stairs"
+  }
+}

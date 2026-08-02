@@ -26,8 +26,12 @@ neoForge {
         }
         data {
             data()
+            // src/generated/resources is BOTH an input and an output here: providers reference
+            // models generated earlier in the same tree (e.g. slab models parented to their
+            // block model), and ExistingFileHelper resolves those from the committed output.
             programArguments.addAll '--mod', 'rankine', '--all',
                     '--existing', file('src/main/resources').absolutePath,
+                    '--existing', file('src/generated/resources').absolutePath,
                     '--output', file('src/generated/resources/').absolutePath
         }
         configureEach {

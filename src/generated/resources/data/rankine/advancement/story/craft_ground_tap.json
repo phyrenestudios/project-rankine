@@ -1,0 +1,34 @@
+{
+  "parent": "rankine:story/craft_dowsing_rod",
+  "criteria": {
+    "ground_tap": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:ground_tap"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "rankine.advancements.story.craft_ground_tap.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "rankine:ground_tap"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.craft_ground_tap.title"
+    }
+  },
+  "requirements": [
+    [
+      "ground_tap"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

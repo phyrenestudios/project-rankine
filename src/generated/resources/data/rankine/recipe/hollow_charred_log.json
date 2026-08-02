@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "rankine:hollow_logs",
+  "key": {
+    "#": {
+      "item": "rankine:charred_log"
+    }
+  },
+  "pattern": [
+    "###",
+    "# #",
+    "###"
+  ],
+  "result": {
+    "count": 16,
+    "id": "rankine:hollow_charred_log"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "rankine:leaf_litters",
+  "key": {
+    "#": {
+      "item": "rankine:black_birch_leaves"
+    }
+  },
+  "pattern": [
+    "##"
+  ],
+  "result": {
+    "count": 4,
+    "id": "rankine:black_birch_leaf_litter"
+  }
+}

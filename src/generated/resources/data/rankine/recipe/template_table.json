@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "tag": "minecraft:planks"
+    },
+    "T": {
+      "item": "minecraft:paper"
+    }
+  },
+  "pattern": [
+    "TT",
+    "BB",
+    "BB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "rankine:template_table"
+  }
+}

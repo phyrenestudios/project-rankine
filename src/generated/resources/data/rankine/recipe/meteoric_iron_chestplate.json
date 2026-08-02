@@ -1,0 +1,41 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 13028546,
+  "group": "rankine:alloy_chestplate",
+  "inherit": true,
+  "key": {
+    "A": {
+      "item": "rankine:meteoric_iron"
+    },
+    "C": {
+      "item": "rankine:meteoric_iron"
+    },
+    "D": {
+      "item": "rankine:meteoric_iron"
+    },
+    "E": {
+      "item": "rankine:meteoric_iron"
+    },
+    "F": {
+      "item": "rankine:meteoric_iron"
+    },
+    "G": {
+      "item": "rankine:meteoric_iron"
+    },
+    "H": {
+      "item": "rankine:meteoric_iron"
+    },
+    "I": {
+      "item": "rankine:meteoric_iron"
+    }
+  },
+  "langName": "item.rankine.invar_alloying",
+  "pattern": [
+    "A C",
+    "DEF",
+    "GHI"
+  ],
+  "result": {
+    "item": "rankine:alloy_chestplate"
+  }
+}

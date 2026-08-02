@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:pegmatite_bricks"
+  },
+  "result": {
+    "count": 1,
+    "id": "rankine:pegmatite_bricks_stairs"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:polished_white_marble"
+  },
+  "result": {
+    "count": 1,
+    "id": "rankine:polished_white_marble_stairs"
+  }
+}

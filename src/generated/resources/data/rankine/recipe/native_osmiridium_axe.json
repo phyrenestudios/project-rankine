@@ -1,0 +1,31 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 16777215,
+  "group": "rankine:alloy_axes",
+  "inherit": true,
+  "key": {
+    "A": {
+      "item": "rankine:osmiridium"
+    },
+    "B": {
+      "item": "rankine:osmiridium"
+    },
+    "C": {
+      "item": "rankine:osmiridium"
+    },
+    "D": {
+      "tag": "c:rods/wooden"
+    },
+    "F": {
+      "tag": "c:rods/wooden"
+    }
+  },
+  "pattern": [
+    "AB",
+    "CD",
+    " F"
+  ],
+  "result": {
+    "item": "rankine:osmiridium_axe"
+  }
+}

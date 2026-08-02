@@ -1,0 +1,26 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 16777215,
+  "group": "rankine:alloy_swords",
+  "inherit": true,
+  "inheritRecipe": "rankine:alloying/ender_amalgam_alloying",
+  "key": {
+    "A": {
+      "item": "rankine:ender_amalgam_ingot"
+    },
+    "B": {
+      "item": "rankine:ender_amalgam_ingot"
+    },
+    "C": {
+      "item": "rankine:alloy_rod"
+    }
+  },
+  "pattern": [
+    "A",
+    "B",
+    "C"
+  ],
+  "result": {
+    "item": "rankine:ender_amalgam_sword"
+  }
+}

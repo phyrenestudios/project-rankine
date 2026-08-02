@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:berries"
+    },
+    {
+      "item": "rankine:roasted_walnut"
+    },
+    {
+      "item": "rankine:toasted_coconut"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "rankine:trail_mix"
+  }
+}

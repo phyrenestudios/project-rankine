@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "rankine:high_refractory_brick"
+    },
+    {
+      "item": "rankine:hafnia"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "rankine:ultra_high_refractory_brick"
+  }
+}

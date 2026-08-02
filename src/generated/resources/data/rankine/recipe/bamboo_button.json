@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "wooden_button",
+  "ingredients": [
+    {
+      "item": "rankine:bamboo_planks"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "rankine:bamboo_button"
+  }
+}

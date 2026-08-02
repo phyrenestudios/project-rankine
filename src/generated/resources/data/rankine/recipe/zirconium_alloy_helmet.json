@@ -1,0 +1,31 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 13750746,
+  "group": "rankine:alloy_helmets",
+  "inherit": true,
+  "key": {
+    "A": {
+      "item": "rankine:zirconium_alloy_ingot"
+    },
+    "B": {
+      "item": "rankine:zirconium_alloy_ingot"
+    },
+    "C": {
+      "item": "rankine:zirconium_alloy_ingot"
+    },
+    "D": {
+      "item": "rankine:zirconium_alloy_ingot"
+    },
+    "F": {
+      "item": "rankine:zirconium_alloy_ingot"
+    }
+  },
+  "langName": "item.rankine.zirconium_alloy_alloying",
+  "pattern": [
+    "ABC",
+    "D F"
+  ],
+  "result": {
+    "item": "rankine:alloy_helmet"
+  }
+}

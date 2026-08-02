@@ -1,0 +1,33 @@
+{
+  "parent": "rankine:story/craft_mixing_barrel",
+  "criteria": {
+    "refractory_bricks": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:refractory_bricks"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "rankine.advancements.story.craft_refractory_bricks.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "rankine:refractory_bricks"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.craft_refractory_bricks.title"
+    }
+  },
+  "requirements": [
+    [
+      "refractory_bricks"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

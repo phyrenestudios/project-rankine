@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:greenschist_bricks"
+  },
+  "result": {
+    "count": 2,
+    "id": "rankine:greenschist_bricks_slab"
+  }
+}

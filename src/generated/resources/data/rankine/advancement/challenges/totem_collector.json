@@ -1,0 +1,180 @@
+{
+  "parent": "rankine:challenges/alloy_collector",
+  "criteria": {
+    "totem_of_blazing": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:totem_of_blazing"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "totem_of_cobbling": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:totem_of_cobbling"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "totem_of_enduring": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:totem_of_enduring"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "totem_of_hastening": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:totem_of_hastening"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "totem_of_infusing": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:totem_of_infusing"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "totem_of_invigorating": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:totem_of_invigorating"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "totem_of_levitating": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:totem_of_levitating"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "totem_of_powering": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:totem_of_powering"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "totem_of_promising": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:totem_of_promising"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "totem_of_repulsing": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:totem_of_repulsing"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "totem_of_softening": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:totem_of_softening"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "totem_of_timesaving": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:totem_of_timesaving"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "rankine.advancements.challenges.totem_collector.description"
+    },
+    "frame": "challenge",
+    "icon": {
+      "count": 1,
+      "id": "rankine:totem_of_hastening"
+    },
+    "title": {
+      "translate": "rankine.advancements.challenges.totem_collector.title"
+    }
+  },
+  "requirements": [
+    [
+      "totem_of_hastening"
+    ],
+    [
+      "totem_of_blazing"
+    ],
+    [
+      "totem_of_promising"
+    ],
+    [
+      "totem_of_cobbling"
+    ],
+    [
+      "totem_of_enduring"
+    ],
+    [
+      "totem_of_infusing"
+    ],
+    [
+      "totem_of_invigorating"
+    ],
+    [
+      "totem_of_levitating"
+    ],
+    [
+      "totem_of_repulsing"
+    ],
+    [
+      "totem_of_softening"
+    ],
+    [
+      "totem_of_timesaving"
+    ],
+    [
+      "totem_of_powering"
+    ]
+  ],
+  "rewards": {
+    "experience": 400
+  },
+  "sends_telemetry_event": true
+}

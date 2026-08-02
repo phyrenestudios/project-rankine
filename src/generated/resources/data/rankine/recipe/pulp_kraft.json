@@ -1,0 +1,34 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:water_bucket"
+    },
+    {
+      "item": "rankine:sodium_hydroxide"
+    },
+    {
+      "item": "rankine:sodium_sulfide"
+    },
+    {
+      "tag": "c:clay_balls"
+    },
+    {
+      "tag": "c:sawdust"
+    },
+    {
+      "tag": "c:sawdust"
+    },
+    {
+      "tag": "c:sawdust"
+    },
+    {
+      "tag": "c:sawdust"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "id": "rankine:pulp"
+  }
+}

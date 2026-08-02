@@ -1,0 +1,33 @@
+{
+  "parent": "rankine:story/get_flint",
+  "criteria": {
+    "rope": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:rope"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "rankine.advancements.story.craft_rope.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "rankine:rope"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.craft_rope.title"
+    }
+  },
+  "requirements": [
+    [
+      "rope"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:water_bucket"
+    },
+    {
+      "tag": "c:clay_balls"
+    },
+    {
+      "tag": "c:sawdust"
+    },
+    {
+      "tag": "c:sawdust"
+    },
+    {
+      "tag": "c:sawdust"
+    },
+    {
+      "tag": "c:sawdust"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "rankine:pulp"
+  }
+}

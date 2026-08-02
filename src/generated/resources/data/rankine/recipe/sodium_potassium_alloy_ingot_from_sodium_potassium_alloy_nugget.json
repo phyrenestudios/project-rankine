@@ -1,0 +1,43 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 16777215,
+  "group": "rankine:alloy_blocks",
+  "inherit": true,
+  "key": {
+    "A": {
+      "item": "rankine:sodium_potassium_alloy_nugget"
+    },
+    "B": {
+      "item": "rankine:sodium_potassium_alloy_nugget"
+    },
+    "C": {
+      "item": "rankine:sodium_potassium_alloy_nugget"
+    },
+    "D": {
+      "item": "rankine:sodium_potassium_alloy_nugget"
+    },
+    "E": {
+      "item": "rankine:sodium_potassium_alloy_nugget"
+    },
+    "F": {
+      "item": "rankine:sodium_potassium_alloy_nugget"
+    },
+    "G": {
+      "item": "rankine:sodium_potassium_alloy_nugget"
+    },
+    "H": {
+      "item": "rankine:sodium_potassium_alloy_nugget"
+    },
+    "I": {
+      "item": "rankine:sodium_potassium_alloy_nugget"
+    }
+  },
+  "pattern": [
+    "ABC",
+    "DEF",
+    "GHI"
+  ],
+  "result": {
+    "item": "rankine:sodium_potassium_alloy_ingot"
+  }
+}

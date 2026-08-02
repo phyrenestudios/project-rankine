@@ -1,0 +1,42 @@
+{
+  "parent": "rankine:story/make_steel",
+  "criteria": {
+    "brigandine_armor": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:brigandine_helmet"
+          },
+          {
+            "items": "rankine:brigandine_chestplate"
+          },
+          {
+            "items": "rankine:brigandine_leggings"
+          },
+          {
+            "items": "rankine:brigandine_boots"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "rankine.advancements.story.craft_brigandine_armor.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "rankine:brigandine_chestplate"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.craft_brigandine_armor.title"
+    }
+  },
+  "requirements": [
+    [
+      "brigandine_armor"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

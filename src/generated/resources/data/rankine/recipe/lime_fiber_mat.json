@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "fiber_mat",
+  "key": {
+    "#": {
+      "item": "rankine:lime_fiber_block"
+    }
+  },
+  "pattern": [
+    "##"
+  ],
+  "result": {
+    "count": 3,
+    "id": "rankine:lime_fiber_mat"
+  }
+}

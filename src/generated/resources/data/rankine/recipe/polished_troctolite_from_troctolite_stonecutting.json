@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:troctolite"
+  },
+  "result": {
+    "count": 1,
+    "id": "rankine:polished_troctolite"
+  }
+}

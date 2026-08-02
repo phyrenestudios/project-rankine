@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "tag": "c:carbon"
+    },
+    "M": {
+      "item": "rankine:biotite"
+    },
+    "R": {
+      "tag": "c:rubber"
+    }
+  },
+  "pattern": [
+    "RRR",
+    "MRM",
+    "CMC"
+  ],
+  "result": {
+    "count": 1,
+    "id": "rankine:gas_mask"
+  }
+}

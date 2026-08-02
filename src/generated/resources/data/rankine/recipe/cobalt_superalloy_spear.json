@@ -1,0 +1,32 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 16777215,
+  "group": "rankine:alloy_spears",
+  "inherit": true,
+  "inheritRecipe": "rankine:alloying/cobalt_superalloy_alloying",
+  "key": {
+    "B": {
+      "item": "rankine:cobalt_superalloy_ingot"
+    },
+    "C": {
+      "item": "rankine:cobalt_superalloy_ingot"
+    },
+    "E": {
+      "item": "rankine:alloy_rod"
+    },
+    "F": {
+      "item": "rankine:cobalt_superalloy_ingot"
+    },
+    "G": {
+      "item": "rankine:alloy_rod"
+    }
+  },
+  "pattern": [
+    " BC",
+    " EF",
+    "G  "
+  ],
+  "result": {
+    "item": "rankine:cobalt_superalloy_spear"
+  }
+}

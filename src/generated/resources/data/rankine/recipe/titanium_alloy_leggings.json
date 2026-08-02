@@ -1,0 +1,38 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 13750746,
+  "group": "rankine:alloy_leggings",
+  "inherit": true,
+  "key": {
+    "A": {
+      "item": "rankine:titanium_alloy_ingot"
+    },
+    "B": {
+      "item": "rankine:titanium_alloy_ingot"
+    },
+    "C": {
+      "item": "rankine:titanium_alloy_ingot"
+    },
+    "D": {
+      "item": "rankine:titanium_alloy_ingot"
+    },
+    "F": {
+      "item": "rankine:titanium_alloy_ingot"
+    },
+    "G": {
+      "item": "rankine:titanium_alloy_ingot"
+    },
+    "I": {
+      "item": "rankine:titanium_alloy_ingot"
+    }
+  },
+  "langName": "item.rankine.titanium_alloy_alloying",
+  "pattern": [
+    "ABC",
+    "D F",
+    "G I"
+  ],
+  "result": {
+    "item": "rankine:alloy_leggings"
+  }
+}

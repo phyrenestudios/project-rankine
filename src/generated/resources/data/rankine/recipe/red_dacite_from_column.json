@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "stone_from_stone_column",
+  "ingredients": [
+    {
+      "item": "rankine:red_dacite_column"
+    },
+    {
+      "item": "rankine:red_dacite_column"
+    },
+    {
+      "item": "rankine:red_dacite_column"
+    },
+    {
+      "item": "rankine:red_dacite_column"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "rankine:red_dacite"
+  }
+}

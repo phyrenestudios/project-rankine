@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:honeystone"
+  },
+  "result": {
+    "count": 1,
+    "id": "rankine:honeystone_button"
+  }
+}

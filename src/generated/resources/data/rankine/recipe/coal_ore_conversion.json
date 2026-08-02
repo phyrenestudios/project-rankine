@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "ore_conversion",
+  "ingredients": [
+    {
+      "item": "rankine:coal_ore"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "minecraft:coal_ore"
+  }
+}

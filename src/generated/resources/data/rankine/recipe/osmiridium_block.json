@@ -1,0 +1,43 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 16777215,
+  "group": "rankine:alloy_blocks",
+  "inherit": true,
+  "key": {
+    "A": {
+      "item": "rankine:osmiridium_ingot"
+    },
+    "B": {
+      "item": "rankine:osmiridium_ingot"
+    },
+    "C": {
+      "item": "rankine:osmiridium_ingot"
+    },
+    "D": {
+      "item": "rankine:osmiridium_ingot"
+    },
+    "E": {
+      "item": "rankine:osmiridium_ingot"
+    },
+    "F": {
+      "item": "rankine:osmiridium_ingot"
+    },
+    "G": {
+      "item": "rankine:osmiridium_ingot"
+    },
+    "H": {
+      "item": "rankine:osmiridium_ingot"
+    },
+    "I": {
+      "item": "rankine:osmiridium_ingot"
+    }
+  },
+  "pattern": [
+    "ABC",
+    "DEF",
+    "GHI"
+  ],
+  "result": {
+    "item": "rankine:osmiridium_block"
+  }
+}

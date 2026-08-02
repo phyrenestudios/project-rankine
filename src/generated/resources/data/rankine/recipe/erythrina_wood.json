@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "rankine:wood",
+  "key": {
+    "#": {
+      "item": "rankine:erythrina_log"
+    }
+  },
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "result": {
+    "count": 3,
+    "id": "rankine:erythrina_wood"
+  }
+}

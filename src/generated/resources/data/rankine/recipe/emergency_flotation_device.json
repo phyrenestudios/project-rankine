@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "tag": "c:rubber"
+    },
+    "C": {
+      "item": "rankine:carbon_dioxide_gas_bottle"
+    }
+  },
+  "pattern": [
+    " # ",
+    "#C#",
+    " # "
+  ],
+  "result": {
+    "count": 1,
+    "id": "rankine:emergency_flotation_device"
+  }
+}

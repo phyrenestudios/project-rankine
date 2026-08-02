@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "stone_bricks",
+  "key": {
+    "#": {
+      "item": "rankine:arkose"
+    },
+    "M": {
+      "item": "rankine:mortar"
+    }
+  },
+  "pattern": [
+    "#M",
+    "M#"
+  ],
+  "result": {
+    "count": 2,
+    "id": "rankine:arkose_bricks"
+  }
+}

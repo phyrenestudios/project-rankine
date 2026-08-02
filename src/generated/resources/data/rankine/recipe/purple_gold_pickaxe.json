@@ -1,0 +1,31 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 16777215,
+  "group": "rankine:alloy_pickaxes",
+  "inherit": true,
+  "key": {
+    "A": {
+      "item": "rankine:purple_gold_ingot"
+    },
+    "B": {
+      "item": "rankine:purple_gold_ingot"
+    },
+    "C": {
+      "item": "rankine:purple_gold_ingot"
+    },
+    "E": {
+      "tag": "c:rods/wooden"
+    },
+    "H": {
+      "tag": "c:rods/wooden"
+    }
+  },
+  "pattern": [
+    "ABC",
+    " E ",
+    " H "
+  ],
+  "result": {
+    "item": "rankine:purple_gold_pickaxe"
+  }
+}

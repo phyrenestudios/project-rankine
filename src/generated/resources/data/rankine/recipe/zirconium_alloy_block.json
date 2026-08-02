@@ -1,0 +1,43 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 16777215,
+  "group": "rankine:alloy_blocks",
+  "inherit": true,
+  "key": {
+    "A": {
+      "item": "rankine:zirconium_alloy_ingot"
+    },
+    "B": {
+      "item": "rankine:zirconium_alloy_ingot"
+    },
+    "C": {
+      "item": "rankine:zirconium_alloy_ingot"
+    },
+    "D": {
+      "item": "rankine:zirconium_alloy_ingot"
+    },
+    "E": {
+      "item": "rankine:zirconium_alloy_ingot"
+    },
+    "F": {
+      "item": "rankine:zirconium_alloy_ingot"
+    },
+    "G": {
+      "item": "rankine:zirconium_alloy_ingot"
+    },
+    "H": {
+      "item": "rankine:zirconium_alloy_ingot"
+    },
+    "I": {
+      "item": "rankine:zirconium_alloy_ingot"
+    }
+  },
+  "pattern": [
+    "ABC",
+    "DEF",
+    "GHI"
+  ],
+  "result": {
+    "item": "rankine:zirconium_alloy_block"
+  }
+}

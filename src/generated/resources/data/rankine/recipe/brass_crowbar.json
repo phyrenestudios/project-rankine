@@ -1,0 +1,31 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 16777215,
+  "group": "rankine:alloy_crowbars",
+  "inherit": true,
+  "key": {
+    "B": {
+      "item": "rankine:brass_ingot"
+    },
+    "C": {
+      "item": "rankine:brass_ingot"
+    },
+    "E": {
+      "item": "rankine:brass_ingot"
+    },
+    "G": {
+      "item": "rankine:brass_ingot"
+    },
+    "H": {
+      "item": "rankine:brass_ingot"
+    }
+  },
+  "pattern": [
+    " BC",
+    " E ",
+    "GH "
+  ],
+  "result": {
+    "item": "rankine:bronze_crowbar"
+  }
+}

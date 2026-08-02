@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "torch",
+  "key": {
+    "C": {
+      "tag": "c:sulfur"
+    },
+    "S": {
+      "tag": "c:rods/wooden"
+    }
+  },
+  "pattern": [
+    "C",
+    "S"
+  ],
+  "result": {
+    "count": 2,
+    "id": "minecraft:soul_torch"
+  }
+}

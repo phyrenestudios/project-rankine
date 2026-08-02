@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "G": {
+      "tag": "c:glass_blocks"
+    },
+    "I": {
+      "tag": "c:ingots/brass"
+    },
+    "R": {
+      "tag": "c:rubber"
+    }
+  },
+  "pattern": [
+    "III",
+    "IGI",
+    "RRR"
+  ],
+  "result": {
+    "count": 1,
+    "id": "rankine:diving_helmet"
+  }
+}

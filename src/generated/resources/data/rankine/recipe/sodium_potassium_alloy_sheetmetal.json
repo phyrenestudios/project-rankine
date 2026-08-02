@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "sheetmetal",
+  "key": {
+    "#": {
+      "tag": "c:nuggets/sodium_potassium_alloy"
+    },
+    "I": {
+      "tag": "c:ingots/sodium_potassium_alloy"
+    }
+  },
+  "pattern": [
+    "#I#",
+    "#I#",
+    "#I#"
+  ],
+  "result": {
+    "count": 8,
+    "id": "rankine:sodium_potassium_alloy_sheetmetal"
+  }
+}

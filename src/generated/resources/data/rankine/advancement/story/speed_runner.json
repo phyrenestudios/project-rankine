@@ -1,0 +1,46 @@
+{
+  "parent": "rankine:story/treads",
+  "criteria": {
+    "boots": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#c:boots",
+            "predicates": {
+              "rankine:has_enchantment_check": {
+                "enchantments": [
+                  "rankine:speed_skater",
+                  "rankine:dune_walker",
+                  "rankine:snow_drifter",
+                  "rankine:swift_swimmer",
+                  "minecraft:depth_strider",
+                  "minecraft:soul_speed"
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "rankine.advancements.challenges.speed_runner.description"
+    },
+    "frame": "challenge",
+    "icon": {
+      "count": 1,
+      "id": "rankine:alloy_boots"
+    },
+    "title": {
+      "translate": "rankine.advancements.challenges.speed_runner.title"
+    }
+  },
+  "requirements": [
+    [
+      "boots"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

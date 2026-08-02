@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "L": {
+      "tag": "c:leathers"
+    },
+    "R": {
+      "tag": "c:rubber"
+    }
+  },
+  "pattern": [
+    "L  ",
+    "LRR"
+  ],
+  "result": {
+    "count": 1,
+    "id": "rankine:fins"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:dolostone_bricks"
+  },
+  "result": {
+    "count": 1,
+    "id": "rankine:dolostone_bricks_wall"
+  }
+}

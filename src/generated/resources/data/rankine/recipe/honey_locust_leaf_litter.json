@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "rankine:leaf_litters",
+  "key": {
+    "#": {
+      "item": "rankine:honey_locust_leaves"
+    }
+  },
+  "pattern": [
+    "##"
+  ],
+  "result": {
+    "count": 4,
+    "id": "rankine:honey_locust_leaf_litter"
+  }
+}

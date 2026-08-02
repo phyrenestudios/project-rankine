@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:clay_bricks"
+  },
+  "result": {
+    "count": 2,
+    "id": "rankine:clay_bricks_slab"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "parent": "rankine:story/craft_beehive_oven_pit",
+  "criteria": {
+    "high_refractory_bricks": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:high_refractory_bricks"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "rankine.advancements.story.craft_high_refractory_bricks.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "rankine:high_refractory_bricks"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.craft_high_refractory_bricks.title"
+    }
+  },
+  "requirements": [
+    [
+      "high_refractory_bricks"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

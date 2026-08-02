@@ -1,0 +1,31 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 13881539,
+  "group": "rankine:alloy_helmets",
+  "inherit": true,
+  "key": {
+    "A": {
+      "item": "rankine:amalgam_ingot"
+    },
+    "B": {
+      "item": "rankine:amalgam_ingot"
+    },
+    "C": {
+      "item": "rankine:amalgam_ingot"
+    },
+    "D": {
+      "item": "rankine:amalgam_ingot"
+    },
+    "F": {
+      "item": "rankine:amalgam_ingot"
+    }
+  },
+  "langName": "item.rankine.amalgam_alloying",
+  "pattern": [
+    "ABC",
+    "D F"
+  ],
+  "result": {
+    "item": "rankine:alloy_helmet"
+  }
+}

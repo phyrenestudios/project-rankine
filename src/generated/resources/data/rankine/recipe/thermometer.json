@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "I": {
+      "tag": "c:glass_blocks"
+    },
+    "R": {
+      "tag": "c:mercury"
+    }
+  },
+  "pattern": [
+    " I ",
+    "IRI",
+    " I "
+  ],
+  "result": {
+    "count": 1,
+    "id": "rankine:thermometer"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 16777215,
+  "group": "rankine:alloy_blocks",
+  "inherit": true,
+  "key": {
+    "A": {
+      "item": "rankine:sterling_silver_ingot"
+    },
+    "B": {
+      "item": "rankine:sterling_silver_ingot"
+    },
+    "C": {
+      "item": "rankine:sterling_silver_ingot"
+    },
+    "D": {
+      "item": "rankine:sterling_silver_ingot"
+    },
+    "E": {
+      "item": "rankine:sterling_silver_ingot"
+    },
+    "F": {
+      "item": "rankine:sterling_silver_ingot"
+    },
+    "G": {
+      "item": "rankine:sterling_silver_ingot"
+    },
+    "H": {
+      "item": "rankine:sterling_silver_ingot"
+    },
+    "I": {
+      "item": "rankine:sterling_silver_ingot"
+    }
+  },
+  "pattern": [
+    "ABC",
+    "DEF",
+    "GHI"
+  ],
+  "result": {
+    "item": "rankine:sterling_silver_block"
+  }
+}

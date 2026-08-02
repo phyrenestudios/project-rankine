@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "mossy_bricks_vines",
+  "ingredients": [
+    {
+      "item": "rankine:marlstone"
+    },
+    {
+      "item": "minecraft:vine"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "rankine:mossy_marlstone_bricks"
+  }
+}

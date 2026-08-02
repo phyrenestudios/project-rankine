@@ -1,0 +1,27 @@
+{
+  "values": [
+    "rankine:cedar_door",
+    "rankine:balsam_fir_door",
+    "rankine:eastern_hemlock_door",
+    "rankine:western_hemlock_door",
+    "rankine:pinyon_pine_door",
+    "rankine:juniper_door",
+    "rankine:black_birch_door",
+    "rankine:yellow_birch_door",
+    "rankine:red_birch_door",
+    "rankine:maple_door",
+    "rankine:magnolia_door",
+    "rankine:black_walnut_door",
+    "rankine:coconut_palm_door",
+    "rankine:cork_oak_door",
+    "rankine:sharinga_door",
+    "rankine:cinnamon_door",
+    "rankine:honey_locust_door",
+    "rankine:weeping_willow_door",
+    "rankine:erythrina_door",
+    "rankine:petrified_chorus_door",
+    "rankine:charred_door",
+    "rankine:bamboo_door",
+    "rankine:bamboo_culms_door"
+  ]
+}

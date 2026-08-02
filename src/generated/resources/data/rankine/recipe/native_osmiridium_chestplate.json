@@ -1,0 +1,41 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 13212593,
+  "group": "rankine:alloy_chestplate",
+  "inherit": true,
+  "key": {
+    "A": {
+      "item": "rankine:osmiridium"
+    },
+    "C": {
+      "item": "rankine:osmiridium"
+    },
+    "D": {
+      "item": "rankine:osmiridium"
+    },
+    "E": {
+      "item": "rankine:osmiridium"
+    },
+    "F": {
+      "item": "rankine:osmiridium"
+    },
+    "G": {
+      "item": "rankine:osmiridium"
+    },
+    "H": {
+      "item": "rankine:osmiridium"
+    },
+    "I": {
+      "item": "rankine:osmiridium"
+    }
+  },
+  "langName": "item.rankine.osmiridium_alloying",
+  "pattern": [
+    "A C",
+    "DEF",
+    "GHI"
+  ],
+  "result": {
+    "item": "rankine:alloy_chestplate"
+  }
+}

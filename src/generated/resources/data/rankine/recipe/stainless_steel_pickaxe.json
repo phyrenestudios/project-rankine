@@ -1,0 +1,32 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 16777215,
+  "group": "rankine:alloy_pickaxes",
+  "inherit": true,
+  "inheritRecipe": "rankine:alloying/stainless_steel_alloying",
+  "key": {
+    "A": {
+      "item": "rankine:stainless_steel_ingot"
+    },
+    "B": {
+      "item": "rankine:stainless_steel_ingot"
+    },
+    "C": {
+      "item": "rankine:stainless_steel_ingot"
+    },
+    "E": {
+      "item": "rankine:alloy_rod"
+    },
+    "H": {
+      "item": "rankine:alloy_rod"
+    }
+  },
+  "pattern": [
+    "ABC",
+    " E ",
+    " H "
+  ],
+  "result": {
+    "item": "rankine:stainless_steel_pickaxe"
+  }
+}

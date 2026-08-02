@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "rankine:dysprosium_ingot"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "rankine:dysprosium_nugget"
+  }
+}

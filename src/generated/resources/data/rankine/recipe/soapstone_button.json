@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "stone_button",
+  "ingredients": [
+    {
+      "item": "rankine:soapstone"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "rankine:soapstone_button"
+  }
+}

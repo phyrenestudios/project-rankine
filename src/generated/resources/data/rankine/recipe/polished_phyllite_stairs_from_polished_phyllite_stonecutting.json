@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:polished_phyllite"
+  },
+  "result": {
+    "count": 1,
+    "id": "rankine:polished_phyllite_stairs"
+  }
+}

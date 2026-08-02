@@ -1,0 +1,34 @@
+{
+  "parent": "rankine:story/craft_prospecting_stick",
+  "criteria": {
+    "ore_detector": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:ore_detector"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "rankine.advancements.story.craft_ore_detector.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "rankine:ore_detector"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.craft_ore_detector.title"
+    }
+  },
+  "requirements": [
+    [
+      "ore_detector"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

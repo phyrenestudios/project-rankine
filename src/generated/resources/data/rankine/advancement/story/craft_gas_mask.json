@@ -1,0 +1,34 @@
+{
+  "parent": "rankine:story/root",
+  "criteria": {
+    "gas_mask": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:gas_mask"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "rankine.advancements.story.craft_gas_mask.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "rankine:gas_mask"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.craft_gas_mask.title"
+    }
+  },
+  "requirements": [
+    [
+      "gas_mask"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

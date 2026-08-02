@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "S": {
+      "tag": "c:ingots/brass"
+    },
+    "X": {
+      "tag": "c:sheetmetal"
+    }
+  },
+  "pattern": [
+    "XSX",
+    "S S",
+    "XSX"
+  ],
+  "result": {
+    "count": 1,
+    "id": "rankine:gas_bottler"
+  }
+}

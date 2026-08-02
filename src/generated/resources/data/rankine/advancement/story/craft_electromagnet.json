@@ -1,0 +1,56 @@
+{
+  "parent": "rankine:story/craft_battery",
+  "criteria": {
+    "alnico_electromagnet": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:alnico_electromagnet"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "rare_earth_electromagnet": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:rare_earth_electromagnet"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "simple_electromagnet": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:simple_electromagnet"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "rankine.advancements.story.craft_electromagnet.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "rankine:alnico_electromagnet"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.craft_electromagnet.title"
+    }
+  },
+  "requirements": [
+    [
+      "alnico_electromagnet",
+      "rare_earth_electromagnet",
+      "simple_electromagnet"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:ultra_high_refractory_bricks"
+  },
+  "result": {
+    "count": 2,
+    "id": "rankine:ultra_high_refractory_brick"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "plant_fiber",
+  "ingredients": [
+    {
+      "item": "rankine:short_grass"
+    },
+    {
+      "item": "rankine:short_grass"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "rankine:plant_fiber"
+  }
+}

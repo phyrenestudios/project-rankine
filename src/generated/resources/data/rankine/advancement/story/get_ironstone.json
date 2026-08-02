@@ -1,0 +1,34 @@
+{
+  "parent": "rankine:story/craft_stone_hammer",
+  "criteria": {
+    "ironstone": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:ironstone"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "rankine.advancements.story.get_ironstone.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "rankine:ironstone"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.get_ironstone.title"
+    }
+  },
+  "requirements": [
+    [
+      "ironstone"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

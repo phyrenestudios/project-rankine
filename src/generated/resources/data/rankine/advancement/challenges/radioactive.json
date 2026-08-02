@@ -1,0 +1,89 @@
+{
+  "parent": "rankine:story/craft_battery",
+  "criteria": {
+    "americium_rtg": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:americium_rtg"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "curium_rtg": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:curium_rtg"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "plutonium_rtg": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:plutonium_rtg"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "polonium_rtg": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:polonium_rtg"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "strontium_rtg": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:strontium_rtg"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "rankine.advancements.challenges.radioactive.description"
+    },
+    "frame": "challenge",
+    "icon": {
+      "count": 1,
+      "id": "rankine:curium_rtg"
+    },
+    "title": {
+      "translate": "rankine.advancements.challenges.radioactive.title"
+    }
+  },
+  "requirements": [
+    [
+      "curium_rtg"
+    ],
+    [
+      "strontium_rtg"
+    ],
+    [
+      "polonium_rtg"
+    ],
+    [
+      "plutonium_rtg"
+    ],
+    [
+      "americium_rtg"
+    ]
+  ],
+  "rewards": {
+    "experience": 300
+  },
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,37 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 16777215,
+  "group": "rankine:alloy_blunderbuss",
+  "inherit": true,
+  "key": {
+    "A": {
+      "item": "rankine:niobium_alloy_ingot"
+    },
+    "B": {
+      "item": "rankine:niobium_alloy_ingot"
+    },
+    "C": {
+      "item": "minecraft:flint_and_steel"
+    },
+    "D": {
+      "tag": "minecraft:logs"
+    },
+    "E": {
+      "tag": "minecraft:logs"
+    },
+    "F": {
+      "item": "rankine:niobium_alloy_ingot"
+    },
+    "I": {
+      "tag": "minecraft:logs"
+    }
+  },
+  "pattern": [
+    "ABC",
+    "DEF",
+    "  I"
+  ],
+  "result": {
+    "item": "rankine:niobium_alloy_blunderbuss"
+  }
+}

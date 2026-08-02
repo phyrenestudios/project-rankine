@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:slate"
+  },
+  "result": {
+    "count": 1,
+    "id": "rankine:slate_bricks"
+  }
+}

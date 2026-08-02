@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:mica_schist"
+  },
+  "result": {
+    "count": 1,
+    "id": "rankine:mica_schist_wall"
+  }
+}

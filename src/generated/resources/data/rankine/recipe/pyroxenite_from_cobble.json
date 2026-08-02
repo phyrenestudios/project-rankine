@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "stone_from_cobble",
+  "ingredients": [
+    {
+      "item": "rankine:pyroxenite_cobble"
+    },
+    {
+      "item": "rankine:pyroxenite_cobble"
+    },
+    {
+      "item": "rankine:pyroxenite_cobble"
+    },
+    {
+      "item": "rankine:pyroxenite_cobble"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "rankine:pyroxenite"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "parent": "rankine:story/craft_alloy_furnace",
+  "criteria": {
+    "diving_armor": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:diving_helmet"
+          },
+          {
+            "items": "rankine:diving_chestplate"
+          },
+          {
+            "items": "rankine:diving_leggings"
+          },
+          {
+            "items": "rankine:diving_boots"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "rankine.advancements.story.craft_diving_armor.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "rankine:diving_chestplate"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.craft_diving_armor.title"
+    }
+  },
+  "requirements": [
+    [
+      "diving_armor"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

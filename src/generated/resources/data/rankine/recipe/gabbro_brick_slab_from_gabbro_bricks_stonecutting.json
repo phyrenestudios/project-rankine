@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:gabbro_bricks"
+  },
+  "result": {
+    "count": 2,
+    "id": "rankine:gabbro_bricks_slab"
+  }
+}

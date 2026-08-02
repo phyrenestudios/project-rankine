@@ -1,0 +1,22 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 16777215,
+  "group": "rankine:alloy_knives",
+  "inherit": true,
+  "inheritRecipe": "rankine:alloying/nickel_superalloy_alloying",
+  "key": {
+    "B": {
+      "item": "rankine:nickel_superalloy_ingot"
+    },
+    "C": {
+      "item": "rankine:alloy_rod"
+    }
+  },
+  "pattern": [
+    " B",
+    "C "
+  ],
+  "result": {
+    "item": "rankine:nickel_superalloy_knife"
+  }
+}

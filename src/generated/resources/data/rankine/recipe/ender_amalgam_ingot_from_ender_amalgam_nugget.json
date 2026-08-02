@@ -1,0 +1,43 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 16777215,
+  "group": "rankine:alloy_blocks",
+  "inherit": true,
+  "key": {
+    "A": {
+      "item": "rankine:ender_amalgam_nugget"
+    },
+    "B": {
+      "item": "rankine:ender_amalgam_nugget"
+    },
+    "C": {
+      "item": "rankine:ender_amalgam_nugget"
+    },
+    "D": {
+      "item": "rankine:ender_amalgam_nugget"
+    },
+    "E": {
+      "item": "rankine:ender_amalgam_nugget"
+    },
+    "F": {
+      "item": "rankine:ender_amalgam_nugget"
+    },
+    "G": {
+      "item": "rankine:ender_amalgam_nugget"
+    },
+    "H": {
+      "item": "rankine:ender_amalgam_nugget"
+    },
+    "I": {
+      "item": "rankine:ender_amalgam_nugget"
+    }
+  },
+  "pattern": [
+    "ABC",
+    "DEF",
+    "GHI"
+  ],
+  "result": {
+    "item": "rankine:ender_amalgam_ingot"
+  }
+}

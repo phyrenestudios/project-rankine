@@ -1,0 +1,32 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 16777215,
+  "group": "rankine:alloy_spears",
+  "inherit": true,
+  "inheritRecipe": "rankine:alloying/tungsten_heavy_alloy_alloying",
+  "key": {
+    "B": {
+      "item": "rankine:tungsten_heavy_alloy_ingot"
+    },
+    "C": {
+      "item": "rankine:tungsten_heavy_alloy_ingot"
+    },
+    "E": {
+      "item": "rankine:alloy_rod"
+    },
+    "F": {
+      "item": "rankine:tungsten_heavy_alloy_ingot"
+    },
+    "G": {
+      "item": "rankine:alloy_rod"
+    }
+  },
+  "pattern": [
+    " BC",
+    " EF",
+    "G  "
+  ],
+  "result": {
+    "item": "rankine:tungsten_heavy_alloy_spear"
+  }
+}

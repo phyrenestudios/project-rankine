@@ -1,0 +1,33 @@
+{
+  "parent": "rankine:story/craft_shulker_gas_vacuum",
+  "criteria": {
+    "distillation_tower": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:distillation_tower"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "rankine.advancements.story.craft_distillation_tower.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "rankine:distillation_tower"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.craft_distillation_tower.title"
+    }
+  },
+  "requirements": [
+    [
+      "distillation_tower"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

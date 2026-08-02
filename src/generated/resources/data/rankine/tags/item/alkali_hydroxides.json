@@ -1,0 +1,10 @@
+{
+  "values": [
+    "rankine:lithium_hydroxide",
+    "rankine:sodium_hydroxide",
+    "rankine:potassium_hydroxide",
+    "rankine:rubidium_hydroxide",
+    "rankine:cesium_hydroxide",
+    "rankine:francium_hydroxide"
+  ]
+}

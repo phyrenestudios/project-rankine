@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "rankine:glazed_porcelain",
+  "key": {
+    "#": {
+      "item": "rankine:porcelain"
+    },
+    "A": {
+      "tag": "c:dyes/magenta"
+    }
+  },
+  "pattern": [
+    "###",
+    "#A#",
+    "###"
+  ],
+  "result": {
+    "count": 8,
+    "id": "rankine:magenta_glazed_porcelain"
+  }
+}

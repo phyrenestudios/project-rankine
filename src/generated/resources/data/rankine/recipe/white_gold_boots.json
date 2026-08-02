@@ -1,0 +1,28 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 16777207,
+  "group": "rankine:alloy_boots",
+  "inherit": true,
+  "key": {
+    "A": {
+      "item": "rankine:white_gold_ingot"
+    },
+    "C": {
+      "item": "rankine:white_gold_ingot"
+    },
+    "D": {
+      "item": "rankine:white_gold_ingot"
+    },
+    "F": {
+      "item": "rankine:white_gold_ingot"
+    }
+  },
+  "langName": "item.rankine.white_gold_alloying",
+  "pattern": [
+    "A C",
+    "D F"
+  ],
+  "result": {
+    "item": "rankine:alloy_boots"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 16777215,
+  "group": "rankine:alloy_crowbars",
+  "inherit": true,
+  "key": {
+    "B": {
+      "item": "rankine:osmiridium"
+    },
+    "C": {
+      "item": "rankine:osmiridium"
+    },
+    "E": {
+      "item": "rankine:osmiridium"
+    },
+    "G": {
+      "item": "rankine:osmiridium"
+    },
+    "H": {
+      "item": "rankine:osmiridium"
+    }
+  },
+  "pattern": [
+    " BC",
+    " E ",
+    "GH "
+  ],
+  "result": {
+    "item": "rankine:osmiridium_crowbar"
+  }
+}

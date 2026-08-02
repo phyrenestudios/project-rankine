@@ -1,0 +1,41 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 11113071,
+  "group": "rankine:alloy_chestplate",
+  "inherit": true,
+  "key": {
+    "A": {
+      "item": "rankine:tungsten_heavy_alloy_ingot"
+    },
+    "C": {
+      "item": "rankine:tungsten_heavy_alloy_ingot"
+    },
+    "D": {
+      "item": "rankine:tungsten_heavy_alloy_ingot"
+    },
+    "E": {
+      "item": "rankine:tungsten_heavy_alloy_ingot"
+    },
+    "F": {
+      "item": "rankine:tungsten_heavy_alloy_ingot"
+    },
+    "G": {
+      "item": "rankine:tungsten_heavy_alloy_ingot"
+    },
+    "H": {
+      "item": "rankine:tungsten_heavy_alloy_ingot"
+    },
+    "I": {
+      "item": "rankine:tungsten_heavy_alloy_ingot"
+    }
+  },
+  "langName": "item.rankine.tungsten_heavy_alloy_alloying",
+  "pattern": [
+    "A C",
+    "DEF",
+    "GHI"
+  ],
+  "result": {
+    "item": "rankine:alloy_chestplate"
+  }
+}

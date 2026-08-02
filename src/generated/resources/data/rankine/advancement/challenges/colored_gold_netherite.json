@@ -1,0 +1,42 @@
+{
+  "parent": "rankine:story/craft_induction_furnace",
+  "criteria": {
+    "netherite_gold": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#rankine:colored_gold_tools",
+            "predicates": {
+              "rankine:includes_composition_check": {
+                "composition": "Nr"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "rankine.advancements.challenges.colored_gold_netherite.description"
+    },
+    "frame": "challenge",
+    "icon": {
+      "count": 1,
+      "id": "rankine:purple_gold_hammer"
+    },
+    "title": {
+      "translate": "rankine.advancements.challenges.colored_gold_netherite.title"
+    }
+  },
+  "requirements": [
+    [
+      "netherite_gold"
+    ]
+  ],
+  "rewards": {
+    "experience": 200
+  },
+  "sends_telemetry_event": true
+}

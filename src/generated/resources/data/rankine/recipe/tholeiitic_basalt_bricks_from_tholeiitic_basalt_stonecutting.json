@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:tholeiitic_basalt"
+  },
+  "result": {
+    "count": 1,
+    "id": "rankine:tholeiitic_basalt_bricks"
+  }
+}

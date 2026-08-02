@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "block_from_vslab",
+  "ingredients": [
+    {
+      "item": "rankine:packed_snow_slab"
+    },
+    {
+      "item": "rankine:packed_snow_slab"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "rankine:packed_snow"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 16777215,
+  "group": "rankine:alloy_hammers",
+  "inherit": true,
+  "key": {
+    "A": {
+      "item": "rankine:purple_gold_ingot"
+    },
+    "B": {
+      "item": "rankine:purple_gold_ingot"
+    },
+    "C": {
+      "item": "rankine:purple_gold_ingot"
+    },
+    "D": {
+      "item": "rankine:purple_gold_ingot"
+    },
+    "E": {
+      "tag": "c:rods/wooden"
+    },
+    "F": {
+      "item": "rankine:purple_gold_ingot"
+    },
+    "H": {
+      "tag": "c:rods/wooden"
+    }
+  },
+  "pattern": [
+    "ABC",
+    "DEF",
+    " H "
+  ],
+  "result": {
+    "item": "rankine:purple_gold_hammer"
+  }
+}

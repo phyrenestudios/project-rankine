@@ -1,0 +1,43 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 16777215,
+  "group": "rankine:alloy_blocks",
+  "inherit": true,
+  "key": {
+    "A": {
+      "item": "rankine:titanium_alloy_ingot"
+    },
+    "B": {
+      "item": "rankine:titanium_alloy_ingot"
+    },
+    "C": {
+      "item": "rankine:titanium_alloy_ingot"
+    },
+    "D": {
+      "item": "rankine:titanium_alloy_ingot"
+    },
+    "E": {
+      "item": "rankine:titanium_alloy_ingot"
+    },
+    "F": {
+      "item": "rankine:titanium_alloy_ingot"
+    },
+    "G": {
+      "item": "rankine:titanium_alloy_ingot"
+    },
+    "H": {
+      "item": "rankine:titanium_alloy_ingot"
+    },
+    "I": {
+      "item": "rankine:titanium_alloy_ingot"
+    }
+  },
+  "pattern": [
+    "ABC",
+    "DEF",
+    "GHI"
+  ],
+  "result": {
+    "item": "rankine:titanium_alloy_block"
+  }
+}

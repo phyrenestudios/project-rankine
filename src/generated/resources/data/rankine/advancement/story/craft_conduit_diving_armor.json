@@ -1,0 +1,42 @@
+{
+  "parent": "rankine:story/craft_diving_armor",
+  "criteria": {
+    "conduit_diving_armor": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:conduit_diving_helmet"
+          },
+          {
+            "items": "rankine:conduit_diving_chestplate"
+          },
+          {
+            "items": "rankine:conduit_diving_leggings"
+          },
+          {
+            "items": "rankine:conduit_diving_boots"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "rankine.advancements.story.craft_conduit_diving_armor.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "rankine:conduit_diving_chestplate"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.craft_conduit_diving_armor.title"
+    }
+  },
+  "requirements": [
+    [
+      "conduit_diving_armor"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

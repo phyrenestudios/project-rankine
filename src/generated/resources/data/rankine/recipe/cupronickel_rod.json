@@ -1,0 +1,27 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 11946807,
+  "group": "rankine:alloy_rods",
+  "inherit": true,
+  "key": {
+    "C": {
+      "item": "rankine:cupronickel_ingot"
+    },
+    "E": {
+      "item": "rankine:cupronickel_ingot"
+    },
+    "G": {
+      "item": "rankine:cupronickel_ingot"
+    }
+  },
+  "langName": "item.rankine.cupronickel_alloying",
+  "pattern": [
+    "  C",
+    " E ",
+    "G  "
+  ],
+  "result": {
+    "count": 4,
+    "item": "rankine:alloy_rod"
+  }
+}

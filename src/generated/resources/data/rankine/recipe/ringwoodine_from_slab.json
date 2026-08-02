@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "block_from_slab",
+  "ingredients": [
+    {
+      "item": "rankine:ringwoodine_slab"
+    },
+    {
+      "item": "rankine:ringwoodine_slab"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "rankine:ringwoodine"
+  }
+}

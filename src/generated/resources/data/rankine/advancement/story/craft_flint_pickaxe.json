@@ -1,0 +1,44 @@
+{
+  "parent": "rankine:story/craft_rope",
+  "criteria": {
+    "flint_pickaxe": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:flint_pickaxe"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "stone_pickaxe": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:stone_pickaxe"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "rankine.advancements.story.craft_flint_pickaxe.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "rankine:flint_pickaxe"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.craft_flint_pickaxe.title"
+    }
+  },
+  "requirements": [
+    [
+      "flint_pickaxe",
+      "stone_pickaxe"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

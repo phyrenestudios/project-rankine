@@ -32,7 +32,11 @@ import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 public class CornStalkBlock extends BushBlock {
 
     public static final MapCodec<CornStalkBlock> CODEC = simpleCodec(CornStalkBlock::new);
-    public static final EnumProperty<TripleBlockSection> SECTION = EnumProperty.create("section", TripleBlockSection.class);
+    // Must be the SAME instance as TripleCropsBlock.SECTION, not merely an equal one: 1.21 keys
+    // BlockState's property map by reference (Reference2ObjectArrayMap) where 1.18.2 used an
+    // equals-based ImmutableMap. CornPlantBlock sets this property onto corn stalk states, and
+    // datagen's triplePlant() does the same, so a separate-but-equal instance throws at runtime.
+    public static final EnumProperty<TripleBlockSection> SECTION = TripleCropsBlock.SECTION;
 
     public CornStalkBlock(Properties properties) {
         // 1.21.1: BlockBehaviour#getOffsetType() no longer exists; the XZ offset (previously an override here) is baked into the Properties.

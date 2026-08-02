@@ -1,0 +1,11 @@
+{
+  "type": "rankine:beehive_oven",
+  "input": {
+    "tag": "c:silt"
+  },
+  "maxCookTime": 600,
+  "minCookTime": 300,
+  "result": {
+    "item": "minecraft:glass"
+  }
+}

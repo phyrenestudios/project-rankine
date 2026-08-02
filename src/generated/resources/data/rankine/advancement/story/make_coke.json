@@ -1,0 +1,34 @@
+{
+  "parent": "rankine:story/craft_beehive_oven_pit",
+  "criteria": {
+    "coke": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:coke"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "rankine.advancements.story.make_coke.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "rankine:coke"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.make_coke.title"
+    }
+  },
+  "requirements": [
+    [
+      "coke"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,43 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 16777215,
+  "group": "rankine:alloy_blocks",
+  "inherit": true,
+  "key": {
+    "A": {
+      "item": "rankine:bronze_ingot"
+    },
+    "B": {
+      "item": "rankine:bronze_ingot"
+    },
+    "C": {
+      "item": "rankine:bronze_ingot"
+    },
+    "D": {
+      "item": "rankine:bronze_ingot"
+    },
+    "E": {
+      "item": "rankine:bronze_ingot"
+    },
+    "F": {
+      "item": "rankine:bronze_ingot"
+    },
+    "G": {
+      "item": "rankine:bronze_ingot"
+    },
+    "H": {
+      "item": "rankine:bronze_ingot"
+    },
+    "I": {
+      "item": "rankine:bronze_ingot"
+    }
+  },
+  "pattern": [
+    "ABC",
+    "DEF",
+    "GHI"
+  ],
+  "result": {
+    "item": "rankine:bronze_block"
+  }
+}

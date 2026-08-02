@@ -1,0 +1,26 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 16777215,
+  "group": "rankine:alloy_shovels",
+  "inherit": true,
+  "inheritRecipe": "rankine:alloying/stainless_steel_alloying",
+  "key": {
+    "A": {
+      "item": "rankine:stainless_steel_ingot"
+    },
+    "B": {
+      "item": "rankine:alloy_rod"
+    },
+    "C": {
+      "item": "rankine:alloy_rod"
+    }
+  },
+  "pattern": [
+    "A",
+    "B",
+    "C"
+  ],
+  "result": {
+    "item": "rankine:stainless_steel_shovel"
+  }
+}

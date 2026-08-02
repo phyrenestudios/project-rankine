@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "rankine:biomass"
+    },
+    {
+      "item": "rankine:biomass"
+    },
+    {
+      "item": "rankine:biomass"
+    },
+    {
+      "item": "rankine:biomass"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "rankine:compressed_biomass"
+  }
+}

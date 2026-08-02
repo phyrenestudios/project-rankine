@@ -1,0 +1,41 @@
+{
+  "parent": "rankine:story/craft_stone_hammer",
+  "criteria": {
+    "hammer": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#c:hammers",
+            "predicates": {
+              "rankine:harvest_level_check": {
+                "level": {
+                  "min": 2
+                }
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "rankine.advancements.story.craft_alloy_hammer.description"
+    },
+    "frame": "goal",
+    "icon": {
+      "count": 1,
+      "id": "rankine:alloy_hammer"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.craft_alloy_hammer.title"
+    }
+  },
+  "requirements": [
+    [
+      "hammer"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

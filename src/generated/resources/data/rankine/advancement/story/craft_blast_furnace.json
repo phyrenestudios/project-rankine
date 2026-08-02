@@ -1,0 +1,33 @@
+{
+  "parent": "rankine:story/craft_mixing_barrel",
+  "criteria": {
+    "blast_furnace": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:blast_furnace"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "rankine.advancements.story.craft_blast_furnace.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "minecraft:blast_furnace"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.craft_blast_furnace.title"
+    }
+  },
+  "requirements": [
+    [
+      "blast_furnace"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

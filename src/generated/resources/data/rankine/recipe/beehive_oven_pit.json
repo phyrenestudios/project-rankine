@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "L": {
+      "tag": "c:storage_blocks/coal"
+    },
+    "S": {
+      "item": "rankine:refractory_bricks"
+    }
+  },
+  "pattern": [
+    " S ",
+    "SLS",
+    " S "
+  ],
+  "result": {
+    "count": 1,
+    "id": "rankine:beehive_oven_pit"
+  }
+}

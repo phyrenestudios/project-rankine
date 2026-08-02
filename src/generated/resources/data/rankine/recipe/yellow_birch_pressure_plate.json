@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "wooden_pressure_plate",
+  "key": {
+    "#": {
+      "item": "rankine:yellow_birch_planks"
+    }
+  },
+  "pattern": [
+    "##"
+  ],
+  "result": {
+    "count": 1,
+    "id": "rankine:yellow_birch_pressure_plate"
+  }
+}

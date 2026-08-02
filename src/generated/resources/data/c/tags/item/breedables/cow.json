@@ -1,0 +1,11 @@
+{
+  "values": [
+    "#c:crops/barley",
+    "#c:crops/rye",
+    "#c:crops/sorghum",
+    "#c:crops/millet",
+    "#c:crops/oats",
+    "#c:crops/wheat",
+    "#c:crops/corn"
+  ]
+}

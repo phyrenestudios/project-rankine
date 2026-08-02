@@ -1,0 +1,43 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 16777215,
+  "group": "rankine:alloy_blocks",
+  "inherit": true,
+  "key": {
+    "A": {
+      "item": "rankine:cast_iron_nugget"
+    },
+    "B": {
+      "item": "rankine:cast_iron_nugget"
+    },
+    "C": {
+      "item": "rankine:cast_iron_nugget"
+    },
+    "D": {
+      "item": "rankine:cast_iron_nugget"
+    },
+    "E": {
+      "item": "rankine:cast_iron_nugget"
+    },
+    "F": {
+      "item": "rankine:cast_iron_nugget"
+    },
+    "G": {
+      "item": "rankine:cast_iron_nugget"
+    },
+    "H": {
+      "item": "rankine:cast_iron_nugget"
+    },
+    "I": {
+      "item": "rankine:cast_iron_nugget"
+    }
+  },
+  "pattern": [
+    "ABC",
+    "DEF",
+    "GHI"
+  ],
+  "result": {
+    "item": "rankine:cast_iron_ingot"
+  }
+}

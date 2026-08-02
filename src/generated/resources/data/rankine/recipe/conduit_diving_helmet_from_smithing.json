@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "minecraft:sponge"
+  },
+  "base": {
+    "item": "rankine:diving_helmet"
+  },
+  "result": {
+    "count": 1,
+    "id": "rankine:conduit_diving_helmet"
+  },
+  "template": []
+}

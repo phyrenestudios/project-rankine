@@ -1,0 +1,43 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 16777215,
+  "group": "rankine:alloy_blocks",
+  "inherit": true,
+  "key": {
+    "A": {
+      "item": "rankine:ferrocerium_nugget"
+    },
+    "B": {
+      "item": "rankine:ferrocerium_nugget"
+    },
+    "C": {
+      "item": "rankine:ferrocerium_nugget"
+    },
+    "D": {
+      "item": "rankine:ferrocerium_nugget"
+    },
+    "E": {
+      "item": "rankine:ferrocerium_nugget"
+    },
+    "F": {
+      "item": "rankine:ferrocerium_nugget"
+    },
+    "G": {
+      "item": "rankine:ferrocerium_nugget"
+    },
+    "H": {
+      "item": "rankine:ferrocerium_nugget"
+    },
+    "I": {
+      "item": "rankine:ferrocerium_nugget"
+    }
+  },
+  "pattern": [
+    "ABC",
+    "DEF",
+    "GHI"
+  ],
+  "result": {
+    "item": "rankine:ferrocerium_ingot"
+  }
+}

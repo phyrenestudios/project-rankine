@@ -1,0 +1,31 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 16777215,
+  "group": "rankine:alloy_crowbars",
+  "inherit": true,
+  "key": {
+    "B": {
+      "item": "rankine:purple_gold_ingot"
+    },
+    "C": {
+      "item": "rankine:purple_gold_ingot"
+    },
+    "E": {
+      "item": "rankine:purple_gold_ingot"
+    },
+    "G": {
+      "item": "rankine:purple_gold_ingot"
+    },
+    "H": {
+      "item": "rankine:purple_gold_ingot"
+    }
+  },
+  "pattern": [
+    " BC",
+    " E ",
+    "GH "
+  ],
+  "result": {
+    "item": "rankine:purple_gold_crowbar"
+  }
+}

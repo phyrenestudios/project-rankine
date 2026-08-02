@@ -1,0 +1,31 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 16777215,
+  "group": "rankine:alloy_crowbars",
+  "inherit": true,
+  "key": {
+    "B": {
+      "item": "rankine:amalgam_ingot"
+    },
+    "C": {
+      "item": "rankine:amalgam_ingot"
+    },
+    "E": {
+      "item": "rankine:amalgam_ingot"
+    },
+    "G": {
+      "item": "rankine:amalgam_ingot"
+    },
+    "H": {
+      "item": "rankine:amalgam_ingot"
+    }
+  },
+  "pattern": [
+    " BC",
+    " E ",
+    "GH "
+  ],
+  "result": {
+    "item": "rankine:amalgam_crowbar"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 7634311,
+  "group": "rankine:alloy_chestplate",
+  "inherit": true,
+  "key": {
+    "A": {
+      "item": "rankine:steel_ingot"
+    },
+    "C": {
+      "item": "rankine:steel_ingot"
+    },
+    "D": {
+      "item": "rankine:steel_ingot"
+    },
+    "E": {
+      "item": "rankine:steel_ingot"
+    },
+    "F": {
+      "item": "rankine:steel_ingot"
+    },
+    "G": {
+      "item": "rankine:steel_ingot"
+    },
+    "H": {
+      "item": "rankine:steel_ingot"
+    },
+    "I": {
+      "item": "rankine:steel_ingot"
+    }
+  },
+  "langName": "item.rankine.steel_alloying",
+  "pattern": [
+    "A C",
+    "DEF",
+    "GHI"
+  ],
+  "result": {
+    "item": "rankine:alloy_chestplate"
+  }
+}

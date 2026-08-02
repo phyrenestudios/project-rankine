@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "block_from_vslab",
+  "ingredients": [
+    {
+      "item": "rankine:fiber_block_slab"
+    },
+    {
+      "item": "rankine:fiber_block_slab"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "rankine:fiber_block"
+  }
+}

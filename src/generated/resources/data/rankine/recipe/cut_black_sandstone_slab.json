@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "cut_sandstone_slab",
+  "key": {
+    "#": {
+      "item": "rankine:cut_black_sandstone"
+    }
+  },
+  "pattern": [
+    "###"
+  ],
+  "result": {
+    "count": 6,
+    "id": "rankine:cut_black_sandstone_slab"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 16777215,
+  "group": "rankine:alloy_blocks",
+  "inherit": true,
+  "key": {
+    "A": {
+      "item": "rankine:duralumin_nugget"
+    },
+    "B": {
+      "item": "rankine:duralumin_nugget"
+    },
+    "C": {
+      "item": "rankine:duralumin_nugget"
+    },
+    "D": {
+      "item": "rankine:duralumin_nugget"
+    },
+    "E": {
+      "item": "rankine:duralumin_nugget"
+    },
+    "F": {
+      "item": "rankine:duralumin_nugget"
+    },
+    "G": {
+      "item": "rankine:duralumin_nugget"
+    },
+    "H": {
+      "item": "rankine:duralumin_nugget"
+    },
+    "I": {
+      "item": "rankine:duralumin_nugget"
+    }
+  },
+  "pattern": [
+    "ABC",
+    "DEF",
+    "GHI"
+  ],
+  "result": {
+    "item": "rankine:duralumin_ingot"
+  }
+}

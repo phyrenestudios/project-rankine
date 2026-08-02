@@ -1,0 +1,41 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 12882104,
+  "group": "rankine:alloy_chestplate",
+  "inherit": true,
+  "key": {
+    "A": {
+      "item": "rankine:nitinol_ingot"
+    },
+    "C": {
+      "item": "rankine:nitinol_ingot"
+    },
+    "D": {
+      "item": "rankine:nitinol_ingot"
+    },
+    "E": {
+      "item": "rankine:nitinol_ingot"
+    },
+    "F": {
+      "item": "rankine:nitinol_ingot"
+    },
+    "G": {
+      "item": "rankine:nitinol_ingot"
+    },
+    "H": {
+      "item": "rankine:nitinol_ingot"
+    },
+    "I": {
+      "item": "rankine:nitinol_ingot"
+    }
+  },
+  "langName": "item.rankine.nitinol_alloying",
+  "pattern": [
+    "A C",
+    "DEF",
+    "GHI"
+  ],
+  "result": {
+    "item": "rankine:alloy_chestplate"
+  }
+}

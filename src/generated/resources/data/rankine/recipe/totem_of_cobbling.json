@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "H": {
+      "tag": "c:hammers"
+    },
+    "L": {
+      "item": "minecraft:lava_bucket"
+    },
+    "M": {
+      "tag": "c:ingots/rose_metal"
+    },
+    "W": {
+      "item": "minecraft:water_bucket"
+    }
+  },
+  "pattern": [
+    "MHM",
+    "WML",
+    " M "
+  ],
+  "result": {
+    "count": 1,
+    "id": "rankine:totem_of_cobbling"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "block_from_vslab",
+  "ingredients": [
+    {
+      "item": "rankine:coconut_palm_slab"
+    },
+    {
+      "item": "rankine:coconut_palm_slab"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "rankine:coconut_palm_planks"
+  }
+}

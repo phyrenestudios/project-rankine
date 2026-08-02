@@ -1,0 +1,43 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 16777215,
+  "group": "rankine:alloy_blocks",
+  "inherit": true,
+  "key": {
+    "A": {
+      "item": "rankine:niobium_alloy_ingot"
+    },
+    "B": {
+      "item": "rankine:niobium_alloy_ingot"
+    },
+    "C": {
+      "item": "rankine:niobium_alloy_ingot"
+    },
+    "D": {
+      "item": "rankine:niobium_alloy_ingot"
+    },
+    "E": {
+      "item": "rankine:niobium_alloy_ingot"
+    },
+    "F": {
+      "item": "rankine:niobium_alloy_ingot"
+    },
+    "G": {
+      "item": "rankine:niobium_alloy_ingot"
+    },
+    "H": {
+      "item": "rankine:niobium_alloy_ingot"
+    },
+    "I": {
+      "item": "rankine:niobium_alloy_ingot"
+    }
+  },
+  "pattern": [
+    "ABC",
+    "DEF",
+    "GHI"
+  ],
+  "result": {
+    "item": "rankine:niobium_alloy_block"
+  }
+}

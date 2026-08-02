@@ -1,0 +1,33 @@
+{
+  "parent": "rankine:story/craft_flint_pickaxe",
+  "criteria": {
+    "prospecting_stick": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:prospecting_stick"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "rankine.advancements.story.craft_prospecting_stick.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "rankine:prospecting_stick"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.craft_prospecting_stick.title"
+    }
+  },
+  "requirements": [
+    [
+      "prospecting_stick"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

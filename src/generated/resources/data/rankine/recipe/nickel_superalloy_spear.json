@@ -1,0 +1,32 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 16777215,
+  "group": "rankine:alloy_spears",
+  "inherit": true,
+  "inheritRecipe": "rankine:alloying/nickel_superalloy_alloying",
+  "key": {
+    "B": {
+      "item": "rankine:nickel_superalloy_ingot"
+    },
+    "C": {
+      "item": "rankine:nickel_superalloy_ingot"
+    },
+    "E": {
+      "item": "rankine:alloy_rod"
+    },
+    "F": {
+      "item": "rankine:nickel_superalloy_ingot"
+    },
+    "G": {
+      "item": "rankine:alloy_rod"
+    }
+  },
+  "pattern": [
+    " BC",
+    " EF",
+    "G  "
+  ],
+  "result": {
+    "item": "rankine:nickel_superalloy_spear"
+  }
+}

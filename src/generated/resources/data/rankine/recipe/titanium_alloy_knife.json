@@ -1,0 +1,21 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 16777215,
+  "group": "rankine:alloy_knives",
+  "inherit": true,
+  "key": {
+    "B": {
+      "item": "rankine:titanium_alloy_ingot"
+    },
+    "C": {
+      "tag": "c:rods/wooden"
+    }
+  },
+  "pattern": [
+    " B",
+    "C "
+  ],
+  "result": {
+    "item": "rankine:titanium_alloy_knife"
+  }
+}

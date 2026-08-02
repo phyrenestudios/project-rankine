@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "block_from_slab",
+  "ingredients": [
+    {
+      "item": "rankine:mossy_honeystone_bricks_slab"
+    },
+    {
+      "item": "rankine:mossy_honeystone_bricks_slab"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "rankine:mossy_honeystone_bricks"
+  }
+}

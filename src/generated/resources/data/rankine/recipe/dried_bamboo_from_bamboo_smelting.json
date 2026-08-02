@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 25,
+  "experience": 0.1,
+  "ingredient": {
+    "item": "minecraft:bamboo"
+  },
+  "result": {
+    "count": 1,
+    "id": "rankine:dried_bamboo"
+  }
+}

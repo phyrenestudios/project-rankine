@@ -1,0 +1,33 @@
+{
+  "parent": "rankine:story/craft_fusion_furnace",
+  "criteria": {
+    "penning_trap": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:penning_trap"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "rankine.advancements.story.craft_penning_trap.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "rankine:penning_trap"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.craft_penning_trap.title"
+    }
+  },
+  "requirements": [
+    [
+      "penning_trap"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

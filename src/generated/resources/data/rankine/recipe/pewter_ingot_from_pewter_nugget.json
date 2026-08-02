@@ -1,0 +1,43 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 16777215,
+  "group": "rankine:alloy_blocks",
+  "inherit": true,
+  "key": {
+    "A": {
+      "item": "rankine:pewter_nugget"
+    },
+    "B": {
+      "item": "rankine:pewter_nugget"
+    },
+    "C": {
+      "item": "rankine:pewter_nugget"
+    },
+    "D": {
+      "item": "rankine:pewter_nugget"
+    },
+    "E": {
+      "item": "rankine:pewter_nugget"
+    },
+    "F": {
+      "item": "rankine:pewter_nugget"
+    },
+    "G": {
+      "item": "rankine:pewter_nugget"
+    },
+    "H": {
+      "item": "rankine:pewter_nugget"
+    },
+    "I": {
+      "item": "rankine:pewter_nugget"
+    }
+  },
+  "pattern": [
+    "ABC",
+    "DEF",
+    "GHI"
+  ],
+  "result": {
+    "item": "rankine:pewter_ingot"
+  }
+}

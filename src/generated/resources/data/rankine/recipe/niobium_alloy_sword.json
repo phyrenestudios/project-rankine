@@ -1,0 +1,25 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 16777215,
+  "group": "rankine:alloy_swords",
+  "inherit": true,
+  "key": {
+    "A": {
+      "item": "rankine:niobium_alloy_ingot"
+    },
+    "B": {
+      "item": "rankine:niobium_alloy_ingot"
+    },
+    "C": {
+      "tag": "c:rods/wooden"
+    }
+  },
+  "pattern": [
+    "A",
+    "B",
+    "C"
+  ],
+  "result": {
+    "item": "rankine:niobium_alloy_sword"
+  }
+}

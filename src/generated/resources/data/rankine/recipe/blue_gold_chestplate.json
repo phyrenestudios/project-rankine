@@ -1,0 +1,41 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 8695295,
+  "group": "rankine:alloy_chestplate",
+  "inherit": true,
+  "key": {
+    "A": {
+      "item": "rankine:blue_gold_ingot"
+    },
+    "C": {
+      "item": "rankine:blue_gold_ingot"
+    },
+    "D": {
+      "item": "rankine:blue_gold_ingot"
+    },
+    "E": {
+      "item": "rankine:blue_gold_ingot"
+    },
+    "F": {
+      "item": "rankine:blue_gold_ingot"
+    },
+    "G": {
+      "item": "rankine:blue_gold_ingot"
+    },
+    "H": {
+      "item": "rankine:blue_gold_ingot"
+    },
+    "I": {
+      "item": "rankine:blue_gold_ingot"
+    }
+  },
+  "langName": "item.rankine.blue_gold_alloying",
+  "pattern": [
+    "A C",
+    "DEF",
+    "GHI"
+  ],
+  "result": {
+    "item": "rankine:alloy_chestplate"
+  }
+}

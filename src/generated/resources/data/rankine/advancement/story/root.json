@@ -1,0 +1,56 @@
+{
+  "criteria": {
+    "crafting_table": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:crafting_table"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "flint": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:flint"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "stick": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:stick"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "background": "rankine:textures/gui/advancements/backgrounds/refractory.png",
+    "description": {
+      "translate": "rankine.advancements.story.root.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "rankine:refractory_bricks"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.root.title"
+    }
+  },
+  "requirements": [
+    [
+      "stick",
+      "flint",
+      "crafting_table"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

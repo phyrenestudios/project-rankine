@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:serpentinite"
+  },
+  "result": {
+    "count": 1,
+    "id": "rankine:serpentinite_button"
+  }
+}

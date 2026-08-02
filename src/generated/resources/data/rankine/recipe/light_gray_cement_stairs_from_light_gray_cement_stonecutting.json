@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:light_gray_cement"
+  },
+  "result": {
+    "count": 1,
+    "id": "rankine:light_gray_cement_stairs"
+  }
+}

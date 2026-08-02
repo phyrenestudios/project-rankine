@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:frozen_meteorite"
+  },
+  "result": {
+    "count": 1,
+    "id": "rankine:frozen_meteorite_bricks"
+  }
+}

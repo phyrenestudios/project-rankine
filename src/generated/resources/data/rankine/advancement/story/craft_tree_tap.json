@@ -1,0 +1,33 @@
+{
+  "parent": "rankine:story/root",
+  "criteria": {
+    "tree_tap": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:tree_tap"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "rankine.advancements.story.craft_tree_tap.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "rankine:tree_tap"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.craft_tree_tap.title"
+    }
+  },
+  "requirements": [
+    [
+      "tree_tap"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

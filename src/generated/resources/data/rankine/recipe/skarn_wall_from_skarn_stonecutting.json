@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:skarn"
+  },
+  "result": {
+    "count": 1,
+    "id": "rankine:skarn_wall"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "F": {
+      "item": "minecraft:flint"
+    }
+  },
+  "pattern": [
+    " F",
+    "F "
+  ],
+  "result": {
+    "count": 1,
+    "id": "rankine:flint_knife"
+  }
+}

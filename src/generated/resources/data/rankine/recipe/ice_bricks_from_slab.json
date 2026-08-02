@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "block_from_vslab",
+  "ingredients": [
+    {
+      "item": "rankine:ice_bricks_slab"
+    },
+    {
+      "item": "rankine:ice_bricks_slab"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "rankine:ice_bricks"
+  }
+}

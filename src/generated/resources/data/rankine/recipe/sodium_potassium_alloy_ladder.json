@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "rankine:ladders",
+  "key": {
+    "#": {
+      "item": "rankine:sodium_potassium_alloy_ingot"
+    }
+  },
+  "pattern": [
+    "# #",
+    "###",
+    "# #"
+  ],
+  "result": {
+    "count": 8,
+    "id": "rankine:sodium_potassium_alloy_ladder"
+  }
+}

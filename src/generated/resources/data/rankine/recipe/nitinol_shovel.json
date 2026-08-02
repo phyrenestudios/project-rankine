@@ -1,0 +1,25 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 16777215,
+  "group": "rankine:alloy_shovels",
+  "inherit": true,
+  "key": {
+    "A": {
+      "item": "rankine:nitinol_ingot"
+    },
+    "B": {
+      "tag": "c:rods/wooden"
+    },
+    "C": {
+      "tag": "c:rods/wooden"
+    }
+  },
+  "pattern": [
+    "A",
+    "B",
+    "C"
+  ],
+  "result": {
+    "item": "rankine:titanium_alloy_shovel"
+  }
+}

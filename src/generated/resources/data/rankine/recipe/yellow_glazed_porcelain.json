@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "rankine:glazed_porcelain",
+  "key": {
+    "#": {
+      "item": "rankine:porcelain"
+    },
+    "A": {
+      "tag": "c:dyes/yellow"
+    }
+  },
+  "pattern": [
+    "###",
+    "#A#",
+    "###"
+  ],
+  "result": {
+    "count": 8,
+    "id": "rankine:yellow_glazed_porcelain"
+  }
+}

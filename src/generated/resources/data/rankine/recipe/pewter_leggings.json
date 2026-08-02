@@ -1,0 +1,38 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 11711154,
+  "group": "rankine:alloy_leggings",
+  "inherit": true,
+  "key": {
+    "A": {
+      "item": "rankine:pewter_ingot"
+    },
+    "B": {
+      "item": "rankine:pewter_ingot"
+    },
+    "C": {
+      "item": "rankine:pewter_ingot"
+    },
+    "D": {
+      "item": "rankine:pewter_ingot"
+    },
+    "F": {
+      "item": "rankine:pewter_ingot"
+    },
+    "G": {
+      "item": "rankine:pewter_ingot"
+    },
+    "I": {
+      "item": "rankine:pewter_ingot"
+    }
+  },
+  "langName": "item.rankine.pewter_alloying",
+  "pattern": [
+    "ABC",
+    "D F",
+    "G I"
+  ],
+  "result": {
+    "item": "rankine:alloy_leggings"
+  }
+}

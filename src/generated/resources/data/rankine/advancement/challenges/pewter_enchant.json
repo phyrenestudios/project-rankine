@@ -1,0 +1,44 @@
+{
+  "parent": "rankine:story/craft_material_testing_table",
+  "criteria": {
+    "pewter_tool": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#c:pewter_tools",
+            "predicates": {
+              "rankine:enchantability_check": {
+                "level": {
+                  "min": 14
+                }
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "rankine.advancements.challenges.pewter_enchant.description"
+    },
+    "frame": "challenge",
+    "icon": {
+      "count": 1,
+      "id": "rankine:pewter_sword"
+    },
+    "title": {
+      "translate": "rankine.advancements.challenges.pewter_enchant.title"
+    }
+  },
+  "requirements": [
+    [
+      "pewter_tool"
+    ]
+  ],
+  "rewards": {
+    "experience": 200
+  },
+  "sends_telemetry_event": true
+}

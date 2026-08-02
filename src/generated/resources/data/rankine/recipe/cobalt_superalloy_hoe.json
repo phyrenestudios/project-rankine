@@ -1,0 +1,29 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 16777215,
+  "group": "rankine:alloy_hoes",
+  "inherit": true,
+  "inheritRecipe": "rankine:alloying/cobalt_superalloy_alloying",
+  "key": {
+    "A": {
+      "item": "rankine:cobalt_superalloy_ingot"
+    },
+    "B": {
+      "item": "rankine:cobalt_superalloy_ingot"
+    },
+    "D": {
+      "item": "rankine:alloy_rod"
+    },
+    "F": {
+      "item": "rankine:alloy_rod"
+    }
+  },
+  "pattern": [
+    "AB",
+    " D",
+    " F"
+  ],
+  "result": {
+    "item": "rankine:cobalt_superalloy_hoe"
+  }
+}

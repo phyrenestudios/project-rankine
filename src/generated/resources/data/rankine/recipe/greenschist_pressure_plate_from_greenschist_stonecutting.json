@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:greenschist"
+  },
+  "result": {
+    "count": 1,
+    "id": "rankine:greenschist_pressure_plate"
+  }
+}

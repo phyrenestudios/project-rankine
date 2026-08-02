@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:chalk_bricks"
+  },
+  "result": {
+    "count": 1,
+    "id": "rankine:chalk_bricks_pressure_plate"
+  }
+}

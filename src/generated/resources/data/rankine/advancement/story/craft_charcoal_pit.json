@@ -1,0 +1,33 @@
+{
+  "parent": "rankine:story/craft_flint_axe",
+  "criteria": {
+    "charcoal_pit": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:charcoal_pit"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "rankine.advancements.story.craft_charcoal_pit.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "rankine:charcoal_pit"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.craft_charcoal_pit.title"
+    }
+  },
+  "requirements": [
+    [
+      "charcoal_pit"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

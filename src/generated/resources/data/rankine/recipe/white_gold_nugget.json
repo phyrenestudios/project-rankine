@@ -1,0 +1,18 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 16777215,
+  "group": "rankine:alloy_nuggets",
+  "inherit": true,
+  "key": {
+    "A": {
+      "item": "rankine:white_gold_ingot"
+    }
+  },
+  "pattern": [
+    "A"
+  ],
+  "result": {
+    "count": 9,
+    "item": "rankine:white_gold_nugget"
+  }
+}

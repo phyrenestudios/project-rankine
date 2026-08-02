@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "rankine:refractory_brick"
+    },
+    {
+      "item": "rankine:magnesia"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "rankine:high_refractory_brick"
+  }
+}

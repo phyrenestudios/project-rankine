@@ -1,0 +1,43 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 16777215,
+  "group": "rankine:alloy_blocks",
+  "inherit": true,
+  "key": {
+    "A": {
+      "item": "rankine:cupronickel_ingot"
+    },
+    "B": {
+      "item": "rankine:cupronickel_ingot"
+    },
+    "C": {
+      "item": "rankine:cupronickel_ingot"
+    },
+    "D": {
+      "item": "rankine:cupronickel_ingot"
+    },
+    "E": {
+      "item": "rankine:cupronickel_ingot"
+    },
+    "F": {
+      "item": "rankine:cupronickel_ingot"
+    },
+    "G": {
+      "item": "rankine:cupronickel_ingot"
+    },
+    "H": {
+      "item": "rankine:cupronickel_ingot"
+    },
+    "I": {
+      "item": "rankine:cupronickel_ingot"
+    }
+  },
+  "pattern": [
+    "ABC",
+    "DEF",
+    "GHI"
+  ],
+  "result": {
+    "item": "rankine:cupronickel_block"
+  }
+}

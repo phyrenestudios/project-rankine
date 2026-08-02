@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "stone_button",
+  "ingredients": [
+    {
+      "item": "rankine:black_marble"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "rankine:black_marble_button"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 16777215,
+  "group": "rankine:alloy_spears",
+  "inherit": true,
+  "key": {
+    "B": {
+      "item": "rankine:rose_gold_ingot"
+    },
+    "C": {
+      "item": "rankine:rose_gold_ingot"
+    },
+    "E": {
+      "tag": "c:rods/wooden"
+    },
+    "F": {
+      "item": "rankine:rose_gold_ingot"
+    },
+    "G": {
+      "tag": "c:rods/wooden"
+    }
+  },
+  "pattern": [
+    " BC",
+    " EF",
+    "G  "
+  ],
+  "result": {
+    "item": "rankine:rose_gold_spear"
+  }
+}

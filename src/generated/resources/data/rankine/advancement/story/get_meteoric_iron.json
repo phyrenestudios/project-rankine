@@ -1,0 +1,33 @@
+{
+  "parent": "rankine:story/craft_alloy_hammer",
+  "criteria": {
+    "meteoric_iron": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:meteoric_iron"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "rankine.advancements.story.get_meteoric_iron.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "rankine:meteoric_iron"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.get_meteoric_iron.title"
+    }
+  },
+  "requirements": [
+    [
+      "meteoric_iron"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

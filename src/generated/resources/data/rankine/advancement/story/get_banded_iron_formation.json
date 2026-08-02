@@ -1,0 +1,34 @@
+{
+  "parent": "rankine:story/craft_stone_hammer",
+  "criteria": {
+    "banded_iron_formation": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:banded_iron_formation"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "rankine.advancements.story.get_banded_iron_formation.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "rankine:banded_iron_formation"
+    },
+    "title": {
+      "translate": "rankine.advancements.story.get_banded_iron_formation.title"
+    }
+  },
+  "requirements": [
+    [
+      "banded_iron_formation"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

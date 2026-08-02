@@ -1,0 +1,22 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 16777215,
+  "group": "rankine:alloy_knives",
+  "inherit": true,
+  "inheritRecipe": "rankine:alloying/cobalt_superalloy_alloying",
+  "key": {
+    "B": {
+      "item": "rankine:cobalt_superalloy_ingot"
+    },
+    "C": {
+      "item": "rankine:alloy_rod"
+    }
+  },
+  "pattern": [
+    " B",
+    "C "
+  ],
+  "result": {
+    "item": "rankine:cobalt_superalloy_knife"
+  }
+}

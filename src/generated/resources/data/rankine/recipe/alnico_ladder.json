@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "rankine:ladders",
+  "key": {
+    "#": {
+      "item": "rankine:alnico_ingot"
+    }
+  },
+  "pattern": [
+    "# #",
+    "###",
+    "# #"
+  ],
+  "result": {
+    "count": 8,
+    "id": "rankine:alnico_ladder"
+  }
+}

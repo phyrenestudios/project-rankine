@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "minecraft:prismarine_shard"
+  },
+  "base": {
+    "item": "rankine:diving_boots"
+  },
+  "result": {
+    "count": 1,
+    "id": "rankine:conduit_diving_boots"
+  },
+  "template": []
+}

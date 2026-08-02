@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:lime_cement"
+  },
+  "result": {
+    "count": 2,
+    "id": "rankine:lime_cement_slab"
+  }
+}

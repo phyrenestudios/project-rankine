@@ -1,0 +1,19 @@
+{
+  "values": [
+    "#c:stones/andesite",
+    "#c:stones/basalt",
+    "#c:stones/dacite",
+    "#c:stones/gabbro",
+    "#c:stones/pegmatite",
+    "#c:stones/granodiorite",
+    "#c:stones/porphyry",
+    "#c:stones/granite",
+    "#c:stones/shonkinite",
+    "#c:stones/peridotite",
+    "#c:stones/kimberlite",
+    "#c:stones/komatiite",
+    "#c:stones/pumice",
+    "#c:stones/scoria",
+    "#c:stones/rhyolite"
+  ]
+}

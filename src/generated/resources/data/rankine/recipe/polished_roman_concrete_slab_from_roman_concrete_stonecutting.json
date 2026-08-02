@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:roman_concrete"
+  },
+  "result": {
+    "count": 1,
+    "id": "rankine:polished_roman_concrete_slab"
+  }
+}

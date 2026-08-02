@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "rankine:sodium_sulfur_battery"
+    },
+    "P": {
+      "tag": "c:metal_poles"
+    },
+    "W": {
+      "item": "rankine:alloy_wire"
+    }
+  },
+  "pattern": [
+    "WPW",
+    "WPW",
+    "WBW"
+  ],
+  "result": {
+    "count": 1,
+    "id": "rankine:rare_earth_electromagnet"
+  }
+}

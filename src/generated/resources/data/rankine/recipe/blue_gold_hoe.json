@@ -1,0 +1,28 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 16777215,
+  "group": "rankine:alloy_hoes",
+  "inherit": true,
+  "key": {
+    "A": {
+      "item": "rankine:blue_gold_ingot"
+    },
+    "B": {
+      "item": "rankine:blue_gold_ingot"
+    },
+    "D": {
+      "tag": "c:rods/wooden"
+    },
+    "F": {
+      "tag": "c:rods/wooden"
+    }
+  },
+  "pattern": [
+    "AB",
+    " D",
+    " F"
+  ],
+  "result": {
+    "item": "rankine:blue_gold_hoe"
+  }
+}

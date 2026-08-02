@@ -1,0 +1,154 @@
+{
+  "parent": "rankine:story/craft_alloy_hammer",
+  "criteria": {
+    "aquamarine_geode": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:aquamarine_geode"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "diamond_geode": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:diamond_geode"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "emerald_geode": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:emerald_geode"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "garnet_geode": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:garnet_geode"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "opal_geode": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:opal_geode"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "peridot_geode": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:peridot_geode"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "ruby_geode": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:ruby_geode"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "sapphire_geode": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:sapphire_geode"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "topaz_geode": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:topaz_geode"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "tourmaline_geode": {
+      "conditions": {
+        "items": [
+          {
+            "items": "rankine:tourmaline_geode"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "rankine.advancements.challenges.geode_collector.description"
+    },
+    "frame": "challenge",
+    "icon": {
+      "count": 1,
+      "id": "rankine:tourmaline_geode"
+    },
+    "title": {
+      "translate": "rankine.advancements.challenges.geode_collector.title"
+    }
+  },
+  "requirements": [
+    [
+      "diamond_geode"
+    ],
+    [
+      "emerald_geode"
+    ],
+    [
+      "aquamarine_geode"
+    ],
+    [
+      "opal_geode"
+    ],
+    [
+      "ruby_geode"
+    ],
+    [
+      "sapphire_geode"
+    ],
+    [
+      "peridot_geode"
+    ],
+    [
+      "garnet_geode"
+    ],
+    [
+      "topaz_geode"
+    ],
+    [
+      "tourmaline_geode"
+    ]
+  ],
+  "rewards": {
+    "experience": 300
+  },
+  "sends_telemetry_event": true
+}

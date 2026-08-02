@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "smooth_sandstone_slab",
+  "key": {
+    "#": {
+      "item": "rankine:smooth_black_sandstone"
+    }
+  },
+  "pattern": [
+    "###"
+  ],
+  "result": {
+    "count": 6,
+    "id": "rankine:smooth_black_sandstone_slab"
+  }
+}

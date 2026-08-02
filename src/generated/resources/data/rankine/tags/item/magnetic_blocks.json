@@ -1,0 +1,13 @@
+{
+  "values": [
+    "#c:storage_blocks/iron",
+    "#c:storage_blocks/aluminum",
+    "#c:storage_blocks/cobalt",
+    "#c:storage_blocks/manganese",
+    "#c:storage_blocks/titanium",
+    "#c:storage_blocks/bismuth",
+    "#c:storage_blocks/lead",
+    "#c:storage_blocks/nickel",
+    "#c:storage_blocks/tungsten"
+  ]
+}

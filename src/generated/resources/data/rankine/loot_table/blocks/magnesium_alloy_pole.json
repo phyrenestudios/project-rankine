@@ -1,0 +1,39 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:alternatives",
+          "children": [
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "block": "rankine:magnesium_alloy_pole",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "style": "1"
+                  }
+                }
+              ],
+              "name": "rankine:garland"
+            },
+            {
+              "type": "minecraft:item",
+              "name": "rankine:magnesium_alloy_pole"
+            }
+          ]
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "rankine:blocks/magnesium_alloy_pole"
+}

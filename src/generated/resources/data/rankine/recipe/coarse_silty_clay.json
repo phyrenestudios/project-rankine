@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "rankine:coarse_soil",
+  "key": {
+    "#": {
+      "item": "rankine:silty_clay"
+    },
+    "G": {
+      "tag": "c:gravels"
+    }
+  },
+  "pattern": [
+    "#G",
+    "G#"
+  ],
+  "result": {
+    "count": 4,
+    "id": "rankine:coarse_silty_clay"
+  }
+}

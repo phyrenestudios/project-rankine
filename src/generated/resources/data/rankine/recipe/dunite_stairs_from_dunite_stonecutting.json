@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:dunite"
+  },
+  "result": {
+    "count": 1,
+    "id": "rankine:dunite_stairs"
+  }
+}

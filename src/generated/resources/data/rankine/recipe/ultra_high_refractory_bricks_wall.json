@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "bricks_wall",
+  "key": {
+    "#": {
+      "item": "rankine:ultra_high_refractory_bricks"
+    }
+  },
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "result": {
+    "count": 6,
+    "id": "rankine:ultra_high_refractory_bricks_wall"
+  }
+}

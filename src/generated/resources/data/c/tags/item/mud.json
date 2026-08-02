@@ -1,0 +1,14 @@
+{
+  "values": [
+    "rankine:humus_mud",
+    "rankine:loam_mud",
+    "rankine:silty_clay_mud",
+    "rankine:sandy_clay_mud",
+    "rankine:silty_loam_mud",
+    "rankine:clay_loam_mud",
+    "rankine:sandy_loam_mud",
+    "rankine:loamy_sand_mud",
+    "rankine:sandy_clay_loam_mud",
+    "rankine:silty_clay_loam_mud"
+  ]
+}

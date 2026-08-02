@@ -1,0 +1,37 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 16777215,
+  "group": "rankine:alloy_hammers",
+  "inherit": true,
+  "key": {
+    "A": {
+      "item": "rankine:bronze_ingot"
+    },
+    "B": {
+      "item": "rankine:bronze_ingot"
+    },
+    "C": {
+      "item": "rankine:bronze_ingot"
+    },
+    "D": {
+      "item": "rankine:bronze_ingot"
+    },
+    "E": {
+      "tag": "c:rods/wooden"
+    },
+    "F": {
+      "item": "rankine:bronze_ingot"
+    },
+    "H": {
+      "tag": "c:rods/wooden"
+    }
+  },
+  "pattern": [
+    "ABC",
+    "DEF",
+    " H "
+  ],
+  "result": {
+    "item": "rankine:bronze_hammer"
+  }
+}

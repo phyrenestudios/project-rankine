@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "rankine:mossy_nepheline_syenite_bricks"
+  },
+  "result": {
+    "count": 1,
+    "id": "rankine:mossy_nepheline_syenite_bricks_wall"
+  }
+}

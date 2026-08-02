@@ -1,0 +1,31 @@
+{
+  "type": "rankine:alloy_crafting",
+  "color": 16777215,
+  "group": "rankine:alloy_spears",
+  "inherit": true,
+  "key": {
+    "B": {
+      "item": "rankine:niobium_alloy_ingot"
+    },
+    "C": {
+      "item": "rankine:niobium_alloy_ingot"
+    },
+    "E": {
+      "tag": "c:rods/wooden"
+    },
+    "F": {
+      "item": "rankine:niobium_alloy_ingot"
+    },
+    "G": {
+      "tag": "c:rods/wooden"
+    }
+  },
+  "pattern": [
+    " BC",
+    " EF",
+    "G  "
+  ],
+  "result": {
+    "item": "rankine:niobium_alloy_spear"
+  }
+}
