@@ -43,10 +43,18 @@ public interface IAlloyTool extends IAlloyTieredItem {
      * and a tag keys on the item TYPE -- it cannot see that this particular pickaxe was alloyed from
      * pewter, since that lives in a per-stack data component. The tag stays as the coarse filter
      * (all alloy tools); this restores the per-stack half through NeoForge's item extensions.
+     *
+     * <p>Only enchantments whose {@code supported_items} tag is BROADER than the alloy need to be
+     * listed here. The eleven ender-amalgam enchantments are gated by their tags instead
+     * ({@code rankine:enchantable/ender_amalgam_pickaxe} contains exactly the named ender amalgam
+     * pickaxe), which works because {@code ender_amalgam_alloying} produces a named ingot and so a
+     * named tool. Endobiotic is the exception: there is no named ender amalgam armour, so its tag
+     * has to be every generic alloy armour piece and the alloy check can only live here.
      */
     Map<ResourceKey<Enchantment>, ResourceLocation> ALLOY_GATED_ENCHANTMENTS = Map.of(
             RankineEnchantments.ANTIQUATED, ResourceLocation.parse("rankine:alloying/pewter_alloying"),
-            RankineEnchantments.SHAPE_MEMORY, ResourceLocation.parse("rankine:alloying/nitinol_alloying"));
+            RankineEnchantments.SHAPE_MEMORY, ResourceLocation.parse("rankine:alloying/nitinol_alloying"),
+            RankineEnchantments.ENDOBIOTIC, ResourceLocation.parse("rankine:alloying/ender_amalgam_alloying"));
 
     /**
      * Reproduces 1.18.2's alloy gating for {@link #ALLOY_GATED_ENCHANTMENTS}.

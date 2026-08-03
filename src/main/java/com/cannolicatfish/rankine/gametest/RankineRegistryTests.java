@@ -1,7 +1,11 @@
 package com.cannolicatfish.rankine.gametest;
 
 import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.init.RankineDataComponents;
+import com.cannolicatfish.rankine.init.RankineEnchantments;
+import com.cannolicatfish.rankine.init.RankineItems;
 import net.minecraft.core.Holder;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -226,6 +230,67 @@ public class RankineRegistryTests {
         long count = BuiltInRegistries.DATA_COMPONENT_TYPE.keySet().stream()
                 .filter(RankineRegistryTests::isRankine).count();
         assertTrue(count >= 5, "expected >=5 rankine data component types, found " + count);
+        helper.succeed();
+    }
+
+    /**
+     * The alloy-gated enchantments must respect the alloy a stack was actually made from.
+     *
+     * <p>1.18.2 enforced this inside the Enchantment classes; 1.21 applicability is an item tag,
+     * which cannot see a per-stack alloy, so it now runs through NeoForge's supportsEnchantment
+     * (anvil) and isPrimaryItemFor (enchanting table). Neither is observable from a headless gate
+     * through normal play, and the anvil additionally skips the check entirely for creative
+     * players, so this asserts both hooks directly and in both directions.
+     */
+    @GameTest(template = "empty")
+    public void alloyGatedEnchantmentsRespectAlloy(GameTestHelper helper) {
+        var enchantments = helper.getLevel().registryAccess().registryOrThrow(Registries.ENCHANTMENT);
+        List<String> problems = new ArrayList<>();
+
+        record Case(String name, Item item, ResourceKey<Enchantment> enchantment,
+                    ResourceLocation matching, ResourceLocation wrong) {
+        }
+
+        ResourceLocation roseGold = ResourceLocation.parse("rankine:alloying/rose_gold_alloying");
+        List<Case> cases = List.of(
+                new Case("antiquated/pewter_sword", RankineItems.PEWTER_SWORD.get(), RankineEnchantments.ANTIQUATED,
+                        ResourceLocation.parse("rankine:alloying/pewter_alloying"), roseGold),
+                new Case("shape_memory/alloy_pickaxe", RankineItems.ALLOY_PICKAXE.get(), RankineEnchantments.SHAPE_MEMORY,
+                        ResourceLocation.parse("rankine:alloying/nitinol_alloying"), roseGold),
+                new Case("endobiotic/alloy_helmet", RankineItems.ALLOY_HELMET.get(), RankineEnchantments.ENDOBIOTIC,
+                        ResourceLocation.parse("rankine:alloying/ender_amalgam_alloying"), roseGold));
+
+        for (Case c : cases) {
+            Holder<Enchantment> holder = enchantments.getHolder(c.enchantment()).orElse(null);
+            if (holder == null) {
+                problems.add(c.name() + ": enchantment missing from the registry");
+                continue;
+            }
+
+            ItemStack matching = new ItemStack(c.item());
+            matching.set(RankineDataComponents.ALLOY_RECIPE.get(), c.matching());
+            if (!matching.supportsEnchantment(holder)) {
+                problems.add(c.name() + ": refused on its own alloy (anvil path)");
+            }
+
+            ItemStack wrong = new ItemStack(c.item());
+            wrong.set(RankineDataComponents.ALLOY_RECIPE.get(), c.wrong());
+            if (wrong.supportsEnchantment(holder)) {
+                problems.add(c.name() + ": allowed on the wrong alloy (anvil path)");
+            }
+            if (wrong.isPrimaryItemFor(holder)) {
+                problems.add(c.name() + ": offered on the wrong alloy (enchanting table path)");
+            }
+
+            // A stack carrying no alloy at all: 1.18's enchanting table refused outright, while the
+            // anvil deferred to the type check. Only the table half is asserted here, because the
+            // anvil fallback is decided by the supported_items tag rather than by this gate.
+            if (new ItemStack(c.item()).isPrimaryItemFor(holder)) {
+                problems.add(c.name() + ": offered on a stack with no alloy (enchanting table path)");
+            }
+        }
+
+        assertEmpty(problems, "alloy-gated enchantment failures");
         helper.succeed();
     }
 }

@@ -183,6 +183,12 @@ overlay handler that never fired, Ender Amalgam Shovel's category matching the s
 
 - `src/test/java/.../ElementEquationTest.java` (14 tests) — alloy stat curves, pure math.
 - `src/test/java/.../WeightedCollectionTest.java` (5 tests) — seeded drop weighting.
+- `RankineRegistryTests#alloyGatedEnchantmentsRespectAlloy` — asserts the alloy gate on Antiquated,
+  Shape Memory and Endobiotic in both directions, for both the anvil (`supportsEnchantment`) and the
+  enchanting table (`isPrimaryItemFor`). Worth knowing why it asserts the hooks directly rather than
+  driving a real anvil: **the anvil skips the check entirely for creative players**
+  (`AnvilMenu`: `if (player.getAbilities().instabuild) flag1 = true;`), so a creative-mode test of
+  this gate always passes and proves nothing.
 - `src/main/java/.../gametest/RankineRegistryTests.java` — registry/datapack integrity: block+item
   counts, block↔item wiring, recipe types loading real recipes, enchantments parsing, damage types,
   fluids having FluidTypes, loot tables existing per block, creative tabs, data components.

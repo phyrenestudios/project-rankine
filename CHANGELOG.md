@@ -35,10 +35,12 @@ All notable changes to the mod, Project Rankine, will be kept in this file.
   Affected alloy tools, gears, ingots, plates, armour, arrows, templates, the Shulker Gas Vacuum, and
   the tinted grass/leaf/sheetmetal block items. Placed blocks were never affected, because block
   tints are still treated as RGB.
-- Antiquated and Shape Memory are once again restricted to pewter and nitinol tools respectively.
-  1.18.2 enforced this in the enchantment classes; 1.21 applicability is an item tag, which cannot
-  see a per-stack alloy, so the check now runs through NeoForge's `supportsEnchantment` and
-  `isPrimaryItemFor` item extensions. Automatic alloy enchantments are unaffected.
+- Antiquated, Shape Memory and Endobiotic are once again restricted to pewter, nitinol and ender
+  amalgam respectively. 1.18.2 enforced this in the enchantment classes; 1.21 applicability is an
+  item tag, which cannot see a per-stack alloy, so the check now runs through NeoForge's
+  `supportsEnchantment` and `isPrimaryItemFor` item extensions. Automatic alloy enchantments are
+  unaffected. The other ten alloy-restricted enchantments (the ender amalgam tools) were already
+  correct, because their tags name the specific ender amalgam tool.
 
 ### FIXES (pre-existing bugs found during the port)
 - Alloy templates always displayed white; the stored color was written under one key and read under another

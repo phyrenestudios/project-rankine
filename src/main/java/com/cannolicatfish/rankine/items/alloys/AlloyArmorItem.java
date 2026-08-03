@@ -5,6 +5,8 @@
 // RankineArmorMaterials.ALLOY and the matching ArmorItem.Type; durability comes from the
 // dynamic alloy stats so no Properties.durability(...) is needed for the alloy set.
 package com.cannolicatfish.rankine.items.alloys;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantment;
 
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineDataComponents;
@@ -285,5 +287,18 @@ public class AlloyArmorItem extends ArmorItem implements IAlloyTieredItem {
     @Override
     public ResourceLocation getDefaultRecipe() {
         return this.defaultAlloyRecipe;
+    }
+
+    // Endobiotic was ender-amalgam-only in 1.18.2. Its supported_items tag cannot express that
+    // (there is no named ender amalgam armour), so the alloy check runs here.
+    // See IAlloyTool#alloyGateAllows.
+    @Override
+    public boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment) {
+        return IAlloyTool.alloyGateAllows(stack, enchantment, false, super.supportsEnchantment(stack, enchantment));
+    }
+
+    @Override
+    public boolean isPrimaryItemFor(ItemStack stack, Holder<Enchantment> enchantment) {
+        return IAlloyTool.alloyGateAllows(stack, enchantment, true, super.isPrimaryItemFor(stack, enchantment));
     }
 }
