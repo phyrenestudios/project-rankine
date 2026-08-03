@@ -5,6 +5,6 @@
           "color": 16777215,
           "atomic": 117,
           "potential": 0,
-          "items": ["T#forge:nuggets/tennessine","T#forge:ingots/tennessine","T#forge:storage_blocks/tennessine"],
+          "items": ["T#c:nuggets/tennessine","T#c:ingots/tennessine","T#c:storage_blocks/tennessine"],
           "values": [1,9,81]
         }

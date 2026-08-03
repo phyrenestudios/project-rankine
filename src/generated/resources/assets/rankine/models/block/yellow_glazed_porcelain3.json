@@ -1,5 +1,6 @@
 {
   "parent": "rankine:block/template_glazed_porcelain",
+  "render_type": "minecraft:cutout",
   "textures": {
     "overlay": "rankine:block/glazed_porcelain3"
   }

@@ -5,6 +5,6 @@
           "color": 16777215,
           "atomic": 113,
           "potential": 0,
-          "items": ["T#forge:nuggets/nihonium","T#forge:ingots/nihonium","T#forge:storage_blocks/nihonium"],
+          "items": ["T#c:nuggets/nihonium","T#c:ingots/nihonium","T#c:storage_blocks/nihonium"],
           "values": [1,9,81]
         }

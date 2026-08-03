@@ -1,5 +1,6 @@
 {
   "parent": "rankine:block/template_rotation",
+  "render_type": "minecraft:cutout",
   "textures": {
     "all": "rankine:block/mossy_limestone_bricks"
   }

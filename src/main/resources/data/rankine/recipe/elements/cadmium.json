@@ -5,7 +5,7 @@
   "color": 14278474,
   "atomic": 48,
   "potential": -0.4,
-  "items": ["T#forge:nuggets/cadmium","T#forge:ingots/cadmium","T#forge:storage_blocks/cadmium"],
+  "items": ["T#c:nuggets/cadmium","T#c:ingots/cadmium","T#c:storage_blocks/cadmium"],
   "values": [1,9,81],
   "durability": {
     "breaks": [100],

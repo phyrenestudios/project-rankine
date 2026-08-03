@@ -5,7 +5,7 @@
   "color": 16777215,
   "atomic": 92,
   "potential": 0,
-  "items": ["T#forge:nuggets/uranium","T#forge:ingots/uranium","T#forge:storage_blocks/uranium"],
+  "items": ["T#c:nuggets/uranium","T#c:ingots/uranium","T#c:storage_blocks/uranium"],
   "values": [1,9,81],
   "durability": {
     "breaks": [100],

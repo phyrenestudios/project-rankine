@@ -5,6 +5,6 @@
           "color": 16777215,
           "atomic": 89,
           "potential": 0,
-          "items": ["T#forge:nuggets/actinium","T#forge:ingots/actinium","T#forge:storage_blocks/actinium"],
+          "items": ["T#c:nuggets/actinium","T#c:ingots/actinium","T#c:storage_blocks/actinium"],
           "values": [1,9,81]
         }

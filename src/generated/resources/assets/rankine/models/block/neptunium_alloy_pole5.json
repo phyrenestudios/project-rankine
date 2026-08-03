@@ -1,5 +1,6 @@
 {
   "parent": "rankine:block/template_metal_pole_overlay",
+  "render_type": "minecraft:cutout",
   "textures": {
     "overlay": "rankine:block/metal_pole5",
     "side": "rankine:block/template_pole"

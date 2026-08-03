@@ -1,3 +1,4 @@
 {
-  "parent": "rankine:block/template_metal_ladder3"
+  "parent": "rankine:block/template_metal_ladder3",
+  "render_type": "minecraft:cutout"
 }

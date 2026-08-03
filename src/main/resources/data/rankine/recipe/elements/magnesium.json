@@ -5,7 +5,7 @@
   "color": 15724505,
   "atomic": 12,
   "potential": -2.7,
-  "items": ["T#forge:nuggets/magnesium","T#forge:ingots/magnesium","T#forge:storage_blocks/magnesium"],
+  "items": ["T#c:nuggets/magnesium","T#c:ingots/magnesium","T#c:storage_blocks/magnesium"],
   "values": [1,9,81],
   "durability": {
     "breaks": [100],

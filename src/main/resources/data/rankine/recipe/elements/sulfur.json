@@ -5,7 +5,7 @@
   "color": 14737504,
   "atomic": 16,
   "potential": 0.5,
-  "items": ["T#forge:nuggets/sulfur","T#forge:sulfur","T#forge:storage_blocks/sulfur"],
+  "items": ["T#c:nuggets/sulfur","T#c:sulfur","T#c:storage_blocks/sulfur"],
   "values": [1,9,81],
   "durability": {
     "breaks": [4,100],

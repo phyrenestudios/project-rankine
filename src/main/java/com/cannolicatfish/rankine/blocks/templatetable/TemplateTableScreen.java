@@ -90,7 +90,9 @@ public class TemplateTableScreen extends AbstractContainerScreen<TemplateTableCo
     protected void renderBg(GuiGraphics guiGraphics, float partialTicks, int x, int y) {
         int i = (this.width - this.imageWidth) / 2;
         int j = (this.height - this.imageHeight) / 2;
-        guiGraphics.blit(GUI, i, j, 0, 0.0F, 0.0F, this.imageWidth, this.imageHeight, 256, 512);
+        // template_table.png is 512 wide x 256 tall; this overload's trailing pair is
+        // (textureWidth, textureHeight) and swapping them stretches/garbles the background.
+        guiGraphics.blit(GUI, i, j, 0, 0.0F, 0.0F, this.imageWidth, this.imageHeight, TEXTURE_WIDTH, TEXTURE_HEIGHT);
         if (!alloyRecipes.isEmpty()) {
             int k = this.selectedAlloyRecipe;
             if (k < 0 || k >= alloyRecipes.size()) {

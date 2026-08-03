@@ -5,7 +5,7 @@
   "color": 4997443,
   "atomic": 162,
   "potential": -0.04,
-  "items": ["T#forge:nuggets/endositum","T#forge:ingots/endositum","T#forge:storage_blocks/endositum"],
+  "items": ["T#c:nuggets/endositum","T#c:ingots/endositum","T#c:storage_blocks/endositum"],
   "values": [1,9,81],
   "durability": {
     "breaks": [100],

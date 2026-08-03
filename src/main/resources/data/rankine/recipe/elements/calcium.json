@@ -5,7 +5,7 @@
   "color": 15595448,
   "atomic": 20,
   "potential": 0,
-  "items": ["T#forge:nuggets/calcium","T#forge:ingots/calcium","T#forge:storage_blocks/calcium"],
+  "items": ["T#c:nuggets/calcium","T#c:ingots/calcium","T#c:storage_blocks/calcium"],
   "values": [1,9,81],
   "durability": {
     "breaks": [100],

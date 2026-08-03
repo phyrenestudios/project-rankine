@@ -5,7 +5,7 @@
   "color": 8684688,
   "atomic": 14,
   "potential": -0.91,
-  "items": ["T#forge:nuggets/silicon","T#forge:silicon","T#forge:storage_blocks/silicon"],
+  "items": ["T#c:nuggets/silicon","T#c:silicon","T#c:storage_blocks/silicon"],
   "values": [1,9,81],
   "durability": {
     "breaks": [100],

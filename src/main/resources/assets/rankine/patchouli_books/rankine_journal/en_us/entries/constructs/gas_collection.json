@@ -79,7 +79,7 @@
             " SSS " ]
         ],
         "mapping": {
-          "S": "#forge:sheetmetal",
+          "S": "#c:sheetmetal",
           "I": "#minecraft:ice",
           "P": "rankine:air_distillation_packing",
           "V": "rankine:gas_vent",

@@ -5,7 +5,7 @@
   "color": 16777215,
   "atomic": 57,
   "potential": 0,
-  "items": ["T#forge:nuggets/lanthanum","T#forge:ingots/lanthanum","T#forge:storage_blocks/lanthanum"],
+  "items": ["T#c:nuggets/lanthanum","T#c:ingots/lanthanum","T#c:storage_blocks/lanthanum"],
   "values": [1,9,81],
   "durability": {
     "breaks": [100],

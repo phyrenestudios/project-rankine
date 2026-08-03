@@ -1,5 +1,6 @@
 {
   "parent": "rankine:block/template_rankine_ore",
+  "render_type": "minecraft:cutout",
   "textures": {
     "background": "rankine:block/mudstone",
     "overlay": "rankine:block/iron_ore"

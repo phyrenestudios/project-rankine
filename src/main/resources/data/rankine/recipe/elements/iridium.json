@@ -5,7 +5,7 @@
   "color": 13214085,
   "atomic": 77,
   "potential": 0.87,
-  "items": ["T#forge:nuggets/iridium","T#forge:ingots/iridium","T#forge:storage_blocks/iridium"],
+  "items": ["T#c:nuggets/iridium","T#c:ingots/iridium","T#c:storage_blocks/iridium"],
   "values": [1,9,81],
   "durability": {
     "breaks": [100],

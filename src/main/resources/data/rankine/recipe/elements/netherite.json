@@ -5,7 +5,7 @@
   "color": 4997443,
   "atomic": 161,
   "potential": -0.04,
-  "items": ["T#forge:nuggets/netherite","T#forge:ingots/netherite","T#forge:storage_blocks/netherite"],
+  "items": ["T#c:nuggets/netherite","T#c:ingots/netherite","T#c:storage_blocks/netherite"],
   "values": [1,9,81],
   "durability": {
     "breaks": [100],

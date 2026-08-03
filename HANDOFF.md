@@ -147,11 +147,23 @@ These were all invisible to the compiler and found only by running things:
    builder. Five cases fixed by declaring the empty item tag directly (matching 1.18 output byte-for-byte).
 5. **Ambiguous `X::new`** — `DeferredRegister.Blocks/Items` have both `Function<ResourceLocation,B>`
    and `Supplier<B>` overloads. Always write `() -> new X()`. Hit twice (literal and computed names).
-6. **ModDevGradle has no `localRuntime`.** To put an optional mod (JEI) in the dev runtime, use
-   `additionalRuntimeClasspath` — `localRuntime` is ForgeGradle's and fails outright with
-   "Could not find method localRuntime()". An earlier commented-out line in build.gradle suggested
-   the wrong one; it had never been run. Confirm the jar landed by grepping
-   `build/moddev/*LegacyClasspath.txt`.
+6. **Optional runtime mods (JEI, Patchouli) must go on the source set's `runtimeClasspath`, NOT
+   `additionalRuntimeClasspath`.** FML's dev-run mod discovery scans the JVM `-cp` for
+   `META-INF/neoforge.mods.toml`; MDG builds each run's `-cp` from the source set's
+   runtimeClasspath. `additionalRuntimeClasspath` feeds `build/moddev/*LegacyClasspath.txt`
+   (boot-layer LIBRARIES) which FML never scans for mods — a jar there loads silently as a plain
+   library and simply never appears in the mod list. build.gradle now defines a custom
+   `localRuntime` configuration extending runtimeClasspath (keeps dev mods out of the published
+   POM). An earlier version of this note claimed the opposite — `additionalRuntimeClasspath` was
+   verified to put the jar on the classpath txt, but "on a classpath" ≠ "loaded as a mod".
+   Verify by grepping the run log's mod list, never the classpath files.
+7. **`grep` finds commented-out registrations — check for an enclosing `/* */` before believing a
+   declaration exists.** RankineItems.java has three block-commented registration groups inherited
+   from 1.18.X (62 metal lanterns at ~515-580, the 6 `CRUSHING_HEAD_HL*` items, and the dead
+   `itemInit()` at ~2090). Both a triage agent and a straight grep concluded the lantern items were
+   registered; javac disagreed. They are dead code UPSTREAM (1.18.X has the same comment blocks),
+   so leaving them dead is faithful — they are pre-existing content gaps like `piston_crusher`,
+   not port regressions.
 7. **Item tints are ARGB in 1.21; they were RGB in 1.18 — a zero alpha byte renders NOTHING.**
    `ItemRenderer#renderQuadList` now does `FastColor.ARGB32.alpha(i)` and passes it as the quad's
    alpha. Every plain `0xRRGGBB` tint therefore has alpha 0 and the item is drawn fully transparent:

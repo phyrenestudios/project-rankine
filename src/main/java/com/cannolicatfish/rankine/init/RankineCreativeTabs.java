@@ -12,6 +12,8 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -62,6 +64,28 @@ public class RankineCreativeTabs {
         }
 
         output.accept(item);
+    }
+
+    /**
+     * Emits every item-bearing block of a block group (stones, bricks, cements, dripstones,
+     * sandstones, woods). In 1.18.2 these ~1,900 BlockItems got their creative tab from each
+     * group's shared Item.Properties (.tab(...)); the port removed those calls, and because the
+     * group classes discard their DeferredItem handles, the items appeared in NO tab (and thus
+     * not in creative search either) — refractory bricks were the reported casualty.
+     *
+     * <p>The air-filter and dedupe are load-bearing, not defensive: wood groups contain wall-sign
+     * blocks (no own item — asItem() is the standing sign's item, a duplicate) and potted saplings
+     * (asItem() == AIR), and CreativeModeTab's Output.accept THROWS on both empty stacks and
+     * duplicate entries, which would crash every tab build.
+     */
+    private static void emitBlocks(CreativeModeTab.ItemDisplayParameters params, CreativeModeTab.Output output, List<Block> blocks) {
+        java.util.Set<Item> seen = new java.util.HashSet<>();
+        for (Block b : blocks) {
+            if (b == null) continue; // wood getters return null entries for absent variants (bamboo has no logs/leaves)
+            Item i = b.asItem();
+            if (i == Items.AIR || !seen.add(i)) continue;
+            emit(params, output, i);
+        }
     }
 
     /** Enchantments are datapack entries in 1.21, so the holder comes from the tab's lookup provider. */
@@ -538,6 +562,12 @@ public class RankineCreativeTabs {
                 emit(params, output, RankineItems.GRAY_LED.get());
                 emit(params, output, RankineItems.LIGHT_GRAY_LED.get());
                 emit(params, output, RankineItems.WHITE_LED.get());
+                // 1.18 gave every block-group BlockItem .tab(rankineWorld) via the groups' shared properties.
+                RankineLists.RANKINE_STONES.forEach(s -> emitBlocks(params, output, s.getStoneBlocks()));
+                RankineLists.RANKINE_BRICKS.forEach(b -> emitBlocks(params, output, b.getBricksBlocks()));
+                RankineLists.RANKINE_CEMENTS.forEach(c -> emitBlocks(params, output, c.getCementBlocks()));
+                RankineLists.RANKINE_DRIPSTONES.forEach(d -> emitBlocks(params, output, d.getBlocks()));
+                RankineLists.RANKINE_SANDSTONES.forEach(s -> emitBlocks(params, output, s.getSandstoneBlocks()));
             }).build());
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> RANKINE_BIOTA = CREATIVE_MODE_TABS.register("rankine_biota", () -> CreativeModeTab.builder()
@@ -671,6 +701,9 @@ public class RankineCreativeTabs {
                 emit(params, output, RankineItems.SORGHUM_BALE.get());
                 emit(params, output, RankineItems.MILLET_BALE.get());
                 emit(params, output, RankineItems.MAPLE_SYRUP.get());
+                // Wood sets (.tab(rankineBiota) in 1.18): logs/planks/stairs/doors/signs/leaves per wood.
+                // Boats are items, not blocks, so they need their own emit.
+                RankineLists.RANKINE_WOODS.forEach(w -> { emitBlocks(params, output, w.getWoodBlocks()); emit(params, output, w.getBoat()); });
             }).build());
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> RANKINE_METALLURGY = CREATIVE_MODE_TABS.register("rankine_metallurgy", () -> CreativeModeTab.builder()

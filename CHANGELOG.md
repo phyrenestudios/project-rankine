@@ -26,8 +26,28 @@ All notable changes to the mod, Project Rankine, will be kept in this file.
   milk as their fluid input.
 - The Rankine Journal recipe carries its Patchouli book id as a `custom_data` component. 1.21 removed the `nbt`
   field from recipe results, so the id would otherwise have been dropped and the crafted book would open blank.
+- The Rankine Journal book itself is migrated to Patchouli's 1.20+ layout: `use_resource_pack` enabled and the
+  74 content files moved from `/data/` to `/assets/`, with `book.json` staying in `/data/`. Patchouli refused
+  to load the book at all under the old layout (found the moment Patchouli actually loaded in a dev run).
 
 ### FIXES (found while testing the port)
+- **No machine could detect any element.** All 120 element recipes still referenced the dead `forge:` tag
+  namespace (`T#forge:ingots/copper` …), which 1.21 NeoForge replaced with `c:`. A nonexistent tag resolves to
+  an empty ingredient with no error anywhere, so the Alloy Furnace, Induction Furnace and Template Table
+  silently recognized nothing. All element recipes, one Create-compat recipe and two Patchouli multiblock
+  pages now use `c:` tags — every target tag already existed.
+- **~1,900 building blocks were invisible in the creative menu and its search** — every stone, brick
+  (including the reported refractory bricks), cement, dripstone, sandstone and wood-set item. In 1.18 these
+  got their tab from each block group's shared item properties; the port removed those without adding the
+  items to the new tab lists. They were still craftable and functional, just unbrowsable.
+- **Short grass rendered with opaque black instead of transparency — and it wasn't alone.** The datagen
+  matcher that assigns render types missed every model named with a bare digit suffix. Regenerating with the
+  fixed matcher restored the 1.18 render type on **5,991 model variants across 275 block families**: all ore
+  variants, the brick/porcelain building-mode styles, metal ladders and poles, and short grass. Short grass
+  was simply the only one whose texture made the loss visible.
+- **The Template Table's background was stretched and garbled** — its draw call passed the GUI texture's
+  dimensions swapped (256×512 for a 512×256 texture), compressing the art horizontally and zooming it
+  vertically. Slots were unaffected, which is why they looked right while the art didn't.
 - **Placing any of the 35 specific alloy blocks (Steel Block, Bronze Block, Invar Block, …) crashed the game.**
   Their shared block entity type was only bound to the generic Alloy Block. The mismatch existed in 1.18.2 too,
   where it was silently logged as a warning; 1.21 throws instead. The type is now bound to all 36 alloy blocks.
@@ -46,6 +66,9 @@ All notable changes to the mod, Project Rankine, will be kept in this file.
   correct, because their tags name the specific ender amalgam tool.
 
 ### FIXES (pre-existing bugs found during the port)
+- Sneak-right-clicking with a building-mode block item crashed when the main hand held a block without
+  building modes (e.g. the Antimatter Block) or when using Ice Bricks. The 1.18.2 code cast the main hand's
+  block unguarded; the style cycle now reads the used item's own block, guarded.
 - Alloy templates always displayed white; the stored color was written under one key and read under another
 - Alloy knockback resistance was written as a float and read as an int, so it was always zero
 - Player tick handlers ran twice per tick due to a missing phase check
@@ -68,10 +91,14 @@ All notable changes to the mod, Project Rankine, will be kept in this file.
 
 ### TESTING
 - Added an automated suite: 24 unit tests (alloy stat curves, drop weighting, the alloy-enchantment gate) and
-  18 GameTests (registry/datapack integrity, machine capabilities and block entities, enchantment applicability
+  20 GameTests (registry/datapack integrity, machine capabilities and block entities, enchantment applicability
   in both directions). `gradlew test` / `gradlew runGameTestServer`; `.porting/verify.sh` drives all five
   verification gates end to end.
-- JEI (19.21.0.247) is on the dev-runtime classpath so the rewritten integration is exercised in `runClient`.
+- Two GameTests exist specifically because playtesting exposed silent failure modes no gate could see:
+  every element-recipe ingredient must resolve to at least one item (catches dead tag references), and every
+  registered item must appear in a creative tab (the tabs are force-built headlessly to check this).
+- JEI (19.21.0.247) and Patchouli (1.21.1-93) now genuinely load as mods in dev runs. They must be on the
+  run's classpath as mods, not libraries — see the `localRuntime` configuration in build.gradle.
 
 ## Project Rankine Version 1.3.8 Changelog
 

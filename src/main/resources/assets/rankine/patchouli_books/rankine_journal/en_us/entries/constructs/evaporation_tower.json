@@ -24,7 +24,7 @@
           "M": "#rankine:heating_elements",
           "W": "minecraft:water",
           "0": "rankine:evaporation_tower",
-          "S": "#forge:sheetmetal"
+          "S": "#c:sheetmetal"
         },
         "symmetrical": true
       }

@@ -5,6 +5,6 @@
           "color": 16777215,
           "atomic": 103,
           "potential": 0,
-          "items": ["T#forge:nuggets/lawrencium","T#forge:ingots/lawrencium","T#forge:storage_blocks/lawrencium"],
+          "items": ["T#c:nuggets/lawrencium","T#c:ingots/lawrencium","T#c:storage_blocks/lawrencium"],
           "values": [1,9,81]
         }

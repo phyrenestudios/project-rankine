@@ -5,7 +5,7 @@
   "color": 10131385,
   "atomic": 82,
   "potential": -0.126,
-  "items": ["T#forge:nuggets/lead","T#forge:ingots/lead","T#forge:storage_blocks/lead"],
+  "items": ["T#c:nuggets/lead","T#c:ingots/lead","T#c:storage_blocks/lead"],
   "values": [1,9,81],
   "durability": {
     "breaks": [100],

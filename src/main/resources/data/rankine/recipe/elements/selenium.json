@@ -5,7 +5,7 @@
   "color": 16777215,
   "atomic": 34,
   "potential": 0.74,
-  "items": ["T#forge:nuggets/selenium","T#forge:selenium","T#forge:storage_blocks/selenium"],
+  "items": ["T#c:nuggets/selenium","T#c:selenium","T#c:storage_blocks/selenium"],
   "values": [1,9,81],
   "durability": {
     "breaks": [100],

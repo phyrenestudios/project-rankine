@@ -4,6 +4,8 @@ import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.init.RankineDataComponents;
 import com.cannolicatfish.rankine.init.RankineEnchantments;
 import com.cannolicatfish.rankine.init.RankineItems;
+import com.cannolicatfish.rankine.init.RankineRecipeTypes;
+import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.core.Holder;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.core.RegistryAccess;
@@ -350,6 +352,77 @@ public class RankineRegistryTests {
         }
 
         assertEmpty(problems, "vanilla items accepting rankine alloy enchantments");
+        helper.succeed();
+    }
+
+    /**
+     * Every ingredient of every element recipe must resolve to at least one item.
+     *
+     * <p>This is the regression net for the forge:->c: tag namespace migration: element recipes
+     * reference tags as raw "T#namespace:path" strings, and a tag that does not exist never throws
+     * anywhere — TagKey.create accepts it, Ingredient.of(tag) resolves to an EMPTY ingredient, and
+     * element detection (Alloy Furnace, Induction Furnace, Template Table, JEI) silently finds
+     * nothing. All 120 element recipes shipped with dead "T#forge:" references after the port and
+     * no gate noticed; this test makes that failure loud.
+     */
+    @GameTest(template = "empty")
+    public void elementRecipeIngredientsResolve(GameTestHelper helper) {
+        var holders = helper.getLevel().getRecipeManager()
+                .getAllRecipesFor(RankineRecipeTypes.ELEMENT.get());
+        assertTrue(holders.size() > 100, "expected >100 element recipes, found " + holders.size());
+
+        List<String> problems = new ArrayList<>();
+        for (var holder : holders) {
+            var recipe = holder.value();
+            var ingredients = recipe.getIngredients();
+            for (int i = 0; i < ingredients.size(); i++) {
+                if (ingredients.get(i).getItems().length == 0) {
+                    problems.add(holder.id().getPath() + " entry " + i);
+                }
+            }
+        }
+        assertEmpty(problems, "element recipe entries resolving to zero items");
+        helper.succeed();
+    }
+
+    /**
+     * Every registered rankine item must appear in at least one rankine creative tab.
+     *
+     * <p>Tab contents normally only build on the client, which is why ~1,974 missing items (all
+     * block-group BlockItems, the metal lanterns, the HL crushing heads) survived every headless
+     * gate — nothing ever built the tabs. CreativeModeTabs.tryRebuildTabContents is common code,
+     * so a GameTest can force the build and diff the result against the item registry. The
+     * exclusion list is the 13 items that had no .tab() in 1.18.2 either (verified against the
+     * baseline) — intentionally hidden, not regressions.
+     */
+    @GameTest(template = "empty")
+    public void creativeTabsContainEveryItem(GameTestHelper helper) {
+        CreativeModeTabs.tryRebuildTabContents(
+                helper.getLevel().enabledFeatures(), true, helper.getLevel().registryAccess());
+
+        java.util.Set<Item> shown = new java.util.HashSet<>();
+        for (var entry : BuiltInRegistries.CREATIVE_MODE_TAB.entrySet()) {
+            if (!isRankine(entry.getKey().location())) continue;
+            for (ItemStack stack : entry.getValue().getDisplayItems()) {
+                shown.add(stack.getItem());
+            }
+        }
+        assertTrue(!shown.isEmpty(), "rankine creative tabs built empty — tryRebuildTabContents produced nothing");
+
+        java.util.Set<String> intentionallyHidden = java.util.Set.of(
+                "garland", "pineapple_sleeves", "soy_milk", "pcf", "particle_accelerator",
+                "leather_canteen", "stainless_steel_canteen", "enderball", "biome_indicator_generic",
+                "biome_indicator_river", "biome_indicator_ocean", "element", "unamed_explosive");
+
+        List<String> problems = new ArrayList<>();
+        for (var entry : BuiltInRegistries.ITEM.entrySet()) {
+            ResourceLocation id = entry.getKey().location();
+            if (!isRankine(id) || intentionallyHidden.contains(id.getPath())) continue;
+            if (!shown.contains(entry.getValue())) {
+                problems.add(id.getPath());
+            }
+        }
+        assertEmpty(problems, "rankine items absent from every creative tab");
         helper.succeed();
     }
 }

@@ -64,14 +64,23 @@ repositories {
     }
 }
 
+configurations {
+    // Dev-run-only MOD jars (JEI, Patchouli). FML's dev-run mod discovery scans the JVM -cp for
+    // META-INF/neoforge.mods.toml, and MDG builds each run's -cp from the source set's
+    // runtimeClasspath — so mod jars must land there to be loaded as mods.
+    // additionalRuntimeClasspath is the WRONG channel: it feeds legacyClasspath.txt (boot-layer
+    // libraries), which FML never scans for mods — a jar there loads as a plain library, silently.
+    // A custom configuration (instead of plain runtimeOnly) keeps these out of the published POM.
+    localRuntime
+}
+configurations.runtimeClasspath.extendsFrom(configurations.localRuntime)
+
 dependencies {
     compileOnly "mezz.jei:jei-${jei_mc_version}-neoforge-api:${jei_version}"
-    // JEI in the dev runtime. The integration is 24 files rewritten against the 1.21 API and it is
-    // an optional dependency, so it only ever executes when JEI is actually present -- comment this
-    // out again if you need to confirm the mod still runs standalone.
-    // NOTE: this is ModDevGradle's configuration, NOT ForgeGradle's `localRuntime`, which does not
-    // exist here and fails with "Could not find method localRuntime()".
-    additionalRuntimeClasspath "mezz.jei:jei-${jei_mc_version}-neoforge:${jei_version}"
+    // Optional-integration mods, loaded in every dev run (client, server, gameTestServer).
+    // Comment out to confirm the mod still runs standalone.
+    localRuntime "mezz.jei:jei-${jei_mc_version}-neoforge:${jei_version}"
+    localRuntime "vazkii.patchouli:Patchouli:${patchouli_version}"
 
     testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'

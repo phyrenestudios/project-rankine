@@ -5,7 +5,7 @@
   "color": 12693657,
   "atomic": 74,
   "potential": -0.12,
-  "items": ["T#forge:nuggets/tungsten","T#forge:ingots/tungsten","T#forge:storage_blocks/tungsten"],
+  "items": ["T#c:nuggets/tungsten","T#c:ingots/tungsten","T#c:storage_blocks/tungsten"],
   "values": [1,9,81],
   "durability": {
     "breaks": [100],

@@ -5,7 +5,7 @@
   "color": 16777215,
   "atomic": 46,
   "potential": -1.9,
-  "items": ["T#forge:nuggets/palladium","T#forge:ingots/palladium","T#forge:storage_blocks/palladium"],
+  "items": ["T#c:nuggets/palladium","T#c:ingots/palladium","T#c:storage_blocks/palladium"],
   "values": [1,9,81],
   "durability": {
     "breaks": [100],

@@ -5,7 +5,7 @@
   "color": 16777215,
   "atomic": 17,
   "potential": 0,
-  "items": ["T#forge:nuggets/chlorine","T#forge:ingots/chlorine","T#forge:storage_blocks/chlorine"],
+  "items": ["T#c:nuggets/chlorine","T#c:ingots/chlorine","T#c:storage_blocks/chlorine"],
   "values": [1,9,81],
   "damage": {
     "breaks": [100],

@@ -810,7 +810,14 @@ public class RankineBlockStateProvider extends BlockStateProvider {
             models().generatedModels.forEach((loc, builder) -> {
                 if (!loc.getNamespace().equals(ProjectRankine.MODID)) return;
                 String path = loc.getPath();
-                if (!(path.equals(base) || path.startsWith(base + "_"))) return;
+                // Some generators name their models with a bare digit suffix (short_grass0/1/2,
+                // stepping stones, columns) rather than base_variant. Without the digits branch,
+                // SHORT_GRASS's three models got no render_type at all and the plant rendered
+                // its transparent pixels as opaque black in 1.21.
+                boolean digitSuffix = path.length() > base.length()
+                        && path.startsWith(base)
+                        && path.substring(base.length()).chars().allMatch(Character::isDigit);
+                if (!(path.equals(base) || path.startsWith(base + "_") || digitSuffix)) return;
                 if (!renderTyped.add(loc)) return;
                 builder.renderType(type);
             });

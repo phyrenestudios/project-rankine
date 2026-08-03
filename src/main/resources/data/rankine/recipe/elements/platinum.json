@@ -5,7 +5,7 @@
   "color": 14016232,
   "atomic": 78,
   "potential": 1.188,
-  "items": ["T#forge:nuggets/platinum","T#forge:ingots/platinum","T#forge:storage_blocks/platinum"],
+  "items": ["T#c:nuggets/platinum","T#c:ingots/platinum","T#c:storage_blocks/platinum"],
   "values": [1,9,81],
   "durability": {
     "breaks": [100],
