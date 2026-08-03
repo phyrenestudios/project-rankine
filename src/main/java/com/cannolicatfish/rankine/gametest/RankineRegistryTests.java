@@ -15,6 +15,7 @@ import net.minecraft.gametest.framework.GameTestHelper;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
@@ -290,7 +291,65 @@ public class RankineRegistryTests {
             }
         }
 
+        // The alloy match must not be able to override the item type. Antiquated is a TOOL
+        // enchantment, so a pewter-alloyed helmet has the right alloy and the wrong type; 1.18.2
+        // refused it via `stack.getItem() instanceof IAlloyTool`, which is the tag now.
+        Holder<Enchantment> antiquated = enchantments.getHolder(RankineEnchantments.ANTIQUATED).orElse(null);
+        if (antiquated != null) {
+            ItemStack pewterHelmet = new ItemStack(RankineItems.ALLOY_HELMET.get());
+            pewterHelmet.set(RankineDataComponents.ALLOY_RECIPE.get(),
+                    ResourceLocation.parse("rankine:alloying/pewter_alloying"));
+            if (pewterHelmet.supportsEnchantment(antiquated)) {
+                problems.add("antiquated: accepted on a pewter ALLOY HELMET (tool-only enchantment)");
+            }
+        }
+
         assertEmpty(problems, "alloy-gated enchantment failures");
+        helper.succeed();
+    }
+
+    /**
+     * Rankine's alloy enchantments must never reach a vanilla item.
+     *
+     * <p>Nothing in the mod's own code enforces this -- the alloy gate only runs on Rankine's item
+     * classes, so a diamond sword is decided entirely by the enchantment's supported_items tag.
+     * This asserts that the tags really are Rankine-only, which is the whole of the protection.
+     *
+     * <p>Note that observing this in-game requires SURVIVAL mode: the anvil forces its applicability
+     * check to true for creative players (AnvilMenu: {@code if (instabuild) flag1 = true}), so a
+     * creative player can put any enchantment on any item and it proves nothing about these rules.
+     */
+    @GameTest(template = "empty")
+    public void alloyEnchantmentsRejectVanillaItems(GameTestHelper helper) {
+        var enchantments = helper.getLevel().registryAccess().registryOrThrow(Registries.ENCHANTMENT);
+        List<String> problems = new ArrayList<>();
+
+        List<ResourceKey<Enchantment>> gated = List.of(
+                RankineEnchantments.ANTIQUATED, RankineEnchantments.SHAPE_MEMORY, RankineEnchantments.ENDOBIOTIC);
+        List<Item> vanilla = List.of(
+                Items.DIAMOND_SWORD, Items.DIAMOND_PICKAXE, Items.NETHERITE_AXE,
+                Items.IRON_HELMET, Items.DIAMOND_CHESTPLATE, Items.STICK);
+
+        for (ResourceKey<Enchantment> key : gated) {
+            Holder<Enchantment> holder = enchantments.getHolder(key).orElse(null);
+            if (holder == null) {
+                problems.add(key.location() + ": missing from the registry");
+                continue;
+            }
+            for (Item item : vanilla) {
+                ItemStack stack = new ItemStack(item);
+                if (stack.supportsEnchantment(holder)) {
+                    problems.add(key.location().getPath() + " accepted on vanilla "
+                            + BuiltInRegistries.ITEM.getKey(item).getPath() + " (anvil path)");
+                }
+                if (stack.isPrimaryItemFor(holder)) {
+                    problems.add(key.location().getPath() + " offered on vanilla "
+                            + BuiltInRegistries.ITEM.getKey(item).getPath() + " (enchanting table path)");
+                }
+            }
+        }
+
+        assertEmpty(problems, "vanilla items accepting rankine alloy enchantments");
         helper.succeed();
     }
 }

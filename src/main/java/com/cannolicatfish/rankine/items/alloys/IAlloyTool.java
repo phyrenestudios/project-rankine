@@ -75,13 +75,31 @@ public interface IAlloyTool extends IAlloyTieredItem {
                 break;
             }
         }
+        return alloyGateDecision(IAlloyItem.getAlloyRecipe(stack), required, enchantingTable, tagFallback);
+    }
+
+    /**
+     * The decision half of {@link #alloyGateAllows}, split out so it can be unit tested without a
+     * running game. Mirrors 1.18.2's two methods, which both read
+     * {@code rs.equals(required) && <item type check>} -- the type check being what the
+     * supported_items tag now expresses, and what {@code tagFallback} carries in.
+     *
+     * @param stackAlloy     the alloying recipe this stack was made from, or null if it has none
+     * @param required       the alloy this enchantment demands, or null if it is not alloy-gated
+     * @param enchantingTable true for the table path, which refused an alloy-less stack outright;
+     *                        false for the anvil path, which deferred to the type check
+     * @param tagFallback    what the vanilla/NeoForge default decided (i.e. the tag check)
+     */
+    static boolean alloyGateDecision(@Nullable ResourceLocation stackAlloy, @Nullable ResourceLocation required,
+                                     boolean enchantingTable, boolean tagFallback) {
         if (required == null) {
             return tagFallback; // not alloy-gated -- defer entirely to the default behaviour
         }
-
-        ResourceLocation alloyRecipe = IAlloyItem.getAlloyRecipe(stack);
-        if (alloyRecipe != null) {
-            return alloyRecipe.equals(required);
+        if (stackAlloy != null) {
+            // The alloy must match AND the item must still be of an accepted type. Without the
+            // second half, a pewter-alloyed ALLOY HELMET would accept Antiquated, which 1.18.2
+            // refused via `stack.getItem() instanceof IAlloyTool`.
+            return stackAlloy.equals(required) && tagFallback;
         }
         return !enchantingTable && tagFallback;
     }

@@ -66,8 +66,12 @@ repositories {
 
 dependencies {
     compileOnly "mezz.jei:jei-${jei_mc_version}-neoforge-api:${jei_version}"
-    // Uncomment to test with JEI in the dev client:
-    // localRuntime "mezz.jei:jei-${jei_mc_version}-neoforge:${jei_version}"
+    // JEI in the dev runtime. The integration is 24 files rewritten against the 1.21 API and it is
+    // an optional dependency, so it only ever executes when JEI is actually present -- comment this
+    // out again if you need to confirm the mod still runs standalone.
+    // NOTE: this is ModDevGradle's configuration, NOT ForgeGradle's `localRuntime`, which does not
+    // exist here and fails with "Could not find method localRuntime()".
+    additionalRuntimeClasspath "mezz.jei:jei-${jei_mc_version}-neoforge:${jei_version}"
 
     testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'

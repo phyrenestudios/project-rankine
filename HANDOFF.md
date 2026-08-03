@@ -147,7 +147,12 @@ These were all invisible to the compiler and found only by running things:
    builder. Five cases fixed by declaring the empty item tag directly (matching 1.18 output byte-for-byte).
 5. **Ambiguous `X::new`** — `DeferredRegister.Blocks/Items` have both `Function<ResourceLocation,B>`
    and `Supplier<B>` overloads. Always write `() -> new X()`. Hit twice (literal and computed names).
-6. **Item tints are ARGB in 1.21; they were RGB in 1.18 — a zero alpha byte renders NOTHING.**
+6. **ModDevGradle has no `localRuntime`.** To put an optional mod (JEI) in the dev runtime, use
+   `additionalRuntimeClasspath` — `localRuntime` is ForgeGradle's and fails outright with
+   "Could not find method localRuntime()". An earlier commented-out line in build.gradle suggested
+   the wrong one; it had never been run. Confirm the jar landed by grepping
+   `build/moddev/*LegacyClasspath.txt`.
+7. **Item tints are ARGB in 1.21; they were RGB in 1.18 — a zero alpha byte renders NOTHING.**
    `ItemRenderer#renderQuadList` now does `FastColor.ARGB32.alpha(i)` and passes it as the quad's
    alpha. Every plain `0xRRGGBB` tint therefore has alpha 0 and the item is drawn fully transparent:
    present in the inventory, correct data components, no sprite. Found only by looking at a creative
@@ -181,6 +186,11 @@ overlay handler that never fired, Ender Amalgam Shovel's category matching the s
 
 ## Test assets
 
+- `src/test/java/.../AlloyEnchantmentGateTest.java` (5 tests) — the alloy-gate truth table, via the
+  pure `IAlloyTool#alloyGateDecision`. Writing this table out is what caught a real bug: a matching
+  alloy was bypassing the item-type check, so a pewter-alloyed ALLOY HELMET accepted Antiquated (a
+  tool-only enchantment). 1.18.2 required `rs.equals(required) && instanceof IAlloyTool`; the second
+  half is the supported_items tag now, and it had been dropped.
 - `src/test/java/.../ElementEquationTest.java` (14 tests) — alloy stat curves, pure math.
 - `src/test/java/.../WeightedCollectionTest.java` (5 tests) — seeded drop weighting.
 - `RankineRegistryTests#alloyGatedEnchantmentsRespectAlloy` — asserts the alloy gate on Antiquated,
