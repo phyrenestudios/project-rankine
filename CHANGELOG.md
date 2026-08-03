@@ -28,6 +28,9 @@ All notable changes to the mod, Project Rankine, will be kept in this file.
   field from recipe results, so the id would otherwise have been dropped and the crafted book would open blank.
 
 ### FIXES (found while testing the port)
+- **Placing any of the 35 specific alloy blocks (Steel Block, Bronze Block, Invar Block, …) crashed the game.**
+  Their shared block entity type was only bound to the generic Alloy Block. The mismatch existed in 1.18.2 too,
+  where it was silently logged as a warning; 1.21 throws instead. The type is now bound to all 36 alloy blocks.
 - **Every tinted Rankine item rendered invisible.** 1.18.2's item renderer used only the RGB channels
   of an `ItemColor` and always drew items opaque; 1.21 reads the value as ARGB and passes its alpha
   through to the quad. Rankine's tints are all plain `0xRRGGBB` — alloy colours, biome-derived grass
@@ -58,6 +61,17 @@ All notable changes to the mod, Project Rankine, will be kept in this file.
 - The Electromagnet's "is metal" check is approximated by block sound type and misses netherite blocks and anvils
 - Off-hand right-clicks no longer reach a few block interaction fallbacks, following vanilla's interaction split
 - Recipe-unlock advancements are grouped under `recipes/misc`; recipe ids themselves are unchanged
+- Advancement custom item predicates are now `ItemSubPredicate`s and their JSON shape changed — external
+  datapacks referencing Rankine's predicates need updating
+- Cannonball and Enderball post-attack enchantment effects fire only on the victim's side (the projectile
+  is ownerless in 1.21)
+
+### TESTING
+- Added an automated suite: 24 unit tests (alloy stat curves, drop weighting, the alloy-enchantment gate) and
+  18 GameTests (registry/datapack integrity, machine capabilities and block entities, enchantment applicability
+  in both directions). `gradlew test` / `gradlew runGameTestServer`; `.porting/verify.sh` drives all five
+  verification gates end to end.
+- JEI (19.21.0.247) is on the dev-runtime classpath so the rewritten integration is exercised in `runClient`.
 
 ## Project Rankine Version 1.3.8 Changelog
 
