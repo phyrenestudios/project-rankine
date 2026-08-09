@@ -69,8 +69,9 @@ public class CrucibleRecipeCategory implements IRecipeCategory<CrucibleRecipe> {
             p_234699_0_.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.ROOT));
         });
         Font font = Minecraft.getInstance().font;
-        guiGraphics.drawString(font,Component.translatable("rankine.jei.tooltip_required"),120, 0, 0x000000);
-        guiGraphics.drawString(font,Component.translatable("rankine.jei.crucible_tooltip_additional",recipe.getRequired().stream().filter(aBoolean -> aBoolean).count()),1, 96, 0x000000);
+        // dropShadow=false: 1.18 used Font#draw here, which does not shadow.
+        guiGraphics.drawString(font,Component.translatable("rankine.jei.tooltip_required"),120, 0, 0x000000,false);
+        guiGraphics.drawString(font,Component.translatable("rankine.jei.crucible_tooltip_additional",recipe.getRequired().stream().filter(aBoolean -> aBoolean).count()),1, 96, 0x000000,false);
     }
 
     @Override

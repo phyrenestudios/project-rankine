@@ -84,7 +84,8 @@ public class TreetappingRecipeCategory implements IRecipeCategory<TreetappingRec
     public void draw(TreetappingRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
         if (recipe.getTapTime() > 0) {
             Font font = Minecraft.getInstance().font;
-            guiGraphics.drawString(font, Math.round(recipe.getTapTime()/20f)+"s", 59, 29, 0x7E7E7E);
+            // dropShadow=false: 1.18 used Font#draw here.
+            guiGraphics.drawString(font, Math.round(recipe.getTapTime()/20f)+"s", 59, 29, 0x7E7E7E, false);
         }
         IDrawableAnimated arrow = getArrow(recipe);
         arrow.draw(guiGraphics, 27, 10);

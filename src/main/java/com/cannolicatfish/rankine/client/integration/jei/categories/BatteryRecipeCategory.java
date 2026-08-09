@@ -91,7 +91,8 @@ public class BatteryRecipeCategory implements IRecipeCategory<IBatteryRecipe> {
         boolean rtg = recipe.getInputs().stream().findFirst().isPresent() && recipe.getInputs().stream().findFirst().get().getItem() instanceof RTGItem;
         int count = 0;
         for (Component c : createChargeCountText(rtg, burnTime)) {
-            guiGraphics.drawString(font, c, 22, 17 + count, 0xFF808080);
+            // dropShadow=false: 1.18 used Font#draw here, which does not shadow.
+            guiGraphics.drawString(font, c, 22, 17 + count, 0xFF808080, false);
             count += 10;
         }
 

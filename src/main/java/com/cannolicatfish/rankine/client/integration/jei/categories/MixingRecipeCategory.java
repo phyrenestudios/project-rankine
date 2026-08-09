@@ -110,21 +110,24 @@ public class MixingRecipeCategory implements IRecipeCategory<MixingRecipe> {
         });
         Font font = Minecraft.getInstance().font;
 
-        guiGraphics.drawString(font,Component.translatable("rankine.jei.tooltip_required"),120, 0, 0x000000);
-        guiGraphics.drawString(font,Component.translatable("rankine.jei.tooltip_additional"),1, 96, 0x000000);
-        guiGraphics.drawString(font,Component.translatable("rankine.jei.tooltip_total_ingredients",totalCount),1, 75, totalCount < (int) reqs.stream().filter(aBoolean -> aBoolean).count() ? 0xFF5555 : 0x000000);
-        guiGraphics.drawString(font,Component.translatable("rankine.jei.tooltip_total_output",Math.round(totalCount*recipe.getMatScale())),1, 84, Math.round(totalCount*recipe.getMatScale()) > 64 || Math.round(totalCount*recipe.getMatScale()) < 1 ? 0xFF5555 : 0x000000);
+        // dropShadow=false throughout: 1.18 drew all of these with Font#draw, which has no shadow.
+        // The 0xAA0000 mix time and the 0xFF5555 warning colours below are the "other coloured text"
+        // that a 25%-brightness ghost muddies worst.
+        guiGraphics.drawString(font,Component.translatable("rankine.jei.tooltip_required"),120, 0, 0x000000,false);
+        guiGraphics.drawString(font,Component.translatable("rankine.jei.tooltip_additional"),1, 96, 0x000000,false);
+        guiGraphics.drawString(font,Component.translatable("rankine.jei.tooltip_total_ingredients",totalCount),1, 75, totalCount < (int) reqs.stream().filter(aBoolean -> aBoolean).count() ? 0xFF5555 : 0x000000,false);
+        guiGraphics.drawString(font,Component.translatable("rankine.jei.tooltip_total_output",Math.round(totalCount*recipe.getMatScale())),1, 84, Math.round(totalCount*recipe.getMatScale()) > 64 || Math.round(totalCount*recipe.getMatScale()) < 1 ? 0xFF5555 : 0x000000,false);
         int count = 0;
         for (int i = 0; i < reqs.size(); i++) {
             if (reqs.get(i)) {
                 String s = df.format(mins.get(i)*100) + "-" + df.format(maxes.get(i)*100)+"%";
-                guiGraphics.drawString(font,s,130, 16 + count * 18, 0x000000);
+                guiGraphics.drawString(font,s,130, 16 + count * 18, 0x000000,false);
                 count++;
             }
         }
         String mixTime = String.valueOf(recipe.getOutputMixTime(totalCount));
-        guiGraphics.drawString(font,mixTime,69 - font.width(mixTime) / 2.0F, 52, 0xAA0000,true);
-        guiGraphics.drawString(font,df.format(recipe.getOutputFluidReq(totalCount).getAmount())+"mb",130, 16 + count * 18, recipe.getOutputFluidReq(totalCount).getAmount() > 8000 ? 0xFF5555 : 0x000000);
+        guiGraphics.drawString(font,mixTime,69 - font.width(mixTime) / 2.0F, 52, 0xAA0000,false);
+        guiGraphics.drawString(font,df.format(recipe.getOutputFluidReq(totalCount).getAmount())+"mb",130, 16 + count * 18, recipe.getOutputFluidReq(totalCount).getAmount() > 8000 ? 0xFF5555 : 0x000000,false);
         IRecipeCategory.super.draw(recipe, recipeSlotsView, guiGraphics, mouseX, mouseY);
     }
 

@@ -24,8 +24,9 @@ All notable changes to the mod, Project Rankine, will be kept in this file.
 - The `minecraft:milk` fluid is now requested explicitly at mod construction. Forge registered it unconditionally;
   NeoForge only registers it if a mod opts in, and the Unaged Cheese and Pancake Batter mixing recipes both take
   milk as their fluid input.
-- The Rankine Journal recipe carries its Patchouli book id as a `custom_data` component. 1.21 removed the `nbt`
-  field from recipe results, so the id would otherwise have been dropped and the crafted book would open blank.
+- The Rankine Journal recipe carries its Patchouli book id in the `patchouli:book` data component. 1.21 removed
+  the `nbt` field from recipe results, so the id would otherwise have been dropped and the crafted book would
+  open blank.
 - The Rankine Journal book itself is migrated to Patchouli's 1.20+ layout: `use_resource_pack` enabled and the
   74 content files moved from `/data/` to `/assets/`, with `book.json` staying in `/data/`. Patchouli refused
   to load the book at all under the old layout (found the moment Patchouli actually loaded in a dev run).
@@ -64,6 +65,40 @@ All notable changes to the mod, Project Rankine, will be kept in this file.
   `supportsEnchantment` and `isPrimaryItemFor` item extensions. Automatic alloy enchantments are
   unaffected. The other ten alloy-restricted enchantments (the ender amalgam tools) were already
   correct, because their tags name the specific ender amalgam tool.
+- **The Rankine Journal was blank.** The starting/crafted book was a real `patchouli:guide_book` bound to no
+  book at all. 1.18's Patchouli read the book id from a raw NBT tag named `patchouli:book`; on 1.20.5+ that
+  became a real data component of the same name, and Patchouli reads *only* the component — it has no legacy
+  fallback and never looks at `minecraft:custom_data`, which is where the port had put it. Both the granted
+  stack and the crafting recipe now write the `patchouli:book` component. The book's *content* was fine.
+  Because the journal is granted only on a player's first join, an existing save will not re-grant a working
+  copy — re-craft it, take one from the creative search tab, or run `/patchouli open rankine:rankine_journal`.
+- **The journal was missing from the Rankine Misc creative tab.** `book.json`'s `creative_tab` is parsed as a
+  namespaced id on 1.21, so the bare `rankine_misc` resolved to `minecraft:rankine_misc`. It is now
+  `rankine:rankine_misc`. (It was always reachable through creative search, which Patchouli populates
+  unconditionally.)
+- **All 22 armour pieces stacked to 64, never took damage, and could not be enchanted.** 1.18.2's `ArmorItem`
+  constructor applied the material's durability to the item properties for you; 1.21's does not — and
+  `Properties.durability(n)` is also the only thing that sets a max stack size of 1. Every piece now declares
+  its own durability using the same per-material factors as 1.18, so the alloy set (helmet 110, chestplate 160,
+  leggings 150, boots 130), the brigandine, diving and conduit diving sets, the gas mask, goggles, fins,
+  sandals, snowshoes and ice skates are all single-stack, damageable and enchantable again. Stacks made while
+  the bug was live are not split retroactively.
+- **Alloy hoe, axe, shovel and sword recipes displayed with their ingredients scrambled in JEI.** 1.18 told
+  JEI the crafting grid's dimensions through Forge's `IShapedRecipe`, which NeoForge 1.21 removed with no
+  replacement; JEI then saw a 0×0 grid, assumed the recipe was shapeless, and re-laid it out over a guessed
+  square. The guess happens to be correct for 3×3, 2×2 and 1×1 recipes, which is why only the 2×3 tools
+  (hoe, axe), the 1×3 tools (shovel, sword) and the 3×2 armour pieces looked wrong. JEI is now told the real
+  dimensions directly, and `AlloyCraftingRecipe` additionally extends vanilla `ShapedRecipe`, which fixes the
+  same mis-fill in the **vanilla recipe book** (its grid placement special-cases that exact type). Crafting
+  behaviour is untouched — matching and assembly stay fully custom.
+- **The recipes themselves were never wrong — now proven, not assumed.** A GameTest crafts the previously
+  scrambled-looking shapes for real: the 2×3 hoe (straight and mirrored), the 1×3 sword, and the 3×2 boots
+  with its center hole, plus a wrong-shape arrangement that must not match, and verifies the crafted tool
+  inherits its alloy composition. The generated JSON is identical to 1.18's for all 486 alloy recipes.
+- **Rankine's JEI category text was drawn with an unwanted drop shadow**, putting a dimmed black copy of every
+  string one pixel behind it — worst on the black labels, where it reads as a black outline. 1.18 drew these
+  with `Font#draw`, which does not shadow; the 1.21 `GuiGraphics#drawString` overload that omits the flag
+  defaults it to true. All 20 call sites now pass it explicitly.
 
 ### FIXES (pre-existing bugs found during the port)
 - Sneak-right-clicking with a building-mode block item crashed when the main hand held a block without

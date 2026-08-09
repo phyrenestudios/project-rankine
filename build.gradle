@@ -88,6 +88,10 @@ dependencies {
 
 test {
     useJUnitPlatform()
+    // MDG runs the test task from build/minecraft-junit, not the project root, so tests that read
+    // repo content (e.g. PatchouliJournalContentTest walking the journal's authored JSON) need the
+    // project directory handed to them rather than inferred from a relative path.
+    systemProperty 'rankine.projectDir', projectDir.absolutePath
 }
 
 // javac stops reporting after 100 errors by default, which hides the tail of a large port.

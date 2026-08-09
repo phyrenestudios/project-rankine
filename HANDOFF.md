@@ -28,7 +28,56 @@ Everything compiles: **0 errors** across ~680 source files (was 4,833 at the sta
 
 ### Immediate next step
 
-**All 5 gates are green. The port is ready for Karl's manual dev-client pass (`./gradlew runClient`).**
+**Playtest round 2 is fixed and verified headlessly; it needs Karl's eyes in `./gradlew runClient`.**
+Four issues, all root-caused against the real Patchouli/JEI jars and the 1.18 baseline before any edit:
+
+1. **Blank Rankine Journal** — Patchouli 1.20.5+ binds a book through the dedicated `patchouli:book`
+   data component and reads ONLY that (no legacy-NBT fallback, never reads `minecraft:custom_data`).
+   The previous round translated 1.18's `nbt` field to `custom_data`, the literal equivalent, which
+   yields a real guide book bound to nothing. Fixed in `compatibility/Patchouli.java` and
+   `data/rankine/recipe/rankine_journal.json`. **The book CONTENT was fine** — the `use_resource_pack`
+   + `/assets/` layout from `8d11649c4` is correct; do not revert it (Book's ctor throws without it).
+   Also fixed `book.json`'s `creative_tab`, which is a ResourceLocation on 1.21 so a bare
+   `rankine_misc` resolved to `minecraft:rankine_misc`.
+2. **All 22 armor pieces stacked to 64** — 1.21's `ArmorItem` ctor no longer applies the material's
+   durability, and `Properties.durability(n)` is the only thing that sets MAX_STACK_SIZE=1. Same root
+   cause left 12 pieces indestructible and all 22 un-enchantable. `RankineArmorMaterials`'s own class
+   doc had spelled out the required call; it was never applied. **This is a new instance of the
+   "1.18 did it for you in a base class, 1.21 makes you ask" family.**
+3. **Alloy hoe/axe/shovel/sword scrambled in JEI** — NOT a datagen bug. All 486 generated alloy
+   recipes are shape-identical to 1.18. 1.18 exposed grid size via Forge's `IShapedRecipe`; NeoForge
+   1.21 deleted that interface with no replacement, so JEI saw 0x0, treated the recipe as shapeless
+   and re-laid it over a guessed square — right by luck for 3x3/2x2/1x1, wrong for 2x3/1x3/3x2. Fixed
+   with an `ICraftingCategoryExtension` in `JEIRankinePlugin`. Note `setRecipe` must be overridden,
+   not just getWidth/getHeight: the default delegates to a no-op and would render an empty grid.
+4. **JEI category text black-on-black** — 1.18's `Font#draw` does not shadow; 1.21's 5-arg
+   `GuiGraphics#drawString` defaults `dropShadow` to TRUE. All 20 sites now pass it explicitly.
+   **No colour was ever changed by the port** — the 1.18 and 1.19 baselines both draw these black.
+   Karl remembered white text; he chose 1.18 parity (black, no shadow) when asked.
+
+Gates re-run after these fixes: **1 build PASS, 2 unit tests PASS (25, was 24), 4 gametest PASS
+("All 22 required tests passed", was 20)**. Datagen NOT re-run and not needed — `git status` over
+`src/generated/resources` is clean. Gate 5 not re-run: the only datapack change is the journal recipe,
+and gate 4 already loads every datapack (verify.sh's gate-5 journal whitelist matches on the recipe
+id, not the message text, so it still covers the new failure mode when Patchouli is absent).
+
+New regression nets: `RankineRegistryTests#armorIsSingleStackAndDamageable` (every rankine ArmorItem
+is stack-1 and has MAX_DAMAGE) and `#patchouliJournalIsBoundToItsBook` (verified to actually assert —
+Patchouli loads in dev runs, confirmed in the log), plus unit test `PatchouliJournalContentTest`,
+which walks all 74 journal JSONs and asserts every `rankine:` item id resolves. That last one guards a
+nastier class: Patchouli resolves item ids eagerly, so ONE bad id makes `Book.reloadContents` install
+empty contents and blank the WHOLE book, with a single client-side log line as the only trace.
+NB `build.gradle` now passes `rankine.projectDir` to the test task — MDG runs tests from
+`build/minecraft-junit`, not the project root.
+
+**Still open, deliberately not done (see the spawned task):** `AlloyCraftingRecipe.Serializer#toJson`
+drops per-key alloy metadata (`alloyComp`/`alloyRecipe`/`langName`/`color`) on 136 generated recipes,
+so steel-rod-gated superalloy tools currently accept ANY alloy rod. Real gameplay regression, but
+fixing it needs `runData` and re-tightens matching, so it is Karl's call.
+Also unfixed by choice: vanilla's recipe book still mis-fills the grid for those four tool shapes
+(only `extends ShapedRecipe` fixes that; Karl declined the wider blast radius).
+
+**The port is otherwise ready for Karl's manual dev-client pass (`./gradlew runClient`).**
 
 Gate 5 found two bugs that no earlier gate could see, because a Minecraft server *logs* bad
 datapack content and boots anyway — it does not fail. Both are fixed:

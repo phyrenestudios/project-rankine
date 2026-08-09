@@ -27,12 +27,18 @@ public class RankineArmorMaterials {
     public static final DeferredRegister<ArmorMaterial> ARMOR_MATERIALS =
             DeferredRegister.create(Registries.ARMOR_MATERIAL, ProjectRankine.MODID);
 
-    /** Old durability factor per material, for the init agent (Properties.durability(Type.getDurability(factor))). */
+    /**
+     * Old durability factor per material. Applied at item registration in RankineItems as
+     * Properties.durability(Type.getDurability(factor)) -- 1.21's ArmorItem constructor does not do
+     * it for you, and that call is also what sets MAX_STACK_SIZE=1.
+     */
     public static final int BRIGANDINE_DURABILITY_FACTOR = 20;
     public static final int ALLOY_DURABILITY_FACTOR = 10;
     public static final int RUBBER_DURABILITY_FACTOR = 15;
     public static final int DIVING_DURABILITY_FACTOR = 10;
     public static final int CONDUIT_DIVING_DURABILITY_FACTOR = 24;
+    /** Vanilla ArmorMaterials.LEATHER's factor, for the pieces built on it (sandals, snowshoes, ice skates). */
+    public static final int LEATHER_DURABILITY_FACTOR = 5;
 
     public static final DeferredHolder<ArmorMaterial, ArmorMaterial> BRIGANDINE = register("brigandine",
             new int[]{3, 6, 8, 3}, 12, SoundEvents.ARMOR_EQUIP_LEATHER, 1.0F, 0.0F, false,

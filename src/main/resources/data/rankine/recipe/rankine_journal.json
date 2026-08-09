@@ -11,9 +11,7 @@
   "result": {
     "id": "patchouli:guide_book",
     "components": {
-      "minecraft:custom_data": {
-        "patchouli:book": "rankine:rankine_journal"
-      }
+      "patchouli:book": "rankine:rankine_journal"
     }
   }
 }

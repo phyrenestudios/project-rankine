@@ -153,13 +153,16 @@ public class AlloyingRecipeCategory implements IRecipeCategory<AlloyingRecipe> {
         });
         Font font = Minecraft.getInstance().font;
 
-        guiGraphics.drawString(font,Component.translatable("rankine.jei.tooltip_required"),120, 0, 0x000000);
-        guiGraphics.drawString(font,Component.translatable("rankine.jei.tooltip_additional"),1, 96, 0x000000);
+        // dropShadow=false throughout: 1.18 drew these with Font#draw, which has no shadow, but the
+        // 1.21 GuiGraphics#drawString overload without the flag defaults it to TRUE -- giving every
+        // black string a black ghost one pixel down. Keep the flag explicit on every call here.
+        guiGraphics.drawString(font,Component.translatable("rankine.jei.tooltip_required"),120, 0, 0x000000,false);
+        guiGraphics.drawString(font,Component.translatable("rankine.jei.tooltip_additional"),1, 96, 0x000000,false);
         int count = 0;
         for (Ingredient i : ingredients) {
             Tuple<Float,Float> minMax = recipe.getMinMaxByElement(level,i.getItems()[0]);
             String s = df.format(minMax.getA()*100) + "-" + df.format(minMax.getB()*100)+"%";
-            guiGraphics.drawString(font,s,130, 16 + count * 18, 0x000000);
+            guiGraphics.drawString(font,s,130, 16 + count * 18, 0x000000,false);
             count++;
         }
 

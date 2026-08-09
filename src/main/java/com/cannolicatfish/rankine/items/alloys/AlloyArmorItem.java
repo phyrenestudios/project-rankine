@@ -1,9 +1,15 @@
-// PORT-TODO(init): new ctor signature —
+// 1.21.1 ctor signature —
 //   AlloyArmorItem(Holder<ArmorMaterial> material, ArmorItem.Type type, String defaultComposition,
 //                  @Nullable ResourceLocation defaultAlloyRecipe, Item.Properties props)
 // (was (ArmorMaterial, EquipmentSlot, String, ResourceLocation, Properties)). Pass
-// RankineArmorMaterials.ALLOY and the matching ArmorItem.Type; durability comes from the
-// dynamic alloy stats so no Properties.durability(...) is needed for the alloy set.
+// RankineArmorMaterials.ALLOY and the matching ArmorItem.Type.
+//
+// Properties.durability(Type.getDurability(ALLOY_DURABILITY_FACTOR)) IS required at registration,
+// even though the effective durability is per-stack: 1.21's ArmorItem constructor no longer applies
+// the material's durability itself, and Properties.durability(n) is the only thing that sets
+// MAX_STACK_SIZE=1. Without it the armor stacks to 64, never takes damage, and cannot be enchanted.
+// getMaxDamage(ItemStack) below still overrides the static value with the alloy-derived one at
+// runtime, exactly as in 1.18.2.
 package com.cannolicatfish.rankine.items.alloys;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;

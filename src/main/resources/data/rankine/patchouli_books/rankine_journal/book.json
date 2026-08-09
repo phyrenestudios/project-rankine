@@ -6,7 +6,7 @@
   "model": "rankine:rankine_journal",
   "book_texture": "rankine:textures/gui/rankine_journal.png",
   "filler_texture": "rankine:textures/gui/filler.png",
-  "creative_tab": "rankine_misc",
+  "creative_tab": "rankine:rankine_misc",
   "i18n": true,
   "advancements_tab": "rankine:story/rankine",
   "advancement_namespaces": [ "rankine" ]

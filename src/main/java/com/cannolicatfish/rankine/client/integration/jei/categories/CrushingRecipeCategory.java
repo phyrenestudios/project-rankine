@@ -83,7 +83,9 @@ public class CrushingRecipeCategory implements IRecipeCategory<CrushingRecipe> {
     public void draw(CrushingRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
         Font font = Minecraft.getInstance().font;
         int index = recipe.getRecipeOutputs().indexOf(ItemStack.EMPTY);
-        guiGraphics.drawString(font,Component.literal("<=" + recipe.getMaxRolls()).withStyle(ChatFormatting.DARK_AQUA),100,32,0xFF0000);
+        // dropShadow=false: 1.18 used Font#draw here. (The 0xFF0000 argument is dead either way --
+        // the DARK_AQUA style on the Component wins over the passed colour, in 1.18 and 1.21 alike.)
+        guiGraphics.drawString(font,Component.literal("<=" + recipe.getMaxRolls()).withStyle(ChatFormatting.DARK_AQUA),100,32,0xFF0000,false);
 
         IRecipeCategory.super.draw(recipe, recipeSlotsView, guiGraphics, mouseX, mouseY);
     }

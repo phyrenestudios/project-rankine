@@ -96,7 +96,8 @@ public class BeehiveOvenRecipeCategory implements IRecipeCategory<BeehiveOvenRec
             Minecraft minecraft = Minecraft.getInstance();
             Font fontRenderer = minecraft.font;
             int stringWidth = fontRenderer.width(timeString);
-            guiGraphics.drawString(fontRenderer, timeString, background.getWidth() - stringWidth, y, 0xFF808080);
+            // dropShadow=false: 1.18 used Font#draw here, matching JEI's own unshadowed cook-time label.
+            guiGraphics.drawString(fontRenderer, timeString, background.getWidth() - stringWidth, y, 0xFF808080, false);
         }
     }
 

@@ -425,4 +425,153 @@ public class RankineRegistryTests {
         assertEmpty(problems, "rankine items absent from every creative tab");
         helper.succeed();
     }
+
+    /**
+     * Armor must not stack and must be damageable.
+     *
+     * <p>1.18.2's ArmorItem constructor applied the material's durability to the Properties for you;
+     * 1.21's does not, and {@code Item.Properties.durability(n)} is the only thing that sets
+     * MAX_STACK_SIZE=1. Bare Properties therefore produce armor that stacks to 64, never takes
+     * damage, and cannot be enchanted ({@code Item#isEnchantable} needs both stack size 1 and
+     * MAX_DAMAGE) — all silently, with no error anywhere. That is exactly what happened to all 22
+     * Rankine armor pieces, and no headless gate could see it until this test.
+     */
+    @GameTest(template = "empty")
+    public void armorIsSingleStackAndDamageable(GameTestHelper helper) {
+        List<String> problems = new ArrayList<>();
+        int checked = 0;
+        for (var entry : BuiltInRegistries.ITEM.entrySet()) {
+            ResourceLocation id = entry.getKey().location();
+            if (!isRankine(id) || !(entry.getValue() instanceof net.minecraft.world.item.ArmorItem)) continue;
+            checked++;
+            ItemStack stack = new ItemStack(entry.getValue());
+            if (stack.getMaxStackSize() != 1) {
+                problems.add(id.getPath() + " stacks to " + stack.getMaxStackSize());
+            } else if (!stack.has(net.minecraft.core.component.DataComponents.MAX_DAMAGE)) {
+                problems.add(id.getPath() + " has no MAX_DAMAGE (indestructible, un-enchantable)");
+            }
+        }
+        assertTrue(checked >= 20, "expected >=20 rankine armor items, found " + checked);
+        assertEmpty(problems, "rankine armor items with a bad stack size or no durability");
+        helper.succeed();
+    }
+
+    /**
+     * The Rankine Journal must be bound to its book.
+     *
+     * <p>Patchouli 1.20.5+ binds a guide book through a dedicated {@code patchouli:book} data
+     * component and has no legacy-NBT fallback, so writing the book id anywhere else — notably into
+     * {@code minecraft:custom_data}, the literal translation of 1.18's {@code nbt} field — yields a
+     * real guide book bound to no book, i.e. a blank one. Nothing logs. Skipped when Patchouli is
+     * absent, so this is only meaningful on a dev run that has it on the classpath.
+     */
+    @GameTest(template = "empty")
+    public void patchouliJournalIsBoundToItsBook(GameTestHelper helper) {
+        if (!com.cannolicatfish.rankine.compatibility.Patchouli.isInstalled()) {
+            helper.succeed();
+            return;
+        }
+        var bookComponent = BuiltInRegistries.DATA_COMPONENT_TYPE.get(
+                ResourceLocation.fromNamespaceAndPath("patchouli", "book"));
+        assertTrue(bookComponent != null,
+                "patchouli is loaded but the patchouli:book data component is not registered — "
+                        + "Patchouli changed its binding mechanism, so compatibility/Patchouli needs updating");
+
+        ItemStack journal = com.cannolicatfish.rankine.compatibility.Patchouli.getJournalBookStack();
+        assertTrue(!journal.isEmpty(), "getJournalBookStack() returned EMPTY while patchouli is loaded");
+        Object bound = journal.get(bookComponent);
+        assertTrue(ResourceLocation.fromNamespaceAndPath("rankine", "rankine_journal").equals(bound),
+                "journal stack is bound to " + bound + ", expected rankine:rankine_journal");
+        helper.succeed();
+    }
+
+    /**
+     * Actually CRAFTS the alloy tool/armor shapes that JEI displayed scrambled, proving the
+     * scrambling was display-only and the recipes themselves match and assemble correctly.
+     *
+     * <p>Covers the three non-square shapes the shapeless-guess broke — 2x3 hoe (asymmetric, so
+     * also tested mirrored), 1x3 sword, and 3x2 boots (which has a hole in the pattern) — plus a
+     * deliberately wrong arrangement that must NOT match, and alloy-data inheritance on the
+     * assembled result (inherit=true recipes yield EMPTY unless an input carries a composition,
+     * exactly as in 1.18).
+     */
+    @GameTest(template = "empty")
+    public void alloyCraftingShapesCraftCorrectly(GameTestHelper helper) {
+        var level = helper.getLevel();
+        List<String> problems = new ArrayList<>();
+
+        // A rose gold ingot as it exists in real play: composition + source recipe components.
+        java.util.function.Supplier<ItemStack> ingot = () -> {
+            ItemStack s = new ItemStack(RankineItems.ROSE_GOLD_INGOT.get());
+            s.set(RankineDataComponents.ALLOY_COMPOSITION.get(), "75Au-22Cu-3Ni");
+            s.set(RankineDataComponents.ALLOY_RECIPE.get(), ResourceLocation.parse("rankine:alloying/rose_gold_alloying"));
+            return s;
+        };
+        java.util.function.Supplier<ItemStack> stick = () -> new ItemStack(Items.STICK);
+        ItemStack air = ItemStack.EMPTY;
+
+        record Craft(String name, String recipeId, List<ItemStack> grid3x3, String expectItem, boolean expectMatch) {}
+        List<Craft> crafts = List.of(
+                // hoe: AB / _D / _F placed in a 3x3
+                new Craft("hoe 2x3", "rankine:rose_gold_hoe",
+                        List.of(ingot.get(), ingot.get(), air, air, stick.get(), air, air, stick.get(), air),
+                        "rankine:rose_gold_hoe", true),
+                // hoe mirrored: BA / D_ / F_
+                new Craft("hoe 2x3 mirrored", "rankine:rose_gold_hoe",
+                        List.of(ingot.get(), ingot.get(), air, stick.get(), air, air, stick.get(), air, air),
+                        "rankine:rose_gold_hoe", true),
+                // sword: single column A/B/C
+                new Craft("sword 1x3", "rankine:rose_gold_sword",
+                        List.of(ingot.get(), air, air, ingot.get(), air, air, stick.get(), air, air),
+                        "rankine:rose_gold_sword", true),
+                // boots: A_C / D_F — the hole in the middle is the shape a shapeless layout scrambles
+                new Craft("boots 3x2 with hole", "rankine:rose_gold_boots",
+                        List.of(ingot.get(), air, ingot.get(), ingot.get(), air, ingot.get(), air, air, air),
+                        "rankine:alloy_boots", true),
+                // negative: hoe ingredients squashed into a 2x2 block must not match the hoe
+                new Craft("hoe wrong shape", "rankine:rose_gold_hoe",
+                        List.of(ingot.get(), ingot.get(), air, stick.get(), stick.get(), air, air, air, air),
+                        null, false));
+
+        for (Craft c : crafts) {
+            var holder = level.getRecipeManager().byKey(ResourceLocation.parse(c.recipeId())).orElse(null);
+            if (holder == null) {
+                problems.add(c.name() + ": recipe " + c.recipeId() + " not found");
+                continue;
+            }
+            if (!(holder.value() instanceof com.cannolicatfish.rankine.recipe.AlloyCraftingRecipe recipe)) {
+                problems.add(c.name() + ": " + c.recipeId() + " is not an AlloyCraftingRecipe");
+                continue;
+            }
+            // Same construction the crafting menu uses: trims to the placed bounding box.
+            var input = net.minecraft.world.item.crafting.CraftingInput.of(3, 3, c.grid3x3());
+            boolean matched = recipe.matches(input, level);
+            if (matched != c.expectMatch()) {
+                problems.add(c.name() + ": matches() == " + matched + ", expected " + c.expectMatch());
+                continue;
+            }
+            if (c.expectMatch()) {
+                ItemStack out = recipe.assemble(input, level.registryAccess());
+                ResourceLocation outId = BuiltInRegistries.ITEM.getKey(out.getItem());
+                if (!outId.toString().equals(c.expectItem())) {
+                    problems.add(c.name() + ": assembled " + outId + ", expected " + c.expectItem());
+                }
+                String comp = com.cannolicatfish.rankine.items.alloys.IAlloyItem.getAlloyComposition(out);
+                if (!"75Au-22Cu-3Ni".equals(comp)) {
+                    problems.add(c.name() + ": inherited composition '" + comp + "', expected 75Au-22Cu-3Ni");
+                }
+            }
+        }
+
+        // The recipe book's grid-fill contract: these recipes must BE ShapedRecipes with true dims.
+        var hoe = level.getRecipeManager().byKey(ResourceLocation.parse("rankine:rose_gold_hoe")).orElseThrow();
+        if (!(hoe.value() instanceof net.minecraft.world.item.crafting.ShapedRecipe shaped)) {
+            problems.add("rose_gold_hoe is not a ShapedRecipe — vanilla recipe book will treat it as shapeless");
+        } else if (shaped.getWidth() != 2 || shaped.getHeight() != 3) {
+            problems.add("rose_gold_hoe reports " + shaped.getWidth() + "x" + shaped.getHeight() + ", expected 2x3");
+        }
+
+        assertEmpty(problems, "alloy crafting failures");
+        helper.succeed();
+    }
 }

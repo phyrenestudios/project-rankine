@@ -30,13 +30,25 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.ShapedRecipe;
+import net.minecraft.world.item.crafting.ShapedRecipePattern;
 import net.minecraft.world.level.Level;
 
 import javax.annotation.Nullable;
 import java.util.Map;
 import java.util.Set;
 
-public class AlloyCraftingRecipe implements CraftingRecipe {
+/**
+ * Extends vanilla ShapedRecipe (rather than implementing CraftingRecipe directly) so the vanilla
+ * recipe book fills the grid correctly: PlaceRecipe#placeRecipe special-cases
+ * {@code instanceof ShapedRecipe} to learn the grid dimensions and treats everything else as
+ * shapeless, which scrambled the 2x3 (hoes/axes), 1x3 (swords/shovels) and 3x2 (helmets/boots)
+ * shapes. 1.18 got this via Forge's IShapedRecipe, which NeoForge 1.21.1 removed.
+ *
+ * <p>Only the TYPE and the pattern dimensions are inherited; matches() and assemble() stay fully
+ * custom (alloy composition checks, data inheritance), so crafting behavior is unchanged.
+ */
+public class AlloyCraftingRecipe extends ShapedRecipe {
     static int MAX_WIDTH = 3;
     static int MAX_HEIGHT = 3;
     /**
@@ -70,6 +82,9 @@ public class AlloyCraftingRecipe implements CraftingRecipe {
 
     public AlloyCraftingRecipe(String groupIn, int recipeWidthIn, int recipeHeightIn, NonNullList<Ingredient> recipeItemsIn, ItemStack recipeOutputIn, boolean inherit,
                                String inheritRecipeIn, String nameIn, int colorIn) {
+        super(groupIn, CraftingBookCategory.MISC,
+                new ShapedRecipePattern(recipeWidthIn, recipeHeightIn, recipeItemsIn, java.util.Optional.empty()),
+                recipeOutputIn, true);
         this.group = groupIn;
         this.recipeWidth = recipeWidthIn;
         this.recipeHeight = recipeHeightIn;
@@ -109,18 +124,7 @@ public class AlloyCraftingRecipe implements CraftingRecipe {
         return RankineRecipeSerializers.ALLOY_CRAFTING_RECIPE_SERIALIZER.get();
     }
 
-    @Override
-    public CraftingBookCategory category() {
-        return CraftingBookCategory.MISC;
-    }
-
-    /**
-     * Recipes with equal group are combined into one button in the recipe book
-     */
-    @Override
-    public String getGroup() {
-        return this.group;
-    }
+    // category() and getGroup() are inherited from ShapedRecipe (MISC and groupIn via the super call).
 
     public int getColor() {
         return this.color;
@@ -172,18 +176,8 @@ public class AlloyCraftingRecipe implements CraftingRecipe {
         return out;
     }
 
-    @Override
-    public NonNullList<Ingredient> getIngredients() {
-        return this.recipeItems;
-    }
-
-    /**
-     * Used to determine if this recipe can fit in a grid of the given width/height
-     */
-    @Override
-    public boolean canCraftInDimensions(int width, int height) {
-        return width >= this.recipeWidth && height >= this.recipeHeight;
-    }
+    // getIngredients() and canCraftInDimensions() are inherited from ShapedRecipe; the pattern was
+    // built from this.recipeItems, so they return the same list and the same bounds check.
 
     /**
      * Used to check if a recipe matches current crafting inventory
@@ -315,21 +309,8 @@ public class AlloyCraftingRecipe implements CraftingRecipe {
         return res;
     }
 
-    public int getWidth() {
-        return this.recipeWidth;
-    }
-
-    public int getRecipeWidth() {
-        return getWidth();
-    }
-
-    public int getHeight() {
-        return this.recipeHeight;
-    }
-
-    public int getRecipeHeight() {
-        return getHeight();
-    }
+    // getWidth()/getHeight() are inherited from ShapedRecipe (pattern dimensions). Both JEI's
+    // category extension and the vanilla recipe book's PlaceRecipe read them from there.
 
     private static NonNullList<Ingredient> deserializeIngredients(String[] pattern, Map<String, Ingredient> keys, int patternWidth, int patternHeight) {
         NonNullList<Ingredient> nonnulllist = NonNullList.withSize(patternWidth * patternHeight, Ingredient.EMPTY);

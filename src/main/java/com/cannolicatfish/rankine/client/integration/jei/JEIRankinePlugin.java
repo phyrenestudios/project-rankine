@@ -20,8 +20,12 @@ import com.cannolicatfish.rankine.recipe.*;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.constants.VanillaTypes;
+import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
+import mezz.jei.api.gui.ingredient.ICraftingGridHelper;
 import mezz.jei.api.helpers.IGuiHelper;
+import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeType;
+import mezz.jei.api.recipe.category.extensions.vanilla.crafting.ICraftingCategoryExtension;
 import mezz.jei.api.registration.*;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -203,6 +207,51 @@ public class JEIRankinePlugin implements IModPlugin {
         registry.addRecipeCategories(new StrippingRecipeCategory(guiHelper));
         registry.addRecipeCategories(new BatteryRecipeCategory(guiHelper));
         registry.addRecipeCategories(new CauldronDryingRecipeCategory(guiHelper));
+    }
+
+    /**
+     * Teach JEI the grid dimensions of AlloyCraftingRecipe.
+     *
+     * <p>1.18 got this for free: the recipe implemented Forge's IShapedRecipe. NeoForge 1.21.1 has no
+     * equivalent, and JEI's default crafting extension only recognises a real ShapedRecipe -- anything
+     * else reports 0x0, which JEI treats as SHAPELESS and re-lays-out over a guessed square grid.
+     * That guess happens to be right for 3x3, 2x2 and 1x1 recipes and wrong for every other shape,
+     * which is why exactly the hoes/axes (2x3), shovels/swords (1x3) and helmets/boots (3x2) render
+     * scrambled while pickaxes and hammers look fine.
+     *
+     * <p>AlloyCraftingRecipe now also EXTENDS ShapedRecipe (fixing the vanilla recipe book's
+     * grid-fill, which special-cases that type in PlaceRecipe), so JEI's default extension would
+     * render it acceptably too. This explicit extension is kept anyway because it shows the
+     * recipe's REAL result -- getResultItem() applies the alloy color and name-override
+     * components, which the default extension's raw result display would drop.
+     *
+     * <p>setRecipe must be overridden too, not just getWidth/getHeight: the default
+     * ICraftingCategoryExtension#setRecipe(RecipeHolder, ...) delegates to the no-arg setRecipe, whose
+     * body is empty, so overriding only the dimensions would draw an empty grid.
+     */
+    @Override
+    public void registerVanillaCategoryExtensions(IVanillaCategoryExtensionRegistration registration) {
+        registration.getCraftingCategory().addExtension(AlloyCraftingRecipe.class,
+                new ICraftingCategoryExtension<AlloyCraftingRecipe>() {
+                    @Override
+                    public void setRecipe(RecipeHolder<AlloyCraftingRecipe> holder, IRecipeLayoutBuilder builder,
+                                          ICraftingGridHelper gridHelper, IFocusGroup focuses) {
+                        AlloyCraftingRecipe recipe = holder.value();
+                        gridHelper.createAndSetOutputs(builder, List.of(recipe.getResultItem()));
+                        gridHelper.createAndSetIngredients(builder, recipe.getIngredients(),
+                                recipe.getWidth(), recipe.getHeight());
+                    }
+
+                    @Override
+                    public int getWidth(RecipeHolder<AlloyCraftingRecipe> holder) {
+                        return holder.value().getWidth();
+                    }
+
+                    @Override
+                    public int getHeight(RecipeHolder<AlloyCraftingRecipe> holder) {
+                        return holder.value().getHeight();
+                    }
+                });
     }
 
     @Override

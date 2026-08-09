@@ -69,12 +69,15 @@ public class ElementRecipeCategory implements IRecipeCategory<ElementRecipe> {
             p_234699_0_.setDecimalFormatSymbols(DecimalFormatSymbols.getInstance(Locale.ROOT));
         });
 
+        // dropShadow=false throughout: 1.18 drew all four with Font#draw, which has no shadow. The
+        // two float-coordinate calls have no 5-arg overload, so they always passed the flag -- it was
+        // just ported as `true`, which is what put a black ghost behind this black text.
         if (recipe.getAtomicNumber() >= 0) {
-            guiGraphics.drawString(font,String.valueOf(recipe.getAtomicNumber()),48, 4,0x000000);
+            guiGraphics.drawString(font,String.valueOf(recipe.getAtomicNumber()),48, 4,0x000000,false);
         }
-        guiGraphics.drawString(font,String.valueOf(recipe.getSymbol()),48, 14,0x000000);
-        guiGraphics.drawString(font,name,(float)(58 - font.width(name) / 2),40,0x000000,true);
-        guiGraphics.drawString(font,"Items:",(float)(58 - font.width("Items:") / 2),66,0x000000,true);
+        guiGraphics.drawString(font,String.valueOf(recipe.getSymbol()),48, 14,0x000000,false);
+        guiGraphics.drawString(font,name,(float)(58 - font.width(name) / 2),40,0x000000,false);
+        guiGraphics.drawString(font,"Items:",(float)(58 - font.width("Items:") / 2),66,0x000000,false);
     }
 
     @Override
