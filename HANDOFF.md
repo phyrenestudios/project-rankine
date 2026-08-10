@@ -169,6 +169,12 @@ recipe parse error except the journal — that check is what would have caught t
   most valuable asset in this port. Never guess an API.
 - `PORTING_GUIDE.md` — conventions every agent followed (package renames, registry/codec/capability
   patterns, data components, enchantments, worldgen).
+- **`.porting/CLIENT-TESTING.md` — how to drive `runClient` automatically for VISUAL checks, plus
+  `.porting/tools/mc-client-driver.ps1`.** Gates 1–5 are all headless and structurally cannot see
+  tints, render layers, GUI layout, model predicates or JEI layout — the port shipped real bugs in
+  every one of those categories. Read that file before attempting client automation; it documents
+  several traps that are actively misleading (notably: `pauseOnLostFocus` must be `false`, or the
+  Escape key appears permanently broken).
 - `.porting/reports/*.md` — per-area agent reports with cross-package contracts and behavior deltas:
   `A1-init-giant`, `A2-init-misc`, `B2-machines`, `C-items`, `D-recipes`, `E-enchantments`,
   `G-events`, `datagen`, `JEI`, `rendertype-spec`.
@@ -221,6 +227,21 @@ These were all invisible to the compiler and found only by running things:
    `util/colors/ItemTint#opaque`. **Block tints are still RGB**, so the same colour class looks right
    on a placed block and invisible as an item — that asymmetry is what makes it confusing to spot.
    Vanilla's convention is the tell: its "no tint" constant is `-1` (`0xFFFFFFFF`), not `0xFFFFFF`.
+   **There is now a harness for exactly this blind spot — see `.porting/CLIENT-TESTING.md`.** Any
+   change touching rendering, colours, models, GUIs or JEI should go through it; a green gate run
+   says nothing about those.
+
+8. **"Registration moved from code into a datapack file, and datagen was never taught to emit it."**
+   The 1.21 sibling of bug class 1, and the nastiest, because nothing anywhere errors — the feature
+   is simply absent. Confirmed instances: compostables (1.21 reads
+   `neoforge:data_maps/item/compostables`, not `ComposterBlock.COMPOSTABLES`, so ~100 items are
+   silently non-compostable); villager professions (no `point_of_interest_type/acquirable_job_site`
+   tag is generated, so no villager can ever take a Rankine job); and vanilla enchantability
+   (`minecraft:enchantable/*` item tags replaced `EnchantmentCategory`'s `instanceof` checks, and
+   nothing was added to them, so **every Rankine tool, weapon and armour piece is unenchantable**).
+   When auditing, grep `src/generated/resources` for the *presence of the directory*, not for
+   entries within it: `data/minecraft/tags/item/enchantable/`, `data/*/data_maps/`,
+   `data/minecraft/tags/point_of_interest_type/`. An absent directory is the tell.
 
 ---
 

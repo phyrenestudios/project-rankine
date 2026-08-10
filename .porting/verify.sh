@@ -3,6 +3,13 @@
 # Usage: bash .porting/verify.sh [gate...]
 #   gates: build | test | datagen | gametest | server | all   (default: all)
 # Exits non-zero on the first failing gate. Logs land in .porting/logs/.
+#
+# LIMIT OF THESE GATES: all five are headless. They cannot see item/block tints, render layers,
+# GUI slot layout, item model predicates or JEI layout — the port shipped real bugs in every one
+# of those categories while these gates were green. They are equally blind to "registration moved
+# into a datapack file that datagen was never taught to emit" (compostables, POI job-site tags,
+# minecraft:enchantable/* tags), because absent content is not an error.
+# For the visual half of verification, see .porting/CLIENT-TESTING.md.
 set -uo pipefail
 cd "$(dirname "$0")/.." || exit 1
 
