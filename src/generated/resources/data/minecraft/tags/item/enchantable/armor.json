@@ -1,0 +1,26 @@
+{
+  "values": [
+    "rankine:brigandine_helmet",
+    "rankine:brigandine_chestplate",
+    "rankine:brigandine_leggings",
+    "rankine:brigandine_boots",
+    "rankine:diving_helmet",
+    "rankine:diving_chestplate",
+    "rankine:diving_leggings",
+    "rankine:diving_boots",
+    "rankine:conduit_diving_helmet",
+    "rankine:conduit_diving_chestplate",
+    "rankine:conduit_diving_leggings",
+    "rankine:conduit_diving_boots",
+    "rankine:alloy_helmet",
+    "rankine:alloy_chestplate",
+    "rankine:alloy_leggings",
+    "rankine:alloy_boots",
+    "rankine:gas_mask",
+    "rankine:goggles",
+    "rankine:sandals",
+    "rankine:snowshoes",
+    "rankine:ice_skates",
+    "rankine:fins"
+  ]
+}

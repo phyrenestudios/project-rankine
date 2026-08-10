@@ -28,10 +28,14 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.AxeItem;
+import net.minecraft.world.item.DiggerItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.item.ShovelItem;
+import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
@@ -126,9 +130,75 @@ public class RankineItemTagsProvider extends ItemTagsProvider {
         tag(RankineEnchantmentTags.ENDER_AMALGAM_BLUNDERBUSS_ENCHANTABLE).add(RankineItems.ENDER_AMALGAM_BLUNDERBUSS.get());
     }
 
+    /** Every registered Rankine {@link ArmorItem} worn in the given slot. */
+    private static List<Item> rankineArmor(ArmorItem.Type type) {
+        return rankineItems(i -> i instanceof ArmorItem armor && armor.getType() == type);
+    }
+
+    /**
+     * The 1.21 replacement for the deleted {@code EnchantmentCategory} constants on the *vanilla*
+     * side: applicability of every vanilla enchantment is now a {@code minecraft:enchantable/*}
+     * item tag, and a mod item is in none of them unless the mod says so. Without this, no Rankine
+     * tool, weapon or armour piece can be enchanted at a table or on an anvil, and the mod's own
+     * enchantments that were re-pointed at the vanilla armour tags have no legal target either.
+     *
+     * <p>Each block reproduces one 1.18.2 {@code EnchantmentCategory} predicate exactly, so the set
+     * of enchantments a Rankine item accepts is unchanged from 1.18.2. Categories that matched
+     * nothing in 1.18.2 are deliberately left empty: Rankine registers no {@code BowItem},
+     * {@code CrossbowItem}, {@code TridentItem} or {@code FishingRodItem} (the {@code AlloyBowItem},
+     * {@code AlloyShieldItem} and {@code AlloySurfRodItem} classes exist but are never registered),
+     * so {@code enchantable/bow}, {@code /crossbow}, {@code /trident}, {@code /fishing} and
+     * {@code /mace} get no Rankine entries.
+     *
+     * <p>The three table-only bans 1.18.2 expressed through Forge's {@code canApplyAtEnchantingTable}
+     * (no Efficiency/Silk Touch on hammers, none of those plus Fortune on crowbars, no Sweeping
+     * Edge/Fire Aspect/Knockback on knives) still live on the item classes, in
+     * {@code isPrimaryItemFor}. They are not expressed here, because 1.18.2 blocked them at the
+     * table only -- the anvil accepted those books -- and a tag cannot draw that distinction.
+     */
+    private void addVanillaEnchantableTags() {
+        // BREAKABLE was `item.canBeDepleted()`. VANISHABLE was BREAKABLE plus the `Vanishable`
+        // marker interface; the only Rankine implementors were SpearItem, BlunderbussItem and
+        // MaceItem, all of which are damageable, so the two sets coincide here.
+        List<Item> damageable = rankineItems(i -> i.components().has(DataComponents.MAX_DAMAGE));
+        addAll(ItemTags.DURABILITY_ENCHANTABLE, damageable);
+        addAll(ItemTags.VANISHING_ENCHANTABLE, damageable);
+
+        // DIGGER was `instanceof DiggerItem`: pickaxes, axes, shovels and hoes, plus the mod's own
+        // hammers, crowbars and glass cutter, which all extend DiggerItem, alloy variants included.
+        List<Item> diggers = rankineItems(i -> i instanceof DiggerItem);
+        addAll(ItemTags.MINING_ENCHANTABLE, diggers);
+        addAll(ItemTags.MINING_LOOT_ENCHANTABLE, diggers);
+
+        // WEAPON was `instanceof SwordItem`, which covers KnifeItem and the alloy swords/knives.
+        List<Item> swords = rankineItems(i -> i instanceof SwordItem);
+        addAll(ItemTags.SWORD_ENCHANTABLE, swords);
+        addAll(ItemTags.FIRE_ASPECT_ENCHANTABLE, swords);
+
+        // 1.18.2's DamageEnchantment (Sharpness/Smite/Bane) overrode canEnchant to accept axes as
+        // well, while Forge's default canApplyAtEnchantingTable left the *table* sword-only. 1.21
+        // says the same thing with supported_items = sharp_weapon/weapon and primary_items = sword.
+        List<Item> sharpWeapons = rankineItems(i -> i instanceof SwordItem || i instanceof AxeItem);
+        addAll(ItemTags.SHARP_WEAPON_ENCHANTABLE, sharpWeapons);
+        addAll(ItemTags.WEAPON_ENCHANTABLE, sharpWeapons);
+
+        // ARMOR was `instanceof ArmorItem` and WEARABLE matched every ArmorItem through the
+        // Wearable interface; ARMOR_HEAD/CHEST/LEGS/FEET added an equipment-slot test. Vanilla
+        // nests enchantable/armor over the four slot tags, but they are listed explicitly so the
+        // generated files stand on their own.
+        List<Item> armor = rankineItems(i -> i instanceof ArmorItem);
+        addAll(ItemTags.ARMOR_ENCHANTABLE, armor);
+        addAll(ItemTags.EQUIPPABLE_ENCHANTABLE, armor);
+        addAll(ItemTags.HEAD_ARMOR_ENCHANTABLE, rankineArmor(ArmorItem.Type.HELMET));
+        addAll(ItemTags.CHEST_ARMOR_ENCHANTABLE, rankineArmor(ArmorItem.Type.CHESTPLATE));
+        addAll(ItemTags.LEG_ARMOR_ENCHANTABLE, rankineArmor(ArmorItem.Type.LEGGINGS));
+        addAll(ItemTags.FOOT_ARMOR_ENCHANTABLE, rankineArmor(ArmorItem.Type.BOOTS));
+    }
+
     @Override
     protected void addTags(HolderLookup.Provider provider) {
         addEnchantableTags();
+        addVanillaEnchantableTags();
 
         copy(RankineTags.Blocks.ORES_LEAD, RankineTags.Items.ORES_LEAD);
         copy(RankineTags.Blocks.ORES_SILVER, RankineTags.Items.ORES_SILVER);

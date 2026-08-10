@@ -153,12 +153,16 @@ public class HammerItem extends DiggerItem {
         return blockList;
     }
 
+    // 1.18.2 banned these through Forge's canApplyAtEnchantingTable, which only the enchanting
+    // table consulted -- an Efficiency or Silk Touch *book* still applied on an anvil. In 1.21 the
+    // table path is isPrimaryItemFor and the anvil path is supportsEnchantment (NeoForge
+    // IItemExtension), so the ban belongs here, not on supportsEnchantment.
     @Override
-    public boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment) {
+    public boolean isPrimaryItemFor(ItemStack stack, Holder<Enchantment> enchantment) {
         if (enchantment.is(Enchantments.EFFICIENCY) || enchantment.is(Enchantments.SILK_TOUCH)) {
             return false;
         }
-        return super.supportsEnchantment(stack,enchantment);
+        return super.isPrimaryItemFor(stack,enchantment);
     }
 
 

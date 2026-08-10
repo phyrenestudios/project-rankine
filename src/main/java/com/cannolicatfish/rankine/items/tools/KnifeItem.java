@@ -151,11 +151,15 @@ public class KnifeItem extends SwordItem {
         return super.mineBlock(stack, worldIn, state, pos, entityLiving);
     }
 
+    // 1.18.2 banned these through Forge's canApplyAtEnchantingTable, which only the enchanting
+    // table consulted -- a Sweeping Edge, Fire Aspect or Knockback *book* still applied on an
+    // anvil. In 1.21 the table path is isPrimaryItemFor and the anvil path is supportsEnchantment
+    // (NeoForge IItemExtension), so the ban belongs here, not on supportsEnchantment.
     @Override
-    public boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment) {
+    public boolean isPrimaryItemFor(ItemStack stack, Holder<Enchantment> enchantment) {
         if (enchantment.is(Enchantments.SWEEPING_EDGE) || enchantment.is(Enchantments.FIRE_ASPECT) || enchantment.is(Enchantments.KNOCKBACK)) {
             return false;
         }
-        return super.supportsEnchantment(stack,enchantment);
+        return super.isPrimaryItemFor(stack,enchantment);
     }
 }

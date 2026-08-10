@@ -9,6 +9,7 @@ import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.core.Holder;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.core.RegistryAccess;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.gametest.framework.GameTest;
@@ -16,9 +17,15 @@ import net.minecraft.gametest.framework.GameTestAssertException;
 import net.minecraft.gametest.framework.GameTestHelper;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.DiggerItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -572,6 +579,194 @@ public class RankineRegistryTests {
         }
 
         assertEmpty(problems, "alloy crafting failures");
+        helper.succeed();
+    }
+
+    /**
+     * Every Rankine tool, weapon and armour piece must be enchantable.
+     *
+     * <p>1.18.2 decided vanilla enchantment applicability with {@code EnchantmentCategory}
+     * instanceof checks, which picked mod items up for free. 1.21 replaced them with
+     * {@code minecraft:enchantable/*} item tags that a mod is in only if it says so, and the
+     * failure is silent: the enchanting table simply shows three empty offer rows and the anvil
+     * refuses the book. Nothing in Java enforces membership, so this is the only guard.
+     *
+     * <p>The named cases pin the tags a player actually notices; the registry sweep after them
+     * re-states the old category predicates as rules, so a tool added later cannot quietly miss.
+     */
+    @GameTest(template = "empty")
+    public void rankineGearIsEnchantable(GameTestHelper helper) {
+        List<String> problems = new ArrayList<>();
+
+        record Expect(Item item, List<TagKey<Item>> tags) {
+        }
+
+        List<Expect> expected = List.of(
+                new Expect(RankineItems.STEEL_PICKAXE.get(), List.of(
+                        ItemTags.MINING_ENCHANTABLE, ItemTags.MINING_LOOT_ENCHANTABLE,
+                        ItemTags.DURABILITY_ENCHANTABLE, ItemTags.VANISHING_ENCHANTABLE)),
+                new Expect(RankineItems.STEEL_SWORD.get(), List.of(
+                        ItemTags.SWORD_ENCHANTABLE, ItemTags.SHARP_WEAPON_ENCHANTABLE,
+                        ItemTags.WEAPON_ENCHANTABLE, ItemTags.FIRE_ASPECT_ENCHANTABLE,
+                        ItemTags.DURABILITY_ENCHANTABLE)),
+                new Expect(RankineItems.STEEL_CROWBAR.get(), List.of(
+                        ItemTags.MINING_ENCHANTABLE, ItemTags.MINING_LOOT_ENCHANTABLE,
+                        ItemTags.DURABILITY_ENCHANTABLE)),
+                new Expect(RankineItems.STONE_HAMMER.get(), List.of(
+                        ItemTags.MINING_ENCHANTABLE, ItemTags.DURABILITY_ENCHANTABLE)),
+                new Expect(RankineItems.FLINT_AXE.get(), List.of(
+                        ItemTags.MINING_ENCHANTABLE, ItemTags.SHARP_WEAPON_ENCHANTABLE,
+                        ItemTags.WEAPON_ENCHANTABLE)),
+                new Expect(RankineItems.FLINT_KNIFE.get(), List.of(
+                        ItemTags.SWORD_ENCHANTABLE, ItemTags.DURABILITY_ENCHANTABLE)),
+                new Expect(RankineItems.ALLOY_HELMET.get(), List.of(
+                        ItemTags.HEAD_ARMOR_ENCHANTABLE, ItemTags.ARMOR_ENCHANTABLE,
+                        ItemTags.EQUIPPABLE_ENCHANTABLE, ItemTags.DURABILITY_ENCHANTABLE)),
+                new Expect(RankineItems.DIVING_CHESTPLATE.get(), List.of(
+                        ItemTags.CHEST_ARMOR_ENCHANTABLE, ItemTags.ARMOR_ENCHANTABLE)),
+                new Expect(RankineItems.BRIGADINE_LEGGINGS.get(), List.of(
+                        ItemTags.LEG_ARMOR_ENCHANTABLE, ItemTags.ARMOR_ENCHANTABLE)),
+                new Expect(RankineItems.SNOWSHOES.get(), List.of(
+                        ItemTags.FOOT_ARMOR_ENCHANTABLE, ItemTags.ARMOR_ENCHANTABLE)));
+
+        for (Expect e : expected) {
+            ItemStack stack = new ItemStack(e.item());
+            for (TagKey<Item> tag : e.tags()) {
+                if (!stack.is(tag)) {
+                    problems.add(BuiltInRegistries.ITEM.getKey(e.item()).getPath()
+                            + " missing from #" + tag.location());
+                }
+            }
+        }
+
+        // The old categories were rules, not lists: anything satisfying the 1.18.2 predicate must
+        // be in the tag that replaced it. BREAKABLE was canBeDepleted(), and VANISHABLE was
+        // BREAKABLE plus the Vanishable marker, which no non-damageable Rankine item carried.
+        for (Item item : BuiltInRegistries.ITEM) {
+            ResourceLocation id = BuiltInRegistries.ITEM.getKey(item);
+            if (!isRankine(id)) {
+                continue;
+            }
+            String name = id.getPath();
+            ItemStack stack = new ItemStack(item);
+
+            if (item.components().has(DataComponents.MAX_DAMAGE)) {
+                if (!stack.is(ItemTags.DURABILITY_ENCHANTABLE)) {
+                    problems.add(name + " is damageable but not in #enchantable/durability");
+                }
+                if (!stack.is(ItemTags.VANISHING_ENCHANTABLE)) {
+                    problems.add(name + " is damageable but not in #enchantable/vanishing");
+                }
+            }
+            if (item instanceof DiggerItem) {
+                if (!stack.is(ItemTags.MINING_ENCHANTABLE)) {
+                    problems.add(name + " is a DiggerItem but not in #enchantable/mining");
+                }
+                if (!stack.is(ItemTags.MINING_LOOT_ENCHANTABLE)) {
+                    problems.add(name + " is a DiggerItem but not in #enchantable/mining_loot");
+                }
+            }
+            if (item instanceof SwordItem && !stack.is(ItemTags.SWORD_ENCHANTABLE)) {
+                problems.add(name + " is a SwordItem but not in #enchantable/sword");
+            }
+            if (item instanceof ArmorItem armor) {
+                TagKey<Item> slot = switch (armor.getType()) {
+                    case HELMET -> ItemTags.HEAD_ARMOR_ENCHANTABLE;
+                    case CHESTPLATE -> ItemTags.CHEST_ARMOR_ENCHANTABLE;
+                    case LEGGINGS -> ItemTags.LEG_ARMOR_ENCHANTABLE;
+                    case BOOTS -> ItemTags.FOOT_ARMOR_ENCHANTABLE;
+                    case BODY -> null; // 1.18.2 had no BODY slot; Rankine registers none
+                };
+                if (slot != null && !stack.is(slot)) {
+                    problems.add(name + " is armour but not in #" + slot.location());
+                }
+                if (!stack.is(ItemTags.ARMOR_ENCHANTABLE)) {
+                    problems.add(name + " is armour but not in #enchantable/armor");
+                }
+            }
+        }
+
+        // Tag membership is the mechanism; these are the outcomes a player sees. Both hooks are
+        // asserted because they are different code paths: supportsEnchantment is the anvil and
+        // isPrimaryItemFor is the enchanting table.
+        var enchantments = helper.getLevel().registryAccess().registryOrThrow(Registries.ENCHANTMENT);
+
+        record Applies(String name, Item item, ResourceKey<Enchantment> enchantment) {
+        }
+
+        List<Applies> applies = List.of(
+                new Applies("efficiency on steel pickaxe", RankineItems.STEEL_PICKAXE.get(), Enchantments.EFFICIENCY),
+                new Applies("fortune on steel pickaxe", RankineItems.STEEL_PICKAXE.get(), Enchantments.FORTUNE),
+                new Applies("protection on alloy helmet", RankineItems.ALLOY_HELMET.get(), Enchantments.PROTECTION),
+                new Applies("unbreaking on steel crowbar", RankineItems.STEEL_CROWBAR.get(), Enchantments.UNBREAKING),
+                new Applies("mending on brigandine leggings", RankineItems.BRIGADINE_LEGGINGS.get(), Enchantments.MENDING),
+                new Applies("sharpness on steel sword", RankineItems.STEEL_SWORD.get(), Enchantments.SHARPNESS));
+
+        for (Applies a : applies) {
+            Holder<Enchantment> holder = enchantments.getHolder(a.enchantment()).orElse(null);
+            if (holder == null) {
+                problems.add(a.name() + ": enchantment missing from the registry");
+                continue;
+            }
+            ItemStack stack = new ItemStack(a.item());
+            if (!stack.supportsEnchantment(holder)) {
+                problems.add(a.name() + ": refused on the anvil path (supportsEnchantment)");
+            }
+            if (!stack.isPrimaryItemFor(holder)) {
+                problems.add(a.name() + ": not offered at the enchanting table (isPrimaryItemFor)");
+            }
+        }
+
+        assertEmpty(problems, "enchantability failures");
+        helper.succeed();
+    }
+
+    /**
+     * The three hand-written applicability bans were table-only in 1.18.2 and must stay that way.
+     *
+     * <p>1.18.2 expressed them through Forge's {@code canApplyAtEnchantingTable}, which only
+     * {@code EnchantmentHelper.getAvailableEnchantmentResults} consulted; the anvil went through
+     * {@code Enchantment#canEnchant} and happily applied the corresponding book. In 1.21 the two
+     * paths are {@code isPrimaryItemFor} (table) and {@code supportsEnchantment} (anvil), and
+     * because the default {@code isPrimaryItemFor} short-circuits on {@code supportsEnchantment},
+     * putting the ban on the wrong one silently kills both.
+     */
+    @GameTest(template = "empty")
+    public void enchantingTableBansDoNotBlockBooks(GameTestHelper helper) {
+        var enchantments = helper.getLevel().registryAccess().registryOrThrow(Registries.ENCHANTMENT);
+        List<String> problems = new ArrayList<>();
+
+        record Ban(String name, Item item, ResourceKey<Enchantment> enchantment) {
+        }
+
+        List<Ban> bans = List.of(
+                new Ban("efficiency on stone hammer", RankineItems.STONE_HAMMER.get(), Enchantments.EFFICIENCY),
+                new Ban("silk touch on stone hammer", RankineItems.STONE_HAMMER.get(), Enchantments.SILK_TOUCH),
+                new Ban("efficiency on steel hammer", RankineItems.STEEL_HAMMER.get(), Enchantments.EFFICIENCY),
+                new Ban("efficiency on steel crowbar", RankineItems.STEEL_CROWBAR.get(), Enchantments.EFFICIENCY),
+                new Ban("silk touch on steel crowbar", RankineItems.STEEL_CROWBAR.get(), Enchantments.SILK_TOUCH),
+                new Ban("fortune on steel crowbar", RankineItems.STEEL_CROWBAR.get(), Enchantments.FORTUNE),
+                new Ban("sweeping edge on flint knife", RankineItems.FLINT_KNIFE.get(), Enchantments.SWEEPING_EDGE),
+                new Ban("fire aspect on flint knife", RankineItems.FLINT_KNIFE.get(), Enchantments.FIRE_ASPECT),
+                new Ban("knockback on flint knife", RankineItems.FLINT_KNIFE.get(), Enchantments.KNOCKBACK),
+                new Ban("fire aspect on steel knife", RankineItems.STEEL_KNIFE.get(), Enchantments.FIRE_ASPECT));
+
+        for (Ban b : bans) {
+            Holder<Enchantment> holder = enchantments.getHolder(b.enchantment()).orElse(null);
+            if (holder == null) {
+                problems.add(b.name() + ": enchantment missing from the registry");
+                continue;
+            }
+            ItemStack stack = new ItemStack(b.item());
+            if (stack.isPrimaryItemFor(holder)) {
+                problems.add(b.name() + ": still offered at the enchanting table (1.18.2 refused it)");
+            }
+            if (!stack.supportsEnchantment(holder)) {
+                problems.add(b.name() + ": book refused on the anvil (1.18.2 accepted it)");
+            }
+        }
+
+        assertEmpty(problems, "enchanting-table ban failures");
         helper.succeed();
     }
 }
