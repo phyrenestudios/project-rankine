@@ -1,0 +1,328 @@
+{
+  "values": {
+    "rankine:acacia_leaf_litter": {
+      "chance": 0.1
+    },
+    "rankine:aloe": {
+      "chance": 0.3
+    },
+    "rankine:asparagus_seeds": {
+      "chance": 0.3
+    },
+    "rankine:balsam_fir_leaf_litter": {
+      "chance": 0.1
+    },
+    "rankine:balsam_fir_leaves": {
+      "chance": 0.3
+    },
+    "rankine:balsam_fir_sapling": {
+      "chance": 0.3
+    },
+    "rankine:banana_yucca": {
+      "chance": 0.3
+    },
+    "rankine:barley_seeds": {
+      "chance": 0.3
+    },
+    "rankine:birch_leaf_litter": {
+      "chance": 0.1
+    },
+    "rankine:black_birch_leaf_litter": {
+      "chance": 0.1
+    },
+    "rankine:black_birch_leaves": {
+      "chance": 0.3
+    },
+    "rankine:black_birch_sapling": {
+      "chance": 0.3
+    },
+    "rankine:black_morning_glory": {
+      "chance": 0.65
+    },
+    "rankine:black_walnut": {
+      "chance": 0.3
+    },
+    "rankine:black_walnut_leaf_litter": {
+      "chance": 0.1
+    },
+    "rankine:black_walnut_leaves": {
+      "chance": 0.3
+    },
+    "rankine:black_walnut_sapling": {
+      "chance": 0.3
+    },
+    "rankine:blackberries": {
+      "chance": 0.3
+    },
+    "rankine:blue_morning_glory": {
+      "chance": 0.65
+    },
+    "rankine:blueberries": {
+      "chance": 0.3
+    },
+    "rankine:camphor_basil_leaf": {
+      "chance": 0.3
+    },
+    "rankine:camphor_basil_seeds": {
+      "chance": 0.3
+    },
+    "rankine:cedar_leaf_litter": {
+      "chance": 0.1
+    },
+    "rankine:cedar_leaves": {
+      "chance": 0.3
+    },
+    "rankine:cedar_sapling": {
+      "chance": 0.3
+    },
+    "rankine:cinnamon_leaf_litter": {
+      "chance": 0.1
+    },
+    "rankine:cinnamon_leaves": {
+      "chance": 0.3
+    },
+    "rankine:cinnamon_sapling": {
+      "chance": 0.3
+    },
+    "rankine:coconut": {
+      "chance": 0.3
+    },
+    "rankine:coconut_palm_leaf_litter": {
+      "chance": 0.1
+    },
+    "rankine:coconut_palm_leaves": {
+      "chance": 0.3
+    },
+    "rankine:coconut_palm_sapling": {
+      "chance": 0.3
+    },
+    "rankine:compost": {
+      "chance": 0.5
+    },
+    "rankine:cork_oak_leaf_litter": {
+      "chance": 0.1
+    },
+    "rankine:cork_oak_leaves": {
+      "chance": 0.3
+    },
+    "rankine:cork_oak_sapling": {
+      "chance": 0.3
+    },
+    "rankine:corn_seeds": {
+      "chance": 0.3
+    },
+    "rankine:cotton_seeds": {
+      "chance": 0.3
+    },
+    "rankine:cranberries": {
+      "chance": 0.3
+    },
+    "rankine:crimson_clover": {
+      "chance": 0.5
+    },
+    "rankine:dark_oak_leaf_litter": {
+      "chance": 0.1
+    },
+    "rankine:eastern_hemlock_leaf_litter": {
+      "chance": 0.1
+    },
+    "rankine:eastern_hemlock_leaves": {
+      "chance": 0.3
+    },
+    "rankine:eastern_hemlock_sapling": {
+      "chance": 0.3
+    },
+    "rankine:elderberries": {
+      "chance": 0.3
+    },
+    "rankine:erythrina_leaf_litter": {
+      "chance": 0.1
+    },
+    "rankine:erythrina_leaves": {
+      "chance": 0.3
+    },
+    "rankine:erythrina_sapling": {
+      "chance": 0.3
+    },
+    "rankine:flower_seeds": {
+      "chance": 0.3
+    },
+    "rankine:goldenrod": {
+      "chance": 0.65
+    },
+    "rankine:grass_seeds": {
+      "chance": 0.3
+    },
+    "rankine:honey_locust_leaf_litter": {
+      "chance": 0.1
+    },
+    "rankine:honey_locust_leaves": {
+      "chance": 0.3
+    },
+    "rankine:honey_locust_sapling": {
+      "chance": 0.3
+    },
+    "rankine:jungle_leaf_litter": {
+      "chance": 0.1
+    },
+    "rankine:juniper_berries": {
+      "chance": 0.3
+    },
+    "rankine:juniper_leaf_litter": {
+      "chance": 0.1
+    },
+    "rankine:juniper_leaves": {
+      "chance": 0.3
+    },
+    "rankine:juniper_sapling": {
+      "chance": 0.3
+    },
+    "rankine:jute_seeds": {
+      "chance": 0.3
+    },
+    "rankine:magnolia_leaf_litter": {
+      "chance": 0.1
+    },
+    "rankine:magnolia_leaves": {
+      "chance": 0.3
+    },
+    "rankine:magnolia_sapling": {
+      "chance": 0.3
+    },
+    "rankine:maple_leaf_litter": {
+      "chance": 0.1
+    },
+    "rankine:maple_leaves": {
+      "chance": 0.3
+    },
+    "rankine:maple_sapling": {
+      "chance": 0.3
+    },
+    "rankine:millet_seeds": {
+      "chance": 0.3
+    },
+    "rankine:oak_leaf_litter": {
+      "chance": 0.1
+    },
+    "rankine:oat_seeds": {
+      "chance": 0.3
+    },
+    "rankine:orange_lily": {
+      "chance": 0.65
+    },
+    "rankine:pineapple": {
+      "chance": 0.3
+    },
+    "rankine:pineapple_sleeves": {
+      "chance": 1.0
+    },
+    "rankine:pink_bellflower": {
+      "chance": 0.65
+    },
+    "rankine:pinyon_pine_leaf_litter": {
+      "chance": 0.1
+    },
+    "rankine:pinyon_pine_leaves": {
+      "chance": 0.3
+    },
+    "rankine:pinyon_pine_sapling": {
+      "chance": 0.3
+    },
+    "rankine:pokeberries": {
+      "chance": 0.3
+    },
+    "rankine:purple_morning_glory": {
+      "chance": 0.65
+    },
+    "rankine:raspberries": {
+      "chance": 0.3
+    },
+    "rankine:red_birch_leaf_litter": {
+      "chance": 0.1
+    },
+    "rankine:red_birch_leaves": {
+      "chance": 0.3
+    },
+    "rankine:red_birch_sapling": {
+      "chance": 0.3
+    },
+    "rankine:red_clover": {
+      "chance": 0.5
+    },
+    "rankine:red_lily": {
+      "chance": 0.65
+    },
+    "rankine:rice_seeds": {
+      "chance": 0.3
+    },
+    "rankine:rye_seeds": {
+      "chance": 0.3
+    },
+    "rankine:sharinga_leaf_litter": {
+      "chance": 0.1
+    },
+    "rankine:sharinga_leaves": {
+      "chance": 0.3
+    },
+    "rankine:sharinga_sapling": {
+      "chance": 0.3
+    },
+    "rankine:short_grass": {
+      "chance": 0.25
+    },
+    "rankine:snowberries": {
+      "chance": 0.3
+    },
+    "rankine:sorghum_seeds": {
+      "chance": 0.3
+    },
+    "rankine:spruce_leaf_litter": {
+      "chance": 0.1
+    },
+    "rankine:stinging_nettle": {
+      "chance": 0.5
+    },
+    "rankine:strawberries": {
+      "chance": 0.3
+    },
+    "rankine:violet_bellflower": {
+      "chance": 0.65
+    },
+    "rankine:weeping_willow_leaf_litter": {
+      "chance": 0.1
+    },
+    "rankine:weeping_willow_leaves": {
+      "chance": 0.3
+    },
+    "rankine:weeping_willow_sapling": {
+      "chance": 0.3
+    },
+    "rankine:western_hemlock_leaf_litter": {
+      "chance": 0.1
+    },
+    "rankine:western_hemlock_leaves": {
+      "chance": 0.3
+    },
+    "rankine:western_hemlock_sapling": {
+      "chance": 0.3
+    },
+    "rankine:white_clover": {
+      "chance": 0.5
+    },
+    "rankine:white_lily": {
+      "chance": 0.65
+    },
+    "rankine:yellow_birch_leaf_litter": {
+      "chance": 0.1
+    },
+    "rankine:yellow_birch_leaves": {
+      "chance": 0.3
+    },
+    "rankine:yellow_birch_sapling": {
+      "chance": 0.3
+    },
+    "rankine:yellow_clover": {
+      "chance": 0.5
+    }
+  }
+}

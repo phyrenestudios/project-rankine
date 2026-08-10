@@ -292,6 +292,15 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
         tag(BlockTags.POLAR_BEARS_SPAWNABLE_ON_ALTERNATE).add(RankineBlocks.METEORIC_ICE.get(),RankineBlocks.DRY_ICE.get());
         tag(BlockTags.CAULDRONS).add(RankineBlocks.SAP_CAULDRON.get(),RankineBlocks.MAPLE_SAP_CAULDRON.get(),RankineBlocks.MAPLE_SYRUP_CAULDRON.get(),RankineBlocks.LATEX_CAULDRON.get(),RankineBlocks.RESIN_CAULDRON.get(),RankineBlocks.JUGLONE_CAULDRON.get());
         tag(BlockTags.CROPS).add(RankineBlocks.JUTE_PLANT.get(),RankineBlocks.CORN_PLANT.get(),RankineBlocks.RICE_PLANT.get(),RankineBlocks.COTTON_PLANT.get(),RankineBlocks.ASPARAGUS_PLANT.get(),RankineBlocks.CAMPHOR_BASIL_PLANT.get(),RankineBlocks.ALOE_PLANT.get(),RankineBlocks.PINEAPPLE_BUSH.get(),RankineBlocks.CRANBERRY_BUSH.get(),RankineBlocks.POKEBERRY_BUSH.get(),RankineBlocks.BLUEBERRY_BUSH.get(),RankineBlocks.ELDERBERRY_BUSH.get(),RankineBlocks.STRAWBERRY_BUSH.get(),RankineBlocks.SNOWBERRY_BUSH.get(),RankineBlocks.RASPBERRY_BUSH.get(),RankineBlocks.BLACKBERRY_BUSH.get(),RankineBlocks.BANANA_YUCCA_BUSH.get(),RankineBlocks.RYE_PLANT.get(),RankineBlocks.SORGHUM_PLANT.get(),RankineBlocks.BARLEY_PLANT.get(),RankineBlocks.MILLET_PLANT.get(),RankineBlocks.OAT_PLANT.get(),RankineBlocks.SOYBEAN_PLANT.get());
+        // Crop hydration. 1.18.2's TilledSoilBlock#hasCrops was
+        // `plant.getBlock() instanceof IPlantable && state.canSustainPlant(...)`, and Forge made
+        // every BushBlock IPlantable, so all 23 Rankine crops kept tilled soil (and vanilla
+        // farmland) from drying out and reverting to dirt. IPlantable is gone in NeoForge 1.21;
+        // both TilledSoilBlock#hasCrops and vanilla FarmBlock#isUnderCrops now test
+        // #minecraft:maintains_farmland, whose vanilla copy is a hand-written list of vanilla
+        // crops only. Adding #minecraft:crops contributes exactly the Rankine crops (vanilla's 8
+        // crops are already in vanilla's file) and keeps the two tags from drifting apart.
+        tag(BlockTags.MAINTAINS_FARMLAND).addTag(BlockTags.CROPS);
         tag(RankineTags.Blocks.KNIFE_SHEARABLE).add(Blocks.SHORT_GRASS,Blocks.TALL_GRASS,Blocks.FERN,Blocks.LARGE_FERN,Blocks.SEAGRASS,Blocks.TALL_SEAGRASS,Blocks.VINE,Blocks.TWISTING_VINES,Blocks.WEEPING_VINES,Blocks.DEAD_BUSH,RankineBlocks.WILLOW_BRANCHLET.get(),RankineBlocks.WILLOW_BRANCHLET_PLANT.get(),RankineBlocks.SHORT_GRASS.get(),RankineBlocks.STINGING_NETTLE.get(),RankineBlocks.YELLOW_CLOVER.get(),RankineBlocks.RED_CLOVER.get(),RankineBlocks.CRIMSON_CLOVER.get(),RankineBlocks.WHITE_CLOVER.get());
 
         for (Block blk : RankineLists.ELECTROMAGNETS) {

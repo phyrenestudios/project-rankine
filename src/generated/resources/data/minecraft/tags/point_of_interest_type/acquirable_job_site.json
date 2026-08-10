@@ -1,0 +1,9 @@
+{
+  "values": [
+    "rankine:template_table_poi",
+    "rankine:material_testing_table_poi",
+    "rankine:botanist_poi",
+    "rankine:gem_cutter_poi",
+    "rankine:rock_collector_poi"
+  ]
+}

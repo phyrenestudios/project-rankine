@@ -37,6 +37,11 @@ public final class DataGenerators {
         gen.addProvider(server, new RankineEntityTypeTagsProvider(output, lookupProvider, existingFileHelper));
         gen.addProvider(server, new RankineEnchantmentTagsProvider(output, lookupProvider, existingFileHelper));
         gen.addProvider(server, new RankineDamageTypeTagsProvider(output, lookupProvider, existingFileHelper));
+        gen.addProvider(server, new RankinePoiTypeTagsProvider(output, lookupProvider, existingFileHelper));
+
+        // Registration that used to be plain code in 1.18 and is a datapack file in 1.21:
+        // neoforge:compostables (was ComposterBlock.COMPOSTABLES).
+        gen.addProvider(server, new RankineDataMapProvider(output, lookupProvider));
 
         gen.addProvider(server, new RankineLootTableProvider(output, lookupProvider));
         gen.addProvider(server, new RankineAdvancementProvider(output, lookupProvider, existingFileHelper));

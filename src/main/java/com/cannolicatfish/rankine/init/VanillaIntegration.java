@@ -13,13 +13,13 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.common.ModConfigSpec;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class VanillaIntegration {
@@ -139,47 +139,8 @@ public class VanillaIntegration {
         for (RankineWood Wood : RankineLists.RANKINE_WOODS) {
             if (Wood.isTree()) {
                 addFlowerPot(Wood.getSapling(), Wood.getPottedSapling());
-                registerCompostable(0.3F, Wood.getLeaves());
-                registerCompostable(0.3F, Wood.getSapling());
-                registerCompostable(0.1F, Wood.getLeafLitter());
             }
         }
-
-
-        for (Block blk : RankineLists.TALL_FLOWERS) {
-            registerCompostable(0.65F, blk);
-        }
-        for (Block blk : RankineLists.LEAF_LITTERS) {
-            registerCompostable(0.1F, blk);
-        }
-        for (Item blk : RankineLists.SEEDS) {
-            registerCompostable(0.3F, blk);
-        }
-        registerCompostable(0.5F, RankineItems.COMPOST.get());
-        registerCompostable(1.0F, RankineItems.PINEAPPLE_SLEEVES.get());
-        registerCompostable(0.25F, RankineItems.SHORT_GRASS.get());
-        registerCompostable(0.5F, RankineItems.STINGING_NETTLE.get());
-        registerCompostable(0.5F, RankineItems.YELLOW_CLOVER.get());
-        registerCompostable(0.5F, RankineItems.CRIMSON_CLOVER.get());
-        registerCompostable(0.5F, RankineItems.RED_CLOVER.get());
-        registerCompostable(0.5F, RankineItems.WHITE_CLOVER.get());
-
-        registerCompostable(0.3F, RankineItems.ELDERBERRIES.get());
-        registerCompostable(0.3F, RankineItems.BLUEBERRIES.get());
-        registerCompostable(0.3F, RankineItems.STRAWBERRIES.get());
-        registerCompostable(0.3F, RankineItems.CRANBERRIES.get());
-        registerCompostable(0.3F, RankineItems.POKEBERRIES.get());
-        registerCompostable(0.3F, RankineItems.RASPBERRIES.get());
-        registerCompostable(0.3F, RankineItems.BLACKBERRIES.get());
-        registerCompostable(0.3F, RankineItems.PINEAPPLE.get());
-        registerCompostable(0.3F, RankineItems.ALOE.get());
-        registerCompostable(0.3F, RankineItems.CAMPHOR_BASIL_LEAF.get());
-        registerCompostable(0.3F, RankineItems.CAMPHOR_BASIL_SEEDS.get());
-        registerCompostable(0.3F, RankineItems.BANANA_YUCCA.get());
-        registerCompostable(0.3F, RankineItems.SNOWBERRIES.get());
-        registerCompostable(0.3F, RankineItems.JUNIPER_BERRIES.get());
-        registerCompostable(0.3F, RankineItems.BLACK_WALNUT.get());
-        registerCompostable(0.3F, RankineItems.COCONUT.get());
 
         for (Block GRASS : RankineLists.GRASS_BLOCKS)  {
             pathBlocks_map.put(GRASS, RankineLists.PATH_BLOCKS.get(RankineLists.GRASS_BLOCKS.indexOf(GRASS)));
@@ -401,8 +362,78 @@ public class VanillaIntegration {
         DISABLED_ITEMS.put(RankineItems.MAGNETOMETER.get(), Config.TOOLS.DISABLE_MAGNETOMETER);
     }
 
-    public static void registerCompostable(float chance, ItemLike itemIn) {
-        ComposterBlock.COMPOSTABLES.put(itemIn.asItem(), chance);
+    /**
+     * Every item Rankine makes compostable, mapped to its 1.18.2 compost chance.
+     *
+     * <p>1.18.2 registered these by writing {@code ComposterBlock.COMPOSTABLES} from
+     * {@code init()}. NeoForge 1.21 no longer reads that map at all — {@code ComposterBlock}
+     * and {@code WorkAtComposter} both go through the {@code neoforge:compostables} data map
+     * ({@code data/neoforge/data_maps/item/compostables.json}) — so the registration now lives
+     * in {@code RankineDataMapProvider}, which calls this method. It is a plain static builder
+     * rather than a field so datagen does not depend on {@code init()} (FMLLoadCompleteEvent)
+     * having run first; the provider and the game therefore cannot disagree about the list.
+     *
+     * <p>Insertion-ordered so the generated JSON is stable across runs.
+     */
+    public static Map<Item, Float> compostables() {
+        Map<Item, Float> compostables = new LinkedHashMap<>();
+
+        for (RankineWood Wood : RankineLists.RANKINE_WOODS) {
+            if (Wood.isTree()) {
+                addCompostable(compostables, 0.3F, Wood.getLeaves());
+                addCompostable(compostables, 0.3F, Wood.getSapling());
+                addCompostable(compostables, 0.1F, Wood.getLeafLitter());
+            }
+        }
+
+        for (Block blk : RankineLists.TALL_FLOWERS) {
+            addCompostable(compostables, 0.65F, blk);
+        }
+        for (Block blk : RankineLists.LEAF_LITTERS) {
+            addCompostable(compostables, 0.1F, blk);
+        }
+        for (Item blk : RankineLists.SEEDS) {
+            addCompostable(compostables, 0.3F, blk);
+        }
+        addCompostable(compostables, 0.5F, RankineItems.COMPOST.get());
+        addCompostable(compostables, 1.0F, RankineItems.PINEAPPLE_SLEEVES.get());
+        addCompostable(compostables, 0.25F, RankineItems.SHORT_GRASS.get());
+        addCompostable(compostables, 0.5F, RankineItems.STINGING_NETTLE.get());
+        addCompostable(compostables, 0.5F, RankineItems.YELLOW_CLOVER.get());
+        addCompostable(compostables, 0.5F, RankineItems.CRIMSON_CLOVER.get());
+        addCompostable(compostables, 0.5F, RankineItems.RED_CLOVER.get());
+        addCompostable(compostables, 0.5F, RankineItems.WHITE_CLOVER.get());
+
+        addCompostable(compostables, 0.3F, RankineItems.ELDERBERRIES.get());
+        addCompostable(compostables, 0.3F, RankineItems.BLUEBERRIES.get());
+        addCompostable(compostables, 0.3F, RankineItems.STRAWBERRIES.get());
+        addCompostable(compostables, 0.3F, RankineItems.CRANBERRIES.get());
+        addCompostable(compostables, 0.3F, RankineItems.POKEBERRIES.get());
+        addCompostable(compostables, 0.3F, RankineItems.RASPBERRIES.get());
+        addCompostable(compostables, 0.3F, RankineItems.BLACKBERRIES.get());
+        addCompostable(compostables, 0.3F, RankineItems.PINEAPPLE.get());
+        addCompostable(compostables, 0.3F, RankineItems.ALOE.get());
+        addCompostable(compostables, 0.3F, RankineItems.CAMPHOR_BASIL_LEAF.get());
+        addCompostable(compostables, 0.3F, RankineItems.CAMPHOR_BASIL_SEEDS.get());
+        addCompostable(compostables, 0.3F, RankineItems.BANANA_YUCCA.get());
+        addCompostable(compostables, 0.3F, RankineItems.SNOWBERRIES.get());
+        addCompostable(compostables, 0.3F, RankineItems.JUNIPER_BERRIES.get());
+        addCompostable(compostables, 0.3F, RankineItems.BLACK_WALNUT.get());
+        addCompostable(compostables, 0.3F, RankineItems.COCONUT.get());
+
+        return compostables;
+    }
+
+    /**
+     * A block with no {@code BlockItem} reports {@code minecraft:air} from {@code asItem()}.
+     * 1.18 tolerated that (a junk entry in an in-memory map); a data map entry for
+     * {@code minecraft:air} would make air compostable, so drop it instead.
+     */
+    private static void addCompostable(Map<Item, Float> out, float chance, ItemLike itemIn) {
+        Item item = itemIn.asItem();
+        if (item != Items.AIR) {
+            out.put(item, chance);
+        }
     }
 
     public static void addFlowerPot(Block plant, FlowerPotBlock plantPot) {

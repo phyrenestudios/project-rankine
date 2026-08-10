@@ -4,7 +4,11 @@ import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.init.RankineDataComponents;
 import com.cannolicatfish.rankine.init.RankineEnchantments;
 import com.cannolicatfish.rankine.init.RankineItems;
+import com.cannolicatfish.rankine.init.RankineLists;
+import com.cannolicatfish.rankine.init.RankinePOIs;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
+import com.cannolicatfish.rankine.init.RankineVillagerProfessions;
+import com.cannolicatfish.rankine.init.VanillaIntegration;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.core.Holder;
 import net.minecraft.world.item.ItemStack;
@@ -17,8 +21,12 @@ import net.minecraft.gametest.framework.GameTestAssertException;
 import net.minecraft.gametest.framework.GameTestHelper;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.EnchantmentTags;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.PoiTypeTags;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.entity.ai.village.poi.PoiType;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.DiggerItem;
 import net.minecraft.world.item.Item;
@@ -28,13 +36,17 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
+import net.neoforged.neoforge.registries.datamaps.builtin.Compostable;
+import net.neoforged.neoforge.registries.datamaps.builtin.NeoForgeDataMaps;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Registry and datapack integrity tests. These run on a real headless server
@@ -767,6 +779,200 @@ public class RankineRegistryTests {
         }
 
         assertEmpty(problems, "enchanting-table ban failures");
+        helper.succeed();
+    }
+
+    /**
+     * F2 — every item Rankine declares compostable must actually be compostable.
+     *
+     * <p>1.18.2 wrote {@code ComposterBlock.COMPOSTABLES} at load time; NeoForge 1.21 reads only the
+     * {@code neoforge:compostables} data map, which is a generated datapack file. Nothing errors
+     * when it is missing — the composter just quietly rejects the item — so this asserts the data
+     * map the running server actually loaded, item by item, against
+     * {@link VanillaIntegration#compostables()}, the list datagen was driven from. It therefore
+     * fails both if the provider is dropped and if the generated JSON is stale.
+     */
+    @GameTest(template = "empty")
+    public void compostablesDataMapMatchesTheModsList(GameTestHelper helper) {
+        List<String> problems = new ArrayList<>();
+        Map<Item, Float> expected = VanillaIntegration.compostables();
+
+        assertTrue(expected.size() > 90, "expected >90 rankine compostables, the mod's list has " + expected.size());
+
+        for (Map.Entry<Item, Float> e : expected.entrySet()) {
+            Item item = e.getKey();
+            String name = BuiltInRegistries.ITEM.getKey(item).toString();
+            Compostable compostable = item.builtInRegistryHolder().getData(NeoForgeDataMaps.COMPOSTABLES);
+            if (compostable == null) {
+                problems.add(name + " has no neoforge:compostables entry");
+            } else if (compostable.chance() != e.getValue()) {
+                problems.add(name + " composts at " + compostable.chance() + ", expected " + e.getValue());
+            } else if (compostable.canVillagerCompost()) {
+                // 1.18.2's WorkAtComposter had a hard-coded item list no mod could extend.
+                problems.add(name + " is villager-compostable; 1.18.2 allowed no rankine item to be");
+            }
+        }
+
+        assertEmpty(problems, "compostable data map mismatches");
+        helper.succeed();
+    }
+
+    /**
+     * F3 — the five Rankine professions must be acquirable by villagers.
+     *
+     * <p>An unemployed villager only claims job sites matching
+     * {@code VillagerProfession.ALL_ACQUIRABLE_JOBS}, i.e. {@code #minecraft:acquirable_job_site}.
+     * 1.18.2 needed no such tag, so an absent {@code PoiTypeTagsProvider} makes every Rankine
+     * profession — and all 21 of its trades — unreachable with no error anywhere.
+     */
+    @GameTest(template = "empty")
+    public void rankineJobSitesAreAcquirable(GameTestHelper helper) {
+        List<String> problems = new ArrayList<>();
+
+        List<ResourceKey<PoiType>> jobSites = List.of(
+                RankinePOIs.TEMPLATE_TABLE_POI.getKey(),
+                RankinePOIs.MATERIAL_TESTING_TABLE_POI.getKey(),
+                RankinePOIs.BOTANIST_STATION_POI.getKey(),
+                RankinePOIs.GEM_CUTTER_POI.getKey(),
+                RankinePOIs.ROCK_COLLECTOR_POI.getKey());
+
+        for (ResourceKey<PoiType> key : jobSites) {
+            Holder<PoiType> holder = BuiltInRegistries.POINT_OF_INTEREST_TYPE.getHolder(key).orElse(null);
+            if (holder == null) {
+                problems.add(key.location() + " is not registered");
+                continue;
+            }
+            if (!holder.is(PoiTypeTags.ACQUIRABLE_JOB_SITE)) {
+                problems.add(key.location() + " missing from #minecraft:acquirable_job_site");
+            }
+            // Vanilla's village.json is ["#minecraft:acquirable_job_site", home, meeting], so this
+            // should follow for free; asserting it catches the tag being added to the wrong file.
+            if (!holder.is(PoiTypeTags.VILLAGE)) {
+                problems.add(key.location() + " missing from #minecraft:village");
+            }
+        }
+
+        // Every profession's job site must be one of the five above, or a profession is orphaned.
+        for (var profession : List.of(RankineVillagerProfessions.METALLURGIST, RankineVillagerProfessions.MINERALOGIST,
+                RankineVillagerProfessions.BOTANIST, RankineVillagerProfessions.GEM_CUTTER,
+                RankineVillagerProfessions.ROCK_COLLECTOR)) {
+            boolean acquirable = BuiltInRegistries.POINT_OF_INTEREST_TYPE.holders()
+                    .anyMatch(h -> h.is(PoiTypeTags.ACQUIRABLE_JOB_SITE) && profession.get().acquirableJobSite().test(h));
+            if (!acquirable) {
+                problems.add(profession.getId() + " has no acquirable job site");
+            }
+        }
+
+        assertEmpty(problems, "villager job-site failures");
+        helper.succeed();
+    }
+
+    /**
+     * F4 — Rankine enchantment availability must match the 1.18.2 flags.
+     *
+     * <p>All 44 had {@code isTradeable() == true} and {@code isTreasureOnly() == false}; 14
+     * overrode {@code isDiscoverable()} to false. Those map onto {@code minecraft:tradeable},
+     * {@code minecraft:treasure} and {@code minecraft:on_random_loot} / {@code on_mob_spawn_equipment}
+     * / {@code on_traded_equipment}. Asserted in BOTH directions so the fix cannot overshoot: the
+     * curse in particular must be tradeable but never roll onto loot or mob gear.
+     */
+    @GameTest(template = "empty")
+    public void rankineEnchantmentsHave1182Availability(GameTestHelper helper) {
+        var enchantments = helper.getLevel().registryAccess().registryOrThrow(Registries.ENCHANTMENT);
+        List<String> problems = new ArrayList<>();
+
+        // Tradeable regardless of discoverability — the three the review found unobtainable, plus
+        // representatives of the other groups.
+        List<ResourceKey<Enchantment>> tradeable = List.of(
+                RankineEnchantments.ENDPLAY, RankineEnchantments.WITHERING_CURSE,
+                RankineEnchantments.GHASTLY_REGENERATION, RankineEnchantments.SHAPE_MEMORY,
+                RankineEnchantments.ENDOBIOTIC, RankineEnchantments.ANTIQUATED,
+                RankineEnchantments.DUNE_WALKER, RankineEnchantments.PUNCTURE);
+
+        // isDiscoverable() == true at the baseline, so 1.18.2 could roll these onto loot and gear.
+        List<ResourceKey<Enchantment>> randomLoot = List.of(
+                RankineEnchantments.PUNCTURE, RankineEnchantments.GUARD,
+                RankineEnchantments.DUNE_WALKER, RankineEnchantments.GAS_PROTECTION,
+                RankineEnchantments.AQUA_LENSE, RankineEnchantments.ANTIQUATED);
+
+        // isDiscoverable() == false at the baseline: must NOT reach loot, mob gear or trade gear.
+        List<ResourceKey<Enchantment>> notRandomLoot = List.of(
+                RankineEnchantments.ENDPLAY, RankineEnchantments.WITHERING_CURSE,
+                RankineEnchantments.GHASTLY_REGENERATION, RankineEnchantments.SHAPE_MEMORY,
+                RankineEnchantments.ENDOBIOTIC, RankineEnchantments.ENDURE);
+
+        for (ResourceKey<Enchantment> key : tradeable) {
+            Holder<Enchantment> holder = enchantments.getHolder(key).orElse(null);
+            if (holder == null) {
+                problems.add(key.location() + " is not registered");
+                continue;
+            }
+            if (!holder.is(EnchantmentTags.TRADEABLE)) {
+                problems.add(key.location() + " missing from #minecraft:tradeable (1.18.2 isTradeable() was true)");
+            }
+            if (holder.is(EnchantmentTags.TREASURE)) {
+                problems.add(key.location() + " is in #minecraft:treasure; no 1.18.2 rankine enchantment was treasure-only");
+            }
+        }
+
+        for (ResourceKey<Enchantment> key : randomLoot) {
+            Holder<Enchantment> holder = enchantments.getHolder(key).orElseThrow();
+            for (TagKey<Enchantment> tag : List.of(EnchantmentTags.ON_RANDOM_LOOT,
+                    EnchantmentTags.ON_MOB_SPAWN_EQUIPMENT, EnchantmentTags.ON_TRADED_EQUIPMENT)) {
+                if (!holder.is(tag)) {
+                    problems.add(key.location() + " missing from #" + tag.location() + " (1.18.2 isDiscoverable() was true)");
+                }
+            }
+        }
+
+        for (ResourceKey<Enchantment> key : notRandomLoot) {
+            Holder<Enchantment> holder = enchantments.getHolder(key).orElseThrow();
+            for (TagKey<Enchantment> tag : List.of(EnchantmentTags.ON_RANDOM_LOOT,
+                    EnchantmentTags.ON_MOB_SPAWN_EQUIPMENT, EnchantmentTags.ON_TRADED_EQUIPMENT)) {
+                if (holder.is(tag)) {
+                    problems.add(key.location() + " is in #" + tag.location()
+                            + " but 1.18.2 isDiscoverable() was false — more available than the baseline");
+                }
+            }
+        }
+
+        assertEmpty(problems, "enchantment availability mismatches");
+        helper.succeed();
+    }
+
+    /**
+     * F5 — Rankine crops must keep tilled soil hydrated.
+     *
+     * <p>{@code TilledSoilBlock#hasCrops} and vanilla {@code FarmBlock} both read
+     * {@code #minecraft:maintains_farmland}; a crop missing from it lets the soil dry out and
+     * revert to dirt with the crop still standing on it.
+     */
+    @GameTest(template = "empty")
+    public void rankineCropsMaintainFarmland(GameTestHelper helper) {
+        List<String> problems = new ArrayList<>();
+        List<Block> crops = new ArrayList<>();
+        crops.addAll(RankineLists.CROPS_SINGLE);
+        crops.addAll(RankineLists.CROPS_DOUBLE);
+        crops.addAll(RankineLists.CROPS_TRIPLE);
+
+        assertTrue(crops.size() >= 12, "expected >=12 rankine crop blocks, found " + crops.size());
+
+        for (Block crop : crops) {
+            if (!crop.defaultBlockState().is(BlockTags.MAINTAINS_FARMLAND)) {
+                problems.add(BuiltInRegistries.BLOCK.getKey(crop) + " missing from #minecraft:maintains_farmland");
+            }
+            if (!crop.defaultBlockState().is(BlockTags.CROPS)) {
+                problems.add(BuiltInRegistries.BLOCK.getKey(crop) + " missing from #minecraft:crops");
+            }
+        }
+
+        // Vanilla's own crops must stay in the tag: the mod contributes #minecraft:crops to it and
+        // must not have replaced vanilla's list.
+        if (!Blocks.WHEAT.defaultBlockState().is(BlockTags.MAINTAINS_FARMLAND)) {
+            problems.add("minecraft:wheat fell out of #minecraft:maintains_farmland");
+        }
+
+        assertEmpty(problems, "crop farmland-hydration failures");
         helper.succeed();
     }
 }
