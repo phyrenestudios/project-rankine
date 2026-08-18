@@ -2,7 +2,9 @@ package com.cannolicatfish.rankine.gametest;
 
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.data.RankineBiomeModifiers;
+import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineDataComponents;
+import com.cannolicatfish.rankine.init.RankineFeatures;
 import com.cannolicatfish.rankine.init.RankinePlacedFeatures;
 import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
@@ -16,6 +18,7 @@ import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.init.RankineVillagerProfessions;
 import com.cannolicatfish.rankine.init.VanillaIntegration;
 import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderSet;
 import net.minecraft.world.item.ItemStack;
@@ -49,9 +52,15 @@ import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.GenerationStep;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
+import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
 import net.minecraft.world.level.material.Fluid;
+import net.minecraft.util.RandomSource;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.world.BiomeModifier;
 import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
@@ -63,6 +72,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -1112,9 +1122,17 @@ public class RankineRegistryTests {
         return index == -1 ? null : WorldgenUtils.LAYER_LISTS.get(index);
     }
 
-    /** Blocks of every Rankine ore vein attached to a biome, read off the live (modified) settings. */
-    private static Set<Block> oreVeinBlocks(Holder<Biome> biome) {
-        Set<Block> found = new HashSet<>();
+    /**
+     * Every Rankine ore vein attached to a biome, in the order {@code RankineOreBiomeModifier}
+     * added them (= the order of the matching {@code oreSettings} rows), read off the live
+     * (modified) generation settings.
+     * <p>
+     * The veins are identified structurally, by their {@link RankineOreFeatureConfig}: the modifier
+     * builds inline {@code Holder.direct} placed features, so they have no registry name to match on.
+     * Nothing else in the mod ever constructs that config, so this list is exactly the ore rows.
+     */
+    private static List<Block> oreVeinList(Holder<Biome> biome) {
+        List<Block> found = new ArrayList<>();
         List<HolderSet<PlacedFeature>> byStep = biome.value().getGenerationSettings().features();
         int step = GenerationStep.Decoration.UNDERGROUND_ORES.ordinal();
         if (step >= byStep.size()) return found;
@@ -1125,6 +1143,17 @@ public class RankineRegistryTests {
             }
         }
         return found;
+    }
+
+    /** Blocks of every Rankine ore vein attached to a biome, read off the live (modified) settings. */
+    private static Set<Block> oreVeinBlocks(Holder<Biome> biome) {
+        return new HashSet<>(oreVeinList(biome));
+    }
+
+    private static List<String> idsOf(List<Block> blocks) {
+        List<String> ids = new ArrayList<>();
+        for (Block b : blocks) ids.add(String.valueOf(BuiltInRegistries.BLOCK.getKey(b)));
+        return ids;
     }
 
     private static boolean hasPlacedFeature(Holder<Biome> biome, GenerationStep.Decoration step, ResourceKey<PlacedFeature> feature) {
@@ -1317,6 +1346,192 @@ public class RankineRegistryTests {
         }
 
         assertEmpty(problems, "biomes missing dimension-wide Rankine features");
+        helper.succeed();
+    }
+
+    // ------------------------------------------------------------------------------------------
+    // F7 runtime proof. endCategoryRowsSelectEndBiomes above proves the eight End ore rows are
+    // *selected*; these two prove the feature they build is actually attached in the expected
+    // number, and that running it over end stone actually replaces blocks.
+    // ------------------------------------------------------------------------------------------
+
+    /** The eight {@code "the_end"} oreSettings rows, in config order (Config.java:1262-1269). */
+    private static final List<String> END_ORE_VEINS = List.of(
+            "rankine:native_gallium_ore", "rankine:native_indium_ore", "rankine:native_selenium_ore",
+            "rankine:native_tellurium_ore", "rankine:molybdenite_ore", "rankine:uraninite_ore",
+            "rankine:xenotime_ore", "rankine:greenockite_ore");
+
+    /**
+     * Of those eight, the six that appear in NO other row. uraninite and molybdenite also have an
+     * {@code "overworld"} row (Config.java:1227-1228), so they are not End-exclusive.
+     */
+    private static final List<String> END_EXCLUSIVE_ORES = List.of(
+            "rankine:native_gallium_ore", "rankine:native_indium_ore", "rankine:native_selenium_ore",
+            "rankine:native_tellurium_ore", "rankine:xenotime_ore", "rankine:greenockite_ore");
+
+    /**
+     * F7 — an End biome must carry exactly the eight End ore veins, no more and no fewer.
+     *
+     * <p><b>Derivation of the number 8</b> (from the shipped default {@code oreSettings},
+     * Config.java:1176-1269 — 75 active rows — read through {@code RankineOreBiomeModifier#matches}):
+     * <ul>
+     *   <li>43 rows select {@code "overworld"}, which is {@link WorldgenUtils#isOverworld}:
+     *       {@code !biome.is(IS_NETHER) && !biome.is(IS_END)}. Every End biome is in
+     *       {@code minecraft:is_end}, so <b>none</b> of the 43 match — this is why the count is 8
+     *       and not 51, and why {@code rankine:hematite_ore} (overworld-only) is checked absent below;</li>
+     *   <li>9 rows select the {@code "nether"} category ({@code minecraft:is_nether}) — no match;</li>
+     *   <li>2 rows name an exact biome ({@code minecraft:nether_wastes},
+     *       {@code minecraft:crimson_forest}) — no match;</li>
+     *   <li>12 rows select combinations of overworld-only categories (mesa, ocean, beach, mushroom,
+     *       desert, plains, savanna, jungle, swamp, forest, taiga, extreme_hills, mountain, icy).
+     *       An End biome is in none of those tags — no match;</li>
+     *   <li>1 row selects {@code "all"}, which was never a {@code BiomeCategory} name and so matches
+     *       nothing (parity with 1.18.2, see {@link WorldgenUtils#isCategory});</li>
+     *   <li>{@code "none"} would be excluded anyway: it means "in none of the CATEGORY_TAGS tags",
+     *       and an End biome is in {@code minecraft:is_end}, which is one of them. No default row
+     *       uses it (the only one, basaltic_tuff, is commented out);</li>
+     *   <li>leaving the 8 rows keyed {@code "the_end"} → {@code minecraft:is_end}. 43+9+2+12+1+8 = 75.</li>
+     * </ul>
+     * The order is the config's, because the modifier appends one placed feature per matching row.
+     */
+    @GameTest(template = "empty")
+    public void endBiomesCarryExactlyTheEightEndOreVeins(GameTestHelper helper) {
+        var biomeRegistry = helper.getLevel().registryAccess().registryOrThrow(Registries.BIOME);
+        List<String> problems = new ArrayList<>();
+
+        for (ResourceKey<Biome> key : List.of(Biomes.THE_END, Biomes.END_HIGHLANDS,
+                Biomes.END_MIDLANDS, Biomes.END_BARRENS, Biomes.SMALL_END_ISLANDS)) {
+            List<String> veins = idsOf(oreVeinList(biomeRegistry.getHolderOrThrow(key)));
+            if (!END_ORE_VEINS.equals(veins)) {
+                problems.add(key.location() + " has " + veins.size() + " Rankine ore veins " + veins
+                        + ", expected the " + END_ORE_VEINS.size() + " \"the_end\" rows in config order");
+            }
+        }
+
+        // The other half of the derivation: "overworld" must NOT reach the End, and "the_end" must
+        // not leak into the overworld. hematite has two overworld rows and no other row at all.
+        List<String> endVeins = idsOf(oreVeinList(biomeRegistry.getHolderOrThrow(Biomes.END_HIGHLANDS)));
+        if (endVeins.contains("rankine:hematite_ore")) {
+            problems.add("minecraft:end_highlands carries rankine:hematite_ore (an \"overworld\" row)");
+        }
+        List<String> plainsVeins = idsOf(oreVeinList(biomeRegistry.getHolderOrThrow(Biomes.PLAINS)));
+        for (String ore : END_EXCLUSIVE_ORES) {
+            if (plainsVeins.contains(ore)) {
+                problems.add("minecraft:plains carries " + ore + ", which only has a \"the_end\" row");
+            }
+        }
+        if (!plainsVeins.contains("rankine:hematite_ore")) {
+            problems.add("minecraft:plains has no rankine:hematite_ore, so the overworld rows are not applying"
+                    + " and the End count above would be vacuous");
+        }
+
+        // QA's in-world scans looked for #c:ores. All eight End ores are in it (through their
+        // per-element child tags), so a scan that finds nothing is evidence about the veins, not
+        // about the tag. Pinned here so that stays true.
+        for (String ore : END_ORE_VEINS) {
+            Block block = BuiltInRegistries.BLOCK.get(ResourceLocation.parse(ore));
+            if (!block.defaultBlockState().is(Tags.Blocks.ORES)) {
+                problems.add(ore + " is not in #c:ores");
+            }
+        }
+
+        assertEmpty(problems, "End ore vein attachment failures");
+        helper.succeed();
+    }
+
+    /** Fixed seed for the vein below; chosen because it places 5 blocks, none of them borderline. */
+    private static final long VEIN_SEED = 1004L;
+    /** Test region: 5x5x5, relative x/z 0..4 and y 1..5, centred on {@link #VEIN_ORIGIN}. */
+    private static final BlockPos VEIN_REGION_MIN = new BlockPos(0, 1, 0);
+    private static final BlockPos VEIN_REGION_MAX = new BlockPos(4, 5, 4);
+    private static final BlockPos VEIN_ORIGIN = new BlockPos(2, 3, 2);
+    private static final int VEIN_REGION_BLOCKS = 125;
+
+    private static void fillRegion(GameTestHelper helper, BlockState state) {
+        for (BlockPos pos : BlockPos.betweenClosed(VEIN_REGION_MIN, VEIN_REGION_MAX)) {
+            helper.setBlock(pos, state);
+        }
+    }
+
+    private static int countInRegion(GameTestHelper helper, Block block) {
+        int found = 0;
+        for (BlockPos pos : BlockPos.betweenClosed(VEIN_REGION_MIN, VEIN_REGION_MAX)) {
+            if (helper.getBlockState(pos).is(block)) found++;
+        }
+        return found;
+    }
+
+    /**
+     * F7 — the last unproven link: the vein feature actually runs and replaces end stone.
+     *
+     * <p>Selection ({@code endCategoryRowsSelectEndBiomes}) and attachment
+     * ({@code endBiomesCarryExactlyTheEightEndOreVeins}) only prove the feature is wired up. This
+     * runs it: a solid 5x5x5 of {@code minecraft:end_stone} is built in the test structure and the
+     * real {@code rankine:default_ore_vein} {@link Feature} is invoked directly, through
+     * {@link FeaturePlaceContext}, with the same {@link RankineOreFeatureConfig} the modifier builds
+     * for the {@code rankine:native_gallium_ore} {@code "the_end"} row (Config.java:1262 — default
+     * vein, size 4, density 1.0, discard 0.0) and a seeded {@link RandomSource}, so the outcome is
+     * deterministic. {@link GameTestHelper#getLevel()} is a {@code ServerLevel}, which implements
+     * {@code WorldGenLevel}, so no adaptation is needed.
+     *
+     * <p>The {@link TagMatchTest} against {@code rankine:rankine_ore_replaceables} is half the
+     * point, so it is not stubbed out: the negative control re-runs the identical feature, config
+     * and seed over {@code minecraft:end_stone_bricks}, which differs from end stone only in not
+     * being in that tag, and must change nothing. End stone reaches the tag through
+     * {@code c:base_stone_end} (RankineBlockTagsProvider.java:658).
+     */
+    @GameTest(template = "empty")
+    public void endOreVeinFeatureReplacesEndStone(GameTestHelper helper) {
+        var level = helper.getLevel();
+        List<String> problems = new ArrayList<>();
+
+        Block ore = RankineBlocks.NATIVE_GALLIUM_ORE.get();
+        TagKey<Block> replaceables = RankineTags.Blocks.RANKINE_ORE_REPLACEABLES;
+        if (!Blocks.END_STONE.defaultBlockState().is(replaceables)) {
+            problems.add("minecraft:end_stone is not in #rankine:rankine_ore_replaceables");
+        }
+        if (Blocks.END_STONE_BRICKS.defaultBlockState().is(replaceables)) {
+            problems.add("minecraft:end_stone_bricks IS in #rankine:rankine_ore_replaceables,"
+                    + " so it is not a valid negative control");
+        }
+
+        Feature<RankineOreFeatureConfig> feature = RankineFeatures.DEFAULT_ORE_VEIN.get();
+        RankineOreFeatureConfig config = new RankineOreFeatureConfig(new TagMatchTest(replaceables),
+                ore.defaultBlockState(), 4, 0.0F, 1.0F, 1.0F);
+        BlockPos origin = helper.absolutePos(VEIN_ORIGIN);
+
+        fillRegion(helper, Blocks.END_STONE.defaultBlockState());
+        boolean placed = feature.place(new FeaturePlaceContext<>(Optional.empty(), level,
+                level.getChunkSource().getGenerator(), RandomSource.create(VEIN_SEED), origin, config));
+        int oreBlocks = countInRegion(helper, ore);
+        int endStone = countInRegion(helper, Blocks.END_STONE);
+
+        if (!placed) {
+            problems.add("place() returned false over solid end_stone");
+        }
+        if (oreBlocks < 1) {
+            problems.add("no end_stone became rankine:native_gallium_ore (" + endStone + "/"
+                    + VEIN_REGION_BLOCKS + " still end_stone)");
+        }
+        if (oreBlocks + endStone != VEIN_REGION_BLOCKS) {
+            problems.add("region holds " + oreBlocks + " ore + " + endStone + " end_stone, expected the two"
+                    + " to account for all " + VEIN_REGION_BLOCKS + " blocks");
+        }
+
+        // Negative control: same feature, same config, same seed, one non-tagged target block.
+        fillRegion(helper, Blocks.END_STONE_BRICKS.defaultBlockState());
+        feature.place(new FeaturePlaceContext<>(Optional.empty(), level,
+                level.getChunkSource().getGenerator(), RandomSource.create(VEIN_SEED), origin, config));
+        int controlOre = countInRegion(helper, ore);
+        int controlIntact = countInRegion(helper, Blocks.END_STONE_BRICKS);
+        if (controlOre != 0) {
+            problems.add(controlOre + " end_stone_bricks became ore despite failing the tag match");
+        }
+        if (controlIntact != VEIN_REGION_BLOCKS) {
+            problems.add("only " + controlIntact + "/" + VEIN_REGION_BLOCKS + " control blocks survived");
+        }
+
+        assertEmpty(problems, "End ore vein placement failures");
         helper.succeed();
     }
 }
