@@ -149,6 +149,25 @@ the progress file. Harness docs: `.porting/CLIENT-TESTING.md`.
    Impaling/Loyalty on the **anvil** as well; 1.18.2 allowed them at the **table only**. Mirror
    image of finding #40, pre-existing on HEAD. Restrict to `isPrimaryItemFor`, or keep the wider
    allowance?
+6. (Raised by F6 engineer, 2026-08-17:) The batch-1 triage note proposed moving 7 enchantments
+   into `in_enchanting_table`; verification refuted 6 of them (Dune Walker, Snow Drifter, Speed
+   Skater, Swift Swimmer, Gas Protection, Aqua Lense override `canApplyAtEnchantingTable()` to an
+   unconditional `false` in 1.18.2 — the table never offered them on any stack), so only
+   Antiquated was moved (`3f423d0e6`). Three options for the six: **(a)** leave as committed —
+   out of the pool tags, exact table parity, but their batch-1 `on_mob_spawn_equipment`/
+   `on_traded_equipment` membership may exceed baseline (1.18.2's mob-equip/villager-gear paths
+   also required `canApplyAtEnchantingTable`); **(b)** give them `primary_items: []` in
+   `RankineEnchantmentBootstrap` — the literal translation of the 1.18.2 override, zero behavior
+   change, lets them join the pool tags AND closes the (a) generosity gap (recommended);
+   **(c)** deliberately widen availability beyond 1.18.2 — a gameplay buff, not a port fix.
+7. (Raised by F7 follow-up engineer, 2026-08-17:) End ore veins work (proven at every link by
+   GameTest, `ed3765213`) but are **extremely sparse in practice, and were equally sparse in
+   1.18.2** — the config numbers are identical at the baseline. The 4 sphere rows (molybdenite/
+   uraninite/xenotime/greenockite, y 10–40 uniform) target a band that is mostly void in the End;
+   the 4 triangle rows (y −50..70) waste ~35% of attempts below the dimension floor and land
+   only ~12% in the island band (y≈40–70). QA could not find a single vein in a two-island
+   search. Keep parity, or retune the height bands to the End's actual terrain (a content
+   change)?
 
 ## Suggested execution order
 

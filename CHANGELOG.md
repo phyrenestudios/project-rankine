@@ -59,6 +59,28 @@ All notable changes to the mod, Project Rankine, will be kept in this file.
 - **Rankine crops did not keep tilled soil moist.** The `minecraft:maintains_farmland` block tag (new in 1.21)
   now includes `#minecraft:crops`, restoring hydration behavior for all 23 mod crops on both Rankine tilled
   soil and vanilla farmland.
+- **All 8 End ore veins never generated — gallium, indium, selenium and tellurium were unobtainable in
+  survival.** The biome-category map keyed the End as `"theend"` while the config (and 1.18.2 itself) spells
+  it `"the_end"`, so every End worldgen row matched zero biomes. The key is fixed, and the previously
+  unmapped `"none"` category (one soil row) now resolves as "matches no other category", shared by both
+  config consumers so they cannot drift. GameTests pin the whole chain: the rows select the End biomes, each
+  End biome carries exactly the 8 veins, and the vein feature demonstrably replaces end stone at runtime.
+  Vein density itself is unchanged from 1.18.2 — the veins are rare by design.
+- **Snowy Plains generated with vanilla geology.** The old `icy` biome category was mapped to `c:is_icy`,
+  which does not include `snowy_plains` — the biome lost its Rankine soils, stone layers and cryolite ore.
+  A mod-owned `rankine:is_icy` tag now reproduces the exact 1.18.2 ICY membership (`snowy_plains` +
+  `ice_spikes`, read from 1.18.2's own biome definitions). QA-verified on a fresh world, including the
+  negative control: frozen peaks keep their mountain geology.
+- **Modded dimensions (e.g. Twilight Forest) generated vanilla stone.** 1.18.2 attached the stone-layer
+  replacer, intrusions and the flat-bedrock pass to every biome in every dimension; the port had gated them
+  on the three vanilla dimension tags, which modded-dimension biomes don't carry. The config-gated biome
+  modifier now supports an "all biomes" form (absent biome list), restoring 1.18.2 coverage no matter what
+  dimension mods are installed — guarded by a GameTest sweeping every loaded biome.
+- **Antiquated could never appear at the enchanting table.** It is now in `minecraft:in_enchanting_table` /
+  `non_treasure`, and the table offers it — only on properly alloyed pewter gear, exactly as in 1.18.2 (the
+  per-stack alloy gate was already ported). The six other enchantments named by the same review finding were
+  verified *never* table-offerable in 1.18.2 (`canApplyAtEnchantingTable()` returned false unconditionally)
+  and deliberately stay out.
 
 ### FIXES (found while testing the port)
 - **No machine could detect any element.** All 120 element recipes still referenced the dead `forge:` tag

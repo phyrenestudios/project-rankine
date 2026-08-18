@@ -4,6 +4,9 @@ Session: 2026-08-09. Harness: `.porting/CLIENT-TESTING.md` + `.porting/tools/mc-
 Evidence screenshots: `.porting/logs/visual/` (copied from session scratchpad; gitignored, local only).
 World: `run/saves/New World`, machine test bed at x=59..71, y=70, z=-273/-269/-265.
 
+Session 2 (2026-08-17): worldgen eyeball for F7–F9 (batch 2), fresh world `New World (3)`. See the
+"Worldgen eyeball pass" section below. Evidence prefixed `qa2_`.
+
 **Rule for updating this file: every visual-test session updates the table below as its LAST act,
 and the final per-check verdicts from any subagent report get folded in here. If a session dies
 mid-run, this table is the resume point.**
@@ -30,12 +33,49 @@ mid-run, this table is the resume point.**
 - Creative tabs page in, tab titles correct, items visible on first pages of Components/Elements/Building.
 - Client boots clean: only pre-existing warnings (one bad `strontium_Lantern.png.mcmeta` path, goat-horn sounds).
 
+## Worldgen eyeball pass (F7–F9, batch 2 — session 2026-08-17)
+
+Fresh world `New World (3)` (`run/saves/New World (3)`), spectator mode, commands enabled.
+Evidence: `.porting/logs/visual/qa2_*.png`.
+
+- **F8 snowy_plains terrain — PASS.** `/locate biome minecraft:snowy_plains` → `[3687, 74, 3563]`.
+  Biome confirmed with `/execute if biome 3687 91 3563 minecraft:snowy_plains` (`qa2_f8_biome_probe.png`).
+  Surface pinned: `/execute if block 3687 93 3563 rankine:silty_loam_grass_block` succeeded
+  (`qa2_f8_surface_probe.png`). Stone column pinned: `rankine:chalk` at (3687,71,3563) via F3 +
+  `/execute if block` (`qa2_f8_stone_pin_chalk.png`); `rankine:andesite` also visually confirmed
+  deeper (`qa2_f8_column_y30.png`) — both are Rankine sedimentary/igneous stones, not vanilla stone.
+- **F8 negative control (frozen_peaks) — PASS.** `/locate biome minecraft:frozen_peaks` →
+  `[4167, 94, 3851]`. Biome confirmed (`qa2_f8neg_biome_probe.png`). Stone pinned:
+  `rankine:hornblende_andesite` (mountain geology) at (4167,141,3851); confirmed absence of
+  `rankine:whiteschist` (icy geology) at the same coordinate — no icy-stone leak into the mountain
+  biome (`qa2_f8neg_stone_pin.png`).
+- **F7 End ore veins (native gallium/indium/selenium/tellurium, +sphere ores) — COULD NOT CONFIRM.**
+  Config verified correct (`Config.java:1262-1269`: all 8 ore types registered for `the_end`,
+  y −50..70, count 15/chunk for the 4 common ones — genuinely common by design). Extensive in-world
+  search across two separate End islands (~5000 blocks apart): ~25 visual vantage points (several
+  full-resolution crops, `qa2_f7_fullres_*.png`, `qa2_f7_scan_*.png`) plus two programmatic grid
+  scans using `/execute if block ... #c:ores` (75 + 144 points, `qa2_f7_grid_scan*_result.png`) plus
+  a 30-point dense single-column scan checking the 4 native ore IDs directly (`qa2_f7_final_scan.png`).
+  One `#c:ores` hit was found near a meteorite at (1482,30,30), but it matched none of the 8 target
+  ore IDs, none of the 4 meteorite ore IDs (kamacite/antitaenite/taenite/tetrataenite), nor
+  lonsdaleite — its exact identity is unresolved (`qa2_f7_identify_*.png`, `qa2_f7_confirm_lonsdaleite.png`).
+  Net result: did not positively find a native End ore in-world despite the config being correct and
+  the density being nominally high. This is a search-coverage gap, not a confirmed regression — do
+  not read it as a failure of F7. A future session should either search longer/smarter (e.g. mine a
+  tunnel through a full chunk column instead of point-sampling) or add a temporary debug tool.
+  Bonus finding: End meteorites (`EndMeteoriteFeature`, checkered sphere structures) generate
+  reliably and were seen at every explored location — unrelated to F7 but confirms other End
+  worldgen features are alive.
+- **F6 Antiquated table-pool — NOT ATTEMPTED this session** (optional/confirmatory per WORKSTREAM.md;
+  time budget was consumed by the F7 search). Headless GameTest already covers this path per the
+  engineer's report.
+
 ## Not yet attempted at all (future session backlog)
 
 - Machine GUIs beyond those noted in row 1 (esp. towers, gas bottler, particle accelerator, PCF, template table interactions).
 - Anvil enchanting path (row 7 tail).
 - In-world machine PROCESSING (put real inputs in, watch a recipe run) — no automated coverage exists anywhere for this.
-- Worldgen eyeball pass (new world, look at stone layers/intrusions/ores; End + snowy-plains regressions from the static audit).
+- F6 Antiquated table-pool in-game check (optional, see above).
 - Alloy tool crafting + tooltip stat verification.
 - JEI non-square shapes explicitly (2x3 hoe/1x3 rod shapes), JEI search for rankine items.
 
