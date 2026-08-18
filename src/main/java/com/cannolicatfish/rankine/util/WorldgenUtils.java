@@ -2,6 +2,7 @@ package com.cannolicatfish.rankine.util;
 
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineLists;
+import com.cannolicatfish.rankine.init.RankineTags;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -61,6 +62,20 @@ public class WorldgenUtils {
     /**
      * PORT-NOTE: Biome.BiomeCategory was removed in 1.19. Category names used in the config
      * (biomeSettings / oreSettings entries) are now mapped onto biome tags.
+     * <p>
+     * The keys must be exactly the strings 1.18.2's {@code Biome.BiomeCategory#getName()} produced:
+     * the baseline wrote those names into the default config ({@code Config.java}, e.g.
+     * {@code Biome.BiomeCategory.THEEND.getName()}) and read them back with
+     * {@code Biome.BiomeCategory.byName(...)} from both {@code WorldgenUtils#initConfigs} and
+     * {@code FeatureGeneration#addFeaturesToBiomes}, so the round-trip defines the spelling.
+     * THEEND's name is {@code "the_end"}, not {@code "theend"}.
+     * <p>
+     * {@code "icy"} deliberately does NOT use {@code c:is_icy}: NeoForge ships that tag as
+     * {@code [ice_spikes, frozen_peaks]}, while 1.18.2's {@code BiomeCategory.ICY} was
+     * {@code [snowy_plains, ice_spikes]} (frozen_peaks was MOUNTAIN, and the "mountain" config row
+     * already claims it). {@link RankineTags.Biomes#IS_ICY} reproduces the 1.18.2 membership.
+     * <p>
+     * {@code "none"} has no tag at all — see {@link #matchesCategory}.
      */
     public static final Map<String, TagKey<Biome>> CATEGORY_TAGS = new HashMap<>();
     static {
@@ -70,8 +85,8 @@ public class WorldgenUtils {
         CATEGORY_TAGS.put("mesa", BiomeTags.IS_BADLANDS);
         CATEGORY_TAGS.put("plains", Tags.Biomes.IS_PLAINS);
         CATEGORY_TAGS.put("savanna", BiomeTags.IS_SAVANNA);
-        CATEGORY_TAGS.put("icy", Tags.Biomes.IS_ICY);
-        CATEGORY_TAGS.put("theend", BiomeTags.IS_END);
+        CATEGORY_TAGS.put("icy", RankineTags.Biomes.IS_ICY);
+        CATEGORY_TAGS.put("the_end", BiomeTags.IS_END);
         CATEGORY_TAGS.put("beach", BiomeTags.IS_BEACH);
         CATEGORY_TAGS.put("forest", BiomeTags.IS_FOREST);
         CATEGORY_TAGS.put("ocean", BiomeTags.IS_OCEAN);
@@ -82,6 +97,45 @@ public class WorldgenUtils {
         CATEGORY_TAGS.put("nether", BiomeTags.IS_NETHER);
         CATEGORY_TAGS.put("underground", Tags.Biomes.IS_UNDERGROUND);
         CATEGORY_TAGS.put("mountain", BiomeTags.IS_MOUNTAIN);
+    }
+
+    /** 1.18.2 {@code Biome.BiomeCategory.NONE} — biomes that declared no category at all. */
+    public static final String CATEGORY_NONE = "none";
+
+    /**
+     * True if the string names a biome category the config can select on, i.e. one that 1.18.2's
+     * {@code BiomeCategory.byName(...)} resolved to a non-null enum constant. Anything else
+     * (a typo, or the {@code "all"} that the shipped kimberlitic_tuff ore row uses) selected no
+     * biomes in 1.18.2 either, and still selects none here.
+     */
+    public static boolean isCategory(String category) {
+        return CATEGORY_NONE.equals(category) || CATEGORY_TAGS.containsKey(category);
+    }
+
+    /**
+     * The one biome-category test. Shared by {@link #ensureBiomesResolved} (biomeSettings rows) and
+     * {@code RankineOreBiomeModifier#matches} (oreSettings rows) so the two cannot drift.
+     * <p>
+     * PORT-NOTE: no tag can express "declared no category", so {@code "none"} is a predicate rather
+     * than a tag: it matches a biome that is in none of the {@link #CATEGORY_TAGS} tags. In vanilla
+     * 1.21.1 that is {@code minecraft:the_void} (1.18.2's only NONE biome) plus
+     * {@code minecraft:stony_shore}, which was BEACH in 1.18.2 but which {@code c:is_beach} does not
+     * contain — stony_shore has its own exact config row earlier in the list, and
+     * {@code GEN_BIOMES.indexOf} returns the first match, so that row still wins.
+     * <p>
+     * Semantic delta: a modded biome that declared no BiomeCategory in 1.18.2 but that modern tag
+     * convention places in, say, {@code c:is_forest} now matches "forest" instead of "none".
+     * Arguably more correct, but it is a delta from the baseline.
+     */
+    public static boolean matchesCategory(Holder<Biome> biome, String category) {
+        if (CATEGORY_NONE.equals(category)) {
+            for (TagKey<Biome> tag : CATEGORY_TAGS.values()) {
+                if (biome.is(tag)) return false;
+            }
+            return true;
+        }
+        TagKey<Biome> tag = CATEGORY_TAGS.get(category);
+        return tag != null && biome.is(tag);
     }
 
     public static List<String> ORES = Arrays.asList("minecraft:stone", "minecraft:granite", "minecraft:diorite", "minecraft:andesite", "minecraft:deepslate|minecraft:deepslate", "minecraft:sandstone|minecraft:sandstone_bottom", "minecraft:red_sandstone|minecraft:red_sandstone_bottom", "minecraft:netherrack", "minecraft:blackstone", "minecraft:basalt|minecraft:basalt_top", "minecraft:end_stone", "minecraft:obsidian", "rankine:pegmatite", "rankine:gray_granite", "rankine:rhyolite", "rankine:comendite", "rankine:granodiorite", "rankine:red_porphyry", "rankine:purple_porphyry", "rankine:hornblende_andesite", "rankine:black_dacite", "rankine:red_dacite", "rankine:tholeiitic_basalt", "rankine:diabase","rankine:gabbro", "rankine:anorthosite", "rankine:dunite", "rankine:harzburgite", "rankine:lherzolite", "rankine:wehrlite", "rankine:troctolite", "rankine:kimberlite", "rankine:komatiite","rankine:shonkinite", "rankine:norite", "rankine:pyroxenite", "rankine:rose_marble", "rankine:white_marble", "rankine:gray_marble", "rankine:black_marble", "rankine:gneiss", "rankine:mica_schist", "rankine:phyllite", "rankine:slate", "rankine:quartzite","rankine:mariposite","rankine:eclogite","rankine:limestone", "rankine:dolostone", "rankine:chalk", "rankine:soapstone", "rankine:shale", "rankine:siltstone", "rankine:itacolumite", "rankine:arkose", "rankine:mudstone","rankine:serpentinite","rankine:marlstone", "rankine:graywacke", "rankine:blueschist", "rankine:greenschist", "rankine:whiteschist","rankine:sommanite","rankine:post_perovskite","rankine:bridgmanham","rankine:ringwoodine","rankine:wadsleyone","rankine:honeystone", "rankine:meteorite", "rankine:frozen_meteorite", "rankine:enstatite_chondrite", "rankine:soul_sandstone|rankine:soul_sandstone_bottom", "rankine:white_sandstone|rankine:white_sandstone_bottom", "rankine:black_sandstone|rankine:black_sandstone_bottom", "rankine:desert_sandstone|rankine:desert_sandstone_bottom", "rankine:episyenite", "rankine:nepheline_syenite", "rankine:phonolite");
@@ -124,10 +178,8 @@ public class WorldgenUtils {
     /**
      * Resolves the config biome settings against the actual (datapack-aware) biome registry.
      * Idempotent and cheap after first call. Call with {@code level.registryAccess()} from worldgen,
-     * or from server start.
-     * PORT-TODO(events): call {@code WorldgenUtils.ensureBiomesResolved(event.getServer().registryAccess())}
-     * from a {@code ServerAboutToStartEvent} handler so that blocks (SoilBlock, GrassySoilBlock, retrogen)
-     * see resolved lists even before any Rankine feature has run.
+     * or from server start. {@code RankineEventHandler#serverAboutToStart} already does the latter,
+     * so blocks (SoilBlock, GrassySoilBlock, retrogen) see resolved lists before any feature runs.
      */
     public static void ensureBiomesResolved(RegistryAccess registryAccess) {
         if (biomesResolved) return;
@@ -145,10 +197,9 @@ public class WorldgenUtils {
                 if (biomeName.size() > 1) {
                     populateLists(ResourceLocation.tryParse(biomeToAdd),(List<String>) L.get(1),(List<String>) L.get(2),(List<String>) L.get(3),(List<String>) L.get(4), gravel, sand, sandstone, dripstone);
                 } else {
-                    TagKey<Biome> tag = CATEGORY_TAGS.get(biomeToAdd);
-                    if (tag == null) continue;
+                    if (!isCategory(biomeToAdd)) continue;
                     for (Holder.Reference<Biome> holder : biomeRegistry.holders().toList()) {
-                        if (holder.is(tag)) {
+                        if (matchesCategory(holder, biomeToAdd)) {
                             populateLists(holder.key().location(),(List<String>) L.get(1),(List<String>) L.get(2),(List<String>) L.get(3),(List<String>) L.get(4), gravel, sand, sandstone, dripstone);
                         }
                     }

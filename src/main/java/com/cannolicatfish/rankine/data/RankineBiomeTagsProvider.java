@@ -24,5 +24,11 @@ public class RankineBiomeTagsProvider extends BiomeTagsProvider {
     @Override
     protected void addTags(HolderLookup.Provider provider) {
         this.tag(RankineTags.Biomes.IS_BIRCH_FOREST).add(Biomes.BIRCH_FOREST).add(Biomes.OLD_GROWTH_BIRCH_FOREST);
+
+        // Exactly 1.18.2's BiomeCategory.ICY. Listed as concrete biomes rather than as a union of
+        // #c:is_snowy_plains and #c:is_icy on purpose: c:is_icy also contains frozen_peaks, which was
+        // MOUNTAIN in 1.18.2 and which the earlier "mountain" config row already claims.
+        // See RankineTags.Biomes.IS_ICY for the per-biome evidence.
+        this.tag(RankineTags.Biomes.IS_ICY).add(Biomes.SNOWY_PLAINS).add(Biomes.ICE_SPIKES);
     }
 }

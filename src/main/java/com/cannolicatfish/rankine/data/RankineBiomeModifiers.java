@@ -23,6 +23,7 @@ import net.neoforged.neoforge.common.world.BiomeModifier;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Biome modifier keys + datagen bootstrap. This is the 1.21 replacement for the whole of
@@ -41,16 +42,10 @@ import java.util.List;
  */
 public class RankineBiomeModifiers {
 
-    // --- global / dimension-wide ---
-    public static final ResourceKey<BiomeModifier> FLAT_BEDROCK_OVERWORLD = createKey("flat_bedrock_overworld");
-    public static final ResourceKey<BiomeModifier> FLAT_BEDROCK_NETHER = createKey("flat_bedrock_nether");
-    public static final ResourceKey<BiomeModifier> FLAT_BEDROCK_END = createKey("flat_bedrock_end");
-    public static final ResourceKey<BiomeModifier> WORLD_REPLACER_OVERWORLD = createKey("world_replacer_overworld");
-    public static final ResourceKey<BiomeModifier> WORLD_REPLACER_NETHER = createKey("world_replacer_nether");
-    public static final ResourceKey<BiomeModifier> WORLD_REPLACER_END = createKey("world_replacer_end");
-    public static final ResourceKey<BiomeModifier> INTRUSION_OVERWORLD = createKey("intrusion_overworld");
-    public static final ResourceKey<BiomeModifier> INTRUSION_NETHER = createKey("intrusion_nether");
-    public static final ResourceKey<BiomeModifier> INTRUSION_END = createKey("intrusion_end");
+    // --- global (every biome in every dimension, exactly as 1.18.2 did) ---
+    public static final ResourceKey<BiomeModifier> FLAT_BEDROCK = createKey("flat_bedrock");
+    public static final ResourceKey<BiomeModifier> WORLD_REPLACER = createKey("world_replacer");
+    public static final ResourceKey<BiomeModifier> INTRUSION = createKey("intrusion");
 
     public static final ResourceKey<BiomeModifier> METEORITE = createKey("meteorite");
     public static final ResourceKey<BiomeModifier> FUMAROLE_OVERWORLD = createKey("fumarole_overworld");
@@ -122,23 +117,23 @@ public class RankineBiomeModifiers {
 
         HolderSet<Biome> overworld = biomes.getOrThrow(Tags.Biomes.IS_OVERWORLD);
         HolderSet<Biome> nether = biomes.getOrThrow(BiomeTags.IS_NETHER);
-        HolderSet<Biome> end = biomes.getOrThrow(BiomeTags.IS_END);
         // 1.18.2 checked these four End biomes by name, not the whole End.
         HolderSet<Biome> outerEnd = HolderSet.direct(
                 biomes.getOrThrow(Biomes.END_HIGHLANDS), biomes.getOrThrow(Biomes.END_MIDLANDS),
                 biomes.getOrThrow(Biomes.END_BARRENS), biomes.getOrThrow(Biomes.SMALL_END_ISLANDS));
 
-        // --- unconditional-biome, config-gated global features ---
-        // (1.18.2 added these to every biome whose name was non-null, i.e. all three dimensions)
-        add(context, FLAT_BEDROCK_OVERWORLD, overworld, GenerationStep.Decoration.UNDERGROUND_DECORATION, "bedrock_layers", placed, RankinePlacedFeatures.PLACED_FLAT_BEDROCK);
-        add(context, FLAT_BEDROCK_NETHER, nether, GenerationStep.Decoration.UNDERGROUND_DECORATION, "bedrock_layers", placed, RankinePlacedFeatures.PLACED_FLAT_BEDROCK);
-        add(context, FLAT_BEDROCK_END, end, GenerationStep.Decoration.UNDERGROUND_DECORATION, "bedrock_layers", placed, RankinePlacedFeatures.PLACED_FLAT_BEDROCK);
-        add(context, WORLD_REPLACER_OVERWORLD, overworld, GenerationStep.Decoration.UNDERGROUND_DECORATION, "layer_gen", placed, RankinePlacedFeatures.PLACED_WORLD_REPLACER);
-        add(context, WORLD_REPLACER_NETHER, nether, GenerationStep.Decoration.UNDERGROUND_DECORATION, "layer_gen", placed, RankinePlacedFeatures.PLACED_WORLD_REPLACER);
-        add(context, WORLD_REPLACER_END, end, GenerationStep.Decoration.UNDERGROUND_DECORATION, "layer_gen", placed, RankinePlacedFeatures.PLACED_WORLD_REPLACER);
-        add(context, INTRUSION_OVERWORLD, overworld, GenerationStep.Decoration.UNDERGROUND_DECORATION, "intrusion", placed, RankinePlacedFeatures.PLACED_INTRUSION);
-        add(context, INTRUSION_NETHER, nether, GenerationStep.Decoration.UNDERGROUND_DECORATION, "intrusion", placed, RankinePlacedFeatures.PLACED_INTRUSION);
-        add(context, INTRUSION_END, end, GenerationStep.Decoration.UNDERGROUND_DECORATION, "intrusion", placed, RankinePlacedFeatures.PLACED_INTRUSION);
+        // --- every-biome, config-gated global features ---
+        // 1.18.2 added these three to every biome the game loaded: addFeaturesToBiomes guarded them
+        // on `biome.getName() != null` and the config value only (FeatureGeneration.java:47-52, :60-62
+        // at 859f87773), with no dimension or category test. Gating them on the three vanilla
+        // dimension tags starved every modded dimension — most visibly Twilight Forest, which the
+        // config ships 20 biomeSettings rows for. addAll() omits the `biomes` field, which the
+        // modifier reads as "all biomes"; the runtime features are all no-ops in a biome that has no
+        // config row (WorldReplacerFeature/IntrusionFeature skip on GEN_BIOMES index -1), so this is
+        // safe in dimensions the mod knows nothing about.
+        addAll(context, FLAT_BEDROCK, GenerationStep.Decoration.UNDERGROUND_DECORATION, "bedrock_layers", placed, RankinePlacedFeatures.PLACED_FLAT_BEDROCK);
+        addAll(context, WORLD_REPLACER, GenerationStep.Decoration.UNDERGROUND_DECORATION, "layer_gen", placed, RankinePlacedFeatures.PLACED_WORLD_REPLACER);
+        addAll(context, INTRUSION, GenerationStep.Decoration.UNDERGROUND_DECORATION, "intrusion", placed, RankinePlacedFeatures.PLACED_INTRUSION);
 
         add(context, METEORITE, overworld, GenerationStep.Decoration.LOCAL_MODIFICATIONS, "meteorite", placed, RankinePlacedFeatures.PLACED_METEORITE);
         add(context, FUMAROLE_OVERWORLD, overworld, GenerationStep.Decoration.LOCAL_MODIFICATIONS, "fumarole", placed, RankinePlacedFeatures.PLACED_FUMAROLE);
@@ -240,7 +235,15 @@ public class RankineBiomeModifiers {
     private static void add(BootstrapContext<BiomeModifier> context, ResourceKey<BiomeModifier> key, HolderSet<Biome> biomes,
                             GenerationStep.Decoration step, String gate, HolderGetter<PlacedFeature> placed,
                             ResourceKey<PlacedFeature>... features) {
-        context.register(key, new ConfigGatedFeaturesBiomeModifier(biomes, features(placed, features), step, gate));
+        context.register(key, new ConfigGatedFeaturesBiomeModifier(Optional.of(biomes), features(placed, features), step, gate));
+    }
+
+    /** No {@code biomes} field at all: applies to every biome, including modded dimensions. */
+    @SafeVarargs
+    private static void addAll(BootstrapContext<BiomeModifier> context, ResourceKey<BiomeModifier> key,
+                               GenerationStep.Decoration step, String gate, HolderGetter<PlacedFeature> placed,
+                               ResourceKey<PlacedFeature>... features) {
+        context.register(key, new ConfigGatedFeaturesBiomeModifier(Optional.empty(), features(placed, features), step, gate));
     }
 
     @SafeVarargs

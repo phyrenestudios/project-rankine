@@ -33,6 +33,20 @@ public final class RankineTags {
     public static final class Biomes {
         public static final TagKey<Biome> IS_BIRCH_FOREST = createBiomeTag("is_birch_forest");
 
+        /**
+         * Reproduces 1.18.2's {@code Biome.BiomeCategory.ICY} membership, which the config's
+         * {@code "icy"} biomeSettings/oreSettings rows select on.
+         * <p>
+         * PORT-NOTE: {@code c:is_icy} is NOT that set — NeoForge ships it as
+         * {@code [ice_spikes, frozen_peaks]}, dropping snowy_plains (which was ICY) and adding
+         * frozen_peaks (which was MOUNTAIN, and which the earlier "mountain" config row already
+         * claims). Verified per-biome against the 1.18.2 vanilla biome JSONs: snowy_plains and
+         * ice_spikes carry {@code "category": "icy"}; frozen_peaks / snowy_slopes / stony_peaks are
+         * "mountain", snowy_taiga is "taiga", snowy_beach is "beach", frozen_river is "river",
+         * deep_frozen_ocean is "ocean" and grove is "forest".
+         */
+        public static final TagKey<Biome> IS_ICY = createBiomeTag("is_icy");
+
     }
 
     private static TagKey<Biome> createBiomeTag(String p_207631_) {

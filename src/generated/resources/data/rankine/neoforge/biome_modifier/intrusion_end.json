@@ -1,7 +1,0 @@
-{
-  "type": "rankine:config_gated_add_features",
-  "biomes": "#minecraft:is_end",
-  "features": "rankine:intrusion",
-  "gate": "intrusion",
-  "step": "underground_decoration"
-}

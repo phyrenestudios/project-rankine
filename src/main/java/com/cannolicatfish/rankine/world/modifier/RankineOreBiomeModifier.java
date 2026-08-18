@@ -10,7 +10,6 @@ import com.mojang.serialization.MapCodec;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.levelgen.GenerationStep;
@@ -40,8 +39,9 @@ import java.util.List;
  *   <li>empty first entry -> the whole row is skipped (and, as in 1.18.2, iteration stops);</li>
  *   <li>{@code "overworld"} -> every biome that is not Nether and not End;</li>
  *   <li>{@code "ns:path"} -> that exact biome;</li>
- *   <li>a bare word -> the old {@code BiomeCategory}, now mapped to a biome tag via
- *       {@link WorldgenUtils#CATEGORY_TAGS}.</li>
+ *   <li>a bare word -> the old {@code BiomeCategory}, resolved by
+ *       {@link WorldgenUtils#matchesCategory} (the same test {@code ensureBiomesResolved} uses for
+ *       the biomeSettings rows, so the two cannot drift).</li>
  * </ul>
  */
 public record RankineOreBiomeModifier() implements BiomeModifier {
@@ -104,9 +104,8 @@ public record RankineOreBiomeModifier() implements BiomeModifier {
             if (Arrays.asList(b.split(":")).size() > 1) {
                 ResourceLocation rl = ResourceLocation.tryParse(b);
                 if (rl != null && rl.equals(WorldgenUtils.biomeLocation(biome))) return true;
-            } else {
-                TagKey<Biome> tag = WorldgenUtils.CATEGORY_TAGS.get(b);
-                if (tag != null && biome.is(tag)) return true;
+            } else if (WorldgenUtils.matchesCategory(biome, b)) {
+                return true;
             }
         }
         return false;

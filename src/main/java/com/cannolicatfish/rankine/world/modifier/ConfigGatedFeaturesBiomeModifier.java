@@ -17,17 +17,27 @@ import net.neoforged.neoforge.common.world.ModifiableBiomeInfo;
 
 import com.mojang.serialization.Codec;
 
+import java.util.Optional;
+
 /**
  * Like {@code neoforge:add_features}, but only applies when the named Rankine common-config gate
  * is enabled. In 1.18.2 all of these additions lived in {@code FeatureGeneration#addFeaturesToBiomes}
  * behind {@code if (Config.WORLDGEN.X.get())} checks; biome modifier JSON is static, so the gate
  * check has to move into the modifier itself to keep the config meaningful.
+ * <p>
+ * PORT-NOTE: {@code biomes} is optional, and an absent field means <em>every</em> biome. Three of
+ * 1.18.2's additions (flat bedrock, world replacer, intrusions) were made to every biome the game
+ * loaded — {@code addFeaturesToBiomes} guarded them on nothing but {@code biome.getName() != null}
+ * and the config value — so they applied in modded dimensions too (the config ships 20 Twilight
+ * Forest biomeSettings rows). No tag can name "every biome, including ones from mods that are not
+ * installed yet", but {@code BiomeModifier#modify} is invoked for every biome, so an absent biome
+ * set expresses it exactly.
  */
-public record ConfigGatedFeaturesBiomeModifier(HolderSet<Biome> biomes, HolderSet<PlacedFeature> features,
+public record ConfigGatedFeaturesBiomeModifier(Optional<HolderSet<Biome>> biomes, HolderSet<PlacedFeature> features,
         GenerationStep.Decoration step, String gate) implements BiomeModifier {
 
     public static final MapCodec<ConfigGatedFeaturesBiomeModifier> CODEC = RecordCodecBuilder.mapCodec(builder -> builder.group(
-            RegistryCodecs.homogeneousList(Registries.BIOME).fieldOf("biomes").forGetter(ConfigGatedFeaturesBiomeModifier::biomes),
+            RegistryCodecs.homogeneousList(Registries.BIOME).optionalFieldOf("biomes").forGetter(ConfigGatedFeaturesBiomeModifier::biomes),
             RegistryCodecs.homogeneousList(Registries.PLACED_FEATURE).fieldOf("features").forGetter(ConfigGatedFeaturesBiomeModifier::features),
             GenerationStep.Decoration.CODEC.fieldOf("step").forGetter(ConfigGatedFeaturesBiomeModifier::step),
             Codec.STRING.fieldOf("gate").forGetter(ConfigGatedFeaturesBiomeModifier::gate)
@@ -35,7 +45,8 @@ public record ConfigGatedFeaturesBiomeModifier(HolderSet<Biome> biomes, HolderSe
 
     @Override
     public void modify(Holder<Biome> biome, Phase phase, ModifiableBiomeInfo.BiomeInfo.Builder builder) {
-        if (phase != Phase.ADD || !this.biomes.contains(biome)) return;
+        if (phase != Phase.ADD) return;
+        if (this.biomes.isPresent() && !this.biomes.get().contains(biome)) return;
         if (!gateEnabled(this.gate)) return;
         BiomeGenerationSettingsBuilder generationSettings = builder.getGenerationSettings();
         this.features.forEach(holder -> generationSettings.addFeature(this.step, holder));

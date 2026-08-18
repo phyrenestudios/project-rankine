@@ -1,7 +1,13 @@
 package com.cannolicatfish.rankine.gametest;
 
 import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.data.RankineBiomeModifiers;
 import com.cannolicatfish.rankine.init.RankineDataComponents;
+import com.cannolicatfish.rankine.init.RankinePlacedFeatures;
+import com.cannolicatfish.rankine.init.RankineTags;
+import com.cannolicatfish.rankine.util.WorldgenUtils;
+import com.cannolicatfish.rankine.world.gen.ores.RankineOreFeatureConfig;
+import com.cannolicatfish.rankine.world.modifier.ConfigGatedFeaturesBiomeModifier;
 import com.cannolicatfish.rankine.init.RankineEnchantments;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineLists;
@@ -38,18 +44,26 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.EnchantmentInstance;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.levelgen.GenerationStep;
+import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.material.Fluid;
+import net.neoforged.neoforge.common.world.BiomeModifier;
 import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import net.neoforged.neoforge.registries.datamaps.builtin.Compostable;
 import net.neoforged.neoforge.registries.datamaps.builtin.NeoForgeDataMaps;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Registry and datapack integrity tests. These run on a real headless server
@@ -1084,6 +1098,225 @@ public class RankineRegistryTests {
         }
 
         assertEmpty(problems, "crop farmland-hydration failures");
+        helper.succeed();
+    }
+
+    // ------------------------------------------------------------------------------------------
+    // Worldgen biome selection (F7-F9). These run on the real server, so they see the biome
+    // registry, the mod's biome tags and the biome modifiers exactly as a world would.
+    // ------------------------------------------------------------------------------------------
+
+    /** Stone layer list the config gives a biome, or null if the biome has no row at all. */
+    private static List<String> layersFor(ResourceKey<Biome> biome) {
+        int index = WorldgenUtils.GEN_BIOMES.indexOf(biome.location());
+        return index == -1 ? null : WorldgenUtils.LAYER_LISTS.get(index);
+    }
+
+    /** Blocks of every Rankine ore vein attached to a biome, read off the live (modified) settings. */
+    private static Set<Block> oreVeinBlocks(Holder<Biome> biome) {
+        Set<Block> found = new HashSet<>();
+        List<HolderSet<PlacedFeature>> byStep = biome.value().getGenerationSettings().features();
+        int step = GenerationStep.Decoration.UNDERGROUND_ORES.ordinal();
+        if (step >= byStep.size()) return found;
+        for (Holder<PlacedFeature> holder : byStep.get(step)) {
+            if (holder.value().feature().value().config() instanceof RankineOreFeatureConfig ore
+                    && !ore.targetStates.isEmpty()) {
+                found.add(ore.targetStates.get(0).state.getBlock());
+            }
+        }
+        return found;
+    }
+
+    private static boolean hasPlacedFeature(Holder<Biome> biome, GenerationStep.Decoration step, ResourceKey<PlacedFeature> feature) {
+        List<HolderSet<PlacedFeature>> byStep = biome.value().getGenerationSettings().features();
+        if (step.ordinal() >= byStep.size()) return false;
+        for (Holder<PlacedFeature> holder : byStep.get(step.ordinal())) {
+            if (holder.unwrapKey().filter(feature::equals).isPresent()) return true;
+        }
+        return false;
+    }
+
+    /**
+     * F7 — the {@code "the_end"} biomeSettings row and the eight End ore rows must actually match.
+     *
+     * <p>{@code CATEGORY_TAGS} was keyed {@code "theend"} while every shipped config row says
+     * {@code "the_end"} (the string 1.18.2's {@code BiomeCategory.THEEND.getName()} produced and
+     * {@code byName} consumed), so the lookup returned null and all nine rows were skipped in
+     * silence: no End stone layering, and no End-exclusive ore veins.
+     */
+    @GameTest(template = "empty")
+    public void endCategoryRowsSelectEndBiomes(GameTestHelper helper) {
+        WorldgenUtils.ensureBiomesResolved(helper.getLevel().registryAccess());
+        var biomeRegistry = helper.getLevel().registryAccess().registryOrThrow(Registries.BIOME);
+        List<String> problems = new ArrayList<>();
+
+        List<ResourceKey<Biome>> endBiomes = List.of(Biomes.THE_END, Biomes.END_HIGHLANDS,
+                Biomes.END_MIDLANDS, Biomes.END_BARRENS, Biomes.SMALL_END_ISLANDS);
+        for (ResourceKey<Biome> key : endBiomes) {
+            List<String> layers = layersFor(key);
+            if (layers == null) {
+                problems.add(key.location() + " missing from GEN_BIOMES");
+            } else if (!List.of("minecraft:end_stone").equals(layers)) {
+                problems.add(key.location() + " stone layers are " + layers + ", expected [minecraft:end_stone]");
+            }
+        }
+
+        // The eight ore rows keyed "the_end" must reach an End biome through RankineOreBiomeModifier.
+        Set<Block> veins = oreVeinBlocks(biomeRegistry.getHolderOrThrow(Biomes.END_HIGHLANDS));
+        for (String ore : List.of("rankine:native_gallium_ore", "rankine:native_indium_ore",
+                "rankine:native_selenium_ore", "rankine:native_tellurium_ore", "rankine:molybdenite_ore",
+                "rankine:uraninite_ore", "rankine:xenotime_ore", "rankine:greenockite_ore")) {
+            Block block = BuiltInRegistries.BLOCK.get(ResourceLocation.parse(ore));
+            if (!veins.contains(block)) {
+                problems.add(ore + " has no vein in minecraft:end_highlands");
+            }
+        }
+
+        assertEmpty(problems, "End worldgen selection failures");
+        helper.succeed();
+    }
+
+    /**
+     * F7 — the {@code "none"} row (1.18.2 {@code BiomeCategory.NONE}) had no mapping at all.
+     *
+     * <p>No tag can say "declared no category", so it is a predicate: matches a biome in none of the
+     * other {@code CATEGORY_TAGS} tags. In vanilla that is {@code minecraft:the_void}. The row sits
+     * after every exact-biome row in the config, and {@code GEN_BIOMES.indexOf} returns the first
+     * match, so biomes with their own row (stony_shore, which {@code c:is_beach} does not contain)
+     * must still resolve to that row and not to this one.
+     */
+    @GameTest(template = "empty")
+    public void noneCategoryRowSelectsUncategorizedBiomes(GameTestHelper helper) {
+        WorldgenUtils.ensureBiomesResolved(helper.getLevel().registryAccess());
+        var biomeRegistry = helper.getLevel().registryAccess().registryOrThrow(Registries.BIOME);
+        List<String> problems = new ArrayList<>();
+
+        List<String> noneLayers = List.of("rankine:wadsleyone", "rankine:troctolite", "rankine:gabbro",
+                "rankine:slate", "rankine:shale", "rankine:tholeiitic_basalt");
+        List<String> voidLayers = layersFor(Biomes.THE_VOID);
+        if (voidLayers == null) {
+            problems.add("minecraft:the_void missing from GEN_BIOMES");
+        } else if (!noneLayers.equals(voidLayers)) {
+            problems.add("minecraft:the_void stone layers are " + voidLayers + ", expected the \"none\" row " + noneLayers);
+        }
+
+        if (!WorldgenUtils.matchesCategory(biomeRegistry.getHolderOrThrow(Biomes.THE_VOID), WorldgenUtils.CATEGORY_NONE)) {
+            problems.add("minecraft:the_void does not match category \"none\"");
+        }
+        if (WorldgenUtils.matchesCategory(biomeRegistry.getHolderOrThrow(Biomes.PLAINS), WorldgenUtils.CATEGORY_NONE)) {
+            problems.add("minecraft:plains matches category \"none\" but it is in #c:is_plains");
+        }
+
+        // Ordering guard: an exact-biome row earlier in the list must still win over "none".
+        List<String> shoreLayers = layersFor(Biomes.STONY_SHORE);
+        if (shoreLayers == null) {
+            problems.add("minecraft:stony_shore missing from GEN_BIOMES");
+        } else if (noneLayers.equals(shoreLayers)) {
+            problems.add("minecraft:stony_shore resolved to the \"none\" row instead of its own row");
+        }
+
+        assertEmpty(problems, "\"none\" category failures");
+        helper.succeed();
+    }
+
+    /**
+     * F8 — {@code "icy"} pointed at {@code c:is_icy}, which is {@code [ice_spikes, frozen_peaks]}.
+     *
+     * <p>1.18.2's {@code BiomeCategory.ICY} was {@code [snowy_plains, ice_spikes]}, so snowy plains
+     * lost every bit of Rankine terrain and frozen peaks (a MOUNTAIN biome) was wrongly pulled in.
+     * {@code rankine:is_icy} restores the exact membership.
+     */
+    @GameTest(template = "empty")
+    public void icyCategoryRowSelectsSnowyPlainsAndIceSpikes(GameTestHelper helper) {
+        WorldgenUtils.ensureBiomesResolved(helper.getLevel().registryAccess());
+        var biomeRegistry = helper.getLevel().registryAccess().registryOrThrow(Registries.BIOME);
+        List<String> problems = new ArrayList<>();
+
+        List<String> icyLayers = List.of("rankine:whiteschist", "rankine:white_marble", "rankine:comendite",
+                "rankine:mica_schist", "rankine:phyllite", "minecraft:andesite", "rankine:chalk");
+        for (ResourceKey<Biome> key : List.of(Biomes.SNOWY_PLAINS, Biomes.ICE_SPIKES)) {
+            List<String> layers = layersFor(key);
+            if (layers == null) {
+                problems.add(key.location() + " missing from GEN_BIOMES");
+            } else if (!icyLayers.equals(layers)) {
+                problems.add(key.location() + " stone layers are " + layers + ", expected the \"icy\" row " + icyLayers);
+            }
+            if (!biomeRegistry.getHolderOrThrow(key).is(RankineTags.Biomes.IS_ICY)) {
+                problems.add(key.location() + " missing from #rankine:is_icy");
+            }
+        }
+
+        // frozen_peaks was MOUNTAIN in 1.18.2 and the "mountain" row already claims it: it must NOT
+        // be pulled in by the icy row (which is what a #c:is_icy union would do).
+        if (biomeRegistry.getHolderOrThrow(Biomes.FROZEN_PEAKS).is(RankineTags.Biomes.IS_ICY)) {
+            problems.add("minecraft:frozen_peaks is in #rankine:is_icy but was MOUNTAIN in 1.18.2");
+        }
+        List<String> peakLayers = layersFor(Biomes.FROZEN_PEAKS);
+        if (peakLayers != null && icyLayers.equals(peakLayers)) {
+            problems.add("minecraft:frozen_peaks resolved to the \"icy\" row instead of the \"mountain\" row");
+        }
+
+        // rankine:cryolite_ore's only overworld-cold row lists "icy"; snowy plains must get it.
+        Set<Block> veins = oreVeinBlocks(biomeRegistry.getHolderOrThrow(Biomes.SNOWY_PLAINS));
+        Block cryolite = BuiltInRegistries.BLOCK.get(ResourceLocation.parse("rankine:cryolite_ore"));
+        if (!veins.contains(cryolite)) {
+            problems.add("rankine:cryolite_ore has no vein in minecraft:snowy_plains");
+        }
+
+        assertEmpty(problems, "\"icy\" category failures");
+        helper.succeed();
+    }
+
+    /**
+     * F9 — flat bedrock, world replacer and intrusions must reach every biome in every dimension.
+     *
+     * <p>1.18.2 added all three unconditionally ({@code FeatureGeneration#addFeaturesToBiomes}
+     * guarded them on nothing but the config value). The port gated them on
+     * {@code c:is_overworld} / {@code minecraft:is_nether} / {@code minecraft:is_end}, so any biome
+     * in none of those three — every modded dimension, plus {@code minecraft:the_void} — got vanilla
+     * stone. The modifiers now omit their {@code biomes} field, which means "all biomes".
+     *
+     * <p>{@code flat_bedrock}'s gate ({@code flatBedrockLayers}) defaults to 0, so only its biome
+     * set is asserted; the other two gates are on by default and are checked end to end.
+     */
+    @GameTest(template = "empty")
+    public void dimensionWideFeaturesReachEveryBiome(GameTestHelper helper) {
+        var registryAccess = helper.getLevel().registryAccess();
+        var modifiers = registryAccess.registryOrThrow(NeoForgeRegistries.Keys.BIOME_MODIFIERS);
+        var biomeRegistry = registryAccess.registryOrThrow(Registries.BIOME);
+        List<String> problems = new ArrayList<>();
+
+        for (ResourceKey<BiomeModifier> key : List.of(RankineBiomeModifiers.FLAT_BEDROCK,
+                RankineBiomeModifiers.WORLD_REPLACER, RankineBiomeModifiers.INTRUSION)) {
+            BiomeModifier modifier = modifiers.get(key);
+            if (!(modifier instanceof ConfigGatedFeaturesBiomeModifier gated)) {
+                problems.add(key.location() + " is not a rankine:config_gated_add_features modifier");
+            } else if (gated.biomes().isPresent()) {
+                problems.add(key.location() + " restricts its biome set instead of applying to every biome");
+            }
+        }
+
+        // The two gates that are on by default must be visible on every single loaded biome.
+        int checked = 0;
+        for (Holder.Reference<Biome> biome : biomeRegistry.holders().toList()) {
+            checked++;
+            if (!hasPlacedFeature(biome, GenerationStep.Decoration.UNDERGROUND_DECORATION, RankinePlacedFeatures.PLACED_WORLD_REPLACER)) {
+                problems.add(biome.key().location() + " has no rankine:world_replacer");
+            }
+            if (!hasPlacedFeature(biome, GenerationStep.Decoration.UNDERGROUND_DECORATION, RankinePlacedFeatures.PLACED_INTRUSION)) {
+                problems.add(biome.key().location() + " has no rankine:intrusion");
+            }
+        }
+        assertTrue(checked >= 60, "expected >=60 loaded biomes, found " + checked);
+
+        // the_void is the vanilla stand-in for a biome outside all three dimension tags, which is
+        // the exact shape of the modded-dimension regression this fix is about.
+        if (!hasPlacedFeature(biomeRegistry.getHolderOrThrow(Biomes.THE_VOID),
+                GenerationStep.Decoration.UNDERGROUND_DECORATION, RankinePlacedFeatures.PLACED_WORLD_REPLACER)) {
+            problems.add("minecraft:the_void has no rankine:world_replacer (it is in none of the three dimension tags)");
+        }
+
+        assertEmpty(problems, "biomes missing dimension-wide Rankine features");
         helper.succeed();
     }
 }
