@@ -11,6 +11,7 @@ import com.cannolicatfish.rankine.init.RankineVillagerProfessions;
 import com.cannolicatfish.rankine.init.VanillaIntegration;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.core.Holder;
+import net.minecraft.core.HolderSet;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.component.DataComponents;
@@ -33,6 +34,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.EnchantmentInstance;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
@@ -868,13 +871,21 @@ public class RankineRegistryTests {
     }
 
     /**
-     * F4 — Rankine enchantment availability must match the 1.18.2 flags.
+     * F4/F6 — Rankine enchantment availability must match the 1.18.2 flags.
      *
      * <p>All 44 had {@code isTradeable() == true} and {@code isTreasureOnly() == false}; 14
      * overrode {@code isDiscoverable()} to false. Those map onto {@code minecraft:tradeable},
      * {@code minecraft:treasure} and {@code minecraft:on_random_loot} / {@code on_mob_spawn_equipment}
      * / {@code on_traded_equipment}. Asserted in BOTH directions so the fix cannot overshoot: the
      * curse in particular must be tradeable but never roll onto loot or mob gear.
+     *
+     * <p>The table pool is asserted separately below, because 1.18.2 gated it on a THIRD flag the
+     * tags cannot express: {@code canApplyAtEnchantingTable(stack)}, which Forge patched into
+     * {@code getAvailableEnchantmentResults}. Six armour enchantments returned false there for
+     * every stack and so belong in no pool; Antiquated returned true only on a pewter-alloyed alloy
+     * tool, which is a per-stack rule that 1.21 keeps in {@code isPrimaryItemFor}. Tag membership
+     * alone therefore proves nothing about what the table offers, so the last block drives the real
+     * {@code EnchantmentMenu} code path instead.
      */
     @GameTest(template = "empty")
     public void rankineEnchantmentsHave1182Availability(GameTestHelper helper) {
@@ -932,6 +943,106 @@ public class RankineRegistryTests {
                 if (holder.is(tag)) {
                     problems.add(key.location() + " is in #" + tag.location()
                             + " but 1.18.2 isDiscoverable() was false — more available than the baseline");
+                }
+            }
+        }
+
+        // ---- the enchanting-table pool ----
+        // In the tag: 1.18.2 isDiscoverable() && !isTreasureOnly() && canApplyAtEnchantingTable
+        // could be true for SOME stack. Antiquated is the whole of F6 — its class overrides
+        // canApplyAtEnchantingTable to accept a pewter-alloyed IAlloyTool, never isDiscoverable().
+        List<ResourceKey<Enchantment>> inTable = List.of(
+                RankineEnchantments.ANTIQUATED, RankineEnchantments.PUNCTURE,
+                RankineEnchantments.QUAKE, RankineEnchantments.RETRIEVAL);
+
+        // Out of the tag, for the two reasons 1.18.2 had. The first six override
+        // canApplyAtEnchantingTable to return false for EVERY stack, so no per-stack hook can put
+        // them back and tag membership would make them strictly more available than the baseline.
+        // The last three override isDiscoverable() to false, so they never entered the pool at all.
+        List<ResourceKey<Enchantment>> notInTable = List.of(
+                RankineEnchantments.DUNE_WALKER, RankineEnchantments.SNOW_DRIFTER,
+                RankineEnchantments.SPEED_SKATER, RankineEnchantments.SWIFT_SWIMMER,
+                RankineEnchantments.GAS_PROTECTION, RankineEnchantments.AQUA_LENSE,
+                RankineEnchantments.SHAPE_MEMORY, RankineEnchantments.ENDOBIOTIC,
+                RankineEnchantments.WITHERING_CURSE);
+
+        for (ResourceKey<Enchantment> key : inTable) {
+            Holder<Enchantment> holder = enchantments.getHolder(key).orElseThrow();
+            for (TagKey<Enchantment> tag : List.of(EnchantmentTags.IN_ENCHANTING_TABLE, EnchantmentTags.NON_TREASURE)) {
+                if (!holder.is(tag)) {
+                    problems.add(key.location() + " missing from #" + tag.location()
+                            + " (1.18.2 could offer it at the table)");
+                }
+            }
+        }
+        for (ResourceKey<Enchantment> key : notInTable) {
+            Holder<Enchantment> holder = enchantments.getHolder(key).orElseThrow();
+            for (TagKey<Enchantment> tag : List.of(EnchantmentTags.IN_ENCHANTING_TABLE, EnchantmentTags.NON_TREASURE)) {
+                if (holder.is(tag)) {
+                    problems.add(key.location() + " is in #" + tag.location()
+                            + " but 1.18.2's enchanting table could never offer it");
+                }
+            }
+        }
+
+        // The pool the table actually builds. EnchantmentMenu#getEnchantmentList streams
+        // #minecraft:in_enchanting_table into EnchantmentHelper.getAvailableEnchantmentResults,
+        // which filters it with stack::isPrimaryItemFor. Calling that directly reproduces the menu's
+        // candidate list with no RNG, and is the only headless way to show that the tag membership
+        // and the per-stack alloy gate combine into the 1.18.2 outcome rather than cancelling out.
+        HolderSet<Enchantment> tablePool = enchantments.getTag(EnchantmentTags.IN_ENCHANTING_TABLE).orElse(null);
+        if (tablePool == null) {
+            problems.add("#minecraft:in_enchanting_table does not exist — the table can offer nothing");
+        } else {
+            // Each case carries its own table cost, because getAvailableEnchantmentResults only
+            // returns an enchantment when the cost falls inside its own min/max window. A negative
+            // case tested outside that window would pass no matter what the tag said.
+            record Offer(String name, ItemStack stack, ResourceKey<Enchantment> enchantment, int cost,
+                         boolean expected, int expectedLevel) {
+            }
+
+            ResourceLocation pewterAlloy = ResourceLocation.parse("rankine:alloying/pewter_alloying");
+            ResourceLocation roseGoldAlloy = ResourceLocation.parse("rankine:alloying/rose_gold_alloying");
+
+            ItemStack pewterSword = new ItemStack(RankineItems.PEWTER_SWORD.get());
+            pewterSword.set(RankineDataComponents.ALLOY_RECIPE.get(), pewterAlloy);
+            ItemStack roseGoldSword = new ItemStack(RankineItems.PEWTER_SWORD.get());
+            roseGoldSword.set(RankineDataComponents.ALLOY_RECIPE.get(), roseGoldAlloy);
+
+            List<Offer> offers = List.of(
+                    // The F6 outcome: 1.18.2's table offered Antiquated on pewter gear, and because
+                    // its min_cost is a flat 15 at every level it offered the MAX level at any cost
+                    // the scan reaches — level 5, not level 1.
+                    new Offer("antiquated on a pewter-alloyed pewter sword", pewterSword,
+                            RankineEnchantments.ANTIQUATED, 30, true, 5),
+                    // Wrong alloy: 1.18.2 compared the recipe id, so rose gold was refused.
+                    new Offer("antiquated on a rose-gold-alloyed sword", roseGoldSword,
+                            RankineEnchantments.ANTIQUATED, 30, false, 0),
+                    // No alloy at all: canApplyAtEnchantingTable refused outright (unlike the anvil).
+                    new Offer("antiquated on a sword with no alloy", new ItemStack(RankineItems.PEWTER_SWORD.get()),
+                            RankineEnchantments.ANTIQUATED, 30, false, 0),
+                    // Positive control: an ordinary pool member on ordinary gear, so a failure above
+                    // cannot be blamed on the pool being empty or this call being mis-wired.
+                    new Offer("quake on a steel pickaxe", new ItemStack(RankineItems.STEEL_PICKAXE.get()),
+                            RankineEnchantments.QUAKE, 30, true, 3),
+                    // The table-banned six, through the real code path rather than the tag. Cost 20
+                    // is inside their level-1 window (min 10, max 25), so these would come back true
+                    // the moment either of them entered the pool.
+                    new Offer("dune walker on diamond boots", new ItemStack(Items.DIAMOND_BOOTS),
+                            RankineEnchantments.DUNE_WALKER, 20, false, 0),
+                    new Offer("aqua lense on a diamond helmet", new ItemStack(Items.DIAMOND_HELMET),
+                            RankineEnchantments.AQUA_LENSE, 20, false, 0));
+
+            for (Offer o : offers) {
+                List<EnchantmentInstance> available = EnchantmentHelper.getAvailableEnchantmentResults(
+                        o.cost(), o.stack(), tablePool.stream());
+                var offered = available.stream().filter(i -> i.enchantment.is(o.enchantment())).findFirst();
+                if (offered.isPresent() != o.expected()) {
+                    problems.add(o.name() + ": table offer == " + offered.isPresent()
+                            + ", expected " + o.expected());
+                } else if (o.expected() && offered.get().level != o.expectedLevel()) {
+                    problems.add(o.name() + ": offered at level " + offered.get().level
+                            + ", expected " + o.expectedLevel());
                 }
             }
         }

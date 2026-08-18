@@ -23,6 +23,7 @@
     "rankine:prying",
     "rankine:fulcrum",
     "rankine:retrieval",
+    "rankine:antiquated",
     "rankine:dune_walker",
     "rankine:snow_drifter",
     "rankine:speed_skater",
@@ -41,8 +42,7 @@
     "rankine:endothermic",
     "rankine:endplay",
     "rankine:ghastly_regeneration",
-    "rankine:withering_curse",
     "rankine:shape_memory",
-    "rankine:antiquated"
+    "rankine:withering_curse"
   ]
 }

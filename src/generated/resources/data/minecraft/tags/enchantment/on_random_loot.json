@@ -23,12 +23,12 @@
     "rankine:prying",
     "rankine:fulcrum",
     "rankine:retrieval",
+    "rankine:antiquated",
     "rankine:dune_walker",
     "rankine:snow_drifter",
     "rankine:speed_skater",
     "rankine:swift_swimmer",
     "rankine:gas_protection",
-    "rankine:aqua_lense",
-    "rankine:antiquated"
+    "rankine:aqua_lense"
   ]
 }
