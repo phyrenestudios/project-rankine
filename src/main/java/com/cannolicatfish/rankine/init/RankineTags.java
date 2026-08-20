@@ -47,6 +47,28 @@ public final class RankineTags {
          */
         public static final TagKey<Biome> IS_ICY = createBiomeTag("is_icy");
 
+        /**
+         * Reproduces 1.18.2's {@code Biome.BiomeCategory.BEACH} membership, which the config's
+         * {@code "beach"} biomeSettings/oreSettings rows select on.
+         * <p>
+         * PORT-NOTE: neither {@code minecraft:is_beach} nor {@code c:is_beach} is that set. Vanilla
+         * ships {@code minecraft:is_beach} as {@code [beach, snowy_beach]} and NeoForge's
+         * {@code c:is_beach} is just {@code ["#minecraft:is_beach"]}, so both drop
+         * {@code stony_shore}. Verified per-biome against the 1.18.2 vanilla biome JSONs: exactly
+         * three of that version's 61 biomes carry {@code "category": "beach"} — {@code beach},
+         * {@code snowy_beach} and {@code stony_shore}. The mod author hit the same gap while
+         * porting to 1.19 and worked around it there: {@code RankineBiomeTagsProvider.java:27} on
+         * {@code origin/1.19.X} unions {@code #minecraft:is_beach} with an explicit
+         * {@code Biomes.STONY_SHORE}.
+         * <p>
+         * Consequence of the omission, and the reason this tag exists: the three ore rows keyed
+         * {@code "beach"} (pentlandite Config.java:1207, sylvinite :1237, phosphorite :1238) never
+         * reached stony shores. Stony shore's own exact biomeSettings row (Config.java:974) still
+         * wins for terrain, because {@code GEN_BIOMES.indexOf} returns the first match and that row
+         * precedes the {@code "beach"} row at :1037.
+         */
+        public static final TagKey<Biome> IS_BEACH = createBiomeTag("is_beach");
+
     }
 
     private static TagKey<Biome> createBiomeTag(String p_207631_) {

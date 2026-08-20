@@ -75,6 +75,11 @@ public class WorldgenUtils {
      * {@code [snowy_plains, ice_spikes]} (frozen_peaks was MOUNTAIN, and the "mountain" config row
      * already claims it). {@link RankineTags.Biomes#IS_ICY} reproduces the 1.18.2 membership.
      * <p>
+     * {@code "beach"} is the same story: {@code minecraft:is_beach} is {@code [beach, snowy_beach]}
+     * and {@code c:is_beach} is an alias of it, but 1.18.2's {@code BiomeCategory.BEACH} also
+     * contained {@code stony_shore}. {@link RankineTags.Biomes#IS_BEACH} reproduces the 1.18.2
+     * membership.
+     * <p>
      * {@code "none"} has no tag at all — see {@link #matchesCategory}.
      */
     public static final Map<String, TagKey<Biome>> CATEGORY_TAGS = new HashMap<>();
@@ -87,7 +92,7 @@ public class WorldgenUtils {
         CATEGORY_TAGS.put("savanna", BiomeTags.IS_SAVANNA);
         CATEGORY_TAGS.put("icy", RankineTags.Biomes.IS_ICY);
         CATEGORY_TAGS.put("the_end", BiomeTags.IS_END);
-        CATEGORY_TAGS.put("beach", BiomeTags.IS_BEACH);
+        CATEGORY_TAGS.put("beach", RankineTags.Biomes.IS_BEACH);
         CATEGORY_TAGS.put("forest", BiomeTags.IS_FOREST);
         CATEGORY_TAGS.put("ocean", BiomeTags.IS_OCEAN);
         CATEGORY_TAGS.put("desert", Tags.Biomes.IS_DESERT);
@@ -118,10 +123,9 @@ public class WorldgenUtils {
      * <p>
      * PORT-NOTE: no tag can express "declared no category", so {@code "none"} is a predicate rather
      * than a tag: it matches a biome that is in none of the {@link #CATEGORY_TAGS} tags. In vanilla
-     * 1.21.1 that is {@code minecraft:the_void} (1.18.2's only NONE biome) plus
-     * {@code minecraft:stony_shore}, which was BEACH in 1.18.2 but which {@code c:is_beach} does not
-     * contain — stony_shore has its own exact config row earlier in the list, and
-     * {@code GEN_BIOMES.indexOf} returns the first match, so that row still wins.
+     * 1.21.1 that is {@code minecraft:the_void} and nothing else — 1.18.2's only NONE biome.
+     * ({@code minecraft:stony_shore} used to fall in here too, because the vanilla beach tag omits
+     * it; {@link RankineTags.Biomes#IS_BEACH} put it back where 1.18.2 had it.)
      * <p>
      * Semantic delta: a modded biome that declared no BiomeCategory in 1.18.2 but that modern tag
      * convention places in, say, {@code c:is_forest} now matches "forest" instead of "none".

@@ -116,10 +116,81 @@ public class RankineFluids {
 
     // ---- helpers ----
 
+    /**
+     * The one place every Rankine {@link FluidType} is built.
+     *
+     * <p><b>Entity interaction (port fix F13).</b> 1.18.2 had no per-fluid entity behaviour to port:
+     * Forge's {@code FluidAttributes} carried only colour/textures/sound/density/temperature/
+     * viscosity/luminosity/rarity, and every one of these 16 fluids was registered with a plain
+     * {@code FluidAttributes.builder(...)} (ProjectRankine.java:213-292 at 859f87773; only carbon
+     * disulfide deviated, with {@code .viscosity(6000)}). Drowning, swimming, current-pushing,
+     * boat floating, fire extinguishing, farmland hydration and mob path types were all hard-wired
+     * to {@code FluidTags.WATER} / {@code FluidTags.LAVA} in vanilla 1.18.2, and none of these
+     * fluids is in either tag — the baseline shipped no fluid tag files at all, and HEAD only adds
+     * the six {@code c:} content tags in {@code RankineFluidTagsProvider}. So in 1.18.2 you walked
+     * through maple sap as if it were air.
+     *
+     * <p>NeoForge 1.21.1 generalised all of that to {@link FluidType}, and the defaults are
+     * water-like ({@code FluidType.Properties}: canPushEntity/canSwim/canDrown {@code true},
+     * fallDistanceModifier {@code 0.5F}, pathType {@code WATER}, adjacentPathType
+     * {@code WATER_BORDER}). Leaving them at their defaults is what made all 16 fluids drown, buoy
+     * and push entities. Each override below restores the 1.18.2 outcome:
+     *
+     * <ul>
+     *   <li>{@code canDrown(false)} — {@code CommonHooks.onLivingBreathe} (CommonHooks.java:1387)
+     *       consults {@code canDrownInFluidType(getEyeInFluidType())}; true means air supply drains
+     *       and the entity takes drown damage. 1.18.2 drained air only for {@code FluidTags.WATER}.</li>
+     *   <li>{@code canPushEntity(false)} — {@code Entity#updateFluidHeightAndDoFluidPushing}
+     *       (Entity.java:3193) applies a flow impulse for every fluid type whose
+     *       {@code isPushedByFluid} is true. 1.18.2 pushed only for WATER and LAVA. The mod's own
+     *       flow impulse is unaffected: {@code RankineFlowingFluidBlock#entityInside} calls
+     *       {@code FluidHelper.handleFluidAcceleration(entity, 0.114D)} exactly as the baseline
+     *       did, and that goes through the entity-level {@code isPushedByFluid()} flag, not this
+     *       property. Only the extra NeoForge push is removed.</li>
+     *   <li>{@code canSwim(false)} — {@code Entity#updateSwimming} (Entity.java:1248) and
+     *       {@code isVisuallySwimming} (Entity.java:2288) put the entity into the swimming pose and
+     *       let it sprint-swim in any fluid type that allows it. 1.18.2 gated both on
+     *       {@code isInWater()}.</li>
+     *   <li>{@code fallDistanceModifier(1.0F)} — {@code Entity#updateInWaterStateAndDoWaterCurrentPushing}
+     *       (Entity.java:1261) multiplies {@code fallDistance} by this every tick for every
+     *       non-vanilla fluid type it is touching; the 0.5F default silently halves fall damage.
+     *       1.18.2 zeroed fall distance for WATER and left it untouched for everything else, so
+     *       "no change" (1.0F) is the parity value.</li>
+     *   <li>{@code pathType(null)} / {@code adjacentPathType(null)} — null means "no override, use
+     *       vanilla". {@code WalkNodeEvaluator#getPathTypeFromState} (WalkNodeEvaluator.java:522,
+     *       544-546) then falls through to {@code isPathfindable} and
+     *       {@code fluidstate.is(FluidTags.WATER) ? WATER : OPEN}, giving {@code OPEN} — which is
+     *       what 1.18.2's evaluator produced for these blocks. The WATER/WATER_BORDER defaults make
+     *       land mobs treat every Rankine pool as water to be avoided and aquatic mobs treat it as
+     *       home.</li>
+     * </ul>
+     *
+     * <p>Deliberately left at their defaults, because the default already equals the 1.18.2
+     * outcome: {@code canExtinguish} (false — 1.18.2 cleared fire only in water),
+     * {@code canConvertToSource} (false — the baseline never called {@code canMultiply()}),
+     * {@code supportsBoating} (false — boats floated only on water), {@code canHydrate} (false —
+     * farmland hydration read {@code FluidTags.WATER}), {@code lightLevel} 0, {@code temperature}
+     * 300 and {@code rarity} COMMON (the 1.18.2 {@code FluidAttributes} defaults, unchanged by the
+     * baseline). {@code motionScale} is left alone too: it is read only inside the
+     * {@code isPushedByFluid} branch, which {@code canPushEntity(false)} now closes.
+     *
+     * <p><b>Known residual divergence (not expressible as a property):</b>
+     * {@code LivingEntity#travel} (LivingEntity.java:2170-2171) applies water-style movement physics
+     * to any non-lava fluid type the entity is standing in, gated on nothing but
+     * {@code isAffectedByFluids()} and {@code FluidType#move} returning false. Suppressing it would
+     * require a {@code FluidType} subclass that re-implements vanilla land travel, so buoyancy/drag
+     * inside Rankine fluids still differs from 1.18.2. Flagged for triage rather than fixed here.
+     */
     private static DeferredHolder<FluidType, FluidType> fluidType(String name, int viscosity) {
         return FLUID_TYPES.register(name, () -> new FluidType(FluidType.Properties.create()
                 .density(1000)
                 .viscosity(viscosity)
+                .canDrown(false)
+                .canPushEntity(false)
+                .canSwim(false)
+                .fallDistanceModifier(1.0F)
+                .pathType(null)
+                .adjacentPathType(null)
                 .sound(SoundActions.BUCKET_FILL, SoundEvents.BUCKET_FILL)
                 .sound(SoundActions.BUCKET_EMPTY, SoundEvents.BUCKET_EMPTY)));
     }

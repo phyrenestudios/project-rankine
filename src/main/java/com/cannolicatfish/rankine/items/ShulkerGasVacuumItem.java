@@ -32,6 +32,19 @@ public class ShulkerGasVacuumItem extends Item {
         return stack.getOrDefault(RankineDataComponents.GAS.get(), "");
     }
 
+    /**
+     * True when the vacuum currently holds a gas — the single read shared by every consumer,
+     * including the client-side {@code rankine:gas_held} model predicate, so the icon cannot
+     * disagree with {@link #use}/{@link #useOn} about whether the item is full.
+     * <p>
+     * 1.18.2 asked {@code !stack.getTag().getString("gas").isEmpty()} (ClientProxy.java:88-90 at
+     * 859f87773). The fill state now lives in {@link RankineDataComponents#GAS}, which is what
+     * {@link #use} writes and {@link #useOn} clears.
+     */
+    public static boolean holdsGas(ItemStack stack) {
+        return !getGas(stack).isEmpty();
+    }
+
     @Override
     public Component getName(ItemStack stack) {
         String s = getGas(stack);

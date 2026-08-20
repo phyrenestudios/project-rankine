@@ -2,7 +2,13 @@ package com.cannolicatfish.rankine.gametest;
 
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.data.RankineBiomeModifiers;
+import com.cannolicatfish.rankine.blocks.AntimatterBlock;
+import com.cannolicatfish.rankine.blocks.block_groups.RankineStone;
+import com.cannolicatfish.rankine.blocks.buildingmodes.BuildingModeBlock;
 import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.init.RankineFluids;
+import com.cannolicatfish.rankine.items.BuildingModeBlockItem;
+import com.cannolicatfish.rankine.items.ShulkerGasVacuumItem;
 import com.cannolicatfish.rankine.init.RankineDataComponents;
 import com.cannolicatfish.rankine.init.RankineFeatures;
 import com.cannolicatfish.rankine.init.RankinePlacedFeatures;
@@ -24,6 +30,7 @@ import net.minecraft.core.HolderSet;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.world.item.component.CustomData;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.gametest.framework.GameTest;
@@ -36,7 +43,14 @@ import net.minecraft.tags.EnchantmentTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.PoiTypeTags;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.village.poi.PoiType;
+import net.minecraft.world.entity.animal.Pig;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.GameType;
+import net.minecraft.world.level.Explosion;
+import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.DiggerItem;
 import net.minecraft.world.item.Item;
@@ -59,8 +73,11 @@ import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
 import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraft.util.RandomSource;
 import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.fluids.FluidType;
 import net.neoforged.neoforge.common.world.BiomeModifier;
 import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
@@ -1532,6 +1549,417 @@ public class RankineRegistryTests {
         }
 
         assertEmpty(problems, "End ore vein placement failures");
+        helper.succeed();
+    }
+    // ---------------------------------------------------------------------------------------
+    // F13 — fluid entity interaction
+    // ---------------------------------------------------------------------------------------
+
+    /** Every FluidType the mod registers. Pinned so a future fluid cannot dodge the assertions below. */
+    private static final int RANKINE_FLUID_TYPES = 16;
+
+    /**
+     * F13 — all 16 fluids used a default {@code FluidType.Properties}, so entities drowned in them,
+     * swam in them and were pushed by them. In 1.18.2 you could stand in maple sap safely: Forge's
+     * {@code FluidAttributes} carried no entity behaviour at all, and vanilla gated drowning,
+     * swimming, current pushing, boating, hydration and mob path types on {@code FluidTags.WATER}
+     * and {@code FluidTags.LAVA}, neither of which contains a Rankine fluid (the baseline shipped no
+     * fluid tag files, and HEAD only adds the six {@code c:} content tags).
+     *
+     * <p>The entity-facing assertions go through {@code IEntityExtension} on a real spawned
+     * {@link LivingEntity} — the exact calls {@code CommonHooks#onLivingBreathe},
+     * {@code Entity#updateFluidHeightAndDoFluidPushing} and {@code Entity#updateSwimming} make.
+     *
+     * <p>Properties deliberately left at their NeoForge defaults are asserted too, because "default"
+     * is a 1.18.2-parity claim here and a future default change should break this test:
+     * canExtinguish / canConvertToSource / canHydrate false, density 1000, temperature 300,
+     * viscosity 1000 — 6000 for carbon disulfide, the one place the baseline deviated.
+     */
+    @GameTest(template = "empty")
+    public void rankineFluidsDoNotBehaveLikeWater(GameTestHelper helper) {
+        List<String> problems = new ArrayList<>();
+        Pig pig = helper.spawn(EntityType.PIG, new BlockPos(1, 1, 1));
+
+        List<String> ids = new ArrayList<>();
+        for (var entry : NeoForgeRegistries.FLUID_TYPES.entrySet()) {
+            ResourceLocation id = entry.getKey().location();
+            if (!isRankine(id)) continue;
+            ids.add(id.toString());
+            FluidType type = entry.getValue();
+
+            if (type.canDrownIn(pig)) problems.add(id + " canDrownIn");
+            if (type.canPushEntity(pig)) problems.add(id + " canPushEntity");
+            if (type.canSwim(pig)) problems.add(id + " canSwim");
+            if (type.getFallDistanceModifier(pig) != 1.0F) {
+                problems.add(id + " fallDistanceModifier is " + type.getFallDistanceModifier(pig) + ", expected 1.0");
+            }
+            if (type.canExtinguish(pig)) problems.add(id + " canExtinguish");
+            if (type.canHydrate(pig)) problems.add(id + " canHydrate");
+            if (type.getDensity() != 1000) problems.add(id + " density is " + type.getDensity());
+            if (type.getTemperature() != 300) problems.add(id + " temperature is " + type.getTemperature());
+            int expectedViscosity = id.getPath().equals("carbon_disulfide") ? 6000 : 1000;
+            if (type.getViscosity() != expectedViscosity) {
+                problems.add(id + " viscosity is " + type.getViscosity() + ", expected " + expectedViscosity);
+            }
+
+            // The entity-side wrappers the vanilla call sites actually use.
+            if (pig.canDrownInFluidType(type)) problems.add(id + " canDrownInFluidType(pig)");
+            if (pig.isPushedByFluid(type)) problems.add(id + " isPushedByFluid(pig)");
+            if (pig.canSwimInFluidType(type)) problems.add(id + " canSwimInFluidType(pig)");
+            if (pig.getFluidFallDistanceModifier(type) != 1.0F) problems.add(id + " getFluidFallDistanceModifier(pig)");
+        }
+
+        // Path type, source conversion and hydration need a FluidState, so they run per fluid.
+        BlockPos probe = helper.absolutePos(new BlockPos(0, 1, 0));
+        for (var entry : BuiltInRegistries.FLUID.entrySet()) {
+            ResourceLocation id = entry.getKey().location();
+            if (!isRankine(id)) continue;
+            FluidState state = entry.getValue().defaultFluidState();
+            FluidType type = state.getFluidType();
+            if (type.getBlockPathType(state, helper.getLevel(), probe, null, false) != null) {
+                problems.add(id + " overrides the mob path type; null (= vanilla, which yields OPEN) is the 1.18.2 outcome");
+            }
+            if (type.getBlockPathType(state, helper.getLevel(), probe, null, true) != null) {
+                problems.add(id + " overrides the waterloggable mob path type");
+            }
+            if (type.getAdjacentBlockPathType(state, helper.getLevel(), probe, null, PathType.WALKABLE) != null) {
+                problems.add(id + " overrides the adjacent mob path type");
+            }
+            if (type.canConvertToSource(state, helper.getLevel(), probe)) problems.add(id + " canConvertToSource");
+            if (type.canHydrate(state, helper.getLevel(), probe, Blocks.FARMLAND.defaultBlockState(), probe)) {
+                problems.add(id + " hydrates farmland");
+            }
+            if (type.canExtinguish(state, helper.getLevel(), probe)) problems.add(id + " extinguishes fire");
+        }
+
+        if (ids.size() != RANKINE_FLUID_TYPES) {
+            problems.add("expected exactly " + RANKINE_FLUID_TYPES + " rankine fluid types, found "
+                    + ids.size() + " " + ids);
+        }
+
+        // Vacuity guard: vanilla water must still say yes to all three, or the getters are lying.
+        FluidType water = Fluids.WATER.getFluidType();
+        if (!water.canDrownIn(pig) || !water.canSwim(pig) || !water.canPushEntity(pig)) {
+            problems.add("minecraft:water no longer drowns/floats/pushes, so every negative above is vacuous");
+        }
+
+        pig.discard();
+        assertEmpty(problems, "rankine fluid entity-interaction failures");
+        helper.succeed();
+    }
+
+    /** Sealed sap pit for {@link #entityDoesNotDrownInRankineFluid}: stone shell, sap interior. */
+    private static final BlockPos POOL_MIN = new BlockPos(0, 0, 0);
+    private static final BlockPos POOL_MAX = new BlockPos(4, 5, 4);
+    private static final BlockPos POOL_INNER_MIN = new BlockPos(1, 1, 1);
+    private static final BlockPos POOL_INNER_MAX = new BlockPos(3, 4, 3);
+    private static final BlockPos POOL_SPAWN = new BlockPos(2, 1, 2);
+    private static final int DROWN_TICKS = 40;
+    private static final int START_AIR = 100;
+
+    /**
+     * F13, behavioural half — an entity submerged in {@code rankine:maple_sap} must not lose air.
+     * That is the symptom the review reported, and this drives it through the real server tick
+     * rather than through the property getters: {@code LivingEntity#baseTick} calls
+     * {@code CommonHooks#onLivingBreathe}, which asks {@code canDrownInFluidType} about the fluid on
+     * the entity's eyes and drains one air per tick when the answer is yes.
+     *
+     * <p>The pit is a sealed stone shell, so the source blocks cannot spread or drain away and the
+     * pig cannot walk out; sap has no collision, so the pig rests on the floor with sap over its
+     * eyes. With the fix, {@code onLivingBreathe} reports "can breathe" with a zero refill, so the
+     * air supply holds at exactly its starting value — it neither drains nor regenerates, which is
+     * what distinguishes this from the pig simply not being in the fluid. The eye check makes that
+     * distinction explicit rather than trusting it.
+     */
+    @GameTest(template = "empty", timeoutTicks = 200)
+    public void entityDoesNotDrownInRankineFluid(GameTestHelper helper) {
+        for (BlockPos pos : BlockPos.betweenClosed(POOL_MIN, POOL_MAX)) {
+            helper.setBlock(pos, Blocks.STONE.defaultBlockState());
+        }
+        BlockState sap = RankineBlocks.MAPLE_SAP.get().defaultBlockState();
+        for (BlockPos pos : BlockPos.betweenClosed(POOL_INNER_MIN, POOL_INNER_MAX)) {
+            helper.setBlock(pos, sap);
+        }
+
+        Pig pig = helper.spawn(EntityType.PIG, POOL_SPAWN);
+        pig.setNoAi(true);
+        pig.setAirSupply(START_AIR);
+
+        helper.runAfterDelay(DROWN_TICKS, () -> {
+            List<String> problems = new ArrayList<>();
+            FluidType eyes = pig.getEyeInFluidType();
+            FluidType expected = RankineFluids.MAPLE_SAP_TYPE.get();
+            if (eyes != expected) {
+                problems.add("the pig's eyes are in " + eyes + ", not rankine:maple_sap — the pit did not hold,"
+                        + " so the air check below would prove nothing");
+            }
+            if (pig.getAirSupply() != START_AIR) {
+                problems.add("air supply went " + START_AIR + " -> " + pig.getAirSupply() + " over "
+                        + DROWN_TICKS + " ticks submerged in maple sap");
+            }
+            if (pig.getHealth() != pig.getMaxHealth()) {
+                problems.add("the pig took damage while submerged in maple sap (" + pig.getHealth() + " hp)");
+            }
+            pig.discard();
+            assertEmpty(problems, "maple sap drowning failures");
+            helper.succeed();
+        });
+    }
+
+    // ---------------------------------------------------------------------------------------
+    // F14 — antimatter explosion drop decay
+    // ---------------------------------------------------------------------------------------
+
+    /** Trials per mode in {@link #antimatterExplosionDropsDecay}. */
+    private static final int DECAY_TRIALS = 120;
+
+    /**
+     * F14 — {@code AntimatterBlock.explode} passed {@code BlockInteraction.DESTROY}, which since
+     * 1.19.3 means "full drops". 1.18.2's {@code DESTROY} was the decaying one: the mod's own
+     * {@code SphericalExplosion#finalizeExplosion} (SphericalExplosion.java:149 at 859f87773) added
+     * {@code LootContextParams.EXPLOSION_RADIUS} for exactly that value. A radius-12 blast therefore
+     * dropped roughly twelve times the intended item count.
+     *
+     * <p>Two assertions, because the constant alone would be a tautology and the blast itself is far
+     * too large to run inside a test structure (a radius-12 sphere is on the order of 7,000 blocks):
+     * <ol>
+     *   <li>the mode the block actually passes is {@code DESTROY_WITH_DECAY};</li>
+     *   <li>that mode really does decay, driven through the vanilla path the mod's explosion class
+     *       delegates to — {@code BlockState#onExplosionHit} — on plain stone at the same radius 12,
+     *       against a {@code DESTROY} control.</li>
+     * </ol>
+     *
+     * <p>Decay is random (each drop survives with probability 1/radius), so the second assertion is a
+     * bound rather than an equality: over {@link #DECAY_TRIALS} = 120 trials at p = 1/12 the expected
+     * yield is 10 and the threshold is 60, a margin of roughly 1e-30 in the tail. The control is
+     * exact: without the radius parameter {@code minecraft:explosion_decay} is a no-op, so
+     * {@code DESTROY} must yield all 120.
+     */
+    @GameTest(template = "empty")
+    public void antimatterExplosionDropsDecay(GameTestHelper helper) {
+        List<String> problems = new ArrayList<>();
+
+        if (AntimatterBlock.EXPLOSION_MODE != Explosion.BlockInteraction.DESTROY_WITH_DECAY) {
+            problems.add("AntimatterBlock passes " + AntimatterBlock.EXPLOSION_MODE
+                    + "; 1.18.2's decaying DESTROY is 1.21's DESTROY_WITH_DECAY");
+        }
+        if (AntimatterBlock.EXPLOSION_RADIUS != 12f) {
+            problems.add("blast radius is " + AntimatterBlock.EXPLOSION_RADIUS + ", expected 12 as in 1.18.2");
+        }
+
+        int withDecay = countExplosionDrops(helper, AntimatterBlock.EXPLOSION_MODE);
+        int withoutDecay = countExplosionDrops(helper, Explosion.BlockInteraction.DESTROY);
+
+        if (withoutDecay != DECAY_TRIALS) {
+            problems.add("DESTROY dropped " + withoutDecay + "/" + DECAY_TRIALS + " cobblestone; without"
+                    + " EXPLOSION_RADIUS the decay loot function is a no-op and it must drop all of them");
+        }
+        if (withDecay >= DECAY_TRIALS / 2) {
+            problems.add("DESTROY_WITH_DECAY dropped " + withDecay + "/" + DECAY_TRIALS
+                    + " cobblestone; at radius 12 the expected yield is about " + (DECAY_TRIALS / 12));
+        }
+
+        assertEmpty(problems, "antimatter explosion decay failures");
+        helper.succeed();
+    }
+
+    /** Breaks stone with an explosion of the given mode {@link #DECAY_TRIALS} times; returns the item count dropped. */
+    private static int countExplosionDrops(GameTestHelper helper, Explosion.BlockInteraction mode) {
+        BlockPos relative = new BlockPos(1, 1, 1);
+        BlockPos absolute = helper.absolutePos(relative);
+        Explosion explosion = new Explosion(helper.getLevel(), null, absolute.getX(), absolute.getY(),
+                absolute.getZ(), AntimatterBlock.EXPLOSION_RADIUS, false, mode);
+        int drops = 0;
+        for (int i = 0; i < DECAY_TRIALS; i++) {
+            helper.setBlock(relative, Blocks.STONE.defaultBlockState());
+            List<ItemStack> dropped = new ArrayList<>();
+            helper.getLevel().getBlockState(absolute)
+                    .onExplosionHit(helper.getLevel(), absolute, explosion, (stack, pos) -> dropped.add(stack));
+            for (ItemStack stack : dropped) drops += stack.getCount();
+        }
+        helper.setBlock(relative, Blocks.AIR.defaultBlockState());
+        return drops;
+    }
+
+    // ---------------------------------------------------------------------------------------
+    // F15 — model predicate stores
+    // ---------------------------------------------------------------------------------------
+
+    /**
+     * F15 — the {@code rankine:gas_held} and {@code rankine:building_mode} model predicates read
+     * {@code minecraft:custom_data}, but the port moved the writes to dedicated data components. So
+     * the Shulker Gas Vacuum always rendered empty and building-mode blocks always rendered as
+     * mode 1.
+     *
+     * <p>The predicates themselves are client-only ({@code ClientSetup}) and cannot be invoked from a
+     * dedicated server, so this drives the accessors they now delegate to —
+     * {@code ShulkerGasVacuumItem#holdsGas} and {@code BuildingModeBlockItem#getBuildingMode} —
+     * against the real gameplay writes, including the {@code getCloneItemStack} write that was
+     * itself pointing at the wrong store. That is the whole content of the fix: one accessor and one
+     * component shared by the read side and the write side.
+     */
+    @GameTest(template = "empty")
+    public void modelPredicateStoresMatchGameplayWrites(GameTestHelper helper) {
+        List<String> problems = new ArrayList<>();
+
+        // --- gas_held: ShulkerGasVacuumItem#use writes GAS, #useOn removes it.
+        ItemStack vacuum = new ItemStack(RankineItems.SHULKER_GAS_VACUUM.get());
+        if (ShulkerGasVacuumItem.holdsGas(vacuum)) {
+            problems.add("a fresh Shulker Gas Vacuum reports a held gas");
+        }
+        vacuum.set(RankineDataComponents.GAS.get(), "rankine:helium_gas_block");
+        if (!ShulkerGasVacuumItem.holdsGas(vacuum)) {
+            problems.add("a vacuum holding rankine:helium_gas_block reports empty — gas_held reads a"
+                    + " different store than ShulkerGasVacuumItem#use writes");
+        }
+        vacuum.remove(RankineDataComponents.GAS.get());
+        if (ShulkerGasVacuumItem.holdsGas(vacuum)) {
+            problems.add("a vacuum whose gas was released still reports full");
+        }
+        // The store the predicate used to read must stay irrelevant, or the bug is only half fixed.
+        ItemStack legacyVacuum = new ItemStack(RankineItems.SHULKER_GAS_VACUUM.get());
+        CustomData.update(DataComponents.CUSTOM_DATA, legacyVacuum,
+                tag -> tag.putString("gas", "rankine:helium_gas_block"));
+        if (ShulkerGasVacuumItem.holdsGas(legacyVacuum)) {
+            problems.add("gas_held still answers from minecraft:custom_data, which no gameplay code writes");
+        }
+
+        // --- building_mode: BuildingModeBlockItem#use and BuildingModeBlock#getCloneItemStack write
+        //     BUILDING_MODE; #getStateForPlacement and the predicate read it back.
+        Player player = helper.makeMockPlayer(GameType.CREATIVE);
+        BlockPos pickPos = helper.absolutePos(new BlockPos(0, 1, 0));
+        int checked = 0;
+        for (RankineStone stone : RankineLists.RANKINE_STONES) {
+            Block block = stone.getBricks();
+            if (!(block instanceof BuildingModeBlock modeBlock)) continue;
+            if (!(block.asItem() instanceof BuildingModeBlockItem item)) continue;
+            checked++;
+
+            ItemStack fresh = new ItemStack(block);
+            if (item.getBuildingMode(fresh) != 1) {
+                problems.add(block + " reads mode " + item.getBuildingMode(fresh) + " on a fresh stack, expected 1");
+            }
+
+            int mode = Math.min(2, modeBlock.getMaxStyles());
+            ItemStack set = new ItemStack(block);
+            set.set(RankineDataComponents.BUILDING_MODE.get(), mode);
+            if (item.getBuildingMode(set) != mode) {
+                problems.add(block + " reads mode " + item.getBuildingMode(set) + " after a write of " + mode);
+            }
+
+            // Pick-block round trip: placed state -> stack -> mode. Same accessor the icon uses.
+            BlockState placed = modeBlock.defaultBlockState().setValue(modeBlock.getProperty(), mode);
+            ItemStack picked = modeBlock.getCloneItemStack(placed, null, helper.getLevel(), pickPos, player);
+            if (item.getBuildingMode(picked) != mode) {
+                problems.add(block + " pick-block on a mode-" + mode + " block yields mode "
+                        + item.getBuildingMode(picked)
+                        + " — getCloneItemStack writes a store getBuildingMode does not read");
+            }
+            if (picked.has(DataComponents.CUSTOM_DATA)) {
+                problems.add(block + " pick-block still writes minecraft:custom_data");
+            }
+        }
+        if (checked == 0) {
+            problems.add("no BuildingModeBlock bricks found, so the building_mode half is vacuous");
+        }
+
+        assertEmpty(problems, "model predicate store mismatches");
+        helper.succeed();
+    }
+
+    // ---------------------------------------------------------------------------------------
+    // F16 — "beach" category membership
+    // ---------------------------------------------------------------------------------------
+
+    /** 1.18.2 {@code BiomeCategory.BEACH}, in full. */
+    private static final Set<String> BEACH_BIOMES = Set.of(
+            "minecraft:beach", "minecraft:snowy_beach", "minecraft:stony_shore");
+
+    /** The ores whose only shore-reaching rows are keyed "beach" (Config.java:1207, 1237, 1238). */
+    private static final List<String> BEACH_ORES = List.of(
+            "rankine:pentlandite_ore", "rankine:sylvinite", "rankine:phosphorite");
+
+    /**
+     * F16 — {@code "beach"} pointed at {@code minecraft:is_beach}, which is
+     * {@code [beach, snowy_beach]} ({@code c:is_beach} is just an alias of it). 1.18.2's
+     * {@code BiomeCategory.BEACH} also held {@code stony_shore} — all three carry
+     * {@code "category": "beach"} in that version's biome JSONs, and no other 1.18.2 biome does — so
+     * the three ore rows keyed {@code "beach"} never reached stony shores. {@code rankine:is_beach}
+     * restores the exact membership. Same shape as {@code icyCategoryRowSelectsSnowyPlainsAndIceSpikes}.
+     */
+    @GameTest(template = "empty")
+    public void beachCategoryRowSelectsBeachesAndStonyShore(GameTestHelper helper) {
+        WorldgenUtils.ensureBiomesResolved(helper.getLevel().registryAccess());
+        var biomeRegistry = helper.getLevel().registryAccess().registryOrThrow(Registries.BIOME);
+        List<String> problems = new ArrayList<>();
+
+        for (ResourceKey<Biome> key : List.of(Biomes.BEACH, Biomes.SNOWY_BEACH, Biomes.STONY_SHORE)) {
+            Holder<Biome> holder = biomeRegistry.getHolderOrThrow(key);
+            if (!holder.is(RankineTags.Biomes.IS_BEACH)) {
+                problems.add(key.location() + " missing from #rankine:is_beach");
+            }
+            if (!WorldgenUtils.matchesCategory(holder, "beach")) {
+                problems.add(key.location() + " does not match the \"beach\" config category");
+            }
+        }
+
+        // Membership must be exactly those three; nothing else may join.
+        List<String> extra = new ArrayList<>();
+        for (ResourceKey<Biome> key : biomeRegistry.registryKeySet()) {
+            if (BEACH_BIOMES.contains(key.location().toString())) continue;
+            if (biomeRegistry.getHolderOrThrow(key).is(RankineTags.Biomes.IS_BEACH)) {
+                extra.add(key.location().toString());
+            }
+        }
+        if (!extra.isEmpty()) {
+            problems.add("#rankine:is_beach also contains " + extra + ", which were not BEACH in 1.18.2");
+        }
+
+        // stony_shore leaves the "none" bucket, where the missing tag membership had parked it.
+        if (WorldgenUtils.matchesCategory(biomeRegistry.getHolderOrThrow(Biomes.STONY_SHORE), WorldgenUtils.CATEGORY_NONE)) {
+            problems.add("minecraft:stony_shore still matches category \"none\"");
+        }
+
+        // The point of the fix: the three "beach" ore rows now reach stony shores.
+        Set<Block> shoreVeins = oreVeinBlocks(biomeRegistry.getHolderOrThrow(Biomes.STONY_SHORE));
+        Set<Block> beachVeins = oreVeinBlocks(biomeRegistry.getHolderOrThrow(Biomes.BEACH));
+        for (String ore : BEACH_ORES) {
+            Block block = BuiltInRegistries.BLOCK.get(ResourceLocation.parse(ore));
+            if (!shoreVeins.contains(block)) problems.add(ore + " has no vein in minecraft:stony_shore");
+            if (!beachVeins.contains(block)) problems.add(ore + " has no vein in minecraft:beach");
+        }
+
+        // Negative control. Only sylvinite is exclusively shore-ish: its single row is
+        // ["beach","ocean","desert"] (Config.java:1237), so a forest must miss it. The other two
+        // cannot serve here - pentlandite has a second "overworld" row (:1208) and phosphorite an
+        // "extreme_hills"/"mountain" row (:1239), both of which legitimately place them elsewhere.
+        Set<Block> forestVeins = oreVeinBlocks(biomeRegistry.getHolderOrThrow(Biomes.FOREST));
+        Block sylvinite = BuiltInRegistries.BLOCK.get(ResourceLocation.parse("rankine:sylvinite"));
+        if (forestVeins.contains(sylvinite)) {
+            problems.add("rankine:sylvinite has a vein in minecraft:forest, which matches none of its"
+                    + " row's categories - so the stony_shore hit above is not evidence of the beach row");
+        }
+        if (forestVeins.isEmpty()) {
+            problems.add("minecraft:forest has no Rankine ore veins at all, so the negative control is vacuous");
+        }
+
+        // Ordering guard: stony_shore's own exact biomeSettings row (Config.java:974) precedes the
+        // "beach" row (:1037) and GEN_BIOMES.indexOf takes the first match, so terrain must still
+        // come from its own row.
+        List<String> shoreLayers = layersFor(Biomes.STONY_SHORE);
+        List<String> beachLayers = layersFor(Biomes.BEACH);
+        if (shoreLayers == null) {
+            problems.add("minecraft:stony_shore missing from GEN_BIOMES");
+        } else if (shoreLayers.equals(beachLayers)) {
+            problems.add("minecraft:stony_shore resolved to the \"beach\" row instead of its own exact row");
+        }
+        if (beachLayers == null) {
+            problems.add("minecraft:beach missing from GEN_BIOMES");
+        } else if (!beachLayers.equals(layersFor(Biomes.SNOWY_BEACH))) {
+            problems.add("minecraft:beach and minecraft:snowy_beach resolved to different rows");
+        }
+
+        assertEmpty(problems, "\"beach\" category failures");
         helper.succeed();
     }
 }

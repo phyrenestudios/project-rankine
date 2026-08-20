@@ -30,5 +30,11 @@ public class RankineBiomeTagsProvider extends BiomeTagsProvider {
         // MOUNTAIN in 1.18.2 and which the earlier "mountain" config row already claims.
         // See RankineTags.Biomes.IS_ICY for the per-biome evidence.
         this.tag(RankineTags.Biomes.IS_ICY).add(Biomes.SNOWY_PLAINS).add(Biomes.ICE_SPIKES);
+
+        // Exactly 1.18.2's BiomeCategory.BEACH. Listed as concrete biomes rather than as
+        // #minecraft:is_beach plus stony_shore, because the vanilla tag is the thing that is wrong
+        // here: it is [beach, snowy_beach] and omits stony_shore, which 1.18.2 called "beach".
+        // See RankineTags.Biomes.IS_BEACH for the per-biome evidence.
+        this.tag(RankineTags.Biomes.IS_BEACH).add(Biomes.BEACH).add(Biomes.SNOWY_BEACH).add(Biomes.STONY_SHORE);
     }
 }

@@ -18,14 +18,12 @@ import com.cannolicatfish.rankine.init.RankineContainers;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineLists;
 import com.cannolicatfish.rankine.items.BuildingModeBlockItem;
+import com.cannolicatfish.rankine.items.ShulkerGasVacuumItem;
 import com.cannolicatfish.rankine.items.indexer.ElementIndexerScreen;
 import com.cannolicatfish.rankine.items.tools.SpearItem;
 import net.minecraft.client.renderer.item.ItemProperties;
-import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -88,25 +86,26 @@ public class ClientSetup {
             registerBuildingModeProperty(Stone.getMossyBricks());
         }
 
-        // PORT-TODO(items): 1.18.2 checked stack.getTag().getString("gas"); update once the items
-        // agent decides where GasBottleItem/ShulkerGasVacuum store the held gas (CUSTOM_DATA assumed).
+        // The held gas is written by ShulkerGasVacuumItem#use into RankineDataComponents.GAS and
+        // cleared by #useOn. The predicate goes through the item's own accessor so the icon cannot
+        // drift from the gameplay state; it used to read DataComponents.CUSTOM_DATA, which nothing
+        // writes, so a full vacuum always rendered empty.
         ItemProperties.register(RankineItems.SHULKER_GAS_VACUUM.get(),
-                ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID, "gas_held"), (stack, world, living, id) -> {
-                    CustomData data = stack.get(DataComponents.CUSTOM_DATA);
-                    return data != null && !data.copyTag().getString("gas").isEmpty() ? 1.0F : 0.0F;
-                });
+                ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID, "gas_held"),
+                (stack, world, living, id) -> ShulkerGasVacuumItem.holdsGas(stack) ? 1.0F : 0.0F);
     }
 
-    // PORT-TODO(items): 1.18.2 returned 1.0F when stack.getTag() == null, else the building mode.
-    // CUSTOM_DATA presence is the closest analog; revisit if BuildingModeBlockItem gets a dedicated
-    // data component.
+    // The building mode is written by BuildingModeBlockItem#use and by
+    // BuildingModeBlock#getCloneItemStack, both into RankineDataComponents.BUILDING_MODE, and read
+    // back by BuildingModeBlockItem#getBuildingMode — which is also what
+    // BuildingModeBlock#getStateForPlacement uses, so the icon and the block that gets placed always
+    // agree. That accessor already returns 1 when the component is absent, which is the 1.18.2
+    // fallback (ClientProxy.java:71 at 859f87773 returned 1.0F for a tagless stack), so no separate
+    // presence check is needed. The old check asked for DataComponents.CUSTOM_DATA, which nothing
+    // writes, so every stack rendered as mode 1.
     private static void registerBuildingModeProperty(Block block) {
         ItemProperties.register(block.asItem(), ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID, "building_mode"),
-                (stack, world, living, id) -> hasBuildingModeData(stack) ? (float) ((BuildingModeBlockItem) block.asItem()).getBuildingMode(stack) : 1.0F);
-    }
-
-    private static boolean hasBuildingModeData(ItemStack stack) {
-        return stack.has(DataComponents.CUSTOM_DATA);
+                (stack, world, living, id) -> (float) ((BuildingModeBlockItem) block.asItem()).getBuildingMode(stack));
     }
 
     // Render types are no longer set in code (ItemBlockRenderTypes.setRenderLayer is gone);
