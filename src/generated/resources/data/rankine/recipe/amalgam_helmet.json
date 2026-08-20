@@ -5,19 +5,29 @@
   "inherit": true,
   "key": {
     "A": {
-      "item": "rankine:amalgam_ingot"
+      "color": 13881539,
+      "item": "rankine:amalgam_ingot",
+      "langName": "item.rankine.amalgam_alloying"
     },
     "B": {
-      "item": "rankine:amalgam_ingot"
+      "color": 13881539,
+      "item": "rankine:amalgam_ingot",
+      "langName": "item.rankine.amalgam_alloying"
     },
     "C": {
-      "item": "rankine:amalgam_ingot"
+      "color": 13881539,
+      "item": "rankine:amalgam_ingot",
+      "langName": "item.rankine.amalgam_alloying"
     },
     "D": {
-      "item": "rankine:amalgam_ingot"
+      "color": 13881539,
+      "item": "rankine:amalgam_ingot",
+      "langName": "item.rankine.amalgam_alloying"
     },
     "F": {
-      "item": "rankine:amalgam_ingot"
+      "color": 13881539,
+      "item": "rankine:amalgam_ingot",
+      "langName": "item.rankine.amalgam_alloying"
     }
   },
   "langName": "item.rankine.amalgam_alloying",

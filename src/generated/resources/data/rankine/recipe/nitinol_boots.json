@@ -5,16 +5,24 @@
   "inherit": true,
   "key": {
     "A": {
-      "item": "rankine:nitinol_ingot"
+      "color": 12882104,
+      "item": "rankine:nitinol_ingot",
+      "langName": "item.rankine.nitinol_alloying"
     },
     "C": {
-      "item": "rankine:nitinol_ingot"
+      "color": 12882104,
+      "item": "rankine:nitinol_ingot",
+      "langName": "item.rankine.nitinol_alloying"
     },
     "D": {
-      "item": "rankine:nitinol_ingot"
+      "color": 12882104,
+      "item": "rankine:nitinol_ingot",
+      "langName": "item.rankine.nitinol_alloying"
     },
     "F": {
-      "item": "rankine:nitinol_ingot"
+      "color": 12882104,
+      "item": "rankine:nitinol_ingot",
+      "langName": "item.rankine.nitinol_alloying"
     }
   },
   "langName": "item.rankine.nitinol_alloying",

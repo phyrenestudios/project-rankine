@@ -5,28 +5,44 @@
   "inherit": true,
   "key": {
     "A": {
-      "item": "rankine:pewter_ingot"
+      "color": 11711154,
+      "item": "rankine:pewter_ingot",
+      "langName": "item.rankine.pewter_alloying"
     },
     "C": {
-      "item": "rankine:pewter_ingot"
+      "color": 11711154,
+      "item": "rankine:pewter_ingot",
+      "langName": "item.rankine.pewter_alloying"
     },
     "D": {
-      "item": "rankine:pewter_ingot"
+      "color": 11711154,
+      "item": "rankine:pewter_ingot",
+      "langName": "item.rankine.pewter_alloying"
     },
     "E": {
-      "item": "rankine:pewter_ingot"
+      "color": 11711154,
+      "item": "rankine:pewter_ingot",
+      "langName": "item.rankine.pewter_alloying"
     },
     "F": {
-      "item": "rankine:pewter_ingot"
+      "color": 11711154,
+      "item": "rankine:pewter_ingot",
+      "langName": "item.rankine.pewter_alloying"
     },
     "G": {
-      "item": "rankine:pewter_ingot"
+      "color": 11711154,
+      "item": "rankine:pewter_ingot",
+      "langName": "item.rankine.pewter_alloying"
     },
     "H": {
-      "item": "rankine:pewter_ingot"
+      "color": 11711154,
+      "item": "rankine:pewter_ingot",
+      "langName": "item.rankine.pewter_alloying"
     },
     "I": {
-      "item": "rankine:pewter_ingot"
+      "color": 11711154,
+      "item": "rankine:pewter_ingot",
+      "langName": "item.rankine.pewter_alloying"
     }
   },
   "langName": "item.rankine.pewter_alloying",

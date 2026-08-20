@@ -5,28 +5,44 @@
   "inherit": true,
   "key": {
     "A": {
-      "item": "rankine:steel_ingot"
+      "color": 7634311,
+      "item": "rankine:steel_ingot",
+      "langName": "item.rankine.steel_alloying"
     },
     "C": {
-      "item": "rankine:steel_ingot"
+      "color": 7634311,
+      "item": "rankine:steel_ingot",
+      "langName": "item.rankine.steel_alloying"
     },
     "D": {
-      "item": "rankine:steel_ingot"
+      "color": 7634311,
+      "item": "rankine:steel_ingot",
+      "langName": "item.rankine.steel_alloying"
     },
     "E": {
-      "item": "rankine:steel_ingot"
+      "color": 7634311,
+      "item": "rankine:steel_ingot",
+      "langName": "item.rankine.steel_alloying"
     },
     "F": {
-      "item": "rankine:steel_ingot"
+      "color": 7634311,
+      "item": "rankine:steel_ingot",
+      "langName": "item.rankine.steel_alloying"
     },
     "G": {
-      "item": "rankine:steel_ingot"
+      "color": 7634311,
+      "item": "rankine:steel_ingot",
+      "langName": "item.rankine.steel_alloying"
     },
     "H": {
-      "item": "rankine:steel_ingot"
+      "color": 7634311,
+      "item": "rankine:steel_ingot",
+      "langName": "item.rankine.steel_alloying"
     },
     "I": {
-      "item": "rankine:steel_ingot"
+      "color": 7634311,
+      "item": "rankine:steel_ingot",
+      "langName": "item.rankine.steel_alloying"
     }
   },
   "langName": "item.rankine.steel_alloying",

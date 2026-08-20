@@ -5,25 +5,39 @@
   "inherit": true,
   "key": {
     "A": {
-      "item": "rankine:nickel_superalloy_ingot"
+      "color": 12769246,
+      "item": "rankine:nickel_superalloy_ingot",
+      "langName": "item.rankine.nickel_superalloy_alloying"
     },
     "B": {
-      "item": "rankine:nickel_superalloy_ingot"
+      "color": 12769246,
+      "item": "rankine:nickel_superalloy_ingot",
+      "langName": "item.rankine.nickel_superalloy_alloying"
     },
     "C": {
-      "item": "rankine:nickel_superalloy_ingot"
+      "color": 12769246,
+      "item": "rankine:nickel_superalloy_ingot",
+      "langName": "item.rankine.nickel_superalloy_alloying"
     },
     "D": {
-      "item": "rankine:nickel_superalloy_ingot"
+      "color": 12769246,
+      "item": "rankine:nickel_superalloy_ingot",
+      "langName": "item.rankine.nickel_superalloy_alloying"
     },
     "F": {
-      "item": "rankine:nickel_superalloy_ingot"
+      "color": 12769246,
+      "item": "rankine:nickel_superalloy_ingot",
+      "langName": "item.rankine.nickel_superalloy_alloying"
     },
     "G": {
-      "item": "rankine:nickel_superalloy_ingot"
+      "color": 12769246,
+      "item": "rankine:nickel_superalloy_ingot",
+      "langName": "item.rankine.nickel_superalloy_alloying"
     },
     "I": {
-      "item": "rankine:nickel_superalloy_ingot"
+      "color": 12769246,
+      "item": "rankine:nickel_superalloy_ingot",
+      "langName": "item.rankine.nickel_superalloy_alloying"
     }
   },
   "langName": "item.rankine.nickel_superalloy_alloying",

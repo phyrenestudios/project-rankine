@@ -9,7 +9,10 @@
       "item": "rankine:tungsten_heavy_alloy_ingot"
     },
     "C": {
-      "item": "rankine:alloy_rod"
+      "alloyRecipe": "rankine:alloying/steel_alloying",
+      "color": 3291714,
+      "item": "rankine:alloy_rod",
+      "langName": "item.rankine.steel_alloying"
     }
   },
   "pattern": [

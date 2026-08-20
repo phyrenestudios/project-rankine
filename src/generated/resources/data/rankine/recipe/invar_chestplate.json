@@ -5,28 +5,44 @@
   "inherit": true,
   "key": {
     "A": {
-      "item": "rankine:invar_ingot"
+      "color": 13028546,
+      "item": "rankine:invar_ingot",
+      "langName": "item.rankine.invar_alloying"
     },
     "C": {
-      "item": "rankine:invar_ingot"
+      "color": 13028546,
+      "item": "rankine:invar_ingot",
+      "langName": "item.rankine.invar_alloying"
     },
     "D": {
-      "item": "rankine:invar_ingot"
+      "color": 13028546,
+      "item": "rankine:invar_ingot",
+      "langName": "item.rankine.invar_alloying"
     },
     "E": {
-      "item": "rankine:invar_ingot"
+      "color": 13028546,
+      "item": "rankine:invar_ingot",
+      "langName": "item.rankine.invar_alloying"
     },
     "F": {
-      "item": "rankine:invar_ingot"
+      "color": 13028546,
+      "item": "rankine:invar_ingot",
+      "langName": "item.rankine.invar_alloying"
     },
     "G": {
-      "item": "rankine:invar_ingot"
+      "color": 13028546,
+      "item": "rankine:invar_ingot",
+      "langName": "item.rankine.invar_alloying"
     },
     "H": {
-      "item": "rankine:invar_ingot"
+      "color": 13028546,
+      "item": "rankine:invar_ingot",
+      "langName": "item.rankine.invar_alloying"
     },
     "I": {
-      "item": "rankine:invar_ingot"
+      "color": 13028546,
+      "item": "rankine:invar_ingot",
+      "langName": "item.rankine.invar_alloying"
     }
   },
   "langName": "item.rankine.invar_alloying",

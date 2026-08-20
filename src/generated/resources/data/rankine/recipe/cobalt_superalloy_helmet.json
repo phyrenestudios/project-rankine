@@ -5,19 +5,29 @@
   "inherit": true,
   "key": {
     "A": {
-      "item": "rankine:cobalt_superalloy_ingot"
+      "color": 6534878,
+      "item": "rankine:cobalt_superalloy_ingot",
+      "langName": "item.rankine.cobalt_superalloy_alloying"
     },
     "B": {
-      "item": "rankine:cobalt_superalloy_ingot"
+      "color": 6534878,
+      "item": "rankine:cobalt_superalloy_ingot",
+      "langName": "item.rankine.cobalt_superalloy_alloying"
     },
     "C": {
-      "item": "rankine:cobalt_superalloy_ingot"
+      "color": 6534878,
+      "item": "rankine:cobalt_superalloy_ingot",
+      "langName": "item.rankine.cobalt_superalloy_alloying"
     },
     "D": {
-      "item": "rankine:cobalt_superalloy_ingot"
+      "color": 6534878,
+      "item": "rankine:cobalt_superalloy_ingot",
+      "langName": "item.rankine.cobalt_superalloy_alloying"
     },
     "F": {
-      "item": "rankine:cobalt_superalloy_ingot"
+      "color": 6534878,
+      "item": "rankine:cobalt_superalloy_ingot",
+      "langName": "item.rankine.cobalt_superalloy_alloying"
     }
   },
   "langName": "item.rankine.cobalt_superalloy_alloying",

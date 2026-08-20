@@ -1,13 +1,9 @@
 package com.cannolicatfish.rankine.blocks.alloys;
 
-import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.component.DataComponents;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
@@ -45,20 +41,11 @@ public class AlloyBlock extends BaseEntityBlock {
         return RenderShape.MODEL;
     }
 
-    @Override
-    public void setPlacedBy(Level worldIn, BlockPos pos, BlockState state, @org.jetbrains.annotations.Nullable LivingEntity placer, ItemStack stack) {
-        if (!IAlloyItem.getAlloyComposition(stack).isEmpty()) {
-            BlockEntity tileentity = worldIn.getBlockEntity(pos);
-            // PORT-TODO(datacomponents): stack.getTag() is gone — the old code copied the whole stack NBT into the
-            // tile. Alloy data now round-trips through the CUSTOM_DATA component; items agent may switch this to a
-            // dedicated alloy data component.
-            CustomData customData = stack.get(DataComponents.CUSTOM_DATA);
-            if (tileentity instanceof AlloyBlockTile && customData != null) {
-                ((AlloyBlockTile) tileentity).writeAlloyData(customData.copyTag());
-            }
-        }
-        super.setPlacedBy(worldIn, pos, state, placer, stack);
-    }
+    // No setPlacedBy override: 1.18.2 needed one to copy the stack's NBT onto the tile, but 1.21.1's
+    // BlockItem#place already calls BlockEntity#applyComponentsFromItemStack (immediately before
+    // setPlacedBy), and that parks the placing stack's component patch — composition, alloy recipe,
+    // name override, colour — on the AlloyBlockTile, where the chunk save keeps it. See
+    // AlloyBlockTile's javadoc.
 
     @Override
     public BlockState playerWillDestroy(Level levelIn, BlockPos pos, BlockState state, Player player) {
@@ -66,8 +53,12 @@ public class AlloyBlock extends BaseEntityBlock {
             if (levelIn.getBlockEntity(pos) instanceof AlloyBlockTile alloyBlockTile) {
                 if (canHarvestBlock(state,levelIn,pos,player)) {
                     ItemStack itemstack = new ItemStack(state.getBlock());
-                    // PORT-TODO(datacomponents): was itemstack.setTag(alloyBlockTile.getAlloyData())
-                    itemstack.set(DataComponents.CUSTOM_DATA, CustomData.of(alloyBlockTile.getAlloyData()));
+                    // 1.21.1 equivalent of the old itemstack.setTag(alloyBlockTile.getAlloyData()):
+                    // saveToItem re-applies the components the block entity is holding. The previous
+                    // code wrote CUSTOM_DATA, which nothing on an alloy stack reads or writes, so
+                    // every placed-then-broken alloy block came back with its composition wiped and
+                    // reset to the item's default on the next inventory tick.
+                    alloyBlockTile.saveToItem(itemstack, levelIn.registryAccess());
                     popResource(levelIn, pos, itemstack);
                 }
             }
@@ -80,8 +71,7 @@ public class AlloyBlock extends BaseEntityBlock {
     public ItemStack getCloneItemStack(BlockState state, HitResult target, LevelReader level, BlockPos pos, Player player) {
         if (level.getBlockEntity(pos) instanceof AlloyBlockTile alloyBlockTile) {
             ItemStack itemstack = new ItemStack(state.getBlock());
-            // PORT-TODO(datacomponents): was itemstack.setTag(alloyBlockTile.getAlloyData())
-            itemstack.set(DataComponents.CUSTOM_DATA, CustomData.of(alloyBlockTile.getAlloyData()));
+            alloyBlockTile.saveToItem(itemstack, level.registryAccess());
             return itemstack;
         }
         return super.getCloneItemStack(state, target, level, pos, player);

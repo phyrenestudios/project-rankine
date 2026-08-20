@@ -15,10 +15,16 @@
       "item": "rankine:stainless_steel_ingot"
     },
     "E": {
-      "item": "rankine:alloy_rod"
+      "alloyRecipe": "rankine:alloying/steel_alloying",
+      "color": 3291714,
+      "item": "rankine:alloy_rod",
+      "langName": "item.rankine.steel_alloying"
     },
     "H": {
-      "item": "rankine:alloy_rod"
+      "alloyRecipe": "rankine:alloying/steel_alloying",
+      "color": 3291714,
+      "item": "rankine:alloy_rod",
+      "langName": "item.rankine.steel_alloying"
     }
   },
   "pattern": [

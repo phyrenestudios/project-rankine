@@ -5,28 +5,44 @@
   "inherit": true,
   "key": {
     "A": {
-      "item": "rankine:osmiridium"
+      "color": 13212593,
+      "item": "rankine:osmiridium",
+      "langName": "item.rankine.osmiridium_alloying"
     },
     "C": {
-      "item": "rankine:osmiridium"
+      "color": 13212593,
+      "item": "rankine:osmiridium",
+      "langName": "item.rankine.osmiridium_alloying"
     },
     "D": {
-      "item": "rankine:osmiridium"
+      "color": 13212593,
+      "item": "rankine:osmiridium",
+      "langName": "item.rankine.osmiridium_alloying"
     },
     "E": {
-      "item": "rankine:osmiridium"
+      "color": 13212593,
+      "item": "rankine:osmiridium",
+      "langName": "item.rankine.osmiridium_alloying"
     },
     "F": {
-      "item": "rankine:osmiridium"
+      "color": 13212593,
+      "item": "rankine:osmiridium",
+      "langName": "item.rankine.osmiridium_alloying"
     },
     "G": {
-      "item": "rankine:osmiridium"
+      "color": 13212593,
+      "item": "rankine:osmiridium",
+      "langName": "item.rankine.osmiridium_alloying"
     },
     "H": {
-      "item": "rankine:osmiridium"
+      "color": 13212593,
+      "item": "rankine:osmiridium",
+      "langName": "item.rankine.osmiridium_alloying"
     },
     "I": {
-      "item": "rankine:osmiridium"
+      "color": 13212593,
+      "item": "rankine:osmiridium",
+      "langName": "item.rankine.osmiridium_alloying"
     }
   },
   "langName": "item.rankine.osmiridium_alloying",

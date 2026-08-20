@@ -5,16 +5,24 @@
   "inherit": true,
   "key": {
     "A": {
-      "item": "rankine:meteoric_iron"
+      "color": 13028546,
+      "item": "rankine:meteoric_iron",
+      "langName": "item.rankine.invar_alloying"
     },
     "C": {
-      "item": "rankine:meteoric_iron"
+      "color": 13028546,
+      "item": "rankine:meteoric_iron",
+      "langName": "item.rankine.invar_alloying"
     },
     "D": {
-      "item": "rankine:meteoric_iron"
+      "color": 13028546,
+      "item": "rankine:meteoric_iron",
+      "langName": "item.rankine.invar_alloying"
     },
     "F": {
-      "item": "rankine:meteoric_iron"
+      "color": 13028546,
+      "item": "rankine:meteoric_iron",
+      "langName": "item.rankine.invar_alloying"
     }
   },
   "langName": "item.rankine.invar_alloying",

@@ -5,16 +5,24 @@
   "inherit": true,
   "key": {
     "A": {
-      "item": "rankine:niobium_alloy_ingot"
+      "color": 13750746,
+      "item": "rankine:niobium_alloy_ingot",
+      "langName": "item.rankine.niobium_alloy_alloying"
     },
     "C": {
-      "item": "rankine:niobium_alloy_ingot"
+      "color": 13750746,
+      "item": "rankine:niobium_alloy_ingot",
+      "langName": "item.rankine.niobium_alloy_alloying"
     },
     "D": {
-      "item": "rankine:niobium_alloy_ingot"
+      "color": 13750746,
+      "item": "rankine:niobium_alloy_ingot",
+      "langName": "item.rankine.niobium_alloy_alloying"
     },
     "F": {
-      "item": "rankine:niobium_alloy_ingot"
+      "color": 13750746,
+      "item": "rankine:niobium_alloy_ingot",
+      "langName": "item.rankine.niobium_alloy_alloying"
     }
   },
   "langName": "item.rankine.niobium_alloy_alloying",

@@ -5,19 +5,29 @@
   "inherit": true,
   "key": {
     "A": {
-      "item": "rankine:stainless_steel_ingot"
+      "color": 13292499,
+      "item": "rankine:stainless_steel_ingot",
+      "langName": "item.rankine.stainless_steel_alloying"
     },
     "B": {
-      "item": "rankine:stainless_steel_ingot"
+      "color": 13292499,
+      "item": "rankine:stainless_steel_ingot",
+      "langName": "item.rankine.stainless_steel_alloying"
     },
     "C": {
-      "item": "rankine:stainless_steel_ingot"
+      "color": 13292499,
+      "item": "rankine:stainless_steel_ingot",
+      "langName": "item.rankine.stainless_steel_alloying"
     },
     "D": {
-      "item": "rankine:stainless_steel_ingot"
+      "color": 13292499,
+      "item": "rankine:stainless_steel_ingot",
+      "langName": "item.rankine.stainless_steel_alloying"
     },
     "F": {
-      "item": "rankine:stainless_steel_ingot"
+      "color": 13292499,
+      "item": "rankine:stainless_steel_ingot",
+      "langName": "item.rankine.stainless_steel_alloying"
     }
   },
   "langName": "item.rankine.stainless_steel_alloying",

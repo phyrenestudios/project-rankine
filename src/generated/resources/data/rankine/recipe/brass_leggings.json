@@ -5,25 +5,39 @@
   "inherit": true,
   "key": {
     "A": {
-      "item": "rankine:brass_ingot"
+      "color": 15510384,
+      "item": "rankine:brass_ingot",
+      "langName": "item.rankine.brass_alloying"
     },
     "B": {
-      "item": "rankine:brass_ingot"
+      "color": 15510384,
+      "item": "rankine:brass_ingot",
+      "langName": "item.rankine.brass_alloying"
     },
     "C": {
-      "item": "rankine:brass_ingot"
+      "color": 15510384,
+      "item": "rankine:brass_ingot",
+      "langName": "item.rankine.brass_alloying"
     },
     "D": {
-      "item": "rankine:brass_ingot"
+      "color": 15510384,
+      "item": "rankine:brass_ingot",
+      "langName": "item.rankine.brass_alloying"
     },
     "F": {
-      "item": "rankine:brass_ingot"
+      "color": 15510384,
+      "item": "rankine:brass_ingot",
+      "langName": "item.rankine.brass_alloying"
     },
     "G": {
-      "item": "rankine:brass_ingot"
+      "color": 15510384,
+      "item": "rankine:brass_ingot",
+      "langName": "item.rankine.brass_alloying"
     },
     "I": {
-      "item": "rankine:brass_ingot"
+      "color": 15510384,
+      "item": "rankine:brass_ingot",
+      "langName": "item.rankine.brass_alloying"
     }
   },
   "langName": "item.rankine.brass_alloying",

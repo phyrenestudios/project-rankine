@@ -34,6 +34,85 @@ public class AlloyIngredientHelper {
     }
 
     /**
+     * Encode counterpart of {@link #deserialize}: writes an ingredient back out together with the
+     * per-key alloy constraints ({@code alloyComp}, {@code alloyRecipe}, {@code langName},
+     * {@code color}) that {@code deserialize} baked into its example stacks.
+     *
+     * <p>{@link #ingredientToJson} alone loses them: vanilla's {@code Ingredient.CODEC} encodes an
+     * {@code ItemValue} through {@code ItemStack.SIMPLE_ITEM_CODEC}, which keeps the item id and
+     * drops every data component. Since {@code AlloyCraftingRecipe.checkMatch} reads the constraint
+     * off {@code ingredient.getItems()[0]}, dropping it on encode silently widens the recipe to any
+     * stack of that item — which is what happened to the 40 tier-3 tool recipes that 1.18.2
+     * restricted to steel rods.
+     */
+    public static JsonElement alloyIngredientToJson(Ingredient ingredient) {
+        JsonElement element = ingredientToJson(ingredient);
+        ItemStack sample = constraintSample(ingredient);
+        if (sample == null) {
+            return element;
+        }
+        if (!(element instanceof JsonObject object)) {
+            // Only the single-value {"item": ...} form has somewhere to hang the constraint; the
+            // list form has no per-entry slot for it (1.18.2 had the same limitation — its
+            // deserializer only read alloyComp/alloyRecipe off a JSON object). Fail loudly rather
+            // than write a file that silently accepts any alloy.
+            throw new IllegalStateException("Alloy constraint on an ingredient that does not encode "
+                    + "to a JSON object (" + element + "); it cannot be expressed in the recipe key");
+        }
+        String composition = IAlloyItem.getAlloyComposition(sample);
+        if (!composition.isEmpty()) {
+            object.addProperty("alloyComp", composition);
+        }
+        ResourceLocation alloyRecipe = IAlloyItem.getAlloyRecipe(sample);
+        if (alloyRecipe != null) {
+            object.addProperty("alloyRecipe", alloyRecipe.toString());
+        }
+        String name = IAlloyItem.getNameOverride(sample);
+        if (!name.isEmpty()) {
+            object.addProperty("langName", name);
+        }
+        int color = IAlloyItem.getColorNBT(sample);
+        if (color != 16777215) {
+            object.addProperty("color", color);
+        }
+        return object;
+    }
+
+    /**
+     * The example stack an ingredient's alloy constraint lives on, or null if it carries none.
+     *
+     * <p>Reads {@code getValues()} rather than {@code getItems()} on purpose: {@code getItems()}
+     * expands tag ingredients against the item registry's tag bindings, which do not exist during
+     * datagen, and caches whatever it found.
+     */
+    @Nullable
+    private static ItemStack constraintSample(Ingredient ingredient) {
+        if (ingredient.isCustom()) {
+            return null;
+        }
+        Ingredient.Value[] values = ingredient.getValues();
+        ItemStack sample = null;
+        for (Ingredient.Value value : values) {
+            if (value instanceof Ingredient.ItemValue itemValue && carriesAlloyData(itemValue.item())) {
+                sample = itemValue.item();
+                break;
+            }
+        }
+        if (sample != null && values.length != 1) {
+            throw new IllegalStateException("Alloy constraint on a multi-value ingredient; the recipe "
+                    + "key format can only express it on a single item");
+        }
+        return sample;
+    }
+
+    private static boolean carriesAlloyData(ItemStack stack) {
+        return !IAlloyItem.getAlloyComposition(stack).isEmpty()
+                || IAlloyItem.getAlloyRecipe(stack) != null
+                || !IAlloyItem.getNameOverride(stack).isEmpty()
+                || IAlloyItem.getColorNBT(stack) != 16777215;
+    }
+
+    /**
      * Serializes an ItemStack to the legacy {@code {"item": id, "count": n}} layout.
      * Stacks carrying non-default data components are written using the vanilla
      * {@code {"id","count","components"}} layout instead (accepted back by {@link #getItemStack}).

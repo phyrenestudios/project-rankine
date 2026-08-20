@@ -15,6 +15,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
@@ -126,21 +127,35 @@ public class PackagedToolItem extends Item {
             }
         }
 
-        List<AlloyingRecipe> recipes = worldIn.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.ALLOYING.get()).stream().map(RecipeHolder::value).collect(Collectors.toList());
-        List<AlloyingRecipe> newRecipes = recipes.stream().filter(alloyingRecipe -> !alloyingRecipe.getElementList(worldIn).isEmpty()).collect(Collectors.toList());
-        AlloyingRecipe alloy = newRecipes.get(worldIn.getRandom().nextInt(recipes.size()));
-        //System.out.println(alloy.getId());
-        //System.out.println(alloy.generateRandomResult(worldIn));
-
+        // PORT NOTE: keep the RecipeHolder rather than mapping straight to the recipe value. An
+        // AlloyingRecipe only learns its own id lazily (AlloyingRecipe#resolveId, driven from
+        // matches()/generateResult()), so in a world where nobody has smelted yet getId() is still
+        // null and the minted gear comes out with no recipe, a blank name and no recipe stat
+        // bonuses. The holder carries the authoritative id, which the RecipeManager has held since
+        // datapack load — before any level can be used, on client and dedicated server alike, and
+        // with no dependence on registry order or level-load timing.
+        List<RecipeHolder<AlloyingRecipe>> recipes = worldIn.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.ALLOYING.get());
+        List<RecipeHolder<AlloyingRecipe>> newRecipes = recipes.stream().filter(holder -> !holder.value().getElementList(worldIn).isEmpty()).collect(Collectors.toList());
+        if (newRecipes.isEmpty()) {
+            return ret;
+        }
+        // The draw is bounded by the FILTERED list. It used to be bounded by the unfiltered one
+        // (1.18.2 did the same), which runs off the end whenever an alloying recipe declares no
+        // elements — crucible_steel_alloying and damascus_steel_alloying both do, so 2 draws in 49
+        // threw IndexOutOfBoundsException on the server thread instead of yielding any gear.
+        RecipeHolder<AlloyingRecipe> alloyHolder = newRecipes.get(worldIn.getRandom().nextInt(newRecipes.size()));
+        AlloyingRecipe alloy = alloyHolder.value();
+        ResourceLocation alloyId = alloyHolder.id();
+        alloy.bindId(alloyId);
 
         String comp = alloy.generateRandomResult(worldIn);
-        ((IAlloyItem) ret.getItem()).createAlloyNBT(ret, worldIn, comp, alloy.getId(), !alloy.getLocalName().isEmpty() ? alloy.getLocalName() : null);
+        ((IAlloyItem) ret.getItem()).createAlloyNBT(ret, worldIn, comp, alloyId, !alloy.getLocalName().isEmpty() ? alloy.getLocalName() : null);
         if (alloy.getColor() != 16777215) {
             IAlloyItem.addColorNBT(ret, alloy.getColor());
         }
         if (ret.getItem() instanceof IAlloyTieredItem) {
             IAlloyTieredItem tieredItem = ((IAlloyTieredItem) ret.getItem());
-            ((IAlloyTieredItem) ret.getItem()).initStats(ret,tieredItem.getElementMap(comp,worldIn),tieredItem.getAlloyingRecipe(alloy.getId(),worldIn),null);
+            ((IAlloyTieredItem) ret.getItem()).initStats(ret,tieredItem.getElementMap(comp,worldIn),tieredItem.getAlloyingRecipe(alloyId,worldIn),null);
             ((IAlloyTieredItem) ret.getItem()).applyAlloyEnchantments(ret,worldIn);
         }
         return ret;

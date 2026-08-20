@@ -5,28 +5,44 @@
   "inherit": true,
   "key": {
     "A": {
-      "item": "rankine:white_gold_ingot"
+      "color": 16777207,
+      "item": "rankine:white_gold_ingot",
+      "langName": "item.rankine.white_gold_alloying"
     },
     "C": {
-      "item": "rankine:white_gold_ingot"
+      "color": 16777207,
+      "item": "rankine:white_gold_ingot",
+      "langName": "item.rankine.white_gold_alloying"
     },
     "D": {
-      "item": "rankine:white_gold_ingot"
+      "color": 16777207,
+      "item": "rankine:white_gold_ingot",
+      "langName": "item.rankine.white_gold_alloying"
     },
     "E": {
-      "item": "rankine:white_gold_ingot"
+      "color": 16777207,
+      "item": "rankine:white_gold_ingot",
+      "langName": "item.rankine.white_gold_alloying"
     },
     "F": {
-      "item": "rankine:white_gold_ingot"
+      "color": 16777207,
+      "item": "rankine:white_gold_ingot",
+      "langName": "item.rankine.white_gold_alloying"
     },
     "G": {
-      "item": "rankine:white_gold_ingot"
+      "color": 16777207,
+      "item": "rankine:white_gold_ingot",
+      "langName": "item.rankine.white_gold_alloying"
     },
     "H": {
-      "item": "rankine:white_gold_ingot"
+      "color": 16777207,
+      "item": "rankine:white_gold_ingot",
+      "langName": "item.rankine.white_gold_alloying"
     },
     "I": {
-      "item": "rankine:white_gold_ingot"
+      "color": 16777207,
+      "item": "rankine:white_gold_ingot",
+      "langName": "item.rankine.white_gold_alloying"
     }
   },
   "langName": "item.rankine.white_gold_alloying",

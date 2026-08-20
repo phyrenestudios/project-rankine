@@ -5,16 +5,24 @@
   "inherit": true,
   "key": {
     "A": {
-      "item": "rankine:tungsten_heavy_alloy_ingot"
+      "color": 11113071,
+      "item": "rankine:tungsten_heavy_alloy_ingot",
+      "langName": "item.rankine.tungsten_heavy_alloy_alloying"
     },
     "C": {
-      "item": "rankine:tungsten_heavy_alloy_ingot"
+      "color": 11113071,
+      "item": "rankine:tungsten_heavy_alloy_ingot",
+      "langName": "item.rankine.tungsten_heavy_alloy_alloying"
     },
     "D": {
-      "item": "rankine:tungsten_heavy_alloy_ingot"
+      "color": 11113071,
+      "item": "rankine:tungsten_heavy_alloy_ingot",
+      "langName": "item.rankine.tungsten_heavy_alloy_alloying"
     },
     "F": {
-      "item": "rankine:tungsten_heavy_alloy_ingot"
+      "color": 11113071,
+      "item": "rankine:tungsten_heavy_alloy_ingot",
+      "langName": "item.rankine.tungsten_heavy_alloy_alloying"
     }
   },
   "langName": "item.rankine.tungsten_heavy_alloy_alloying",

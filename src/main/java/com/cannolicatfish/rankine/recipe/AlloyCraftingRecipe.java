@@ -512,6 +512,10 @@ public class AlloyCraftingRecipe extends ShapedRecipe {
          * PORT-TODO: encode emits one unique key letter per grid slot rather than reconstructing the
          * original shared pattern keys. Decode(encode(x)) is functionally equivalent (same ingredient
          * grid, same result); only the generated JSON is more verbose than a hand-written file.
+         *
+         * <p>Key entries go through {@link AlloyIngredientHelper#alloyIngredientToJson}, not the bare
+         * ingredient codec: the per-key alloy constraint lives in the data components of the
+         * ingredient's example stack, and {@code Ingredient.CODEC} drops components on encode.
          */
         public static void toJson(AlloyCraftingRecipe recipe, JsonObject json) {
             if (!recipe.group.isEmpty()) {
@@ -534,7 +538,7 @@ public class AlloyCraftingRecipe extends ShapedRecipe {
                     } else {
                         char symbol = symbols.charAt(index % symbols.length());
                         line.append(symbol);
-                        key.add(String.valueOf(symbol), AlloyIngredientHelper.ingredientToJson(ingredient));
+                        key.add(String.valueOf(symbol), AlloyIngredientHelper.alloyIngredientToJson(ingredient));
                     }
                 }
                 pattern.add(line.toString());

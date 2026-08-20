@@ -15,6 +15,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
@@ -91,21 +92,28 @@ public class PackagedArmorItem extends Item {
             }
         }
 
-        List<AlloyingRecipe> recipes = worldIn.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.ALLOYING.get()).stream().map(RecipeHolder::value).collect(Collectors.toList());
-        List<AlloyingRecipe> newRecipes = recipes.stream().filter(alloyingRecipe -> !alloyingRecipe.getElementList(worldIn).isEmpty()).collect(Collectors.toList());
-        AlloyingRecipe alloy = newRecipes.get(worldIn.getRandom().nextInt(recipes.size()));
-        //System.out.println(alloy.getId());
-        //System.out.println(alloy.generateRandomResult(worldIn));
-
+        // PORT NOTE: see PackagedToolItem — the RecipeHolder is kept because AlloyingRecipe#getId()
+        // stays null until something resolves it lazily, which on a fresh world has never happened.
+        List<RecipeHolder<AlloyingRecipe>> recipes = worldIn.getRecipeManager().getAllRecipesFor(RankineRecipeTypes.ALLOYING.get());
+        List<RecipeHolder<AlloyingRecipe>> newRecipes = recipes.stream().filter(holder -> !holder.value().getElementList(worldIn).isEmpty()).collect(Collectors.toList());
+        if (newRecipes.isEmpty()) {
+            return ret;
+        }
+        // See PackagedToolItem: the draw is bounded by the FILTERED list, because the unfiltered
+        // bound ran off the end for the two element-less alloying recipes.
+        RecipeHolder<AlloyingRecipe> alloyHolder = newRecipes.get(worldIn.getRandom().nextInt(newRecipes.size()));
+        AlloyingRecipe alloy = alloyHolder.value();
+        ResourceLocation alloyId = alloyHolder.id();
+        alloy.bindId(alloyId);
 
         String comp = alloy.generateRandomResult(worldIn);
-        ((IAlloyItem) ret.getItem()).createAlloyNBT(ret, worldIn, comp, alloy.getId(), !alloy.getLocalName().isEmpty() ? alloy.getLocalName() : null);
+        ((IAlloyItem) ret.getItem()).createAlloyNBT(ret, worldIn, comp, alloyId, !alloy.getLocalName().isEmpty() ? alloy.getLocalName() : null);
         if (alloy.getColor() != 16777215) {
             IAlloyItem.addColorNBT(ret, alloy.getColor());
         }
         if (ret.getItem() instanceof IAlloyTieredItem) {
             IAlloyTieredItem tieredItem = ((IAlloyTieredItem) ret.getItem());
-            ((IAlloyTieredItem) ret.getItem()).initStats(ret,tieredItem.getElementMap(comp,worldIn),tieredItem.getAlloyingRecipe(alloy.getId(),worldIn),null);
+            ((IAlloyTieredItem) ret.getItem()).initStats(ret,tieredItem.getElementMap(comp,worldIn),tieredItem.getAlloyingRecipe(alloyId,worldIn),null);
             ((IAlloyTieredItem) ret.getItem()).applyAlloyEnchantments(ret,worldIn);
         }
         return ret;
