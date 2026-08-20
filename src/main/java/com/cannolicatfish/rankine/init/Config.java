@@ -1259,14 +1259,40 @@ public class Config {
             oreSettings.add(List.of("rankine:interspinifex_ore", List.of("minecraft:crimson_forest"), "default", "triangle", 30, 90, 6, 1.0D, 15, 1.0, 0.0D));
 
             //End ores
-            oreSettings.add(List.of("rankine:native_gallium_ore", List.of("the_end"), "default", "triangle",-50, 70, 4, 1.0D, 15, 1.0, 0.0D));
-            oreSettings.add(List.of("rankine:native_indium_ore", List.of("the_end"), "default", "triangle",-50, 70, 4, 1.0D, 15, 1.0, 0.0D));
-            oreSettings.add(List.of("rankine:native_selenium_ore", List.of("the_end"), "default", "triangle",-50, 70, 4, 1.0D, 15, 1.0, 0.0D));
-            oreSettings.add(List.of("rankine:native_tellurium_ore", List.of("the_end"), "default", "triangle",-50, 70, 4, 1.0D, 15, 1.0, 0.0D));
-            oreSettings.add(List.of("rankine:molybdenite_ore", List.of("the_end"), "sphere", "uniform",10, 40, 3, 0.5D, 1, 0.3, 0.0D));
-            oreSettings.add(List.of("rankine:uraninite_ore", List.of("the_end"), "sphere", "uniform",10, 40, 3, 0.5D, 1, 0.3, 0.0D));
-            oreSettings.add(List.of("rankine:xenotime_ore", List.of("the_end"), "sphere", "uniform",10, 40, 3, 0.5D, 1, 0.3, 0.0D));
-            oreSettings.add(List.of("rankine:greenockite_ore", List.of("the_end"), "sphere", "uniform",10, 40, 3, 0.5D, 1, 0.3, 0.0D));
+            // Height bands retuned to the End's actual terrain (review decision #7, approved by Karl
+            // 2026-08-19: "veins need to be findable"). This is a deliberate content change, NOT
+            // 1.18.2 parity — the baseline numbers were -50..70 (triangle) and 10..40 (uniform).
+            //
+            // The End generates terrain only inside y 0..127 (NoiseSettings.END_NOISE_SETTINGS =
+            // create(0, 128, 2, 1)) and NoiseRouterData.slideEnd fades it in from y 4..32 and out
+            // from y 56 upwards, so end stone exists only in a narrow slab. Measured directly off the
+            // live End chunk generator by endOreVeinBandsTargetEndIslandTerrain, which asserts that
+            // 100% of the stone in 1152 sampled outer-ring columns lies inside y 8..70 and none of it
+            // above. The development profile (576 of those columns, printed once) put the exact span
+            // at y 11..64, with a flat plateau of ~36% of columns from y 30 to y 56 and nothing at
+            // all above y 64.
+            //
+            // The old triangle rows therefore aimed 51.4% of every chunk's 15 attempts at guaranteed
+            // nothing: 34.3% below the y=0 dimension floor, 16.6% into y 0..10 where the End has no
+            // stone at all, 0.6% above y 64. (The old sphere rows wasted only 3.2% — their problem
+            // was never the band, see the note below.) New bands: triangle 15..60 covers the whole
+            // slab with its peak on the plateau, uniform 26..58 centres the spheres on it; both put
+            // 100% of their attempts inside y 11..64. Measured per-attempt chance of landing in end
+            // stone, inside an island: natives 0.300 -> 0.806 (2.7x), spheres 0.603 -> 0.825 (1.4x).
+            //
+            // Counts, sizes, densities and chances are deliberately unchanged. The sphere rows are
+            // rare because count=1 and spawnChance=0.3 give 0.3 attempts per chunk, not because of
+            // where they aim — but each successful sphere is a radius-3 blob, so after the band fix
+            // that is still one per ~4 chunks per ore inside an island, which is findable. Changing
+            // count or chance would be a second balance change stacked on this one.
+            oreSettings.add(List.of("rankine:native_gallium_ore", List.of("the_end"), "default", "triangle",15, 60, 4, 1.0D, 15, 1.0, 0.0D));
+            oreSettings.add(List.of("rankine:native_indium_ore", List.of("the_end"), "default", "triangle",15, 60, 4, 1.0D, 15, 1.0, 0.0D));
+            oreSettings.add(List.of("rankine:native_selenium_ore", List.of("the_end"), "default", "triangle",15, 60, 4, 1.0D, 15, 1.0, 0.0D));
+            oreSettings.add(List.of("rankine:native_tellurium_ore", List.of("the_end"), "default", "triangle",15, 60, 4, 1.0D, 15, 1.0, 0.0D));
+            oreSettings.add(List.of("rankine:molybdenite_ore", List.of("the_end"), "sphere", "uniform",26, 58, 3, 0.5D, 1, 0.3, 0.0D));
+            oreSettings.add(List.of("rankine:uraninite_ore", List.of("the_end"), "sphere", "uniform",26, 58, 3, 0.5D, 1, 0.3, 0.0D));
+            oreSettings.add(List.of("rankine:xenotime_ore", List.of("the_end"), "sphere", "uniform",26, 58, 3, 0.5D, 1, 0.3, 0.0D));
+            oreSettings.add(List.of("rankine:greenockite_ore", List.of("the_end"), "sphere", "uniform",26, 58, 3, 0.5D, 1, 0.3, 0.0D));
 
 
 

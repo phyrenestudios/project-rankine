@@ -3,6 +3,7 @@ package com.cannolicatfish.rankine.data;
 import com.cannolicatfish.rankine.enchantment.RankineEnchantmentTags;
 import com.cannolicatfish.rankine.init.RankineEnchantments;
 import net.minecraft.core.HolderGetter;
+import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
@@ -23,6 +24,33 @@ import net.minecraft.world.item.enchantment.Enchantment;
  * to super for their max cost).
  */
 public class RankineEnchantmentBootstrap {
+
+    /**
+     * An explicitly empty {@code primary_items} holder set — the 1.21 spelling of 1.18.2's
+     * {@code canApplyAtEnchantingTable(stack) -> false}.
+     *
+     * <p>{@code primary_items} is an {@code Optional<HolderSet<Item>>} (Enchantment.java:640), and
+     * both readers spell the test the same way:
+     * {@code primaryItems.isEmpty() || stack.is(primaryItems.get())} — vanilla
+     * {@code Enchantment#isPrimaryItem} (Enchantment.java:146) and NeoForge's
+     * {@code IItemExtension#isPrimaryItemFor} (IItemExtension.java:458), which is what
+     * {@code EnchantmentHelper#getAvailableEnchantmentResults} filters on
+     * (EnchantmentHelper.java:608). {@code isEmpty()} there is the OPTIONAL being absent, i.e. "no
+     * restriction" — the exact opposite of what we want. A PRESENT but empty holder set instead
+     * makes {@code stack.is(...)} run against a set that contains nothing, so it is false for every
+     * stack, which is the override's behaviour exactly.
+     *
+     * <p>It survives the codec round-trip: {@code RegistryCodecs.homogeneousList(Registries.ITEM)}
+     * is a {@link net.minecraft.resources.HolderSetCodec} whose encode calls
+     * {@code holderSet.unwrap().mapRight(List::copyOf)} (HolderSetCodec.java:97), so a
+     * {@code HolderSet.Direct} of size 0 takes the list branch and, because the list-or-single
+     * shorthand only collapses at size 1 (HolderSetCodec.java:34), is written as {@code []}; decode
+     * takes the same list branch back to {@code HolderSet.direct(List.of())}
+     * (HolderSetCodec.java:68). {@code Direct#canSerializeIn} is unconditionally true
+     * (HolderSet.java:160), so the datagen encode cannot fail on it either. The generated JSON is
+     * asserted against the live registry by {@code tableBannedEnchantmentsHaveEmptyPrimaryItems}.
+     */
+    private static final HolderSet<Item> NO_PRIMARY_ITEMS = HolderSet.direct();
 
     public static void bootstrap(BootstrapContext<Enchantment> context) {
         HolderGetter<Enchantment> enchantments = context.lookup(Registries.ENCHANTMENT);
@@ -58,10 +86,11 @@ public class RankineEnchantmentBootstrap {
         register(context, RankineEnchantments.LIGHTNING_ASPECT, Enchantment.enchantment(Enchantment.definition(
                 items.getOrThrow(RankineEnchantmentTags.HAMMER_ENCHANTABLE),
                 1, 1, Enchantment.constantCost(15), Enchantment.dynamicCost(61, 10), 8, EquipmentSlotGroup.MAINHAND)));
-        // PORT-TODO(enchantment): old AntiquatedEnchantment only allowed enchanting when the stack's alloy
-        // recipe was rankine:alloying/pewter_alloying — recipe-conditional applicability is not expressible
-        // in the data-driven definition. Supported items widened to all alloy tools; if pewter-only gating
-        // is still wanted, enforce it in AnvilUpdateEvent / enchanting hooks.
+        // 1.18.2's AntiquatedEnchantment only allowed enchanting when the stack's alloy recipe was
+        // rankine:alloying/pewter_alloying. A supported_items tag keys on the item TYPE and cannot see a
+        // per-stack data component, so the tag stays the coarse "any alloy tool" filter and the alloy half
+        // is expressed in IAlloyTool#ALLOY_GATED_ENCHANTMENTS (IAlloyTool.java:54), which every alloy tool
+        // routes through from both supportsEnchantment (the anvil) and isPrimaryItemFor (the table).
         register(context, RankineEnchantments.ANTIQUATED, Enchantment.enchantment(Enchantment.definition(
                 items.getOrThrow(RankineEnchantmentTags.ALLOY_TOOL_ENCHANTABLE),
                 1, 5, Enchantment.constantCost(15), Enchantment.dynamicCost(61, 10), 8, EquipmentSlotGroup.MAINHAND)));
@@ -69,24 +98,34 @@ public class RankineEnchantmentBootstrap {
                 items.getOrThrow(RankineEnchantmentTags.ALLOY_SWORD_ENCHANTABLE),
                 1, 2, Enchantment.constantCost(15), Enchantment.dynamicCost(61, 10), 8, EquipmentSlotGroup.MAINHAND)));
 
-        // ---- Armor (all treasure-only: old canApplyAtEnchantingTable() == false) ----
+        // ---- Armour: the six the enchanting table could never offer ----
+        // All six 1.18.2 classes override canApplyAtEnchantingTable(stack) to an unconditional false
+        // (e.g. DuneWalkerEnchantment.java:26 at baseline 859f87773) while leaving canEnchant as the plain
+        // ARMOR_FEET / ARMOR_HEAD category check. So the anvil accepted the matching book and the table
+        // offered them on nothing. None of the six was treasure-only or non-discoverable — every one of the
+        // 44 baseline classes left isTreasureOnly/isTradeable/isAllowedOnBooks at the base-class default —
+        // so they belong in the pool and loot tags, and only the per-stack half was ever restrictive.
+        // That half is {@link #NO_PRIMARY_ITEMS}: supported_items keeps the vanilla armour tag (the anvil),
+        // primary_items is present and empty (the table). Books are unaffected, exactly as in 1.18.2, where
+        // the table's book branch was `flag && isAllowedOnBooks()` rather than canApplyAtEnchantingTable —
+        // 1.21 keeps that special case in IItemExtension#isPrimaryItemFor (IItemExtension.java:454).
         register(context, RankineEnchantments.DUNE_WALKER, Enchantment.enchantment(Enchantment.definition(
-                items.getOrThrow(ItemTags.FOOT_ARMOR_ENCHANTABLE),
+                items.getOrThrow(ItemTags.FOOT_ARMOR_ENCHANTABLE), NO_PRIMARY_ITEMS,
                 1, 1, Enchantment.dynamicCost(10, 10), Enchantment.dynamicCost(25, 10), 8, EquipmentSlotGroup.FEET)));
         register(context, RankineEnchantments.SNOW_DRIFTER, Enchantment.enchantment(Enchantment.definition(
-                items.getOrThrow(ItemTags.FOOT_ARMOR_ENCHANTABLE),
+                items.getOrThrow(ItemTags.FOOT_ARMOR_ENCHANTABLE), NO_PRIMARY_ITEMS,
                 1, 1, Enchantment.dynamicCost(10, 10), Enchantment.dynamicCost(25, 10), 8, EquipmentSlotGroup.FEET)));
         register(context, RankineEnchantments.SPEED_SKATER, Enchantment.enchantment(Enchantment.definition(
-                items.getOrThrow(ItemTags.FOOT_ARMOR_ENCHANTABLE),
+                items.getOrThrow(ItemTags.FOOT_ARMOR_ENCHANTABLE), NO_PRIMARY_ITEMS,
                 1, 1, Enchantment.dynamicCost(10, 10), Enchantment.dynamicCost(25, 10), 8, EquipmentSlotGroup.FEET)));
         register(context, RankineEnchantments.SWIFT_SWIMMER, Enchantment.enchantment(Enchantment.definition(
-                items.getOrThrow(ItemTags.FOOT_ARMOR_ENCHANTABLE),
+                items.getOrThrow(ItemTags.FOOT_ARMOR_ENCHANTABLE), NO_PRIMARY_ITEMS,
                 1, 1, Enchantment.dynamicCost(10, 10), Enchantment.dynamicCost(25, 10), 8, EquipmentSlotGroup.FEET)));
         register(context, RankineEnchantments.GAS_PROTECTION, Enchantment.enchantment(Enchantment.definition(
-                items.getOrThrow(ItemTags.HEAD_ARMOR_ENCHANTABLE),
+                items.getOrThrow(ItemTags.HEAD_ARMOR_ENCHANTABLE), NO_PRIMARY_ITEMS,
                 1, 1, Enchantment.dynamicCost(10, 10), Enchantment.dynamicCost(25, 10), 8, EquipmentSlotGroup.HEAD)));
         register(context, RankineEnchantments.AQUA_LENSE, Enchantment.enchantment(Enchantment.definition(
-                items.getOrThrow(ItemTags.HEAD_ARMOR_ENCHANTABLE),
+                items.getOrThrow(ItemTags.HEAD_ARMOR_ENCHANTABLE), NO_PRIMARY_ITEMS,
                 1, 1, Enchantment.dynamicCost(10, 10), Enchantment.dynamicCost(25, 10), 8, EquipmentSlotGroup.HEAD)));
 
         // ---- Ender Amalgam set (all non-discoverable in 1.18: keep out of enchanting table via tags) ----
@@ -133,8 +172,9 @@ public class RankineEnchantmentBootstrap {
         register(context, RankineEnchantments.WITHERING_CURSE, Enchantment.enchantment(Enchantment.definition(
                 items.getOrThrow(ItemTags.DURABILITY_ENCHANTABLE),
                 1, 1, Enchantment.dynamicCost(10, 7), Enchantment.dynamicCost(61, 10), 8, EquipmentSlotGroup.MAINHAND)));
-        // PORT-TODO(enchantment): old ShapeMemoryEnchantment only allowed enchanting when the stack's alloy
-        // recipe was rankine:alloying/nitinol_alloying — not expressible data-driven; widened to alloy tools.
+        // 1.18.2's ShapeMemoryEnchantment demanded rankine:alloying/nitinol_alloying. Same split as
+        // Antiquated above: the coarse item-type filter is this tag, the per-stack alloy comparison lives in
+        // IAlloyTool#ALLOY_GATED_ENCHANTMENTS (IAlloyTool.java:54).
         register(context, RankineEnchantments.SHAPE_MEMORY, Enchantment.enchantment(Enchantment.definition(
                 items.getOrThrow(RankineEnchantmentTags.ALLOY_TOOL_ENCHANTABLE),
                 1, 1, Enchantment.dynamicCost(10, 7), Enchantment.dynamicCost(61, 10), 8, EquipmentSlotGroup.MAINHAND)));

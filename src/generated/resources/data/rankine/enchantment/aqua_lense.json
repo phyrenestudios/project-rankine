@@ -12,6 +12,7 @@
     "base": 10,
     "per_level_above_first": 10
   },
+  "primary_items": [],
   "slots": [
     "head"
   ],

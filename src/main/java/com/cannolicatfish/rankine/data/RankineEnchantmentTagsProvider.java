@@ -36,17 +36,20 @@ import java.util.stream.Stream;
  * <p>The last row is why the table pool is two decisions, not one. 1.18.2's table filter was
  * {@code (!isTreasureOnly() || allowTreasure) && isDiscoverable() && canApplyAtEnchantingTable(stack)}
  * — Forge patched the stack-sensitive third term into {@code getAvailableEnchantmentResults}.
- * 1.21 splits those: {@code EnchantmentMenu#getEnchantmentList} builds the candidate stream from
- * {@code in_enchanting_table} (a per-ENCHANTMENT decision, this file) and
- * {@code getAvailableEnchantmentResults} then filters it with {@code stack::isPrimaryItemFor} (a
- * per-STACK decision, the item classes). An enchantment therefore belongs in the tag when 1.18.2
- * would have considered it at all, even if its per-stack half almost always said no.
+ * 1.21 splits those: {@code EnchantmentMenu#getEnchantmentList} (EnchantmentMenu.java:201) builds
+ * the candidate stream from {@code in_enchanting_table} (a per-ENCHANTMENT decision, this file) and
+ * {@code getAvailableEnchantmentResults} then filters it with {@code stack::isPrimaryItemFor}
+ * (EnchantmentHelper.java:608 — a per-STACK decision, the enchantment definition and the item
+ * classes). An enchantment therefore belongs in the tag when 1.18.2 would have <em>considered</em>
+ * it at all, even when its per-stack half never said yes: the pool tag is about discoverability,
+ * not applicability, and putting an applicability rule in it makes that rule invisible to the
+ * loot, mob-gear and trade-gear paths, which run the same per-stack filter.
  */
 public class RankineEnchantmentTagsProvider extends EnchantmentTagsProvider {
 
     /**
-     * The enchanting-table pool: the 1.18.2 enchantments that were discoverable, not treasure, and
-     * whose {@code canApplyAtEnchantingTable} could return true for at least one stack.
+     * The 24 whose 1.18.2 {@code canApplyAtEnchantingTable} could return true for at least one
+     * stack, so the table really could offer them on something.
      *
      * <p>{@code antiquated} is the only member whose per-stack half was ever restrictive: 1.18.2
      * let the table offer it on an {@code IAlloyTool} alloyed from {@code pewter_alloying} and on
@@ -57,7 +60,7 @@ public class RankineEnchantmentTagsProvider extends EnchantmentTagsProvider {
      * this file owns; the alloy gate that was already written for the other half then becomes
      * reachable instead of dead code.
      */
-    private static final List<ResourceKey<Enchantment>> NON_TREASURE_ENCHANTMENTS = List.of(
+    private static final List<ResourceKey<Enchantment>> TABLE_OFFERABLE_ENCHANTMENTS = List.of(
             RankineEnchantments.PUNCTURE,
             RankineEnchantments.SWING,
             RankineEnchantments.DAZE,
@@ -84,21 +87,43 @@ public class RankineEnchantmentTagsProvider extends EnchantmentTagsProvider {
             RankineEnchantments.ANTIQUATED);
 
     /**
-     * The six enchantments whose 1.18.2 class overrides {@code canApplyAtEnchantingTable(stack)} to
-     * return {@code false} for every stack — the table could not offer them on anything, so no
-     * per-stack hook can restore them and they have to stay out of the pool tag itself.
+     * The six whose 1.18.2 class overrides {@code canApplyAtEnchantingTable(stack)} to return
+     * {@code false} for every stack. {@code isDiscoverable()} is true for them exactly as it is for
+     * {@link #TABLE_OFFERABLE_ENCHANTMENTS}, so 1.18.2 <em>considered</em> them at the table and in
+     * every random-selection path, and they belong in the same tags — the difference is entirely in
+     * the per-stack half, which is not a tag decision.
      *
-     * <p>They are discoverable and non-treasure, so they keep their loot and trade memberships
-     * below; the table is the only door 1.18.2 shut. This is the whole difference between them and
-     * {@link #NON_TREASURE_ENCHANTMENTS}: {@code isDiscoverable()} is true for both groups.
+     * <p>That half is carried by an empty {@code primary_items} on their definitions
+     * ({@code RankineEnchantmentBootstrap#NO_PRIMARY_ITEMS}), which is the literal 1.21 spelling of
+     * the override: {@code isPrimaryItemFor} is
+     * {@code primaryItems.isEmpty() || stack.is(primaryItems.get())}, and a present-but-empty set
+     * fails for every stack. Keeping the ban here instead — by withholding tag membership — would
+     * have been the same outcome at the table but a <em>stronger</em> one everywhere else, because
+     * {@code minecraft:tradeable} is composed of {@code #minecraft:non_treasure} and the villager
+     * book trade never consulted {@code canApplyAtEnchantingTable} at all.
+     *
+     * <p>Listing them also restores one thing tag exclusion could not: 1.18.2's table offered any
+     * discoverable non-treasure enchantment on a plain {@code minecraft:book} through a separate
+     * {@code flag && isAllowedOnBooks()} branch (no Rankine class overrode {@code isAllowedOnBooks}),
+     * and 1.21 keeps that special case ahead of the {@code primary_items} test in
+     * {@code IItemExtension#isPrimaryItemFor} (IItemExtension.java:454). Out of the pool tag, the
+     * book branch was unreachable; in it, books work again and armour still does not.
      */
-    private static final List<ResourceKey<Enchantment>> TABLE_BANNED_ENCHANTMENTS = List.of(
+    private static final List<ResourceKey<Enchantment>> EMPTY_PRIMARY_ITEM_ENCHANTMENTS = List.of(
             RankineEnchantments.DUNE_WALKER,
             RankineEnchantments.SNOW_DRIFTER,
             RankineEnchantments.SPEED_SKATER,
             RankineEnchantments.SWIFT_SWIMMER,
             RankineEnchantments.GAS_PROTECTION,
             RankineEnchantments.AQUA_LENSE);
+
+    /**
+     * The 30 that were discoverable and not treasure in 1.18.2, i.e. everything the table pool and
+     * the three random-selection tags should contain. Derived rather than restated so the two
+     * halves above cannot drift out of it.
+     */
+    private static final List<ResourceKey<Enchantment>> NON_TREASURE_ENCHANTMENTS =
+            Stream.concat(TABLE_OFFERABLE_ENCHANTMENTS.stream(), EMPTY_PRIMARY_ITEM_ENCHANTMENTS.stream()).toList();
 
     /**
      * The 14 enchantments whose 1.18.2 class overrides {@code isDiscoverable()} to false: the 11
@@ -126,21 +151,6 @@ public class RankineEnchantmentTagsProvider extends EnchantmentTagsProvider {
             RankineEnchantments.GHASTLY_REGENERATION,
             RankineEnchantments.SHAPE_MEMORY,
             RankineEnchantments.WITHERING_CURSE);
-
-    /**
-     * Everything kept out of {@code minecraft:non_treasure}, and so out of the table pool: the six
-     * the table always refused plus the 14 it never considered. Those are the only two reasons
-     * 1.18.2 had, so this is exactly their union — it is derived rather than restated so the two
-     * cannot drift apart.
-     *
-     * <p>The name is deliberate: this is NOT {@code minecraft:treasure}. At the baseline not one of
-     * the 44 classes overrides {@code isTreasureOnly()}, {@code isTradeable()} or
-     * {@code isAllowedOnBooks()}, so every Rankine enchantment was non-treasure, tradeable and
-     * book-legal. Calling these treasure would double their villager book price and — via vanilla's
-     * {@code tradeable.json} being {@code ["#minecraft:non_treasure", …]} — bar them from trades.
-     */
-    private static final List<ResourceKey<Enchantment>> OFF_TABLE_ENCHANTMENTS =
-            Stream.concat(TABLE_BANNED_ENCHANTMENTS.stream(), NOT_DISCOVERABLE.stream()).toList();
 
     public RankineEnchantmentTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, @Nullable ExistingFileHelper existingFileHelper) {
         super(output, lookupProvider, ProjectRankine.MODID, existingFileHelper);
@@ -172,8 +182,11 @@ public class RankineEnchantmentTagsProvider extends EnchantmentTagsProvider {
             tag(EnchantmentTags.NON_TREASURE).add(key);
         }
 
-        // minecraft:treasure is left empty on purpose — no Rankine enchantment overrode
-        // isTreasureOnly() in 1.18.2, and treasure membership only drives double_trade_price.
+        // minecraft:treasure is left empty on purpose — at the baseline not one of the 44 classes
+        // overrides isTreasureOnly(), isTradeable() or isAllowedOnBooks(), so every Rankine
+        // enchantment was non-treasure, tradeable and book-legal. Calling any of them treasure would
+        // double its villager book price and — via vanilla's tradeable.json being
+        // ["#minecraft:non_treasure", …] — bar it from trades outright.
 
         for (ResourceKey<Enchantment> key : allEnchantments()) {
             // isTradeable() was the base-class default (true) everywhere, including on the curse:
@@ -193,8 +206,8 @@ public class RankineEnchantmentTagsProvider extends EnchantmentTagsProvider {
         tag(EnchantmentTags.CURSE).add(RankineEnchantments.WITHERING_CURSE);
     }
 
-    /** Every Rankine enchantment, in a stable order. */
+    /** All 44 Rankine enchantments (30 + 14), in a stable order. */
     private static List<ResourceKey<Enchantment>> allEnchantments() {
-        return Stream.concat(NON_TREASURE_ENCHANTMENTS.stream(), OFF_TABLE_ENCHANTMENTS.stream()).toList();
+        return Stream.concat(NON_TREASURE_ENCHANTMENTS.stream(), NOT_DISCOVERABLE.stream()).toList();
     }
 }

@@ -5,6 +5,7 @@ import com.cannolicatfish.rankine.data.RankineBiomeModifiers;
 import com.cannolicatfish.rankine.blocks.AntimatterBlock;
 import com.cannolicatfish.rankine.blocks.block_groups.RankineStone;
 import com.cannolicatfish.rankine.blocks.buildingmodes.BuildingModeBlock;
+import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineFluids;
 import com.cannolicatfish.rankine.items.BuildingModeBlockItem;
@@ -48,7 +49,12 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.village.poi.PoiType;
 import net.minecraft.world.entity.animal.Pig;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.GameType;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.NoiseColumn;
+import net.minecraft.world.level.chunk.ChunkGenerator;
+import net.minecraft.world.level.levelgen.RandomState;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.item.ArmorItem;
@@ -922,11 +928,13 @@ public class RankineRegistryTests {
      *
      * <p>The table pool is asserted separately below, because 1.18.2 gated it on a THIRD flag the
      * tags cannot express: {@code canApplyAtEnchantingTable(stack)}, which Forge patched into
-     * {@code getAvailableEnchantmentResults}. Six armour enchantments returned false there for
-     * every stack and so belong in no pool; Antiquated returned true only on a pewter-alloyed alloy
-     * tool, which is a per-stack rule that 1.21 keeps in {@code isPrimaryItemFor}. Tag membership
-     * alone therefore proves nothing about what the table offers, so the last block drives the real
-     * {@code EnchantmentMenu} code path instead.
+     * {@code getAvailableEnchantmentResults}. Antiquated returned true there only on a
+     * pewter-alloyed alloy tool, and six armour enchantments returned false for every stack; both
+     * are per-STACK rules, which 1.21 keeps in {@code isPrimaryItemFor} — the alloy gate for the
+     * first, an empty {@code primary_items} for the six. All seven are therefore in the pool tag
+     * and tag membership alone proves nothing about what the table offers, so the last block drives
+     * the real {@code EnchantmentMenu} code path instead. The six get their own dedicated test,
+     * {@code tableBannedEnchantmentsHaveEmptyPrimaryItems}.
      */
     @GameTest(template = "empty")
     public void rankineEnchantmentsHave1182Availability(GameTestHelper helper) {
@@ -989,21 +997,22 @@ public class RankineRegistryTests {
         }
 
         // ---- the enchanting-table pool ----
-        // In the tag: 1.18.2 isDiscoverable() && !isTreasureOnly() && canApplyAtEnchantingTable
-        // could be true for SOME stack. Antiquated is the whole of F6 — its class overrides
+        // In the tag: 1.18.2 isDiscoverable() && !isTreasureOnly(), i.e. everything the table would
+        // have CONSIDERED. Antiquated is the whole of F6 — its class overrides
         // canApplyAtEnchantingTable to accept a pewter-alloyed IAlloyTool, never isDiscoverable().
+        // The six armour ones (F17) answered canApplyAtEnchantingTable false for every stack, which
+        // is a per-STACK rule and so lives in their empty primary_items, not in this tag; the
+        // offers below prove the tag membership does not make them offerable.
         List<ResourceKey<Enchantment>> inTable = List.of(
                 RankineEnchantments.ANTIQUATED, RankineEnchantments.PUNCTURE,
-                RankineEnchantments.QUAKE, RankineEnchantments.RETRIEVAL);
-
-        // Out of the tag, for the two reasons 1.18.2 had. The first six override
-        // canApplyAtEnchantingTable to return false for EVERY stack, so no per-stack hook can put
-        // them back and tag membership would make them strictly more available than the baseline.
-        // The last three override isDiscoverable() to false, so they never entered the pool at all.
-        List<ResourceKey<Enchantment>> notInTable = List.of(
+                RankineEnchantments.QUAKE, RankineEnchantments.RETRIEVAL,
                 RankineEnchantments.DUNE_WALKER, RankineEnchantments.SNOW_DRIFTER,
                 RankineEnchantments.SPEED_SKATER, RankineEnchantments.SWIFT_SWIMMER,
-                RankineEnchantments.GAS_PROTECTION, RankineEnchantments.AQUA_LENSE,
+                RankineEnchantments.GAS_PROTECTION, RankineEnchantments.AQUA_LENSE);
+
+        // Out of the tag for the one reason that is a per-ENCHANTMENT decision: these override
+        // isDiscoverable() to false, so 1.18.2 never entered them into the pool at all.
+        List<ResourceKey<Enchantment>> notInTable = List.of(
                 RankineEnchantments.SHAPE_MEMORY, RankineEnchantments.ENDOBIOTIC,
                 RankineEnchantments.WITHERING_CURSE);
 
@@ -1090,6 +1099,168 @@ public class RankineRegistryTests {
 
         assertEmpty(problems, "enchantment availability mismatches");
         helper.succeed();
+    }
+
+    /**
+     * F17 — the six armour enchantments 1.18.2's enchanting table refused on every stack must be in
+     * the pool tags and still be offered by nothing.
+     *
+     * <p>Their 1.18.2 classes override {@code canApplyAtEnchantingTable(stack)} to an unconditional
+     * {@code false} while leaving {@code canEnchant} as the plain {@code ARMOR_FEET}/
+     * {@code ARMOR_HEAD} category check (e.g. {@code DuneWalkerEnchantment.java:26} at
+     * {@code 859f87773}). That is a per-STACK rule, so its 1.21 home is the enchantment definition's
+     * {@code primary_items}, not a tag: an explicitly EMPTY holder set, which
+     * {@code IItemExtension#isPrimaryItemFor} (IItemExtension.java:458) reads as
+     * {@code primaryItems.isEmpty() || stack.is(primaryItems.get())} — present-but-empty fails for
+     * every stack, whereas ABSENT means "no restriction". This asserts the distinction on the LIVE
+     * registry, so it fails if the generated JSON goes stale, if the datagen encode silently drops
+     * an empty holder set, or if a future edit reaches for the absent form.
+     *
+     * <p>The three consumer chains that read it, all of which 1.18.2 gated on the same override:
+     * <ul>
+     *   <li>table — {@code EnchantmentMenu#getEnchantmentList} (EnchantmentMenu.java:201) streams
+     *       {@code #in_enchanting_table} into {@code EnchantmentHelper.getAvailableEnchantmentResults},
+     *       which filters with {@code stack::isPrimaryItemFor} (EnchantmentHelper.java:608);</li>
+     *   <li>mob gear — {@code Mob#populateDefaultEquipmentEnchantments} (Mob.java:1158) →
+     *       {@code EnchantmentHelper.enchantItemFromProvider} →
+     *       {@code VanillaEnchantmentProviders.MOB_SPAWN_EQUIPMENT}
+     *       (VanillaEnchantmentProviders.java:24), an {@code EnchantmentsByCostWithDifficulty} over
+     *       {@code #on_mob_spawn_equipment} whose {@code enchant}
+     *       (EnchantmentsByCostWithDifficulty.java:35) calls
+     *       {@code EnchantmentHelper.selectEnchantment} → the same filter. Villager gear
+     *       (VillagerTrades.java:1577) and {@code EnchantWithLevelsFunction}
+     *       (EnchantWithLevelsFunction.java:64) reach it the same way, through
+     *       {@code EnchantmentHelper.enchantItem} (EnchantmentHelper.java:544);</li>
+     *   <li>anvil and {@code EnchantRandomlyFunction} — {@code supportsEnchantment} only
+     *       (EnchantRandomlyFunction.java:62), which is 1.18.2's {@code canEnchant}. Those must
+     *       still say YES, or the fix has overshot into territory the baseline allowed.</li>
+     * </ul>
+     * That is what closes batch 2's triage item (a): the six were already in
+     * {@code on_mob_spawn_equipment}/{@code on_traded_equipment}, where 1.18.2's mob-gear path also
+     * required {@code canApplyAtEnchantingTable}. Tag membership was never the thing to remove.
+     *
+     * <p>Books are the one place the six become MORE available than they were at HEAD, and that is
+     * parity: 1.18.2's table reached a book through a separate {@code flag && isAllowedOnBooks()}
+     * branch (no Rankine class overrode {@code isAllowedOnBooks}), and 1.21 keeps that special case
+     * ahead of the {@code primary_items} test (IItemExtension.java:454). While the six were out of
+     * the pool tag, that branch was unreachable for them.
+     */
+    @GameTest(template = "empty")
+    public void tableBannedEnchantmentsHaveEmptyPrimaryItems(GameTestHelper helper) {
+        var enchantments = helper.getLevel().registryAccess().registryOrThrow(Registries.ENCHANTMENT);
+        List<String> problems = new ArrayList<>();
+
+        // armour: a VANILLA piece of the slot 1.18.2's canEnchant accepted, so a negative cannot be
+        // blamed on the item being unenchantable in the first place.
+        record Banned(String name, ResourceKey<Enchantment> key, Item armour) {
+        }
+
+        List<Banned> banned = List.of(
+                new Banned("dune_walker", RankineEnchantments.DUNE_WALKER, Items.DIAMOND_BOOTS),
+                new Banned("snow_drifter", RankineEnchantments.SNOW_DRIFTER, Items.DIAMOND_BOOTS),
+                new Banned("speed_skater", RankineEnchantments.SPEED_SKATER, Items.DIAMOND_BOOTS),
+                new Banned("swift_swimmer", RankineEnchantments.SWIFT_SWIMMER, Items.DIAMOND_BOOTS),
+                new Banned("gas_protection", RankineEnchantments.GAS_PROTECTION, Items.DIAMOND_HELMET),
+                new Banned("aqua_lense", RankineEnchantments.AQUA_LENSE, Items.DIAMOND_HELMET));
+
+        // Every one of the six has min_cost 10 and max_cost 25 at its only level, so 20 is inside
+        // the window: getAvailableEnchantmentResults would return them the moment the per-stack
+        // filter let them through. A cost outside the window would make every negative vacuous.
+        final int COST = 20;
+
+        HolderSet<Enchantment> tablePool = enchantments.getTag(EnchantmentTags.IN_ENCHANTING_TABLE).orElse(null);
+        HolderSet<Enchantment> mobPool = enchantments.getTag(EnchantmentTags.ON_MOB_SPAWN_EQUIPMENT).orElse(null);
+        assertTrue(tablePool != null, "#minecraft:in_enchanting_table does not exist");
+        assertTrue(mobPool != null, "#minecraft:on_mob_spawn_equipment does not exist");
+
+        for (Banned b : banned) {
+            Holder<Enchantment> holder = enchantments.getHolder(b.key()).orElse(null);
+            if (holder == null) {
+                problems.add(b.name() + " is not registered");
+                continue;
+            }
+            ItemStack stack = new ItemStack(b.armour());
+
+            // ---- the mechanism, off the live registry ----
+            Optional<HolderSet<Item>> primary = holder.value().definition().primaryItems();
+            if (primary.isEmpty()) {
+                problems.add(b.name() + " has NO primary_items; absent means \"no restriction\","
+                        + " which is the opposite of 1.18.2's canApplyAtEnchantingTable() == false");
+            } else if (primary.get().size() != 0) {
+                problems.add(b.name() + " has " + primary.get().size() + " primary_items, expected an empty set");
+            }
+            // supported_items must still cover the armour, or the anvil half breaks with it.
+            if (!stack.is(holder.value().definition().supportedItems())) {
+                problems.add(b.name() + ": " + b.armour() + " is not in its supported_items,"
+                        + " so 1.18.2's canEnchant() == true is lost too");
+            }
+
+            // ---- tag membership: in, exactly as 1.18.2's isDiscoverable()/!isTreasureOnly() ----
+            for (TagKey<Enchantment> tag : List.of(EnchantmentTags.IN_ENCHANTING_TABLE, EnchantmentTags.NON_TREASURE,
+                    EnchantmentTags.TRADEABLE, EnchantmentTags.ON_RANDOM_LOOT,
+                    EnchantmentTags.ON_MOB_SPAWN_EQUIPMENT, EnchantmentTags.ON_TRADED_EQUIPMENT)) {
+                if (!holder.is(tag)) {
+                    problems.add(b.name() + " missing from #" + tag.location());
+                }
+            }
+            if (holder.is(EnchantmentTags.TREASURE)) {
+                problems.add(b.name() + " is in #minecraft:treasure; no 1.18.2 rankine enchantment was treasure-only");
+            }
+
+            // ---- offers unchanged: still nothing, on either selection path ----
+            if (offers(COST, stack, tablePool, b.key())) {
+                problems.add(b.name() + " is offered at the enchanting table on " + b.armour()
+                        + "; 1.18.2's canApplyAtEnchantingTable() refused every stack");
+            }
+            if (offers(COST, stack, mobPool, b.key())) {
+                problems.add(b.name() + " can roll onto mob spawn equipment (" + b.armour()
+                        + "); 1.18.2's mob-gear path required canApplyAtEnchantingTable too");
+            }
+
+            // ---- but the anvil / EnchantRandomly half must still say yes (1.18.2 canEnchant) ----
+            if (!stack.supportsEnchantment(holder)) {
+                problems.add(b.name() + ": book refused on the anvil for " + b.armour()
+                        + "; 1.18.2's canEnchant() accepted it");
+            }
+
+            // ---- books: reachable again, which is what 1.18.2 did ----
+            if (!offers(COST, new ItemStack(Items.BOOK), tablePool, b.key())) {
+                problems.add(b.name() + " is not offered on a plain book at the table; 1.18.2 reached"
+                        + " books through isAllowedOnBooks(), which no rankine class overrode");
+            }
+        }
+
+        // Positive controls on the very same stacks, costs and pools, so a blanket failure of the
+        // selection call cannot masquerade as six passing negatives. Guard's window at level 1 is
+        // [10, 40], so COST is inside it, and its primary_items are ABSENT — the other branch of
+        // the isPrimaryItemFor test, which would also break if NO_PRIMARY_ITEMS were applied to
+        // everything.
+        for (Item armour : List.of(Items.DIAMOND_BOOTS, Items.DIAMOND_HELMET)) {
+            ItemStack stack = new ItemStack(armour);
+            if (!offers(COST, stack, tablePool, RankineEnchantments.GUARD)) {
+                problems.add("rankine:guard is NOT offered at the table on " + armour
+                        + ", so the negatives above prove nothing");
+            }
+            if (!offers(COST, stack, mobPool, RankineEnchantments.GUARD)) {
+                problems.add("rankine:guard cannot roll onto mob gear on " + armour
+                        + ", so the mob-gear negatives above prove nothing");
+            }
+        }
+        for (ResourceKey<Enchantment> unrestricted : List.of(RankineEnchantments.GUARD, RankineEnchantments.PUNCTURE)) {
+            if (enchantments.getHolder(unrestricted).orElseThrow().value().definition().primaryItems().isPresent()) {
+                problems.add(unrestricted.location() + " has a primary_items set; only the six the"
+                        + " 1.18.2 table always refused should have one");
+            }
+        }
+
+        assertEmpty(problems, "empty primary_items failures");
+        helper.succeed();
+    }
+
+    /** True when the real table/loot selection call would return {@code enchantment} for this stack. */
+    private static boolean offers(int cost, ItemStack stack, HolderSet<Enchantment> pool, ResourceKey<Enchantment> enchantment) {
+        return EnchantmentHelper.getAvailableEnchantmentResults(cost, stack, pool.stream())
+                .stream().anyMatch(i -> i.enchantment.is(enchantment));
     }
 
     /**
@@ -1372,7 +1543,7 @@ public class RankineRegistryTests {
     // number, and that running it over end stone actually replaces blocks.
     // ------------------------------------------------------------------------------------------
 
-    /** The eight {@code "the_end"} oreSettings rows, in config order (Config.java:1262-1269). */
+    /** The eight {@code "the_end"} oreSettings rows, in config order (Config.java:1288-1295). */
     private static final List<String> END_ORE_VEINS = List.of(
             "rankine:native_gallium_ore", "rankine:native_indium_ore", "rankine:native_selenium_ore",
             "rankine:native_tellurium_ore", "rankine:molybdenite_ore", "rankine:uraninite_ore",
@@ -1390,7 +1561,7 @@ public class RankineRegistryTests {
      * F7 — an End biome must carry exactly the eight End ore veins, no more and no fewer.
      *
      * <p><b>Derivation of the number 8</b> (from the shipped default {@code oreSettings},
-     * Config.java:1176-1269 — 75 active rows — read through {@code RankineOreBiomeModifier#matches}):
+     * Config.java:1176-1295 — 75 active rows — read through {@code RankineOreBiomeModifier#matches}):
      * <ul>
      *   <li>43 rows select {@code "overworld"}, which is {@link WorldgenUtils#isOverworld}:
      *       {@code !biome.is(IS_NETHER) && !biome.is(IS_END)}. Every End biome is in
@@ -1486,7 +1657,7 @@ public class RankineRegistryTests {
      * runs it: a solid 5x5x5 of {@code minecraft:end_stone} is built in the test structure and the
      * real {@code rankine:default_ore_vein} {@link Feature} is invoked directly, through
      * {@link FeaturePlaceContext}, with the same {@link RankineOreFeatureConfig} the modifier builds
-     * for the {@code rankine:native_gallium_ore} {@code "the_end"} row (Config.java:1262 — default
+     * for the {@code rankine:native_gallium_ore} {@code "the_end"} row (Config.java:1288 — default
      * vein, size 4, density 1.0, discard 0.0) and a seeded {@link RandomSource}, so the outcome is
      * deterministic. {@link GameTestHelper#getLevel()} is a {@code ServerLevel}, which implements
      * {@code WorldGenLevel}, so no adaptation is needed.
@@ -1551,6 +1722,243 @@ public class RankineRegistryTests {
         assertEmpty(problems, "End ore vein placement failures");
         helper.succeed();
     }
+
+    // ------------------------------------------------------------------------------------------
+    // F18 — End ore vein height bands (review decision #7, "veins need to be findable").
+    // ------------------------------------------------------------------------------------------
+
+    /**
+     * Sample grid for the End terrain profile: two 24x24 patches of columns 32 blocks apart, both in
+     * the outer-island ring (the End's islands only exist beyond r=1024, and end_highlands only out
+     * there). Two widely separated patches so the profile is not one island field's accident. The
+     * GameTest server seeds its world at 0 ({@code GameTestServer.WORLD_OPTIONS}) and
+     * {@code getBaseColumn} is pure noise with no chunk generation, so this is deterministic.
+     */
+    private static final int[][] END_SAMPLE_PATCHES = {{2048, 2048}, {-4096, 6144}};
+    private static final int END_SAMPLE_STEP = 32;
+    private static final int END_SAMPLE_GRID = 24;
+
+    /**
+     * The slab the End's stone occupies, as measured below. Not a guess: the End's noise settings
+     * are {@code NoiseSettings.END_NOISE_SETTINGS = create(0, 128, 2, 1)}, so terrain can only exist
+     * in y 0..127 at all, and {@code NoiseRouterData.slideEnd} fades density in over y 4..32 and out
+     * from y 56 upwards, leaving a slab with soft edges. These are loose brackets on the
+     * measurement, not the measurement.
+     */
+    private static final int END_SLAB_MIN = 8;
+    private static final int END_SLAB_MAX = 70;
+
+    /**
+     * The bands this retune replaced — the 1.18.2 numbers verbatim. Nothing in the mod reads them
+     * any more; they are here so the new bands can be scored against the old ones on one profile.
+     */
+    private static final int[] OLD_NATIVE_BAND = {-50, 70};
+    private static final int[] OLD_SPHERE_BAND = {10, 40};
+
+    /** Per-y probability of {@code HeightRangePlacement}, indexed from {@code min}. */
+    private static double[] placementMass(boolean triangle, int min, int max) {
+        int k = max - min;
+        double[] mass = new double[k + 1];
+        if (!triangle) {
+            // UniformHeight#sample -> Mth.randomBetweenInclusive(random, min, max).
+            for (int i = 0; i <= k; i++) mass[i] = 1.0D / (k + 1);
+        } else {
+            // TrapezoidHeight#sample with plateau 0 -> min + U{0..i1} + U{0..l}, l = k/2 rounded down.
+            int l = k / 2;
+            int i1 = k - l;
+            double total = (double) (i1 + 1) * (l + 1);
+            for (int a = 0; a <= i1; a++) {
+                for (int b = 0; b <= l; b++) {
+                    mass[a + b] += 1.0D / total;
+                }
+            }
+        }
+        return mass;
+    }
+
+    /** How much of a band's placement mass falls in {@code [lo, hi]} inclusive. */
+    private static double massWithin(double[] mass, int min, int lo, int hi) {
+        double sum = 0.0D;
+        for (int i = 0; i < mass.length; i++) {
+            if (min + i >= lo && min + i <= hi) sum += mass[i];
+        }
+        return sum;
+    }
+
+    /**
+     * The chance one placement attempt lands on a solid block, weighting the placement distribution
+     * by the measured fraction of columns that are stone at each y. Attempts outside the sampled
+     * height range — in particular below the End's y=0 floor, where the old triangle rows put a
+     * third of theirs — contribute nothing, which is exactly what happens in game.
+     */
+    private static double hitRate(double[] mass, int min, long[] solidByY, int minY, int columns) {
+        double sum = 0.0D;
+        for (int i = 0; i < mass.length; i++) {
+            int index = min + i - minY;
+            if (index >= 0 && index < solidByY.length) {
+                sum += mass[i] * ((double) solidByY[index] / columns);
+            }
+        }
+        return sum;
+    }
+
+    private static String num(double d) {
+        return String.format(java.util.Locale.ROOT, "%.3f", d);
+    }
+
+    /**
+     * F18 — the eight End ore rows must aim their placement attempts at terrain that exists.
+     *
+     * <p>Review decision #7, approved by Karl on 2026-08-19: a deliberate content change, the one
+     * item in this workstream where 1.18.2 parity is explicitly NOT the goal. The baseline shipped
+     * the four native rows as {@code triangle(-50, 70)} and the four sphere rows as
+     * {@code uniform(10, 40)}; both are kept below as the control this is scored against.
+     *
+     * <p>It does not assume where End terrain is, it measures it. {@code getBaseColumn} on the live
+     * End {@code NoiseBasedChunkGenerator} returns the raw noise column without generating a chunk,
+     * so a grid of them is a cheap, exact, deterministic profile of the dimension a player gets.
+     * Each row's expected chance that one attempt lands inside end stone is then its placement
+     * distribution integrated against the measured per-y stone fraction — the findability number
+     * decision #7 is about, and the one the retune moves.
+     *
+     * <p>Asserted in both directions: the new bands must clear a floor and the old ones must not,
+     * and the profile itself is bracketed first so neither number can quietly go vacuous.
+     * {@code endBiomesCarryExactlyTheEightEndOreVeins} pins WHICH rows reach the End and
+     * {@code endOreVeinFeatureReplacesEndStone} pins that the feature replaces end stone when it
+     * runs; this pins that it is aimed somewhere it can.
+     *
+     * <p>It reads {@code ORE_SETTINGS.getDefault()}, not {@code get()}, and that is the whole point
+     * of the distinction: what this change edits is the shipped DEFAULT. A config file that already
+     * exists keeps its own values forever — the dev {@code run/config/rankine-common.toml} did, and
+     * scored the old bands here until it was deleted — so a running server can legitimately be using
+     * anything at all, and asserting {@code get()} would fail for every player who has ever tuned
+     * their ore generation.
+     */
+    @GameTest(template = "empty")
+    public void endOreVeinBandsTargetEndIslandTerrain(GameTestHelper helper) {
+        ServerLevel end = helper.getLevel().getServer().getLevel(Level.END);
+        assertTrue(end != null, "the gametest server has no minecraft:the_end level to profile");
+
+        ChunkGenerator generator = end.getChunkSource().getGenerator();
+        RandomState randomState = end.getChunkSource().randomState();
+        int minY = end.getMinBuildHeight();
+        int height = end.getHeight();
+        List<String> problems = new ArrayList<>();
+
+        long[] solidByY = new long[height];
+        int columns = 0;
+        int islandColumns = 0;
+        long solid = 0L;
+
+        for (int[] patch : END_SAMPLE_PATCHES) {
+            for (int i = 0; i < END_SAMPLE_GRID; i++) {
+                for (int j = 0; j < END_SAMPLE_GRID; j++) {
+                    NoiseColumn column = generator.getBaseColumn(
+                            patch[0] + i * END_SAMPLE_STEP, patch[1] + j * END_SAMPLE_STEP, end, randomState);
+                    columns++;
+                    boolean island = false;
+                    for (int y = minY; y < minY + height; y++) {
+                        if (!column.getBlock(y).isAir()) {
+                            solidByY[y - minY]++;
+                            solid++;
+                            island = true;
+                        }
+                    }
+                    if (island) islandColumns++;
+                }
+            }
+        }
+
+        // ---- the profile has to be a real one, or every number below is noise ----
+        assertTrue(minY == 0 && height == 256, "the End's build range is " + minY + ".." + (minY + height)
+                + ", expected 0..256; the band constants are calibrated to it");
+        assertTrue(solid > 2000L, "only " + solid + " solid blocks in " + columns + " End columns —"
+                + " the sample is not hitting islands, so every hit rate below is vacuous");
+        assertTrue(islandColumns > columns / 10 && islandColumns < columns * 9 / 10, islandColumns + "/"
+                + columns + " sampled columns contain stone; a sample that is nearly all void or nearly"
+                + " all island is not the outer-island ring these bands are calibrated on");
+
+        long inSlab = 0L;
+        for (int y = END_SLAB_MIN; y <= END_SLAB_MAX; y++) inSlab += solidByY[y - minY];
+        if ((double) inSlab / solid < 0.99D) {
+            problems.add("only " + num((double) inSlab / solid) + " of End stone lies in y " + END_SLAB_MIN
+                    + ".." + END_SLAB_MAX + "; the slab has moved and the bands are stale");
+        }
+        // The half of the old rows' problem that is easiest to get wrong by eye: there is nothing up
+        // there to hit. The End's top slide is supposed to guarantee it.
+        long aboveSlab = 0L;
+        for (int y = END_SLAB_MAX + 1; y < minY + height; y++) aboveSlab += solidByY[y - minY];
+        if (aboveSlab != 0L) {
+            problems.add(aboveSlab + " solid blocks above y " + END_SLAB_MAX + ", which slideEnd should"
+                    + " make impossible — the End's noise settings have changed");
+        }
+
+        // ---- every "the_end" row, scored against that profile ----
+        int nativeRows = 0;
+        int sphereRows = 0;
+        for (List<Object> row : Config.BIOME_GEN.ORE_SETTINGS.getDefault()) {
+            List<String> biomes = (List<String>) row.get(1);
+            if (biomes.isEmpty() || !biomes.contains("the_end")) continue;
+            String ore = (String) row.get(0);
+            boolean triangle = "triangle".equals(row.get(3));
+            int min = (int) row.get(4);
+            int max = (int) row.get(5);
+            double[] mass = placementMass(triangle, min, max);
+            String where = ore + " (" + row.get(3) + " " + min + ".." + max + ")";
+            if ("sphere".equals(row.get(2))) sphereRows++; else nativeRows++;
+
+            // Not one attempt may be thrown outside the dimension. The old triangle rows sent 34.3%
+            // below the y=0 floor alone, and 51.4% outside the stone slab y 11..64 altogether; that
+            // is the waste this change removes.
+            double outside = 1.0D - massWithin(mass, min, minY, END_SLAB_MAX);
+            if (outside > 0.01D) {
+                problems.add(where + " throws " + num(outside) + " of its attempts outside y " + minY
+                        + ".." + END_SLAB_MAX + ", where the End has nothing to replace");
+            }
+
+            double hit = hitRate(mass, min, solidByY, minY, columns);
+            double hitIsland = hitRate(mass, min, solidByY, minY, islandColumns);
+            // 0.75 sits comfortably under both measured values and comfortably over both old ones, so
+            // it fails for a band that drifts off the slab in either direction without being hostage
+            // to the exact sample.
+            if (hitIsland < 0.75D) {
+                problems.add(where + " lands in end stone on only " + num(hitIsland) + " of attempts inside"
+                        + " an island (all sampled columns: " + num(hit) + "); decision #7 wants these findable");
+            }
+        }
+        if (nativeRows != 4 || sphereRows != 4) {
+            problems.add("found " + nativeRows + " default-vein and " + sphereRows + " sphere \"the_end\" rows,"
+                    + " expected 4 and 4 — the config no longer holds the rows this test is about");
+        }
+
+        // ---- control: the bands this replaced must FAIL the same threshold ----
+        // Without this the threshold could be met by any band at all and the retune would be
+        // unfalsifiable. Both old rows are re-scored against the very same profile.
+        double oldNative = hitRate(placementMass(true, OLD_NATIVE_BAND[0], OLD_NATIVE_BAND[1]),
+                OLD_NATIVE_BAND[0], solidByY, minY, islandColumns);
+        double oldSphere = hitRate(placementMass(false, OLD_SPHERE_BAND[0], OLD_SPHERE_BAND[1]),
+                OLD_SPHERE_BAND[0], solidByY, minY, islandColumns);
+        if (oldNative >= 0.75D) {
+            problems.add("the OLD native band " + OLD_NATIVE_BAND[0] + ".." + OLD_NATIVE_BAND[1] + " already"
+                    + " scores " + num(oldNative) + " on this profile, so the threshold proves nothing");
+        }
+        if (oldSphere >= 0.75D) {
+            problems.add("the OLD sphere band " + OLD_SPHERE_BAND[0] + ".." + OLD_SPHERE_BAND[1] + " already"
+                    + " scores " + num(oldSphere) + " on this profile, so the threshold proves nothing");
+        }
+        // And the specific defect the review named, which is pure arithmetic: a third of the old
+        // native attempts fell out of the world entirely.
+        double oldBelowFloor = massWithin(placementMass(true, OLD_NATIVE_BAND[0], OLD_NATIVE_BAND[1]),
+                OLD_NATIVE_BAND[0], OLD_NATIVE_BAND[0], minY - 1);
+        if (oldBelowFloor < 0.30D) {
+            problems.add("the old native band puts only " + num(oldBelowFloor) + " of its attempts below the"
+                    + " End floor; placementMass no longer matches TrapezoidHeight#sample");
+        }
+
+        assertEmpty(problems, "End vein band failures");
+        helper.succeed();
+    }
+
     // ---------------------------------------------------------------------------------------
     // F13 — fluid entity interaction
     // ---------------------------------------------------------------------------------------
