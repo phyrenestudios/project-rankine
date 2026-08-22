@@ -54,6 +54,30 @@ Engineer split: **Engineer A** = F6 (isolated provider, quick win, first per que
 **Engineer B** = F7–F9 (one worldgen session — shared files, one datagen run). Sequential, then
 one QA pass: fresh-world worldgen eyeball per `.porting/CLIENT-TESTING.md` + the F6 table check.
 
+## Batch 3 (opened 2026-08-19) — alloy correctness P1 + decided items
+
+Same roles and working agreement. Scope = review "P1 batch 3 (alloy correctness)", the beach-tag
+triage item from batch 2, and Karl's two decisions (2026-08-19): **#6 = option (b)** (faithful:
+`primary_items: []` for the six, join the pool tags) and **#7 = retune** ("veins need to be
+findable" — deliberate, approved non-parity). NOT in scope: decision #1 (knockback resistance,
+still open), the wider F9 gating family (meteorites/fumaroles/flora/trees — not approved).
+
+| # | Feature | Findings covered | Engineer | Status | QA |
+|---|---|---|---|---|---|
+| F10 | `AlloyCraftingRecipe.Serializer#toJson`: emit per-key `alloyRecipe` constraints (40 tier-3 tool recipes currently accept any alloy rod instead of steel) | P1 alloy #1 | D | **DONE** (`f7587f689`) | not needed — recipe JSON diff + crafting GameTest (accept steel / reject other rod) |
+| F11 | `PackagedToolItem`/`PackagedArmorItem`: resolve recipe ids eagerly (loot-chest gear currently mints with null recipe id — no recipe, blank name, wrong stats) | P1 alloy #2 | D | **DONE** (`f7587f689`) | not attempted (optional) — cold-cache GameTest carries it |
+| F12 | `AlloyBlock` place/break round-trip: alloy data through a component that is actually written (currently `CUSTOM_DATA`, never written ⇒ composition wiped) | P1 alloy #3 | D | **DONE** (`f7587f689`) | not attempted (optional) — place/break GameTest carries it |
+| F13 | All 16 fluids: entity-interaction props to 1.18.2 behavior (`canSwim/canDrown/canPushEntity(false)`, `pathType(null)`, etc. in the shared helper) | P1 fluids | E | **DONE** (`3f25463f6`) | **PASS** — Air stays max submerged, no bubble bar; pig neither drowns nor floats |
+| F14 | `AntimatterBlock.java:49`: `DESTROY` → `DESTROY_WITH_DECAY` (radius-12 blast drops ~7,000 items, ≈12× intended) | P1 misc | E | **DONE** (`3f25463f6`) | not needed — decay measured headlessly (120/120 → 11/120) |
+| F15 | `ClientSetup.java:93`: `gas_held`/`building_mode` predicates read the dedicated components, not `CUSTOM_DATA` | P1 client | E | **DONE** (`3f25463f6`) | **PASS** — vacuum full/empty NBT-proven both ways; building-mode icon flips; pick-block asymmetric control returns a fresh mode-2 stack |
+| F16 | `rankine:is_beach` tag restoring 1.18.2 BEACH membership incl. `stony_shore` (beach-keyed ore rows currently skip stony shores) | batch-2 triage (a), same family as F8 | E | **DONE** (`3f25463f6`) | not attempted (optional) — tag JSON + sylvinite GameTest carry it |
+| F17 | Decision #6(b): `primary_items: []` on the six in `RankineEnchantmentBootstrap`; they join `in_enchanting_table`/`non_treasure` (24→30 each); verify the 1.21 `isPrimaryItem` consumer chain; closes batch-2 triage (a) | P2/P3 remnant + decision #6 | F | **DONE** (`b5a824fa7`) | not needed — gear-unchanged + books-restored both asserted headlessly |
+| F18 | Decision #7: retune the 8 End vein config rows so veins land in the island band (y≈40–75); report before/after in-band placement fractions | decision #7 | F | **DONE** (`b5a824fa7`) | **PASS** — fresh end_highlands island, one strip-fill exposed a dense ore field; indium + tellurium pinned by text probe |
+
+Engineer split: **D** = F10–F12 (alloy family, one commit). **E** = F13–F16 (runtime/misc, one
+commit). **F** = F17–F18 (the decided items, one commit). Sequential D → E → F, then one QA pass
+(predicate flips, fluid feel, End vein findability).
+
 ## Log
 
 - 2026-08-09 ~19:55 — workstream opened; dev client killed; Engineer A launched on F1.
@@ -280,6 +304,156 @@ one QA pass: fresh-world worldgen eyeball per `.porting/CLIENT-TESTING.md` + the
     numbers are **identical** — 1.18.2 parity, a content/tuning decision, not a port bug.
   - Other triage: `assertEmpty` >1024-char truncation, 4th sighting (2679-char message);
     pre-existing deprecation notes in `RankineRegistryTests.java` (`registryOrThrow` etc.).
+- 2026-08-19 — **Batch 3 opened.** Karl: "Complete batch 3", decision #6 → faithful (option b),
+  decision #7 → retune for findability. Client confirmed closed; HEAD `102336f6e`.
+  Engineer D (Opus) launched on F10–F12 (alloy). (One transient API-error restart mid-run;
+  resumed with context intact, reconciled the tree via git status before continuing.)
+- 2026-08-19 — **F10–F12 DONE**, one commit `f7587f689`. Gates: build/test/runData green,
+  `runGameTestServer` **"All 38 required tests passed"** (was 35). Falsification: pre-fix run
+  predicted 10/crash/4, observed exactly that; inversion run predicted 15/1025/5 mismatches,
+  observed exactly that; restored file sha256-matched.
+  - **F10** — root cause one layer off the review's framing: the datagen *builder* emitted the
+    constraint; the *encode* path (`Serializer#toJson` → `Ingredient.CODEC`) dropped every data
+    component. New `AlloyIngredientHelper.alloyIngredientToJson` (reads `getValues()`, not
+    `getItems()` — tag expansion is unavailable during datagen); throws rather than silently
+    writing an unconstrained key. Churn = 136 files, exactly reconciling HANDOFF's 136 (all
+    per-key data) vs the review's 40 (the `alloyRecipe` gameplay subset; the other 96 armor
+    recipes lost only `langName`+`color` display data).
+  - **F11** — `.map(RecipeHolder::value)` discarded the recipe id (lazily filled only after a
+    smelt). Fixed by keeping the holder; safe on dedicated servers (RecipeManager holds ids from
+    datapack load, no caches/ordering). **Scope taken, flagged:** the same three lines had a live
+    crash — random draw bounded by the unfiltered list while 2 of 49 alloys (crucible/damascus
+    steel, zero element inputs) filter to a shorter one ⇒ ~4% of packaged-item uses threw
+    IndexOutOfBounds on the server thread. Baseline-identical (inherited), but the id fix is
+    worthless while 4% of uses crash; bounded by the filtered list + empty guard.
+  - **F12** — narrower than reviewed: only the *break* half was broken (1.21 `BlockItem#place`
+    already applies stack components to the tile). `playerWillDestroy`/`getCloneItemStack` now
+    use `saveToItem`; dead `AlloyBlockTile.alloyData` deleted (nothing ever wrote it).
+  - **Engineer D triage (not fixed):** (a) `AlloyBlockColor` reads never-written persistent data
+    ⇒ alloy blocks always render untinted — baseline parity, but post-F12 a `collectComponents()`
+    read would make tint work for the first time (needs client sync, see b); (b) `AlloyBlockTile`
+    lacks `getUpdateTag`/`getUpdatePacket` ⇒ client never has alloy data, pick-block returns a
+    bare stack — parity; (c) two arrow recipes use `"name"` where the deserializer reads
+    `"langName"` — data typo, already ignored in 1.18.2; (d) `assertEmpty` 1024-char truncation,
+    5th sighting; (e) `toJson` still emits one key letter per slot (~4× verbosity, existing
+    PORT-TODO); (f) crucible/damascus steel alloying declare zero element inputs — content
+    question for the mod author.
+- 2026-08-19 — Engineer E (Opus) launched on F13–F16 (fluids, antimatter, predicates, beach tag).
+- 2026-08-19 — **F13–F16 DONE**, one commit `3f25463f6`. Gates green; `runGameTestServer`
+  **"All 43 required tests passed"** (was 38); runData churn = exactly the new
+  `rankine:is_beach` tag. Falsification: 47 sites inverted, predicted 402/3/4/241/18 across the
+  five new tests, observed exactly that, sha256-verified restore.
+  - **F13** — review framing corrected: 1.18.2 `FluidAttributes` carried NO entity behavior;
+    vanilla gated drown/swim/push on water/lava tags Rankine fluids were never in, so baseline
+    outcome was "nothing happens". Six properties set, each pinned to a named 1.21 consumer
+    (canDrown/canPushEntity/canSwim false, fallDistanceModifier 1.0 — the 0.5 default silently
+    halved fall damage — pathType/adjacentPathType null); seven others verified already-parity
+    and asserted anyway. All 16 fluids uniform (none lava-like). Behavioral GameTest: pig sealed
+    in maple sap 40 ticks, air stays exactly 100, with an eye-in-fluid vacuity guard.
+    **Known residual, flagged for QA and triage:** water-style buoyancy/drag inside the fluid is
+    hardcoded in `LivingEntity#travel` for every non-lava fluid — not reachable from Properties;
+    needs a FluidType#move override (triage).
+  - **F14** — antimatter `DESTROY` → `DESTROY_WITH_DECAY`; decisive evidence in-repo (baseline
+    `SphericalExplosion:149` gated `EXPLOSION_RADIUS` decay on exactly the mode antimatter
+    passed). Empirically measured through the real `onExplosionHit`: 120/120 stone drops before,
+    11/120 after — the review's ≈12× confirmed.
+  - **F15** — both predicates now read the components gameplay writes (write/read file:line
+    pairs in the engineer report). **Scope taken, flagged:** `BuildingModeBlock#getCloneItemStack`
+    was still WRITING `CUSTOM_DATA` — pick-block returned mode 1 and re-placed the wrong
+    variant; fixed as the write side of the same pair.
+  - **F16** — `rankine:is_beach` = `[beach, snowy_beach, stony_shore]`, re-verified against
+    1.18.2 biome JSONs; corroborated by the mod author's own 1.19 branch doing the same union.
+    Negative-control lesson: pentlandite/phosphorite have second rows elsewhere — sylvinite is
+    the only shore-exclusive control (the cold gate run caught the bad first pick).
+    The brief's predicted 4→3 "none"-test update was wrong — that test asserts rows, not
+    counts; no change needed (deviation reported honestly).
+  - **Engineer E triage:** (a) the buoyancy residual above; (b) BlastingPowder/GunCotton/
+    UnamedExplosive used 1.18.2 `BREAK` → HEAD `ExplosionInteraction.BLOCK` = decay — whether
+    that drifts depends on which mode 1.18.2 vanilla gated decay on; unresolved in-repo, needs
+    one 1.18.2 `Explosion.java` lookup; (c) `FluidHelper.travel` is dead code at HEAD AND
+    baseline — wire or delete; (d) `getBuildingMode` absent-component fallback differs from
+    baseline (1 vs 0) — deliberate, saner, matches the model overrides; (e) `assertEmpty`
+    truncation, 6th sighting; (f) `BuildingToolItem`'s `"buildingMode"` NBT not audited.
+- 2026-08-19 — Engineer F (Opus) launched on F17–F18 (decisions #6b and #7).
+- 2026-08-19 — **F17–F18 DONE**, one commit `b5a824fa7`. Gates green; `runGameTestServer`
+  **"All 45 required tests passed"** (was 43); runData churn = exactly 8 files (6 enchantment
+  defs + 2 tags), idempotent. Falsification: pre-fix 12/30 predicted=observed; inversion run
+  26/90/22 predicted=observed; sha256-verified restore.
+  - **F17** — `primary_items: []` mechanism verified end-to-end before use (codec round-trip
+    at `HolderSetCodec:97/:68`, both runtime readers spell `primaryItems.isEmpty() ||
+    stack.is(...)` — absent-Optional means unrestricted, present-empty means never-primary).
+    Tags `in_enchanting_table`/`non_treasure` 24→30; other four availability tags byte-identical.
+    Mob-equip consumer chain cited to file:line (`Mob:1158` → … → `getAvailableEnchantmentResults`
+    `.filter(isPrimaryItemFor)`), **closing batch-2 triage (a)** — the loot-tag membership is not
+    over-generous once primary_items gates it. Stale `RankineEnchantmentBootstrap` comments
+    de-staled (batch-2 triage (c) closed). **Deviation, correct on the evidence:** "zero behavior
+    change" is not literal — 1.21 tests books BEFORE primary_items, so the six become table-
+    offerable on BOOKS again, which is exactly 1.18.2's `isAllowedOnBooks()` behavior that HEAD
+    had lost; gear behavior unchanged, both now asserted.
+  - **F18** — natives `triangle(-50,70)` → `triangle(15,60)`, spheres `uniform(10,40)` →
+    `uniform(26,58)`; counts/sizes/chances untouched. Decision driven by MEASURED End terrain
+    (live generator noise over 1152 outer-ring columns: end stone spans y 11–64, nothing above):
+    natives in-island hit 0.300 → **0.806** (2.7×), spheres 0.603 → **0.825**; old-band waste
+    was 51.4%, not the earlier ~35% estimate. **Two batch-2/C claims refuted:** the sphere band
+    was never "mostly void" (its scarcity is `count=1 × chance=0.3`, a content knob, triaged);
+    and QA's batch-2 "no veins found" was a sampling artifact — even old bands yielded ~18 vein
+    starts per island chunk, so the veins were never missing, just under-sampled. The retune
+    stands on its own merits (waste removal + 2.7×). Engineer C's two End tests needed no
+    changes (they compare ore identity/order and direct execution, not placement).
+  - **Config caveat for changelog:** only DEFAULTS changed — existing `rankine-common.toml`
+    files keep old values for EVERY row (worth a one-time migration note); stale dev TOML
+    deleted and regenerated so QA's client is correct, but QA must explore FRESH End chunks.
+  - **Engineer F triage:** (a) sphere ore scarcity (`count=1 × 0.3`) — content question, not
+    touched; (b) `SphericalOreVeinFeature` offset(8,0,8) defeats InSquarePlacement spread —
+    baseline parity; (c) `assertEmpty` truncation, 7th sighting.
+- 2026-08-19 — QA (Sonnet) launched on the batch-3 visual pass: vacuum + building-mode
+  predicate flips (incl. the pick-block leg), fluid feel (buoyancy expected, not a bug), and
+  the End vein strip-fill hunt on fresh chunks.
+- 2026-08-19 — QA **paused** mid-pass at Karl's request (mid Check 2: the building-mode pick-block
+  control test). Agent context retained for resume.
+- 2026-08-20 — QA resume attempted on the same agent; its transcript had not survived the
+  session reset, so a **fresh QA agent** was launched instead, briefed to recover from disk:
+  72 pre-pause screenshots (`qa3_00`–`qa3_72`, save `New World (4)`) cover Check 1 (vacuum)
+  and most of Check 2 (building mode, three pick-block shots); it re-derives verdicts from
+  conclusive images, re-runs what isn't, then finishes the pick-block control, fluid feel,
+  the End vein strip-fill hunt and sanity.
+- 2026-08-20 — **QA batch-3 pass done, all five checks PASS** (save `New World (4)`, evidence
+  `qa3_00`–`qa3_95` in `.porting/logs/visual/`, CLIENT-TEST-PROGRESS.md updated, client
+  save-and-quit then confirmed no java remaining).
+  - **Check 1 vacuum predicate (F15): PASS** — carried from conclusive pre-pause evidence:
+    `rankine:gas` component present after absorb (`qa3_39_state_nbt`, `qa3_43_reabsorb_chat`),
+    absent after release (`qa3_41_afterrelease_chat`); icon/tooltip states captured.
+  - **Check 2 building-mode pick-block (F15): PASS, re-run** — pre-pause evidence was genuinely
+    ambiguous (pick-block kept reselecting slot 0). The driver lacks middle-click, so QA wrote a
+    scratch PostMessage helper (same non-activating technique, harness untouched). Asymmetric
+    control: mode-1 stack in slot 0, pick-block the placed `chalk_bricks style:2` (F3-confirmed)
+    → slot 0 stayed mode-1, a NEW mode-2 stack appeared in slot 1, `SelectedItemSlot` moved to
+    it (`qa3_80_pickblock_asymmetric_control_PASS`).
+  - **Check 3 fluid feel (F13): PASS** — `/data get entity @s Air` held at max over ~15 s
+    submerged in survival, health 20.0, no bubble bar. Pig bonus: no drowning AND no buoyancy
+    (sinks, `canSwim=false`) — stronger than expected given the flagged `LivingEntity#travel`
+    residual; QA's observation is noted, not treated as refuting the engineer's code reading.
+  - **Check 4 End vein findability (F18): PASS — the headline.** Fresh, never-loaded
+    end_highlands island; one strip-fill exposed a dense floating ore field immediately.
+    Pinned `rankine:native_indium_ore` (1500,28,-22) and `rankine:native_tellurium_ore`
+    (1487,39,-26) by F3 + `/execute if block` text probes.
+  - **Check 5 sanity: PASS** — nothing newly broken observed.
+  - Orchestrator removed the 24 untracked `.porting/tools/_qa3_step*.json` scratch files QA
+    left behind (untracked, pattern-named, harness file untouched).
+
+## Batch 3 status: **COMPLETE** (2026-08-20)
+
+F10–F18 implemented and gate-verified across `f7587f689` (alloy), `3f25463f6` (fluids /
+antimatter / predicates / beach), `b5a824fa7` (decisions #6b + #7); GameTests 35 → **45**, all
+passing; QA pass all PASS. Decisions #6 and #7 closed. Still open for Karl: **#1** (alloy armor
+knockback resistance), **#2–#5** as before. Triage carried forward (candidates for a batch 4):
+the wider F9 gating family (meteorites/fumaroles/flora/trees still overworld-gated);
+`LivingEntity#travel` fluid buoyancy residual (needs `FluidType#move`); alloy block tint never
+rendering + missing tile client sync (now fixable post-F12); the explosive-block
+`BREAK`→`BLOCK` decay question (one 1.18.2 `Explosion.java` lookup); sphere-ore scarcity
+(`count=1 × 0.3`, content); `FluidHelper.travel` dead code; `assertEmpty` >1024-char
+truncation (7 sightings — fix the helper); `BuildingToolItem` NBT audit; crucible/damascus
+steel zero-input alloying (content).
 
 ## Batch 2 status: **COMPLETE** (2026-08-17)
 

@@ -160,6 +160,7 @@ the progress file. Harness docs: `.porting/CLIENT-TESTING.md`.
    `RankineEnchantmentBootstrap` — the literal translation of the 1.18.2 override, zero behavior
    change, lets them join the pool tags AND closes the (a) generosity gap (recommended);
    **(c)** deliberately widen availability beyond 1.18.2 — a gameplay buff, not a port fix.
+   **DECIDED by Karl 2026-08-19: option (b)** — faithful to 1.18.2. Implemented in batch 3.
 7. (Raised by F7 follow-up engineer, 2026-08-17:) End ore veins work (proven at every link by
    GameTest, `ed3765213`) but are **extremely sparse in practice, and were equally sparse in
    1.18.2** — the config numbers are identical at the baseline. The 4 sphere rows (molybdenite/
@@ -168,6 +169,7 @@ the progress file. Harness docs: `.porting/CLIENT-TESTING.md`.
    only ~12% in the island band (y≈40–70). QA could not find a single vein in a two-island
    search. Keep parity, or retune the height bands to the End's actual terrain (a content
    change)?
+   **DECIDED by Karl 2026-08-19: retune — "veins need to be findable."** Implemented in batch 3.
 
 ## Suggested execution order
 

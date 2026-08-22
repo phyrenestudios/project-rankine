@@ -17,7 +17,7 @@ mid-run, this table is the resume point.**
 |---|---|---|---|
 | 1 | All machine GUIs open, slots aligned, text readable | **MOSTLY FINE** | 10/14 opened correctly with legible titles + aligned slots (alloy_furnace, crucible, induction_furnace, fusion_furnace, mixing_barrel, gas_bottler, battery_charger, template_table, MTT-partial; evidence `v_r1_*.png`, `v_r2*_*.png`). Reconciled against code: beehive_oven_pit, charcoal_pit, distillation_tower, particle_accelerator have NO registered menu on HEAD **and none in 1.18** (DistillationTowerBlock had no `use()`) — passive blocks, faithful, NOT regressions. Open item: **material_testing_table title bar renders blank** (`v_r2g_71_title.png`) — GUI + recipe list otherwise fine; check its menu `getDisplayName`/lang key vs 1.18. evaporation_tower was missing from the test bed (likely harness placement failure — its self-degradation randomTick is byte-identical to 1.18 and can't fire on a lone block); its GUI is UNTESTED. |
 | 2 | Alloy armour tinted worn + inventory | **PARTIAL — suspicious** | Inventory icons look grey/untinted (`v_armor2_zoom.png`) — but items given via bare `/give` have no alloy composition, so grey may be correct for dataless items. Worn-model check not done. Static audit still predicts worn armour untinted + overlay missing (RankineArmorMaterials.java:47). Redo with a properly-composed alloy piece. |
-| 3 | Item predicates flip (gas vacuum, building mode) | **NOT TESTED** | Static audit predicts both stuck (ClientSetup.java:93 reads CUSTOM_DATA; data moved to components). |
+| 3 | Item predicates flip (gas vacuum, building mode) | **FIXED (post `b5a824fa7`, F15) — PASS** | See "Batch 3 visual pass" section below. Vacuum full/empty cycle and building-mode pick-block both NBT-proven correct. |
 | 4 | Element blocks solid, not translucent | **NOT TESTED** | Static audit: 104-107 element blocks emitted with translucent render type. |
 | 5 | Fluid buckets show real names | **NOT TESTED** | Static audit predicts raw `fluid_type.rankine.*` keys. |
 | 6 | JEI category text + non-square recipe layout | **NOT TESTED** | (v_zoom1 shots were machine GUIs, not JEI.) |
@@ -69,6 +69,72 @@ Evidence: `.porting/logs/visual/qa2_*.png`.
 - **F6 Antiquated table-pool — NOT ATTEMPTED this session** (optional/confirmatory per WORKSTREAM.md;
   time budget was consumed by the F7 search). Headless GameTest already covers this path per the
   engineer's report.
+
+## Batch 3 visual pass (F13/F15/F18 — session 2026-08-22)
+
+Resumed a paused 2026-08-19/20 QA pass on the same save, `run/saves/New World (4)`. Evidence:
+`.porting/logs/visual/qa3_00`–`qa3_72` (pre-pause) and `qa3_73`–`qa3_95` (this session).
+
+- **Check 1 — gas vacuum full/empty predicate (F15) — PASS.** Verdict **carried from the
+  pre-pause screenshots** (conclusive, not re-run): `qa3_39_state_nbt.png` and
+  `qa3_43_reabsorb_chat.png` show the vacuum's `rankine:gas` component present
+  (`rankine:hydrogen_gas_block`) after absorbing/reabsorbing; `qa3_41_afterrelease_chat.png`
+  shows the component absent (bare `id` only) after releasing. Full empty→filled→empty→filled
+  cycle proven via NBT text probes (`/data get entity @s Inventory[{Slot:0b}]`), the
+  CLIENT-TESTING.md-preferred method over reading icons. Icon crops `qa3_35_tight_filled.png` /
+  `qa3_42_tight_empty_v2.png` show visibly different silhouettes as corroborating (not
+  load-bearing) evidence.
+- **Check 2 — building-mode pick-block asymmetric control (F15) — PASS, re-run this session.**
+  The pre-pause evidence (`qa3_65`/`qa3_68`/`qa3_71_pickblock*_result.png`) was ambiguous by the
+  previous agent's own admission: pick-block kept reselecting slot 0, which could mean either
+  "correctly matched an existing mode-2 stack" or "always defaults to slot 0" — indistinguishable
+  without a control. Driver has no native middle-click (`.porting/tools/mc-client-driver.ps1`
+  only implements left/right `ClickAt`); posted a scratch middle-click via the same
+  non-activating `PostMessage` technique (WM_MBUTTONDOWN/UP) rather than editing the tracked
+  harness. Control: cleared inventory, gave a **mode-1** `rankine:chalk_bricks` stack into slot 0
+  (`qa3_78_control_setup_mode1_nbt.png`), confirmed aim on the placed **mode-2** block via F3
+  (`qa3_79_aim_check_f3_style2.png`: `rankine:chalk_bricks`, `style: 2`), then pick-blocked it.
+  Result (`qa3_80_pickblock_asymmetric_control_PASS.png`): slot 0 **unchanged** at mode 1; a
+  **new** stack appeared in slot 1 with `rankine:building_mode: 2`; `SelectedItemSlot` moved to
+  1; `SelectedItem` confirms the mode-2 stack. Correct behavior — pick-block did not
+  false-positive-match the mismatched slot 0 stack, and correctly minted a fresh mode-2 item,
+  consistent with Engineer E's fix to `BuildingModeBlock#getCloneItemStack`.
+- **Check 3 — F13 fluid feel (maple sap) — PASS.** Built a small enclosed pool
+  (`qa3_81_fluid_pool_built.png`), stood submerged in survival ~15s. `/data get entity @s Air`
+  stayed at `300s` (max, no decay) across three samples ~5s apart; `Health` stayed `20.0f`; HUD
+  screenshots (`qa3_82`/`qa3_83`) show no bubble bar despite being fully submerged with the
+  brown fluid-vision overlay active — confirms `canDrown=false`. Float/drag while inside was
+  observed (expected residual, not a bug). Bonus pig check: a pig submerged in an open room
+  wandered ~39 blocks away over ~15s with `Air` still `300s` (`qa3_85`) — read as normal AI
+  roaming through an under-walled test room, not a fluid-physics anomaly. A tighter fully-glassed
+  re-test (`qa3_86_pig_sank_to_floor_nbt.png`) showed the pig settle to the pool floor (y=64,
+  the fill's bottom) rather than floating, consistent with `canSwim=false`: no buoyancy, no
+  drowning.
+- **Check 4 — F18 End vein findability — PASS, the headline result.** Spectator to
+  `minecraft:the_end` at (1500,75,0); `/locate biome minecraft:end_highlands` → 32 blocks away;
+  landed in an end_highlands island in `New World (4)`'s End dimension, never previously loaded
+  in this save. Got inside around y 44–55 (`qa3_88`), stripped a 31×31×31 interior with
+  `/fill ~-15 ~ ~-15 ~15 ~-30 ~15 air replace #rankine:world_strip` — **"Successfully filled
+  29329 block(s)"**, under the 32768 cap. Result: a dense field of floating ore clusters exposed
+  immediately on every flythrough (`qa3_90`, `qa3_95` — dramatically more findable than the
+  batch-2 "could not confirm" result, matching Engineer F's ~48-vein-starts/chunk claim). Pinned
+  **two different native ores** via F3 aim + `/execute if block` text-probe (both required):
+  `rankine:native_indium_ore` at (1500, 28, -22) (`qa3_91` F3, `qa3_92` probe echo) and
+  `rankine:native_tellurium_ore` at (1487, 39, -26) (`qa3_93` F3, `qa3_94` probe echo). A third
+  and fourth visually distinct ore texture (green-speckled, likely a sphere ore) were seen in the
+  field but not pinned by ID — time-boxed, not required since two were already confirmed.
+- **Check 5 — piggyback sanity — nothing newly broken observed.** Client booted clean, all
+  screens/menus responsive, no crashes, no magenta/missing textures, no console errors surfaced
+  in-band across main menu → world load → overworld building-mode work → maple sap fluid test →
+  End dimension → strip-fill → save-and-quit. Not an exhaustive sweep — scoped to what was
+  actually passed through this session.
+- **World state**: `run/saves/New World (4)` — overworld test room now also holds a
+  glass-enclosed maple sap pool (Check 3); a fresh End island near (1500, y30-55, -20) has a
+  31×31×31 stripped cavity exposing native/sphere ore clusters (Check 4). Client was save-and-quit
+  cleanly (not force-killed) after `/kill`ing test pigs; `Get-Process java,javaw` confirmed empty
+  afterward.
+- **Leftover from the pre-pause agent, not touched**: 24 untracked `.porting/tools/_qa3_step*.json`
+  scratch step files (git-untracked, harmless) — left in place, not part of this session's remit.
 
 ## Not yet attempted at all (future session backlog)
 

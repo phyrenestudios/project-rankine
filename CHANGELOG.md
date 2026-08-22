@@ -82,6 +82,45 @@ All notable changes to the mod, Project Rankine, will be kept in this file.
   verified *never* table-offerable in 1.18.2 (`canApplyAtEnchantingTable()` returned false unconditionally)
   and deliberately stay out.
 
+- **40 tier-3 tool recipes accepted any alloy rod.** Superalloy, ender-amalgam, stainless-steel and
+  tungsten-heavy tools are meant to demand a specific rod (steel, for most); the recipe JSON *encoder* stripped
+  the per-ingredient alloy constraint (the builder emitted it, the codec dropped every data component on the
+  way out), so the generated recipes shipped unconstrained. The encoder writes it back; all 136 regenerated
+  alloy-crafting recipes are equivalent to 1.18.2's again (the 96 armor recipes had lost only display data).
+  Guarded by a crafting GameTest that accepts the right rod and rejects a wrong one.
+- **Packaged tools and armor from loot chests came out blank — or crashed the server.** The packaged-item code
+  discarded the alloy recipe's id, which was only filled in after that alloy had been smelted in the current
+  session, so fresh-world loot gear had no recipe, name or stats. Fixing that exposed an inherited second bug
+  in the same lines: the random alloy draw was bounded by the wrong list, so ~4% of uses (crucible and damascus
+  steel, which declare no element inputs) threw on the server thread. Both fixed; ids now come from the recipe
+  manager, which holds them from datapack load.
+- **Placing then breaking an alloy block wiped its composition.** The break path read a component nothing wrote;
+  it now saves the block entity's real components onto the drop. (Placing already worked in 1.21 — only the
+  break half was broken.)
+- **Rankine fluids drowned, swept and half-cushioned you like water.** 1.18.2 fluids had no entity behavior at
+  all — vanilla only applied drowning, pushing and swimming to water- or lava-tagged fluids, which Rankine's
+  never were. All 16 fluid types now explicitly disable drowning, pushing and swimming, stop counting as
+  walkable water for mob pathing, and no longer halve fall damage (a 1.21 default the review had not spotted).
+  GameTest: a pig sealed in maple sap for 40 ticks keeps full air. One residual is listed under Known
+  Behavior Changes.
+- **An antimatter detonation dropped ~7,000 block items.** The explosion used the non-decaying drop mode where
+  1.18.2's decayed with distance. Measured through the real explosion path: 120/120 stone drops before, 11/120
+  after.
+- **The Shulker Gas Vacuum never showed as filled, and building-mode blocks never changed icon.** Both item-model
+  predicates read legacy custom data while gameplay wrote dedicated components. They now read what is written
+  — and pick-block on a placed building-mode block, which was still *writing* the legacy data and handing back
+  the wrong variant, is fixed as the other half of the same bug. QA-verified: vacuum full/empty both ways,
+  mode icons flip, pick-block returns a fresh mode-2 stack.
+- **Stony shores skipped every beach ore vein.** Same class as the snowy-plains fix: the `beach` worldgen category
+  was mapped to a convention tag that omits `stony_shore`, which 1.18.2 counted as a beach. A mod-owned
+  `rankine:is_beach` tag reproduces the exact 1.18.2 membership (verified against 1.18.2's biome files, and
+  against the mod's own 1.19 branch, which does the same union).
+- **Six armor enchantments — Dune Walker, Snow Drifter, Speed Skater, Swift Swimmer, Gas Protection, Aqua Lense —
+  are now declared the 1.18.2 way.** Each carries an explicitly empty primary-items list, the literal
+  translation of its 1.18.2 "never at the enchanting table" override, and joins the standard availability
+  tags. Gear behavior is unchanged (pinned by the same table-path test as before); enchanted *books* of them
+  are offerable again, which 1.18.2 allowed and the port had lost.
+
 ### FIXES (found while testing the port)
 - **No machine could detect any element.** All 120 element recipes still referenced the dead `forge:` tag
   namespace (`T#forge:ingots/copper` …), which 1.21 NeoForge replaced with `c:`. A nonexistent tag resolves to
@@ -175,9 +214,20 @@ All notable changes to the mod, Project Rankine, will be kept in this file.
 - Cannonball and Enderball post-attack enchantment effects fire only on the victim's side (the projectile
   is ownerless in 1.21)
 
+- **End ore veins are retuned to be findable — deliberate, not parity.** The 1.18.2 height bands sent over half
+  of all End vein attempts into the void below or above the islands. Measured against the live End generator
+  (end stone spans y 11–64), the native gallium/indium/selenium/tellurium veins now use `triangle(15, 60)` and
+  the four sphere ores `uniform(26, 58)`, lifting in-island placement from 30% to 81% for the natives. Counts,
+  sizes and chances are unchanged. **Only the config defaults changed:** an existing `rankine-common.toml` keeps
+  its old values for every worldgen row — delete it or hand-edit those rows to pick up the new bands — and
+  only newly generated End chunks are affected.
+- Entities still get water-style buoyancy and drag while inside a Rankine fluid: vanilla 1.21 hardcodes that
+  for every non-lava fluid in `LivingEntity#travel`, outside what fluid properties control. Drowning, pushing
+  and swimming are off, as in 1.18.2.
+
 ### TESTING
 - Added an automated suite: 24 unit tests (alloy stat curves, drop weighting, the alloy-enchantment gate) and
-  20 GameTests (registry/datapack integrity, machine capabilities and block entities, enchantment applicability
+  45 GameTests (registry/datapack integrity, worldgen selection and placement, the enchanting-table and alloy paths, machine capabilities and block entities, enchantment applicability
   in both directions). `gradlew test` / `gradlew runGameTestServer`; `.porting/verify.sh` drives all five
   verification gates end to end.
 - Two GameTests exist specifically because playtesting exposed silent failure modes no gate could see:
