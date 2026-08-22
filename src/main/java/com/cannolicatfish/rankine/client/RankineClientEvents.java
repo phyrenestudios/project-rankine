@@ -145,6 +145,13 @@ public class RankineClientEvents {
 
     @SubscribeEvent
     public static void registerClientExtensions(final RegisterClientExtensionsEvent event) {
+        // Worn alloy armor: supplies the alloy colour to HumanoidArmorLayer's dyeable layer, which
+        // NeoForge otherwise reads from DataComponents.DYED_COLOR (a component alloy items never
+        // write). See AlloyArmorClientExtensions.
+        event.registerItem(AlloyArmorClientExtensions.INSTANCE,
+                RankineItems.ALLOY_HELMET.get(), RankineItems.ALLOY_CHESTPLATE.get(),
+                RankineItems.ALLOY_LEGGINGS.get(), RankineItems.ALLOY_BOOTS.get());
+
         // All 1.18.2 FluidAttributes used tint 0xFFFFFFFF; still/flowing/overlay textures come from the
         // constants on each fluid's texture-holder class in com.cannolicatfish.rankine.fluids.
         event.registerFluidType(fluidExtensions(LiquidMercuryFluid.FLUID_STILL, LiquidMercuryFluid.FLUID_FLOWING, LiquidMercuryFluid.OVERLAY), RankineFluids.LIQUID_MERCURY_TYPE);

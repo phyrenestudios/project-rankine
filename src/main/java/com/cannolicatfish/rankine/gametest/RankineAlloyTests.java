@@ -1,24 +1,36 @@
 package com.cannolicatfish.rankine.gametest;
 
 import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.blocks.alloys.AlloyBlockTile;
+import com.cannolicatfish.rankine.init.RankineArmorMaterials;
+import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineDataComponents;
 import com.cannolicatfish.rankine.init.RankineItems;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.items.PackagedArmorItem;
 import com.cannolicatfish.rankine.items.PackagedToolItem;
+import com.cannolicatfish.rankine.items.alloys.AlloyArmorItem;
 import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
 import com.cannolicatfish.rankine.recipe.AlloyCraftingRecipe;
 import com.cannolicatfish.rankine.recipe.AlloyingRecipe;
+import com.cannolicatfish.rankine.recipe.helper.AlloyColorHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.gametest.framework.GameTest;
 import net.minecraft.gametest.framework.GameTestAssertException;
 import net.minecraft.gametest.framework.GameTestHelper;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.UseOnContext;
@@ -38,6 +50,7 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -369,5 +382,271 @@ public class RankineAlloyTests {
 
         assertEmpty(problems, "alloy block round-trip failures");
         helper.succeed();
+    }
+
+    // ----------------------------------------------------------------------------------------
+    // Worn alloy armor (review #20/#21/#27)
+    // ----------------------------------------------------------------------------------------
+
+    private static String tex(ArmorMaterial.Layer layer, boolean inner) {
+        return layer.texture(inner).toString();
+    }
+
+    /**
+     * The ALLOY material must declare the two render passes 1.18.2's dyeable branch drew, and the
+     * other five materials must keep declaring exactly one.
+     *
+     * <p>1.18.2 {@code HumanoidArmorLayer#renderArmorPiece} rendered a {@code DyeableArmorItem}
+     * twice: the base texture tinted with {@code getColor(stack)}, then an untinted {@code overlay}
+     * pass. 1.21 turns that pair into the material's layer list, and the port shipped a single
+     * layer, so the second pass had no way to happen and — because the tint is per-layer — the
+     * first pass had nothing marked dyeable to tint. This asserts the layer list itself, since the
+     * render call that consumes it is client-only.
+     *
+     * <p>The non-alloy half is not decoration: {@code Layer} resolves its texture eagerly from the
+     * suffix, and brigandine/rubber/diving/conduit_diving ship no {@code _overlay} asset, so an
+     * overlay layer leaking onto them would draw the missing-texture checkerboard on the player.
+     */
+    @GameTest(template = "empty")
+    public void alloyArmorMaterialDeclaresTintedBaseAndOverlayLayers(GameTestHelper helper) {
+        List<String> problems = new ArrayList<>();
+
+        ArmorMaterial alloy = RankineArmorMaterials.ALLOY.get();
+        if (alloy.layers().size() != 2) {
+            throw new GameTestAssertException("alloy armor material declares " + alloy.layers().size()
+                    + " layer(s), expected 2 (tinted base + untinted overlay)");
+        }
+
+        ArmorMaterial.Layer base = alloy.layers().get(0);
+        ArmorMaterial.Layer overlay = alloy.layers().get(1);
+        if (!base.dyeable()) {
+            problems.add("alloy base layer is not dyeable, so HumanoidArmorLayer would tint it 0xFFFFFFFF");
+        }
+        if (overlay.dyeable()) {
+            problems.add("alloy overlay layer is dyeable; 1.18.2 drew the overlay pass untinted at (1,1,1)");
+        }
+        if (!"rankine:textures/models/armor/alloy_layer_1.png".equals(tex(base, false))) {
+            problems.add("alloy base outer texture " + tex(base, false));
+        }
+        if (!"rankine:textures/models/armor/alloy_layer_2.png".equals(tex(base, true))) {
+            problems.add("alloy base inner texture " + tex(base, true));
+        }
+        if (!"rankine:textures/models/armor/alloy_layer_1_overlay.png".equals(tex(overlay, false))) {
+            problems.add("alloy overlay outer texture " + tex(overlay, false));
+        }
+        if (!"rankine:textures/models/armor/alloy_layer_2_overlay.png".equals(tex(overlay, true))) {
+            problems.add("alloy overlay inner texture " + tex(overlay, true));
+        }
+
+        Map<String, ArmorMaterial> singleLayerMaterials = Map.of(
+                "brigandine", RankineArmorMaterials.BRIGANDINE.get(),
+                "rubber", RankineArmorMaterials.RUBBER.get(),
+                "diving", RankineArmorMaterials.DIVING.get(),
+                "conduit_diving", RankineArmorMaterials.CONDUIT_DIVING.get());
+        for (Map.Entry<String, ArmorMaterial> entry : singleLayerMaterials.entrySet()) {
+            List<ArmorMaterial.Layer> layers = entry.getValue().layers();
+            if (layers.size() != 1) {
+                problems.add(entry.getKey() + " declares " + layers.size() + " layers, expected 1 (it ships no _overlay texture)");
+                continue;
+            }
+            if (layers.get(0).dyeable()) {
+                problems.add(entry.getKey() + " layer is dyeable, expected untinted");
+            }
+            String expected = "rankine:textures/models/armor/" + entry.getKey() + "_layer_1.png";
+            if (!expected.equals(tex(layers.get(0), false))) {
+                problems.add(entry.getKey() + " outer texture " + tex(layers.get(0), false) + ", expected " + expected);
+            }
+        }
+
+        // The layer list only matters for pieces that actually use this material.
+        for (Item item : List.of(RankineItems.ALLOY_HELMET.get(), RankineItems.ALLOY_CHESTPLATE.get(),
+                RankineItems.ALLOY_LEGGINGS.get(), RankineItems.ALLOY_BOOTS.get())) {
+            if (!(item instanceof ArmorItem armorItem)) {
+                problems.add(BuiltInRegistries.ITEM.getKey(item) + " is not an ArmorItem");
+            } else if (armorItem.getMaterial().value() != alloy) {
+                problems.add(BuiltInRegistries.ITEM.getKey(item) + " does not use the alloy armor material");
+            }
+        }
+
+        assertEmpty(problems, "alloy armor layer problems");
+        helper.succeed();
+    }
+
+    /**
+     * Worn armor and the inventory icon must read one colour through one accessor.
+     *
+     * <p>The port tinted the icon from {@code RankineDataComponents.COLOR} but left the worn layer
+     * on NeoForge's default fallback, {@code DataComponents.DYED_COLOR} behind an
+     * {@code ItemTags.DYEABLE} check — a component and a tag the mod never uses — so the worn piece
+     * rendered 0xFFFFFFFF while its own icon was bronze. Both now call
+     * {@code AlloyColorHelper#getTintARGB}: {@code AlloyItemColor#getColor} for the icon,
+     * {@code AlloyArmorClientExtensions#getDefaultDyeColor} for the worn layer (both client-only
+     * classes, hence the assertion on the shared accessor).
+     *
+     * <p>The alpha half is not cosmetic: 1.21 multiplies the quad by the returned ARGB, and every
+     * Rankine colour is a plain 0xRRGGBB whose alpha byte is 0, which renders nothing at all.
+     */
+    @GameTest(template = "empty")
+    public void alloyArmorTintReadsTheSameColourAsTheIcon(GameTestHelper helper) {
+        List<String> problems = new ArrayList<>();
+        final int color = 0x2E86AB;
+
+        for (Item item : List.of(RankineItems.ALLOY_HELMET.get(), RankineItems.ALLOY_CHESTPLATE.get(),
+                RankineItems.ALLOY_LEGGINGS.get(), RankineItems.ALLOY_BOOTS.get())) {
+            String name = String.valueOf(BuiltInRegistries.ITEM.getKey(item));
+
+            ItemStack stack = new ItemStack(item);
+            stack.set(RankineDataComponents.COLOR.get(), color);
+
+            int tint = AlloyColorHelper.getTintARGB(stack);
+            if (tint != (0xFF000000 | color)) {
+                problems.add(name + " worn tint " + Integer.toHexString(tint)
+                        + ", expected " + Integer.toHexString(0xFF000000 | color));
+            }
+            if (!(item instanceof AlloyArmorItem armor)) {
+                problems.add(name + " is not an AlloyArmorItem");
+            } else if (armor.getColor(stack) != color) {
+                problems.add(name + " AlloyArmorItem#getColor " + armor.getColor(stack) + ", expected " + color);
+            }
+
+            // No colour yet (a stack that has not had an inventory tick): untinted white, never
+            // transparent black.
+            ItemStack bare = new ItemStack(item);
+            int bareTint = AlloyColorHelper.getTintARGB(bare);
+            if (bareTint != 0xFFFFFFFF) {
+                problems.add(name + " colourless tint " + Integer.toHexString(bareTint) + ", expected ffffffff");
+            }
+        }
+
+        assertEmpty(problems, "alloy armor tint problems");
+        helper.succeed();
+    }
+
+    // ----------------------------------------------------------------------------------------
+    // Alloy block client sync (decision 8A; batch-3 Engineer D triage (a)/(b))
+    // ----------------------------------------------------------------------------------------
+
+    /**
+     * A placed alloy block must hand its alloy to the client, or nothing client-side can see it.
+     *
+     * <p>{@link net.minecraft.world.level.block.entity.BlockEntity} defaults to an EMPTY update tag
+     * and a NULL update packet, and 1.18.2's AlloyBlockTile overrode neither. So the client copy of
+     * an alloy block carried no alloy at all: {@code AlloyBlockColor} had nothing to tint with, and
+     * pick-block — {@code Minecraft#pickBlock}, which calls
+     * {@code BlockState#getCloneItemStack} against the CLIENT level — returned a bare block.
+     *
+     * <p>Covers both wires with the real serialisation: the chunk-load tag
+     * ({@code getUpdateTag} → {@code loadWithComponents}, what {@code LevelChunk#replaceWithPacketData}
+     * does) and the placement packet ({@code getUpdatePacket}, what
+     * {@code ChunkHolder#broadcastBlockEntityIfNeeded} sends), then the pick-block call itself.
+     */
+    @GameTest(template = "empty")
+    public void alloyBlockSyncsItsAlloyToTheClient(GameTestHelper helper) {
+        var level = helper.getLevel();
+        List<String> problems = new ArrayList<>();
+
+        final String composition = "60Au-40Cu";
+        final String alloyRecipe = "rankine:alloying/rose_gold_alloying";
+        final String nameOverride = "item.rankine.rose_gold_alloying";
+        final int color = 0x2E86AB;
+
+        ItemStack placing = new ItemStack(RankineItems.ALLOY_BLOCK.get());
+        placing.set(RankineDataComponents.ALLOY_COMPOSITION.get(), composition);
+        placing.set(RankineDataComponents.ALLOY_RECIPE.get(), ResourceLocation.parse(alloyRecipe));
+        placing.set(RankineDataComponents.NAME_OVERRIDE.get(), nameOverride);
+        placing.set(RankineDataComponents.COLOR.get(), color);
+
+        BlockPos floor = new BlockPos(1, 1, 1);
+        BlockPos target = floor.above();
+        helper.setBlock(floor, Blocks.STONE);
+        helper.setBlock(target, Blocks.AIR);
+
+        Player player = helper.makeMockPlayer(GameType.SURVIVAL);
+        player.setItemInHand(InteractionHand.MAIN_HAND, placing);
+
+        BlockPos absFloor = helper.absolutePos(floor);
+        BlockHitResult hit = new BlockHitResult(
+                Vec3.atCenterOf(absFloor).add(0.0D, 0.5D, 0.0D), Direction.UP, absFloor, false);
+        placing.useOn(new UseOnContext(player, InteractionHand.MAIN_HAND, hit));
+
+        BlockPos absTarget = helper.absolutePos(target);
+        BlockState placed = level.getBlockState(absTarget);
+        if (!placed.is(RankineBlocks.ALLOY_BLOCK.get())) {
+            throw new GameTestAssertException("alloy block did not place; found " + placed);
+        }
+        if (!(level.getBlockEntity(absTarget) instanceof AlloyBlockTile tile)) {
+            throw new GameTestAssertException("placed alloy block has no AlloyBlockTile");
+        }
+
+        // (1) The colour the block color handler asks for.
+        if (tile.getAlloyColor() != color) {
+            problems.add("tile colour " + tile.getAlloyColor() + ", expected " + color);
+        }
+
+        // (2) Chunk-load wire: save -> fresh tile -> load must reproduce the whole alloy.
+        CompoundTag updateTag = tile.getUpdateTag(level.registryAccess());
+        if (updateTag.isEmpty()) {
+            throw new GameTestAssertException("getUpdateTag is empty; the client would receive no alloy data");
+        }
+        AlloyBlockTile fresh = new AlloyBlockTile(absTarget, placed);
+        fresh.loadWithComponents(updateTag, level.registryAccess());
+        problems.addAll(alloyMismatches("update tag", fresh, composition, alloyRecipe, nameOverride, color));
+
+        // (3) Placement wire: the same data, through the packet ChunkHolder actually sends.
+        Packet<ClientGamePacketListener> packet = tile.getUpdatePacket();
+        if (packet == null) {
+            throw new GameTestAssertException("getUpdatePacket is null; a freshly placed alloy block syncs nothing");
+        }
+        if (!(packet instanceof ClientboundBlockEntityDataPacket dataPacket)) {
+            throw new GameTestAssertException("getUpdatePacket returned " + packet.getClass().getName());
+        }
+        AlloyBlockTile fromPacket = new AlloyBlockTile(absTarget, placed);
+        fromPacket.loadWithComponents(dataPacket.getTag(), level.registryAccess());
+        problems.addAll(alloyMismatches("update packet", fromPacket, composition, alloyRecipe, nameOverride, color));
+
+        // (4) Pick-block. Minecraft#pickBlock runs exactly this against the client level.
+        ItemStack picked = placed.getCloneItemStack(hit, level, absTarget, player);
+        if (!picked.is(RankineItems.ALLOY_BLOCK.get())) {
+            problems.add("pick-block returned " + picked);
+        } else {
+            if (!composition.equals(IAlloyItem.getAlloyComposition(picked))) {
+                problems.add("pick-block composition '" + IAlloyItem.getAlloyComposition(picked) + "'");
+            }
+            ResourceLocation pickedRecipe = IAlloyItem.getAlloyRecipe(picked);
+            if (pickedRecipe == null || !alloyRecipe.equals(pickedRecipe.toString())) {
+                problems.add("pick-block alloy recipe " + pickedRecipe);
+            }
+            if (!nameOverride.equals(IAlloyItem.getNameOverride(picked))) {
+                problems.add("pick-block name override '" + IAlloyItem.getNameOverride(picked) + "'");
+            }
+            if (IAlloyItem.getColorNBT(picked) != color) {
+                problems.add("pick-block colour " + IAlloyItem.getColorNBT(picked) + ", expected " + color);
+            }
+        }
+
+        assertEmpty(problems, "alloy block client-sync failures");
+        helper.succeed();
+    }
+
+    private static List<String> alloyMismatches(String what, AlloyBlockTile tile, String composition,
+                                                String alloyRecipe, String nameOverride, int color) {
+        List<String> problems = new ArrayList<>();
+        var held = tile.collectComponents();
+        if (!composition.equals(held.get(RankineDataComponents.ALLOY_COMPOSITION.get()))) {
+            problems.add(what + " composition '" + held.get(RankineDataComponents.ALLOY_COMPOSITION.get())
+                    + "', expected '" + composition + "'");
+        }
+        ResourceLocation recipe = held.get(RankineDataComponents.ALLOY_RECIPE.get());
+        if (recipe == null || !alloyRecipe.equals(recipe.toString())) {
+            problems.add(what + " alloy recipe " + recipe + ", expected " + alloyRecipe);
+        }
+        if (!nameOverride.equals(held.get(RankineDataComponents.NAME_OVERRIDE.get()))) {
+            problems.add(what + " name override '" + held.get(RankineDataComponents.NAME_OVERRIDE.get())
+                    + "', expected '" + nameOverride + "'");
+        }
+        if (tile.getAlloyColor() != color) {
+            problems.add(what + " colour " + tile.getAlloyColor() + ", expected " + color);
+        }
+        return problems;
     }
 }

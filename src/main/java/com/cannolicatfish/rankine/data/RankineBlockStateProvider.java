@@ -145,9 +145,32 @@ public class RankineBlockStateProvider extends BlockStateProvider {
                 RankineLists.MINERAL_WOOL,
                 RankineLists.STANDARD_BLOCKS,
                 RankineLists.MINERAL_BLOCKS
-            ).flatMap(Collection::stream).collect(Collectors.toList())) {
+            ).flatMap(Collection::stream)
+             // The generic Alloy Block takes the tinted cube below instead.
+             .filter(b -> b != RankineBlocks.ALLOY_BLOCK.get())
+             .collect(Collectors.toList())) {
             simpleBlock(blk);
         }
+
+        // The generic Alloy Block is the only alloy block whose colour comes from its own alloy
+        // (AlloyBlockColor for the placed block, AlloyItemColor for the icon; the other 35 in
+        // ALLOY_BLOCKS have a fixed texture per alloy). Both handlers were dead because the model
+        // was plain minecraft:block/cube_all, which carries no tintindex — BlockColors/ItemColors
+        // are only consulted for quads that declare one — so no colour source could ever have
+        // rendered. Same geometry as cube_all with tintindex 0 on all six faces; the item model
+        // parents to this one, so the inventory icon picks the tint up too.
+        getVariantBuilder(RankineBlocks.ALLOY_BLOCK.get())
+                .partialState().modelForState().modelFile(models().withExistingParent(RankineDataUtils.rl(RankineBlocks.ALLOY_BLOCK.get()).getPath(), mcLoc("block/block"))
+                    .texture("particle", getBlockRSL("alloy_block"))
+                    .texture("all", getBlockRSL("alloy_block"))
+                    .element().from(0.0f,0.0f,0.0f).to(16.0f,16.0f,16.0f)
+                    .face(Direction.NORTH).texture("#all").tintindex(0).cullface(Direction.NORTH).end()
+                    .face(Direction.EAST).texture("#all").tintindex(0).cullface(Direction.EAST).end()
+                    .face(Direction.SOUTH).texture("#all").tintindex(0).cullface(Direction.SOUTH).end()
+                    .face(Direction.WEST).texture("#all").tintindex(0).cullface(Direction.WEST).end()
+                    .face(Direction.UP).texture("#all").tintindex(0).cullface(Direction.UP).end()
+                    .face(Direction.DOWN).texture("#all").tintindex(0).cullface(Direction.DOWN).end()
+                    .end()).addModel();
 
         for (Block blk : Arrays.asList(
                 RankineBlocks.ENDER_SHIRO.get(),

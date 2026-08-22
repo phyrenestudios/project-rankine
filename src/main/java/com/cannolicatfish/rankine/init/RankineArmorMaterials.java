@@ -61,6 +61,31 @@ public class RankineArmorMaterials {
             () -> Ingredient.of(Items.PRISMARINE, Items.PRISMARINE_CRYSTALS, Items.CONDUIT));
 
     /**
+     * The worn-armor render passes for one material.
+     *
+     * <p>1.18.2's {@code HumanoidArmorLayer#renderArmorPiece} branched on
+     * {@code armoritem instanceof DyeableArmorItem} and, on that branch, rendered the piece TWICE:
+     * {@code <name>_layer_N.png} tinted with {@code getColor(stack)}, then
+     * {@code <name>_layer_N_overlay.png} untinted at (1,1,1). 1.21 expresses the same thing as a
+     * list of {@link ArmorMaterial.Layer}s — {@code dyeable} selects the tint, the suffix selects
+     * the texture — so the dyeable material (ALLOY) needs both entries or the second pass is lost.
+     * Non-dyeable materials keep the single untinted pass they had in 1.18.2; they ship no
+     * {@code _overlay} texture and a second layer would resolve to a missing one.
+     *
+     * <p>Known and deliberate: {@code alloy_layer_1_overlay.png} and {@code alloy_layer_2_overlay.png}
+     * are 64x32 images with zero non-transparent pixels, so with the shipped assets this second pass
+     * draws nothing — exactly as in 1.18.2, where it also drew nothing. It is restored for render
+     * parity and because a resource pack may supply real overlay textures, which 1.18.2 honoured.
+     */
+    private static List<ArmorMaterial.Layer> layers(String name, boolean dyeable) {
+        ResourceLocation asset = ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID, name);
+        return dyeable
+                ? List.of(new ArmorMaterial.Layer(asset, "", true),
+                          new ArmorMaterial.Layer(asset, "_overlay", false))
+                : List.of(new ArmorMaterial.Layer(asset, "", false));
+    }
+
+    /**
      * @param defense per-slot defense in old array order [boots, leggings, chestplate, helmet]
      *                (indexed by EquipmentSlot#getIndex, like the 1.18.2 enum).
      */
@@ -79,7 +104,7 @@ public class RankineArmorMaterials {
                 enchantability,
                 equipSound,
                 repairIngredient,
-                List.of(new ArmorMaterial.Layer(ResourceLocation.fromNamespaceAndPath(ProjectRankine.MODID, name), "", dyeable)),
+                layers(name, dyeable),
                 toughness,
                 knockbackResistance));
     }
