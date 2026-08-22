@@ -51,8 +51,13 @@ public class MaterialTestingTableScreen extends AbstractContainerScreen<Material
         guiGraphics.blit(GUI, x, y, 0, 0, this.imageWidth, this.imageHeight, this.textureXSize, this.textureYSize);
     }
 
+    // Port fix F24: this method fully overrides AbstractContainerScreen#renderLabels to draw the
+    // element/alloy stat readout, but never called super (baseline 1.18.2 had the identical gap),
+    // so the GUI's own title -- now a real "Material Testing Table" component, see
+    // MaterialTestingTableTile#getDisplayName -- was never drawn and the title bar sat blank.
     @Override
     protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
+        super.renderLabels(guiGraphics, mouseX, mouseY);
         Level worldIn = Minecraft.getInstance().level;
         if (worldIn != null)
         {

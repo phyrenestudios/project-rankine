@@ -751,16 +751,22 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         java.util.List<Block> cutoutMipped = new java.util.ArrayList<>();
         java.util.List<Block> translucent = new java.util.ArrayList<>();
 
+        // Stone bricks ONLY (port fix F21 / UNVERIFIED-FINDINGS.md "1,224 stone-brick ... models
+        // newly forced to the unmipped cutout layer"). Baseline ClientProxy.java:106-114 filtered
+        // each stone's block list on "instanceof RankineStoneBricksBlock" before calling
+        // addCutout; only Stone.getBricks()/getMossyBricks() are that type
+        // (RankineStone.java:27-28) -- the slab/stairs/wall/pressure-plate siblings are
+        // RankineSlabBlock/RankineStairsBlock/RankineWallBlock/RankineStonePressurePlate and
+        // stayed on the solid, mipmapped layer in 1.18.2. Kept out of the general `cutout` list
+        // below and matched in restrictive mode (see the bottom of this method): "<stone>_bricks"
+        // is a literal string-prefix of "<stone>_bricks_slab" etc., so even without those four
+        // ever being added explicitly, the permissive underscore-suffix matcher would otherwise
+        // re-claim their generated models for cutout the moment getBricks()/getMossyBricks() are
+        // in a permissively-matched list.
+        java.util.List<Block> stoneBricksOnly = new java.util.ArrayList<>();
         for (RankineStone Stone : RankineLists.RANKINE_STONES) {
-            cutout.add(Stone.getBricks());
-            cutout.add(Stone.getMossyBricks());
-            cutout.add(Stone.getBricksSlab());
-            cutout.add(Stone.getMossyBricksSlab());
-            cutout.add(Stone.getBricksStairs());
-            cutout.add(Stone.getMossyBricksStairs());
-            cutout.add(Stone.getBricksWall());
-            cutout.add(Stone.getMossyBricksWall());
-            cutout.add(Stone.getBricksPressurePlate());
+            stoneBricksOnly.add(Stone.getBricks());
+            stoneBricksOnly.add(Stone.getMossyBricks());
         }
         for (RankineWood Wood : RankineLists.RANKINE_WOODS) {
             cutout.add(Wood.getTrapdoor());
@@ -806,7 +812,19 @@ public class RankineBlockStateProvider extends BlockStateProvider {
 
         translucent.addAll(RankineLists.GAS_BLOCKS);
         translucent.addAll(RankineLists.LIGHTNING_GLASSES);
-        translucent.addAll(RankineLists.ELEMENT_BLOCKS);
+        // Port fix F21 / findings #28 + #47: baseline ClientProxy.java:210-233 named exactly
+        // these twelve GASEOUS element blocks in its addTranslucent(...) call. Every other entry
+        // in RankineLists.ELEMENT_BLOCKS (104 of 116) had no render layer registered at all in
+        // 1.18.2 and rendered on the default solid layer -- their textures are opaque palette
+        // PNGs with no alpha channel, never meant to blend. `translucent.addAll(ELEMENT_BLOCKS)`
+        // swept in all 116, including the 104 solid metal/mineral storage blocks.
+        translucent.addAll(Arrays.asList(
+                RankineBlocks.HYDROGEN_BLOCK.get(), RankineBlocks.HELIUM_BLOCK.get(),
+                RankineBlocks.NITROGEN_BLOCK.get(), RankineBlocks.OXYGEN_BLOCK.get(),
+                RankineBlocks.FLUORINE_BLOCK.get(), RankineBlocks.NEON_BLOCK.get(),
+                RankineBlocks.CHLORINE_BLOCK.get(), RankineBlocks.ARGON_BLOCK.get(),
+                RankineBlocks.KRYPTON_BLOCK.get(), RankineBlocks.XENON_BLOCK.get(),
+                RankineBlocks.RADON_BLOCK.get(), RankineBlocks.OGANESSON_BLOCK.get()));
         translucent.addAll(Arrays.asList(
                 RankineBlocks.SODIUM_CHLORIDE_BLOCK.get(), RankineBlocks.PINK_SALT_BLOCK.get(),
                 RankineBlocks.ICE_BRICKS.get(), RankineBlocks.ICE_BRICKS_SLAB.get(),
@@ -820,9 +838,16 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         renderType(translucent, "translucent");
         renderType(cutout, "cutout");
         renderType(cutoutMipped, "cutout_mipped");
+        // Restrictive mode (no underscore-suffix sweep) -- see the comment on stoneBricksOnly
+        // above for why stone bricks cannot go through the permissive matcher above.
+        renderType(stoneBricksOnly, "cutout", false);
     }
 
     private void renderType(java.util.List<Block> blocks, String type) {
+        renderType(blocks, type, true);
+    }
+
+    private void renderType(java.util.List<Block> blocks, String type, boolean allowUnderscoreSuffix) {
         java.util.List<String> paths = blocks.stream()
                 .filter(java.util.Objects::nonNull)
                 .map(b -> "block/" + RankineDataUtils.rl(b).getPath())
@@ -834,13 +859,20 @@ public class RankineBlockStateProvider extends BlockStateProvider {
                 if (!loc.getNamespace().equals(ProjectRankine.MODID)) return;
                 String path = loc.getPath();
                 // Some generators name their models with a bare digit suffix (short_grass0/1/2,
-                // stepping stones, columns) rather than base_variant. Without the digits branch,
-                // SHORT_GRASS's three models got no render_type at all and the plant rendered
-                // its transparent pixels as opaque black in 1.21.
+                // stepping stones, columns, the two fancy stone-bricks variants) rather than
+                // base_variant. Without the digits branch, SHORT_GRASS's three models got no
+                // render_type at all and the plant rendered its transparent pixels as opaque
+                // black in 1.21.
                 boolean digitSuffix = path.length() > base.length()
                         && path.startsWith(base)
                         && path.substring(base.length()).chars().allMatch(Character::isDigit);
-                if (!(path.equals(base) || path.startsWith(base + "_") || digitSuffix)) return;
+                // Underscore-suffix matching lets one base (e.g. a crop) claim every one of its
+                // own "_stageN" sub-models. It is also exactly what over-applies cutout to a
+                // sibling block whose name happens to extend this one with an underscore (stone
+                // bricks -> bricks_slab/_stairs/_wall/_pressure_plate); callers with that hazard
+                // pass allowUnderscoreSuffix=false and rely on exact-match/digitSuffix only.
+                boolean underscoreSuffix = allowUnderscoreSuffix && path.startsWith(base + "_");
+                if (!(path.equals(base) || underscoreSuffix || digitSuffix)) return;
                 if (!renderTyped.add(loc)) return;
                 builder.renderType(type);
             });

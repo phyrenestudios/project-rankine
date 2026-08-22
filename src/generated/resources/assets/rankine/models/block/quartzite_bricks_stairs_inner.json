@@ -1,6 +1,5 @@
 {
   "parent": "minecraft:block/inner_stairs",
-  "render_type": "minecraft:cutout",
   "textures": {
     "bottom": "rankine:block/quartzite_bricks",
     "side": "rankine:block/quartzite_bricks",

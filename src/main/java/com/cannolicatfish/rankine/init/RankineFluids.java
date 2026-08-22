@@ -185,6 +185,15 @@ public class RankineFluids {
         return FLUID_TYPES.register(name, () -> new FluidType(FluidType.Properties.create()
                 .density(1000)
                 .viscosity(viscosity)
+                // Port fix F22 / finding #30: FluidType.getDescriptionId() defaults to
+                // Util.makeDescriptionId("fluid_type", <registry key>) = "fluid_type.rankine.<name>"
+                // (FluidType.java:146-152), which has no lang entry anywhere -- FluidStack#getHoverName
+                // (buckets, tanks, this mod's own FusionFurnaceScreen/MixingBarrelScreen tooltips, JEI)
+                // rendered the raw key. 1.18.2's FluidAttributes defaulted to "fluid.rankine.<name>"
+                // (Util.makeDescriptionId("fluid", ...)) and RankineLangProvider already carries all 16
+                // of those exact keys (still generated today), so pointing back at the old key format
+                // is zero lang churn and keeps the ru_ru translation alive.
+                .descriptionId("fluid." + ProjectRankine.MODID + "." + name)
                 .canDrown(false)
                 .canPushEntity(false)
                 .canSwim(false)

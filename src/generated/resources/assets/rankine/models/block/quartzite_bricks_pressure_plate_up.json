@@ -1,6 +1,5 @@
 {
   "parent": "minecraft:block/pressure_plate_up",
-  "render_type": "minecraft:cutout",
   "textures": {
     "texture": "rankine:block/quartzite_bricks"
   }

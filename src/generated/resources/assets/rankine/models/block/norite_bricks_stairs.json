@@ -1,6 +1,5 @@
 {
   "parent": "minecraft:block/stairs",
-  "render_type": "minecraft:cutout",
   "textures": {
     "bottom": "rankine:block/norite_bricks",
     "side": "rankine:block/norite_bricks",

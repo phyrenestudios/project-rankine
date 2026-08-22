@@ -1,6 +1,5 @@
 {
   "parent": "minecraft:block/pressure_plate_down",
-  "render_type": "minecraft:cutout",
   "textures": {
     "texture": "rankine:block/mica_schist_bricks"
   }

@@ -1,6 +1,5 @@
 {
   "parent": "minecraft:block/slab_top",
-  "render_type": "minecraft:cutout",
   "textures": {
     "bottom": "rankine:block/nepheline_syenite_bricks",
     "side": "rankine:block/nepheline_syenite_bricks",

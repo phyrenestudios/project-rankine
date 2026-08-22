@@ -1,6 +1,5 @@
 {
   "parent": "minecraft:block/wall_inventory",
-  "render_type": "minecraft:cutout",
   "textures": {
     "wall": "rankine:block/itacolumite_bricks"
   }

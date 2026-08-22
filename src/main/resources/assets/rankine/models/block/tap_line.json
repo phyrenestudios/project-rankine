@@ -1,4 +1,5 @@
 {
+	"render_type": "minecraft:cutout",
 	"textures": {
 		"0": "rankine:block/vulcanized_rubber_block",
 		"particle": "rankine:block/vulcanized_rubber_block"

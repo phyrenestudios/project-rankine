@@ -1,6 +1,5 @@
 {
   "parent": "minecraft:block/stairs",
-  "render_type": "minecraft:cutout",
   "textures": {
     "bottom": "rankine:block/mossy_post_perovskite_bricks",
     "side": "rankine:block/mossy_post_perovskite_bricks",

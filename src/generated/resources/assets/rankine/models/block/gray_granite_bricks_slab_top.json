@@ -1,6 +1,5 @@
 {
   "parent": "minecraft:block/slab_top",
-  "render_type": "minecraft:cutout",
   "textures": {
     "bottom": "rankine:block/gray_granite_bricks",
     "side": "rankine:block/gray_granite_bricks",

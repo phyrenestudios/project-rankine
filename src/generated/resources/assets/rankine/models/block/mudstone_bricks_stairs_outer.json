@@ -1,6 +1,5 @@
 {
   "parent": "minecraft:block/outer_stairs",
-  "render_type": "minecraft:cutout",
   "textures": {
     "bottom": "rankine:block/mudstone_bricks",
     "side": "rankine:block/mudstone_bricks",

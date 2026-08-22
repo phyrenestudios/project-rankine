@@ -1,5 +1,6 @@
 {
 	"parent": "block/block",
+	"render_type": "minecraft:cutout_mipped",
 	"textures": {
 		"0": "rankine:block/cob",
 		"1": "rankine:block/cob_fibers",

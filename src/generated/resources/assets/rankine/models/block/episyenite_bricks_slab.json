@@ -1,6 +1,5 @@
 {
   "parent": "minecraft:block/slab",
-  "render_type": "minecraft:cutout",
   "textures": {
     "bottom": "rankine:block/episyenite_bricks",
     "side": "rankine:block/episyenite_bricks",

@@ -1,5 +1,6 @@
 {
 	"credit": "Made with Blockbench",
+	"render_type": "minecraft:cutout",
 	"textures": {
 		"0": "rankine:block/cast_iron_block",
 		"1": "rankine:block/vulcanized_rubber_block",

@@ -1,4 +1,5 @@
 {
+	"render_type": "minecraft:cutout",
 	"textures": {
 		"0": "rankine:block/cast_iron_block",
 		"particle": "rankine:block/cast_iron_block"

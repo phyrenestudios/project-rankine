@@ -6,7 +6,6 @@ import com.cannolicatfish.rankine.items.alloys.IAlloyItem;
 import com.cannolicatfish.rankine.recipe.helper.AlloyCustomHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.Inventory;
@@ -67,9 +66,17 @@ public class MaterialTestingTableTile extends BlockEntity implements WorldlyCont
             return handlers[2];
     }
 
+    // Port fix F24: this returned a literal, untranslated registry path (1.18.2 baseline did the
+    // same: `new TextComponent(getType().getRegistryName().getPath())`) AND
+    // MaterialTestingTableScreen#renderLabels never actually drew this component anywhere (it
+    // fully overrides the method without calling super.renderLabels() or the baseline's
+    // equivalent) -- both true in 1.18.2 too, so the MTT title bar was blank there as well. Fixed
+    // for the release: a real translatable name, resolved via the block's own existing
+    // "block.rankine.material_testing_table" lang key (same one every other block already gets
+    // from the lang provider -- no new key, no lang churn).
     @Override
     public Component getDisplayName() {
-        return Component.literal(BuiltInRegistries.BLOCK_ENTITY_TYPE.getKey(this.getType()).getPath());
+        return this.getBlockState().getBlock().getName();
     }
 
     @Override
