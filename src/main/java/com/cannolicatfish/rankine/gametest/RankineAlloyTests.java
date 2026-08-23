@@ -628,6 +628,122 @@ public class RankineAlloyTests {
         helper.succeed();
     }
 
+
+    // ----------------------------------------------------------------------------------------
+    // F20b — a crafted alloy block must carry the alloy's colour, not just its composition
+    // ----------------------------------------------------------------------------------------
+
+    /**
+     * Crafting nine alloy ingots into a {@code rankine:alloy_block} must produce a block that is
+     * tinted with the alloy's colour, and melting it back down must not lose it again.
+     *
+     * <p>F19/F20 made the colour RENDER — the tint slot, the block-entity sync and pick-block all
+     * read {@code RankineDataComponents.COLOR} now — but left the survival path with nothing to
+     * render: an alloy ingot leaves the alloy furnace carrying its alloying recipe's colour
+     * ({@code AlloyingRecipe#assemble}), while {@code AlloyCraftingRecipe#assemble} inherited only
+     * the composition and the recipe id. The block therefore came out with the alloy's identity and
+     * none of its colour, and the return trip lost it a second time.
+     *
+     * <p>It could not be fixed in the recipe JSON: alloy_block is the ONE alloy_crafting recipe fed
+     * by the generic {@code rankine:alloy_ingot}, so it can be any alloy and no single {@code color}
+     * field is right — which is exactly why it ships the white sentinel. The 102 recipes that DO
+     * name a colour are each fed by one specific named ingot.
+     *
+     * <p>The scope of the inheritance is asserted in both directions, because it is a judgement
+     * call rather than a mechanical fix: the generic items take the ingredient colour, and a NAMED
+     * result — {@code rankine:steel_block}, whose recipe is also {@code inherit} + sentinel — must
+     * still come out with no COLOR component at all, since its texture is already steel-coloured
+     * and a component there would only split stack identity.
+     */
+    @GameTest(template = "empty")
+    public void craftedAlloyBlockKeepsTheAlloyColour(GameTestHelper helper) {
+        var level = helper.getLevel();
+        List<String> problems = new ArrayList<>();
+
+        final String composition = "60Au-40Cu";
+        final String alloyRecipe = "rankine:alloying/rose_gold_alloying";
+        final int color = 0x2E86AB;
+
+        ItemStack sourceIngot = ingot("rankine:alloy_ingot", composition, alloyRecipe);
+        IAlloyItem.addColorNBT(sourceIngot, color);
+
+        // 9 ingots -> one alloy block, through the real recipe.
+        ItemStack block = craft(level, problems, "rankine:alloy_block", 3, 3, sourceIngot);
+        if (block != null) {
+            if (!block.is(RankineItems.ALLOY_BLOCK.get())) {
+                problems.add("alloy_block recipe produced " + block);
+            }
+            problems.addAll(craftedAlloyMismatches("crafted alloy block", block, composition, alloyRecipe, color));
+
+            // ...and back out again: block -> 9 ingots must not drop it either.
+            ItemStack backToIngots = craft(level, problems, "rankine:alloy_ingot_from_alloy_block", 1, 1, block);
+            if (backToIngots != null) {
+                problems.addAll(craftedAlloyMismatches("alloy ingots from the block", backToIngots,
+                        composition, alloyRecipe, color));
+            }
+        }
+
+        // Negative control: a NAMED result, from a recipe that is also inherit + white sentinel.
+        // steel_block must stay componentless, or the scoping has leaked across 380 other recipes.
+        ItemStack steelIngot = ingot("rankine:steel_ingot", "99Fe-1C", STEEL_ALLOYING);
+        IAlloyItem.addColorNBT(steelIngot, color);
+        ItemStack steelBlock = craft(level, problems, "rankine:steel_block", 3, 3, steelIngot);
+        if (steelBlock != null && steelBlock.has(RankineDataComponents.COLOR.get())) {
+            problems.add("steel_block inherited a colour component (" + IAlloyItem.getColorNBT(steelBlock)
+                    + "); only the generic alloy items should");
+        }
+
+        assertEmpty(problems, "crafted alloy colour failures");
+        helper.succeed();
+    }
+
+    /** Fills a width x height grid with copies of one stack and runs the named recipe over it. */
+    private static ItemStack craft(net.minecraft.server.level.ServerLevel level, List<String> problems,
+                                   String recipeId, int width, int height, ItemStack each) {
+        var holder = level.getRecipeManager().byKey(ResourceLocation.parse(recipeId)).orElse(null);
+        if (holder == null || !(holder.value() instanceof AlloyCraftingRecipe recipe)) {
+            problems.add(recipeId + ": not a loaded AlloyCraftingRecipe");
+            return null;
+        }
+        List<ItemStack> grid = new ArrayList<>();
+        for (int i = 0; i < width * height; i++) {
+            grid.add(each.copy());
+        }
+        CraftingInput input = CraftingInput.of(width, height, grid);
+        if (!recipe.matches(input, level)) {
+            problems.add(recipeId + ": the grid did not match the recipe");
+            return null;
+        }
+        ItemStack result = recipe.assemble(input, level.registryAccess());
+        if (result.isEmpty()) {
+            problems.add(recipeId + ": assembled an empty stack");
+            return null;
+        }
+        return result;
+    }
+
+    private static List<String> craftedAlloyMismatches(String what, ItemStack stack, String composition,
+                                                       String alloyRecipe, int color) {
+        List<String> problems = new ArrayList<>();
+        if (!composition.equals(IAlloyItem.getAlloyComposition(stack))) {
+            problems.add(what + " composition '" + IAlloyItem.getAlloyComposition(stack) + "'");
+        }
+        ResourceLocation recipe = IAlloyItem.getAlloyRecipe(stack);
+        if (recipe == null || !alloyRecipe.equals(recipe.toString())) {
+            problems.add(what + " alloy recipe " + recipe);
+        }
+        if (IAlloyItem.getColorNBT(stack) != color) {
+            problems.add(what + " colour " + IAlloyItem.getColorNBT(stack) + ", expected " + color);
+        }
+        // The accessor every renderer actually reads, alpha included.
+        int tint = AlloyColorHelper.getTintARGB(stack);
+        if (tint != (0xFF000000 | color)) {
+            problems.add(what + " tint " + Integer.toHexString(tint) + ", expected "
+                    + Integer.toHexString(0xFF000000 | color));
+        }
+        return problems;
+    }
+
     private static List<String> alloyMismatches(String what, AlloyBlockTile tile, String composition,
                                                 String alloyRecipe, String nameOverride, int color) {
         List<String> problems = new ArrayList<>();

@@ -126,6 +126,9 @@ public class AlloyCraftingRecipe extends ShapedRecipe {
 
     // category() and getGroup() are inherited from ShapedRecipe (MISC and groupIn via the super call).
 
+    /** The "no colour" sentinel every alloy path uses; {@code IAlloyItem#getColorNBT} returns it too. */
+    private static final int WHITE = 16777215;
+
     public int getColor() {
         return this.color;
     }
@@ -166,7 +169,7 @@ public class AlloyCraftingRecipe extends ShapedRecipe {
     /** Convenience overload matching the pre-1.21 API. */
     public ItemStack getResultItem() {
         ItemStack out = this.recipeOutput.copy();
-        if (this.getColor() != 16777215) {
+        if (this.getColor() != WHITE) {
             IAlloyItem.addColorNBT(out, this.getColor());
         }
 
@@ -253,6 +256,7 @@ public class AlloyCraftingRecipe extends ShapedRecipe {
                 workingRecipe = this.inheritRecipe;
             }
             String workingComposition = "";
+            int workingColor = WHITE;
             for(int i = 0; i < inv.width(); ++i) {
                 for (int j = 0; j < inv.height(); ++j) {
 
@@ -269,6 +273,9 @@ public class AlloyCraftingRecipe extends ShapedRecipe {
                             else if (!comp.equals(workingComposition))
                             {
                                 return ItemStack.EMPTY;
+                            }
+                            if (workingColor == WHITE) {
+                                workingColor = IAlloyItem.getColorNBT(stackInSlot);
                             }
                         }
                     } else if (rs != null) {
@@ -289,6 +296,10 @@ public class AlloyCraftingRecipe extends ShapedRecipe {
                         } else if (!recipe.equals(workingRecipe)) {
                             return ItemStack.EMPTY;
                         }
+
+                        if (workingColor == WHITE) {
+                            workingColor = IAlloyItem.getColorNBT(stackInSlot);
+                        }
                     }
 
                 }
@@ -297,9 +308,14 @@ public class AlloyCraftingRecipe extends ShapedRecipe {
                 return ItemStack.EMPTY;
             } else {
                 IAlloyItem.createDirectAlloyNBT(res,workingComposition,workingRecipe,null,res.getItem() instanceof IAlloySpecialItem);
+                // The alloy colour rides along with the composition and the recipe, for the results
+                // that have no colour of their own. See inheritsColor.
+                if (workingColor != WHITE && inheritsColor(res)) {
+                    IAlloyItem.addColorNBT(res, workingColor);
+                }
             }
         }
-        if (this.getColor() != 16777215) {
+        if (this.getColor() != WHITE) {
             IAlloyItem.addColorNBT(res, this.getColor());
         }
 
@@ -307,6 +323,35 @@ public class AlloyCraftingRecipe extends ShapedRecipe {
             res.set(RankineDataComponents.NAME_OVERRIDE.get(), this.getLocalName());
         }
         return res;
+    }
+
+
+    /**
+     * Whether an {@code inherit} result should take its colour from the ingredients as well as its
+     * composition and recipe.
+     *
+     * <p>Only results with NO default alloying recipe qualify: the "generic" alloy items, whose
+     * whole identity is carried by the stack rather than by the registration --
+     * {@code rankine:alloy_block}, {@code rankine:alloy_ingot}, {@code rankine:alloy_nugget}, and
+     * the generic armour/rod/gear. Every other alloy item ({@code steel_*}, {@code brass_*},
+     * {@code white_gold_*} ...) names a fixed alloy when it is registered and ships a texture
+     * already drawn in that alloy's colour, so writing a COLOR component onto one would change
+     * stack identity with nothing to show for it.
+     *
+     * <p>In practice this selects exactly four of the 486 shipped alloy_crafting recipes: those
+     * producing a generic item AND leaving {@code color} at the white sentinel, which is the
+     * ingot -> block -> ingot -> nugget chain. The 102 other recipes producing generic items
+     * (24 of each armour piece, 4 rods, 2 gears) each name a concrete colour, because each is fed
+     * by one specific named ingot; that explicit colour still wins, since this path is only reached
+     * when the recipe's own colour is the sentinel.
+     *
+     * <p>Why the block needed it at all: an alloy ingot leaves the alloy furnace with a COLOR
+     * component ({@code AlloyingRecipe#assemble} writes the alloying recipe's colour), but nine of
+     * them crafted into {@code rankine:alloy_block} produced an untinted block, because the single
+     * recipe that can accept ANY alloy cannot name a colour in its JSON.
+     */
+    private static boolean inheritsColor(ItemStack result) {
+        return result.getItem() instanceof IAlloyItem alloyItem && alloyItem.getDefaultRecipe() == null;
     }
 
     // getWidth()/getHeight() are inherited from ShapedRecipe (pattern dimensions). Both JEI's

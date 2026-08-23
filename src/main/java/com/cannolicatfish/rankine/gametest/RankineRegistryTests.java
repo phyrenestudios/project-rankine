@@ -1081,7 +1081,29 @@ public class RankineRegistryTests {
                     new Offer("dune walker on diamond boots", new ItemStack(Items.DIAMOND_BOOTS),
                             RankineEnchantments.DUNE_WALKER, 20, false, 0),
                     new Offer("aqua lense on a diamond helmet", new ItemStack(Items.DIAMOND_HELMET),
-                            RankineEnchantments.AQUA_LENSE, 20, false, 0));
+                            RankineEnchantments.AQUA_LENSE, 20, false, 0),
+                    // ---- F28 / decision 3B: the spear and the Totem of Infusing at the TABLE ----
+                    // 1.18.2 SpearItem.java:189 returned true from canApplyAtEnchantingTable for
+                    // Impaling and Loyalty, so a spear could roll both despite not being a Trident.
+                    // Costs are picked to land inside a real level window: Impaling is
+                    // min 1+8(l-1)/max 21+8(l-1), so cost 30 is level 4; Loyalty is min 12+7(l-1),
+                    // max a flat 50, so cost 30 is level 3.
+                    new Offer("impaling on a flint spear", new ItemStack(RankineItems.FLINT_SPEAR.get()),
+                            Enchantments.IMPALING, 30, true, 4),
+                    new Offer("loyalty on a flint spear", new ItemStack(RankineItems.FLINT_SPEAR.get()),
+                            Enchantments.LOYALTY, 30, true, 3),
+                    // The allowance is exactly the two the baseline named. Riptide is the control:
+                    // same trident-only supported_items, same absent primary_items, no override, so
+                    // it must still be refused -- otherwise the fix has opened the whole category.
+                    new Offer("riptide on a flint spear", new ItemStack(RankineItems.FLINT_SPEAR.get()),
+                            Enchantments.RIPTIDE, 30, false, 0),
+                    // 1.18.2 InfusingTotemItem.java:93 returned true for EVERY enchantment. Sharpness
+                    // is the honest probe: it is one of the seven vanilla enchantments that DECLARE
+                    // primary_items (#enchantable/sword), and the totem is in no enchantable tag at
+                    // all, so the default isPrimaryItemFor refuses it however permissive
+                    // supportsEnchantment is. Cost 30 is inside Sharpness level 3 (min 23, max 43).
+                    new Offer("sharpness on the totem of infusing", new ItemStack(RankineItems.TOTEM_OF_INFUSING.get()),
+                            Enchantments.SHARPNESS, 30, true, 3));
 
             for (Offer o : offers) {
                 List<EnchantmentInstance> available = EnchantmentHelper.getAvailableEnchantmentResults(
@@ -1093,6 +1115,25 @@ public class RankineRegistryTests {
                 } else if (o.expected() && offered.get().level != o.expectedLevel()) {
                     problems.add(o.name() + ": offered at level " + offered.get().level
                             + ", expected " + o.expectedLevel());
+                }
+            }
+
+            // ---- F28 / decision 3B, the other half: the ANVIL keeps its allowance ----
+            // Karl's decision was "allow BOTH", so restoring the table must not be done by moving
+            // the override back. supportsEnchantment is the anvil/book hook and it must still say
+            // yes to the same three pairs the table now offers.
+            record Anvil(String name, ItemStack stack, ResourceKey<Enchantment> enchantment) {}
+            for (Anvil a : List.of(
+                    new Anvil("impaling on a flint spear", new ItemStack(RankineItems.FLINT_SPEAR.get()),
+                            Enchantments.IMPALING),
+                    new Anvil("loyalty on a flint spear", new ItemStack(RankineItems.FLINT_SPEAR.get()),
+                            Enchantments.LOYALTY),
+                    new Anvil("sharpness on the totem of infusing",
+                            new ItemStack(RankineItems.TOTEM_OF_INFUSING.get()), Enchantments.SHARPNESS))) {
+                Holder<Enchantment> holder = enchantments.getHolder(a.enchantment()).orElseThrow();
+                if (!a.stack().supportsEnchantment(holder)) {
+                    problems.add(a.name() + ": the anvil path (supportsEnchantment) refuses it; "
+                            + "decision 3B keeps the port's anvil allowance as well as the table");
                 }
             }
         }

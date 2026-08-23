@@ -31,12 +31,16 @@ public class AlloyArrowItem extends ArrowItem implements IAlloyProjectile {
         return Component.translatable(this.getDescriptionId(stack),Component.translatable(generateLangFromRecipe(this.defaultAlloyRecipe)));
     }
 
-    // PORT-TODO(entities): AlloyArrowEntity ctor must accept the 1.21.1 pickup/weapon stacks —
-    // (Level, ItemStack pickupStack, LivingEntity shooter, float damage) kept from 1.18.2; the
-    // @Nullable ItemStack firedFromWeapon parameter is currently dropped.
+    /**
+     * 1.21.1 hands the firing weapon in as {@code weapon} and every bow/crossbow enchantment is
+     * gated on the arrow entity storing it (see {@link AlloyArrowEntity}); vanilla
+     * {@code ArrowItem#createArrow} passes it straight through, so this does too. Dropping it — as
+     * the first port pass did — cost alloy arrows Power, Punch and Flame from bows and Piercing
+     * from crossbows, leaving them strictly worse than vanilla arrows in enchanted gear.
+     */
     @Override
     public AbstractArrow createArrow(Level worldIn, ItemStack stack, LivingEntity shooter, @Nullable ItemStack weapon) {
-        return new AlloyArrowEntity(worldIn, stack, shooter, getAlloyArrowDamage(stack));
+        return new AlloyArrowEntity(worldIn, stack, shooter, getAlloyArrowDamage(stack), weapon);
     }
 
     @Override

@@ -91,8 +91,27 @@ public class InfusingTotemItem extends Item {
         return false;
     }
 
+    /**
+     * The ANVIL / enchanted-book path. Kept per decision 3B ("allow BOTH"), even though 1.18.2's
+     * {@code canEnchant} allowed nothing here — {@code isBookEnchantable} below still refuses the
+     * book half, so this only opens what an anvil can otherwise apply.
+     */
     @Override
     public boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment) {
+        return true;
+    }
+
+    /**
+     * The ENCHANTING TABLE path — the one 1.18.2 had.
+     * {@code InfusingTotemItem#canApplyAtEnchantingTable} (InfusingTotemItem.java:93 at
+     * {@code 859f87773}) returned true for EVERY enchantment, which is the whole point of the item:
+     * the totem soaks up an arbitrary enchantment at a table and hands it on. 1.21 routes the table
+     * through {@code isPrimaryItemFor}, which the port never overrode, so the default's
+     * {@code primary_items} check silently narrowed the totem to whatever each enchantment happens
+     * to declare. Unconditional true restores it, matching {@code supportsEnchantment} above.
+     */
+    @Override
+    public boolean isPrimaryItemFor(ItemStack stack, Holder<Enchantment> enchantment) {
         return true;
     }
 

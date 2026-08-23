@@ -337,12 +337,67 @@ public interface IAlloyTieredItem extends IAlloySpecialItem {
         return stats != null ? stats.toughness() : 0;
     }
 
+    /**
+     * DELIBERATE BALANCE CHANGE (release decision 1B, 2026-08-22) — not a parity fix.
+     *
+     * <p>Where the number comes from: {@link #createValueForKnockbackResistance} sums the element
+     * curves and clamps the per-piece result into [0,1], and a [0,1] value is enormous on
+     * {@code Attributes.KNOCKBACK_RESISTANCE}, where a full vanilla NETHERITE set totals 0.4
+     * (0.1 per piece) and 1.0 is outright immunity. The shipped curves reach the top of that range
+     * trivially: zinc is linear a=0.01 capped at 0.25, so any brass at 25% zinc or more — an
+     * early-game alloy, brass_alloying permits 15-60% — scored 0.25 per piece, i.e. exactly 1.0
+     * across four pieces. Krypton (a=0.1, cap 0.5) and uncapped netherite (a=0.01, so 90% netherite
+     * white gold alone is 0.9) get there faster still.
+     *
+     * <p>1.18.2 did not have this problem for an accidental reason: {@code AlloyArmorItem#initStats}
+     * wrote {@code knockbackResist} with {@code putFloat} while this getter read it back with
+     * {@code CompoundTag#getInt}, which floors a FloatTag — so every value below 1.0 came back as
+     * 0 and alloy armor granted no knockback resistance at all. Restoring that truncation was
+     * option 1A and was rejected; so was shipping the raw value. Decision: keep the stat, scaled, so
+     * the strongest set in the game lands on vanilla's ceiling instead of past it.
+     *
+     * <p>{@link #KNOCKBACK_RESISTANCE_SCALE} = 0.1 maps the whole [0,1] curve onto vanilla's
+     * per-piece [0,0.1]. Consequences, per four-piece set:
+     * <table>
+     *   <caption>total KNOCKBACK_RESISTANCE for a full set</caption>
+     *   <tr><th>set</th><th>raw/piece</th><th>1.18.2</th><th>port before</th><th>after</th></tr>
+     *   <tr><td>brass, 25% zinc</td><td>0.25</td><td>0.00</td><td>1.00</td><td>0.10</td></tr>
+     *   <tr><td>brass, 60% zinc (zinc cap binds)</td><td>0.25</td><td>0.00</td><td>1.00</td><td>0.10</td></tr>
+     *   <tr><td>ender amalgam, 5% Kr + 50% Zn + Ca + Sr</td><td>0.83</td><td>0.00</td><td>1.00</td><td>0.33</td></tr>
+     *   <tr><td>white gold, 90% netherite + 10% zinc</td><td>1.00</td><td>0.00</td><td>1.00</td><td>0.40</td></tr>
+     * </table>
+     * The strongest alloy in the game therefore ties full netherite (0.4) and can never reach 1.0,
+     * a typical zinc alloy sits at a quarter of that, and nothing anywhere gains immunity.
+     *
+     * <p>Applied here rather than in {@code createValueForKnockbackResistance} on purpose: the
+     * stored stat stays the raw curve value (so tooltips, the Element Indexer and any datapack
+     * comparison keep reading what the JSON describes), and the scale applies once, at the single
+     * point that feeds the live attribute — {@code ItemAttributeModifierHandler}, this getter's only
+     * caller.
+     */
     default float getKnockbackResistance(ItemStack stack)
     {
-        // NOTE: 1.18.2 wrote this stat as a float but read it back with getInt(), which always
-        // returned 0 for float tags. Reading the real value here is the intended behavior.
         var stats = getAlloyStats(stack);
-        return stats != null ? stats.knockbackResist() : 0;
+        return stats != null ? scaleKnockbackResistance(stats.knockbackResist()) : 0;
+    }
+
+    /**
+     * Vanilla's per-piece knockback-resistance ceiling: a netherite armor piece grants 0.1, so a
+     * full set totals 0.4. The alloy curve's [0,1] per-piece range is scaled onto [0,0.1] by this.
+     */
+    float KNOCKBACK_RESISTANCE_SCALE = 0.1f;
+
+    /**
+     * Raw alloy knockback-resistance curve value -> the value handed to
+     * {@code Attributes.KNOCKBACK_RESISTANCE}. See {@link #getKnockbackResistance}.
+     *
+     * <p>The clamp is defensive rather than load-bearing:
+     * {@code createValueForKnockbackResistance} already bounds its output to [0,1], but a stack
+     * whose ALLOY_STATS component was written by hand or by a future datapack must still not be
+     * able to push a four-piece set to 1.0.
+     */
+    static float scaleKnockbackResistance(float raw) {
+        return Math.max(0.0f, Math.min(raw, 1.0f)) * KNOCKBACK_RESISTANCE_SCALE;
     }
 
     default int calcDurabilityLoss(ItemStack stack, Level worldIn, LivingEntity entityLiving, boolean isEfficient)

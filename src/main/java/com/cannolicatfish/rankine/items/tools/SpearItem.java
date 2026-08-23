@@ -187,11 +187,40 @@ public class SpearItem extends Item {
         stack.hurtAndBreak(1, attacker, EquipmentSlot.MAINHAND);
     }
 
+    /**
+     * The ANVIL / enchanted-book path. 1.18.2 had no such allowance — {@code canEnchant} used the
+     * plain {@code TRIDENT} category, which a Rankine spear is not — but this is decision 3B
+     * ("allow BOTH"), so the port's extra allowance is deliberately kept.
+     */
     @Override
     public boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment) {
         if (enchantment.is(Enchantments.IMPALING) || enchantment.is(Enchantments.LOYALTY)) {
             return true;
         }
         return super.supportsEnchantment(stack, enchantment);
+    }
+
+    /**
+     * The ENCHANTING TABLE path — and the one 1.18.2 actually had.
+     * {@code SpearItem#canApplyAtEnchantingTable} (SpearItem.java:189 at {@code 859f87773}) returned
+     * true for Impaling and Loyalty, and that is the hook Forge patched into
+     * {@code EnchantmentHelper#getAvailableEnchantmentResults}, so a spear could roll both at a
+     * table despite not being a Trident. 1.21's equivalent is {@code isPrimaryItemFor}
+     * (IItemExtension.java:453), which the port never overrode: the default there ANDs
+     * {@code supportsEnchantment} with {@code stack.is(enchantment.primaryItems())}, and Impaling's
+     * primary_items is {@code #minecraft:enchantable/trident} — a tag Rankine never populates. So
+     * the table stopped offering both while the anvil started, i.e. the allowance moved rather than
+     * being added.
+     *
+     * <p>Returning true here bypasses the tag entirely, which is the point: the 1.18.2 rule was
+     * item-side, not tag-side. Everything else still defers to super, so the spear gains nothing
+     * beyond the two enchantments the baseline named.
+     */
+    @Override
+    public boolean isPrimaryItemFor(ItemStack stack, Holder<Enchantment> enchantment) {
+        if (enchantment.is(Enchantments.IMPALING) || enchantment.is(Enchantments.LOYALTY)) {
+            return true;
+        }
+        return super.isPrimaryItemFor(stack, enchantment);
     }
 }
