@@ -67,6 +67,10 @@ public class RankineEventHandler {
     @SubscribeEvent
     public static void serverAboutToStart(ServerAboutToStartEvent event) {
         // Worldgen biome lists can only be resolved once the datapack registries exist.
+        // F32: reset the latch first so a second world in the same client session (possibly with
+        // different datapack biomes) re-resolves from scratch instead of reusing the first world's
+        // stale lists — see WorldgenUtils#resetBiomeResolution.
+        WorldgenUtils.resetBiomeResolution();
         WorldgenUtils.ensureBiomesResolved(event.getServer().registryAccess());
     }
     @SubscribeEvent

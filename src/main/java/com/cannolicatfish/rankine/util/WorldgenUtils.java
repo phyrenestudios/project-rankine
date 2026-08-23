@@ -169,6 +169,13 @@ public class WorldgenUtils {
 
     public static void initConfigs() {
 
+        // F32: ORE_STONES is static and was never cleared before this loop, so a second call (e.g.
+        // a future config-reload hook; there is exactly one call site today, FMLCommonSetupEvent,
+        // which fires once per game launch) would append ORES.size() duplicate entries on top of
+        // the first call's. Harmless to indices that only ever read 0..ORES.size()-1, but it defeats
+        // the point of re-init and leaks memory every reload. Same bug family as
+        // ensureBiomesResolved's latch below; fixed the same way.
+        ORE_STONES.clear();
         for (String ORE : ORES) {
             ORE_STONES.add(BuiltInRegistries.BLOCK.get(ResourceLocation.tryParse(ORE.split("\\|")[0])));
         }
@@ -181,9 +188,16 @@ public class WorldgenUtils {
 
     /**
      * Resolves the config biome settings against the actual (datapack-aware) biome registry.
-     * Idempotent and cheap after first call. Call with {@code level.registryAccess()} from worldgen,
-     * or from server start. {@code RankineEventHandler#serverAboutToStart} already does the latter,
-     * so blocks (SoilBlock, GrassySoilBlock, retrogen) see resolved lists before any feature runs.
+     * Idempotent and cheap after first call — it no-ops until {@link #resetBiomeResolution()} is
+     * called again. Call with {@code level.registryAccess()} from worldgen, or from server start.
+     * {@code RankineEventHandler#serverAboutToStart} calls {@link #resetBiomeResolution()} then
+     * this, every server start, so blocks (SoilBlock, GrassySoilBlock, retrogen) see freshly
+     * resolved lists before any feature runs.
+     * <p>
+     * F32 (batch 4): {@code biomesResolved} used to latch permanently — correct for 1.18.2, where
+     * the biome registry was static and world-independent, but 1.21's biome registry is a per-world
+     * datapack registry, so a second world loaded in the same client session (possibly with
+     * different datapack biomes) used to resolve against the FIRST world's stale lists.
      */
     public static void ensureBiomesResolved(RegistryAccess registryAccess) {
         if (biomesResolved) return;
@@ -247,6 +261,50 @@ public class WorldgenUtils {
             }
 
             biomesResolved = true;
+        }
+    }
+
+    /**
+     * F32 (batch 4): clears every list {@link #ensureBiomesResolved} populates, and the latch
+     * itself, so the next call re-resolves from scratch instead of appending to stale data.
+     * <p>
+     * ALL of them must be cleared together, in the same synchronized section as the latch, or the
+     * lists desync: {@link #GEN_BIOMES}/{@link #O1}.../{@link #B2}/{@link #INTRUSION_LISTS}/
+     * {@link #LAYER_LISTS}/{@link #VEGETATION_LISTS}/{@link #GRAVELS}/{@link #SANDS}/
+     * {@link #SANDSTONES}/{@link #DRIPSTONES} share one "biome index" (one {@link #populateLists}
+     * call appends exactly one entry to each), and {@link #INTRUSION_BLOCKS}/
+     * {@link #INTRUSION_WEIGHTS}/{@link #INTRUSION_ORES}/{@link #INTRUSION_ORE_CHANCES}/
+     * {@link #INTRUSION_COLLECTIONS}/{@link #VEGETATION_COLLECTIONS} are themselves derived by
+     * re-iterating {@link #INTRUSION_LISTS}/{@link #VEGETATION_LISTS} inside
+     * {@link #ensureBiomesResolved}. Clearing only the latch (or only {@code INTRUSION_LISTS}) and
+     * re-resolving would not just duplicate entries — the second run's derive-loop iterates the
+     * ALREADY-doubled {@code INTRUSION_LISTS} while appending onto the NOT-yet-cleared derived
+     * lists, so the derived lists end up 3x the correct size while {@code INTRUSION_LISTS} is only
+     * 2x, an alignment break strictly worse than a simple duplicate.
+     */
+    public static void resetBiomeResolution() {
+        synchronized (WorldgenUtils.class) {
+            biomesResolved = false;
+            GEN_BIOMES.clear();
+            O1.clear();
+            A1.clear();
+            B1.clear();
+            O2.clear();
+            A2.clear();
+            B2.clear();
+            INTRUSION_LISTS.clear();
+            INTRUSION_BLOCKS.clear();
+            INTRUSION_WEIGHTS.clear();
+            INTRUSION_ORES.clear();
+            INTRUSION_ORE_CHANCES.clear();
+            INTRUSION_COLLECTIONS.clear();
+            LAYER_LISTS.clear();
+            VEGETATION_LISTS.clear();
+            VEGETATION_COLLECTIONS.clear();
+            GRAVELS.clear();
+            SANDS.clear();
+            SANDSTONES.clear();
+            DRIPSTONES.clear();
         }
     }
 

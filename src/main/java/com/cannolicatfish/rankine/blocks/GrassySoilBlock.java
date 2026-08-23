@@ -4,6 +4,7 @@ import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineLists;
 import com.cannolicatfish.rankine.init.VanillaIntegration;
+import com.cannolicatfish.rankine.util.RankineMathHelper;
 import com.cannolicatfish.rankine.util.WorldgenUtils;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
@@ -26,7 +27,6 @@ import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.lighting.LightEngine;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.material.MapColor;
-import net.minecraft.world.phys.AABB;
 
 import java.util.List;
 
@@ -108,18 +108,12 @@ public class GrassySoilBlock extends GrassBlock {
         }
 
         if (Config.GENERAL.PATH_CREATION.get() && random.nextInt(Config.GENERAL.PATH_CREATION_TIME.get()) == 0) {
-            List<LivingEntity> entitiesOnBlock = levelIn.getEntitiesOfClass(LivingEntity.class, boxBetween(pos.above(), pos.above()).expandTowards(1, 1, 1), (e) -> e instanceof Player);
+            List<LivingEntity> entitiesOnBlock = levelIn.getEntitiesOfClass(LivingEntity.class, RankineMathHelper.boxBetween(pos.above(), pos.above()).expandTowards(1, 1, 1), (e) -> e instanceof Player);
             if (!entitiesOnBlock.isEmpty() && VanillaIntegration.pathBlocks_map.containsKey(state.getBlock()) && !levelIn.getBlockState(pos.above()).blocksMotion()) {
                 levelIn.setBlock(pos, VanillaIntegration.pathBlocks_map.get(state.getBlock()).defaultBlockState(), 3);
             }
         }
 
-    }
-
-    // PORT-NOTE: the AABB(BlockPos, BlockPos) constructor is gone in 1.21.1 (AABB.encapsulatingFullBlocks is NOT
-    // equivalent - it inflates the max corner by one block). This rebuilds the exact 1.18.2 corner-to-corner box.
-    private static AABB boxBetween(BlockPos a, BlockPos b) {
-        return new AABB(a.getX(), a.getY(), a.getZ(), b.getX(), b.getY(), b.getZ());
     }
 
     // PORT-NOTE: java.util.Random -> RandomSource; other ported callers pass level.random / the randomTick source.

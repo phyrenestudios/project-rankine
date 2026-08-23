@@ -5,6 +5,7 @@ import com.cannolicatfish.rankine.init.RankineBlockEntityTypes;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineRecipeTypes;
 import com.cannolicatfish.rankine.recipe.MixingRecipe;
+import com.cannolicatfish.rankine.util.RankineMathHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -27,7 +28,6 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.core.Direction;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.core.NonNullList;
-import net.minecraft.world.phys.AABB;
 import net.minecraft.network.chat.Component;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -139,9 +139,11 @@ public class MixingBarrelTile extends BlockEntity implements WorldlyContainer, M
                 } else {
                     level.setBlock(tile.worldPosition, RankineBlocks.MIXING_BARREL.get().defaultBlockState().setValue(MixingBarrelBlock.ANGLE,angle+1),3);
                 }
-                // PORT-NOTE: the AABB(BlockPos, BlockPos) constructor is gone; encapsulatingFullBlocks is the
-                // 1.21.1 equivalent (same corner-to-corner box spanning both whole blocks).
-                List<LivingEntity> entitiesOnBlock = level.getEntitiesOfClass(LivingEntity.class, AABB.encapsulatingFullBlocks(tile.worldPosition, tile.worldPosition.above()).expandTowards(1, 1, 1), (e) -> e instanceof Mob || e instanceof Player);
+                // F29: AABB.encapsulatingFullBlocks is NOT the 1.21.1 equivalent of the removed
+                // AABB(BlockPos, BlockPos) constructor — it adds +1 to the max corner, inflating this
+                // box from the 1.18.2 1x2x1 column (volume 2) to a 2x3x2 region (volume 12). Use the
+                // shared helper that rebuilds the exact 1.18.2 raw-corner box instead.
+                List<LivingEntity> entitiesOnBlock = level.getEntitiesOfClass(LivingEntity.class, RankineMathHelper.boxBetween(tile.worldPosition, tile.worldPosition.above()).expandTowards(1, 1, 1), (e) -> e instanceof Mob || e instanceof Player);
                 for (LivingEntity i : entitiesOnBlock) {
                     i.absMoveTo(i.getX(),i.getY()+2,i.getZ(),i.getYHeadRot() + 22.5F,i.getRotationVector().y);
                 }

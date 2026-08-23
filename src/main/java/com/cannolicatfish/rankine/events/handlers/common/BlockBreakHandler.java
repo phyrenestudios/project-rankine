@@ -37,7 +37,9 @@ import java.util.*;
  * 1.21.1 notes:
  * - BlockEvent moved to net.neoforged.neoforge.event.level.
  * - Material is gone: the old {@code getMaterial() == Material.DIRT/SAND} stump check becomes
- *   BlockTags.DIRT / BlockTags.SAND.
+ *   {@code RankineTags.Blocks.STUMP_BASES} (F30 batch 4) — NOT {@code BlockTags.DIRT}/
+ *   {@code BlockTags.SAND}, which include grass_block/mycelium (Material.GRASS in 1.18.2, never a
+ *   stump base) and exclude gravel/soul_sand (Material.SAND in 1.18.2, always one).
  * - Block#getRegistryName() is gone -> BuiltInRegistries.BLOCK.getKey(block).
  * - Forge tag manager lookups -> BlockState#is(TagKey); Tags.Biomes.IS_END -> BiomeTags.IS_END.
  * - hurtAndBreak(amount, entity, slot) replaces hurtAndBreak + broadcastBreakEvent.
@@ -108,7 +110,14 @@ public class BlockBreakHandler {
                 if (alive) {
                     for (BlockPos b : logs) {
                         BlockState below = levelIn.getBlockState(b.below());
-                        if (Config.GENERAL.STUMP_CREATION.get() && (below.is(BlockTags.DIRT) || below.is(BlockTags.SAND))) {
+                        // F30: 1.18.2 gated this on Material.DIRT/Material.SAND, which excluded
+                        // grass_block/mycelium (Material.GRASS). #minecraft:dirt is not the same set
+                        // — it additionally carries grass_block/mycelium/moss_block, and this mod's
+                        // own tags provider adds its GRASS_BLOCKS/MYCELIUM_BLOCKS to it too — so a
+                        // tree standing on ordinary grass (the normal case in every overworld biome)
+                        // was silently stumping instead of dropping its bottom log.
+                        // RankineTags.Blocks.STUMP_BASES reproduces the exact 1.18.2 membership.
+                        if (Config.GENERAL.STUMP_CREATION.get() && below.is(RankineTags.Blocks.STUMP_BASES)) {
                             levelIn.setBlock(b, RankineBlocks.STUMP.get().defaultBlockState(),3);
                         } else {
                             if (RankineEnchantmentHelper.getLevel(levelIn, RankineEnchantments.ENDOTHERMIC, player.getMainHandItem()) > 0) {

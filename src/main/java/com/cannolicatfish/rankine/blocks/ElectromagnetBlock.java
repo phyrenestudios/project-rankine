@@ -3,6 +3,7 @@ package com.cannolicatfish.rankine.blocks;
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineTags;
 import com.cannolicatfish.rankine.items.MagnetItem;
+import com.cannolicatfish.rankine.util.RankineMathHelper;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -28,7 +29,6 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.MapColor;
-import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 
 import java.util.Collections;
@@ -174,21 +174,14 @@ public class ElectromagnetBlock extends DirectionalBlock {
         entityHandler(levelIn, targetPosIn, endPos);
     }
 
-    // PORT-NOTE: the AABB(BlockPos, BlockPos) constructor is gone in 1.21.1 (AABB.encapsulatingFullBlocks is NOT
-    // equivalent - it inflates the max corner by one block). The explicit double ctor below is the exact 1.18.2
-    // corner-to-corner box the old code built.
-    private static AABB boxBetween(BlockPos a, BlockPos b) {
-        return new AABB(a.getX(), a.getY(), a.getZ(), b.getX(), b.getY(), b.getZ());
-    }
-
     private void entityHandler(Level levelIn, BlockPos targetPosIn, BlockPos endPos) {
         //Damage entities along the path
-        List<LivingEntity> entities = levelIn.getEntitiesOfClass(LivingEntity.class, boxBetween(endPos, targetPosIn).expandTowards(1, 1, 1), (e) -> e instanceof Mob || e instanceof Player);
+        List<LivingEntity> entities = levelIn.getEntitiesOfClass(LivingEntity.class, RankineMathHelper.boxBetween(endPos, targetPosIn).expandTowards(1, 1, 1), (e) -> e instanceof Mob || e instanceof Player);
         for (LivingEntity i : entities) {
             i.hurt(levelIn.damageSources().flyIntoWall(), Mth.sqrt(type * (float) targetPosIn.distSqr(i.getOnPos())));
         }
         //Teleport entities on top of the moving block
-        List<LivingEntity> entitiesOnBlock = levelIn.getEntitiesOfClass(LivingEntity.class, boxBetween(targetPosIn, targetPosIn.above()).expandTowards(1, 1, 1), (e) -> e instanceof Mob || e instanceof Player);
+        List<LivingEntity> entitiesOnBlock = levelIn.getEntitiesOfClass(LivingEntity.class, RankineMathHelper.boxBetween(targetPosIn, targetPosIn.above()).expandTowards(1, 1, 1), (e) -> e instanceof Mob || e instanceof Player);
         for (LivingEntity i : entitiesOnBlock) {
             i.teleportTo(endPos.getX() - (targetPosIn.getX() - i.getX()), endPos.getY() + 1, endPos.getZ() - (targetPosIn.getZ() - i.getZ()));
         }

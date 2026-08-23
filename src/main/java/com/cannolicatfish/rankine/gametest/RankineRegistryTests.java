@@ -3,8 +3,13 @@ package com.cannolicatfish.rankine.gametest;
 import com.cannolicatfish.rankine.ProjectRankine;
 import com.cannolicatfish.rankine.data.RankineBiomeModifiers;
 import com.cannolicatfish.rankine.blocks.AntimatterBlock;
+import com.cannolicatfish.rankine.blocks.BlastingPowderBlock;
+import com.cannolicatfish.rankine.blocks.GunCottonBlock;
+import com.cannolicatfish.rankine.blocks.UnamedExplosiveBlock;
 import com.cannolicatfish.rankine.blocks.block_groups.RankineStone;
 import com.cannolicatfish.rankine.blocks.buildingmodes.BuildingModeBlock;
+import com.cannolicatfish.rankine.entities.ReactiveItemEntity;
+import com.cannolicatfish.rankine.events.handlers.common.BlockBreakHandler;
 import com.cannolicatfish.rankine.init.Config;
 import com.cannolicatfish.rankine.init.RankineBlocks;
 import com.cannolicatfish.rankine.init.RankineFluids;
@@ -90,6 +95,13 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import net.neoforged.neoforge.registries.datamaps.builtin.Compostable;
 import net.neoforged.neoforge.registries.datamaps.builtin.NeoForgeDataMaps;
+import net.neoforged.neoforge.event.level.BlockEvent;
+
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.level.GameRules;
+import net.minecraft.world.level.block.LeavesBlock;
+import net.minecraft.world.phys.AABB;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -2409,6 +2421,253 @@ public class RankineRegistryTests {
         }
 
         assertEmpty(problems, "\"beach\" category failures");
+        helper.succeed();
+    }
+
+    // ---------------------------------------------------------------------------------------
+    // F30 — tree-chop stump placement (batch 4)
+    // ---------------------------------------------------------------------------------------
+
+    /**
+     * F30 — {@code BlockBreakHandler}'s stump check used to test
+     * {@code below.is(BlockTags.DIRT) || below.is(BlockTags.SAND)}. 1.18.2 (859f87773, line 100)
+     * tested {@code Material.DIRT}/{@code Material.SAND}, which excluded grass_block/mycelium
+     * (Material.GRASS). {@code #minecraft:dirt} is not that set — it additionally carries
+     * grass_block/mycelium/moss_block, and this mod's own tags provider adds its
+     * GRASS_BLOCKS/MYCELIUM_BLOCKS to it too — so felling any tree grown on ordinary grass (the
+     * normal case in every overworld biome) silently replaced its bottom log with a stump instead
+     * of dropping it. Fixed by testing {@code RankineTags.Blocks.STUMP_BASES}, an explicit
+     * reconstruction of the 1.18.2 Material set (finding #23).
+     * <p>
+     * Both scenarios drive the real {@link BlockBreakHandler#blockBreakingEvents} path with a
+     * survival-mode mock player wielding a tree-chopper axe, felling a single log with one
+     * non-persistent leaf neighbor (to satisfy the "alive tree" gate the handler requires before it
+     * will touch stumps or drops at all): grass_block (must NOT stump — the regression, and the bug
+     * this whole fix is about) and dirt (MUST stump — the legitimate 1.18.2 case, proving the fix
+     * does not just disable stumping altogether).
+     */
+    @GameTest(template = "empty")
+    public void treeChopOnGrassDropsLogWithoutStump(GameTestHelper helper) {
+        runTreeChopStumpScenario(helper, Blocks.GRASS_BLOCK.defaultBlockState(), false);
+    }
+
+    /** @see #treeChopOnGrassDropsLogWithoutStump */
+    @GameTest(template = "empty")
+    public void treeChopOnDirtPlacesStump(GameTestHelper helper) {
+        runTreeChopStumpScenario(helper, Blocks.DIRT.defaultBlockState(), true);
+    }
+
+    private static void runTreeChopStumpScenario(GameTestHelper helper, BlockState ground, boolean expectStump) {
+        ServerLevel level = helper.getLevel();
+        List<String> problems = new ArrayList<>();
+
+        if (!level.getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS)) {
+            throw new GameTestAssertException("doTileDrops is off in this test world; the drop path cannot be observed");
+        }
+
+        BlockPos groundPos = new BlockPos(2, 1, 2);
+        BlockPos logPos = groundPos.above();
+        BlockPos leafPos = logPos.east();
+
+        helper.setBlock(groundPos, ground);
+        helper.setBlock(logPos, Blocks.OAK_LOG.defaultBlockState());
+        helper.setBlock(leafPos, Blocks.OAK_LEAVES.defaultBlockState().setValue(LeavesBlock.PERSISTENT, false));
+
+        Player player = helper.makeMockPlayer(GameType.SURVIVAL);
+        player.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(RankineItems.STEEL_AXE.get()));
+
+        BlockPos absLog = helper.absolutePos(logPos);
+        BlockState logState = level.getBlockState(absLog);
+        if (!logState.is(RankineTags.Blocks.TREE_LOGS)) {
+            throw new GameTestAssertException("oak_log is not in #rankine:tree_logs; test setup invalid");
+        }
+        if (!level.getBlockState(helper.absolutePos(leafPos)).is(RankineTags.Blocks.TREE_LEAVES)) {
+            throw new GameTestAssertException("oak_leaves is not in #rankine:tree_leaves; test setup invalid");
+        }
+
+        BlockEvent.BreakEvent event = new BlockEvent.BreakEvent(level, absLog, logState, player);
+        BlockBreakHandler.blockBreakingEvents(event);
+
+        BlockState afterLog = level.getBlockState(absLog);
+        boolean isStump = afterLog.is(RankineBlocks.STUMP.get());
+
+        if (expectStump != isStump) {
+            problems.add("expected stump=" + expectStump + " on " + ground.getBlock() + ", got block " + afterLog.getBlock());
+        }
+
+        if (!expectStump) {
+            // No stump: the log block itself must be gone (destroyed with drops), not left in place.
+            if (afterLog.is(RankineTags.Blocks.TREE_LOGS)) {
+                problems.add("log block is still present after chopping on " + ground.getBlock());
+            }
+            List<ItemEntity> drops = level.getEntitiesOfClass(ItemEntity.class, new AABB(absLog).inflate(3.0D));
+            boolean droppedLog = false;
+            for (ItemEntity e : drops) {
+                if (e.getItem().is(Blocks.OAK_LOG.asItem())) {
+                    droppedLog = true;
+                    break;
+                }
+            }
+            if (!droppedLog) {
+                problems.add("no oak_log item dropped after chopping on " + ground.getBlock()
+                        + " (found " + drops.size() + " item entities nearby)");
+            }
+        }
+
+        assertEmpty(problems, "tree-chop stump placement failures (ground=" + ground.getBlock() + ")");
+        helper.succeed();
+    }
+
+    // ---------------------------------------------------------------------------------------
+    // F31 — explosion drop mode: 1.18.2 BREAK maps to 1.21 DESTROY, not DESTROY_WITH_DECAY (batch 4)
+    // ---------------------------------------------------------------------------------------
+
+    /**
+     * F31 — four call sites (ReactiveItemEntity's block-breaking branch, BlastingPowderBlock,
+     * GunCottonBlock, UnamedExplosiveBlock) passed {@code Explosion.BlockInteraction.BREAK} in
+     * 1.18.2 (859f87773) — the pre-1.19.3 name for today's plain {@code DESTROY}: full drops,
+     * unconditionally, no gamerule. The port mapped all four onto
+     * {@code Level.ExplosionInteraction.BLOCK}, which resolves through
+     * {@code GameRules.RULE_BLOCK_EXPLOSION_DROP_DECAY} (default ON, Level.java:735) to the
+     * decaying {@code DESTROY_WITH_DECAY} instead — the same bug shape as F14's antimatter finding,
+     * but inverted (F14 was DESTROY where DESTROY_WITH_DECAY was meant; this is
+     * DESTROY_WITH_DECAY where DESTROY was meant). Confirmed against the mod's OWN 1.18.2
+     * {@code SphericalExplosion#finalizeExplosion} (859f87773, line ~149), which added
+     * {@code LootContextParams.EXPLOSION_RADIUS} — the decay trigger — for exactly
+     * {@code BlockInteraction.DESTROY} and never for {@code BREAK}.
+     * <p>
+     * One empirical measurement, reusing {@link #countExplosionDrops} (the same apparatus F14
+     * used), proves {@code ReactiveItemEntity.EXPLOSION_MODE} really does yield full drops against
+     * a {@code DESTROY_WITH_DECAY} control that must NOT; the other three call sites (byte-identical
+     * fixes) get a cheap static assertion against the same named-constant pattern rather than a
+     * second full trial run.
+     */
+    @GameTest(template = "empty")
+    public void reactiveItemAndExplosiveBlocksDropFullyNotDecayed(GameTestHelper helper) {
+        List<String> problems = new ArrayList<>();
+
+        if (ReactiveItemEntity.EXPLOSION_MODE != Explosion.BlockInteraction.DESTROY) {
+            problems.add("ReactiveItemEntity.EXPLOSION_MODE is " + ReactiveItemEntity.EXPLOSION_MODE
+                    + "; 1.18.2's non-decaying BREAK is 1.21's plain DESTROY");
+        }
+        if (BlastingPowderBlock.EXPLOSION_MODE != Explosion.BlockInteraction.DESTROY) {
+            problems.add("BlastingPowderBlock.EXPLOSION_MODE is " + BlastingPowderBlock.EXPLOSION_MODE + ", expected DESTROY");
+        }
+        if (GunCottonBlock.EXPLOSION_MODE != Explosion.BlockInteraction.DESTROY) {
+            problems.add("GunCottonBlock.EXPLOSION_MODE is " + GunCottonBlock.EXPLOSION_MODE + ", expected DESTROY");
+        }
+        if (UnamedExplosiveBlock.EXPLOSION_MODE != Explosion.BlockInteraction.DESTROY) {
+            problems.add("UnamedExplosiveBlock.EXPLOSION_MODE is " + UnamedExplosiveBlock.EXPLOSION_MODE + ", expected DESTROY");
+        }
+
+        int fullDrops = countExplosionDrops(helper, ReactiveItemEntity.EXPLOSION_MODE);
+        int decayedDrops = countExplosionDrops(helper, Explosion.BlockInteraction.DESTROY_WITH_DECAY);
+
+        if (fullDrops != DECAY_TRIALS) {
+            problems.add("ReactiveItemEntity.EXPLOSION_MODE dropped " + fullDrops + "/" + DECAY_TRIALS
+                    + " cobblestone; DESTROY must drop all of them (no EXPLOSION_RADIUS -> explosion_decay is a no-op)");
+        }
+        if (decayedDrops >= DECAY_TRIALS / 2) {
+            problems.add("DESTROY_WITH_DECAY control dropped " + decayedDrops + "/" + DECAY_TRIALS
+                    + "; expected roughly " + (DECAY_TRIALS / (int) AntimatterBlock.EXPLOSION_RADIUS)
+                    + " (a low-yield control, proving the two modes actually differ in this harness)");
+        }
+
+        assertEmpty(problems, "reactive-item / explosive-block break-mode failures");
+        helper.succeed();
+    }
+
+    // ---------------------------------------------------------------------------------------
+    // F32 — ensureBiomesResolved must reset cleanly, not latch or double-populate (batch 4)
+    // ---------------------------------------------------------------------------------------
+
+    /**
+     * F32 — {@code WorldgenUtils.biomesResolved} used to latch permanently with no reset path, so a
+     * second world loaded in the same client session would resolve against the FIRST world's stale
+     * lists — correct for 1.18.2's static, world-independent biome registry, wrong for 1.21's
+     * per-world datapack biome registry. Fixed with {@link WorldgenUtils#resetBiomeResolution()},
+     * wired into {@code RankineEventHandler#serverAboutToStart} before every
+     * {@code ensureBiomesResolved} call, so every server start re-resolves from scratch.
+     * <p>
+     * A real second-world-with-different-datapack-biomes scenario can't be simulated inside one
+     * GameTest server (there is exactly one registry here), so this proves the narrower, load-
+     * bearing invariant instead: resolve (already done once by this GameTest server's own startup),
+     * snapshot every parallel list's size plus {@code GEN_BIOMES}' exact ordered content, reset,
+     * resolve again against the SAME registry, and assert both the sizes AND the content are
+     * unchanged — no duplication, no drift, no misalignment. This is exactly what breaks first if
+     * the clear is incomplete (see {@link WorldgenUtils#resetBiomeResolution()}'s javadoc for the
+     * specific 2x-vs-3x misalignment a partial clear of the INTRUSION_* family produces).
+     */
+    @GameTest(template = "empty")
+    public void biomeResolutionResetIsLossless(GameTestHelper helper) {
+        List<String> problems = new ArrayList<>();
+        RegistryAccess registryAccess = helper.getLevel().registryAccess();
+
+        // Baseline: already resolved once by this GameTest server's own ServerAboutToStartEvent.
+        WorldgenUtils.ensureBiomesResolved(registryAccess);
+
+        int genBiomes = WorldgenUtils.GEN_BIOMES.size();
+        int o1 = WorldgenUtils.O1.size();
+        int intrusionLists = WorldgenUtils.INTRUSION_LISTS.size();
+        int intrusionBlocks = WorldgenUtils.INTRUSION_BLOCKS.size();
+        int intrusionCollections = WorldgenUtils.INTRUSION_COLLECTIONS.size();
+        int layerLists = WorldgenUtils.LAYER_LISTS.size();
+        int vegetationLists = WorldgenUtils.VEGETATION_LISTS.size();
+        int vegetationCollections = WorldgenUtils.VEGETATION_COLLECTIONS.size();
+        int gravels = WorldgenUtils.GRAVELS.size();
+        List<ResourceLocation> genBiomesContent = new ArrayList<>(WorldgenUtils.GEN_BIOMES);
+
+        if (genBiomes == 0) {
+            throw new GameTestAssertException("GEN_BIOMES is empty after ensureBiomesResolved; test cannot prove anything");
+        }
+        // Sanity on the baseline itself: every parallel list shares one "biome index" with
+        // GEN_BIOMES, and the INTRUSION_*/VEGETATION_* derived lists share one with their _LISTS.
+        if (o1 != genBiomes) problems.add("O1.size()=" + o1 + " != GEN_BIOMES.size()=" + genBiomes + " before reset");
+        if (layerLists != genBiomes) problems.add("LAYER_LISTS.size()=" + layerLists + " != GEN_BIOMES.size()=" + genBiomes + " before reset");
+        if (gravels != genBiomes) problems.add("GRAVELS.size()=" + gravels + " != GEN_BIOMES.size()=" + genBiomes + " before reset");
+        if (intrusionBlocks != intrusionLists) problems.add("INTRUSION_BLOCKS.size()=" + intrusionBlocks + " != INTRUSION_LISTS.size()=" + intrusionLists + " before reset");
+        if (vegetationCollections != vegetationLists) problems.add("VEGETATION_COLLECTIONS.size()=" + vegetationCollections + " != VEGETATION_LISTS.size()=" + vegetationLists + " before reset");
+
+        WorldgenUtils.resetBiomeResolution();
+        if (!WorldgenUtils.GEN_BIOMES.isEmpty()) {
+            problems.add("GEN_BIOMES not empty immediately after resetBiomeResolution(): " + WorldgenUtils.GEN_BIOMES.size());
+        }
+
+        WorldgenUtils.ensureBiomesResolved(registryAccess);
+
+        if (WorldgenUtils.GEN_BIOMES.size() != genBiomes) {
+            problems.add("GEN_BIOMES.size() after reset+re-resolve is " + WorldgenUtils.GEN_BIOMES.size() + ", expected " + genBiomes + " (unchanged)");
+        }
+        if (!WorldgenUtils.GEN_BIOMES.equals(genBiomesContent)) {
+            problems.add("GEN_BIOMES content differs after reset+re-resolve (order or membership drifted)");
+        }
+        if (WorldgenUtils.O1.size() != o1) {
+            problems.add("O1.size() after reset+re-resolve is " + WorldgenUtils.O1.size() + ", expected " + o1);
+        }
+        if (WorldgenUtils.INTRUSION_LISTS.size() != intrusionLists) {
+            problems.add("INTRUSION_LISTS.size() after reset+re-resolve is " + WorldgenUtils.INTRUSION_LISTS.size() + ", expected " + intrusionLists);
+        }
+        if (WorldgenUtils.INTRUSION_BLOCKS.size() != intrusionBlocks) {
+            problems.add("INTRUSION_BLOCKS.size() after reset+re-resolve is " + WorldgenUtils.INTRUSION_BLOCKS.size()
+                    + ", expected " + intrusionBlocks + " (this is the 2x/3x misalignment case if the clear is incomplete)");
+        }
+        if (WorldgenUtils.INTRUSION_COLLECTIONS.size() != intrusionCollections) {
+            problems.add("INTRUSION_COLLECTIONS.size() after reset+re-resolve is " + WorldgenUtils.INTRUSION_COLLECTIONS.size() + ", expected " + intrusionCollections);
+        }
+        if (WorldgenUtils.LAYER_LISTS.size() != layerLists) {
+            problems.add("LAYER_LISTS.size() after reset+re-resolve is " + WorldgenUtils.LAYER_LISTS.size() + ", expected " + layerLists);
+        }
+        if (WorldgenUtils.VEGETATION_LISTS.size() != vegetationLists) {
+            problems.add("VEGETATION_LISTS.size() after reset+re-resolve is " + WorldgenUtils.VEGETATION_LISTS.size() + ", expected " + vegetationLists);
+        }
+        if (WorldgenUtils.VEGETATION_COLLECTIONS.size() != vegetationCollections) {
+            problems.add("VEGETATION_COLLECTIONS.size() after reset+re-resolve is " + WorldgenUtils.VEGETATION_COLLECTIONS.size() + ", expected " + vegetationCollections);
+        }
+        if (WorldgenUtils.GRAVELS.size() != gravels) {
+            problems.add("GRAVELS.size() after reset+re-resolve is " + WorldgenUtils.GRAVELS.size() + ", expected " + gravels);
+        }
+
+        assertEmpty(problems, "biome-resolution reset round-trip failures");
         helper.succeed();
     }
 }

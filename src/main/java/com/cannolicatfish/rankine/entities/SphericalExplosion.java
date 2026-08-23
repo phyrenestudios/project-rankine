@@ -178,6 +178,32 @@ public class SphericalExplosion extends Explosion {
         getToBlow().add(blockPos);
     }
 
+    /**
+     * F31 (batch 4). Runs a plain vanilla (raycast-shaped) {@link Explosion} with a LITERAL
+     * {@link Explosion.BlockInteraction}, bypassing the {@link Level.ExplosionInteraction}-through-
+     * GameRules indirection every {@code Level#explode} overload forces in 1.21.1 (Level.java:
+     * 718-761 in mc-1.21.1-sources: {@code BLOCK}/{@code MOB}/{@code TNT} each resolve through a
+     * drop-decay gamerule, defaulting ON for block/mob and OFF for TNT).
+     * <p>
+     * Several 1.18.2 call sites passed {@code Explosion.BlockInteraction.BREAK} directly — the
+     * pre-1.19.3 name for what is now plain {@code DESTROY} (full drops, unconditional, no
+     * gamerule) — and were ported onto {@code Level.ExplosionInteraction.BLOCK}, which is NOT the
+     * same thing: it silently re-introduces the gamerule and defaults to the decaying
+     * {@code DESTROY_WITH_DECAY}. This reproduces exactly what {@code Level#explode} does
+     * internally (construct, check the cancellable start event, explode, finalize with
+     * {@code spawnParticles=true}) so callers that need a specific, gamerule-independent
+     * {@code BlockInteraction} get it.
+     */
+    public static Explosion vanillaExplode(Level level, @Nullable Entity source, double x, double y, double z,
+                                            float radius, boolean fire, Explosion.BlockInteraction mode) {
+        Explosion explosion = new Explosion(level, source, x, y, z, radius, fire, mode);
+        if (!net.neoforged.neoforge.event.EventHooks.onExplosionStart(level, explosion)) {
+            explosion.explode();
+            explosion.finalizeExplosion(true);
+        }
+        return explosion;
+    }
+
     private static void addBlockDrops(List<Pair<ItemStack, BlockPos>> p_46068_, ItemStack p_46069_, BlockPos p_46070_) {
         int i = p_46068_.size();
 

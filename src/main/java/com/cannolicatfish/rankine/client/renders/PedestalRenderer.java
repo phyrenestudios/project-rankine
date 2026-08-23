@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.client.renders;
 
 import com.cannolicatfish.rankine.blocks.pedestal.PedestalTile;
+import com.cannolicatfish.rankine.util.RankineMathHelper;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import net.minecraft.client.Minecraft;
@@ -27,9 +28,12 @@ public class PedestalRenderer implements BlockEntityRenderer<PedestalTile> {
     // the same 1.18.2 bounding box now lives on the renderer via IBlockEntityRendererExtension.
     @Override
     public AABB getRenderBoundingBox(PedestalTile blockEntity) {
-        // PORT-NOTE: the AABB(BlockPos, BlockPos) constructor is gone; encapsulatingFullBlocks is the 1.21.1
-        // equivalent (same corner-to-corner box spanning both whole blocks).
-        return AABB.encapsulatingFullBlocks(blockEntity.getBlockPos(), blockEntity.getBlockPos().above(2));
+        // F29: AABB.encapsulatingFullBlocks is NOT the 1.21.1 equivalent of the removed
+        // AABB(BlockPos, BlockPos) constructor — it adds +1 to the max corner. 1.18.2's
+        // PedestalTile#getRenderBoundingBox built `new AABB(pos, pos.above(2))`, a degenerate
+        // (zero-width in X/Z) 2-block-tall line, not a solid 1x3x1 box. Cosmetic (render culling
+        // bounds only), but restore the exact 1.18.2 box via the shared helper for parity.
+        return RankineMathHelper.boxBetween(blockEntity.getBlockPos(), blockEntity.getBlockPos().above(2));
     }
 
     @Override

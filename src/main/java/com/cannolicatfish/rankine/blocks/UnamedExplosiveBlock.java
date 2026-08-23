@@ -1,5 +1,6 @@
 package com.cannolicatfish.rankine.blocks;
 
+import com.cannolicatfish.rankine.entities.SphericalExplosion;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -28,6 +29,15 @@ import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 public class UnamedExplosiveBlock extends Block {
     public static final MapCodec<UnamedExplosiveBlock> CODEC = simpleCodec(UnamedExplosiveBlock::new);
 
+    /**
+     * F31 (batch 4). 1.18.2 (859f87773:UnamedExplosiveBlock.java:34-38) passed
+     * {@code Explosion.BlockInteraction.BREAK} at all five blast centers — full drops, no decay,
+     * unconditionally. See
+     * {@link com.cannolicatfish.rankine.entities.ReactiveItemEntity#EXPLOSION_MODE} and
+     * {@link SphericalExplosion#vanillaExplode} for the same fix applied to the same family of bug.
+     */
+    public static final Explosion.BlockInteraction EXPLOSION_MODE = Explosion.BlockInteraction.DESTROY;
+
     @Override
     public MapCodec<? extends UnamedExplosiveBlock> codec() {
         return CODEC;
@@ -39,14 +49,14 @@ public class UnamedExplosiveBlock extends Block {
 
     @Override
     public void onCaughtFire(BlockState state, Level world, BlockPos pos, @Nullable Direction face, @Nullable LivingEntity igniter) {
-        // PORT-NOTE: Level.ExplosionInteraction.BLOCK is gone; Level#explode now takes a Level.ExplosionInteraction.
-        // BLOCK resolves to DESTROY_WITH_DECAY/DESTROY per the block-explosion-drop-decay gamerule, i.e. the old
-        // BREAK behaviour (blocks destroyed, drops preserved).
-        world.explode(igniter, pos.getX(), pos.getY() + 1, pos.getZ(), 6F, Level.ExplosionInteraction.BLOCK);
-        world.explode(igniter, pos.getX()+6, pos.getY() + 1, pos.getZ()+6, 6F, Level.ExplosionInteraction.BLOCK);
-        world.explode(igniter, pos.getX()-6, pos.getY() + 1, pos.getZ()+6, 6F, Level.ExplosionInteraction.BLOCK);
-        world.explode(igniter, pos.getX()+6, pos.getY() + 1, pos.getZ()-6, 6F, Level.ExplosionInteraction.BLOCK);
-        world.explode(igniter, pos.getX()-6, pos.getY() + 1, pos.getZ()-6, 6F, Level.ExplosionInteraction.BLOCK);
+        // F31: Level.ExplosionInteraction.BLOCK resolves through GameRules.RULE_BLOCK_EXPLOSION_DROP_DECAY
+        // (default ON) to the decaying DESTROY_WITH_DECAY, NOT baseline's unconditional full-drop BREAK.
+        // The old comment here had this backwards. Use the literal mode via vanillaExplode instead.
+        SphericalExplosion.vanillaExplode(world, igniter, pos.getX(), pos.getY() + 1, pos.getZ(), 6F, false, EXPLOSION_MODE);
+        SphericalExplosion.vanillaExplode(world, igniter, pos.getX()+6, pos.getY() + 1, pos.getZ()+6, 6F, false, EXPLOSION_MODE);
+        SphericalExplosion.vanillaExplode(world, igniter, pos.getX()-6, pos.getY() + 1, pos.getZ()+6, 6F, false, EXPLOSION_MODE);
+        SphericalExplosion.vanillaExplode(world, igniter, pos.getX()+6, pos.getY() + 1, pos.getZ()-6, 6F, false, EXPLOSION_MODE);
+        SphericalExplosion.vanillaExplode(world, igniter, pos.getX()-6, pos.getY() + 1, pos.getZ()-6, 6F, false, EXPLOSION_MODE);
         world.removeBlock(pos, false);
 
     }

@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.entities;
 
 import com.cannolicatfish.rankine.init.RankineBlocks;
+import com.cannolicatfish.rankine.util.RankineMathHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.Registries;
@@ -18,7 +19,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
 import javax.annotation.Nullable;
@@ -68,9 +68,12 @@ public class BalloonEntity extends Entity {
             ++this.time;
             if (!this.isNoGravity()) {
                 this.setDeltaMovement(new Vec3(0.0D, yMovement, 0.0D));
-                // PORT-NOTE: the AABB(BlockPos, BlockPos) constructor is gone; encapsulatingFullBlocks is the
-                // 1.21.1 equivalent (same corner-to-corner box spanning both whole blocks).
-                List<LivingEntity> entitiesOnBlock = this.level().getEntitiesOfClass(LivingEntity.class, AABB.encapsulatingFullBlocks(this.blockPosition(), this.blockPosition().above()).expandTowards(1, 1, 1), (e) -> e instanceof Mob || e instanceof Player);
+                // F29: AABB.encapsulatingFullBlocks is NOT the 1.21.1 equivalent of the removed
+                // AABB(BlockPos, BlockPos) constructor — it adds +1 to the max corner, inflating this
+                // box from the 1.18.2 1x2x1 column (volume 2, the balloon's own space) to a 2x3x2
+                // region (volume 12, catching entities up to 2 blocks away in +X/+Z and 1 block
+                // higher). Use the shared helper that rebuilds the exact 1.18.2 raw-corner box instead.
+                List<LivingEntity> entitiesOnBlock = this.level().getEntitiesOfClass(LivingEntity.class, RankineMathHelper.boxBetween(this.blockPosition(), this.blockPosition().above()).expandTowards(1, 1, 1), (e) -> e instanceof Mob || e instanceof Player);
                 for (LivingEntity i : entitiesOnBlock) {
                     i.setDeltaMovement(new Vec3(i.getDeltaMovement().x(), yMovement, i.getDeltaMovement().z()));
                 }

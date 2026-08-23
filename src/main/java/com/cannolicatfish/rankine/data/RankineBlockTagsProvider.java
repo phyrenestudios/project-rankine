@@ -351,6 +351,33 @@ public class RankineBlockTagsProvider extends BlockTagsProvider {
         tag(BlockTags.DIRT).add(RankineBlocks.PERMAFROST.get()).add(RankineBlocks.ALLUVIUM.get());
         tag(RankineTags.Blocks.FARMLAND).add(Blocks.FARMLAND,RankineBlocks.TILLED_SOIL.get());
 
+        // F30: tree-chop stump bases (BlockBreakHandler). 1.18.2 Material.DIRT family — vanilla
+        // dirt/coarse_dirt/podzol/farmland/dirt_path plus every Rankine soil/coarse/podzol/mud/path
+        // variant (all confirmed Material.DIRT at 859f87773: SoilBlock.java:19, per-block entries at
+        // RankineBlocks.java:450-459, RankinePodzolBlock.java:21, MudBlock.java:19,
+        // GrassySoilPathBlock.java:18) plus permafrost/silt/cob/refined_cob/laterite
+        // (RankineBlocks.java:437,438,534,535,538) and tilled_soil (RankineBlocks.java:516).
+        // Deliberately NOT vanilla podzol/farmland/dirt_path in their own right — reusing the
+        // RankineTags.Blocks.PODZOL / FARMLAND / PATH_BLOCKS tags, which already union the vanilla
+        // block with the Rankine variants, so the two families cannot drift apart.
+        tag(RankineTags.Blocks.STUMP_BASES)
+                .addTags(RankineTags.Blocks.COARSE_DIRT, RankineTags.Blocks.PODZOL, RankineTags.Blocks.PATH_BLOCKS, RankineTags.Blocks.MUD, RankineTags.Blocks.FARMLAND)
+                .add(Blocks.DIRT, Blocks.COARSE_DIRT)
+                .add(RankineBlocks.PERMAFROST.get(), RankineBlocks.SILT.get(), RankineBlocks.COB.get(), RankineBlocks.REFINED_COB.get(), RankineBlocks.LATERITE.get());
+        for (Block blk : RankineLists.SOIL_BLOCKS) {
+            tag(RankineTags.Blocks.STUMP_BASES).add(blk);
+        }
+        // 1.18.2 Material.SAND family — vanilla sand/red_sand/gravel/soul_sand (Material.SAND
+        // confirmed independently by RankineBlocks.java:525-526's own GravelBlock entries) plus
+        // every Rankine sand/gravel variant (RankineBlocks.java:525-530, all Material.SAND at
+        // baseline). Not vanilla gravel's own tag: #minecraft:sand excludes gravel (verified against
+        // net/minecraft/data/tags/VanillaBlockTagsProvider.java:491), so it is listed explicitly here
+        // rather than reused, matching finding #23's confirmed inverse regression ("1.18's
+        // Material.SAND covered gravel and soul sand, while #minecraft:sand does not").
+        tag(RankineTags.Blocks.STUMP_BASES)
+                .add(Blocks.SAND, Blocks.RED_SAND, Blocks.GRAVEL, Blocks.SOUL_SAND)
+                .add(RankineBlocks.DARK_GRAVEL.get(), RankineBlocks.LIGHT_GRAVEL.get(), RankineBlocks.ALLUVIUM.get(), RankineBlocks.BLACK_SAND.get(), RankineBlocks.WHITE_SAND.get(), RankineBlocks.DESERT_SAND.get());
+
 
         for (Block blk : Stream.of(RankineLists.CONCRETE).flatMap(Collection::stream).collect(Collectors.toList())) {
             tag(RankineTags.Blocks.CONCRETE).add(blk);

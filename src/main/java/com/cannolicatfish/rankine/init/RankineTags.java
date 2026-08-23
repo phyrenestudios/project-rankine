@@ -91,6 +91,22 @@ public final class RankineTags {
         public static final TagKey<Block> MOVEMENT_MODIFIERS_SNOW = modBlock("movement_modifiers/snow");
         public static final TagKey<Block> MOVEMENT_MODIFIERS_WOOD = modBlock("movement_modifiers/wood");
 
+        /**
+         * F29 (batch 4). Tree-chop stump placement ({@code BlockBreakHandler}) needs the exact
+         * 1.18.2 {@code Material.DIRT}/{@code Material.SAND} set, not {@code #minecraft:dirt}/
+         * {@code #minecraft:sand} — those vanilla tags additionally carry grass_block/mycelium/
+         * moss_block, which were {@code Material.GRASS} (not DIRT) in 1.18.2 (verified against
+         * {@code GrassySoilBlock.java:37} and {@code RankineMyceliumBlock.java:25} at
+         * {@code 859f87773}), and this mod's own tags provider additionally adds
+         * {@code GRASS_BLOCKS}/{@code MYCELIUM_BLOCKS} (also Material.GRASS at baseline) to
+         * {@code #minecraft:dirt}. Every member is independently confirmed Material.DIRT or
+         * Material.SAND at {@code 859f87773} (see finding #23 in
+         * {@code .porting/logs/visual/confirmed-findings.md}). Blocks with no baseline Material at
+         * all — vanilla's post-1.18.2 additions moss_block/rooted_dirt/mud/muddy_mangrove_roots, and
+         * soul_soil (not explicitly evidenced either way) — are deliberately left out rather than
+         * guessed.
+         */
+        public static final TagKey<Block> STUMP_BASES = modBlock("stump_bases");
         public static final TagKey<Block> KNIFE_SHEARABLE = modBlock("knife_shearable");
         public static final TagKey<Block> BALES = modBlock("bales");
         public static final TagKey<Block> ELECTROMAGNETS = modBlock("electromagnets");

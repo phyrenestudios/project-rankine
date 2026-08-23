@@ -19,6 +19,7 @@ import net.minecraft.world.level.Level;
 
 import javax.annotation.Nullable;
 
+import com.cannolicatfish.rankine.entities.SphericalExplosion;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
@@ -28,6 +29,14 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public class GunCottonBlock extends Block {
     public static final MapCodec<GunCottonBlock> CODEC = simpleCodec(GunCottonBlock::new);
+
+    /**
+     * F31 (batch 4). 1.18.2 (859f87773:GunCottonBlock.java:36) passed
+     * {@code Explosion.BlockInteraction.BREAK} — full drops, no decay, unconditionally. See
+     * {@link com.cannolicatfish.rankine.entities.ReactiveItemEntity#EXPLOSION_MODE} and
+     * {@link SphericalExplosion#vanillaExplode} for the same fix applied to the same family of bug.
+     */
+    public static final Explosion.BlockInteraction EXPLOSION_MODE = Explosion.BlockInteraction.DESTROY;
 
     @Override
     public MapCodec<? extends GunCottonBlock> codec() {
@@ -40,10 +49,10 @@ public class GunCottonBlock extends Block {
 
     @Override
     public void onCaughtFire(BlockState state, Level world, BlockPos pos, @Nullable Direction face, @Nullable LivingEntity igniter) {
-        // PORT-NOTE: Explosion.BlockInteraction.BREAK is gone; Level#explode now takes a Level.ExplosionInteraction.
-        // BLOCK resolves to DESTROY_WITH_DECAY/DESTROY per the block-explosion-drop-decay gamerule, i.e. the old
-        // BREAK behaviour (blocks destroyed, drops preserved).
-        world.explode(igniter, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), 1.5F, Level.ExplosionInteraction.BLOCK);
+        // F31: Level.ExplosionInteraction.BLOCK resolves through GameRules.RULE_BLOCK_EXPLOSION_DROP_DECAY
+        // (default ON) to the decaying DESTROY_WITH_DECAY, NOT baseline's unconditional full-drop BREAK.
+        // The old comment here had this backwards. Use the literal mode via vanillaExplode instead.
+        SphericalExplosion.vanillaExplode(world, igniter, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), 1.5F, false, EXPLOSION_MODE);
         world.removeBlock(pos, false);
     }
 

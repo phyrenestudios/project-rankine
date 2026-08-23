@@ -7,11 +7,23 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 
 public class ReactiveItemEntity extends ItemEntity {
+
+    /**
+     * F31 (batch 4). 1.18.2 (859f87773:ReactiveItemEntity.java:67) passed
+     * {@code Explosion.BlockInteraction.BREAK} — the pre-1.19.3 name for what is now plain
+     * {@code DESTROY} (full drops, no decay). The port had mapped it to
+     * {@code Level.ExplosionInteraction.BLOCK}, which resolves through
+     * {@code GameRules.RULE_BLOCK_EXPLOSION_DROP_DECAY} (default ON) to the decaying
+     * {@code DESTROY_WITH_DECAY} instead — an inversion: dropping an alkali metal into water went
+     * from full drops to ~1/radius. See {@link SphericalExplosion#vanillaExplode}.
+     */
+    public static final Explosion.BlockInteraction EXPLOSION_MODE = Explosion.BlockInteraction.DESTROY;
 
     private float radius;
     private boolean canBreakBlocks;
@@ -61,10 +73,13 @@ public class ReactiveItemEntity extends ItemEntity {
         if (this.wasTouchingWater)
         {
             BlockPos pos = this.blockPosition();
-            // 1.21.1: Explosion.BlockInteraction BREAK/NONE -> Level.ExplosionInteraction BLOCK/NONE
+            // F31: NONE has no gamerule indirection (Level.java:734 maps it unconditionally to
+            // KEEP), so the else branch below was already correct. The break branch needs the
+            // literal, gamerule-independent EXPLOSION_MODE — see its javadoc and
+            // SphericalExplosion#vanillaExplode.
             if (canBreakBlocks)
             {
-                this.getCommandSenderWorld().explode(null, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), this.radius, Level.ExplosionInteraction.BLOCK);
+                SphericalExplosion.vanillaExplode(this.getCommandSenderWorld(), null, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), this.radius, false, EXPLOSION_MODE);
             } else {
                 this.getCommandSenderWorld().explode(null, pos.getX(), pos.getY() + 16 * .0625D, pos.getZ(), this.radius, Level.ExplosionInteraction.NONE);
             }
