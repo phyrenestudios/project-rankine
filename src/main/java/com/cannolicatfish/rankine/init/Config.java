@@ -1280,19 +1280,21 @@ public class Config {
             // 100% of their attempts inside y 11..64. Measured per-attempt chance of landing in end
             // stone, inside an island: natives 0.300 -> 0.806 (2.7x), spheres 0.603 -> 0.825 (1.4x).
             //
-            // Counts, sizes, densities and chances are deliberately unchanged. The sphere rows are
-            // rare because count=1 and spawnChance=0.3 give 0.3 attempts per chunk, not because of
-            // where they aim — but each successful sphere is a radius-3 blob, so after the band fix
-            // that is still one per ~4 chunks per ore inside an island, which is findable. Changing
-            // count or chance would be a second balance change stacked on this one.
+            // Counts, sizes and densities are unchanged. spawnChance was 0.3 (0.3 attempts per
+            // chunk) until F35 (decision 10, Karl, batch 4): doubled to 0.6 to double the
+            // per-chunk find rate on top of the F18 band retune above, which only fixed WHERE the
+            // attempts aim, not how many of them there are. Each successful sphere is still a
+            // radius-3 blob, so this is now roughly one per ~2 chunks per ore inside an island.
+            // NOT 1.18.2 parity: the baseline shipped 0.3 for all four rows. Only the shipped
+            // DEFAULT changes — an existing rankine-common.toml keeps whatever it already has.
             oreSettings.add(List.of("rankine:native_gallium_ore", List.of("the_end"), "default", "triangle",15, 60, 4, 1.0D, 15, 1.0, 0.0D));
             oreSettings.add(List.of("rankine:native_indium_ore", List.of("the_end"), "default", "triangle",15, 60, 4, 1.0D, 15, 1.0, 0.0D));
             oreSettings.add(List.of("rankine:native_selenium_ore", List.of("the_end"), "default", "triangle",15, 60, 4, 1.0D, 15, 1.0, 0.0D));
             oreSettings.add(List.of("rankine:native_tellurium_ore", List.of("the_end"), "default", "triangle",15, 60, 4, 1.0D, 15, 1.0, 0.0D));
-            oreSettings.add(List.of("rankine:molybdenite_ore", List.of("the_end"), "sphere", "uniform",26, 58, 3, 0.5D, 1, 0.3, 0.0D));
-            oreSettings.add(List.of("rankine:uraninite_ore", List.of("the_end"), "sphere", "uniform",26, 58, 3, 0.5D, 1, 0.3, 0.0D));
-            oreSettings.add(List.of("rankine:xenotime_ore", List.of("the_end"), "sphere", "uniform",26, 58, 3, 0.5D, 1, 0.3, 0.0D));
-            oreSettings.add(List.of("rankine:greenockite_ore", List.of("the_end"), "sphere", "uniform",26, 58, 3, 0.5D, 1, 0.3, 0.0D));
+            oreSettings.add(List.of("rankine:molybdenite_ore", List.of("the_end"), "sphere", "uniform",26, 58, 3, 0.5D, 1, 0.6, 0.0D));
+            oreSettings.add(List.of("rankine:uraninite_ore", List.of("the_end"), "sphere", "uniform",26, 58, 3, 0.5D, 1, 0.6, 0.0D));
+            oreSettings.add(List.of("rankine:xenotime_ore", List.of("the_end"), "sphere", "uniform",26, 58, 3, 0.5D, 1, 0.6, 0.0D));
+            oreSettings.add(List.of("rankine:greenockite_ore", List.of("the_end"), "sphere", "uniform",26, 58, 3, 0.5D, 1, 0.6, 0.0D));
 
 
 

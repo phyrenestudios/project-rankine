@@ -44,6 +44,7 @@ import net.minecraft.gametest.framework.GameTestAssertException;
 import net.minecraft.gametest.framework.GameTestHelper;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BiomeTags;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.EnchantmentTags;
 import net.minecraft.tags.ItemTags;
@@ -1543,15 +1544,27 @@ public class RankineRegistryTests {
 
     /**
      * F9 — flat bedrock, world replacer and intrusions must reach every biome in every dimension.
+     * F34 (decision 7A) extends this to meteorite / fumarole (overworld) / wall mushrooms / patch
+     * cobbles, which need "every biome that is not nether and not end" rather than "every biome".
      *
-     * <p>1.18.2 added all three unconditionally ({@code FeatureGeneration#addFeaturesToBiomes}
+     * <p>1.18.2 added the first three unconditionally ({@code FeatureGeneration#addFeaturesToBiomes}
      * guarded them on nothing but the config value). The port gated them on
      * {@code c:is_overworld} / {@code minecraft:is_nether} / {@code minecraft:is_end}, so any biome
      * in none of those three — every modded dimension, plus {@code minecraft:the_void} — got vanilla
      * stone. The modifiers now omit their {@code biomes} field, which means "all biomes".
      *
+     * <p>The F34 four used 1.18.2's {@code isOverworld} (baseline {@code FeatureGeneration.java}
+     * lines 54/57/63/156 at {@code 859f87773}: {@code METEORITE_CHANCE>0 && isOverworld},
+     * {@code FUMAROLE_GEN>0 && (isOverworld || category==NETHER)}, {@code MUSHROOMS && isOverworld},
+     * {@code COBBLES_GEN && isOverworld}) — {@code !NETHER && !THEEND}, reaching modded dimensions
+     * automatically. The port instead gated them on {@code #c:is_overworld}, NeoForge's own tag,
+     * which is an explicit opt-in list and cannot reach a biome from a mod that has not added
+     * itself to it. {@code ConfigGatedFeaturesBiomeModifier} now has an {@code exclude} list
+     * ({@code #minecraft:is_nether}, {@code #minecraft:is_end}) instead.
+     *
      * <p>{@code flat_bedrock}'s gate ({@code flatBedrockLayers}) defaults to 0, so only its biome
-     * set is asserted; the other two gates are on by default and are checked end to end.
+     * set is asserted; every other gate here (world replacer, intrusion, meteorite, fumarole,
+     * mushrooms, cobbles) is on by default and is checked end to end.
      */
     @GameTest(template = "empty")
     public void dimensionWideFeaturesReachEveryBiome(GameTestHelper helper) {
@@ -1590,6 +1603,79 @@ public class RankineRegistryTests {
             problems.add("minecraft:the_void has no rankine:world_replacer (it is in none of the three dimension tags)");
         }
 
+        // ---- F34: meteorite / fumarole (overworld) / wall mushrooms / patch cobbles ----
+        for (ResourceKey<BiomeModifier> key : List.of(RankineBiomeModifiers.METEORITE,
+                RankineBiomeModifiers.FUMAROLE_OVERWORLD, RankineBiomeModifiers.WALL_MUSHROOMS,
+                RankineBiomeModifiers.PATCH_COBBLES)) {
+            BiomeModifier modifier = modifiers.get(key);
+            if (!(modifier instanceof ConfigGatedFeaturesBiomeModifier gated)) {
+                problems.add(key.location() + " is not a rankine:config_gated_add_features modifier");
+            } else {
+                if (gated.biomes().isPresent()) {
+                    problems.add(key.location() + " restricts its biome set instead of applying to every biome");
+                }
+                if (gated.exclude().isEmpty()) {
+                    problems.add(key.location() + " has no exclude set, so it would also reach nether/end");
+                }
+            }
+        }
+
+        // Every biome that is not nether and not end must carry all four -- the_void again stands
+        // in for a modded dimension (it is in neither #minecraft:is_nether nor #minecraft:is_end).
+        int overworldChecked = 0;
+        for (Holder.Reference<Biome> biome : biomeRegistry.holders().toList()) {
+            if (biome.is(BiomeTags.IS_NETHER) || biome.is(BiomeTags.IS_END)) continue;
+            overworldChecked++;
+            if (!hasPlacedFeature(biome, GenerationStep.Decoration.LOCAL_MODIFICATIONS, RankinePlacedFeatures.PLACED_METEORITE)) {
+                problems.add(biome.key().location() + " has no rankine:meteorite");
+            }
+            if (!hasPlacedFeature(biome, GenerationStep.Decoration.LOCAL_MODIFICATIONS, RankinePlacedFeatures.PLACED_FUMAROLE)) {
+                problems.add(biome.key().location() + " has no rankine:fumarole");
+            }
+            if (!hasPlacedFeature(biome, GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_WALL_MUSHROOMS)) {
+                problems.add(biome.key().location() + " has no rankine:wall_mushrooms");
+            }
+            if (!hasPlacedFeature(biome, GenerationStep.Decoration.LOCAL_MODIFICATIONS, RankinePlacedFeatures.PLACED_PATCH_COBBLES)) {
+                problems.add(biome.key().location() + " has no rankine:patch_cobbles");
+            }
+        }
+        // Vanilla 1.21.1 ships exactly 64 biomes (Biomes.java constant count), 5 nether + 5 end,
+        // so this is exactly 54 today; >=50 leaves margin for new vanilla biomes without being a
+        // vacuous threshold (it is still far above the 5-11 count a real regression would produce).
+        assertTrue(overworldChecked >= 50, "expected >=50 non-nether/non-end biomes, found " + overworldChecked);
+
+        // Negative control: a nether biome gets none of the four overworld-reaching features, but
+        // still gets its own fumarole through the separate, nether-only FUMAROLE_NETHER modifier.
+        Holder.Reference<Biome> netherWastes = biomeRegistry.getHolderOrThrow(Biomes.NETHER_WASTES);
+        if (hasPlacedFeature(netherWastes, GenerationStep.Decoration.LOCAL_MODIFICATIONS, RankinePlacedFeatures.PLACED_METEORITE)) {
+            problems.add("minecraft:nether_wastes has rankine:meteorite, an overworld-only feature");
+        }
+        if (hasPlacedFeature(netherWastes, GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_WALL_MUSHROOMS)) {
+            problems.add("minecraft:nether_wastes has rankine:wall_mushrooms, an overworld-only feature");
+        }
+        if (hasPlacedFeature(netherWastes, GenerationStep.Decoration.LOCAL_MODIFICATIONS, RankinePlacedFeatures.PLACED_PATCH_COBBLES)) {
+            problems.add("minecraft:nether_wastes has rankine:patch_cobbles, an overworld-only feature");
+        }
+        if (!hasPlacedFeature(netherWastes, GenerationStep.Decoration.LOCAL_MODIFICATIONS, RankinePlacedFeatures.PLACED_FUMAROLE)) {
+            problems.add("minecraft:nether_wastes has no rankine:fumarole (FUMAROLE_NETHER should still reach it)");
+        }
+
+        // Negative control: an End biome gets none of the four -- fumarole included, since
+        // "not overworld" excludes the End from both the overworld and nether fumarole modifiers.
+        Holder.Reference<Biome> endHighlands = biomeRegistry.getHolderOrThrow(Biomes.END_HIGHLANDS);
+        if (hasPlacedFeature(endHighlands, GenerationStep.Decoration.LOCAL_MODIFICATIONS, RankinePlacedFeatures.PLACED_METEORITE)) {
+            problems.add("minecraft:end_highlands has rankine:meteorite");
+        }
+        if (hasPlacedFeature(endHighlands, GenerationStep.Decoration.LOCAL_MODIFICATIONS, RankinePlacedFeatures.PLACED_FUMAROLE)) {
+            problems.add("minecraft:end_highlands has rankine:fumarole");
+        }
+        if (hasPlacedFeature(endHighlands, GenerationStep.Decoration.VEGETAL_DECORATION, RankinePlacedFeatures.PLACED_WALL_MUSHROOMS)) {
+            problems.add("minecraft:end_highlands has rankine:wall_mushrooms");
+        }
+        if (hasPlacedFeature(endHighlands, GenerationStep.Decoration.LOCAL_MODIFICATIONS, RankinePlacedFeatures.PLACED_PATCH_COBBLES)) {
+            problems.add("minecraft:end_highlands has rankine:patch_cobbles");
+        }
+
         assertEmpty(problems, "biomes missing dimension-wide Rankine features");
         helper.succeed();
     }
@@ -1600,42 +1686,56 @@ public class RankineRegistryTests {
     // number, and that running it over end stone actually replaces blocks.
     // ------------------------------------------------------------------------------------------
 
-    /** The eight {@code "the_end"} oreSettings rows, in config order (Config.java:1288-1295). */
+    /**
+     * The nine ore rows an End biome carries, in config order: the {@code "all"} kimberlitic_tuff
+     * row (Config.java:1246 — matches every biome as of F36, decision 12) precedes the eight
+     * {@code "the_end"} rows (Config.java:1288-1295) in the config list, so it is added first.
+     */
     private static final List<String> END_ORE_VEINS = List.of(
+            "rankine:kimberlitic_tuff",
             "rankine:native_gallium_ore", "rankine:native_indium_ore", "rankine:native_selenium_ore",
             "rankine:native_tellurium_ore", "rankine:molybdenite_ore", "rankine:uraninite_ore",
             "rankine:xenotime_ore", "rankine:greenockite_ore");
 
     /**
-     * Of those eight, the six that appear in NO other row. uraninite and molybdenite also have an
-     * {@code "overworld"} row (Config.java:1227-1228), so they are not End-exclusive.
+     * Of those nine, the six that appear in NO other row. uraninite and molybdenite also have an
+     * {@code "overworld"} row (Config.java:1227-1228), so they are not End-exclusive; kimberlitic_tuff
+     * is the least exclusive of all — its {@code "all"} selector (F36) puts it in every biome in the
+     * game, so it is deliberately NOT in this list (see the positive check it gets instead, below,
+     * and the dedicated {@link #kimberliticTuffAllSelectorReachesEveryBiome}).
      */
     private static final List<String> END_EXCLUSIVE_ORES = List.of(
             "rankine:native_gallium_ore", "rankine:native_indium_ore", "rankine:native_selenium_ore",
             "rankine:native_tellurium_ore", "rankine:xenotime_ore", "rankine:greenockite_ore");
 
     /**
-     * F7 — an End biome must carry exactly the eight End ore veins, no more and no fewer.
+     * F7 — an End biome must carry exactly the nine End ore veins, no more and no fewer. (The
+     * method name predates F36 and still says "eight"; left as-is rather than rippling the
+     * cross-reference in {@code endOreVeinBandsTargetEndIslandTerrain}'s javadoc, which names it.)
      *
-     * <p><b>Derivation of the number 8</b> (from the shipped default {@code oreSettings},
+     * <p><b>Derivation of the number 9</b> (from the shipped default {@code oreSettings},
      * Config.java:1176-1295 — 75 active rows — read through {@code RankineOreBiomeModifier#matches}):
      * <ul>
      *   <li>43 rows select {@code "overworld"}, which is {@link WorldgenUtils#isOverworld}:
      *       {@code !biome.is(IS_NETHER) && !biome.is(IS_END)}. Every End biome is in
-     *       {@code minecraft:is_end}, so <b>none</b> of the 43 match — this is why the count is 8
-     *       and not 51, and why {@code rankine:hematite_ore} (overworld-only) is checked absent below;</li>
+     *       {@code minecraft:is_end}, so <b>none</b> of the 43 match — this is why the count is 9
+     *       and not 52, and why {@code rankine:hematite_ore} (overworld-only) is checked absent below;</li>
      *   <li>9 rows select the {@code "nether"} category ({@code minecraft:is_nether}) — no match;</li>
      *   <li>2 rows name an exact biome ({@code minecraft:nether_wastes},
      *       {@code minecraft:crimson_forest}) — no match;</li>
      *   <li>12 rows select combinations of overworld-only categories (mesa, ocean, beach, mushroom,
      *       desert, plains, savanna, jungle, swamp, forest, taiga, extreme_hills, mountain, icy).
      *       An End biome is in none of those tags — no match;</li>
-     *   <li>1 row selects {@code "all"}, which was never a {@code BiomeCategory} name and so matches
-     *       nothing (parity with 1.18.2, see {@link WorldgenUtils#isCategory});</li>
+     *   <li>1 row selects {@code "all"} (kimberlitic_tuff) — as of F36 (decision 12, batch 4) this
+     *       MATCHES every biome unconditionally, End included (see {@link WorldgenUtils#isCategory}
+     *       / {@link WorldgenUtils#matchesCategory}). Before F36 this row matched nothing at all —
+     *       {@code "all"} was never a {@code BiomeCategory} name in 1.18.2 either — so this line
+     *       used to read "matches nothing" and the derivation totalled 8, not 9. NOT 1.18.2 parity;</li>
      *   <li>{@code "none"} would be excluded anyway: it means "in none of the CATEGORY_TAGS tags",
      *       and an End biome is in {@code minecraft:is_end}, which is one of them. No default row
      *       uses it (the only one, basaltic_tuff, is commented out);</li>
-     *   <li>leaving the 8 rows keyed {@code "the_end"} → {@code minecraft:is_end}. 43+9+2+12+1+8 = 75.</li>
+     *   <li>leaving the 8 rows keyed {@code "the_end"} → {@code minecraft:is_end}. 43+9+2+12+1+8 = 75;
+     *       1 ("all") + 8 ("the_end") = 9 rows reach an End biome.</li>
      * </ul>
      * The order is the config's, because the modifier appends one placed feature per matching row.
      */
@@ -1670,10 +1770,19 @@ public class RankineRegistryTests {
                     + " and the End count above would be vacuous");
         }
 
-        // QA's in-world scans looked for #c:ores. All eight End ores are in it (through their
+        // QA's in-world scans looked for #c:ores. All eight *_ore End ores are in it (through their
         // per-element child tags), so a scan that finds nothing is evidence about the veins, not
         // about the tag. Pinned here so that stays true.
+        //
+        // kimberlitic_tuff is deliberately excluded from this specific check (though it IS in
+        // END_ORE_VEINS, checked above): it is a plain rock-variant Block
+        // (RankineBlocks.java:562), not a RankineOreBlock, and carries no ore tag at all -- verified
+        // by grepping every ore tag provider for "tuff" (zero hits). The "oreSettings" config
+        // section is really a generic vein-placement mechanism the mod also uses for non-ore rock
+        // variants (the other, still-commented-out tuff rows -- andesitic/rhyolitic/basaltic -- are
+        // the same family), not an "every row is an ore" guarantee.
         for (String ore : END_ORE_VEINS) {
+            if (ore.equals("rankine:kimberlitic_tuff")) continue;
             Block block = BuiltInRegistries.BLOCK.get(ResourceLocation.parse(ore));
             if (!block.defaultBlockState().is(Tags.Blocks.ORES)) {
                 problems.add(ore + " is not in #c:ores");
@@ -1681,6 +1790,43 @@ public class RankineRegistryTests {
         }
 
         assertEmpty(problems, "End ore vein attachment failures");
+        helper.succeed();
+    }
+
+    /**
+     * F36 (decision 12) — the {@code "all"} biome selector on the {@code rankine:kimberlitic_tuff}
+     * ore row (Config.java:1246) must reach literally every biome: an overworld one (plains), a
+     * nether one and an End one, none of which any OTHER selector in this file would connect for
+     * this specific ore (it has no other row). Falsifiable the same way as every other selector
+     * test here: before F36, {@code WorldgenUtils.matchesCategory(biome, "all")} returned false
+     * unconditionally and this fails on all three biomes at once.
+     */
+    @GameTest(template = "empty")
+    public void kimberliticTuffAllSelectorReachesEveryBiome(GameTestHelper helper) {
+        var biomeRegistry = helper.getLevel().registryAccess().registryOrThrow(Registries.BIOME);
+        List<String> problems = new ArrayList<>();
+
+        Block kimberliticTuff = BuiltInRegistries.BLOCK.get(ResourceLocation.parse("rankine:kimberlitic_tuff"));
+        for (ResourceKey<Biome> key : List.of(Biomes.PLAINS, Biomes.NETHER_WASTES, Biomes.END_HIGHLANDS)) {
+            Set<Block> veins = oreVeinBlocks(biomeRegistry.getHolderOrThrow(key));
+            if (!veins.contains(kimberliticTuff)) {
+                problems.add(key.location() + " has no rankine:kimberlitic_tuff vein (the \"all\" selector)");
+            }
+        }
+
+        if (!WorldgenUtils.isCategory("all")) {
+            problems.add("WorldgenUtils.isCategory(\"all\") is false");
+        }
+        // Cross-check against a biome that matches "none": "all" must not be defeated by whatever
+        // makes "none" special-cased, and a biome may legitimately match both at once.
+        if (!WorldgenUtils.matchesCategory(biomeRegistry.getHolderOrThrow(Biomes.THE_VOID), "all")) {
+            problems.add("\"all\" does not match minecraft:the_void");
+        }
+        if (!WorldgenUtils.matchesCategory(biomeRegistry.getHolderOrThrow(Biomes.THE_VOID), WorldgenUtils.CATEGORY_NONE)) {
+            problems.add("minecraft:the_void no longer matches \"none\" -- \"all\" must not be counted as a real category tag");
+        }
+
+        assertEmpty(problems, "\"all\" biome selector failures");
         helper.succeed();
     }
 
@@ -1962,7 +2108,20 @@ public class RankineRegistryTests {
             int max = (int) row.get(5);
             double[] mass = placementMass(triangle, min, max);
             String where = ore + " (" + row.get(3) + " " + min + ".." + max + ")";
-            if ("sphere".equals(row.get(2))) sphereRows++; else nativeRows++;
+            if ("sphere".equals(row.get(2))) {
+                sphereRows++;
+                // F35 (decision 10): the four sphere rows' spawnChance was doubled 0.3 -> 0.6.
+                // Pinned here, the one place this loop already isolates them, so a regression
+                // (e.g. an accidental revert) cannot hide behind the identity/order checks in
+                // endBiomesCarryExactlyTheEightEndOreVeins, which do not read spawnChance at all.
+                double spawnChance = (double) row.get(9);
+                if (spawnChance != 0.6D) {
+                    problems.add(where + " has spawnChance " + num(spawnChance)
+                            + ", expected 0.6 (F35: doubled from the 1.18.2 default of 0.3)");
+                }
+            } else {
+                nativeRows++;
+            }
 
             // Not one attempt may be thrown outside the dimension. The old triangle rows sent 34.3%
             // below the y=0 floor alone, and 51.4% outside the stone slab y 11..64 altogether; that

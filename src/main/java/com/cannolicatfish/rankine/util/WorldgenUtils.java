@@ -108,13 +108,28 @@ public class WorldgenUtils {
     public static final String CATEGORY_NONE = "none";
 
     /**
+     * F36 (decision 12, Karl, batch 4): {@code "all"} — every biome, unconditionally. NOT a
+     * 1.18.2 {@code BiomeCategory} name (there was no such enum constant), so
+     * {@code BiomeCategory.byName("all")} returned null and any row that selected it, like the
+     * shipped {@code rankine:kimberlitic_tuff} ore row (Config.java:1246,
+     * {@code List.of("all")}), matched no biome in 1.18.2 — dead on arrival, never a deliberate
+     * "everywhere" selector. Karl called this a bug rather than parity worth preserving and asked
+     * for it to actually spawn. Deliberately handled the same way as {@link #CATEGORY_NONE}: a
+     * predicate special-cased in {@link #isCategory} / {@link #matchesCategory} rather than a
+     * {@link #CATEGORY_TAGS} entry, so it is NOT one of the "real category tags" the {@code "none"}
+     * computation loops over — a biome can match both {@code "all"} and {@code "none"} at once,
+     * which is correct: {@code "none"} still means "declared no real category".
+     */
+    public static final String CATEGORY_ALL = "all";
+
+    /**
      * True if the string names a biome category the config can select on, i.e. one that 1.18.2's
-     * {@code BiomeCategory.byName(...)} resolved to a non-null enum constant. Anything else
-     * (a typo, or the {@code "all"} that the shipped kimberlitic_tuff ore row uses) selected no
-     * biomes in 1.18.2 either, and still selects none here.
+     * {@code BiomeCategory.byName(...)} resolved to a non-null enum constant, OR {@link #CATEGORY_ALL}
+     * (batch 4 F36 — a deliberate non-parity addition, see its javadoc). Anything else (a typo)
+     * selected no biomes in 1.18.2 either, and still selects none here.
      */
     public static boolean isCategory(String category) {
-        return CATEGORY_NONE.equals(category) || CATEGORY_TAGS.containsKey(category);
+        return CATEGORY_NONE.equals(category) || CATEGORY_ALL.equals(category) || CATEGORY_TAGS.containsKey(category);
     }
 
     /**
@@ -130,8 +145,13 @@ public class WorldgenUtils {
      * Semantic delta: a modded biome that declared no BiomeCategory in 1.18.2 but that modern tag
      * convention places in, say, {@code c:is_forest} now matches "forest" instead of "none".
      * Arguably more correct, but it is a delta from the baseline.
+     * <p>
+     * {@link #CATEGORY_ALL} (batch 4 F36) matches unconditionally, checked before either tag test.
      */
     public static boolean matchesCategory(Holder<Biome> biome, String category) {
+        if (CATEGORY_ALL.equals(category)) {
+            return true;
+        }
         if (CATEGORY_NONE.equals(category)) {
             for (TagKey<Biome> tag : CATEGORY_TAGS.values()) {
                 if (biome.is(tag)) return false;

@@ -225,4 +225,47 @@ class RenderTypeModelTest {
         }
         assertTrue(wrong.isEmpty(), "hand-written models with the wrong (or missing) render_type: " + wrong);
     }
+
+    // =========================================================================================
+    // (d) CAST_IRON_SUPPORT family (port fix F38 / G2 triage on 3dde0a6be): the wall loses
+    // cutout_mipped, the other three intended blocks keep it.
+    // =========================================================================================
+
+    /**
+     * Baseline {@code ClientProxy.java:176-198} at {@code 859f87773} listed exactly
+     * {@code CAST_IRON_SUPPORT}, {@code CAST_IRON_SUPPORT_SLAB} and {@code CAST_IRON_SUPPORT_STAIRS}
+     * in {@code addCutoutMipped} -- never {@code CAST_IRON_SUPPORT_WALL}. Because
+     * {@code "cast_iron_support"} is a literal string-prefix of the wall's own generated model
+     * names, the permissive underscore-suffix matcher in {@code applyRenderTypes()} swept all four
+     * wall models into {@code cutout_mipped} anyway, the moment {@code CAST_IRON_SUPPORT.get()} sat
+     * in a permissively-matched list. F38 routes {@code CAST_IRON_SUPPORT} alone through the
+     * restrictive (exact-name/digit-suffix) matcher mode G2 added for stone bricks.
+     */
+    @Test
+    @DisplayName("cast_iron_support_wall's four models lose cutout_mipped; the base/slab/stairs family keeps it")
+    void castIronSupportWallLosesCutoutMippedFamilyKeepsIt() throws IOException {
+        List<String> expectedCutoutMipped = List.of(
+                "block/cast_iron_support",
+                "block/cast_iron_support_slab", "block/cast_iron_support_slab_top",
+                "block/cast_iron_support_stairs", "block/cast_iron_support_stairs_inner",
+                "block/cast_iron_support_stairs_outer");
+        List<String> expectedNoRenderType = List.of(
+                "block/cast_iron_support_wall_post", "block/cast_iron_support_wall_side",
+                "block/cast_iron_support_wall_side_tall", "block/cast_iron_support_wall_inventory");
+
+        List<String> wrong = new ArrayList<>();
+        for (String base : expectedCutoutMipped) {
+            String rt = generatedRenderType(base);
+            if (!"minecraft:cutout_mipped".equals(rt)) {
+                wrong.add(base + ": expected minecraft:cutout_mipped, got " + rt);
+            }
+        }
+        for (String base : expectedNoRenderType) {
+            String rt = generatedRenderType(base);
+            if (rt != null) {
+                wrong.add(base + ": expected no render_type (solid), got " + rt);
+            }
+        }
+        assertTrue(wrong.isEmpty(), "cast_iron_support family render-type failures: " + wrong);
+    }
 }

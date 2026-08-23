@@ -1,6 +1,5 @@
 {
   "parent": "minecraft:block/wall_inventory",
-  "render_type": "minecraft:cutout_mipped",
   "textures": {
     "wall": "rankine:block/cast_iron_support"
   }

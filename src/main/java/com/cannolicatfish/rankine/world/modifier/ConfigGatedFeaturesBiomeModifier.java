@@ -17,6 +17,7 @@ import net.neoforged.neoforge.common.world.ModifiableBiomeInfo;
 
 import com.mojang.serialization.Codec;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -32,12 +33,28 @@ import java.util.Optional;
  * Forest biomeSettings rows). No tag can name "every biome, including ones from mods that are not
  * installed yet", but {@code BiomeModifier#modify} is invoked for every biome, so an absent biome
  * set expresses it exactly.
+ * <p>
+ * F34 (batch 4, decision 7A): {@code exclude} is a list of biome sets a matching biome must be in
+ * NONE of — a biome is skipped if it is absent from {@code biomes} (when given), OR present in ANY
+ * set in {@code exclude}. This is how {@code meteorite}/{@code fumarole_overworld}/
+ * {@code wall_mushrooms}/{@code patch_cobbles} reproduce 1.18.2's {@code isOverworld} —
+ * {@code !NETHER && !THEEND} — for modded dimensions: {@code biomes = Optional.empty()} (every
+ * biome) plus {@code exclude = [#minecraft:is_nether, #minecraft:is_end]}. A single combined tag
+ * cannot do this instead, because Minecraft tags can only union memberships, never negate one:
+ * there is no tag file that means "not nether and not end", so {@code #c:is_overworld} (NeoForge's
+ * own tag) is necessarily an explicit opt-in list — vanilla biomes NeoForge's own datagen chose to
+ * include — and can never automatically reach a biome from a mod that has not opted in. Each entry
+ * of {@code exclude} decodes independently through {@code HolderSetCodec} (see
+ * {@code RegistryCodecs#homogeneousList}), so a tag reference (the normal case) stays LIVE: it is
+ * re-resolved against whatever is actually installed wherever the shipped JSON is loaded, not
+ * baked to the ID list this mod's own {@code runData} happened to see.
  */
-public record ConfigGatedFeaturesBiomeModifier(Optional<HolderSet<Biome>> biomes, HolderSet<PlacedFeature> features,
-        GenerationStep.Decoration step, String gate) implements BiomeModifier {
+public record ConfigGatedFeaturesBiomeModifier(Optional<HolderSet<Biome>> biomes, List<HolderSet<Biome>> exclude,
+        HolderSet<PlacedFeature> features, GenerationStep.Decoration step, String gate) implements BiomeModifier {
 
     public static final MapCodec<ConfigGatedFeaturesBiomeModifier> CODEC = RecordCodecBuilder.mapCodec(builder -> builder.group(
             RegistryCodecs.homogeneousList(Registries.BIOME).optionalFieldOf("biomes").forGetter(ConfigGatedFeaturesBiomeModifier::biomes),
+            RegistryCodecs.homogeneousList(Registries.BIOME).listOf().optionalFieldOf("exclude", List.of()).forGetter(ConfigGatedFeaturesBiomeModifier::exclude),
             RegistryCodecs.homogeneousList(Registries.PLACED_FEATURE).fieldOf("features").forGetter(ConfigGatedFeaturesBiomeModifier::features),
             GenerationStep.Decoration.CODEC.fieldOf("step").forGetter(ConfigGatedFeaturesBiomeModifier::step),
             Codec.STRING.fieldOf("gate").forGetter(ConfigGatedFeaturesBiomeModifier::gate)
@@ -47,6 +64,9 @@ public record ConfigGatedFeaturesBiomeModifier(Optional<HolderSet<Biome>> biomes
     public void modify(Holder<Biome> biome, Phase phase, ModifiableBiomeInfo.BiomeInfo.Builder builder) {
         if (phase != Phase.ADD) return;
         if (this.biomes.isPresent() && !this.biomes.get().contains(biome)) return;
+        for (HolderSet<Biome> excluded : this.exclude) {
+            if (excluded.contains(biome)) return;
+        }
         if (!gateEnabled(this.gate)) return;
         BiomeGenerationSettingsBuilder generationSettings = builder.getGenerationSettings();
         this.features.forEach(holder -> generationSettings.addFeature(this.step, holder));

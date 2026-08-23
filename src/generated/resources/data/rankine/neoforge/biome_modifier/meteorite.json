@@ -1,6 +1,9 @@
 {
   "type": "rankine:config_gated_add_features",
-  "biomes": "#c:is_overworld",
+  "exclude": [
+    "#minecraft:is_nether",
+    "#minecraft:is_end"
+  ],
   "features": "rankine:meteorite",
   "gate": "meteorite",
   "step": "local_modifications"

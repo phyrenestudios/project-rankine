@@ -115,8 +115,12 @@ public class RankineBiomeModifiers {
         HolderGetter<Biome> biomes = context.lookup(Registries.BIOME);
         HolderGetter<PlacedFeature> placed = context.lookup(Registries.PLACED_FEATURE);
 
-        HolderSet<Biome> overworld = biomes.getOrThrow(Tags.Biomes.IS_OVERWORLD);
         HolderSet<Biome> nether = biomes.getOrThrow(BiomeTags.IS_NETHER);
+        HolderSet<Biome> end = biomes.getOrThrow(BiomeTags.IS_END);
+        // F34 (decision 7A): nether+end as an EXCLUDE set -- see addAllExcept and the class
+        // javadoc on ConfigGatedFeaturesBiomeModifier for why this replaces #c:is_overworld
+        // (Tags.Biomes.IS_OVERWORLD) for the four features below that need it.
+        List<HolderSet<Biome>> notOverworld = List.of(nether, end);
         // 1.18.2 checked these four End biomes by name, not the whole End.
         HolderSet<Biome> outerEnd = HolderSet.direct(
                 biomes.getOrThrow(Biomes.END_HIGHLANDS), biomes.getOrThrow(Biomes.END_MIDLANDS),
@@ -135,11 +139,18 @@ public class RankineBiomeModifiers {
         addAll(context, WORLD_REPLACER, GenerationStep.Decoration.UNDERGROUND_DECORATION, "layer_gen", placed, RankinePlacedFeatures.PLACED_WORLD_REPLACER);
         addAll(context, INTRUSION, GenerationStep.Decoration.UNDERGROUND_DECORATION, "intrusion", placed, RankinePlacedFeatures.PLACED_INTRUSION);
 
-        add(context, METEORITE, overworld, GenerationStep.Decoration.LOCAL_MODIFICATIONS, "meteorite", placed, RankinePlacedFeatures.PLACED_METEORITE);
-        add(context, FUMAROLE_OVERWORLD, overworld, GenerationStep.Decoration.LOCAL_MODIFICATIONS, "fumarole", placed, RankinePlacedFeatures.PLACED_FUMAROLE);
+        // F34 (decision 7A): these four had no dimension or category test at all in 1.18.2, just
+        // isOverworld (FeatureGeneration.java:54,57,63,156 at 859f87773 -- METEORITE_CHANCE>0 &&
+        // isOverworld, FUMAROLE_GEN>0 && (isOverworld || category==NETHER), MUSHROOMS &&
+        // isOverworld, COBBLES_GEN && isOverworld). addAllExcept reproduces "every biome that is
+        // not nether and not end" the same opt-out way WorldgenUtils#isOverworld already does for
+        // the ore modifier, rather than the opt-in #c:is_overworld tag this used before (which
+        // cannot reach a modded dimension unless that mod's own datagen adds its biomes to it).
+        addAllExcept(context, METEORITE, notOverworld, GenerationStep.Decoration.LOCAL_MODIFICATIONS, "meteorite", placed, RankinePlacedFeatures.PLACED_METEORITE);
+        addAllExcept(context, FUMAROLE_OVERWORLD, notOverworld, GenerationStep.Decoration.LOCAL_MODIFICATIONS, "fumarole", placed, RankinePlacedFeatures.PLACED_FUMAROLE);
         add(context, FUMAROLE_NETHER, nether, GenerationStep.Decoration.LOCAL_MODIFICATIONS, "fumarole", placed, RankinePlacedFeatures.PLACED_FUMAROLE);
-        add(context, WALL_MUSHROOMS, overworld, GenerationStep.Decoration.VEGETAL_DECORATION, "mushrooms", placed, RankinePlacedFeatures.PLACED_WALL_MUSHROOMS);
-        add(context, PATCH_COBBLES, overworld, GenerationStep.Decoration.LOCAL_MODIFICATIONS, "cobbles", placed, RankinePlacedFeatures.PLACED_PATCH_COBBLES);
+        addAllExcept(context, WALL_MUSHROOMS, notOverworld, GenerationStep.Decoration.VEGETAL_DECORATION, "mushrooms", placed, RankinePlacedFeatures.PLACED_WALL_MUSHROOMS);
+        addAllExcept(context, PATCH_COBBLES, notOverworld, GenerationStep.Decoration.LOCAL_MODIFICATIONS, "cobbles", placed, RankinePlacedFeatures.PLACED_PATCH_COBBLES);
 
         // --- flora ---
         addTag(context, FLORA_SAVANNA, biomes, BiomeTags.IS_SAVANNA, GenerationStep.Decoration.VEGETAL_DECORATION, "flora", placed,
@@ -235,7 +246,7 @@ public class RankineBiomeModifiers {
     private static void add(BootstrapContext<BiomeModifier> context, ResourceKey<BiomeModifier> key, HolderSet<Biome> biomes,
                             GenerationStep.Decoration step, String gate, HolderGetter<PlacedFeature> placed,
                             ResourceKey<PlacedFeature>... features) {
-        context.register(key, new ConfigGatedFeaturesBiomeModifier(Optional.of(biomes), features(placed, features), step, gate));
+        context.register(key, new ConfigGatedFeaturesBiomeModifier(Optional.of(biomes), List.of(), features(placed, features), step, gate));
     }
 
     /** No {@code biomes} field at all: applies to every biome, including modded dimensions. */
@@ -243,7 +254,20 @@ public class RankineBiomeModifiers {
     private static void addAll(BootstrapContext<BiomeModifier> context, ResourceKey<BiomeModifier> key,
                                GenerationStep.Decoration step, String gate, HolderGetter<PlacedFeature> placed,
                                ResourceKey<PlacedFeature>... features) {
-        context.register(key, new ConfigGatedFeaturesBiomeModifier(Optional.empty(), features(placed, features), step, gate));
+        context.register(key, new ConfigGatedFeaturesBiomeModifier(Optional.empty(), List.of(), features(placed, features), step, gate));
+    }
+
+    /**
+     * F34: every biome (no {@code biomes} field) except any in {@code exclude} -- 1.18.2's
+     * {@code isOverworld} reach, extended to modded dimensions. See the class javadoc on
+     * {@link ConfigGatedFeaturesBiomeModifier} for why this needs a Java-side exclude list instead
+     * of a single {@code #c:is_overworld}-style tag.
+     */
+    @SafeVarargs
+    private static void addAllExcept(BootstrapContext<BiomeModifier> context, ResourceKey<BiomeModifier> key,
+                                     List<HolderSet<Biome>> exclude, GenerationStep.Decoration step, String gate,
+                                     HolderGetter<PlacedFeature> placed, ResourceKey<PlacedFeature>... features) {
+        context.register(key, new ConfigGatedFeaturesBiomeModifier(Optional.empty(), exclude, features(placed, features), step, gate));
     }
 
     @SafeVarargs

@@ -768,6 +768,21 @@ public class RankineBlockStateProvider extends BlockStateProvider {
             stoneBricksOnly.add(Stone.getBricks());
             stoneBricksOnly.add(Stone.getMossyBricks());
         }
+
+        // CAST_IRON_SUPPORT alone (port fix F38 / G2 triage on 3dde0a6be). Baseline
+        // ClientProxy.java:176-198 at 859f87773 listed CAST_IRON_SUPPORT, CAST_IRON_SUPPORT_SLAB
+        // and CAST_IRON_SUPPORT_STAIRS in addCutoutMipped -- never CAST_IRON_SUPPORT_WALL.
+        // "cast_iron_support" is a literal string-prefix of CAST_IRON_SUPPORT_WALL's four
+        // generated models ("cast_iron_support_wall_post/_side/_side_tall/_inventory"), so the
+        // permissive underscore-suffix matcher swept all four into cutout_mipped too, the moment
+        // CAST_IRON_SUPPORT.get() sat in the permissively-matched cutoutMipped list below.
+        // _SLAB/_STAIRS stay in that permissive list: their own underscore-suffix sweep reaches
+        // only their own sub-variants ("cast_iron_support_slab_top",
+        // "cast_iron_support_stairs_inner/_outer", both needed and both baseline-cutout_mipped --
+        // 1.18.2 assigned render layer per-Block, so every sub-model followed), and neither prefix
+        // is a prefix of "cast_iron_support_wall_*", so they carry no cross-contamination risk.
+        java.util.List<Block> cutoutMippedExact = new java.util.ArrayList<>();
+        cutoutMippedExact.add(RankineBlocks.CAST_IRON_SUPPORT.get());
         for (RankineWood Wood : RankineLists.RANKINE_WOODS) {
             cutout.add(Wood.getTrapdoor());
             cutout.add(Wood.getDoor());
@@ -802,7 +817,7 @@ public class RankineBlockStateProvider extends BlockStateProvider {
                 RankineLists.TALL_FLOWERS, RankineLists.LANTERNS
         ).flatMap(Collection::stream).collect(Collectors.toList()));
         cutoutMipped.addAll(Arrays.asList(
-                RankineBlocks.CAST_IRON_SUPPORT.get(), RankineBlocks.CAST_IRON_SUPPORT_SLAB.get(),
+                RankineBlocks.CAST_IRON_SUPPORT_SLAB.get(),
                 RankineBlocks.CAST_IRON_SUPPORT_STAIRS.get(), RankineBlocks.COB.get(),
                 RankineBlocks.CORN_STALK.get(), RankineBlocks.SHORT_GRASS.get(),
                 RankineBlocks.LOCUST_SPINE.get(), RankineBlocks.GWIHABAITE_CRYSTAL.get(),
@@ -841,6 +856,9 @@ public class RankineBlockStateProvider extends BlockStateProvider {
         // Restrictive mode (no underscore-suffix sweep) -- see the comment on stoneBricksOnly
         // above for why stone bricks cannot go through the permissive matcher above.
         renderType(stoneBricksOnly, "cutout", false);
+        // F38: see the comment on cutoutMippedExact above for why CAST_IRON_SUPPORT alone needs
+        // restrictive mode while its _SLAB/_STAIRS siblings stay permissive.
+        renderType(cutoutMippedExact, "cutout_mipped", false);
     }
 
     private void renderType(java.util.List<Block> blocks, String type) {
