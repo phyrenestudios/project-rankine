@@ -101,7 +101,11 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.block.LeavesBlock;
+import net.minecraft.world.level.block.Rotation;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
+import com.cannolicatfish.rankine.fluids.RankineFluidType;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -2033,8 +2037,14 @@ public class RankineRegistryTests {
      *
      * <p>Properties deliberately left at their NeoForge defaults are asserted too, because "default"
      * is a 1.18.2-parity claim here and a future default change should break this test:
-     * canExtinguish / canConvertToSource / canHydrate false, density 1000, temperature 300,
-     * viscosity 1000 — 6000 for carbon disulfide, the one place the baseline deviated.
+     * canExtinguish / canConvertToSource / canHydrate false, temperature 300.
+     *
+     * <p><b>F33 moved two of the original assertions.</b> density and viscosity are no longer uniform
+     * — they are now real per-substance values that drive movement — so the pinned table lives in
+     * {@link #rankineFluidPhysicalPropertiesArePinned}. {@code fallDistanceModifier} is likewise no
+     * longer a flat 1.0F; what survives here is the half of F13's claim F33 does not override: no
+     * Rankine fluid may make a fall <em>worse</em> than air (modifier ≤ 1.0F, versus the 0.5F
+     * NeoForge default that silently halved fall damage).
      */
     @GameTest(template = "empty")
     public void rankineFluidsDoNotBehaveLikeWater(GameTestHelper helper) {
@@ -2051,23 +2061,19 @@ public class RankineRegistryTests {
             if (type.canDrownIn(pig)) problems.add(id + " canDrownIn");
             if (type.canPushEntity(pig)) problems.add(id + " canPushEntity");
             if (type.canSwim(pig)) problems.add(id + " canSwim");
-            if (type.getFallDistanceModifier(pig) != 1.0F) {
-                problems.add(id + " fallDistanceModifier is " + type.getFallDistanceModifier(pig) + ", expected 1.0");
+            if (type.getFallDistanceModifier(pig) > 1.0F) {
+                problems.add(id + " fallDistanceModifier is " + type.getFallDistanceModifier(pig)
+                        + ", which would make a fall worse than air");
             }
             if (type.canExtinguish(pig)) problems.add(id + " canExtinguish");
             if (type.canHydrate(pig)) problems.add(id + " canHydrate");
-            if (type.getDensity() != 1000) problems.add(id + " density is " + type.getDensity());
             if (type.getTemperature() != 300) problems.add(id + " temperature is " + type.getTemperature());
-            int expectedViscosity = id.getPath().equals("carbon_disulfide") ? 6000 : 1000;
-            if (type.getViscosity() != expectedViscosity) {
-                problems.add(id + " viscosity is " + type.getViscosity() + ", expected " + expectedViscosity);
-            }
 
             // The entity-side wrappers the vanilla call sites actually use.
             if (pig.canDrownInFluidType(type)) problems.add(id + " canDrownInFluidType(pig)");
             if (pig.isPushedByFluid(type)) problems.add(id + " isPushedByFluid(pig)");
             if (pig.canSwimInFluidType(type)) problems.add(id + " canSwimInFluidType(pig)");
-            if (pig.getFluidFallDistanceModifier(type) != 1.0F) problems.add(id + " getFluidFallDistanceModifier(pig)");
+            if (pig.getFluidFallDistanceModifier(type) > 1.0F) problems.add(id + " getFluidFallDistanceModifier(pig)");
         }
 
         // Path type, source conversion and hydration need a FluidState, so they run per fluid.
@@ -2165,6 +2171,463 @@ public class RankineRegistryTests {
             assertEmpty(problems, "maple sap drowning failures");
             helper.succeed();
         });
+    }
+
+    // ---------------------------------------------------------------------------------------
+    // F33 — per-fluid realistic movement (deliberate feature, Karl's decision 6 of 2026-08-22)
+    // ---------------------------------------------------------------------------------------
+
+    /**
+     * The declared physics of all 16 fluids: registry path -> {viscosity, density}, in the units
+     * {@code FluidType.Properties} documents (water = 1000 / 1000). Pinned here so that neither an
+     * accidental edit nor a new fluid can change how anything moves without this test saying so.
+     */
+    private static final Map<String, int[]> FLUID_PHYSICS = Map.ofEntries(
+            Map.entry("liquid_mercury", new int[]{1526, 13534}),
+            Map.entry("sap", new int[]{6000, 1060}),
+            Map.entry("maple_sap", new int[]{1300, 1015}),
+            Map.entry("latex", new int[]{15000, 980}),
+            Map.entry("juglone", new int[]{1500, 1030}),
+            Map.entry("resin", new int[]{5000000, 1070}),
+            Map.entry("aqua_regia", new int[]{1500, 1245}),
+            Map.entry("carbon_disulfide", new int[]{363, 1263}),
+            Map.entry("hexafluorosilicic_acid", new int[]{1800, 1320}),
+            Map.entry("hydrobromic_acid", new int[]{1400, 1490}),
+            Map.entry("gray_mud", new int[]{300000, 1500}),
+            Map.entry("red_mud", new int[]{250000, 1450}),
+            Map.entry("sulfuric_acid", new int[]{24500, 1830}),
+            Map.entry("black_liquor", new int[]{3000, 1100}),
+            Map.entry("green_liquor", new int[]{2000, 1180}),
+            Map.entry("white_liquor", new int[]{1900, 1120}));
+
+    /** The thickest and the thinnest fluid the mod declares; the two ends the movement tests use. */
+    private static final String THICKEST_FLUID = "resin";
+    private static final String THINNEST_FLUID = "carbon_disulfide";
+    /** Blocks per tick a jumping entity must gain, or leaving a deep pool would be a chore. */
+    private static final double MIN_JUMP_RISE = 0.02D;
+
+    /**
+     * F33, the model half — the declared physics of every fluid, the three scalars
+     * {@link RankineFluidType} derives from them, and the invariants that keep a fluid from becoming
+     * a trap. This asserts the numbers; {@link #rankineFluidThicknessScalesMovement},
+     * {@link #rankineFluidDensitySetsSinkOrFloat} and {@link #entityWalksOutOfThickestFluidPool}
+     * assert that a real entity ticking through a real pool actually obeys them.
+     *
+     * <p>The exit invariant is the load-bearing one. {@code LivingEntity#aiStep}
+     * (LivingEntity.java:2712-2738) hands a jumping entity in a fluid deeper than
+     * {@code getFluidJumpThreshold} to {@code ILivingEntityExtension#jumpInFluid}, which adds
+     * {@code 0.04} to {@code deltaMovement.y} <em>before</em> {@code travel} runs;
+     * {@code RankineFluidType#move} then damps the carried-over velocity by {@code verticalDrag} and
+     * subtracts {@code gravity / 16 * sinkScale}. The entity therefore rises iff
+     * {@code 0.04 > gravity / 16 * sinkScale}, at a settled rate of
+     * {@code (0.04 - gravity / 16 * sinkScale) / (1 - verticalDrag)}; both halves are asserted, and
+     * gravity is read from the attribute rather than assumed.
+     */
+    @GameTest(template = "empty")
+    public void rankineFluidPhysicalPropertiesArePinned(GameTestHelper helper) {
+        List<String> problems = new ArrayList<>();
+        Pig pig = helper.spawn(EntityType.PIG, new BlockPos(1, 1, 1));
+        double gravity = Attributes.GRAVITY.value().getDefaultValue();
+        double sinkPerTick = gravity / RankineFluidType.FLUID_GRAVITY_DIVISOR;
+
+        List<String> seen = new ArrayList<>();
+        double thickest = Double.MAX_VALUE;
+        double thinnest = -Double.MAX_VALUE;
+        String thickestId = "";
+        String thinnestId = "";
+        for (var entry : NeoForgeRegistries.FLUID_TYPES.entrySet()) {
+            ResourceLocation id = entry.getKey().location();
+            if (!isRankine(id)) continue;
+            seen.add(id.getPath());
+            FluidType type = entry.getValue();
+
+            int[] expected = FLUID_PHYSICS.get(id.getPath());
+            if (expected == null) {
+                problems.add(id + " has no row in FLUID_PHYSICS, so its movement is unreviewed");
+                continue;
+            }
+            if (type.getViscosity() != expected[0]) {
+                problems.add(id + " viscosity is " + type.getViscosity() + ", pinned at " + expected[0]);
+            }
+            if (type.getDensity() != expected[1]) {
+                problems.add(id + " density is " + type.getDensity() + ", pinned at " + expected[1]);
+            }
+            if (type.isLighterThanAir()) {
+                problems.add(id + " reports lighter than air (density <= 0), which flips its bucket"
+                        + " and block models upside down (DynamicFluidContainerModel.java:102)");
+            }
+            if (!(type instanceof RankineFluidType fluid)) {
+                problems.add(id + " is a plain FluidType, so FluidType#move is the no-op default and"
+                        + " vanilla applies water physics to it");
+                continue;
+            }
+
+            double speed = fluid.getSpeedFactor();
+            double sink = fluid.getSinkScale();
+            double vertical = fluid.getVerticalDrag();
+            if (speed != RankineFluidType.speedFactor(type.getViscosity())) {
+                problems.add(id + " speedFactor " + num(speed) + " does not match its declared viscosity");
+            }
+            if (sink != RankineFluidType.sinkScale(type.getDensity())) {
+                problems.add(id + " sinkScale " + num(sink) + " does not match its declared density");
+            }
+            if (speed < RankineFluidType.MIN_SPEED_FACTOR || speed > RankineFluidType.MAX_SPEED_FACTOR) {
+                problems.add(id + " speedFactor " + num(speed) + " escaped its clamp");
+            }
+            if (sink < -RankineFluidType.MAX_LIFT_SCALE || sink > RankineFluidType.MAX_SINK_SCALE) {
+                problems.add(id + " sinkScale " + num(sink) + " escaped its clamp");
+            }
+            if (vertical < RankineFluidType.MIN_VERTICAL_DRAG || vertical > RankineFluidType.MAX_VERTICAL_DRAG) {
+                problems.add(id + " verticalDrag " + num(vertical) + " escaped its clamp");
+            }
+            if (type.getFallDistanceModifier(pig) != RankineFluidType.fallDistanceModifier(type.getViscosity())) {
+                problems.add(id + " fallDistanceModifier " + type.getFallDistanceModifier(pig)
+                        + " does not match its declared viscosity");
+            }
+
+            // The exit invariant. jumpInFluid adds its impulse in aiStep BEFORE travel runs, so the
+            // per-tick loop is d' = d * verticalDrag - gravity/16 * sinkScale + 0.04, settling at
+            // climb / (1 - verticalDrag). The entity rises iff climb > 0, which does not involve
+            // verticalDrag at all: damping changes how fast it climbs, never whether it can. (A
+            // falsification run that collapsed resin's verticalDrag to 0.05 still let the pig out,
+            // which is what corrected this assertion.)
+            double climb = RankineFluidType.JUMP_IN_FLUID_IMPULSE - sinkPerTick * sink;
+            if (climb <= 0.0D) {
+                problems.add(id + " pins a jumping entity: " + RankineFluidType.JUMP_IN_FLUID_IMPULSE
+                        + " - " + num(sinkPerTick) + " * " + num(sink) + " = " + num(climb) + " per tick");
+            } else if (climb / (1.0D - vertical) < MIN_JUMP_RISE) {
+                problems.add(id + " lets a jumping entity rise only " + num(climb / (1.0D - vertical))
+                        + " blocks per tick, below the " + MIN_JUMP_RISE + " a player would tolerate");
+            }
+
+            if (speed < thickest) {
+                thickest = speed;
+                thickestId = id.getPath();
+            }
+            if (speed > thinnest) {
+                thinnest = speed;
+                thinnestId = id.getPath();
+            }
+        }
+
+        if (seen.size() != RANKINE_FLUID_TYPES || seen.size() != FLUID_PHYSICS.size()) {
+            problems.add("expected " + RANKINE_FLUID_TYPES + " rankine fluid types and the same number of"
+                    + " FLUID_PHYSICS rows, found " + seen.size() + " and " + FLUID_PHYSICS.size());
+        }
+        if (!THICKEST_FLUID.equals(thickestId)) {
+            problems.add("the slowest fluid is " + thickestId + " (" + num(thickest) + "), not " + THICKEST_FLUID
+                    + " — the movement tests below pick their extremes by name");
+        }
+        if (!THINNEST_FLUID.equals(thinnestId)) {
+            problems.add("the fastest fluid is " + thinnestId + " (" + num(thinnest) + "), not " + THINNEST_FLUID);
+        }
+        // The spread has to be worth having, or "realistic per fluid" is a claim with no content.
+        if (thinnest / thickest < 3.0D) {
+            problems.add("the thickest and thinnest fluids differ by only " + num(thinnest / thickest)
+                    + "x, so per-fluid movement would be imperceptible");
+        }
+        // The clamps must bound the model without any current fluid sitting on them, or they are
+        // load-bearing balance values pretending to be guards.
+        if (thickest <= RankineFluidType.MIN_SPEED_FACTOR || thinnest >= RankineFluidType.MAX_SPEED_FACTOR) {
+            problems.add("a declared fluid is sitting on a speedFactor clamp (" + num(thickest) + ".."
+                    + num(thinnest) + "), so the clamp is setting balance rather than guarding it");
+        }
+        // The fall cushion is the deliberate override of F13's flat 1.0F, so state its outcome
+        // rather than only its formula: the thickest fluid has to actually break a fall.
+        float thickestCushion = RankineFluidType.fallDistanceModifier(FLUID_PHYSICS.get(THICKEST_FLUID)[0]);
+        if (thickestCushion >= 0.5F) {
+            problems.add(THICKEST_FLUID + " keeps " + thickestCushion + " of the fall distance per tick,"
+                    + " so the thickest fluid in the mod does not cushion a fall at all");
+        }
+
+        // Vacuity guard: water must be untouched by all of this.
+        FluidType water = Fluids.WATER.getFluidType();
+        if (water instanceof RankineFluidType) problems.add("minecraft:water became a RankineFluidType");
+        if (RankineFluidType.speedFactor(water.getViscosity()) != 1.0D
+                || RankineFluidType.sinkScale(water.getDensity()) != 1.0D
+                || RankineFluidType.fallDistanceModifier(water.getViscosity()) != 1.0F) {
+            problems.add("the model no longer reduces to vanilla at water's own viscosity/density"
+                    + " (" + water.getViscosity() + "/" + water.getDensity() + "), so nothing below is calibrated");
+        }
+
+        pig.discard();
+        assertEmpty(problems, "rankine fluid physics failures");
+        helper.succeed();
+    }
+
+    /** Sealed 3x3 shaft used by the two measurement tests: stone shell, interior swapped per phase. */
+    private static final BlockPos SHAFT_MIN = new BlockPos(0, 0, 0);
+    private static final BlockPos SHAFT_INNER_MIN = new BlockPos(1, 1, 1);
+    private static final BlockPos SHAFT_CENTRE = new BlockPos(2, 1, 2);
+    /** Horizontal impulse for {@link #rankineFluidThicknessScalesMovement}, in blocks/tick. */
+    private static final double COAST_IMPULSE = 0.12D;
+    /** Ticks allowed for the coast to converge; 0.8^60 is 1.5e-6 of the impulse. */
+    private static final int COAST_TICKS = 60;
+    /** Relative tolerance on the predicted coast distance. */
+    private static final double COAST_TOLERANCE = 0.08D;
+
+    private static void buildShaft(GameTestHelper helper, int height, BlockState fill) {
+        for (BlockPos pos : BlockPos.betweenClosed(SHAFT_MIN, new BlockPos(4, height + 1, 4))) {
+            helper.setBlock(pos, Blocks.STONE.defaultBlockState());
+        }
+        fillShaft(helper, height, fill);
+    }
+
+    private static void fillShaft(GameTestHelper helper, int height, BlockState fill) {
+        for (BlockPos pos : BlockPos.betweenClosed(SHAFT_INNER_MIN, new BlockPos(3, height, 3))) {
+            helper.setBlock(pos, fill);
+        }
+    }
+
+    private static void resetInShaft(Pig pig, GameTestHelper helper, double relativeY) {
+        Vec3 target = helper.absoluteVec(new Vec3(2.5D, relativeY, 2.5D));
+        pig.moveTo(target.x, target.y, target.z, 0.0F, 0.0F);
+        pig.setDeltaMovement(Vec3.ZERO);
+        pig.setAirSupply(pig.getMaxAirSupply());
+        pig.fallDistance = 0.0F;
+        pig.hurtTime = 0;
+    }
+
+    /**
+     * F33, the horizontal half — the same pig, given the same impulse in the same sealed pool, must
+     * coast a distance that scales with the fluid's {@code speedFactor}.
+     *
+     * <p>Coasting is used rather than walking because it turns the claim into arithmetic with no free
+     * parameters. With no movement input, {@code move} reduces to {@code v <- v * f4'} once per tick,
+     * so the total displacement is exactly {@code v0 / (1 - f4')}; substituting the model's
+     * {@code f4' = kS / (1 + kS)} with vanilla's {@code k = 0.8 / (1 - 0.8) = 4} gives
+     * {@code v0 * (1 + 4S)}. Water runs the same pool as the {@code S = 1} instance, so the test
+     * simultaneously proves that the parametrisation reduces to vanilla and that it scales.
+     *
+     * <p>Three phases share one pool and one pig so that mass, attributes, floor contact and geometry
+     * are identical and only the fluid differs.
+     */
+    @GameTest(template = "empty", timeoutTicks = 400)
+    public void rankineFluidThicknessScalesMovement(GameTestHelper helper) {
+        assertTrue(helper.getTestRotation() == Rotation.NONE,
+                "this test pushes along absolute +x, which only matches the pool it builds when the"
+                        + " template is unrotated");
+        BlockState[] fills = {
+                Blocks.WATER.defaultBlockState(),
+                RankineBlocks.RESIN.get().defaultBlockState(),
+                RankineBlocks.CARBON_DISULFIDE.get().defaultBlockState()};
+        double[] factors = {
+                1.0D,
+                RankineFluidType.speedFactor(FLUID_PHYSICS.get(THICKEST_FLUID)[0]),
+                RankineFluidType.speedFactor(FLUID_PHYSICS.get(THINNEST_FLUID)[0])};
+        String[] names = {"minecraft:water", "rankine:" + THICKEST_FLUID, "rankine:" + THINNEST_FLUID};
+        double[] measured = new double[3];
+        double[] startX = new double[1];
+
+        buildShaft(helper, 4, fills[0]);
+        Pig pig = helper.spawn(EntityType.PIG, SHAFT_CENTRE);
+        pig.removeFreeWill();
+
+        var sequence = helper.startSequence();
+        for (int i = 0; i < 3; i++) {
+            final int phase = i;
+            sequence = sequence
+                    .thenExecute(() -> {
+                        fillShaft(helper, 4, fills[phase]);
+                        resetInShaft(pig, helper, 1.0D);
+                    })
+                    .thenIdle(20)
+                    .thenExecute(() -> {
+                        startX[0] = pig.getX();
+                        pig.setDeltaMovement(COAST_IMPULSE, 0.0D, 0.0D);
+                    })
+                    .thenIdle(COAST_TICKS)
+                    .thenExecute(() -> measured[phase] = pig.getX() - startX[0]);
+        }
+
+        sequence.thenExecute(() -> {
+            List<String> problems = new ArrayList<>();
+            for (int i = 0; i < 3; i++) {
+                double predicted = COAST_IMPULSE * (1.0D + 4.0D * factors[i]);
+                if (Math.abs(measured[i] - predicted) > predicted * COAST_TOLERANCE) {
+                    problems.add(names[i] + " coasted " + num(measured[i]) + " blocks, predicted "
+                            + num(predicted) + " from speedFactor " + num(factors[i]));
+                }
+            }
+            // The ordering is the feature, stated without reference to the formula above.
+            if (!(measured[1] < measured[0])) {
+                problems.add("the thickest fluid did not slow the pig down: " + num(measured[1])
+                        + " vs " + num(measured[0]) + " in water");
+            }
+            if (!(measured[2] >= measured[0])) {
+                problems.add("the thinnest fluid impeded the pig more than water: " + num(measured[2])
+                        + " vs " + num(measured[0]));
+            }
+            // Vacuity guards: a pig that never moved, or a water reference that does not match
+            // vanilla's own 0.8 slowdown, would make every comparison above meaningless.
+            if (measured[0] < 0.4D) {
+                problems.add("the pig barely moved in water (" + num(measured[0]) + "), so the ratios are noise");
+            }
+            if (measured[1] > measured[0] * 0.55D) {
+                problems.add("the thickest fluid is within 55% of water (" + num(measured[1]) + " vs "
+                        + num(measured[0]) + "), which no player would feel");
+            }
+            pig.discard();
+            assertEmpty(problems, "rankine fluid horizontal movement failures");
+            helper.succeed();
+        });
+    }
+
+    /** Ticks of settling before, and of measurement during, {@link #rankineFluidDensitySetsSinkOrFloat}. */
+    private static final int BUOYANCY_SETTLE_TICKS = 10;
+    private static final int BUOYANCY_TICKS = 40;
+
+    /**
+     * F33, the vertical half — density decides which way an entity goes. Mercury (13534 kg/m^3, far
+     * above the model's neutral point) must carry the pig <em>up</em>; maple sap (1015, essentially
+     * water) must let it sink at very nearly water's own rate; water itself is the reference.
+     *
+     * <p>The sign flip is the claim being tested, and it is one no {@code FluidType.Properties} value
+     * can produce — vanilla sinks an entity in every non-lava fluid without exception.
+     */
+    @GameTest(template = "empty", timeoutTicks = 400)
+    public void rankineFluidDensitySetsSinkOrFloat(GameTestHelper helper) {
+        BlockState[] fills = {
+                Blocks.WATER.defaultBlockState(),
+                RankineBlocks.MAPLE_SAP.get().defaultBlockState(),
+                RankineBlocks.LIQUID_MERCURY.get().defaultBlockState()};
+        String[] names = {"minecraft:water", "rankine:maple_sap", "rankine:liquid_mercury"};
+        double[] measured = new double[3];
+        double[] startY = new double[1];
+
+        buildShaft(helper, 6, fills[0]);
+        Pig pig = helper.spawn(EntityType.PIG, SHAFT_CENTRE);
+        pig.removeFreeWill();
+
+        var sequence = helper.startSequence();
+        for (int i = 0; i < 3; i++) {
+            final int phase = i;
+            sequence = sequence
+                    .thenExecute(() -> {
+                        fillShaft(helper, 6, fills[phase]);
+                        resetInShaft(pig, helper, 3.0D);
+                    })
+                    .thenIdle(BUOYANCY_SETTLE_TICKS)
+                    .thenExecute(() -> startY[0] = pig.getY())
+                    .thenIdle(BUOYANCY_TICKS)
+                    .thenExecute(() -> measured[phase] = pig.getY() - startY[0]);
+        }
+
+        sequence.thenExecute(() -> {
+            List<String> problems = new ArrayList<>();
+            if (!(measured[0] < -0.5D)) {
+                problems.add(names[0] + ": the pig moved " + num(measured[0]) + " blocks in " + BUOYANCY_TICKS
+                        + " ticks, but vanilla water sinks it about 1.0 — the shaft is not working");
+            }
+            if (!(measured[1] < -0.5D)) {
+                problems.add(names[1] + " (density 1015) should sink the pig like water, moved " + num(measured[1]));
+            }
+            if (!(measured[2] > 0.5D)) {
+                problems.add(names[2] + " (density 13534) should float the pig, moved " + num(measured[2]));
+            }
+            // Maple sap is water by density; the model must not have quietly invented a difference.
+            if (Math.abs(measured[1] - measured[0]) > Math.abs(measured[0]) * 0.20D) {
+                problems.add(names[1] + " sank " + num(measured[1]) + " against water's " + num(measured[0])
+                        + "; a fluid 1.5% denser than water should be within 20% of it");
+            }
+            pig.discard();
+            assertEmpty(problems, "rankine fluid buoyancy failures");
+            helper.succeed();
+        });
+    }
+
+    /** Ticks the pig is given to get out of the pool in {@link #entityWalksOutOfThickestFluidPool}. */
+    private static final int WALK_OUT_TICKS = 300;
+    /** Relative x past which the pig is over the rim and no longer driven, so it settles on land. */
+    private static final double WALK_OUT_RELEASE_X = 3.2D;
+
+    /**
+     * F33, the safety half — no fluid may pin an entity. A pig dropped into a one-block-deep pool of
+     * the thickest fluid in the mod, pressing forward and jump the way a player would, must end up
+     * standing on dry land.
+     *
+     * <p>The pig is driven exactly as a player holding W and space is: {@code MoveControl#strafe}
+     * puts {@code zza = 1.0} into the travel input (MoveControl.java:81) and
+     * {@code JumpControl#jump()} re-arms {@code jumping} every tick, which
+     * {@code LivingEntity#aiStep} turns into the {@code jumpInFluid} impulse. That, not the
+     * auto-hop, is the exit route inside a pool, and the reason is worth recording because it is
+     * vanilla's and not this feature's: {@code Entity#isFree} requires
+     * {@code !level.containsAnyLiquid(box)} (Entity.java:559-565), so the
+     * {@code horizontalCollision && isFree(...)} hop kept verbatim in {@code RankineFluidType#move}
+     * can only fire once the box the entity would move into is clear of fluid — i.e. at the surface.
+     * The same is true of vanilla water. What F33 must not do is make the jump route stop working,
+     * and {@link #rankineFluidPhysicalPropertiesArePinned} proves the arithmetic behind it for all
+     * 16 fluids while this test proves it end to end in the worst one.
+     *
+     * <p>{@code removeFreeWill()} clears the pig's goals so nothing competes for the controls.
+     * {@code setNoAi(true)} cannot be used: {@code Mob#isEffectiveAi} (Mob.java:1396) also gates
+     * {@code Entity#isControlledByLocalInstance} (Entity.java:3050) and therefore the entire body of
+     * {@code LivingEntity#travel}, which freezes the entity outright. Driving stops once the pig is
+     * over the rim so that it settles on land instead of running off the far side.
+     */
+    @GameTest(template = "empty", timeoutTicks = 500)
+    public void entityWalksOutOfThickestFluidPool(GameTestHelper helper) {
+        assertTrue(helper.getTestRotation() == Rotation.NONE,
+                "this test walks toward absolute +x, which only matches the pool it builds when the"
+                        + " template is unrotated");
+        for (BlockPos pos : BlockPos.betweenClosed(new BlockPos(0, 0, 0), new BlockPos(4, 2, 4))) {
+            helper.setBlock(pos, Blocks.STONE.defaultBlockState());
+        }
+        BlockState thickest = RankineBlocks.RESIN.get().defaultBlockState();
+        for (BlockPos pos : BlockPos.betweenClosed(new BlockPos(1, 2, 1), new BlockPos(2, 2, 3))) {
+            helper.setBlock(pos, thickest);
+        }
+
+        Pig pig = helper.spawn(EntityType.PIG, new BlockPos(1, 2, 2));
+        pig.removeFreeWill();
+        double[] furthest = {0.0D};
+        double[] highest = {0.0D};
+        int[] leftFluidAt = {-1};
+        int[] tick = {0};
+
+        helper.startSequence()
+                .thenIdle(2)
+                .thenExecute(() -> {
+                    FluidType feet = helper.getLevel().getFluidState(pig.blockPosition()).getFluidType();
+                    assertTrue(feet == RankineFluids.RESIN_TYPE.get(),
+                            "the pig did not start in the resin pool (it is in " + feet + "), so walking out"
+                                    + " of it would prove nothing");
+                })
+                .thenExecuteFor(WALK_OUT_TICKS, () -> {
+                    Vec3 at = helper.relativeVec(pig.position());
+                    furthest[0] = Math.max(furthest[0], at.x);
+                    highest[0] = Math.max(highest[0], at.y);
+                    if (leftFluidAt[0] < 0 && helper.getLevel().getFluidState(pig.blockPosition()).isEmpty()) {
+                        leftFluidAt[0] = tick[0];
+                    }
+                    if (at.x < WALK_OUT_RELEASE_X) {
+                        pig.setYRot(-90.0F);
+                        pig.setYBodyRot(-90.0F);
+                        pig.getMoveControl().strafe(1.0F, 0.0F);
+                        pig.getJumpControl().jump();
+                    }
+                    tick[0]++;
+                })
+                .thenExecute(() -> {
+                    List<String> problems = new ArrayList<>();
+                    Vec3 where = helper.relativeVec(pig.position());
+                    boolean dry = helper.getLevel().getFluidState(pig.blockPosition()).isEmpty();
+                    if (where.y < 2.99D || !dry || !pig.onGround()) {
+                        problems.add("after " + WALK_OUT_TICKS + " ticks walking toward the rim the pig is at"
+                                + " relative (" + num(where.x) + ", " + num(where.y) + ", " + num(where.z) + "),"
+                                + " onGround=" + pig.onGround() + ", feet block dry=" + dry + ", furthest x "
+                                + num(furthest[0]) + ", highest y " + num(highest[0])
+                                + ", left the fluid at tick " + leftFluidAt[0]
+                                + " — expected it standing on the rim at y 3.0");
+                    }
+                    if (where.x < 2.5D) {
+                        problems.add("the pig only reached relative x " + num(where.x) + " (furthest "
+                                + num(furthest[0]) + "), so it never crossed the pool at all");
+                    }
+                    pig.discard();
+                    assertEmpty(problems, "thickest-fluid exit failures");
+                    helper.succeed();
+                });
     }
 
     // ---------------------------------------------------------------------------------------

@@ -1,6 +1,7 @@
 package com.cannolicatfish.rankine.init;
 
 import com.cannolicatfish.rankine.ProjectRankine;
+import com.cannolicatfish.rankine.fluids.RankineFluidType;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.material.Fluid;
@@ -17,7 +18,9 @@ import net.neoforged.neoforge.registries.NeoForgeRegistries;
  * Registry names are IDENTICAL to 1.18.2 for world compatibility.
  *
  * All 1.18.2 FluidAttributes used default density/viscosity (1000/1000), color 0xFFFFFFFF and
- * BUCKET_FILL/BUCKET_EMPTY sounds; carbon disulfide additionally used viscosity 6000.
+ * BUCKET_FILL/BUCKET_EMPTY sounds; carbon disulfide additionally used viscosity 6000. Those numbers
+ * drove nothing in 1.18.2; port item F33 replaced them with real per-substance values because they
+ * now drive movement (see the table below and {@link RankineFluidType}).
  *
  * PORT-TODO(client): register IClientFluidTypeExtensions for every FluidType below in
  * RegisterClientExtensionsEvent (mod bus, Dist.CLIENT), using the FLUID_STILL / FLUID_FLOWING /
@@ -45,24 +48,54 @@ public class RankineFluids {
     public static final DeferredRegister<Fluid> FLUIDS = DeferredRegister.create(net.minecraft.core.registries.Registries.FLUID, ProjectRankine.MODID);
     public static final DeferredRegister<FluidType> FLUID_TYPES = DeferredRegister.create(NeoForgeRegistries.Keys.FLUID_TYPES, ProjectRankine.MODID);
 
-    // ---- Fluid types (density/viscosity/sounds; render info is client-side, see PORT-TODO above) ----
+    // ---- Fluid types ----
+    //
+    // Port item F33 (Karl's decision 6, 2026-08-22): "make fluid movement realistic per each fluid".
+    // viscosity and density are no longer inert metadata -- RankineFluidType#move derives horizontal
+    // speed from the first and buoyancy from the second, so both are now REAL PHYSICAL VALUES for
+    // the substance each fluid names, in the units FluidType.Properties documents:
+    //
+    //   viscosity: dynamic viscosity, water = 1000 (so 1 cP = 1 mPa*s = 1000 units), at ~20-25 C
+    //   density:   kg/m^3, water = 1000, at ~20-25 C
+    //
+    // The comment on each row is the substance whose published room-temperature value was used.
+    // Temperature stays at the FluidType default of 300 K for all 16: every one of these is a liquid
+    // at room temperature (mercury included), so 300 K is both the 1.18.2 value and the realistic
+    // one. See RankineFluidType for how the numbers become movement, and
+    // RankineRegistryTests#rankineFluidPhysicalPropertiesArePinned for the pinned table.
+    //
+    // 1.18.2 declared all 16 at the FluidAttributes defaults (1000/1000) except carbon disulfide,
+    // which the mod author set to viscosity 6000. That 6000 is DELIBERATELY NOT KEPT: CS2 is one of
+    // the least viscous liquids in common use (0.363 cP, about a third of water), so 6000 -- which
+    // would have made it the second-thickest fluid in the mod, thicker than red mud -- is exactly
+    // the "obviously unrealistic declaration" this item exists to fix. It was inert in 1.18.2, where
+    // viscosity drove nothing; it would not be inert now. Reported for the author to veto.
 
-    public static final DeferredHolder<FluidType, FluidType> LIQUID_MERCURY_TYPE = fluidType("liquid_mercury", 1000);
-    public static final DeferredHolder<FluidType, FluidType> SAP_TYPE = fluidType("sap", 1000);
-    public static final DeferredHolder<FluidType, FluidType> MAPLE_SAP_TYPE = fluidType("maple_sap", 1000);
-    public static final DeferredHolder<FluidType, FluidType> LATEX_TYPE = fluidType("latex", 1000);
-    public static final DeferredHolder<FluidType, FluidType> JUGLONE_TYPE = fluidType("juglone", 1000);
-    public static final DeferredHolder<FluidType, FluidType> RESIN_TYPE = fluidType("resin", 1000);
-    public static final DeferredHolder<FluidType, FluidType> AQUA_REGIA_TYPE = fluidType("aqua_regia", 1000);
-    public static final DeferredHolder<FluidType, FluidType> CARBON_DISULFIDE_TYPE = fluidType("carbon_disulfide", 6000);
-    public static final DeferredHolder<FluidType, FluidType> HEXAFLUOROSILICIC_ACID_TYPE = fluidType("hexafluorosilicic_acid", 1000);
-    public static final DeferredHolder<FluidType, FluidType> HYDROBROMIC_ACID_TYPE = fluidType("hydrobromic_acid", 1000);
-    public static final DeferredHolder<FluidType, FluidType> GRAY_MUD_TYPE = fluidType("gray_mud", 1000);
-    public static final DeferredHolder<FluidType, FluidType> RED_MUD_TYPE = fluidType("red_mud", 1000);
-    public static final DeferredHolder<FluidType, FluidType> SULFURIC_ACID_TYPE = fluidType("sulfuric_acid", 1000);
-    public static final DeferredHolder<FluidType, FluidType> BLACK_LIQUOR_TYPE = fluidType("black_liquor", 1000);
-    public static final DeferredHolder<FluidType, FluidType> GREEN_LIQUOR_TYPE = fluidType("green_liquor", 1000);
-    public static final DeferredHolder<FluidType, FluidType> WHITE_LIQUOR_TYPE = fluidType("white_liquor", 1000);
+    public static final DeferredHolder<FluidType, FluidType> LIQUID_MERCURY_TYPE = fluidType("liquid_mercury", 1526, 13534); // Hg: 1.526 cP, 13.534 g/cm3 @ 25 C
+    public static final DeferredHolder<FluidType, FluidType> SAP_TYPE = fluidType("sap", 6000, 1060); // tapped phloem sap, ~15% sugar
+    public static final DeferredHolder<FluidType, FluidType> MAPLE_SAP_TYPE = fluidType("maple_sap", 1300, 1015); // RAW maple sap, 2-3% sugar -- see the note below
+    public static final DeferredHolder<FluidType, FluidType> LATEX_TYPE = fluidType("latex", 15000, 980); // field natural-rubber latex, ~35% DRC; the only sub-water density
+    public static final DeferredHolder<FluidType, FluidType> JUGLONE_TYPE = fluidType("juglone", 1500, 1030); // aqueous walnut-hull extract (juglone itself is a solid)
+    public static final DeferredHolder<FluidType, FluidType> RESIN_TYPE = fluidType("resin", 5000000, 1070); // conifer oleoresin, ~5 Pa*s -- the thickest fluid in the mod
+    public static final DeferredHolder<FluidType, FluidType> AQUA_REGIA_TYPE = fluidType("aqua_regia", 1500, 1245); // 1:3 conc. HNO3 : conc. HCl by volume
+    public static final DeferredHolder<FluidType, FluidType> CARBON_DISULFIDE_TYPE = fluidType("carbon_disulfide", 363, 1263); // CS2: 0.363 cP, 1.263 g/cm3 @ 20 C -- the thinnest
+    public static final DeferredHolder<FluidType, FluidType> HEXAFLUOROSILICIC_ACID_TYPE = fluidType("hexafluorosilicic_acid", 1800, 1320); // 35% aqueous H2SiF6
+    public static final DeferredHolder<FluidType, FluidType> HYDROBROMIC_ACID_TYPE = fluidType("hydrobromic_acid", 1400, 1490); // 48% aqueous HBr
+    public static final DeferredHolder<FluidType, FluidType> GRAY_MUD_TYPE = fluidType("gray_mud", 300000, 1500); // monazite acid-digestion residue slurry
+    public static final DeferredHolder<FluidType, FluidType> RED_MUD_TYPE = fluidType("red_mud", 250000, 1450); // Bayer-process bauxite residue slurry
+    public static final DeferredHolder<FluidType, FluidType> SULFURIC_ACID_TYPE = fluidType("sulfuric_acid", 24500, 1830); // 98% H2SO4: 24.5 cP, 1.83 g/cm3 @ 25 C
+    public static final DeferredHolder<FluidType, FluidType> BLACK_LIQUOR_TYPE = fluidType("black_liquor", 3000, 1100); // weak kraft black liquor, ~15% solids
+    public static final DeferredHolder<FluidType, FluidType> GREEN_LIQUOR_TYPE = fluidType("green_liquor", 2000, 1180); // Na2CO3/Na2S smelt solution
+    public static final DeferredHolder<FluidType, FluidType> WHITE_LIQUOR_TYPE = fluidType("white_liquor", 1900, 1120); // NaOH/Na2S cooking liquor
+
+    // maple_sap note. Karl's decision text names "maple syrup" as the example that should slow you
+    // down, but the mod has no maple syrup FLUID: rankine:maple_sap is the raw sap a tree tap
+    // collects, and MapleSapCauldronBlock#getOutput boils it into the maple syrup ITEM. Raw maple
+    // sap is 2-3% sugar, i.e. essentially water (~1.3 cP), so the realistic value makes it feel like
+    // water -- the letter of the example and the principle it illustrates point opposite ways here,
+    // and the principle ("realistic per each fluid") won. The fluids that do deliver the syrup feel
+    // are resin, gray/red mud, sulfuric acid, latex and sap. Flagged for the author: raising this
+    // one number to ~180000 (66-Brix syrup) is the whole change if he wants the literal example.
 
     // ---- Fluids (registry names identical to 1.18.2) ----
 
@@ -151,11 +184,14 @@ public class RankineFluids {
      *       {@code isVisuallySwimming} (Entity.java:2288) put the entity into the swimming pose and
      *       let it sprint-swim in any fluid type that allows it. 1.18.2 gated both on
      *       {@code isInWater()}.</li>
-     *   <li>{@code fallDistanceModifier(1.0F)} — {@code Entity#updateInWaterStateAndDoWaterCurrentPushing}
+     *   <li>{@code fallDistanceModifier} — {@code Entity#updateInWaterStateAndDoWaterCurrentPushing}
      *       (Entity.java:1261) multiplies {@code fallDistance} by this every tick for every
      *       non-vanilla fluid type it is touching; the 0.5F default silently halves fall damage.
      *       1.18.2 zeroed fall distance for WATER and left it untouched for everything else, so
-     *       "no change" (1.0F) is the parity value.</li>
+     *       "no change" (1.0F) was F13's parity value. <b>F33 supersedes that</b> with
+     *       {@link RankineFluidType#fallDistanceModifier(int)} — see its javadoc; a fluid at water's
+     *       viscosity still gets exactly 1.0F, so the parity value survives at the reference point
+     *       and only genuinely thick fluids cushion.</li>
      *   <li>{@code pathType(null)} / {@code adjacentPathType(null)} — null means "no override, use
      *       vanilla". {@code WalkNodeEvaluator#getPathTypeFromState} (WalkNodeEvaluator.java:522,
      *       544-546) then falls through to {@code isPathfindable} and
@@ -174,16 +210,16 @@ public class RankineFluids {
      * baseline). {@code motionScale} is left alone too: it is read only inside the
      * {@code isPushedByFluid} branch, which {@code canPushEntity(false)} now closes.
      *
-     * <p><b>Known residual divergence (not expressible as a property):</b>
-     * {@code LivingEntity#travel} (LivingEntity.java:2170-2171) applies water-style movement physics
-     * to any non-lava fluid type the entity is standing in, gated on nothing but
-     * {@code isAffectedByFluids()} and {@code FluidType#move} returning false. Suppressing it would
-     * require a {@code FluidType} subclass that re-implements vanilla land travel, so buoyancy/drag
-     * inside Rankine fluids still differs from 1.18.2. Flagged for triage rather than fixed here.
+     * <p><b>The residual F13 flagged is now the feature (F33).</b> {@code LivingEntity#travel}
+     * (LivingEntity.java:2170-2171) applies water-style buoyancy and drag inside any non-lava fluid
+     * type and no property reaches it — only {@code FluidType#move} does.
+     * {@link RankineFluidType} overrides it with a parametrised copy of that very block, driven by
+     * each fluid's declared viscosity and density. That is a deliberate feature per the mod author's
+     * decision of 2026-08-22, not 1.18.2 parity; everything F13 set above is unchanged by it.
      */
-    private static DeferredHolder<FluidType, FluidType> fluidType(String name, int viscosity) {
-        return FLUID_TYPES.register(name, () -> new FluidType(FluidType.Properties.create()
-                .density(1000)
+    private static DeferredHolder<FluidType, FluidType> fluidType(String name, int viscosity, int density) {
+        return FLUID_TYPES.register(name, () -> new RankineFluidType(FluidType.Properties.create()
+                .density(density)
                 .viscosity(viscosity)
                 // Port fix F22 / finding #30: FluidType.getDescriptionId() defaults to
                 // Util.makeDescriptionId("fluid_type", <registry key>) = "fluid_type.rankine.<name>"
@@ -197,7 +233,7 @@ public class RankineFluids {
                 .canDrown(false)
                 .canPushEntity(false)
                 .canSwim(false)
-                .fallDistanceModifier(1.0F)
+                .fallDistanceModifier(RankineFluidType.fallDistanceModifier(viscosity))
                 .pathType(null)
                 .adjacentPathType(null)
                 .sound(SoundActions.BUCKET_FILL, SoundEvents.BUCKET_FILL)
