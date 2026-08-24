@@ -178,6 +178,42 @@ not open.
 
 ---
 
+## Combat, mobs and mode — rig checklist (added 2026-08-23, paid for in batch 4)
+
+Every one of these caused a real failed run or a dead test player. Karl watched some of them
+happen live. Follow them; a future rework of this gate (a `rankine_qa:*` /function datapack,
+mandated by Karl) will bake them in, but until then they are manual discipline.
+
+- **First commands on any combat platform:** `/gamerule doMobSpawning false` and
+  `/gamerule doDaylightCycle false`. Natural spawns in carved-out terrain produced a 24-zombie
+  pile-on; daylight burns your test mob.
+- **Never summon a bare zombie in daylight.** It ignites, panics, body-shoves instead of
+  attacking, and sets YOU on fire — and **fire damage is not parryable** (the parry zeroes the
+  melee hit, not fire ticks), so a burning attacker can never produce a clean parry test. Use a
+  **husk** (immune to daylight) or give the zombie helmet NBT.
+- **Prefer `/damage @s <n> minecraft:mob_attack by <NoAI dummy>` over live-mob choreography**
+  whenever the check only needs "a hit from a living source" — deterministic, instant, no AI.
+- **Assert the gamemode, never remember it:** every steps file that depends on creative/survival
+  opens with `/execute if entity @s[gamemode=survival] run say MODE_OK` (crop the chat). Mode
+  drift across steps files killed multiple attempts.
+- **Air-probe before every `/tp`.** Reused coordinate templates teleported the player inside
+  solid terrain twice (one suffocation death in survival).
+- **A death screen eats commands silently** — same class as the "never send cmd while a screen
+  is open" trap above: `/kill` posted while dead does nothing and you will not notice. Respawn
+  (click) first, then command.
+- **Item-slot tooltips do not render under posted hover** (Button tooltips do). Do not burn
+  attempts: use the `/give` chat feedback line or `/data get` as the name/text probe.
+- **Some screens drop ~every other posted click** (Create World game-mode button, JEI search
+  box). Verify state after every click; never fire blind click batches.
+- **`/item replace entity @s inventory.N` silently no-ops for hotbar slots** — hotbar is
+  `hotbar.N`, offhand is `weapon.offhand`.
+- **Survival block-breaking is unfeasible through the driver** — a sustained mining left-click
+  never completes (even hardness-0.5 dirt survived 20+ posted clicks with Efficiency+Haste).
+  Design tests to avoid survival mining, or investigate rebinding `key.attack` to a keyboard
+  key in `options.txt` before relying on it.
+- **`#rankine:tree_choppers` contains only Rankine's own axes** — a vanilla `iron_axe` silently
+  skips the tree-chop handler and your test tests nothing.
+
 ## Worked example — open a machine GUI and read its title
 
 ```json

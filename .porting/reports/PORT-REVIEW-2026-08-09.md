@@ -171,6 +171,29 @@ the progress file. Harness docs: `.porting/CLIENT-TESTING.md`.
    change)?
    **DECIDED by Karl 2026-08-19: retune — "veins need to be findable."** Implemented in batch 3.
 
+### Decisions recorded 2026-08-22 (Karl, release batch)
+
+- **#1 knockback resistance → (B) keep, scaled down.** Not 1.18.2's effective zero, not the
+  accidental full immunity: scale so the strongest realistic alloy set lands near vanilla full
+  netherite (≈0.4 total) and a plain zinc alloy well below; must never reach 1.0.
+- **#2 loot-table-less blocks → (A) leave for 1.4.0**; write an issue-ready `.md` listing which
+  **ores** drop nothing, to become a GitHub ticket later.
+- **#3 (recipe-book grid)** — already implemented before the review (`43e6895f9`); moot.
+- **#4 network-serialization fixes → (A) keep**, recorded as accepted deltas.
+- **#5 Spear / Totem of Infusing → (B) allow BOTH** the enchanting table (restore 1.18.2's
+  table offers) and the anvil (keep the port's allowance).
+- **Fluid buoyancy residual → make movement realistic per fluid** (e.g. maple sap slows you),
+  driven by each fluid's own viscosity/density — a deliberate feature, not parity.
+- **Modded-dimension coverage for the remaining worldgen features → yes** (meteorites,
+  fumaroles, wall mushrooms, cobble patches; 1.18.2's `!NETHER && !THEEND` semantics).
+- **Alloy block colour → yes, add it** (never worked in 1.18.2 either; now cheap post-F12).
+- **Unverified pool → (C)** pull in only: Spear/Totem table hook, `ensureBiomesResolved`
+  latching across worlds in one session, reactive-item explosion drop mode; defer the rest to 1.4.1.
+- **End sphere ores → double the per-chunk probability** (spawn chance 0.3 → 0.6, 4 rows).
+- **Crucible / Damascus steel zero-input alloying → intentional, keep as 1.18.2** (Damascus is
+  template-gated by design). Closed, no code.
+- **`"all"` selector on `kimberlitic_tuff` → a bug, it should spawn.** Implement `"all"`.
+
 ## Suggested execution order
 
 1. **P0 enchantable tags** + regen (`runData`) + the GameTest that asserts a Rankine pickaxe

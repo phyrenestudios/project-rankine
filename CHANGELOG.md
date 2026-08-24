@@ -80,7 +80,7 @@ All notable changes to the mod, Project Rankine, will be kept in this file.
   `non_treasure`, and the table offers it — only on properly alloyed pewter gear, exactly as in 1.18.2 (the
   per-stack alloy gate was already ported). The six other enchantments named by the same review finding were
   verified *never* table-offerable in 1.18.2 (`canApplyAtEnchantingTable()` returned false unconditionally)
-  and deliberately stay out.
+  and are declared the 1.18.2 way instead (see the entry on the six armor enchantments below).
 
 - **40 tier-3 tool recipes accepted any alloy rod.** Superalloy, ender-amalgam, stainless-steel and
   tungsten-heavy tools are meant to demand a specific rod (steel, for most); the recipe JSON *encoder* stripped
@@ -120,6 +120,52 @@ All notable changes to the mod, Project Rankine, will be kept in this file.
   translation of its 1.18.2 "never at the enchanting table" override, and joins the standard availability
   tags. Gear behavior is unchanged (pinned by the same table-path test as before); enchanted *books* of them
   are offerable again, which 1.18.2 allowed and the port had lost.
+
+- **Worn alloy armor was never tinted.** Inventory icons showed the alloy colour but the worn model was flat grey:
+  1.21 needs a per-layer `dyeable` flag and a colour source, and the port registered one un-dyeable layer with
+  no colour hook. Alloy armor now has a dyeable base layer plus the 1.18.2 overlay layer, and the worn tint and
+  the icon tint read from one shared helper so they cannot diverge. (The overlay textures are fully
+  transparent and never drew anything in 1.18.2 either — restored for resource-pack parity.)
+- **Hundreds of blocks rendered on the wrong layer.** 104 element/storage blocks were emitted as translucent
+  (1.18.2 listed only the twelve gaseous ones), 1,180 stone-brick slab/stair/wall/pressure-plate models were
+  forced onto the unmipped cutout layer by an over-eager name matcher, the cast-iron support wall was swept in
+  the same way, and the hand-written Cob, Ornament, Tree Tap and Tap Line models had no render type at all
+  (showing opaque black where they should be transparent). All are back on their 1.18.2 layers; a test over
+  the generated model tree pins every family.
+- **Fluids showed raw `fluid_type.rankine.*` keys** in buckets, machine tank tooltips and JEI — the fluid types
+  never declared a description id. They now resolve to the existing `fluid.rankine.*` names.
+- **The parry and gas-exposure screen overlays were nearly invisible.** 1.18.2 drew them once per HUD layer
+  (~50 passes at 5% alpha); 1.21 draws once. The accumulation is reproduced and the overlay draws above the
+  HUD instead of under it.
+- **Damage buffs punched through absorption hearts, and parried/immune hits behaved wrongly.** NeoForge's
+  damage event fires before absorption is subtracted where 1.18.2's fired after, so every Rankine damage
+  multiplier and flat bonus was applied to the wrong number; and the knife parry / alloy-armor immunities
+  cancelled the event at a stage that skipped the hurt sound, red flash, knockback and invulnerability
+  frames. Both restored to 1.18.2 arithmetic and sequencing, with GameTests on absorption, i-frames and
+  durability.
+- **Alloy arrows ignored Power, Punch, Flame and Piercing.** The arrow item discarded the firing weapon, so
+  bow/crossbow enchantments never applied. Measured identical to vanilla arrows from the same bow now.
+- **The mixing barrel and the balloon flung entities from a 6× larger box** than 1.18.2 (a 1.21 AABB helper
+  inflates the far corner by one block). One shared helper now builds the exact 1.18.2 boxes at all call
+  sites.
+- **Chopping a tree on grass turned its bottom log into a stump** (losing the log). 1.18.2 keyed stumps on the
+  dirt/sand *material*, which grass and mycelium were not; the port's `#minecraft:dirt` tag includes them.
+  A mod-owned `stump_bases` tag reproduces the 1.18.2 set.
+- **Reactive-item and explosive-block explosions silently decayed their drops.** Alkali metals in water,
+  Blasting Powder, Gun Cotton and the Unnamed Explosive used 1.18.2's full-drop mode; the 1.21 interaction
+  they were mapped to decays drops by default gamerule. Eight call sites now use the literal no-decay mode.
+- **Switching worlds in one session kept the first world's biome data** for Rankine soils, stone layers and
+  vegetation — the resolver latched on first use. It now resets and re-resolves on every server start.
+- **Rankine spears are explicitly allowed Impaling and Loyalty on both the table and the anvil.** (The table
+  had in fact kept offering them all along; the anvil allowance is the port's deliberate widening.) The Totem
+  of Infusing was investigated end to end and needed no change: it cannot enter an enchanting table (no
+  durability — 1.18.2 identical) and it deliberately refuses books on the anvil (its own 1.18.2 override,
+  carried faithfully). Its real feature — right-click with an enchanted item or book in the main hand to
+  infuse the totem by hand — is verified working and now pinned by GameTests, as is the anvil refusal.
+- **Meteorites, fumaroles, wall mushrooms and cobble patches skipped modded dimensions — and `the_void`.**
+  They were attached to the convention overworld tag, an opt-in list; 1.18.2 attached them to every biome
+  that wasn't Nether or End. The config-gated biome modifier gained an `exclude` list and those four now
+  reach every such biome, modded dimensions included.
 
 ### FIXES (found while testing the port)
 - **No machine could detect any element.** All 120 element recipes still referenced the dead `forge:` tag
@@ -184,13 +230,25 @@ All notable changes to the mod, Project Rankine, will be kept in this file.
 - **The recipes themselves were never wrong — now proven, not assumed.** A GameTest crafts the previously
   scrambled-looking shapes for real: the 2×3 hoe (straight and mirrored), the 1×3 sword, and the 3×2 boots
   with its center hole, plus a wrong-shape arrangement that must not match, and verifies the crafted tool
-  inherits its alloy composition. The generated JSON is identical to 1.18's for all 486 alloy recipes.
+  inherits its alloy composition. The generated recipes are equivalent to 1.18's for all 486 alloy recipes —
+  136 of them regained per-ingredient data the first regeneration had dropped (see the review-fix entry
+  on tier-3 tool recipes); the JSON is not byte-identical, the encoder now writes one key per grid slot.
 - **Rankine's JEI category text was drawn with an unwanted drop shadow**, putting a dimmed black copy of every
   string one pixel behind it — worst on the black labels, where it reads as a black outline. 1.18 drew these
   with `Font#draw`, which does not shadow; the 1.21 `GuiGraphics#drawString` overload that omits the flag
   defaults it to true. All 20 call sites now pass it explicitly.
 
 ### FIXES (pre-existing bugs found during the port)
+- **The Material Testing Table's title bar was blank** in 1.18.2 too — its title was a raw registry path and the
+  screen never called the vanilla label renderer. Fixed; it now reads "Material Testing Table".
+- **Placed alloy blocks (and the Alloy Block item icon) have never shown their alloy colour.** Three separate
+  causes, one of them pre-dating the port: the block model had no tint slot, the colour handler read data
+  nothing wrote, and the block entity never synced to clients (which also made pick-block return a bare
+  block). All fixed; the Alloy Block also keeps its colour through the generic ingot ↔ nugget ↔ block recipes,
+  so a block crafted from alloy-furnace ingots is tinted in survival.
+- **Kimberlitic tuff never generated** — its ore row used a biome selector (`"all"`) that no version ever
+  implemented. `"all"` now means every biome, as written.
+- **Packaged tools and armor could crash the server** — see the review-fix entry above.
 - Sneak-right-clicking with a building-mode block item crashed when the main hand held a block without
   building modes (e.g. the Antimatter Block) or when using Ice Bricks. The 1.18.2 code cast the main hand's
   block unguarded; the style cycle now reads the used item's own block, guarded.
@@ -217,17 +275,33 @@ All notable changes to the mod, Project Rankine, will be kept in this file.
 - **End ore veins are retuned to be findable — deliberate, not parity.** The 1.18.2 height bands sent over half
   of all End vein attempts into the void below or above the islands. Measured against the live End generator
   (end stone spans y 11–64), the native gallium/indium/selenium/tellurium veins now use `triangle(15, 60)` and
-  the four sphere ores `uniform(26, 58)`, lifting in-island placement from 30% to 81% for the natives. Counts,
-  sizes and chances are unchanged. **Only the config defaults changed:** an existing `rankine-common.toml` keeps
+  the four sphere ores `uniform(26, 58)`, lifting in-island placement from 30% to 81% for the natives. Counts
+  and sizes are unchanged; the four sphere ores' per-chunk spawn chance is doubled (0.3 → 0.6) by the author's
+  decision. **Only the config defaults changed:** an existing `rankine-common.toml` keeps
   its old values for every worldgen row — delete it or hand-edit those rows to pick up the new bands — and
   only newly generated End chunks are affected.
-- Entities still get water-style buoyancy and drag while inside a Rankine fluid: vanilla 1.21 hardcodes that
-  for every non-lava fluid in `LivingEntity#travel`, outside what fluid properties control. Drowning, pushing
-  and swimming are off, as in 1.18.2.
+- **Rankine fluids now have realistic movement, per fluid (deliberate feature, not parity).** 1.18.2 fluids
+  behaved like air to walk through; 1.21 vanilla applies water physics to every non-lava fluid. Instead, each
+  fluid now parametrises vanilla's own in-water movement by its viscosity and density: resin and the muds are
+  a crawl (~2.7× slower than water), liquid mercury and sulfuric acid float you, carbon disulfide is slightly
+  *faster* than water, thick fluids cushion falls. Drowning, pushing and swimming stay off. Two declarations
+  were corrected on physical grounds: carbon disulfide's viscosity (6000 → 363; the 1.18.2 value was backwards
+  and unused) and raw maple sap is treated as the thin liquid it is (the syrup is a crafted item).
+- **Alloy armor knockback resistance is now real but scaled (deliberate balance change).** 1.18.2 silently
+  gave zero; the port had accidentally granted full immunity to a plain brass set. The stored stat is applied
+  at one tenth: a brass set gives 0.10 total, the strongest realistic alloy set caps at vanilla full
+  netherite's 0.40, and 1.0 is unreachable.
+- Four 1.18.2 client-sync bugs stay fixed (deliberately, recorded here so they are not mistaken for
+  regressions): air-distillation JEI pages no longer show their dimension and biome lists swapped; evaporation
+  and foraging pages now show their biome tags; a stripping recipe's chance is read as the float it is. No
+  crafting outcome changes.
+- Stumps are placed on exactly the 1.18.2 dirt/sand-material blocks; vanilla blocks added after 1.18.2 (moss,
+  rooted dirt, mud, muddy mangrove roots) and soul soil deliberately do not stump.
 
 ### TESTING
-- Added an automated suite: 24 unit tests (alloy stat curves, drop weighting, the alloy-enchantment gate) and
-  45 GameTests (registry/datapack integrity, worldgen selection and placement, the enchanting-table and alloy paths, machine capabilities and block entities, enchantment applicability
+- Added an automated suite: 46 unit tests (alloy stat curves, drop weighting, the alloy-enchantment gate, render
+  types over the generated model tree, AABB geometry, fluid ids) and
+  61 GameTests (registry/datapack integrity, worldgen selection and placement, the enchanting-table and alloy paths, machine capabilities and block entities, enchantment applicability
   in both directions). `gradlew test` / `gradlew runGameTestServer`; `.porting/verify.sh` drives all five
   verification gates end to end.
 - Two GameTests exist specifically because playtesting exposed silent failure modes no gate could see:
