@@ -63,8 +63,10 @@ import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.RandomState;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.pathfinder.PathType;
+import net.minecraft.world.inventory.AnvilMenu;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.DiggerItem;
+import net.minecraft.world.item.EnchantedBookItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.SwordItem;
@@ -1156,6 +1158,212 @@ public class RankineRegistryTests {
         }
 
         assertEmpty(problems, "enchantment availability mismatches");
+        helper.succeed();
+    }
+
+    /**
+     * F39 — the ANVIL, driven through {@link AnvilMenu#createResult} instead of through the
+     * {@code supportsEnchantment} hook alone.
+     *
+     * <p>QA read the Totem of Infusing's red X in the anvil as a regression against decision 3B.
+     * It is not one: the baseline refuses the same combination, and refuses it on purpose.
+     * {@code InfusingTotemItem#isBookEnchantable} returns {@code false} at {@code 859f87773}
+     * (InfusingTotemItem.java:96-99) exactly as it does at HEAD, and Forge's long-standing anvil
+     * patch — {@code if (flag && !itemstack1.isBookEnchantable(itemstack2)) itemstack1 =
+     * ItemStack.EMPTY;} (AnvilMenu.java:241) — is what empties the result slot. 1.18.2 refused it
+     * twice over, in fact: its anvil loop asked {@code Enchantment#canEnchant}, and a plain
+     * {@code Item} with no durability belongs to no {@code EnchantmentCategory}.
+     *
+     * <p>{@code supportsEnchantment} (AnvilMenu.java:189) is an EARLIER gate on the same call. The
+     * totem passes it and is then dropped fifty lines later, which is why every hook-level
+     * assertion — F28's block above included — reads green while the menu shows nothing. That gap
+     * is the whole reason this test drives the menu rather than the hook.
+     *
+     * <p>Runs on a SURVIVAL mock player: {@code createResult} force-passes the
+     * {@code supportsEnchantment} gate for creative players (AnvilMenu.java:190) and skips the
+     * 40-level cap (AnvilMenu.java:253), so a creative rig would make the negative vacuous.
+     */
+    @GameTest(template = "empty")
+    public void anvilBookApplicationMatchesBaseline(GameTestHelper helper) {
+        var enchantments = helper.getLevel().registryAccess().registryOrThrow(Registries.ENCHANTMENT);
+        List<String> problems = new ArrayList<>();
+
+        Player player = helper.makeMockPlayer(GameType.SURVIVAL);
+        assertTrue(!player.getAbilities().instabuild,
+                "the mock player is in creative, so AnvilMenu.java:190 would force every book through");
+
+        Holder<Enchantment> sharpness = enchantments.getHolder(Enchantments.SHARPNESS).orElseThrow();
+        Holder<Enchantment> efficiency = enchantments.getHolder(Enchantments.EFFICIENCY).orElseThrow();
+
+        // expectedLevel 0 means the anvil must leave the result slot empty.
+        record Combine(String name, ItemStack left, Holder<Enchantment> enchantment, int bookLevel,
+                       int expectedLevel) {
+        }
+
+        List<Combine> combines = List.of(
+                // The finding. Sharpness V on the totem costs 5 levels (anvil_cost 1, halved for a
+                // book to a floor of 1, times level 5), so it sits far inside the 40 cap: an empty
+                // result cannot be blamed on the price, only on isBookEnchantable.
+                new Combine("sharpness V book on the totem of infusing",
+                        new ItemStack(RankineItems.TOTEM_OF_INFUSING.get()), sharpness, 5, 0),
+                // Positive control on the same rig and the same book mechanics. Without it the
+                // negative above would also pass on a menu that never produces anything at all.
+                new Combine("efficiency V book on a steel pickaxe",
+                        new ItemStack(RankineItems.STEEL_PICKAXE.get()), efficiency, 5, 5),
+                // F1's applicability bans are table-ONLY, the way 1.18.2 wrote them with
+                // canApplyAtEnchantingTable: the crowbar is refused Efficiency at the table and
+                // still takes the BOOK at the anvil. It is the control on both directions of a
+                // careless edit — opening the totem must not open the table, and closing books on
+                // the totem must not close them here.
+                new Combine("efficiency V book on a steel crowbar",
+                        new ItemStack(RankineItems.STEEL_CROWBAR.get()), efficiency, 5, 5));
+
+        for (Combine c : combines) {
+            ItemStack book = EnchantedBookItem.createForEnchantment(
+                    new EnchantmentInstance(c.enchantment(), c.bookLevel()));
+            AnvilMenu menu = new AnvilMenu(0, player.getInventory());
+            menu.setItem(AnvilMenu.INPUT_SLOT, menu.incrementStateId(), c.left());
+            menu.setItem(AnvilMenu.ADDITIONAL_SLOT, menu.incrementStateId(), book);
+            menu.createResult();
+
+            ItemStack out = menu.getSlot(AnvilMenu.RESULT_SLOT).getItem();
+            int level = EnchantmentHelper.getEnchantmentsForCrafting(out).getLevel(c.enchantment());
+            if (c.expectedLevel() == 0) {
+                if (!out.isEmpty()) {
+                    problems.add(c.name() + ": the anvil produced " + out + " at level " + level
+                            + "; 1.18.2 emptied the result slot too (isBookEnchantable == false)");
+                }
+            } else if (out.isEmpty()) {
+                problems.add(c.name() + ": the anvil produced nothing, expected level "
+                        + c.expectedLevel());
+            } else if (level != c.expectedLevel()) {
+                problems.add(c.name() + ": the anvil produced level " + level + ", expected "
+                        + c.expectedLevel());
+            }
+        }
+
+        // The two hooks either side of the rejection, asserted directly so a future reader can see
+        // that the totem's EMPTY result is not supportsEnchantment saying no. Decision 3B keeps
+        // that one open; isBookEnchantable is the baseline's own separate refusal.
+        ItemStack totem = new ItemStack(RankineItems.TOTEM_OF_INFUSING.get());
+        if (!totem.supportsEnchantment(sharpness)) {
+            problems.add("totem: supportsEnchantment refuses sharpness, but decision 3B keeps the"
+                    + " port's anvil allowance");
+        }
+        if (totem.getItem().isBookEnchantable(totem, EnchantedBookItem.createForEnchantment(
+                new EnchantmentInstance(sharpness, 5)))) {
+            problems.add("totem: isBookEnchantable now allows books; 859f87773's"
+                    + " InfusingTotemItem.java:96-99 refused them and the anvil is its only caller");
+        }
+        // And the table half of the crowbar ban, so "table-only" is asserted as a whole.
+        if (new ItemStack(RankineItems.STEEL_CROWBAR.get()).isPrimaryItemFor(efficiency)) {
+            problems.add("steel crowbar: efficiency is offered at the enchanting table again;"
+                    + " 1.18.2's canApplyAtEnchantingTable refused it");
+        }
+
+        assertEmpty(problems, "anvil book-application mismatches");
+        helper.succeed();
+    }
+
+    /**
+     * F39 — the Totem of Infusing's actual enchantment intake, which is neither the table nor the
+     * anvil but {@code InfusingTotemItem#use}: hold the totem in one hand and an enchanted item in
+     * the other, right-click, and the totem takes one of that item's non-curse enchantments while
+     * the item is stripped.
+     *
+     * <p>Worth pinning because both menus are closed to it and always were. The table cannot even
+     * accept the totem into its slot — {@code Item#isEnchantable} (Item.java:307) requires
+     * {@code MAX_DAMAGE} and the totem has no durability, so {@code EnchantmentMenu.java:101}
+     * never builds an offer list (1.18.2 identical) — and the anvil empties the result slot, as
+     * {@link #anvilBookApplicationMatchesBaseline} shows. This method is the feature.
+     *
+     * <p>An enchanted BOOK is a perfectly good donor here — the anvil is what refuses it, not the
+     * totem — so the combination QA reported as impossible is asserted working at the end.
+     *
+     * <p>The totem must be held in the OFF hand. {@code use} looks the donor up with
+     * {@code Inventory#findSlotMatchingItem}, which searches only the 36 main slots, so a donor in
+     * the off hand is never found; baseline-identical (859f87773:79).
+     */
+    @GameTest(template = "empty")
+    public void infusingTotemTakesEnchantmentsByHand(GameTestHelper helper) {
+        var enchantments = helper.getLevel().registryAccess().registryOrThrow(Registries.ENCHANTMENT);
+        List<String> problems = new ArrayList<>();
+
+        Holder<Enchantment> sharpness = enchantments.getHolder(Enchantments.SHARPNESS).orElseThrow();
+        Holder<Enchantment> unbreaking = enchantments.getHolder(Enchantments.UNBREAKING).orElseThrow();
+
+        Player player = helper.makeMockPlayer(GameType.SURVIVAL);
+        ItemStack totem = new ItemStack(RankineItems.TOTEM_OF_INFUSING.get());
+        ItemStack donor = new ItemStack(Items.DIAMOND_SWORD);
+        donor.enchant(sharpness, 3);
+        player.setItemInHand(InteractionHand.MAIN_HAND, donor);
+        player.setItemInHand(InteractionHand.OFF_HAND, totem);
+
+        var taken = totem.getItem().use(helper.getLevel(), player, InteractionHand.OFF_HAND);
+        if (!taken.getResult().consumesAction()) {
+            problems.add("use returned " + taken.getResult() + " on an empty totem with an"
+                    + " enchanted donor, expected a consumed action");
+        }
+        int onTotem = EnchantmentHelper.getEnchantmentsForCrafting(totem).getLevel(sharpness);
+        if (onTotem != 3) {
+            problems.add("the totem holds sharpness " + onTotem + " after the transfer, expected 3");
+        }
+        ItemStack strippedDonor = player.getItemInHand(InteractionHand.MAIN_HAND);
+        if (!strippedDonor.is(Items.DIAMOND_SWORD)) {
+            problems.add("the donor slot holds " + strippedDonor + ", expected the sword back");
+        }
+        if (strippedDonor.isEnchanted()) {
+            problems.add("the donor kept its enchantment; 1.18.2 stripped it (859f87773:78-81)");
+        }
+
+        // Non-vacuity: the transfer is not unconditional. A totem that already carries a non-curse
+        // enchantment refuses a second donor outright (859f87773:68), so a use() that simply always
+        // succeeded would fail here.
+        ItemStack secondDonor = new ItemStack(Items.DIAMOND_PICKAXE);
+        secondDonor.enchant(unbreaking, 3);
+        player.setItemInHand(InteractionHand.MAIN_HAND, secondDonor);
+
+        var refused = totem.getItem().use(helper.getLevel(), player, InteractionHand.OFF_HAND);
+        if (refused.getResult().consumesAction()) {
+            problems.add("use returned " + refused.getResult() + " on an already-loaded totem,"
+                    + " expected it to pass");
+        }
+        if (EnchantmentHelper.getEnchantmentsForCrafting(totem).getLevel(unbreaking) != 0) {
+            problems.add("the loaded totem took a second enchantment; 1.18.2 allowed only one");
+        }
+        if (!player.getItemInHand(InteractionHand.MAIN_HAND).isEnchanted()) {
+            problems.add("the refused donor was stripped anyway");
+        }
+
+        // A fresh totem and the very donor QA fed to the anvil. The enchanted book is refused by
+        // the MENU, not by the totem: by hand it is an ordinary donor, because
+        // EnchantmentHelper.getEnchantmentsForCrafting reads STORED_ENCHANTMENTS off a book
+        // (EnchantmentHelper.java:93-95). This is the direct answer to "the totem cannot take a
+        // book" — it can, just not across an anvil.
+        ItemStack freshTotem = new ItemStack(RankineItems.TOTEM_OF_INFUSING.get());
+        ItemStack bookDonor = EnchantedBookItem.createForEnchantment(
+                new EnchantmentInstance(sharpness, 5));
+        player.setItemInHand(InteractionHand.MAIN_HAND, bookDonor);
+        player.setItemInHand(InteractionHand.OFF_HAND, freshTotem);
+
+        var fromBook = freshTotem.getItem().use(helper.getLevel(), player, InteractionHand.OFF_HAND);
+        if (!fromBook.getResult().consumesAction()) {
+            problems.add("use returned " + fromBook.getResult() + " on a fresh totem with an"
+                    + " enchanted-book donor, expected a consumed action");
+        }
+        int fromBookLevel = EnchantmentHelper.getEnchantmentsForCrafting(freshTotem)
+                .getLevel(sharpness);
+        if (fromBookLevel != 5) {
+            problems.add("the totem holds sharpness " + fromBookLevel + " after taking a"
+                    + " sharpness V book by hand, expected 5");
+        }
+        ItemStack spentBook = player.getItemInHand(InteractionHand.MAIN_HAND);
+        if (!spentBook.is(Items.BOOK)) {
+            problems.add("the spent donor is " + spentBook + ", expected a plain book;"
+                    + " removeEnchantments transmutes an emptied enchanted book (859f87773:117-122)");
+        }
+
+        assertEmpty(problems, "totem enchantment-transfer mismatches");
         helper.succeed();
     }
 

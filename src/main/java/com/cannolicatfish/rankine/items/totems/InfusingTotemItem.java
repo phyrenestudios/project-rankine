@@ -92,9 +92,15 @@ public class InfusingTotemItem extends Item {
     }
 
     /**
-     * The ANVIL / enchanted-book path. Kept per decision 3B ("allow BOTH"), even though 1.18.2's
-     * {@code canEnchant} allowed nothing here — {@code isBookEnchantable} below still refuses the
-     * book half, so this only opens what an anvil can otherwise apply.
+     * Kept per decision 3B ("allow BOTH"), but it does NOT open the anvil, and never did.
+     * {@code AnvilMenu#createResult} asks this at AnvilMenu.java:189 and then discards the result
+     * at AnvilMenu.java:241 because {@link #isBookEnchantable} says no; the non-book branch
+     * (AnvilMenu.java:155) needs a damageable item or a second totem, and the totem is neither. No
+     * anvil combination has ever produced an enchanted totem, in 1.18.2 either — 1.18.2 refused it
+     * twice, since its loop asked {@code Enchantment#canEnchant} and a durability-less plain
+     * {@code Item} is in no {@code EnchantmentCategory}. What this override actually opens is the
+     * other {@code supportsEnchantment} consumers: {@code EnchantRandomlyFunction} and the default
+     * {@code isPrimaryItemFor} short-circuit. Pinned by {@code anvilBookApplicationMatchesBaseline}.
      */
     @Override
     public boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment) {
@@ -104,17 +110,31 @@ public class InfusingTotemItem extends Item {
     /**
      * The ENCHANTING TABLE path — the one 1.18.2 had.
      * {@code InfusingTotemItem#canApplyAtEnchantingTable} (InfusingTotemItem.java:93 at
-     * {@code 859f87773}) returned true for EVERY enchantment, which is the whole point of the item:
-     * the totem soaks up an arbitrary enchantment at a table and hands it on. 1.21 routes the table
-     * through {@code isPrimaryItemFor}, which the port never overrode, so the default's
+     * {@code 859f87773}) returned true for EVERY enchantment. 1.21 routes the table through
+     * {@code isPrimaryItemFor}, which the port never overrode, so the default's
      * {@code primary_items} check silently narrowed the totem to whatever each enchantment happens
      * to declare. Unconditional true restores it, matching {@code supportsEnchantment} above.
+     *
+     * <p>A real enchanting table still cannot reach it: {@code Item#isEnchantable} (Item.java:307)
+     * requires {@code MAX_DAMAGE} and the totem has no durability, so {@code EnchantmentMenu}
+     * (EnchantmentMenu.java:101) never builds an offer list for it — 1.18.2 identical. This is
+     * live only for the other {@code isPrimaryItemFor} consumers (mob gear, villager trades,
+     * {@code EnchantWithLevelsFunction}). The item's own intake is {@link #use}.
      */
     @Override
     public boolean isPrimaryItemFor(ItemStack stack, Holder<Enchantment> enchantment) {
         return true;
     }
 
+    /**
+     * Baseline-faithful and deliberate: {@code InfusingTotemItem} overrode this to {@code false} at
+     * {@code 859f87773} (InfusingTotemItem.java:96-99) as well, and AnvilMenu.java:241 is its only
+     * caller. It closes the ANVIL to books, not the totem: {@link #use} takes a book donor
+     * perfectly happily, and that is the point — the totem's intake is the ritual, held in hand,
+     * paid for with the donor's enchantments, rather than a free two-slot menu combine. Opening
+     * this would be a gameplay change beyond both 1.18.2 and the port, not a port fix, so it is
+     * Karl's call rather than an engineer's.
+     */
     @Override
     public boolean isBookEnchantable(ItemStack stack, ItemStack book) {
         return false;
